@@ -1,0 +1,4590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prescritor — Queixa Principal</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --panel:#ffffff; --ink:#1a2b33; --muted:#67808b;
+    --line:#e2e8ec; --accent:#0c7489; --accent-d:#095c6e; --accent-soft:#e6f3f6;
+    --ok:#1c7d4d; --warn:#b25e00; --chip:#eef2f4; --danger:#b42318;
+    --shadow:0 1px 2px rgba(16,40,50,.06),0 6px 18px rgba(16,40,50,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); font-size:14px; line-height:1.4;
+  }
+  header.top{
+    background:linear-gradient(135deg,var(--accent),var(--accent-d));
+    color:#fff; padding:14px 20px; display:flex; align-items:center; gap:14px;
+    box-shadow:var(--shadow); position:sticky; top:0; z-index:20;
+  }
+  header.top .logo{font-size:22px;background:rgba(255,255,255,.16);width:42px;height:42px;
+    display:flex;align-items:center;justify-content:center;border-radius:11px}
+  header.top h1{font-size:17px;margin:0;font-weight:650;letter-spacing:.2px}
+  header.top p{margin:2px 0 0;font-size:12px;opacity:.85}
+  header.top .spacer{flex:1}
+  header.top .hint{font-size:11.5px;opacity:.9;max-width:300px;text-align:right}
+
+  .grid{
+    display:grid; grid-template-columns:248px 1fr 380px; gap:14px;
+    padding:14px; height:calc(100vh - 70px); min-height:0;
+  }
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    display:flex;flex-direction:column;min-height:0;overflow:hidden;box-shadow:var(--shadow)}
+  .col h2{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);
+    margin:0;padding:13px 15px 9px;border-bottom:1px solid var(--line);font-weight:700;
+    display:flex;align-items:center;gap:8px}
+  .col h2 .count{margin-left:auto;background:var(--accent-soft);color:var(--accent-d);
+    font-size:11px;padding:1px 8px;border-radius:20px;font-weight:700}
+  .scroll{overflow-y:auto;flex:1;min-height:0}
+  .scroll::-webkit-scrollbar{width:10px}
+  .scroll::-webkit-scrollbar-thumb{background:#cdd8dd;border-radius:8px;border:3px solid var(--panel)}
+
+  /* search */
+  .search{padding:10px 12px;border-bottom:1px solid var(--line)}
+  .search input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+    font-size:13px;outline:none;background:#fbfdfe}
+  .search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+  /* condition list */
+  .cond{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;
+    border-bottom:1px solid #f0f3f5;transition:background .12s}
+  .cond:hover{background:#f7fafb}
+  .cond.active{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+  .cond .ic{font-size:18px;width:24px;text-align:center;flex:none}
+  .cond .nm{font-weight:600;font-size:13.5px}
+  .cond .sub{font-size:11px;color:var(--muted)}
+
+  /* middle */
+  .mid-head{padding:14px 16px 6px}
+  .mid-head h3{margin:0;font-size:19px;font-weight:700}
+  .mid-head .desc{color:var(--muted);font-size:12.5px;margin-top:3px}
+  .empty{padding:48px 26px;text-align:center;color:var(--muted)}
+  .empty .big{font-size:40px;margin-bottom:10px;opacity:.5}
+
+  .block{border:1px solid var(--line);border-radius:12px;margin:12px 16px;overflow:hidden;background:#fff}
+  .block-head{display:flex;align-items:center;gap:10px;padding:11px 13px;background:#f8fafb;
+    border-bottom:1px solid var(--line)}
+  .block-head .bl{font-weight:700;font-size:13.5px;flex:1}
+  .block-head .tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+    color:var(--accent-d);background:var(--accent-soft);padding:2px 8px;border-radius:20px}
+  .block-head .tag.menu{color:var(--warn);background:#fdf1e3}
+  .addall{border:0;background:var(--accent);color:#fff;font-weight:650;font-size:12px;
+    padding:7px 12px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:background .12s}
+  .addall:hover{background:var(--accent-d)}
+  .items{padding:5px 6px 7px}
+  .item{display:flex;align-items:flex-start;gap:9px;padding:8px 8px;border-radius:9px;cursor:pointer;transition:background .1s}
+  .item:hover{background:var(--accent-soft)}
+  .item .plus{flex:none;width:25px;height:25px;border-radius:7px;border:1px solid var(--accent);
+    color:var(--accent);background:#fff;font-size:16px;font-weight:700;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .item:hover .plus{background:var(--accent);color:#fff}
+  .item .txt{flex:1}
+  .item .med{font-weight:650;font-size:13px}
+  .item .pos{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .item .qty{font-size:11px;color:var(--accent-d);font-weight:600;white-space:nowrap}
+  .orient-box{margin:0 16px 14px;padding:11px 13px;background:#fff8ee;border:1px solid #f0e2c8;
+    border-radius:11px;font-size:12px;color:#6b5326}
+  .orient-box .ohd{font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:10.5px;
+    margin-bottom:6px;color:var(--warn);display:flex;align-items:center;gap:7px}
+  .orient-box .ohd button{margin-left:auto;border:1px solid #e3cfa3;background:#fff;color:var(--warn);
+    border-radius:7px;font-size:11px;font-weight:650;padding:4px 9px;cursor:pointer}
+  .orient-box ul{margin:0;padding-left:17px}
+  .orient-box li{margin:3px 0}
+
+  /* right / receita */
+  .rx-tools{display:flex;gap:7px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}
+  .btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 12px;font-size:12.5px;
+    font-weight:650;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.12s}
+  .btn:hover{background:#f4f7f8}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.primary:hover{background:var(--accent-d)}
+  .btn.ghost{color:var(--danger);border-color:#f0d3cf}
+  .btn.ghost:hover{background:#fdf2f1}
+  .btn .spacer{flex:1}
+  .toggle{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);cursor:pointer;user-select:none}
+
+  .chips{padding:10px 12px;border-bottom:1px solid var(--line);max-height:34%;overflow-y:auto}
+  .grp-h{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
+    font-weight:700;margin:7px 2px 4px}
+  .chip{display:flex;align-items:center;gap:8px;background:var(--chip);border:1px solid var(--line);
+    border-radius:9px;padding:6px 8px;margin-bottom:5px}
+  .chip .cn{flex:1;font-size:12.5px;font-weight:600}
+  .chip .cn small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+  .chip .x{border:0;background:none;color:var(--danger);font-size:16px;cursor:pointer;line-height:1;padding:2px 4px;border-radius:6px}
+  .chip .x:hover{background:#fbe3e0}
+  .rx-empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px}
+
+  .ta-wrap{flex:1;display:flex;flex-direction:column;min-height:0;padding:11px 12px 12px}
+  .ta-wrap label{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
+    font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+  .ta-wrap label .dot{color:var(--ok)}
+  textarea#rx{flex:1;width:100%;resize:none;border:1px solid var(--line);border-radius:10px;
+    padding:12px;font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12px;
+    line-height:1.55;color:#22343b;background:#fbfdfe;outline:none;white-space:pre;overflow:auto}
+  textarea#rx:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+  .disclaimer{font-size:10.5px;color:var(--muted);padding:8px 13px;border-top:1px solid var(--line);
+    background:#fafcfc;line-height:1.45}
+  .disclaimer b{color:var(--warn)}
+
+  /* toast */
+  #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:#15323b;color:#fff;padding:10px 18px;border-radius:30px;font-size:12.5px;font-weight:600;
+    opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #toast.warn{background:#7a4a06}
+
+  @media(max-width:980px){
+    .grid{grid-template-columns:1fr;height:auto;padding:10px;gap:10px}
+    .col{height:auto}
+    #col-cond .scroll{max-height:34vh}
+    #col-mid .scroll{max-height:52vh}
+    #col-rx{position:sticky;bottom:0}
+    .ta-wrap{min-height:220px}
+    header.top .hint{display:none}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo">℞</div>
+  <div>
+    <h1>Prescritor — Queixa Principal</h1>
+    <p>Escolha a condição · monte a receita · copie e cole no seu sistema</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="hint">Modelos extraídos dos seus PDFs de plantão/UBS. Revise sempre doses antes de prescrever.</div>
+</header>
+
+<div class="grid">
+  <!-- COL 1: conditions -->
+  <section class="col" id="col-cond">
+    <h2>Condições <span class="count" id="cond-count">0</span></h2>
+    <div class="search"><input id="cond-search" placeholder="🔎  Buscar condição..." autocomplete="off"></div>
+    <div class="scroll" id="cond-list"></div>
+  </section>
+
+  <!-- COL 2: blocks / meds -->
+  <section class="col" id="col-mid">
+    <h2 id="mid-title">Medicações</h2>
+    <div class="scroll" id="mid-body">
+      <div class="empty"><div class="big">👈</div>Selecione uma condição à esquerda para ver os modelos de receita e medicações.</div>
+    </div>
+  </section>
+
+  <!-- COL 3: receita -->
+  <section class="col" id="col-rx">
+    <h2>Receita <span class="count" id="rx-count">0</span></h2>
+    <div class="rx-tools">
+      <button class="btn primary" id="btn-copy">📋 Copiar</button>
+      <button class="btn ghost" id="btn-clear">🗑 Limpar</button>
+      <label class="toggle"><input type="checkbox" id="free-edit"> edição livre</label>
+    </div>
+    <div class="chips" id="rx-chips"><div class="rx-empty">Nenhum item adicionado ainda.</div></div>
+    <div class="ta-wrap">
+      <label><span class="dot">●</span> Texto pronto para colar</label>
+      <textarea id="rx" spellcheck="false" placeholder="A receita formatada aparece aqui..."></textarea>
+    </div>
+    <div class="disclaimer"><b>⚠ Apoio à decisão, não prescrição automática.</b> Confira medicamento, dose, posologia, alergias e contraindicações de cada paciente. Fonte: seus PDFs de modelos de plantão/UBS.</div>
+  </section>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ============================================================
+   DADOS — condições, blocos e medicações
+   item = [medicamento+dose, quantidade, posologia, (rota opcional)]
+   rota padrão = "USO ORAL"
+   ============================================================ */
+const ORAL="USO ORAL", TOP="USO TÓPICO", INAL="USO INALATÓRIO", NASAL="USO INTRANASAL", AUD="USO TÓPICO AUDITIVO", SL="USO SUBLINGUAL";
+
+const DATA = [
+ {
+  "id": "analgesia",
+  "ic": "💊",
+  "nm": "Analgesia / Dor",
+  "sub": "ibuprofeno · diclofenaco · nimesulida",
+  "blocks": [
+   {
+    "label": "Padrão — Ibuprofeno",
+    "items": [
+     [
+      "IBUPROFENO 300 MG",
+      "40 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Diclofenaco",
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 05 DIAS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Trauma — Nimesulida",
+    "items": [
+     [
+      "NIMESULIDA 100 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Potente — Cetoprofeno",
+    "items": [
+     [
+      "CETOPROFENO 150 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Dor abdominal",
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS VO SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "abstinencia",
+  "ic": "🍺",
+  "nm": "Abstinência alcoólica",
+  "sub": "tiamina",
+  "blocks": [
+   {
+    "label": "Extra-hospitalar (conduta adaptada)",
+    "items": [
+     [
+      "TIAMINA 300 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 7 DIAS, DEPOIS 01 COMPRIMIDO AO DIA HORÁRIO SUGERIDO (12/12h): 08:00 / 20:00"
+     ],
+     [
+      "CARBAMAZEPINA 200 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H"
+     ]
+    ]
+   },
+   {
+    "label": "Conduta ideal (requer acompanhamento)",
+    "items": [
+     [
+      "TIAMINA 300 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 7 DIAS, DEPOIS 01 COMPRIMIDO AO DIA HORÁRIO SUGERIDO (12/12h): 08:00 / 20:00"
+     ],
+     [
+      "DIAZEPAM 10 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE, ANTES DE DORMIR, POR 20 DIAS SEGUIDOS"
+     ],
+     [
+      "AMITRIPTILINA 25 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE, ANTES DE DORMIR"
+     ]
+    ],
+    "orient": [
+     "RETORNAR AO PSF APÓS 21 DIAS DE TRATAMENTO PARA REAVALIAÇÃO"
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "TIAMINA 300 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 7 DIAS, DEPOIS 01 COMPRIMIDO AO DIA HORÁRIO SUGERIDO (12/12h): 08:00 / 20:00"
+     ],
+     [
+      "DIAZEPAM 10 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE, ANTES DE DORMIR, POR 20 DIAS SEGUIDOS"
+     ],
+     [
+      "FLUOXETINA 20 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ"
+     ]
+    ],
+    "orient": [
+     "RETORNAR AO PSF APÓS 21 DIAS DE TRATAMENTO PARA REAVALIAÇÃO"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "TIAMINA 300 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 7 DIAS, DEPOIS 01 COMPRIMIDO AO DIA HORÁRIO SUGERIDO (12/12h): 08:00 / 20:00"
+     ],
+     [
+      "DIAZEPAM 10 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE, ANTES DE DORMIR, POR 20 DIAS SEGUIDOS"
+     ],
+     [
+      "CITALOPRAM 20 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE, ANTES DE DORMIR"
+     ]
+    ],
+    "orient": [
+     "RETORNAR AO PSF APÓS 21 DIAS DE TRATAMENTO PARA REAVALIAÇÃO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "abuso_sexual",
+  "ic": "🛡",
+  "nm": "Abuso sexual — profilaxia",
+  "sub": "penicilina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "PENICILINA BENZATINA 1.200.000 UI",
+      "02 AMPOLAS",
+      "APLICAR UMA AMPOLA EM CADA GLÚTEO MÉDIO"
+     ],
+     [
+      "CEFTRIAXONA 500 MG",
+      "01 AMPOLA",
+      "APLICAR EM GLÚTEO MÉDIO"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR OS 02 COMPRIMIDOS EM DOSE ÚNICA"
+     ],
+     [
+      "METRONIDAZOL 250 MG",
+      "08 COMPRIMIDOS",
+      "TOMAR 08 COMPRIMIDOS EM DOSE ÚNICA"
+     ],
+     [
+      "LEVONORGESTREL 0,75 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR OS DOIS COMPRIMIDOS EM DOSE ÚNICA"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "aftas",
+  "ic": "👄",
+  "nm": "Aftas orais (estomatite)",
+  "sub": "triancinolona · gingilone",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "TRIANCINOLONA ACETONIDA TÓPICA",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A LESÃO, SEM ESFREGAR, TRÊS VEZES AO DIA POR 07 DIAS",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "GINGILONE ® TÓPICA",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A LESÃO, SEM ESFREGAR, TRÊS VEZES AO DIA POR 07 DIAS",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "alergia",
+  "ic": "🌿",
+  "nm": "Alergia / Prurido",
+  "sub": "hidroxizina · loratadina · cetirizina",
+  "blocks": [
+   {
+    "label": "Alergia – mais barato",
+    "items": [
+     [
+      "HIDROXIZINA 25MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "PREDNISONA 20MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 08:00 DA MANHÃ POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "PREDNISONA 20MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 08:00 DA MANHÃ POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Alergia – médio",
+    "items": [
+     [
+      "CETIRIZINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "PREDNISONA 20MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 08:00 DA MANHÃ POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Alergia – mais caro",
+    "items": [
+     [
+      "LEVOCETIRIZINA 5MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "PREDNISONA 20MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 08:00 DA MANHÃ POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Alergia – espirros",
+    "items": [
+     [
+      "FEXOFENADINA 60MG + PSEUDOEFEDRINA 120MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE ESPIRROS OU CORIZA, PODENDO REPETIR DE 12/12H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "anafilaxia",
+  "ic": "🚨",
+  "nm": "Anafilaxia",
+  "sub": "prednisona",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "PREDNISONA 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 05 DIAS"
+     ],
+     [
+      "HIDROXIZINA 25 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 08/08H POR 05 DIAS"
+     ],
+     [
+      "RANITIDINA 150 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ, EM JEJUM, POR 05 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "anticoncepcao",
+  "ic": "💊",
+  "nm": "Anticoncepção de emergência",
+  "sub": "levonorgestrel",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "LEVONORGESTREL 0,75 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR OS DOIS COMPRIMIDOS EM DOSE ÚNICA"
+     ],
+     [
+      "DIMENIDRINATO 50 MG + PIRIDOXINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS, OU VÔMITO, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "LEVONORGESTREL 1,5 G",
+      "01 COMPRIMIDO",
+      "TOMAR UM COMPRIMIDO EM DOSE ÚNICA"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "asma",
+  "ic": "🫁",
+  "nm": "Asma",
+  "sub": "prednisona · salbutamol · beclometasona",
+  "blocks": [
+   {
+    "label": "Asma – Prescrição para a alta, após a crise",
+    "items": [
+     [
+      "PREDNISONA 20 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 8:00 POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 02 JATOS DE 06/06 HORAS POR 05 DIAS.",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Asma – Step 1",
+    "items": [
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Asma – Step 2",
+    "items": [
+     [
+      "BECLOMETASONA AEROSSOL 50 MCG",
+      "01 FRASCO",
+      "INALAR 02 JATOS DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00",
+      "USO INALATÓRIO"
+     ],
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Asma – Step 3",
+    "items": [
+     [
+      "BUDESONIDA + FORMOTEROL 100/6MCG",
+      "01 FRASCO",
+      "INALAR 01 CÁPSULA DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00",
+      "USO INALATÓRIO"
+     ],
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Asma – Step 4",
+    "items": [
+     [
+      "BUDESONIDA + FORMOTEROL 200/6MCG",
+      "01 FRASCO",
+      "INALAR 01 CÁPSULA DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00",
+      "USO INALATÓRIO"
+     ],
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "BUDESONIDA + FORMOTEROL 400/6MCG",
+      "01 FRASCO",
+      "INALAR 01 CÁPSULA DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00",
+      "USO INALATÓRIO"
+     ],
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bursites",
+  "ic": "🦵",
+  "nm": "Bursites",
+  "sub": "cafeína · paracetamol · carisoprodol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "CAFEÍNA 35MG + DIPIRONA 300MG + ORFENADRINA 50MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H SE DOR"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "PARACETAMOL 350MG + CARISOPRODOL 150MG + CAFEÍNA 50MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "CARISOPRODOL 125MG + DICLOFENACO 50MG + PARACETAMOL 300MG + CAFEÍNA 30MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR ATÉ 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 08/08H POR ATÉ 05 DIAS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "NIMESULIDA BETACICLODEXTRINA 400 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR ATÉ 03 DIAS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "ALGINAC 1.000 ®",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 7",
+    "items": [
+     [
+      "ALGINAC RETARD ®",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 8",
+    "items": [
+     [
+      "CETOROLACO TROMETAMINA 10MG",
+      "06 COMPRIMIDOS",
+      "COLOCAR 01 COMPRIMIDO EM BAIXO DA LÍNGUA E ESPERAR DISSOLVER, PODENDO REPETIR DE 8/8H, POR ATÉ 03 DIAS SEGUIDOS."
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "calmantes",
+  "ic": "🌼",
+  "nm": "Calmantes fitoterápicos",
+  "sub": "passíflora",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "PASSÍFLORA 260 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "PASSÍFLORA INCARNATA 360 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE POR 30 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "PASSÍFLORA INCARNATA 360 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 10 DIAS, E DEPOIS UM COMPRIMIDO À NOITE POR MAIS 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "PASSÍFLORA INCARNATA 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO 01 VEZ À NOITE POR 10 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cefaleia",
+  "ic": "🤕",
+  "nm": "Cefaleia",
+  "sub": "dipirona",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS VO SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ceratite",
+  "ic": "👁",
+  "nm": "Ceratite fotoelétrica",
+  "sub": "regencel",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "REGENCEL POMADA OFTÁLMICA",
+      "01 BISNAGA",
+      "APLICAR 01cm DA POMADA DENTRO DA PÁLPEBRA INFERIOR, 02 VEZES AO DIA",
+      "USO TÓPICO"
+     ],
+     [
+      "OPTOCARE",
+      "01 FRASCO",
+      "APLICAR UMA OU DUAS GOTAS NO OLHO AFETADO 06 VEZES AO DIA",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "chikungunya",
+  "ic": "🦟",
+  "nm": "Chikungunya",
+  "sub": "paracetamol",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+     ]
+    ],
+    "orient": [
+     "TOMAR 01 COPO D’ÁGUA 10 VEZES AO DIA OU MAIS, CONFORME ACEITAÇÃO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "colica_nefretica",
+  "ic": "🪨",
+  "nm": "Cólica nefrética",
+  "sub": "cetoprofeno · cetorolaco · algicod",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "CETOPROFENO 150 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDO"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ],
+    "orient": [
+     "BEBER BASTANTE ÁGUA E DIMINUIR A INGESTA DE SÓDIO E PROTEÍNAS (EX: EVITAR CARNES, SAL E REFRIGERANTES)"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CETOROLACO 10 MG",
+      "10 COMPRIMIDOS",
+      "DISSOLVER 01 COMPRIMIDO SUBLINGUAL, PODENDO REPETIR DE 6/6H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ],
+    "orient": [
+     "BEBER BASTANTE ÁGUA E DIMINUIR A INGESTA DE SÓDIO E PROTEÍNAS (EX: EVITAR CARNES, SAL E REFRIGERANTES)"
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "ALGICOD ®",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO JUNTO COM DICLOFENACO SE DOR INTENSA, PODENDO REPETIR DE 8/8H SE NECESSÁRIO. TOMAR O MÍNIMO POSSÍVEL, PARA EVITAR DEPENDÊNCIA E CONSTIPAÇÃO"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO JUNTO COM ALGICOD ® SE DOR INTENSA, PODENDO REPETIR DE 8/8H, POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "TANSULOSINA 0,4 MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO APÓS O CAFÉ DA MANHÃ, POR 04 SEMANAS"
+     ]
+    ],
+    "orient": [
+     "BEBER BASTANTE ÁGUA E DIMINUIR A INGESTA DE SÓDIO E PROTEÍNAS (EX: EVITAR CARNES, SAL E REFRIGERANTES)",
+     "SOLICITO: USG DE RINS E VIAS URINÁRIAS + FÍGADO E VIAS BILIARES",
+     "JUSTIF: NEFROLITÍASE? URETEROLITÍASE? COLELITÍASE?"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "conjuntivite",
+  "ic": "👁",
+  "nm": "Conjuntivite",
+  "sub": "tobramicina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "TOBRAMICINA 3MG/ML COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 1 GOTA EM CADA OLHO, DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00",
+      "USO TÓPICO"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "LAVAR OS OLHOS AFETADOS COM SORO GELADO QUATRO VEZES AO DIA. GUARDAR O SORO NA GELADEIRA.",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "EVITAR COÇAR OS OLHOS",
+     "LAVAR AS MÃOS COM FREQUÊNCIA",
+     "NÃO COMPARTILHAR TOALHAS E OBJETOS PESSOAIS"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "corpo_estranho",
+  "ic": "👁",
+  "nm": "Corpo estranho ocular",
+  "sub": "tobramicina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "TOBRAMICINA 3MG/ML + DEXAMETASONA 1MG/ML COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 1 GOTA EM CADA OLHO, DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00",
+      "USO TÓPICO"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "LAVAR OS OLHOS AFETADOS COM SORO GELADO QUATRO VEZES AO DIA. GUARDAR O SORO NA GELADEIRA.",
+      "USO TÓPICO"
+     ],
+     [
+      "OFLOXACINO COLÍRIO 0,3%",
+      "01 FRASCO",
+      "PINGAR UMA GOTA NO OLHO AFETADO DE 6/6H POR 05 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "EVITAR COÇAR OS OLHOS",
+     "LAVAR AS MÃOS COM FREQUÊNCIA"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "constipacao",
+  "ic": "🚽",
+  "nm": "Constipação",
+  "sub": "benefiber · muvinlax",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "BENEFIBER ®",
+      "01 CAIXA",
+      "DISSOLVER 01 SACHÊ EM 01 COPO DE ÁGUA OU SUCO E TOMAR AO ALMOÇO POR 28 DIAS"
+     ],
+     [
+      "SIMETICONA 40 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR (GASES), PODENDO REPETIR DE 6/6H"
+     ]
+    ],
+    "orient": [
+     "INGERIR BASTANTE LÍQUIDO (8 A 10 COPOS DE 200ml POR DIA), DIETA RICA EM FIBRAS (FRUTAS, VERDURAS CRUAS, ALIMENTOS INTEGRAIS...), EXERCÍCIO FÍSICO E PROCURAR EVACUAR DIARIAMENTE SEMPRE NO MESMO HORÁRIO"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "MUVINLAX ®",
+      "01 CAIXA",
+      "DISSOLVER 01 SACHÊ EM 01 COPO DE ÁGUA OU SUCO E TOMAR APÓS O CAFÉ DA MANHÃ POR 03 DIAS"
+     ],
+     [
+      "SIMETICONA 40 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR (GASES), PODENDO REPETIR DE 6/6H"
+     ]
+    ],
+    "orient": [
+     "INGERIR BASTANTE LÍQUIDO (8 A 10 COPOS DE 200ml POR DIA), DIETA RICA EM FIBRAS (FRUTAS, VERDURAS CRUAS, ALIMENTOS INTEGRAIS...), EXERCÍCIO FÍSICO E PROCURAR EVACUAR DIARIAMENTE SEMPRE NO MESMO HORÁRIO"
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "MUVINLAX ®",
+      "01 CAIXA",
+      "DISSOLVER 01 SACHÊ EM 01 COPO DE ÁGUA OU SUCO E TOMAR APÓS O CAFÉ DA MANHÃ POR 03 DIAS"
+     ],
+     [
+      "BENEFIBER ®",
+      "01 CAIXA",
+      "DISSOLVER 01 SACHÊ EM 01 COPO DE ÁGUA OU SUCO E TOMAR AO ALMOÇO POR 28 DIAS"
+     ],
+     [
+      "SIMETICONA 40 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR (GASES), PODENDO REPETIR DE 6/6H"
+     ]
+    ],
+    "orient": [
+     "INGERIR BASTANTE LÍQUIDO (8 A 10 COPOS DE 200ml POR DIA), DIETA RICA EM FIBRAS (FRUTAS, VERDURAS CRUAS, ALIMENTOS INTEGRAIS...), EXERCÍCIO FÍSICO E PROCURAR EVACUAR DIARIAMENTE SEMPRE NO MESMO HORÁRIO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dengue",
+  "ic": "🦟",
+  "nm": "Dengue",
+  "sub": "dipirona",
+  "blocks": [
+   {
+    "label": "Grupo A",
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO AO MENOS 10 VEZES POR DIA, OU MAIS, CONFORME ACEITAÇÃO"
+     ]
+    ],
+    "orient": [
+     "BEBER 1,0 LITRO DE SORO CASEIRO (01 COLHER DE CHÁ DE SAL + 02 COLHERES DE SOPA DE AÇÚCAR + 01 LITRO DE ÁGUA POTÁVEL) POR DIA, E 2,0 LITROS DE DEMAIS LIQUIDOS (ÁGUA, SUCOS, CHÁS...)",
+     "NÃO TOMAR ASPIRINA, IBUPROFENO, DICLOFENACO OU QUALQUER OUTRA MEDICAÇÃO SEM ORIENTAÇÃO MÉDICA.",
+     "RETORNAR IMEDIATAMENTE EM CASO DE DOR DE BARRIGA INTENSA E SEM MELHORA, VÔMITOS PERSISTENTES, SANGRAMENTOS IMPORTANTES, AUSÊNCIA DE URINA POR UM DIA APESAR DA HIDRATAÇÃO, SONOLÊNCIA INTENSA OU IRRITABILIDADE, VONTADE DE DESMAIAR, DESMAIO, MAL ESTAR IMPORTANTE OU MESMO DÚVIDAS."
+    ]
+   },
+   {
+    "label": "Grupo B",
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO AO MENOS 10 VEZES POR DIA, OU MAIS, CONFORME ACEITAÇÃO"
+     ]
+    ],
+    "orient": [
+     "BEBER 1,0 LITRO DE SORO CASEIRO (01 COLHER DE CHÁ DE SAL + 02 COLHERES DE SOPA DE AÇÚCAR + 01 LITRO DE ÁGUA POTÁVEL) POR DIA, E 2,0 LITROS DE DEMAIS LIQUIDOS (ÁGUA, SUCOS, CHÁS...)",
+     "NÃO TOMAR ASPIRINA, IBUPROFENO, DICLOFENACO OU QUALQUER OUTRA MEDICAÇÃO SEM ORIENTAÇÃO MÉDICA.",
+     "RETORNAR IMEDIATAMENTE EM CASO DE DOR DE BARRIGA INTENSA E SEM MELHORA, VÔMITOS PERSISTENTES, SANGRAMENTOS IMPORTANTES, AUSÊNCIA DE URINA POR UM DIA APESAR DA HIDRATAÇÃO, SONOLÊNCIA INTENSA OU IRRITABILIDADE, VONTADE DE DESMAIAR, DESMAIO, MAL ESTAR IMPORTANTE OU MESMO DÚVIDAS.",
+     "RETORNAR APÓS 48H PARA REPETIR OS EXAMES LABORATORIAIS"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "diarreia",
+  "ic": "💩",
+  "nm": "Diarreia aguda",
+  "sub": "loperamida · saccharomyces · ciprofloxacino",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "LOPERAMIDA 2MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "LOPERAMIDA 2MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS, PODENDO TOMAR 01 A CADA EVACUAÇÃO DIARREIA, ATÉ O MÁXIMO DE 08 COMPRIMIDOS/DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "BUSCOPAN COMPOSTO®",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "BUSCODUO®",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 7",
+    "items": [
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 8",
+    "items": [
+     [
+      "CIPROFLOXACINO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 9",
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "03 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 03 DIAS HORÁRIO SUGERIDO: 08:00"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO 10 A 15 VEZES AO LONGO DO DIA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 10",
+    "items": [
+     [
+      "METRONIDAZOL 250 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 8/8H POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA DIARREIA POR CYCLOSPORA E ISOSPORA BELI ### Comuns em"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 11",
+    "items": [
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 400/80 MG",
+      "56 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 12/12H POR 14 DIAS"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 12",
+    "items": [
+     [
+      "SECNIDAZOL 01 G",
+      "02 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS EM DOSE ÚNICA"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 13",
+    "items": [
+     [
+      "NITAZOXANIDA 500 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 03 DIAS SEGUIDOS HORÁRIO SUGERIDO (12/12H): 08:00 / 20:00"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA DIARREIA POR NEMATELMINTOS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 14",
+    "items": [
+     [
+      "ALBENDAZOL 400 MG",
+      "4 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 3 DIAS E REPETIR APÓS 21 DIAS"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "hemorroida",
+  "ic": "🩸",
+  "nm": "Doença hemorroidária trombosada",
+  "sub": "diclofenaco",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 05 DIAS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIOSMINA 450 MG + HESPERIDINA 50 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "BENEFIBER ®",
+      "01 CAIXA",
+      "DISSOLVER O CONTEÚDO DE UM ENVELOPE EM UM COPO DE ÁGUA E TOMAR ÀS REFEIÇÕES 02 VEZES AO DIA POR 03 DIAS"
+     ],
+     [
+      "PROCTYL®",
+      "01 BISNAGA",
+      "APLICAR NO LOCAL DE 03 A 04 VEZES AO DIA EM PEQUENA QUANTIDADE ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "NÃO USAR PAPEL HIGIÊNICO. APÓS EVACUAÇÃO, LAVAR OU USAR LENÇOS UMEDECIDOS",
+     "FAZER BANHO DE ASSENTO (sentar numa banheira ou bacia com água MORNA) VÁRIAS VEZES AO DIA - TESTE A ÁGUA PARA EVITAR QUEIMADURAS",
+     "INGERIR BASTANTE LÍQUIDO (8 A 10 COPOS DE 200ml POR DIA), DIETA RICA EM FIBRAS (FRUTAS, VERDURAS CRUAS, ALIMENTOS INTEGRAIS...), EXERCÍCIO FÍSICO E PROCURAR EVACUAR DIARIAMENTE SEMPRE NO MESMO HORÁRIO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dismenorreia",
+  "ic": "🩸",
+  "nm": "Dismenorreia",
+  "sub": "butilbrometo · piroxicam · meloxicam",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "PIROXICAM 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "MELOXICAM 7,5 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR, PODENDO REPETIR DE 24/24H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dpoc",
+  "ic": "🫁",
+  "nm": "DPOC descompensada",
+  "sub": "amoxicilina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 10 DIAS CONSECUTIVOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 07 DIAS CONSECUTIVOS"
+     ],
+     [
+      "PREDNISONA 20 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 8:00 POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ, EM JEJUM, POR 10 DIAS"
+     ],
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "eczema",
+  "ic": "🧴",
+  "nm": "Eczema de contato",
+  "sub": "betametasona · clobetazol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "BETAMETASONA 0,1%",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A ÁREA AFETADA DUAS VEZES AO DIA",
+      "USO TÓPICO"
+     ],
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CLOBETAZOL CREME 0,5 MG/G",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A ÁREA AFETADA DUAS VEZES AO DIA",
+      "USO TÓPICO"
+     ],
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "enxaqueca",
+  "ic": "🧠",
+  "nm": "Enxaqueca",
+  "sub": "naproxeno · naratripano · sumatriptano",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "NARATRIPANO 2,5 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE REPETIR 01 COMPRIMIDO APÓS 6H HORAS."
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "SUMATRIPTANO 25 MG",
+      "02 CAIXAS",
+      "TOMAR 01 COMPRIMIDO AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE REPETIR 02 COMPRIMIDOS A CADA 02 HORAS, ATÉ O MÁXIMO DE 04 VEZES AO DIA."
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "CEFALIV®",
+      "01 CAIXA",
+      "TOMAR 01 A 02 COMPRIMIDOS AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE INGERIR UM COMPRIMIDO A CADA 30 MIN, ATÉ UM MÁXIMO DE 06 COMPRIMIDOS"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "CEFALIUM",
+      "01 CAIXA",
+      "TOMAR 01 A 02 COMPRIMIDOS AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE INGERIR UM COMPRIMIDO A CADA 30 MIN, ATÉ UM MÁXIMO DE 06 COMPRIMIDOS"
+     ]
+    ]
+   },
+   {
+    "label": "Migrânea na gestação",
+    "items": [
+     [
+      "PARACETAMOL 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "epididimite",
+  "ic": "♂",
+  "nm": "Epididimite / Orquite",
+  "sub": "ciprofloxacino",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "CIPROFLOXACINO 500MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 10 DIAS HORÁRIO SUGERIDO: 08h00 – 20h00"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "erisipela",
+  "ic": "🦠",
+  "nm": "Erisipela e celulite",
+  "sub": "cefalexina · clindamicina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ]
+    ],
+    "orient": [
+     "MANTER O MEMBRO ELEVADO NA MAIOR PARTE DO TEMPO E APLICAR COMPRESSAS MORNAS"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "40 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ]
+    ],
+    "orient": [
+     "MANTER O MEMBRO ELEVADO NA MAIOR PARTE DO TEMPO E APLICAR COMPRESSAS MORNAS"
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "56 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 14 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ]
+    ],
+    "orient": [
+     "MANTER O MEMBRO ELEVADO NA MAIOR PARTE DO TEMPO E APLICAR COMPRESSAS MORNAS"
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "CLINDAMICINA 300MG",
+      "42 CÁPSULAS",
+      "TOMAR 02 CÁPSULAS DE 8/8 HORAS POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "escabiose",
+  "ic": "🐛",
+  "nm": "Escabiose",
+  "sub": "ivermectina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "IVERMECTINA 6 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS EM DOSE ÚNICA E REPETIR APÓS 21 DIAS"
+     ],
+     [
+      "HIDROXIZINA 25 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 8/8 HORAS"
+     ]
+    ],
+    "orient": [
+     "TROCAR ROUPAS DE CAMA DIARIAMENTE DURANTE OS 3 PRIMEIROS DIAS DE TRATAMENTO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "faringo_inesp",
+  "ic": "😷",
+  "nm": "Faringoamigdalite inespecífica",
+  "sub": "dipirona",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "BENALET®",
+      "01 CAIXA",
+      "DISSOLVER LENTAMENTE UMA PASTILHA NA BOCA, PODENDO REPETIR DE 2/2H CONFORME NECESSIDADE"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "faringo_estrep",
+  "ic": "😷",
+  "nm": "Faringoamigdalite estreptocócica",
+  "sub": "amoxicilina · azitromicina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "AMOXICILINA 500MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 08/08H POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDOS PELA MANHÃ EM JEJUM, 30 MINUTOS ANTES DO CAFÉ-DA-MANHÃ, POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "AZITROMICINA 500MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS HORÁRIO SUGERIDO: 08:00"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDOS PELA MANHÃ EM JEJUM, 30 MINUTOS ANTES DO CAFÉ-DA-MANHÃ, POR 10 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "gastrite",
+  "ic": "🔥",
+  "nm": "Gastrite / DRGE",
+  "sub": "omeprazol",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS PELA MANHÃ EM JEJUM, 30 MINUTOS ANTES DO CAFÉ-DA-MANHÃ, POR 08 SEMANAS"
+     ],
+     [
+      "DOMPERIDONA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO 30 MINUTOS ANTES DO ALMOÇO"
+     ],
+     [
+      "SIMETICONA 40 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR (GASES), PODENDO REPETIR DE 6/6H"
+     ]
+    ],
+    "orient": [
+     "ELEVAR A CABECEIRA DA CAMA (15cm): USAR UM APOIO SOB OS PÉS DA CAMA OU TRAVESSEIROS",
+     "EVITAR DEITAR-SE NAS DUAS HORAS APÓS AS REFEIÇÕES",
+     "DIVIDIR AS REFEIÇÕES EM: Café-da-manhã – Lanche da manhã – Almoço –"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "gota",
+  "ic": "🦶",
+  "nm": "Gota — crise",
+  "sub": "naproxeno · colchicina · prednisona",
+  "blocks": [
+   {
+    "label": "Primeira linha: AINE",
+    "items": [
+     [
+      "NAPROXENO SÓDICO 250 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 12/12H POR 3 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00 DEPOIS 01 COMPRIMIDO DE 8/8H POR MAIS 5 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ, EM JEJUM, POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "COLCHICINA 0,5 MG",
+      "90 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS E, DEPOIS DE UMA HORA, 01 COMPRIMIDO. EM SEGUIDA, MANTER 01 COMPRIMIDO DE 8/8H POR 03 MESES"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "PREDNISONA 20 MG",
+      "31 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 07 DIAS, DEPOIS 12/12 POR 04 DIAS, E ENTÃO UMA VEZ AO DIA, ÀS 8:00 DA MANHÃ, POR MAIS 03 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "h1n1",
+  "ic": "🤧",
+  "nm": "H1N1 — profilaxia",
+  "sub": "oseltamivir",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "OSELTAMIVIR 75 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 05 DIAS SEGUIDOS HORÁRIOS SUGERIDO: 08h00 – 20h00"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "hordeolo",
+  "ic": "👁",
+  "nm": "Hordéolo / Blefarite",
+  "sub": "ciprofloxacino",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "CIPROFLOXACINO 1MG/ML + DEXAMETASONA 3MG/ML POMADA OFTÁLMICA ESTÉRIL",
+      "01 BISNAGA",
+      "APLICAR NA BORDA DOS CÍLIOS AFETADOS TRÊS VEZES AO DIA POR 15 DIAS",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "APLICAR COMPRESSAS DE ÁGUA MORNA TRÊS VEZES AO DIA"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "herpes_zoster",
+  "ic": "🔴",
+  "nm": "Herpes zóster",
+  "sub": "aciclovir",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "ACICLOVIR 400 MG",
+      "70 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 4/4H, EXCETUANDO-SE UMA DOSE NOTURNA, POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 10:00 – 14:00 – 18:00 – 22:00"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 14:00 – 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ],
+     [
+      "DIPROGENTA®",
+      "01 BISNAGA",
+      "APLICAR NA LESÃO DUAS VEZES AO DIA ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "ACICLOVIR 400 MG",
+      "70 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 4/4H, EXCETUANDO-SE UMA DOSE NOTURNA, POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 10:00 – 14:00 – 18:00 – 22:00"
+     ],
+     [
+      "PREDNISONA 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ],
+     [
+      "DIPROGENTA®",
+      "01 BISNAGA",
+      "APLICAR NA LESÃO DUAS VEZES AO DIA ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "impetigo",
+  "ic": "🟡",
+  "nm": "Impetigo crostoso",
+  "sub": "mupirocina · cefalexina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "MUPIROCINA POMADA 2%",
+      "01 BISNAGA",
+      "APLICAR NAS LESÕES TRÊS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "LAVAR COM ÁGUA MORNA E SABÃO DUAS A TRÊS VEZES AO DIA",
+     "TENTAR REMOVER AS CROSTAS ANTES DE APLICAR A POMADA – SE HOUVER DIFICULDADE, PODE-SE AMOLECÊ-LAS APLICANDO PRIMEIRO ÓLEO OU VASELINA LIGEIRAMENTE AQUECIDA"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ],
+     [
+      "MUPIROCINA POMADA 2%",
+      "01 BISNAGA",
+      "APLICAR NAS LESÕES TRÊS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "LAVAR COM ÁGUA MORNA E SABÃO DUAS A TRÊS VEZES AO DIA",
+     "TENTAR REMOVER AS CROSTAS ANTES DE APLICAR A POMADA – SE HOUVER DIFICULDADE, PODE-SE AMOLECÊ-LAS APLICANDO PRIMEIRO ÓLEO OU VASELINA LIGEIRAMENTE AQUECIDA"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "itu",
+  "ic": "🚽",
+  "nm": "ITU / Cistite",
+  "sub": "sulfametoxazol · fosfomicina · nitrofurantoína",
+  "blocks": [
+   {
+    "label": "Primeira linha de tratamento",
+    "items": [
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 400/80 MG",
+      "12 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 12/12H POR 03 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 400/80 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 12/12H POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "FOSFOMICINA GRANULADO 3 G",
+      "01 CAIXA",
+      "DILUIR O ENVELOPE EM UM COPO D’ÁGUA E INGERIR EM DOSE ÚNICA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "NITROFURANTOÍNA 100 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 06/06H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ]
+    ]
+   },
+   {
+    "label": "Segunda linha de tratamento",
+    "items": [
+     [
+      "NORFLOXACINO 400 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "NORFLOXACINO 400 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "CIPROFLOXACINO 500 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "CIPROFLOXACINO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "intertrigo",
+  "ic": "🧴",
+  "nm": "Intertrigo / Candidíase",
+  "sub": "fluconazol · itraconazol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "FLUCONAZOL 150MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO A CADA 07 DIAS ATE O TOTAL DE 04 DOSES"
+     ],
+     [
+      "TROK-N®",
+      "01 BISNAGA",
+      "APLICAR NAS LESÕES DUAS VEZES AO DIA ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "LAVAR A REGIÃO AFETADA COM ÁGUA E SABÃO E SECAR BEM EM SEGUIDA",
+     "EVITAR AO MÁXIMO O USO DE CALÇADOS FECHADOS"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "ITRACONAZOL 100MG",
+      "10 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08h00 - 20h00"
+     ],
+     [
+      "TROK-N®",
+      "01 BISNAGA",
+      "APLICAR NAS LESÕES DUAS VEZES AO DIA ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "LAVAR A REGIÃO AFETADA COM ÁGUA E SABÃO E SECAR BEM EM SEGUIDA",
+     "EVITAR AO MÁXIMO O USO DE CALÇADOS FECHADOS"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "lombalgia",
+  "ic": "🦴",
+  "nm": "Lombalgia mecânica",
+  "sub": "dorilax® · diclofenaco · alginac",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "DORILAX®",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ]
+    ],
+    "orient": [
+     "APLICAR COMPRESSAS DE ÁGUA MORNA TRÊS VEZES AO DIA",
+     "SE POSSÍVEL, REALIZAR FISIOTERAPIA COM FORTALECIMENTO DA MUSCULATURA ABDOMINAL E PARAVERTEBRAL"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "PARACETAMOL 350MG + CARISOPRODOL 150MG + CAFEÍNA 50MG",
+      "01 CAIXA",
+      "TOMAR 2 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ]
+    ],
+    "orient": [
+     "APLICAR COMPRESSAS DE ÁGUA MORNA TRÊS VEZES AO DIA",
+     "SE POSSÍVEL, REALIZAR FISIOTERAPIA COM FORTALECIMENTO DA MUSCULATURA ABDOMINAL E PARAVERTEBRAL"
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "CICLOBENZAPRINA 5 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE ANTES DE DORMIR, POR 05 DIAS SEGUIDOS"
+     ]
+    ],
+    "orient": [
+     "APLICAR COMPRESSAS DE ÁGUA MORNA TRÊS VEZES AO DIA",
+     "SE POSSÍVEL, REALIZAR FISIOTERAPIA COM FORTALECIMENTO DA MUSCULATURA ABDOMINAL E PARAVERTEBRAL"
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "ALGINAC 1000 ®",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "CICLOBENZAPRINA 5 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE ANTES DE DORMIR, POR 05 DIAS SEGUIDOS"
+     ]
+    ],
+    "orient": [
+     "APLICAR COMPRESSAS DE ÁGUA MORNA TRÊS VEZES AO DIA",
+     "SE POSSÍVEL, REALIZAR FISIOTERAPIA COM FORTALECIMENTO DA MUSCULATURA ABDOMINAL E PARAVERTEBRAL"
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "CELECOXIBE 100 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "PARACETAMOL 350MG + CARISOPRODOL 150MG + CAFEÍNA 50MG",
+      "01 CAIXA",
+      "TOMAR 2 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ]
+    ],
+    "orient": [
+     "APLICAR COMPRESSAS DE ÁGUA MORNA TRÊS VEZES AO DIA",
+     "SE POSSÍVEL, REALIZAR FISIOTERAPIA COM FORTALECIMENTO DA MUSCULATURA ABDOMINAL E PARAVERTEBRAL"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "meteorismo",
+  "ic": "💨",
+  "nm": "Meteorismo (gases)",
+  "sub": "simeticona",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "SIMETICONA 40 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR (GASES), PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "micose_ungueal",
+  "ic": "🦶",
+  "nm": "Micose subungueal",
+  "sub": "ureia",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "UREIA MANIPULADA EM CREME 40%",
+      "01 FRASCO",
+      "APLICAR UMA CAMADA SOB A UNHA À NOITE ANTES DE DORMIR, COM O AUXÍLIO DE UM COTONETE OU UM CHUMAÇO DE ALGODÃO, E LAVAR BEM PELA MANHÃ, COM ÁGUA E SABÃO",
+      "USO TÓPICO"
+     ],
+     [
+      "NITRATO DE OXICONAZOL 10MG/ML",
+      "01 FRASCO",
+      "APLICAR 01 CAMADA SOB A UNHA PELA MANHÃ, COM O AUXÍLIO DE COTONETE OU UM CHUMAÇO DE ALGODÃO, PELA MANHÃ, APÓS LAVAR COM ÁGUA E SABÃO DURANTE O BANHO, POR 01 A 02 SEMANAS",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "nasofaringite",
+  "ic": "🤧",
+  "nm": "Nasofaringite / Resfriado",
+  "sub": "dipirona",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "ASPIRAR O SORO COM A SERINGA, RETIRAR A AGULHA E INJETAR EM CADA NARINA (SEM TAPAR A OUTRA), ESTANDO COM A BOCA ABERTA, TRÊS VEZES AO DIA",
+     "É NORMAL ENGOLIR OU A SECREÇÃO SAIR PELO OUTRO LADO",
+     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "CLORIDRATO DE AMBROXOL XAROPE 30MG/5ML",
+      "01 FRASCO",
+      "TOMAR 5 ML, 3 VEZES AO DIA"
+     ],
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "ASPIRAR O SORO COM A SERINGA, RETIRAR A AGULHA E INJETAR EM CADA NARINA (SEM TAPAR A OUTRA), ESTANDO COM A BOCA ABERTA, TRÊS VEZES AO DIA",
+     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "otite_externa",
+  "ic": "👂",
+  "nm": "Otite externa aguda",
+  "sub": "ciprofloxacino-dexametasona · sulfato · otosporin",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "CIPROFLOXACINO-DEXAMETASONA SOLUÇÃO TÓPICA",
+      "01 FRASCO",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 12/12H POR 07 DIAS",
+      "USO TÓPICO AUDITIVO"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "SULFATO DE NEOMICINA + SULFATO DE POLIMIXINA B + HIDROCORTISONA 11% SOLUÇÃO TÓPICA",
+      "01 FRASCO",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "USO TÓPICO AUDITIVO"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "OTOSPORIN",
+      "01 FRASCO",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "USO TÓPICO AUDITIVO"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "otite_media",
+  "ic": "👂",
+  "nm": "Otite média aguda",
+  "sub": "amoxicilina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "AMOXICILINA 875MG + CLAVULANATO 125MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 10 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "paralisia_facial",
+  "ic": "😐",
+  "nm": "Paralisia facial (Bell)",
+  "sub": "valaciclovir · aciclovir",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "VALACICLOVIR 500 MG",
+      "42 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 8/8H, POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 14:00 – 22:00"
+     ],
+     [
+      "PREDNISONA 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "LÁCRIMA PLUS®",
+      "01 FRASCO",
+      "PINGAR UMA GOTA NO OLHO PARALISADO, DE 30/30 MINUTOS",
+      "USO TÓPICO"
+     ],
+     [
+      "REGENOM®",
+      "01 FRASCO",
+      "APLICAR NO OLHO PARALISADO À NOITE, ANTES DE DORMIR, E COBRIR COM CURATIVO OCLUSIVO (GAZE E ESPARADRAPO, SEM APERTAR)",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "PRATICAR FISIOTERAPIA FACIAL SEMPRE QUE POSSÍVEL: FAZER CARETAS, BIQUINHOS, ASSOPRAR, FECHAR OS OLHOS COM FORÇA, FALAR NORMALMENTE... – PROCURAR UM PROFISSIONAL DE FISIOTERAPIA OU DE FONOAUDIOLOGIA EM CASO DE DIFICULDADE"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "ACICLOVIR 400 MG",
+      "70 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 4/4H, EXCETUANDO-SE UMA DOSE NOTURNA, POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 10:00 – 14:00 – 18:00 – 22:00"
+     ],
+     [
+      "PREDNISONA 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "LÁCRIMA PLUS®",
+      "01 FRASCO",
+      "PINGAR UMA GOTA NO OLHO PARALISADO, DE 30/30 MINUTOS",
+      "USO TÓPICO"
+     ],
+     [
+      "REGENOM®",
+      "01 FRASCO",
+      "APLICAR NO OLHO PARALISADO À NOITE, ANTES DE DORMIR, E COBRIR COM CURATIVO OCLUSIVO (GAZE E ESPARADRAPO, SEM APERTAR)",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "PRATICAR FISIOTERAPIA FACIAL SEMPRE QUE POSSÍVEL: FAZER CARETAS, BIQUINHOS, ASSOPRAR, FECHAR OS OLHOS COM FORÇA, FALAR NORMALMENTE... – PROCURAR UM PROFISSIONAL DE FISIOTERAPIA OU DE FONOAUDIOLOGIA EM CASO DE DIFICULDADE"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "parasitoses",
+  "ic": "🐛",
+  "nm": "Parasitoses intestinais",
+  "sub": "ivermectina · albendazol · secnidazol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "IVERMECTINA 06 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR OS 02 COMPRIMIDOS EM DOSE ÚNICA, E REPETIR APÓS 07 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "ALBENDAZOL 400 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO EM DOSE ÚNICA E DEPOIS REPTIR APÓS 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "ALBENDAZOL 400 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 03 DIAS SEGUIDOS, NO MESMO HORÁRIO, E DEPOIS REPETIR APÓS 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "ALBENDAZOL 400 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 05 DIAS SEGUIDOS, NO MESMO HORÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "SECNIDAZOL 1000 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR OS 02 COMPRIMIDOS EM DOSE ÚNICA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "SECNIDAZOL 1000 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR OS 02 COMPRIMIDOS AO DIA POR 05 DIAS SEGUIDOS, NO MESMO HORÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 7",
+    "items": [
+     [
+      "NITAZOXANIDA 500 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 03 DIAS SEGUIDOS HORÁRIO SUGERIDO (12/12H): 08:00 / 20:00"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 8",
+    "items": [
+     [
+      "PRAZIQUANTEL 500 MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 04 COMPRIMIDOS E, APÓS 12 HORAS, MAIS 03 COMPRIMIDOS HORÁRIO SUGERIDO: 04 COMPRIMIDOS ÀS 08:00 E 03 COMPRIMIDOS ÀS 20:00"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 9",
+    "items": [
+     [
+      "PRAZIQUANTEL 500 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS EM DOSE ÚNICA"
+     ]
+    ]
+   },
+   {
+    "label": "Cisticercose",
+    "items": [
+     [
+      "PRAZIQUANTEL 500 MG",
+      "35 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS PELA MANHÃ, 01 COMPRIMIDO À TARDE E 02 COMPRIMIDOS À NOITE, POR 07 DIAS SEGUIDOS"
+     ],
+     [
+      "PREDNISONA 20 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 08:00 DA MANHÃ UM DIA ANTES DE INICIAR O PRAZIQUANTEL E MANTER ATÉ QUATRO DIAS DEPOIS (5 DIAS AO TOTAL)"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS VO SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Neurocisticercose",
+    "items": [
+     [
+      "PRAZIQUANTEL 500 MG",
+      "35 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS PELA MANHÃ, 01 COMPRIMIDO À TARDE E 02 COMPRIMIDOS À NOITE, POR 07 DIAS SEGUIDOS"
+     ],
+     [
+      "PREDNISONA 20 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO ÀS 08:00 DA MANHÃ, OUTRO ÀS 14:00 E OUTRO ÀS 22:00, UM DIA ANTES DE INICIAR O PRAZIQUANTEL E MANTER ATÉ O FINAL DO TRATAMENTO"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS VO SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pielonefrite",
+  "ic": "🫘",
+  "nm": "Pielonefrite",
+  "sub": "ciprofloxacino · levofloxacino",
+  "blocks": [
+   {
+    "label": "Não complicada",
+    "items": [
+     [
+      "CIPROFLOXACINO 500 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "LEVOFLOXACINO 750 MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, NO MESMO HORPARIO, POR 07 DIAS SEGUIDOS"
+     ]
+    ]
+   },
+   {
+    "label": "Complicada",
+    "items": [
+     [
+      "CIPROFLOXACINO 500 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "LEVOFLOXACINO 750 MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, NO MESMO HORPARIO, POR 07 DIAS SEGUIDOS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pitiriase",
+  "ic": "🧴",
+  "nm": "Pitiríase versicolor",
+  "sub": "fluconazol · itraconazol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "FLUCONAZOL 150 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO A CADA 07 DIAS ATÉ 04 DOSES"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "ITRACONAZOL 100 MG",
+      "10 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08h00 – 20h00"
+     ],
+     [
+      "FENTICONAZOL SPRAY 20MG/ML",
+      "01 FRASCO",
+      "APLICAR NAS MANCHAS À NOITE, ANTES DE DORMIR, POR 03 SEMANAS SEGUIDAS",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pneumonia",
+  "ic": "🫁",
+  "nm": "Pneumonia (comunidade)",
+  "sub": "amoxicilina · azitromicina · claritromicina",
+  "blocks": [
+   {
+    "label": "Baixo risco – Port I e II (III?) ou CURB 0 ou 1",
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8 HORAS POR 10 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 14:00 – 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 07 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CLARITROMICINA 500 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 10 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDO DE 8/8 HORAS POR 10 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 14:00 – 22:00"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "AMOXICILINA 875 MG + CLAVULANATO 125 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDO DE 12/12 HORAS POR 10 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 10 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "CEFUROXIMA 500 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDO DE 12/12 HORAS POR 10 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 10 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 10 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "LEVOFLOXACINO 500 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 07 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 7",
+    "items": [
+     [
+      "MOXIFLOXACINO 400 MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 07 DIAS SEGUIDOS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 06/06 HORAS SE NECESSÁRIO"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ EM JEJUM POR 05 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prostatite",
+  "ic": "♂",
+  "nm": "Prostatite",
+  "sub": "ciprofloxacino",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "CIPROFLOXACINO 500MG",
+      "42 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 21 DIAS HORÁRIO SUGERIDO: 08h00 – 20h00"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "queimaduras",
+  "ic": "🔥",
+  "nm": "Queimaduras",
+  "sub": "sulfadiazina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "SULFADIAZINA DE PRATA 10MG/G",
+      "01 BISNAGA",
+      "APLICAR UMA CAMADA NA LESÃO E COBRIR COM CURATIVO COM GAZE, DUAS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "resfriado",
+  "ic": "🤧",
+  "nm": "Resfriado comum",
+  "sub": "dipirona · maresis® · rinosoro",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "SALSEP SPRAY",
+      "01 FRASCO",
+      "APLICAR 01 JATO EM CADA NARINA 5X/DIA",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "MARESIS®",
+      "01 FRASCO",
+      "APLICAR 01 JATO EM CADA NARINA CONFORME NECESSIDADE, PARA DESOBSTRUÍ-LA (CERCA DE 5 VEZES AO DIA)",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "RINOSORO JET®",
+      "01 FRASCO",
+      "APLICAR 01 JATO EM CADA NARINA 5 VEZES AO DIA",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "ASPIRAR A SOLUÇÃO FISIOLÓGICA COM A SERINGA E, COM O PACIENTE EM PÉ, INJETAR EM CADA NARINA (NÃO TAPAR A OUTRA), TRÊS VEZES SEGUIDAS, DUAS VEZES AO DIA. É NORMAL ENGOLIR OU A SECREÇÃO SAIR PELO OUTRO LADO",
+     "PARA NÃO MACHUCAR O NARIZ, PODE COLOCAR NA PONTA DA SERINGA UMA OLIVA DE ESTETOSCÓPIO (VENDE EM CASAS DE MATERIAL MÉDICO) OU UMA BORRACHA LIMPA DE FONE DE OUVIDO",
+     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rinite",
+  "ic": "👃",
+  "nm": "Rinite alérgica",
+  "sub": "fluticasona · fexofenadina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS. APÓS ESTE PERÍODO, APLICAR UM JATO EM CADA NARINA PELA MANHÃ ATÉ COMPLETAR 90 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "RINOSORO JET®",
+      "01 FRASCO",
+      "APLICAR 01 JATO EM CADA NARINA 5 VEZES AO DIA",
+      "USO INTRANASAL"
+     ],
+     [
+      "DEXCLORFENIRAMINA 2 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 08/08H POR 07 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "FEXOFENADINA 60MG + PSEUDOEFEDRINA 120MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rinossinusite",
+  "ic": "👃",
+  "nm": "Rinossinusite",
+  "sub": "dipirona · amoxicilina · azitromicina",
+  "blocks": [
+   {
+    "label": "RSVA",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "ASPIRAR O SORO COM A SERINGA, RETIRAR A AGULHA E INJETAR EM CADA NARINA (SEM TAPAR A OUTRA), ESTANDO COM A BOCA ABERTA, TRÊS VEZES AO DIA",
+     "É NORMAL ENGOLIR OU A SECREÇÃO SAIR PELO OUTRO LADO",
+     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO",
+     "RETORNAR PARA REAVALIAÇÃO EM CASO DE PIORA APÓS O QUINTO DIA OU SE PERSISTIR POR MAIS DE 10 DIAS. OU ANTES EM CASO DE DÚVIDA"
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "LEVODROPROPIZINA XAROPE 6MG/ML",
+      "01 FRASCO",
+      "TOMAR 15 ML NO CASO DE TOSSE, PODENDO REPETIR DE 6/6 HORAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "CODEÍNA 30MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO EM CASO DE TOSSE, PODENDO REPETIR DE 8/8 HORAS",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "RSBA",
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "42 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 14 DIAS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "MARESIS®",
+      "01 FRASCO",
+      "APLICAR 01 JATO EM CADA NARINA CONFORME NECESSIDADE, PARA DESOBSTRUÍ-LA (CERCA DE 5 VEZES AO DIA)",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 10 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "OMEPRAZOL 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 10 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H",
+      "USO INTRANASAL"
+     ],
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS",
+      "USO INTRANASAL"
+     ],
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "ASPIRAR A SOLUÇÃO FISIOLÓGICA COM A SERINGA E, COM O PACIENTE EM PÉ, INJETAR EM CADA NARINA (NÃO TAPAR A OUTRA), TRÊS VEZES SEGUIDAS, DUAS VEZES AO DIA. É NORMAL ENGOLIR OU A SECREÇÃO SAIR PELO OUTRO LADO",
+     "PARA NÃO MACHUCAR O NARIZ, PODE COLOCAR NA PONTA DA SERINGA UMA OLIVA DE ESTETOSCÓPIO (VENDE EM CASAS DE MATERIAL MÉDICO) OU UMA BORRACHA LIMPA DE FONE DE OUVIDO",
+     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sua",
+  "ic": "🩸",
+  "nm": "Sangramento uterino anormal",
+  "sub": "ácido",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "ÁCIDO TRANEXÂMICO 250 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 8/8H HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "PIROXICAM 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
+     ],
+     [
+      "LEVONORGESTREL + ETINILESTRADIOL 0,15MG + 0,03MG",
+      "04 CAIXAS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H, POR 04 DIAS; A SEGUIR 01 COMPRIMIDO DE 8/8H POR 04 DIAS; A SEGUIR 01 COMPRIMIDO DE 12/12H POR 04 DIAS; E EM SEGUIDA 01 COMPRIMIDO AO DIA POR 2 MESES."
+     ],
+     [
+      "SULFATO FERROSO",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, 01 HORA ANTES OU 02 HORAS DEPOIS DO ALMOÇO, DE PREFERÊNCIA COM SUCO DE LARANJA OU LIMÃO"
+     ]
+    ],
+    "orient": [
+     "SOLICITO: USG PÉLVICA TRANSABDOMINAL E TRANSVAGINAL",
+     "JUSTIFICATIVA: SANGRAMENTO UTERINO ANORMAL"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sutura",
+  "ic": "🩹",
+  "nm": "Sutura — profilaxia",
+  "sub": "sulfato · cefalexina · tetanogamma®",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "SULFATO DE NEOMICINA 3,5MG/G",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A LESÃO APÓS CADA TROCA DE CURATIVO",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "TROCAR CURATIVO DIARIAMENTE",
+     "A PARTIR DO 2º DIA, LAVAR DELICADAMENTE DURANTE O BANHO COM ÁGUA E SABÃO NEUTRO PELA MANHÃ E À NOITE. TROCAR CURATIVO A CADA LAVAGEM",
+     "RETIRAR OS PONTOS EM 10 DIAS EM POSTO DE SAÚDE MAIS PRÓXIMO DE SUA RESIDÊNCIA",
+     "CASO APRESENTE FEBRE, DOR PROGRESSIVA EM LOCAL DE FERIMENTO, SAÍDA DE SECREÇÃO FÉTIDA OU OUTROS SINTOMAS, RETORNAR PARA REAVALIAÇÃO",
+     "EVITAR EXPOR FERIMENTO AO SOL POR TRÊS MESES"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "SULFATO DE NEOMICINA 3,5MG/G",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A LESÃO APÓS CADA TROCA DE CURATIVO, DUAS VEZES AO DIA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "TROCAR CURATIVO DIARIAMENTE",
+     "A PARTIR DO 2º DIA, LAVAR DELICADAMENTE DURANTE O BANHO COM ÁGUA E SABÃO NEUTRO PELA MANHÃ E À NOITE. TROCAR CURATIVO A CADA LAVAGEM",
+     "RETIRAR OS PONTOS EM 10 DIAS EM POSTO DE SAÚDE MAIS PRÓXIMO DE SUA RESIDÊNCIA",
+     "CASO APRESENTE FEBRE, DOR PROGRESSIVA EM LOCAL DE FERIMENTO, SAÍDA DE SECREÇÃO FÉTIDA OU OUTROS SINTOMAS, RETORNAR PARA REAVALIAÇÃO",
+     "EVITAR EXPOR FERIMENTO AO SOL POR TRÊS MESES"
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 05 DIAS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "CONTRACTUBEX®",
+      "01 BISNAGA",
+      "APÓS 10 DIAS DO TRAUMA, APLICAR UMA FINA CAMADA SOBRE A LESÃO DUAS VEZES AO DIA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "TROCAR CURATIVO DIARIAMENTE",
+     "A PARTIR DO 2º DIA, LAVAR DELICADAMENTE DURANTE O BANHO COM ÁGUA E SABÃO NEUTRO PELA MANHÃ E À NOITE. TROCAR CURATIVO A CADA LAVAGEM",
+     "RETIRAR OS PONTOS EM 10 DIAS EM POSTO DE SAÚDE MAIS PRÓXIMO DE SUA RESIDÊNCIA",
+     "CASO APRESENTE FEBRE, DOR PROGRESSIVA EM LOCAL DE FERIMENTO, SAÍDA DE SECREÇÃO FÉTIDA OU OUTROS SINTOMAS, RETORNAR PARA REAVALIAÇÃO",
+     "EVITAR EXPOR FERIMENTO AO SOL POR TRÊS MESES"
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "TETANOGAMMA® 250 UI",
+      "01 AMPOLA",
+      "APLICAR 01 AMPOLA EM GLÚTEO MÉDIO",
+      "USO INTRAMUSCULAR"
+     ]
+    ],
+    "orient": [
+     "ENCAMINHO PARA AVALIAÇÃO DE SITUAÇÃO VACINAL, EM PARTICULAR, VACINA ANTITETÂNICA APÓS FERIMENTO DE RISCO"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "tinha_capitis",
+  "ic": "🧑",
+  "nm": "Tinha capitis",
+  "sub": "griseofulvina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "GRISEOFULVINA 500MG",
+      "50 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 8 SEMANAS"
+     ],
+     [
+      "CETOCONAZOL SHAMPOO 2%",
+      "01 FRASCO",
+      "APLICAR NO COURO CABELUDO, DEIXAR AGIR POR 10 MINUTOS ANTES DE ENXAGUAR, 2 A 3 VEZES POR SEMANA, DURANTE 4 SEMANAS",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "tinha_corporis",
+  "ic": "🧴",
+  "nm": "Tinha corporis",
+  "sub": "terbinafina",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "TERBINAFINA 250MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 28 DIAS SEGUIDOS"
+     ],
+     [
+      "CETIRIZINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE COCEIRA OU ALERGIA, PODENDO REPETIR DE 24/24 SE NECESSÁRIO"
+     ],
+     [
+      "TERBINAFINA CREME 1%",
+      "01 BISNAGA",
+      "APLICAR NAS ÁREAS AFETADAS DE 12/12H ATÉ MELHORA (EM MÉDIA 28 DIAS)",
+      "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "torcicolo",
+  "ic": "💢",
+  "nm": "Torcicolo espasmódico",
+  "sub": "ciclobenzaprina · cafeína · paracetamol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "CICLOBENZAPRINA 5 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO SAIR DA EMERGÊNCIA EM SEGUIDA, TOMAR 01 COMPRIMIDO À NOITE ANTES DE DORMIR, POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "DORILAX®",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "CAFEÍNA 35MG + DIPIRONA 300MG + ORFENADRINA 50MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H SE DOR"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "PARACETAMOL 350MG + CARISOPRODOL 150MG + CAFEÍNA 50MG",
+      "01 CAIXA",
+      "TOMAR 2 COMPRIMIDOS SE DOR, DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "CARISOPRODOL 125MG + DICLOFENACO 50MG + PARACETAMOL 300MG + CAFEÍNA 30MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR ATÉ 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 08/08H POR ATÉ 05 DIAS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "CETOPROFENO 150 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR ATÉ 05 DIAS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 7",
+    "items": [
+     [
+      "NIMESULIDA BETACICLODEXTRINA 400 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR ATÉ 03 DIAS"
+     ],
+     [
+      "CICLOBENZAPRINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "tce",
+  "ic": "🤕",
+  "nm": "TCE — analgesia e orientações",
+  "sub": "dipirona",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "CLOREXIDINA SPRAY",
+      "01 FRASCO",
+      "APLICAR 02 JATOS NA LESÃO, TRÊS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "LAVAR DELICADAMENTE DURANTE O BANHO COM ÁGUA E SABÃO NEUTRO PELA MANHÃ E À NOITE. TROCAR CURATIVO A CADA LAVAGEM RETORNAR À EMERGÊNCIA EM CASO DE:"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "trauma_toracico",
+  "ic": "🫁",
+  "nm": "Trauma torácico",
+  "sub": "naproxeno · levodropropizina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "NAPROXENO 500MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "CICLOBENZAPRINA 05MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE ANTES DE DORMIR, POR 05 DIAS SEGUIDOS"
+     ],
+     [
+      "PARACETAMOL 350MG + CARISOPRODOL 150MG + CAFEÍNA 50MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ],
+     [
+      "CODEÍNA 30MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 8/8H SE NECESSÁRIO. TOMAR O MÍNIMO POSSÍVEL, PARA EVITAR DEPENDÊNCIA E CONSTIPAÇÃO TOSSE SECA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "LEVODROPROPIZINA XAROPE 6MG/ML",
+      "01 FRASCO",
+      "TOMAR 15 ML NO CASO DE TOSSE, PODENDO REPETIR DE 6/6 HORAS"
+     ],
+     [
+      "CODEÍNA 30MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO EM CASO DE TOSSE, PODENDO REPETIR DE 8/8 HORAS"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ulceras",
+  "ic": "🩹",
+  "nm": "Úlceras de causas variadas",
+  "sub": "clorafenicol · iruxol",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "CLORAFENICOL + COLAGENASE POMADA 0,6 U/G + 0,01 G/G",
+      "01 BISNAGA",
+      "APÓS LAVAR COM ÁGUA E SABÃO E SECAR BEM, APLICAR UMA FINA CAMADA NA LESÃO E COBRIR COM CURATIVO COM GAZE DUAS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "IRUXOL POMADA",
+      "01 BISNAGA",
+      "APÓS LAVAR COM ÁGUA E SABÃO E SECAR BEM, APLICAR UMA FINA CAMADA NA LESÃO E COBRIR COM CURATIVO COM GAZE DUAS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ],
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00"
+     ],
+     [
+      "DIOSMINA 450 MG + HESPERIDINA 50 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "vaginites",
+  "ic": "🦠",
+  "nm": "Vaginites / Vaginoses / ISTs",
+  "sub": "metronidazol · nistatina · fluconazol",
+  "blocks": [
+   {
+    "label": "Vaginose",
+    "items": [
+     [
+      "METRONIDAZOL GELEIA VAGINAL 100MG/G",
+      "01 BISNAGA",
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 14 DIAS"
+     ]
+    ],
+    "orient": [
+     "EVITAR ROUPAS JUSTAS E DE MATERIAL SINTÉTICO (EX: CALCINHA DE RENDA)",
+     "NÃO UTILIZAR PERFUMES DE VULVA",
+     "EVITE DUCHAS VAGINAIS",
+     "ACOSTUME-SE A DORMIR SEM CALCINHA, PARA A “VAGINA RESPIRAR”",
+     "NÃO UTILIZE SABONETES COMUNS PARA LAVAR A REGIÃO GENITAL, OPTE POR SABONETES ÍNTIMOS"
+    ]
+   },
+   {
+    "label": "Candidíase",
+    "items": [
+     [
+      "NISTATINA CREME VAGINAL 25.000 UI/G",
+      "01 BISNAGA",
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 14 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "FLUCONAZOL 150 MG",
+      "01 COMPRIMIDO",
+      "TOMAR EM DOSE ÚNICA"
+     ]
+    ],
+    "orient": [
+     "EVITAR ROUPAS JUSTAS E DE MATERIAL SINTÉTICO (EX: CALCINHA DE RENDA)",
+     "NÃO UTILIZAR PERFUMES DE VULVA",
+     "EVITE DUCHAS VAGINAIS",
+     "ACOSTUME-SE A DORMIR SEM CALCINHA, PARA A “VAGINA RESPIRAR”",
+     "NÃO UTILIZE SABONETES COMUNS PARA LAVAR A REGIÃO GENITAL, OPTE POR SABONETES ÍNTIMOS"
+    ]
+   },
+   {
+    "label": "Tricomoníase",
+    "items": [
+     [
+      "METRONIDAZOL 250 MG",
+      "08 COMPRIMIDOS",
+      "TOMAR 08 COMPRIMIDOS EM DOSE ÚNICA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "METRONIDAZOL 250 MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 12/12h POR 07 DIAS USO INTRAVAGINAL"
+     ],
+     [
+      "METRONIDAZOL GELEIA VAGINAL 100MG/G",
+      "01 BISNAGA",
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 07 NOITES"
+     ]
+    ],
+    "orient": [
+     "EVITAR ROUPAS JUSTAS E DE MATERIAL SINTÉTICO (EX: CALCINHA DE RENDA)",
+     "NÃO UTILIZAR PERFUMES DE VULVA",
+     "EVITE DUCHAS VAGINAIS",
+     "ACOSTUME-SE A DORMIR SEM CALCINHA, PARA A “VAGINA RESPIRAR”",
+     "NÃO UTILIZE SABONETES COMUNS PARA LAVAR A REGIÃO GENITAL, OPTE POR SABONETES ÍNTIMOS",
+     "SOLICITO: - TESTE RÁPIDO PARA HIV"
+    ]
+   },
+   {
+    "label": "Opção 3",
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS EM DOSE ÚNICA"
+     ],
+     [
+      "CIPROFLOXACINO 500 MG",
+      "01 COMPRIMIDO",
+      "TOMAR 01 COMPRIMIDO EM DOSE ÚNICA"
+     ]
+    ],
+    "orient": [
+     "EVITAR ROUPAS JUSTAS E DE MATERIAL SINTÉTICO (EX: CALCINHA DE RENDA)",
+     "NÃO UTILIZAR PERFUMES DE VULVA",
+     "EVITE DUCHAS VAGINAIS",
+     "ACOSTUME-SE A DORMIR SEM CALCINHA, PARA A “VAGINA RESPIRAR”",
+     "NÃO UTILIZE SABONETES COMUNS PARA LAVAR A REGIÃO GENITAL, OPTE POR SABONETES ÍNTIMOS",
+     "SOLICITO: - TESTE RÁPIDO PARA HIV"
+    ]
+   },
+   {
+    "label": "Cancro mole",
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS VO EM DOSE ÚNICA"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 4",
+    "items": [
+     [
+      "CEFTRIAXONA 500 MG",
+      "01 AMPOLA",
+      "APLICAR EM GLÚTEO MÉDIO",
+      "USO INTRAMUSCULAR"
+     ]
+    ],
+    "orient": [
+     "EVITAR ROUPAS JUSTAS E DE MATERIAL SINTÉTICO (EX: CALCINHA DE RENDA)",
+     "NÃO UTILIZAR PERFUMES DE VULVA",
+     "EVITE DUCHAS VAGINAIS",
+     "ACOSTUME-SE A DORMIR SEM CALCINHA, PARA A “VAGINA RESPIRAR”",
+     "NÃO UTILIZE SABONETES COMUNS PARA LAVAR A REGIÃO GENITAL, OPTE POR SABONETES ÍNTIMOS"
+    ]
+   },
+   {
+    "label": "Linfogranuloma venéreo",
+    "items": [
+     [
+      "DOXICICLINA 100 MG",
+      "42 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 21 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 5",
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS A CADA 07 DIAS ATÉ 03 DOSES"
+     ]
+    ],
+    "orient": [
+     "EVITAR ROUPAS JUSTAS E DE MATERIAL SINTÉTICO (EX: CALCINHA DE RENDA)",
+     "NÃO UTILIZAR PERFUMES DE VULVA",
+     "EVITE DUCHAS VAGINAIS",
+     "ACOSTUME-SE A DORMIR SEM CALCINHA, PARA A “VAGINA RESPIRAR”",
+     "NÃO UTILIZE SABONETES COMUNS PARA LAVAR A REGIÃO GENITAL, OPTE POR SABONETES ÍNTIMOS",
+     "SOLICITO: - TESTE RÁPIDO PARA HIV"
+    ]
+   },
+   {
+    "label": "Sífilis",
+    "items": [
+     [
+      "PENICILINA G BENZATINA 1.200.000 UI",
+      "02 AMPOLAS",
+      "APLICAR UMA AMPOLA EM CADA GLÚTEO MÉDIO",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 6",
+    "items": [
+     [
+      "PENICILINA G BENZATINA 1.200.000 UI",
+      "06 AMPOLAS",
+      "APLICAR UMA AMPOLA EM CADA GLÚTEO MÉDIO, A CADA 07 DIAS, ATÉ COMPLETAR TRÊS DOSES",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Opção 7",
+    "items": [
+     [
+      "DOXICILINA 100 MG",
+      "56 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 28 DIAS"
+     ]
+    ],
+    "orient": [
+     "SOLICITO: - TESTE RÁPIDO PARA HIV"
+    ]
+   },
+   {
+    "label": "Herpes genital",
+    "items": [
+     [
+      "ACICLOVIR 200 MG",
+      "50 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 4/4H, EXCETUANDO-SE UMA DOSE NOTURNA, POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 10:00 / 14:00 / 18:00 / 22:00"
+     ],
+     [
+      "ACICLOVIR 200 MG",
+      "",
+      "TOMAR 01 COMPRIMIDO DE 12/12H"
+     ]
+    ]
+   },
+   {
+    "label": "Moléstia inflamatória pélvica aguda",
+    "items": [
+     [
+      "DOXICICLINA 100 MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12 HORAS POR 14 DIAS"
+     ],
+     [
+      "METRONIDAZOL 250 MG",
+      "84 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 8/8H POR 14 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ],
+    "orient": [
+     "RETORNAR À UNIDADE DE EMERGÊNCIA APÓS 03 DIAS DE TRATAMENTO PARA REAVALIAÇÃO, OU ANTES, EM CASO DE PIORA CLÍNICA.",
+     "SOLICITO:",
+     "SOLICITO: USG PÉLVICA TRANSABDOMINAL E TRANSVAGINAL",
+     "JUSTIFICATIVA: DOENÇA INFLAMATÓRIA PÉLVICA? ENDOMETRIOSE?"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "vertigem",
+  "ic": "💫",
+  "nm": "Vertigem e tontura",
+  "sub": "dimenidrinato · flunarizina",
+  "blocks": [
+   {
+    "label": "Opção 1",
+    "items": [
+     [
+      "DIMENIDRINATO 50 MG + PIRIDOXINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "BETAISTINA 16 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 8/8H"
+     ],
+     [
+      "CINARIZINA 75 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE CRISE DE VERTIGEM INTENSA, PODENDO REPETIR DE 8/8H"
+     ]
+    ],
+    "orient": [
+     "TOMAR PELO MENOS 02 LITROS DE ÁGUA AO DIA",
+     "TER REPOUSO E CAUTELA AO MOVIMENTAR-SE"
+    ]
+   },
+   {
+    "label": "Opção 2",
+    "items": [
+     [
+      "FLUNARIZINA 10MG",
+      "07 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 07 DIAS"
+     ],
+     [
+      "MECLIZINA 50MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, TONTURA OU VÔMITOS, PODENDO REPETIR DE 12/12h"
+     ],
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "PREDNISONA 20MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12h POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 - 20:00"
+     ]
+    ],
+    "orient": [
+     "TOMAR PELO MENOS 02 LITROS DE ÁGUA AO DIA",
+     "TER REPOUSO E CAUTELA AO MOVIMENTAR-SE"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "zika",
+  "ic": "🦟",
+  "nm": "Zika vírus",
+  "sub": "dipirona",
+  "blocks": [
+   {
+    "label": "Receita",
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM PARACETAMOL, SE NECESSÁRIO"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H."
+     ],
+     [
+      "HIDROXIZINA 25 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE COCEIRA OU VERMELHIDÃO NA PELE, PODENDO REPETIR DE 08/08H"
+     ]
+    ],
+    "orient": [
+     "TOMAR 01 COPO D’ÁGUA 10 VEZES AO DIA OU MAIS, CONFORME ACEITAÇÃO.",
+     "NÃO TOMAR ASPIRINA, IBUPROFENO, DICLOFENACO NEM QUALQUER OUTRA MEDICAÇÃO SEM ORIENTAÇÃO MÉDICA."
+    ]
+   }
+  ]
+ }
+];
+
+const KW = {
+ "analgesia": "analgesia / dor ibuprofeno · diclofenaco · nimesulida dor febre trauma butilbrometo cetoprofeno codeína diclofenaco dipirona escopolamina ibuprofeno metoclopramida nimesulida paracetamol",
+ "abstinencia": "abstinência alcoólica tiamina  amitriptilina carbamazepina citalopram diazepam fluoxetina tiamina",
+ "abuso_sexual": "abuso sexual — profilaxia penicilina  azitromicina benzatina ceftriaxona levonorgestrel metronidazol penicilina",
+ "aftas": "aftas orais (estomatite) triancinolona · gingilone  acetonida gingilone triancinolona tópica",
+ "alergia": "alergia / prurido hidroxizina · loratadina · cetirizina urticaria coceira prurido cetirizina fexofenadina hidroxizina levocetirizina loratadina prednisona pseudoefedrina",
+ "anafilaxia": "anafilaxia prednisona  hidroxizina prednisona ranitidina",
+ "anticoncepcao": "anticoncepção de emergência levonorgestrel  butilbrometo dimenidrinato escopolamina levonorgestrel piridoxina",
+ "asma": "asma prednisona · salbutamol · beclometasona broncoespasmo falta de ar chiado sibilo respiratoria aerossol beclometasona budesonida formoterol prednisona salbutamol spray",
+ "bursites": "bursites cafeína · paracetamol · carisoprodol  alginac betaciclodextrina cafeína carisoprodol cetorolaco ciclobenzaprina diclofenaco dipirona nimesulida orfenadrina paracetamol retard trometamina",
+ "calmantes": "calmantes fitoterápicos passíflora  incarnata passíflora",
+ "cefaleia": "cefaleia dipirona dor de cabeca cabeça dipirona metoclopramida naproxeno sódico",
+ "ceratite": "ceratite fotoelétrica regencel  oftálmica optocare pomada regencel",
+ "chikungunya": "chikungunya paracetamol arbovirose artralgia codeína dipirona paracetamol",
+ "colica_nefretica": "cólica nefrética cetoprofeno · cetorolaco · algicod rim renal calculo pedra litiase algicod cetoprofeno cetorolaco diclofenaco metoclopramida tansulosina",
+ "conjuntivite": "conjuntivite tobramicina  colírio fisiológica solução tobramicina",
+ "corpo_estranho": "corpo estranho ocular tobramicina  colírio dexametasona fisiológica ofloxacino solução tobramicina",
+ "constipacao": "constipação benefiber · muvinlax intestino preso fezes benefiber muvinlax simeticona",
+ "dengue": "dengue dipirona arbovirose dipirona metoclopramida oral reidratação soro",
+ "diarreia": "diarreia aguda loperamida · saccharomyces · ciprofloxacino gastroenterite disenteria fezes albendazol azitromicina boulardii buscoduo buscopan butilbrometo ciprofloxacino composto dipirona escopolamina loperamida metoclopramida metronidazol nitazoxanida oral reidratação saccharomyces secnidazol soro sulfametoxazol trimetoprima",
+ "hemorroida": "doença hemorroidária trombosada diclofenaco hemorroidas anal benefiber diclofenaco diosmina hesperidina proctyl",
+ "dismenorreia": "dismenorreia butilbrometo · piroxicam · meloxicam colica menstrual menstruacao tpm butilbrometo escopolamina meloxicam metoclopramida piroxicam",
+ "dpoc": "dpoc descompensada amoxicilina pulmao respiratoria bronquite aerossol amoxicilina azitromicina dipirona omeprazol prednisona salbutamol spray",
+ "eczema": "eczema de contato betametasona · clobetazol  betametasona clobetazol creme loratadina",
+ "enxaqueca": "enxaqueca naproxeno · naratripano · sumatriptano migranea migrânea aura triptano cefalium cefaliv codeína dipirona metoclopramida naproxeno naratripano paracetamol sumatriptano sódico",
+ "epididimite": "epididimite / orquite ciprofloxacino  ciprofloxacino",
+ "erisipela": "erisipela e celulite cefalexina · clindamicina  cefalexina clindamicina",
+ "escabiose": "escabiose ivermectina sarna hidroxizina ivermectina",
+ "faringo_inesp": "faringoamigdalite inespecífica dipirona garganta amigdalite faringite respiratoria benalet dipirona",
+ "faringo_estrep": "faringoamigdalite estreptocócica amoxicilina · azitromicina garganta amigdalite estreptococo respiratoria amoxicilina azitromicina dipirona omeprazol",
+ "gastrite": "gastrite / drge omeprazol refluxo azia drge epigastralgia domperidona omeprazol simeticona",
+ "gota": "gota — crise naproxeno · colchicina · prednisona  colchicina dipirona naproxeno omeprazol prednisona sódico",
+ "h1n1": "h1n1 — profilaxia oseltamivir  oseltamivir",
+ "hordeolo": "hordéolo / blefarite ciprofloxacino  ciprofloxacino dexametasona estéril oftálmica pomada",
+ "herpes_zoster": "herpes zóster aciclovir cobreiro aciclovir diclofenaco dipirona diprogenta prednisona",
+ "impetigo": "impetigo crostoso mupirocina · cefalexina  cefalexina mupirocina pomada",
+ "itu": "itu / cistite sulfametoxazol · fosfomicina · nitrofurantoína cistite urina urinaria bexiga disuria ciprofloxacino fosfomicina granulado nitrofurantoína norfloxacino sulfametoxazol trimetoprima",
+ "intertrigo": "intertrigo / candidíase fluconazol · itraconazol  fluconazol itraconazol trok",
+ "lombalgia": "lombalgia mecânica dorilax® · diclofenaco · alginac lombar coluna costas alginac cafeína carisoprodol celecoxibe ciclobenzaprina diclofenaco dipirona dorilax paracetamol",
+ "meteorismo": "meteorismo (gases) simeticona gases flatulencia dipirona metoclopramida simeticona",
+ "micose_ungueal": "micose subungueal ureia  creme manipulada nitrato oxiconazol ureia",
+ "nasofaringite": "nasofaringite / resfriado dipirona resfriado gripe coriza nariz respiratoria sindrome ambroxol cloridrato dipirona fisiológica seringa solução xarope",
+ "otite_externa": "otite externa aguda ciprofloxacino-dexametasona · sulfato · otosporin ouvido nadador ciprofloxacino dexametasona diclofenaco dipirona hidrocortisona neomicina otosporin polimixina solução sulfato tópica",
+ "otite_media": "otite média aguda amoxicilina ouvido otalgia amoxicilina clavulanato dipirona",
+ "paralisia_facial": "paralisia facial (bell) valaciclovir · aciclovir  aciclovir lácrima plus prednisona regenom valaciclovir",
+ "parasitoses": "parasitoses intestinais ivermectina · albendazol · secnidazol  albendazol dipirona ivermectina metoclopramida nitazoxanida praziquantel prednisona secnidazol",
+ "pielonefrite": "pielonefrite ciprofloxacino · levofloxacino  ciprofloxacino levofloxacino",
+ "pitiriase": "pitiríase versicolor fluconazol · itraconazol  fenticonazol fluconazol itraconazol spray",
+ "pneumonia": "pneumonia (comunidade) amoxicilina · azitromicina · claritromicina pulmao respiratoria tosse pac amoxicilina azitromicina cefuroxima claritromicina clavulanato dipirona levofloxacino moxifloxacino omeprazol",
+ "prostatite": "prostatite ciprofloxacino  ciprofloxacino",
+ "queimaduras": "queimaduras sulfadiazina queimadura dipirona prata sulfadiazina",
+ "resfriado": "resfriado comum dipirona · maresis® · rinosoro gripe coriza nariz respiratoria sindrome tosse dipirona fisiológica maresis rinosoro salsep seringa solução spray",
+ "rinite": "rinite alérgica fluticasona · fexofenadina nariz espirro respiratoria dexclorfeniramina fexofenadina fluticasona jato pseudoefedrina rinosoro spray",
+ "rinossinusite": "rinossinusite dipirona · amoxicilina · azitromicina sinusite seios da face respiratoria sindrome amoxicilina azitromicina codeína dipirona fisiológica fluticasona jato levodropropizina maresis omeprazol seringa solução spray xarope",
+ "sua": "sangramento uterino anormal ácido sangramento menstrual etinilestradiol ferroso levonorgestrel piroxicam sulfato tranexâmico ácido",
+ "sutura": "sutura — profilaxia sulfato · cefalexina · tetanogamma® ferida corte laceracao antitetanica cefalexina contractubex diclofenaco dipirona neomicina sulfato tetanogamma",
+ "tinha_capitis": "tinha capitis griseofulvina  cetoconazol griseofulvina shampoo",
+ "tinha_corporis": "tinha corporis terbinafina  cetirizina creme terbinafina",
+ "torcicolo": "torcicolo espasmódico ciclobenzaprina · cafeína · paracetamol  betaciclodextrina cafeína carisoprodol cetoprofeno ciclobenzaprina diclofenaco dipirona dorilax nimesulida orfenadrina paracetamol",
+ "tce": "tce — analgesia e orientações dipirona cabeca craniano clorexidina dipirona spray",
+ "trauma_toracico": "trauma torácico naproxeno · levodropropizina  cafeína carisoprodol ciclobenzaprina codeína levodropropizina naproxeno paracetamol xarope",
+ "ulceras": "úlceras de causas variadas clorafenicol · iruxol  cefalexina clorafenicol colagenase diosmina hesperidina iruxol pomada",
+ "vaginites": "vaginites / vaginoses / ists metronidazol · nistatina · fluconazol corrimento candidiase ist dst aciclovir azitromicina benzatina ceftriaxona ciprofloxacino creme dipirona doxiciclina doxicilina fluconazol geleia metoclopramida metronidazol nistatina penicilina vaginal",
+ "vertigem": "vertigem e tontura dimenidrinato · flunarizina tontura labirintite betaistina cinarizina dimenidrinato dipirona flunarizina meclizina piridoxina prednisona",
+ "zika": "zika vírus dipirona arbovirose dipirona hidroxizina paracetamol"
+};
+
+/* ============================================================
+   ESTADO + LÓGICA
+   ============================================================ */
+let activeCond = null;
+let selected = [];          // {med, qty, pos, route}
+let orientSet = [];         // strings (mantém ordem, sem duplicar)
+let freeEdit = false;
+
+const $ = s => document.querySelector(s);
+const condList = $("#cond-list"), midBody = $("#mid-body"), midTitle = $("#mid-title");
+const rxChips = $("#rx-chips"), rxArea = $("#rx"), rxCount = $("#rx-count");
+
+/* ---- lista de condições ---- */
+function renderConds(filter=""){
+  const f = filter.trim().toLowerCase();
+  condList.innerHTML = "";
+  let n = 0;
+  DATA.forEach(c=>{
+    if(f && !((c.nm+" "+(c.sub||"")+" "+(KW[c.id]||"")).toLowerCase().includes(f))) return;
+    n++;
+    const el = document.createElement("div");
+    el.className = "cond" + (activeCond===c.id ? " active":"");
+    el.innerHTML = `<span class="ic">${c.ic}</span>
+      <span><span class="nm">${c.nm}</span><br><span class="sub">${c.sub||""}</span></span>`;
+    el.onclick = ()=>{ activeCond = c.id; renderConds($("#cond-search").value); renderMid(c); };
+    condList.appendChild(el);
+  });
+  $("#cond-count").textContent = DATA.length;
+  if(n===0) condList.innerHTML = `<div class="rx-empty">Nada encontrado.</div>`;
+}
+
+/* ---- painel do meio ---- */
+function renderMid(c){
+  midTitle.textContent = c.nm;
+  let h = `<div class="mid-head"><h3>${c.ic} ${c.nm}</h3><div class="desc">${c.sub||""} · clique em <b>＋</b> num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div></div>`;
+  c.blocks.forEach((b,bi)=>{
+    const isMenu = !!b.menu;
+    h += `<div class="block">
+      <div class="block-head">
+        <span class="bl">${b.label}</span>
+        ${isMenu ? `<span class="tag menu">escolha</span>`
+                 : `<button class="addall" data-b="${bi}">＋ Adicionar receita</button>`}
+      </div><div class="items">`;
+    b.items.forEach((it,ii)=>{
+      const med=it[0], qty=it[1], pos=it[2]||"", route=it[3]||ORAL;
+      const rlab = route!==ORAL ? ` · <span class="qty">${route}</span>`:"";
+      h += `<div class="item" data-b="${bi}" data-i="${ii}">
+        <button class="plus" title="Adicionar este item">＋</button>
+        <div class="txt"><div class="med">${med} <span class="qty">— ${qty}</span></div>
+        <div class="pos">${pos}${rlab}</div></div></div>`;
+    });
+    h += `</div>`;
+    if(b.orient && b.orient.length){
+      h += `<div class="orient-box"><div class="ohd">🛈 Orientações
+        <button data-orient="${bi}">＋ Adicionar à receita</button></div><ul>`;
+      b.orient.forEach(o=> h += `<li>${o}</li>`);
+      h += `</ul></div>`;
+    }
+  });
+  midBody.innerHTML = h;
+
+  // bind: adicionar bloco inteiro
+  midBody.querySelectorAll(".addall").forEach(btn=>{
+    btn.onclick = ()=>{
+      const b = c.blocks[+btn.dataset.b];
+      let added=0;
+      b.items.forEach(it=> added += addItem(it) );
+      if(b.orient) b.orient.forEach(o=> addOrient(o));
+      toast(added>0 ? `Bloco adicionado (${added} ${added>1?"itens":"item"})` : "Itens já estavam na receita", added>0);
+    };
+  });
+  // bind: adicionar item individual
+  midBody.querySelectorAll(".item").forEach(row=>{
+    row.onclick = ()=>{
+      const b = c.blocks[+row.dataset.b];
+      const it = b.items[+row.dataset.i];
+      const ok = addItem(it);
+      toast(ok ? "Adicionado à receita" : "Esse item já está na receita", ok);
+    };
+  });
+  // bind: adicionar orientações
+  midBody.querySelectorAll("[data-orient]").forEach(btn=>{
+    btn.onclick = (e)=>{
+      e.stopPropagation();
+      const b = c.blocks[+btn.dataset.orient];
+      let a=0; b.orient.forEach(o=> a += addOrient(o)?1:0 );
+      toast(a>0?"Orientações adicionadas":"Já estavam na receita", a>0);
+    };
+  });
+}
+
+/* ---- adicionar / remover ---- */
+function keyOf(med,qty){ return (med+"|"+qty).toUpperCase(); }
+function addItem(it){
+  const med=it[0], qty=it[1], pos=it[2]||"", route=it[3]||ORAL;
+  if(selected.some(s=> keyOf(s.med,s.qty)===keyOf(med,qty))) return 0;
+  selected.push({med,qty,pos,route});
+  syncRx();
+  return 1;
+}
+function addOrient(o){
+  if(orientSet.includes(o)) return false;
+  orientSet.push(o); syncRx(); return true;
+}
+function removeItem(i){ selected.splice(i,1); syncRx(); }
+function removeOrient(i){ orientSet.splice(i,1); syncRx(); }
+
+/* ---- formatação do texto (igual aos PDFs) ---- */
+function pad(med){
+  const left = med + " ";
+  let dashes = 46 - left.length; if(dashes<3) dashes=3;
+  return left + "_".repeat(dashes) + " ";
+}
+function buildText(){
+  if(selected.length===0 && orientSet.length===0) return "";
+  const groups=[];
+  selected.forEach(it=>{
+    let g=groups.find(x=>x.route===it.route);
+    if(!g){g={route:it.route,items:[]};groups.push(g);}
+    g.items.push(it);
+  });
+  const out=[];
+  groups.forEach(g=>{
+    out.push(g.route); out.push("");
+    g.items.forEach((it,i)=>{
+      const n=String(i+1).padStart(2,"0");
+      out.push(`${n}- ${pad(it.med)}${it.qty}`);
+      if(it.pos) out.push(it.pos);
+      out.push("");
+    });
+  });
+  if(orientSet.length){
+    out.push("ORIENTAÇÕES:"); out.push("");
+    orientSet.forEach(o=> out.push("# "+o));
+  }
+  return out.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+
+/* ---- sincroniza painel direito ---- */
+function syncRx(){
+  rxCount.textContent = selected.length;
+  // chips
+  if(selected.length===0 && orientSet.length===0){
+    rxChips.innerHTML = `<div class="rx-empty">Nenhum item adicionado ainda.<br>Clique nas medicações ao centro.</div>`;
+  } else {
+    const groups=[];
+    selected.forEach((it,idx)=>{
+      let g=groups.find(x=>x.route===it.route);
+      if(!g){g={route:it.route,items:[]};groups.push(g);}
+      g.items.push({it,idx});
+    });
+    let h="";
+    groups.forEach(g=>{
+      h += `<div class="grp-h">${g.route}</div>`;
+      g.items.forEach(({it,idx})=>{
+        h += `<div class="chip"><div class="cn">${it.med}<small>${it.qty}</small></div>
+          <button class="x" data-i="${idx}" title="Remover">✕</button></div>`;
+      });
+    });
+    if(orientSet.length){
+      h += `<div class="grp-h">Orientações</div>`;
+      orientSet.forEach((o,i)=>{
+        h += `<div class="chip"><div class="cn" style="font-weight:500">${o.length>70?o.slice(0,70)+"…":o}</div>
+          <button class="x" data-o="${i}" title="Remover">✕</button></div>`;
+      });
+    }
+    rxChips.innerHTML = h;
+    rxChips.querySelectorAll(".x[data-i]").forEach(b=> b.onclick=()=>removeItem(+b.dataset.i));
+    rxChips.querySelectorAll(".x[data-o]").forEach(b=> b.onclick=()=>removeOrient(+b.dataset.o));
+  }
+  // textarea (só sobrescreve se não estiver em edição livre)
+  if(!freeEdit) rxArea.value = buildText();
+}
+
+/* ---- toast ---- */
+let toastT;
+function toast(msg, ok=true){
+  const t=$("#toast"); t.textContent=msg; t.className = ok?"show":"show warn";
+  clearTimeout(toastT); toastT=setTimeout(()=> t.className = t.className.replace("show",""), 1500);
+}
+
+/* ---- ações ---- */
+$("#btn-copy").onclick = async ()=>{
+  const txt = rxArea.value.trim();
+  if(!txt){ toast("Receita vazia", false); return; }
+  try{ await navigator.clipboard.writeText(txt); }
+  catch(e){ rxArea.select(); document.execCommand("copy"); }
+  toast("✓ Receita copiada!");
+};
+$("#btn-clear").onclick = ()=>{
+  if(selected.length===0 && orientSet.length===0 && !rxArea.value.trim()) return;
+  selected=[]; orientSet=[]; freeEdit=false; $("#free-edit").checked=false; rxArea.value="";
+  syncRx(); toast("Receita limpa");
+};
+$("#free-edit").onchange = e=>{
+  freeEdit = e.target.checked;
+  if(!freeEdit) syncRx();
+  else toast("Edição livre: o texto não será sobrescrito");
+};
+$("#cond-search").oninput = e=> renderConds(e.target.value);
+
+/* ---- init ---- */
+renderConds();
+syncRx();
+</script>
+</body>
+</html>
