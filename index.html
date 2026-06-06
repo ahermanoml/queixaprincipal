@@ -12,6 +12,8 @@
     --shadow:0 1px 2px rgba(16,40,50,.06),0 6px 18px rgba(16,40,50,.06);
   }
   *{box-sizing:border-box}
+  :where(a,button,input,textarea,[tabindex]):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   html,body{margin:0;height:100%}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -40,7 +42,7 @@
     display:flex;align-items:center;gap:8px}
   .col h2 .count{margin-left:auto;background:var(--accent-soft);color:var(--accent-d);
     font-size:11px;padding:1px 8px;border-radius:20px;font-weight:700}
-  .scroll{overflow-y:auto;flex:1;min-height:0}
+  .scroll{overflow-y:auto;flex:1;min-height:0;scrollbar-width:thin;scrollbar-color:#cdd8dd transparent}
   .scroll::-webkit-scrollbar{width:10px}
   .scroll::-webkit-scrollbar-thumb{background:#cdd8dd;border-radius:8px;border:3px solid var(--panel)}
 
@@ -51,9 +53,11 @@
   .search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 
   /* condition list */
-  .cond{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;
+  .cond{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;width:100%;
+    text-align:left;font:inherit;color:inherit;background:none;border:0;
     border-bottom:1px solid #f0f3f5;transition:background .12s}
   .cond:hover{background:#f7fafb}
+  .cond:active{background:var(--accent-soft)}
   .cond.active{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
   .cond .ic{font-size:18px;width:24px;text-align:center;flex:none}
   .cond .nm{font-weight:600;font-size:13.5px}
@@ -65,6 +69,8 @@
   .mid-head .desc{color:var(--muted);font-size:12.5px;margin-top:3px}
   .empty{padding:48px 26px;text-align:center;color:var(--muted)}
   .empty .big{font-size:40px;margin-bottom:10px;opacity:.5}
+  .empty .ttl{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:4px}
+  .empty .sub{font-size:12.5px;max-width:230px;margin:0 auto;line-height:1.5}
 
   .block{border:1px solid var(--line);border-radius:12px;margin:12px 16px;overflow:hidden;background:#fff}
   .block-head{display:flex;align-items:center;gap:10px;padding:11px 13px;background:#f8fafb;
@@ -76,14 +82,17 @@
   .addall{border:0;background:var(--accent);color:#fff;font-weight:650;font-size:12px;
     padding:7px 12px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:background .12s}
   .addall:hover{background:var(--accent-d)}
+  .addall:active{transform:translateY(1px)}
   .items{padding:5px 6px 7px}
-  .item{display:flex;align-items:flex-start;gap:9px;padding:8px 8px;border-radius:9px;cursor:pointer;transition:background .1s}
+  .item{display:flex;align-items:flex-start;gap:9px;padding:8px 8px;border-radius:9px;cursor:pointer;
+    transition:background .1s;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0}
   .item:hover{background:var(--accent-soft)}
+  .item:active .plus{transform:scale(.92)}
   .item .plus{flex:none;width:25px;height:25px;border-radius:7px;border:1px solid var(--accent);
     color:var(--accent);background:#fff;font-size:16px;font-weight:700;line-height:1;cursor:pointer;
     display:flex;align-items:center;justify-content:center;margin-top:1px}
   .item:hover .plus{background:var(--accent);color:#fff}
-  .item .txt{flex:1}
+  .item .txt{flex:1;display:flex;flex-direction:column}
   .item .med{font-weight:650;font-size:13px}
   .item .pos{font-size:11.5px;color:var(--muted);margin-top:1px}
   .item .qty{font-size:11px;color:var(--accent-d);font-weight:600;white-space:nowrap}
@@ -105,10 +114,15 @@
   .btn.primary:hover{background:var(--accent-d)}
   .btn.ghost{color:var(--danger);border-color:#f0d3cf}
   .btn.ghost:hover{background:#fdf2f1}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary:active{background:var(--accent-d)}
+  .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+  .btn:disabled:hover{background:#fff}
+  .btn.primary:disabled:hover{background:var(--accent)}
   .btn .spacer{flex:1}
   .toggle{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);cursor:pointer;user-select:none}
 
-  .chips{padding:10px 12px;border-bottom:1px solid var(--line);max-height:34%;overflow-y:auto}
+  .chips{padding:10px 12px;border-bottom:1px solid var(--line);max-height:34%;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#cdd8dd transparent}
   .grp-h{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
     font-weight:700;margin:7px 2px 4px}
   .chip{display:flex;align-items:center;gap:8px;background:var(--chip);border:1px solid var(--line);
@@ -117,7 +131,7 @@
   .chip .cn small{display:block;font-weight:400;color:var(--muted);font-size:11px}
   .chip .x{border:0;background:none;color:var(--danger);font-size:16px;cursor:pointer;line-height:1;padding:2px 4px;border-radius:6px}
   .chip .x:hover{background:#fbe3e0}
-  .rx-empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px}
+  .rx-empty{padding:34px 18px;text-align:center;color:var(--muted);font-size:12.5px}
 
   .ta-wrap{flex:1;display:flex;flex-direction:column;min-height:0;padding:11px 12px 12px}
   .ta-wrap label{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
@@ -135,37 +149,53 @@
   /* toast */
   #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);
     background:#15323b;color:#fff;padding:10px 18px;border-radius:30px;font-size:12.5px;font-weight:600;
-    opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);
+    display:inline-flex;align-items:center;gap:9px}
+  #toast::before{content:"";width:7px;height:7px;border-radius:50%;background:#4fd190;flex:none}
+  #toast.warn::before{background:#ffb454}
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   #toast.warn{background:#7a4a06}
 
-  @media(max-width:980px){
-    .grid{grid-template-columns:1fr;height:auto;padding:10px;gap:10px}
+  @media(max-width:1100px){
+    .grid{grid-template-columns:208px 1fr 320px}
+  }
+  @media(max-width:820px){
+    .grid{grid-template-columns:1fr;height:auto;min-height:calc(100vh - 70px);padding:10px;gap:10px}
     .col{height:auto}
-    #col-cond .scroll{max-height:34vh}
-    #col-mid .scroll{max-height:52vh}
-    #col-rx{position:sticky;bottom:0}
-    .ta-wrap{min-height:220px}
+    #col-cond .scroll,#col-mid .scroll{max-height:none;overflow:visible}
+    .chips{max-height:none}
+    .ta-wrap{min-height:200px}
     header.top .hint{display:none}
+    .item .plus{width:40px;height:40px;font-size:20px}
+    .chip .x{min-width:40px;min-height:40px;display:flex;align-items:center;justify-content:center}
+    .cond{padding:14px}
+    .addall,.btn{padding:11px 14px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+    #toast,#toast.show{transform:translateX(-50%)}
   }
 </style>
 </head>
 <body>
 <header class="top">
-  <div class="logo">℞</div>
+  <div class="logo" aria-hidden="true">℞</div>
   <div>
     <h1>Prescritor — Queixa Principal</h1>
     <p>Escolha a condição · monte a receita · copie e cole no seu sistema</p>
   </div>
   <div class="spacer"></div>
-  <div class="hint">Modelos extraídos dos seus PDFs de plantão/UBS. Revise sempre doses antes de prescrever.</div>
+  <div class="hint">Modelos de receita prontos para usar. Revise sempre as doses antes de prescrever.</div>
 </header>
 
 <div class="grid">
   <!-- COL 1: conditions -->
   <section class="col" id="col-cond">
     <h2>Condições <span class="count" id="cond-count">0</span></h2>
-    <div class="search"><input id="cond-search" placeholder="🔎  Buscar condição..." autocomplete="off"></div>
+    <div class="search">
+      <label for="cond-search" class="sr-only">Buscar condição</label>
+      <input id="cond-search" type="search" aria-label="Buscar condição" placeholder="🔎  Buscar condição..." autocomplete="off">
+    </div>
     <div class="scroll" id="cond-list"></div>
   </section>
 
@@ -173,7 +203,7 @@
   <section class="col" id="col-mid">
     <h2 id="mid-title">Medicações</h2>
     <div class="scroll" id="mid-body">
-      <div class="empty"><div class="big">👈</div>Selecione uma condição à esquerda para ver os modelos de receita e medicações.</div>
+      <div class="empty"><div class="big" aria-hidden="true">👈</div><div class="ttl">Selecione uma condição</div><div class="sub">Escolha à esquerda para ver os modelos de receita e medicações.</div></div>
     </div>
   </section>
 
@@ -181,20 +211,20 @@
   <section class="col" id="col-rx">
     <h2>Receita <span class="count" id="rx-count">0</span></h2>
     <div class="rx-tools">
-      <button class="btn primary" id="btn-copy">📋 Copiar</button>
-      <button class="btn ghost" id="btn-clear">🗑 Limpar</button>
+      <button class="btn primary" id="btn-copy"><span aria-hidden="true">📋</span> Copiar</button>
+      <button class="btn ghost" id="btn-clear"><span aria-hidden="true">🗑</span> Limpar</button>
       <label class="toggle"><input type="checkbox" id="free-edit"> edição livre</label>
     </div>
     <div class="chips" id="rx-chips"><div class="rx-empty">Nenhum item adicionado ainda.</div></div>
     <div class="ta-wrap">
-      <label><span class="dot">●</span> Texto pronto para colar</label>
+      <label for="rx"><span class="dot" aria-hidden="true">●</span> Texto pronto para colar</label>
       <textarea id="rx" spellcheck="false" placeholder="A receita formatada aparece aqui..."></textarea>
     </div>
-    <div class="disclaimer"><b>⚠ Apoio à decisão, não prescrição automática.</b> Confira medicamento, dose, posologia, alergias e contraindicações de cada paciente. Fonte: seus PDFs de modelos de plantão/UBS.</div>
+    <div class="disclaimer"><b><span aria-hidden="true">⚠</span> Apoio à decisão, não prescrição automática.</b> Confira medicamento, dose, posologia, alergias e contraindicações de cada paciente antes de prescrever.</div>
   </section>
 </div>
 
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 /* ============================================================
@@ -609,7 +639,7 @@ const DATA = [
     "label": "Opção 2",
     "items": [
      [
-      "LEVONORGESTREL 1,5 G",
+      "LEVONORGESTREL 1,5 MG",
       "01 COMPRIMIDO",
       "TOMAR UM COMPRIMIDO EM DOSE ÚNICA"
      ]
@@ -957,7 +987,7 @@ const DATA = [
      [
       "PARACETAMOL 750 MG",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
      ],
      [
       "DIPIRONA 500 MG",
@@ -1263,7 +1293,7 @@ const DATA = [
      [
       "LOPERAMIDA 2MG",
       "01 CAIXA",
-      "TOMAR 02 COMPRIMIDOS, PODENDO TOMAR 01 A CADA EVACUAÇÃO DIARREIA, ATÉ O MÁXIMO DE 08 COMPRIMIDOS/DIA"
+      "TOMAR 02 COMPRIMIDOS, PODENDO TOMAR 01 A CADA EVACUAÇÃO DIARREICA, ATÉ O MÁXIMO DE 08 COMPRIMIDOS/DIA"
      ]
     ]
    },
@@ -1498,7 +1528,7 @@ const DATA = [
      [
       "SORO DE REIDRATAÇÃO ORAL",
       "01 CAIXA",
-      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA DIARREIA POR CYCLOSPORA E ISOSPORA BELI ### Comuns em"
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA"
      ]
     ]
    },
@@ -1603,7 +1633,7 @@ const DATA = [
      [
       "SORO DE REIDRATAÇÃO ORAL",
       "01 CAIXA",
-      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA DIARREIA POR NEMATELMINTOS"
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA"
      ]
     ]
    },
@@ -2886,7 +2916,7 @@ const DATA = [
      [
       "ALBENDAZOL 400 MG",
       "02 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO EM DOSE ÚNICA E DEPOIS REPTIR APÓS 10 DIAS"
+      "TOMAR 01 COMPRIMIDO EM DOSE ÚNICA E DEPOIS REPETIR APÓS 10 DIAS"
      ]
     ]
    },
@@ -3034,7 +3064,7 @@ const DATA = [
      [
       "LEVOFLOXACINO 750 MG",
       "07 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, NO MESMO HORPARIO, POR 07 DIAS SEGUIDOS"
+      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, NO MESMO HORÁRIO, POR 07 DIAS SEGUIDOS"
      ]
     ]
    },
@@ -3054,7 +3084,7 @@ const DATA = [
      [
       "LEVOFLOXACINO 750 MG",
       "07 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, NO MESMO HORPARIO, POR 07 DIAS SEGUIDOS"
+      "TOMAR 01 COMPRIMIDO UMA VEZ AO DIA, NO MESMO HORÁRIO, POR 07 DIAS SEGUIDOS"
      ]
     ]
    }
@@ -3485,13 +3515,13 @@ const DATA = [
       "LEVODROPROPIZINA XAROPE 6MG/ML",
       "01 FRASCO",
       "TOMAR 15 ML NO CASO DE TOSSE, PODENDO REPETIR DE 6/6 HORAS",
-      "USO INTRANASAL"
+      "USO ORAL"
      ],
      [
       "CODEÍNA 30MG",
       "30 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO EM CASO DE TOSSE, PODENDO REPETIR DE 8/8 HORAS",
-      "USO INTRANASAL"
+      "USO ORAL"
      ]
     ]
    },
@@ -3529,19 +3559,19 @@ const DATA = [
       "AZITROMICINA 500 MG",
       "10 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO AO DIA POR 10 DIAS",
-      "USO INTRANASAL"
+      "USO ORAL"
      ],
      [
       "OMEPRAZOL 20 MG",
       "10 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO AO DIA POR 10 DIAS",
-      "USO INTRANASAL"
+      "USO ORAL"
      ],
      [
       "DIPIRONA 500MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H",
-      "USO INTRANASAL"
+      "USO ORAL"
      ],
      [
       "FLUTICASONA SPRAY 50MCG/JATO",
@@ -3913,7 +3943,7 @@ const DATA = [
      [
       "CODEÍNA 30MG",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 8/8H SE NECESSÁRIO. TOMAR O MÍNIMO POSSÍVEL, PARA EVITAR DEPENDÊNCIA E CONSTIPAÇÃO TOSSE SECA"
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 8/8H SE NECESSÁRIO. TOMAR O MÍNIMO POSSÍVEL, PARA EVITAR DEPENDÊNCIA E CONSTIPAÇÃO"
      ]
     ]
    },
@@ -4040,7 +4070,7 @@ const DATA = [
      [
       "METRONIDAZOL 250 MG",
       "28 COMPRIMIDOS",
-      "TOMAR 02 COMPRIMIDOS DE 12/12h POR 07 DIAS USO INTRAVAGINAL"
+      "TOMAR 02 COMPRIMIDOS DE 12/12h POR 07 DIAS"
      ],
      [
       "METRONIDAZOL GELEIA VAGINAL 100MG/G",
@@ -4162,7 +4192,7 @@ const DATA = [
     "label": "Opção 7",
     "items": [
      [
-      "DOXICILINA 100 MG",
+      "DOXICICLINA 100 MG",
       "56 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO DE 12/12H POR 28 DIAS"
      ]
@@ -4390,6 +4420,7 @@ let orientSet = [];         // strings (mantém ordem, sem duplicar)
 let freeEdit = false;
 
 const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const condList = $("#cond-list"), midBody = $("#mid-body"), midTitle = $("#mid-title");
 const rxChips = $("#rx-chips"), rxArea = $("#rx"), rxCount = $("#rx-count");
 
@@ -4401,42 +4432,49 @@ function renderConds(filter=""){
   DATA.forEach(c=>{
     if(f && !((c.nm+" "+(c.sub||"")+" "+(KW[c.id]||"")).toLowerCase().includes(f))) return;
     n++;
-    const el = document.createElement("div");
+    const el = document.createElement("button");
+    el.type = "button";
     el.className = "cond" + (activeCond===c.id ? " active":"");
-    el.innerHTML = `<span class="ic">${c.ic}</span>
-      <span><span class="nm">${c.nm}</span><br><span class="sub">${c.sub||""}</span></span>`;
-    el.onclick = ()=>{ activeCond = c.id; renderConds($("#cond-search").value); renderMid(c); };
+    el.setAttribute("aria-pressed", activeCond===c.id ? "true":"false");
+    el.innerHTML = `<span class="ic" aria-hidden="true">${c.ic}</span>
+      <span><span class="nm">${esc(c.nm)}</span><br><span class="sub">${esc(c.sub||"")}</span></span>`;
+    el.onclick = ()=>{
+      activeCond = c.id;
+      condList.querySelectorAll(".cond.active").forEach(x=>{ x.classList.remove("active"); x.setAttribute("aria-pressed","false"); });
+      el.classList.add("active"); el.setAttribute("aria-pressed","true");
+      renderMid(c);
+    };
     condList.appendChild(el);
   });
-  $("#cond-count").textContent = DATA.length;
+  $("#cond-count").textContent = f ? n : DATA.length;
   if(n===0) condList.innerHTML = `<div class="rx-empty">Nada encontrado.</div>`;
 }
 
 /* ---- painel do meio ---- */
 function renderMid(c){
   midTitle.textContent = c.nm;
-  let h = `<div class="mid-head"><h3>${c.ic} ${c.nm}</h3><div class="desc">${c.sub||""} · clique em <b>＋</b> num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div></div>`;
+  let h = `<div class="mid-head"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div></div>`;
   c.blocks.forEach((b,bi)=>{
     const isMenu = !!b.menu;
     h += `<div class="block">
       <div class="block-head">
-        <span class="bl">${b.label}</span>
-        ${isMenu ? `<span class="tag menu">escolha</span>`
-                 : `<button class="addall" data-b="${bi}">＋ Adicionar receita</button>`}
+        <span class="bl">${esc(b.label)}</span>
+        ${isMenu ? `<span class="tag menu">escolha 1</span>`
+                 : `<button type="button" class="addall" data-b="${bi}">＋ Adicionar receita</button>`}
       </div><div class="items">`;
     b.items.forEach((it,ii)=>{
       const med=it[0], qty=it[1], pos=it[2]||"", route=it[3]||ORAL;
-      const rlab = route!==ORAL ? ` · <span class="qty">${route}</span>`:"";
-      h += `<div class="item" data-b="${bi}" data-i="${ii}">
-        <button class="plus" title="Adicionar este item">＋</button>
-        <div class="txt"><div class="med">${med} <span class="qty">— ${qty}</span></div>
-        <div class="pos">${pos}${rlab}</div></div></div>`;
+      const rlab = route!==ORAL ? ` · <span class="qty">${esc(route)}</span>`:"";
+      h += `<button type="button" class="item" data-b="${bi}" data-i="${ii}"${isMenu?' data-menu="1"':''} aria-label="Adicionar ${esc(med)}">
+        <span class="plus" aria-hidden="true">＋</span>
+        <span class="txt"><span class="med">${esc(med)} <span class="qty">— ${esc(qty)}</span></span>
+        <span class="pos">${esc(pos)}${rlab}</span></span></button>`;
     });
     h += `</div>`;
     if(b.orient && b.orient.length){
-      h += `<div class="orient-box"><div class="ohd">🛈 Orientações
-        <button data-orient="${bi}">＋ Adicionar à receita</button></div><ul>`;
-      b.orient.forEach(o=> h += `<li>${o}</li>`);
+      h += `<div class="orient-box"><div class="ohd"><span aria-hidden="true">🛈</span> Orientações
+        <button type="button" data-orient="${bi}">＋ Adicionar à receita</button></div><ul>`;
+      b.orient.forEach(o=> h += `<li>${esc(o)}</li>`);
       h += `</ul></div>`;
     }
   });
@@ -4452,12 +4490,23 @@ function renderMid(c){
       toast(added>0 ? `Bloco adicionado (${added} ${added>1?"itens":"item"})` : "Itens já estavam na receita", added>0);
     };
   });
-  // bind: adicionar item individual
+  // bind: adicionar item individual (a linha inteira é o botão)
   midBody.querySelectorAll(".item").forEach(row=>{
     row.onclick = ()=>{
       const b = c.blocks[+row.dataset.b];
-      const it = b.items[+row.dataset.i];
+      const ii = +row.dataset.i;
+      const it = b.items[ii];
+      // bloco "escolha 1": mantém apenas uma opção por vez
+      if(row.dataset.menu){
+        b.items.forEach((other,oi)=>{
+          if(oi===ii) return;
+          const k = keyOf(other[0], other[1], other[3]||ORAL);
+          const idx = selected.findIndex(s=> keyOf(s.med,s.qty,s.route)===k);
+          if(idx>-1) selected.splice(idx,1);
+        });
+      }
       const ok = addItem(it);
+      if(row.dataset.menu) refreshRx();
       toast(ok ? "Adicionado à receita" : "Esse item já está na receita", ok);
     };
   });
@@ -4473,10 +4522,10 @@ function renderMid(c){
 }
 
 /* ---- adicionar / remover ---- */
-function keyOf(med,qty){ return (med+"|"+qty).toUpperCase(); }
+function keyOf(med,qty,route){ return (med+"|"+qty+"|"+(route||ORAL)).toUpperCase(); }
 function addItem(it){
   const med=it[0], qty=it[1], pos=it[2]||"", route=it[3]||ORAL;
-  if(selected.some(s=> keyOf(s.med,s.qty)===keyOf(med,qty))) return 0;
+  if(selected.some(s=> keyOf(s.med,s.qty,s.route)===keyOf(med,qty,route))) return 0;
   selected.push({med,qty,pos,route});
   syncRx();
   return 1;
@@ -4485,38 +4534,47 @@ function addOrient(o){
   if(orientSet.includes(o)) return false;
   orientSet.push(o); syncRx(); return true;
 }
-function removeItem(i){ selected.splice(i,1); syncRx(); }
-function removeOrient(i){ orientSet.splice(i,1); syncRx(); }
+function removeItem(i){ selected.splice(i,1); refreshRx(); }
+function removeOrient(i){ orientSet.splice(i,1); refreshRx(); }
+// remover/alterar sempre reflete no texto, mesmo em edição livre (evita chips e texto divergirem)
+function refreshRx(){ if(freeEdit) rxArea.value = buildText(); syncRx(); }
 
-/* ---- formatação do texto (igual aos PDFs) ---- */
+// agrupa selected[] por rota, preservando a ordem de inserção
+function groupByRoute(project = it => it){
+  const groups = [];
+  selected.forEach((it, idx) => {
+    let g = groups.find(x => x.route === it.route);
+    if(!g){ g = {route: it.route, items: []}; groups.push(g); }
+    g.items.push(project(it, idx));
+  });
+  return groups;
+}
+
+/* ---- formatação do texto ---- */
+const RX_COL_WIDTH = 46;   // largura (em caracteres) até a coluna de quantidade
+const RX_MIN_DASHES = 3;   // mínimo de "_" no preenchimento
 function pad(med){
   const left = med + " ";
-  let dashes = 46 - left.length; if(dashes<3) dashes=3;
+  const dashes = Math.max(RX_MIN_DASHES, RX_COL_WIDTH - left.length);
   return left + "_".repeat(dashes) + " ";
 }
 function buildText(){
   if(selected.length===0 && orientSet.length===0) return "";
-  const groups=[];
-  selected.forEach(it=>{
-    let g=groups.find(x=>x.route===it.route);
-    if(!g){g={route:it.route,items:[]};groups.push(g);}
-    g.items.push(it);
-  });
   const out=[];
-  groups.forEach(g=>{
-    out.push(g.route); out.push("");
+  groupByRoute().forEach(g=>{
+    const block=[g.route, ""];
     g.items.forEach((it,i)=>{
       const n=String(i+1).padStart(2,"0");
-      out.push(`${n}- ${pad(it.med)}${it.qty}`);
-      if(it.pos) out.push(it.pos);
-      out.push("");
+      block.push(`${n}- ${pad(it.med)}${it.qty}`);
+      if(it.pos) block.push(it.pos);
+      block.push("");
     });
+    out.push(block.join("\n").trim());
   });
   if(orientSet.length){
-    out.push("ORIENTAÇÕES:"); out.push("");
-    orientSet.forEach(o=> out.push("# "+o));
+    out.push("ORIENTAÇÕES:\n\n" + orientSet.map(o=> "# "+o).join("\n"));
   }
-  return out.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+  return out.join("\n\n").trim();
 }
 
 /* ---- sincroniza painel direito ---- */
@@ -4526,25 +4584,19 @@ function syncRx(){
   if(selected.length===0 && orientSet.length===0){
     rxChips.innerHTML = `<div class="rx-empty">Nenhum item adicionado ainda.<br>Clique nas medicações ao centro.</div>`;
   } else {
-    const groups=[];
-    selected.forEach((it,idx)=>{
-      let g=groups.find(x=>x.route===it.route);
-      if(!g){g={route:it.route,items:[]};groups.push(g);}
-      g.items.push({it,idx});
-    });
     let h="";
-    groups.forEach(g=>{
-      h += `<div class="grp-h">${g.route}</div>`;
+    groupByRoute((it,idx)=>({it,idx})).forEach(g=>{
+      h += `<div class="grp-h">${esc(g.route)}</div>`;
       g.items.forEach(({it,idx})=>{
-        h += `<div class="chip"><div class="cn">${it.med}<small>${it.qty}</small></div>
-          <button class="x" data-i="${idx}" title="Remover">✕</button></div>`;
+        h += `<div class="chip"><div class="cn">${esc(it.med)}<small>${esc(it.qty)}</small></div>
+          <button type="button" class="x" data-i="${idx}" aria-label="Remover ${esc(it.med)}"><span aria-hidden="true">✕</span></button></div>`;
       });
     });
     if(orientSet.length){
       h += `<div class="grp-h">Orientações</div>`;
       orientSet.forEach((o,i)=>{
-        h += `<div class="chip"><div class="cn" style="font-weight:500">${o.length>70?o.slice(0,70)+"…":o}</div>
-          <button class="x" data-o="${i}" title="Remover">✕</button></div>`;
+        h += `<div class="chip"><div class="cn" style="font-weight:500">${esc(o.length>70?o.slice(0,70)+"…":o)}</div>
+          <button type="button" class="x" data-o="${i}" aria-label="Remover orientação"><span aria-hidden="true">✕</span></button></div>`;
       });
     }
     rxChips.innerHTML = h;
@@ -4553,22 +4605,26 @@ function syncRx(){
   }
   // textarea (só sobrescreve se não estiver em edição livre)
   if(!freeEdit) rxArea.value = buildText();
+  // habilita/desabilita as ações conforme o estado
+  const empty = selected.length===0 && orientSet.length===0 && !rxArea.value.trim();
+  $("#btn-copy").disabled = empty; $("#btn-clear").disabled = empty;
 }
 
 /* ---- toast ---- */
 let toastT;
 function toast(msg, ok=true){
-  const t=$("#toast"); t.textContent=msg; t.className = ok?"show":"show warn";
-  clearTimeout(toastT); toastT=setTimeout(()=> t.className = t.className.replace("show",""), 1500);
+  const t=$("#toast"); t.textContent=msg; t.className = "show"+(ok?"":" warn");
+  clearTimeout(toastT); toastT=setTimeout(()=>{ t.className=""; }, 1500);
 }
 
 /* ---- ações ---- */
 $("#btn-copy").onclick = async ()=>{
   const txt = rxArea.value.trim();
   if(!txt){ toast("Receita vazia", false); return; }
-  try{ await navigator.clipboard.writeText(txt); }
-  catch(e){ rxArea.select(); document.execCommand("copy"); }
-  toast("✓ Receita copiada!");
+  let ok=false;
+  try{ await navigator.clipboard.writeText(txt); ok=true; }
+  catch(e){ try{ rxArea.focus(); rxArea.select(); ok=document.execCommand("copy"); rxArea.setSelectionRange(0,0); }catch(_){ ok=false; } }
+  toast(ok ? "Receita copiada!" : "Não foi possível copiar", ok);
 };
 $("#btn-clear").onclick = ()=>{
   if(selected.length===0 && orientSet.length===0 && !rxArea.value.trim()) return;
@@ -4577,8 +4633,14 @@ $("#btn-clear").onclick = ()=>{
 };
 $("#free-edit").onchange = e=>{
   freeEdit = e.target.checked;
-  if(!freeEdit) syncRx();
-  else toast("Edição livre: o texto não será sobrescrito");
+  if(!freeEdit){
+    if(rxArea.value.trim() && rxArea.value!==buildText() && !confirm("Descartar as edições manuais e regenerar a receita?")){
+      e.target.checked = true; freeEdit = true; return;
+    }
+    syncRx();
+  } else {
+    toast("Edição livre: o texto não será sobrescrito");
+  }
 };
 $("#cond-search").oninput = e=> renderConds(e.target.value);
 
