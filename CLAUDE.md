@@ -63,7 +63,7 @@ A **Block** is one prescription variant / section:
 An **Item** is a positional array (tuple), **not** an object — in the file each element sits on its own line:
 
 ```js
-[ "IBUPROFENO 300 MG", "40 COMPRIMIDOS", "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS", route? ]
+[ "IBUPROFENO 300 MG", "01 CAIXA", "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS", route? ]
 //   [0] med + dose       [1] quantity      [2] posologia (instructions)            [3] route?
 ```
 
