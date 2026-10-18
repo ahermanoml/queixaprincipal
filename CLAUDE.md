@@ -59,7 +59,7 @@ A **Block** is one prescription variant / section:
 
 - `"menu": true` marks a "choose one of these" block — the UI shows an `escolha` tag instead of the **Adicionar receita** (add-whole-block) button, so items must be added individually. By convention these blocks also carry an `— escolha 1` suffix in their `label`.
 - `orient` strings are not shown inside the block: `renderMid` gathers the `orient` of every block in the active mode (deduped) into the **Recomendações e instruções** section, where each line can be added on its own (or all at once). **Adicionar receita** on a block still adds that block's `orient` too. Added lines appear under an `ORIENTAÇÕES:` heading in the output.
-- `"sec"` picks the **section** of the middle column the block belongs to (see *Sections*): `"padrao"` (default when absent) or `"offlabel"`. In the ambulatorial mode, **Padrão** is the guideline-based standard prescription (AI-drafted from current guidelines, so it carries `"draft": true` until signed off) and **Off label** holds every older ambulatorial block that the new padrão did not already cover — "off label" here is the owner's name for "alternatives", not the regulatory sense. Internação / pediátrica blocks have no `sec`, so they are the padrão of their own mode.
+- `"sec"` picks the **section** of the middle column the block belongs to (see *Sections*): `"padrao"` (default when absent) or `"offlabel"`. In the ambulatorial mode, **Padrão** is the guideline-based standard prescription (AI-drafted from current guidelines, so it carries `"draft": true` until signed off) and **Off label** holds every older ambulatorial block that the new padrão did not already cover — "off label" here is the owner's name for "alternatives", not the regulatory sense. Internação and pediátrica were rebuilt the same way: each mode has its own guideline-based padrão blocks plus `"offlabel"` alternatives, all `"draft": true`; pediatric weight-based doses use the PESO spec.
 - `"mode"` assigns the block to a **prescription mode**: `"amb"` (ambulatorial / outpatient — the default when the key is absent), `"internacao"` (inpatient), or `"ped"` (pediátrica). The middle column shows a mode selector and `renderMid` only renders blocks matching the active `currentMode`. See *Prescription modes & collapsible blocks*.
 - `"draft": true` flags AI-generated content awaiting the clinician's review — it renders a `rascunho` tag on a tinted block (and on its lines in **Recomendações e instruções**, unless a non-draft block carries the same line). Drop the flag once a block is signed off.
 
@@ -72,6 +72,12 @@ An **Item** is a positional array (tuple), **not** an object — in the file eac
 
 - The 4th element (route) is optional and defaults to `ORAL`. Route constants are defined once at the top of the script: `ORAL, TOP, INAL, NASAL, AUD, SL, EV, IM, SC` (e.g. `"USO ORAL"`, `"USO TÓPICO"`, `"USO ENDOVENOSO"`, `"USO INTRAMUSCULAR"`). In the JSON `DATA` the route is written as the **literal string** (e.g. `"USO ENDOVENOSO"`), not the JS constant — the constants are only used in the script logic (`buildText`, `keyOf`, defaults).
 - Drug names and doses are written in **UPPERCASE** by convention — match it.
+- **Weight-based doses** use a 5th element, the PESO spec — then the route `[3]` is mandatory and the posologia contains the literal `{DOSE}` exactly once. See *Calculadora de peso*.
+
+```js
+[ "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)", "01 FRASCO", "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (25 MG/KG/DOSE)", "USO ORAL",
+  {"kg": 25, "conc": 500, "gotas": 20, "un": "GOTAS", "max": 1000} ]
+```
 
 ## Conventions that are easy to break
 
@@ -94,6 +100,13 @@ An **Item** is a positional array (tuple), **not** an object — in the file eac
 - **Collapsible blocks:** each `.block-head` has a `.bl-toggle` button (chevron + label) that toggles `.block.collapsed` (CSS hides `.items`). Blocks start expanded. The whole-block **Adicionar receita** button works even while collapsed.
 - Block markup comes from `blockHTML()`, which closes both `.items` and `.block`. The earlier code left `.block` open, so blocks rendered nested — don't reintroduce that.
 - `bindBlocks()` wires the section/block toggles and the Minha card buttons; it is shared by `renderMid` and `renderMinha`. The whole-block handler selects `.addall[data-b]` because the Minha cards reuse the `.addall` style with `data-send`.
+
+## Calculadora de peso
+
+- PESO spec fields: `kg` (amount per kg **per dose**, in the drug unit) **or** `kgdia` + `vezes` (per kg per day ÷ doses/day); `max` (cap per dose, in the drug unit — always set it); `conc` (drug unit per mL of the presentation; omit when the output is the drug unit itself, e.g. EV dose in MG or fluids in ML); `un` (`"ML" | "GOTAS" | "MG" | "MCG" | "UI"`, printed in place of `{DOSE}`); `gotas` (drops per mL, required for `"GOTAS"`).
+- `doseTxt(spec)` computes from the module-level `peso`: amount = min(kg × peso, max); ML = amount ÷ conc (2 decimals under 1 mL, else 1); GOTAS = round(amount ÷ conc × gotas); without `conc` the amount itself. Capped doses get "(DOSE MÁXIMA)". With no weight it prints `__ ML` / `__ GOTAS`.
+- The weight box (`.peso-box`, `#peso`) shows in the **Pediátrica** mode, and in any other mode whose blocks contain a PESO item. Typing updates the `.dose` spans in place (`refreshDoses()`, no re-render, so focus stays) and the receita. The weight persists across conditions/modes and is cleared by **Limpar**.
+- Selected items keep their `spec`, and `buildText()` fills `{DOSE}` at build time — changing the weight updates items already in the receita. When any selected item has a spec and a weight is set, the text starts with `PESO: N KG`.
 
 ## Minha prescrição
 
