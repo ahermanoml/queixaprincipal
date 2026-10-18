@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `qprincipal.com.br` — a Brazilian-Portuguese clinical decision-support tool ("Prescritor — Queixa Principal") that lets a clinician pick a chief complaint / condition, assemble a prescription from prebuilt medication blocks, and copy out plain text formatted to match the source plantão/UBS PDF prescriptions.
 
-It is a **single self-contained file**: `index.html` (~5650 lines). No build step, no dependencies, no framework, no tests, no package manager. Everything — CSS, HTML, the entire dataset, and the app logic — is inline. `CNAME` pins the GitHub Pages custom domain.
+It is a **single self-contained file**: `index.html` (~13k lines, almost all of it data). No build step, no dependencies, no framework, no tests, no package manager. Everything — CSS, HTML, the entire dataset, and the app logic — is inline. `CNAME` pins the GitHub Pages custom domain.
 
 ## Development & deploy
 
@@ -24,7 +24,8 @@ Line numbers drift whenever the dataset is edited (it dominates the file). Re-gr
 | `<body>` (~180–228) | Three-column grid (`.grid`): `#col-cond` (conditions) → `#col-mid` (blocks/meds) → `#col-rx` (receita). |
 | `const DATA` (~237–5344) | The dataset: 64 condition objects, authored as **pretty-printed JSON** (quoted keys, one value per line). This is the bulk of the file. |
 | `const KW` (~5346–5424) | Search index — one quoted string of keywords per condition `id`. |
-| state + logic (~5427–end) | Vanilla-JS app: `renderConds`, `renderMid`, `addItem`, `buildText`, `syncRx`. |
+| `const MINHA` (after `KW`) | **Minha prescrição** — the clinician's own free-text templates (evolução, exame físico, receitas, observação, laudos). See *Minha prescrição*. |
+| state + logic (~5427–end) | Vanilla-JS app: `renderConds`, `renderMid`, `renderMinha`, `addItem`, `buildText`, `syncRx`. |
 
 ## Data model (the part that matters)
 
@@ -51,14 +52,16 @@ A **Block** is one prescription variant / section:
   "orient": ["texto de orientação", ...],  // optional patient-guidance bullets
   "menu": true,                             // optional; see below
   "mode": "internacao",                     // optional; "amb" (default) | "internacao" | "ped"
+  "sec": "offlabel",                        // optional; "padrao" (default) | "offlabel"
   "draft": true                             // optional; AI-drafted → shows a "rascunho" tag, needs clinical sign-off
 }
 ```
 
 - `"menu": true` marks a "choose one of these" block — the UI shows an `escolha` tag instead of the **Adicionar receita** (add-whole-block) button, so items must be added individually. By convention these blocks also carry an `— escolha 1` suffix in their `label`.
-- `orient` strings render in a side box and, when added, appear under an `ORIENTAÇÕES:` heading in the output.
+- `orient` strings are not shown inside the block: `renderMid` gathers the `orient` of every block in the active mode (deduped) into the **Recomendações e instruções** section, where each line can be added on its own (or all at once). **Adicionar receita** on a block still adds that block's `orient` too. Added lines appear under an `ORIENTAÇÕES:` heading in the output.
+- `"sec"` picks the **section** of the middle column the block belongs to (see *Sections*): `"padrao"` (default when absent) or `"offlabel"`. In the ambulatorial mode, **Padrão** is the guideline-based standard prescription (AI-drafted from current guidelines, so it carries `"draft": true` until signed off) and **Off label** holds every older ambulatorial block that the new padrão did not already cover — "off label" here is the owner's name for "alternatives", not the regulatory sense. Internação / pediátrica blocks have no `sec`, so they are the padrão of their own mode.
 - `"mode"` assigns the block to a **prescription mode**: `"amb"` (ambulatorial / outpatient — the default when the key is absent), `"internacao"` (inpatient), or `"ped"` (pediátrica). The middle column shows a mode selector and `renderMid` only renders blocks matching the active `currentMode`. See *Prescription modes & collapsible blocks*.
-- `"draft": true` flags AI-generated content awaiting the clinician's review — it renders a `rascunho` tag on a tinted block. Drop the flag once a block is signed off.
+- `"draft": true` flags AI-generated content awaiting the clinician's review — it renders a `rascunho` tag on a tinted block (and on its lines in **Recomendações e instruções**, unless a non-draft block carries the same line). Drop the flag once a block is signed off.
 
 An **Item** is a positional array (tuple), **not** an object — in the file each element sits on its own line:
 
@@ -79,13 +82,24 @@ An **Item** is a positional array (tuple), **not** an object — in the file eac
 
 ## App logic flow
 
-`renderConds(filter)` builds the left list (filter matches `nm + sub + KW[id]`) → clicking a condition resets `currentMode = "amb"` and calls `renderMid(c)` → clicking an item / **Adicionar receita** calls `addItem` / `addOrient`, which mutate the module-level `selected[]` / `orientSet[]` and call `syncRx()` → `syncRx()` re-renders the right-hand chips and regenerates the textarea via `buildText()`. Copy uses `navigator.clipboard` with an `execCommand("copy")` fallback.
+`renderConds(filter)` builds the left list (filter matches `nm + sub + KW[id]`; the pinned **⭐ Minha prescrição** entry sits on top and also matches its card titles) → clicking a condition resets `currentMode = "amb"` and calls `renderMid(c)` → clicking an item / **Adicionar receita** calls `addItem` / `addOrient`, which mutate the module-level `selected[]` / `orientSet[]` and call `syncRx()` → `syncRx()` re-renders the right-hand chips and regenerates the textarea via `buildText()`. Copy uses `navigator.clipboard` with an `execCommand("copy")` fallback.
 
-## Prescription modes & collapsible blocks
+## Prescription modes, sections & collapsible blocks
 
 `renderMid` is mode-aware (state: module-level `currentMode`, one of `"amb" | "internacao" | "ped"`; the `MODES` array holds the labels/icons):
 
 - It counts blocks per mode, renders a **mode selector** (`.mode-box` pills) in the `.mid-head`, then renders only the blocks whose `(b.mode || "amb")` equals `currentMode`. Clicking a pill sets `currentMode` and re-renders the same condition; opening a different condition resets to `"amb"`. A mode with no blocks renders a `.mode-empty` placeholder (the pill is dimmed via `.empty`).
-- **Block indices must stay stable.** `data-b` carries the block's *original* index into `c.blocks`; `renderMid` filters with `c.blocks.map((b,bi)=>({b,bi})).filter(...)` so the index survives filtering. The `addall`/item/orient handlers do `c.blocks[+dataset.b]`, so never renumber.
-- **Collapsible blocks:** each `.block-head` has a `.bl-toggle` button (chevron + label) that toggles `.block.collapsed` (CSS hides `.items` + `.orient-box`). When a mode shows **more than one** block they all start collapsed; a lone block starts expanded. The whole-block **Adicionar receita** button works even while collapsed.
-- Each `.block` is now explicitly closed in the template string (`h += '</div>'` after the orient box). The earlier code left it open, so blocks rendered nested — don't reintroduce that.
+- **Block indices must stay stable.** `data-b` carries the block's *original* index into `c.blocks`; `renderMid` filters with `c.blocks.map((b,bi)=>({b,bi})).filter(...)` so the index survives filtering. The `addall`/item handlers do `c.blocks[+dataset.b]`, so never renumber.
+- **Sections (`SECS`):** inside the active mode the middle column has four stacked, collapsible `.sec` sections, always in this order: **Padrão** (blocks with `sec` absent/`"padrao"`, starts **open**), **Minha prescrição** (the `MINHA` cards whose `conds` include this condition, regardless of mode), **Off label** (`"offlabel"` blocks) and **Recomendações e instruções** (the deduped `orient` lines). All but Padrão start collapsed. Each `.sec-head` shows a count; an empty section is dimmed (`.none`) and shows a `.sec-empty` placeholder when opened. Choosing a condition or switching mode re-renders, so Padrão is open again.
+- **Collapsible blocks:** each `.block-head` has a `.bl-toggle` button (chevron + label) that toggles `.block.collapsed` (CSS hides `.items`). Blocks start expanded. The whole-block **Adicionar receita** button works even while collapsed.
+- Block markup comes from `blockHTML()`, which closes both `.items` and `.block`. The earlier code left `.block` open, so blocks rendered nested — don't reintroduce that.
+- `bindBlocks()` wires the section/block toggles and the Minha card buttons; it is shared by `renderMid` and `renderMinha`. The whole-block handler selects `.addall[data-b]` because the Minha cards reuse the `.addall` style with `data-send`.
+
+## Minha prescrição
+
+`MINHA` is a pretty-printed JSON array of cards: `{"titulo", "grupo", "conds": [DATA ids], "linhas": [one string per line], "nota"?}`.
+
+- The text is the clinician's own, kept **as they wrote it** (their spacing, dashes, abbreviations and typos) — don't reformat it into `Item` tuples or "fix" it; it is copied verbatim. Only trailing spaces and leading/trailing blank lines are trimmed.
+- Clicking **⭐ Minha prescrição** (`MINHA_ID`, pinned at the top of the list) calls `renderMinha()`, which shows every card grouped by `grupo`, collapsed. Inside a condition, the **Minha prescrição** section shows the cards whose `conds` include its `id`, expanded.
+- **Copiar** copies the card text (`copyText`, clipboard API with a hidden-textarea fallback). **＋ Receita** (`sendToRx`) appends the text to the receita textarea and switches on **edição livre**, so it is not overwritten.
+- `"nota"` marks a card that was adapted from what the clinician pasted (shows an `adaptado` tag). The "Evolução diária — sala de emergência" card is the structure of a real evolution note with **all patient data removed** — never put identifiable patient data in this public file.
