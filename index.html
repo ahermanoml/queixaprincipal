@@ -159,6 +159,11 @@
   .peso-box .peso-hint{font-size:11.5px;color:var(--muted)}
   .item .dose{color:#1d4f91;background:#e3eefc;border-radius:5px;padding:0 4px;font-weight:700}
   .item .dose.vazio{color:var(--warn);background:#fdf1e3}
+  /* faixa de peso na posologia: com peso digitado mostra só a faixa certa, destacada como as doses */
+  .item .faixa.on{color:#1d4f91;background:#e3eefc;border-radius:5px;padding:0 4px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .faixa-nota{margin:8px 16px 4px;padding:8px 12px;border-radius:9px;background:#f1f6fd;border:1px dashed #b9d0f0;color:#1d4f91;font-size:12px}
+  .chip.fora{border-color:#f0c7c2;background:#fdf2f1}
+  .chip .cn small.fora-txt{color:var(--danger);font-weight:700}
 
   /* meu rascunho: todos os modelos do próprio médico num texto só, copiado como está */
   .rasc-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line)}
@@ -1117,6 +1122,9 @@ const DATA = [
    },
    {
     "label": "Padrão — profilaxia de IST não virais (criança ou adolescente < 45 kg)",
+    "peso": {
+     "menor": 45
+    },
     "mode": "ped",
     "draft": true,
     "items": [
@@ -1173,19 +1181,47 @@ const DATA = [
    },
    {
     "label": "Padrão — PEP-HIV (≥ 4 semanas de vida, ≥ 3 kg e < 35 kg): zidovudina + lamivudina + dolutegravir por 28 dias",
+    "peso": {
+     "de": 3,
+     "menor": 35
+    },
     "mode": "ped",
     "draft": true,
     "items": [
      [
       "ZIDOVUDINA 10 MG/ML SOLUÇÃO ORAL",
       "QUANTIDADE PARA 28 DIAS",
-      "DAR {DOSE} VIA ORAL DE 12/12H POR 28 DIAS (9 MG/KG/DOSE NA FAIXA DE 9 A < 30 KG; SE 4 A < 9 KG: 12 MG/KG/DOSE; A PARTIR DE 30 KG: 300 MG/DOSE)",
+      "DAR {DOSE} VIA ORAL DE 12/12H POR 28 DIAS ({FAIXA})",
       "USO ORAL",
       {
-       "kg": 9,
        "conc": 10,
        "un": "ML",
-       "max": 300
+       "sem_peso": "9 MG/KG/DOSE NA FAIXA DE 9 A < 30 KG; SE 4 A < 9 KG: 12 MG/KG/DOSE; A PARTIR DE 30 KG: 300 MG/DOSE",
+       "faixas": [
+        {
+         "de": 4,
+         "menor": 9,
+         "txt": "12 MG/KG/DOSE",
+         "dose": {
+          "kg": 12
+         }
+        },
+        {
+         "de": 9,
+         "menor": 30,
+         "txt": "9 MG/KG/DOSE",
+         "dose": {
+          "kg": 9
+         }
+        },
+        {
+         "de": 30,
+         "txt": "300 MG/DOSE",
+         "dose": {
+          "fixo": 300
+         }
+        }
+       ]
       }
      ],
      [
@@ -1203,8 +1239,42 @@ const DATA = [
      [
       "DOLUTEGRAVIR 5 MG COMPRIMIDO DISPERSÍVEL",
       "QUANTIDADE PARA 28 DIAS",
-      "DISPERSAR EM PEQUENA QUANTIDADE DE ÁGUA POTÁVEL E DAR VIA ORAL 01 VEZ AO DIA POR 28 DIAS, CONFORME O PESO: 3 A < 6 KG = 5 MG (01 COMP); 6 A < 10 KG = 10 MG (02 COMP) ATÉ 6 MESES OU 15 MG (03 COMP) ACIMA DE 6 MESES; 10 A < 14 KG = 20 MG (04 COMP); 14 A < 20 KG = 25 MG (05 COMP); 20 KG OU MAIS = 30 MG (06 COMP). ACIMA DE 6 ANOS E > 20 KG QUE ENGOLE COMPRIMIDO: DOLUTEGRAVIR 50 MG 01 COMPRIMIDO 01 VEZ AO DIA",
-      "USO ORAL"
+      "DISPERSAR EM PEQUENA QUANTIDADE DE ÁGUA POTÁVEL E DAR VIA ORAL 01 VEZ AO DIA POR 28 DIAS, CONFORME O PESO: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "3 A < 6 KG = 5 MG (01 COMP); 6 A < 10 KG = 10 MG (02 COMP) ATÉ 6 MESES OU 15 MG (03 COMP) ACIMA DE 6 MESES; 10 A < 14 KG = 20 MG (04 COMP); 14 A < 20 KG = 25 MG (05 COMP); 20 KG OU MAIS = 30 MG (06 COMP). ACIMA DE 6 ANOS E > 20 KG QUE ENGOLE COMPRIMIDO: DOLUTEGRAVIR 50 MG 01 COMPRIMIDO 01 VEZ AO DIA",
+       "faixas": [
+        {
+         "de": 3,
+         "menor": 6,
+         "txt": "5 MG (01 COMP)"
+        },
+        {
+         "de": 6,
+         "menor": 10,
+         "txt": "10 MG (02 COMP) ATÉ 6 MESES DE IDADE OU 15 MG (03 COMP) ACIMA DE 6 MESES"
+        },
+        {
+         "de": 10,
+         "menor": 14,
+         "txt": "20 MG (04 COMP)"
+        },
+        {
+         "de": 14,
+         "menor": 20,
+         "txt": "25 MG (05 COMP)"
+        },
+        {
+         "de": 20,
+         "ate": 20,
+         "txt": "30 MG (06 COMP)"
+        },
+        {
+         "acima": 20,
+         "txt": "30 MG (06 COMP). ACIMA DE 6 ANOS QUE ENGOLE COMPRIMIDO: DOLUTEGRAVIR 50 MG 01 COMPRIMIDO 01 VEZ AO DIA"
+        }
+       ]
+      }
      ]
     ],
     "orient": [
@@ -1216,6 +1286,9 @@ const DATA = [
    },
    {
     "label": "Padrão — PEP-HIV (≥ 35 kg): tenofovir + lamivudina + dolutegravir por 28 dias",
+    "peso": {
+     "de": 35
+    },
     "mode": "ped",
     "draft": true,
     "items": [
@@ -1597,8 +1670,21 @@ const DATA = [
      [
       "LORATADINA 1 MG/ML XAROPE",
       "01 FRASCO",
-      "A PARTIR DE 02 ANOS — DAR 01 VEZ AO DIA, NO MESMO HORÁRIO, POR 05 A 07 DIAS E DEPOIS SE COCEIRA: ATÉ 30 KG: 05 ML (5 MG); ACIMA DE 30 KG: 10 ML (10 MG)",
-      "USO ORAL"
+      "A PARTIR DE 02 ANOS — DAR 01 VEZ AO DIA, NO MESMO HORÁRIO, POR 05 A 07 DIAS E DEPOIS SE COCEIRA: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "ATÉ 30 KG: 05 ML (5 MG); ACIMA DE 30 KG: 10 ML (10 MG)",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "05 ML (5 MG)"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (10 MG)"
+        }
+       ]
+      }
      ],
      [
       "DICLORIDRATO DE CETIRIZINA 1 MG/ML SOLUÇÃO ORAL",
@@ -1941,8 +2027,21 @@ const DATA = [
      [
       "LORATADINA 1 MG/ML XAROPE",
       "01 FRASCO",
-      "DAR VIA ORAL 01 VEZ AO DIA SE URTICÁRIA OU PRURIDO: 2 A 12 ANOS COM ATÉ 30 KG = 05 ML (5 MG); ACIMA DE 30 KG = 10 ML (10 MG). NÃO USAR EM MENORES DE 2 ANOS",
-      "USO ORAL"
+      "DAR VIA ORAL 01 VEZ AO DIA SE URTICÁRIA OU PRURIDO: {FAIXA}. NÃO USAR EM MENORES DE 2 ANOS",
+      "USO ORAL",
+      {
+       "sem_peso": "2 A 12 ANOS COM ATÉ 30 KG = 05 ML (5 MG); ACIMA DE 30 KG = 10 ML (10 MG)",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "05 ML (5 MG) (2 A 12 ANOS)"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (10 MG)"
+        }
+       ]
+      }
      ],
      [
       "DIFENIDRAMINA 50 MG/ML SOLUÇÃO INJETÁVEL",
@@ -2336,8 +2435,21 @@ const DATA = [
      [
       "SALBUTAMOL SOLUÇÃO PARA NEBULIZAÇÃO 5 MG/ML (GOTAS)",
       "01 FRASCO",
-      "NEBULIZAR EM 3 ML DE SF 0,9%, COM O2 A 6–8 L/MIN, DE 20/20 MIN NA PRIMEIRA HORA (03 DOSES) — < 06 ANOS (OU < 20 KG): 0,5 ML (2,5 MG ≈ 10 GOTAS); ≥ 06 ANOS (OU ≥ 20 KG): 1 ML (5 MG ≈ 20 GOTAS); DEPOIS DE 1/1H A 4/4H CONFORME A RESPOSTA",
-      "USO INALATÓRIO"
+      "NEBULIZAR EM 3 ML DE SF 0,9%, COM O2 A 6–8 L/MIN, DE 20/20 MIN NA PRIMEIRA HORA (03 DOSES) — {FAIXA}; DEPOIS DE 1/1H A 4/4H CONFORME A RESPOSTA",
+      "USO INALATÓRIO",
+      {
+       "sem_peso": "< 06 ANOS (OU < 20 KG): 0,5 ML (2,5 MG ≈ 10 GOTAS); ≥ 06 ANOS (OU ≥ 20 KG): 1 ML (5 MG ≈ 20 GOTAS)",
+       "faixas": [
+        {
+         "menor": 20,
+         "txt": "0,5 ML (2,5 MG ≈ 10 GOTAS) POR NEBULIZAÇÃO"
+        },
+        {
+         "de": 20,
+         "txt": "1 ML (5 MG ≈ 20 GOTAS) POR NEBULIZAÇÃO"
+        }
+       ]
+      }
      ],
      [
       "BROMETO DE IPRATRÓPIO SOLUÇÃO PARA NEBULIZAÇÃO 0,25 MG/ML (GOTAS)",
@@ -2977,6 +3089,9 @@ const DATA = [
    },
    {
     "label": "Adolescente com enxaqueca e peso ≥ 40 kg (triptano)",
+    "peso": {
+     "de": 40
+    },
     "mode": "ped",
     "sec": "offlabel",
     "draft": true,
@@ -3240,6 +3355,9 @@ const DATA = [
    },
    {
     "label": "Dor intensa (EVA ≥ 7) em ≥ 12 anos: paracetamol + codeína no lugar do paracetamol",
+    "peso": {
+     "de": 40
+    },
     "mode": "ped",
     "sec": "offlabel",
     "draft": true,
@@ -4239,7 +4357,26 @@ const DATA = [
      [
       "SORO DE REIDRATAÇÃO ORAL",
       "01 CAIXA",
-      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA. VOLUME TOTAL DE LÍQUIDOS POR DIA: ATÉ 10 KG 130 ML/KG; DE 10 A 20 KG 100 ML/KG; ACIMA DE 20 KG 80 ML/KG — 1/3 EM SORO DE REIDRATAÇÃO ORAL E O RESTANTE EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER 1/3 DESSE VOLUME"
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA. VOLUME TOTAL DE LÍQUIDOS POR DIA: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "ATÉ 10 KG 130 ML/KG; DE 10 A 20 KG 100 ML/KG; ACIMA DE 20 KG 80 ML/KG — 1/3 EM SORO DE REIDRATAÇÃO ORAL E O RESTANTE EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER 1/3 DESSE VOLUME",
+       "faixas": [
+        {
+         "ate": 10,
+         "txt": "{=P*130} ML (130 ML/KG) — {=P*130/3} ML EM SORO DE REIDRATAÇÃO ORAL E {=P*130*2/3} ML EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER {=P*130/3} ML"
+        },
+        {
+         "acima": 10,
+         "ate": 20,
+         "txt": "{=P*100} ML (100 ML/KG) — {=P*100/3} ML EM SORO DE REIDRATAÇÃO ORAL E {=P*100*2/3} ML EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER {=P*100/3} ML"
+        },
+        {
+         "acima": 20,
+         "txt": "{=P*80} ML (80 ML/KG) — {=P*80/3} ML EM SORO DE REIDRATAÇÃO ORAL E {=P*80*2/3} ML EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER {=P*80/3} ML"
+        }
+       ]
+      }
      ],
      [
       "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
@@ -4934,8 +5071,22 @@ const DATA = [
      [
       "SORO GLICOSADO 5% + CLORETO DE SÓDIO 0,9% (4:1) — MANUTENÇÃO",
       "2000 ML EM 24 HORAS",
-      "INFUNDIR 1600 ML DE SG 5% + 400 ML DE SF 0,9% EV EM 24 HORAS (83 ML/H) — ADULTO ≥ 45 KG (ABAIXO DE 45 KG: 1500 ML + 20 ML/KG ACIMA DE 20 KG). ACRESCENTAR KCL 10% 2 ML PARA CADA 100 ML (40 ML) SOMENTE COM DIURESE PRESENTE",
-      "USO ENDOVENOSO"
+      "{FAIXA} SOMENTE COM DIURESE PRESENTE",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "INFUNDIR 1600 ML DE SG 5% + 400 ML DE SF 0,9% EV EM 24 HORAS (83 ML/H) — ADULTO ≥ 45 KG (ABAIXO DE 45 KG: 1500 ML + 20 ML/KG ACIMA DE 20 KG). ACRESCENTAR KCL 10% 2 ML PARA CADA 100 ML (40 ML)",
+       "faixas": [
+        {
+         "acima": 20,
+         "menor": 45,
+         "txt": "INFUNDIR {=0.8*(1500+20*(P-20))} ML DE SG 5% + {=0.2*(1500+20*(P-20))} ML DE SF 0,9% EV EM 24 HORAS (≈ {=(1500+20*(P-20))/24} ML/H) — ABAIXO DE 45 KG: 1500 ML + 20 ML/KG ACIMA DE 20 KG = {=1500+20*(P-20)} ML. ACRESCENTAR KCL 10% 2 ML PARA CADA 100 ML ({=(1500+20*(P-20))*2/100} ML)"
+        },
+        {
+         "de": 45,
+         "txt": "INFUNDIR 1600 ML DE SG 5% + 400 ML DE SF 0,9% EV EM 24 HORAS (83 ML/H). ACRESCENTAR KCL 10% 2 ML PARA CADA 100 ML (40 ML)"
+        }
+       ]
+      }
      ],
      [
       "SORO GLICOSADO 5% + CLORETO DE SÓDIO 0,9% (1:1) — REPOSIÇÃO",
@@ -5058,8 +5209,21 @@ const DATA = [
      [
       "ONDANSETRONA 4 MG/5 ML SOLUÇÃO ORAL",
       "01 FRASCO",
-      "SE VÔMITOS PERSISTENTES, DAR DOSE ÚNICA 15 MINUTOS ANTES DE REINICIAR A SRO: 6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 A 10 ANOS (ATÉ 30 KG) 5 ML (4 MG); ACIMA DE 10 ANOS (MAIS DE 30 KG) 10 ML (8 MG)",
-      "USO ORAL"
+      "SE VÔMITOS PERSISTENTES, DAR DOSE ÚNICA 15 MINUTOS ANTES DE REINICIAR A SRO: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 A 10 ANOS (ATÉ 30 KG) 5 ML (4 MG); ACIMA DE 10 ANOS (MAIS DE 30 KG) 10 ML (8 MG)",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 ANOS 5 ML (4 MG)"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (8 MG)"
+        }
+       ]
+      }
      ],
      [
       "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
@@ -5112,8 +5276,26 @@ const DATA = [
      [
       "SORO GLICOSADO 5% + CLORETO DE SÓDIO 0,9% (4:1) — MANUTENÇÃO",
       "01 BOLSA 500 ML",
-      "APÓS A FASE RÁPIDA, INFUNDIR EV EM 24 HORAS: ATÉ 10 KG 100 ML/KG; 10 A 20 KG 1000 ML + 50 ML/KG ACIMA DE 10 KG; ACIMA DE 20 KG 1500 ML + 20 ML/KG ACIMA DE 20 KG (MÁXIMO 2000 ML). ACRESCENTAR KCL 10% 2 ML PARA CADA 100 ML SOMENTE COM DIURESE PRESENTE",
-      "USO ENDOVENOSO"
+      "APÓS A FASE RÁPIDA, INFUNDIR EV EM 24 HORAS: {FAIXA}. ACRESCENTAR KCL 10% 2 ML PARA CADA 100 ML SOMENTE COM DIURESE PRESENTE",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "ATÉ 10 KG 100 ML/KG; 10 A 20 KG 1000 ML + 50 ML/KG ACIMA DE 10 KG; ACIMA DE 20 KG 1500 ML + 20 ML/KG ACIMA DE 20 KG (MÁXIMO 2000 ML)",
+       "faixas": [
+        {
+         "ate": 10,
+         "txt": "{=P*100} ML (≈ {=P*100/24} ML/H) — 100 ML/KG"
+        },
+        {
+         "acima": 10,
+         "ate": 20,
+         "txt": "{=1000+50*(P-10)} ML (≈ {=(1000+50*(P-10))/24} ML/H) — 1000 ML + 50 ML/KG ACIMA DE 10 KG"
+        },
+        {
+         "acima": 20,
+         "txt": "{=min(1500+20*(P-20),2000)} ML (≈ {=min(1500+20*(P-20),2000)/24} ML/H) — 1500 ML + 20 ML/KG ACIMA DE 20 KG, MÁXIMO 2000 ML"
+        }
+       ]
+      }
      ],
      [
       "SORO GLICOSADO 5% + CLORETO DE SÓDIO 0,9% (1:1) — REPOSIÇÃO",
@@ -5892,8 +6074,21 @@ const DATA = [
      [
       "LORATADINA 1 MG/ML XAROPE",
       "01 FRASCO",
-      "DAR 5 ML (5 MG) VIA ORAL 01 VEZ AO DIA SE PESO ATÉ 30 KG, OU 10 ML (10 MG) SE PESO MAIOR QUE 30 KG, ENQUANTO HOUVER COCEIRA (ATÉ 07 DIAS)",
-      "USO ORAL"
+      "DAR {FAIXA}, ENQUANTO HOUVER COCEIRA (ATÉ 07 DIAS)",
+      "USO ORAL",
+      {
+       "sem_peso": "5 ML (5 MG) VIA ORAL 01 VEZ AO DIA SE PESO ATÉ 30 KG, OU 10 ML (10 MG) SE PESO MAIOR QUE 30 KG",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "5 ML (5 MG) VIA ORAL 01 VEZ AO DIA"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (10 MG) VIA ORAL 01 VEZ AO DIA"
+        }
+       ]
+      }
      ],
      [
       "DEXCLORFENIRAMINA 2 MG/5 ML XAROPE",
@@ -6334,6 +6529,9 @@ const DATA = [
    },
    {
     "label": "Adolescente ≥ 12 anos e ≥ 40 kg sem resposta ao AINE: rizatriptano VO",
+    "peso": {
+     "de": 40
+    },
     "mode": "ped",
     "sec": "offlabel",
     "draft": true,
@@ -6506,8 +6704,21 @@ const DATA = [
      [
       "CEFAZOLINA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
       "01 FRASCO-AMPOLA",
-      "ADMINISTRAR 1 G EV DE 8/8H (2 G DE 8/8H SE PESO > 100 KG), DILUÍDO EM 100 ML DE SF 0,9%, INFUNDIR EM 30 MINUTOS",
-      "USO ENDOVENOSO"
+      "ADMINISTRAR {FAIXA}, DILUÍDO EM 100 ML DE SF 0,9%, INFUNDIR EM 30 MINUTOS",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "1 G EV DE 8/8H (2 G DE 8/8H SE PESO > 100 KG)",
+       "faixas": [
+        {
+         "ate": 100,
+         "txt": "1 G EV DE 8/8H"
+        },
+        {
+         "acima": 100,
+         "txt": "2 G EV DE 8/8H (PESO > 100 KG)"
+        }
+       ]
+      }
      ],
      [
       "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
@@ -6844,18 +7055,44 @@ const DATA = [
    },
    {
     "label": "Padrão — ivermectina oral pelo peso (≥ 15 kg; alternativa à permetrina ou surtos)",
+    "peso": {
+     "de": 15
+    },
     "mode": "ped",
     "draft": true,
     "items": [
      [
       "IVERMECTINA 6 MG",
       "01 CAIXA",
-      "TOMAR {DOSE} VIA ORAL EM DOSE ÚNICA E REPETIR A MESMA DOSE APÓS 07 DIAS (200 MCG/KG/DOSE; ARREDONDAR PARA MEIO COMPRIMIDO CONFORME A BULA: 15-24 KG = 1/2; 25-35 KG = 01; 36-50 KG = 1 E 1/2; 51-65 KG = 02 COMPRIMIDOS)",
+      "TOMAR {DOSE} VIA ORAL EM DOSE ÚNICA E REPETIR A MESMA DOSE APÓS 07 DIAS (200 MCG/KG/DOSE; ARREDONDAR PARA MEIO COMPRIMIDO CONFORME A BULA: {FAIXA})",
       "USO ORAL",
       {
        "kg": 0.2,
        "un": "MG",
-       "max": 12
+       "max": 12,
+       "sem_peso": "15-24 KG = 1/2; 25-35 KG = 01; 36-50 KG = 1 E 1/2; 51-65 KG = 02 COMPRIMIDOS",
+       "faixas": [
+        {
+         "de": 15,
+         "menor": 25,
+         "txt": "1/2 COMPRIMIDO"
+        },
+        {
+         "de": 25,
+         "menor": 36,
+         "txt": "01 COMPRIMIDO"
+        },
+        {
+         "de": 36,
+         "menor": 51,
+         "txt": "1 E 1/2 COMPRIMIDO"
+        },
+        {
+         "de": 51,
+         "menor": 66,
+         "txt": "02 COMPRIMIDOS"
+        }
+       ]
       }
      ]
     ],
@@ -7098,8 +7335,21 @@ const DATA = [
      [
       "PENICILINA G BENZATINA 600.000 UI OU 1.200.000 UI PÓ PARA SUSPENSÃO INJETÁVEL",
       "01 FRASCO-AMPOLA",
-      "ADMINISTRAR IM PROFUNDO EM DOSE ÚNICA: PESO < 27 KG: 600.000 UI; PESO ≥ 27 KG: 1.200.000 UI. OBSERVAR A CRIANÇA POR 30 MINUTOS APÓS A APLICAÇÃO",
-      "USO INTRAMUSCULAR"
+      "ADMINISTRAR IM PROFUNDO EM DOSE ÚNICA: {FAIXA}. OBSERVAR A CRIANÇA POR 30 MINUTOS APÓS A APLICAÇÃO",
+      "USO INTRAMUSCULAR",
+      {
+       "sem_peso": "PESO < 27 KG: 600.000 UI; PESO ≥ 27 KG: 1.200.000 UI",
+       "faixas": [
+        {
+         "menor": 27,
+         "txt": "600.000 UI"
+        },
+        {
+         "de": 27,
+         "txt": "1.200.000 UI"
+        }
+       ]
+      }
      ],
      [
       "CEFALEXINA 250 MG/5 ML SUSPENSÃO ORAL",
@@ -7401,13 +7651,23 @@ const DATA = [
       "BENZILPENICILINA BENZATINA 600.000 UI",
       "01 FRASCO-AMPOLA",
       "APLICAR 01 FRASCO-AMPOLA (600.000 UI) IM PROFUNDO EM DOSE ÚNICA, NA UNIDADE DE SAÚDE (CRIANÇA COM PESO < 27 KG)",
-      "USO INTRAMUSCULAR"
+      "USO INTRAMUSCULAR",
+      {
+       "peso": {
+        "menor": 27
+       }
+      }
      ],
      [
       "BENZILPENICILINA BENZATINA 1.200.000 UI",
       "01 FRASCO-AMPOLA",
       "APLICAR 01 FRASCO-AMPOLA (1.200.000 UI) IM PROFUNDO NO GLÚTEO EM DOSE ÚNICA, NA UNIDADE DE SAÚDE (PESO ≥ 27 KG)",
-      "USO INTRAMUSCULAR"
+      "USO INTRAMUSCULAR",
+      {
+       "peso": {
+        "de": 27
+       }
+      }
      ]
     ]
    },
@@ -7793,25 +8053,47 @@ const DATA = [
       "OSELTAMIVIR 30 MG CÁPSULA",
       "10 CÁPSULAS",
       "01 ANO OU MAIS E ATÉ 15 KG: DAR 01 CÁPSULA (30 MG) VIA ORAL 01 VEZ AO DIA POR 10 DIAS (PODE ABRIR A CÁPSULA E MISTURAR O CONTEÚDO EM 02 ML DE ÁGUA COM UM POUCO DE ALIMENTO ADOCICADO)",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "ate": 15
+       }
+      }
      ],
      [
       "OSELTAMIVIR 45 MG CÁPSULA",
       "10 CÁPSULAS",
       "ACIMA DE 15 KG ATÉ 23 KG: DAR 01 CÁPSULA (45 MG) VIA ORAL 01 VEZ AO DIA POR 10 DIAS (PODE ABRIR A CÁPSULA E MISTURAR O CONTEÚDO EM 02 ML DE ÁGUA COM UM POUCO DE ALIMENTO ADOCICADO)",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "acima": 15,
+        "ate": 23
+       }
+      }
      ],
      [
       "OSELTAMIVIR 30 MG CÁPSULA",
       "20 CÁPSULAS",
       "ACIMA DE 23 KG ATÉ 40 KG: DAR 02 CÁPSULAS (60 MG) VIA ORAL 01 VEZ AO DIA POR 10 DIAS (PODE ABRIR A CÁPSULA E MISTURAR O CONTEÚDO EM 02 ML DE ÁGUA COM UM POUCO DE ALIMENTO ADOCICADO)",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "acima": 23,
+        "ate": 40
+       }
+      }
      ],
      [
       "OSELTAMIVIR 75 MG CÁPSULA",
       "10 CÁPSULAS",
       "ACIMA DE 40 KG: DAR 01 CÁPSULA (75 MG) VIA ORAL 01 VEZ AO DIA POR 10 DIAS",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "acima": 40
+       }
+      }
      ]
     ],
     "orient": [
@@ -7856,25 +8138,47 @@ const DATA = [
       "OSELTAMIVIR 30 MG CÁPSULA",
       "10 CÁPSULAS",
       "01 ANO OU MAIS E ATÉ 15 KG: DAR 01 CÁPSULA (30 MG) VIA ORAL DE 12/12H POR 05 DIAS (PODE ABRIR A CÁPSULA E MISTURAR O CONTEÚDO EM 02 ML DE ÁGUA COM UM POUCO DE ALIMENTO ADOCICADO)",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "ate": 15
+       }
+      }
      ],
      [
       "OSELTAMIVIR 45 MG CÁPSULA",
       "10 CÁPSULAS",
       "ACIMA DE 15 KG ATÉ 23 KG: DAR 01 CÁPSULA (45 MG) VIA ORAL DE 12/12H POR 05 DIAS (PODE ABRIR A CÁPSULA E MISTURAR O CONTEÚDO EM 02 ML DE ÁGUA COM UM POUCO DE ALIMENTO ADOCICADO)",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "acima": 15,
+        "ate": 23
+       }
+      }
      ],
      [
       "OSELTAMIVIR 30 MG CÁPSULA",
       "20 CÁPSULAS",
       "ACIMA DE 23 KG ATÉ 40 KG: DAR 02 CÁPSULAS (60 MG) VIA ORAL DE 12/12H POR 05 DIAS (PODE ABRIR A CÁPSULA E MISTURAR O CONTEÚDO EM 02 ML DE ÁGUA COM UM POUCO DE ALIMENTO ADOCICADO)",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "acima": 23,
+        "ate": 40
+       }
+      }
      ],
      [
       "OSELTAMIVIR 75 MG CÁPSULA",
       "10 CÁPSULAS",
       "ACIMA DE 40 KG: DAR 01 CÁPSULA (75 MG) VIA ORAL DE 12/12H POR 05 DIAS",
-      "USO ORAL"
+      "USO ORAL",
+      {
+       "peso": {
+        "acima": 40
+       }
+      }
      ]
     ],
     "orient": [
@@ -10169,8 +10473,32 @@ const DATA = [
      [
       "IVERMECTINA 06 MG",
       "02 A 03 COMPRIMIDOS (CONFORME PESO)",
-      "TOMAR 200 MCG/KG VO (OU PELA SONDA) 01 VEZ AO DIA: 36 A 50 KG = 1 1/2 COMPRIMIDO; 51 A 65 KG = 02 COMPRIMIDOS; 66 A 79 KG = 2 1/2 COMPRIMIDOS; ≥ 80 KG = 03 COMPRIMIDOS — MANTER ATÉ 02 SEMANAS DE PESQUISA DE LARVAS NEGATIVA (FEZES/ESCARRO)",
-      "USO ORAL"
+      "TOMAR 200 MCG/KG VO (OU PELA SONDA) 01 VEZ AO DIA: {FAIXA} — MANTER ATÉ 02 SEMANAS DE PESQUISA DE LARVAS NEGATIVA (FEZES/ESCARRO)",
+      "USO ORAL",
+      {
+       "sem_peso": "36 A 50 KG = 1 1/2 COMPRIMIDO; 51 A 65 KG = 02 COMPRIMIDOS; 66 A 79 KG = 2 1/2 COMPRIMIDOS; ≥ 80 KG = 03 COMPRIMIDOS",
+       "faixas": [
+        {
+         "de": 36,
+         "menor": 51,
+         "txt": "1 1/2 COMPRIMIDO"
+        },
+        {
+         "de": 51,
+         "menor": 66,
+         "txt": "02 COMPRIMIDOS"
+        },
+        {
+         "de": 66,
+         "menor": 80,
+         "txt": "2 1/2 COMPRIMIDOS"
+        },
+        {
+         "de": 80,
+         "txt": "03 COMPRIMIDOS"
+        }
+       ]
+      }
      ]
     ],
     "orient": [
@@ -10250,17 +10578,43 @@ const DATA = [
    },
    {
     "label": "Padrão — estrongiloidíase ou risco (≥ 15 kg; antes de corticoide/imunossupressão): associar ivermectina",
+    "peso": {
+     "de": 15
+    },
     "mode": "ped",
     "draft": true,
     "items": [
      [
       "IVERMECTINA 06 MG",
       "04 COMPRIMIDOS",
-      "DAR {DOSE} VIA ORAL EM DOSE ÚNICA, EM JEJUM, E REPETIR APÓS 07 DIAS (200 MCG/KG/DOSE) — EM COMPRIMIDOS DE 6 MG (BULA): 15 A 24 KG = 1/2; 25 A 35 KG = 01; 36 A 50 KG = 1 1/2; 51 A 65 KG = 02. NÃO USAR EM CRIANÇAS COM MENOS DE 15 KG",
+      "DAR {DOSE} VIA ORAL EM DOSE ÚNICA, EM JEJUM, E REPETIR APÓS 07 DIAS (200 MCG/KG/DOSE) — EM COMPRIMIDOS DE 6 MG (BULA): {FAIXA}. NÃO USAR EM CRIANÇAS COM MENOS DE 15 KG",
       "USO ORAL",
       {
        "kg": 200,
-       "un": "MCG"
+       "un": "MCG",
+       "sem_peso": "15 A 24 KG = 1/2; 25 A 35 KG = 01; 36 A 50 KG = 1 1/2; 51 A 65 KG = 02",
+       "faixas": [
+        {
+         "de": 15,
+         "menor": 25,
+         "txt": "1/2 COMPRIMIDO"
+        },
+        {
+         "de": 25,
+         "menor": 36,
+         "txt": "01 COMPRIMIDO"
+        },
+        {
+         "de": 36,
+         "menor": 51,
+         "txt": "1 1/2 COMPRIMIDO"
+        },
+        {
+         "de": 51,
+         "menor": 66,
+         "txt": "02 COMPRIMIDOS"
+        }
+       ]
       }
      ]
     ]
@@ -10420,8 +10774,21 @@ const DATA = [
      [
       "CEFTRIAXONA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
       "01 FRASCO-AMPOLA",
-      "ADMINISTRAR 1 G EV 01 VEZ AO DIA, RECONSTITUÍDO EM 10 ML DE ÁGUA PARA INJETÁVEIS E DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS (2 G 01 VEZ AO DIA SE QUADRO GRAVE OU PESO > 100 KG)",
-      "USO ENDOVENOSO"
+      "{FAIXA}",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "ADMINISTRAR 1 G EV 01 VEZ AO DIA, RECONSTITUÍDO EM 10 ML DE ÁGUA PARA INJETÁVEIS E DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS (2 G 01 VEZ AO DIA SE QUADRO GRAVE OU PESO > 100 KG)",
+       "faixas": [
+        {
+         "ate": 100,
+         "txt": "ADMINISTRAR 1 G EV 01 VEZ AO DIA, RECONSTITUÍDO EM 10 ML DE ÁGUA PARA INJETÁVEIS E DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS (2 G 01 VEZ AO DIA SE QUADRO GRAVE)"
+        },
+        {
+         "acima": 100,
+         "txt": "ADMINISTRAR 2 G EV 01 VEZ AO DIA, RECONSTITUÍDO EM 10 ML DE ÁGUA PARA INJETÁVEIS E DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS (PESO > 100 KG)"
+        }
+       ]
+      }
      ],
      [
       "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL (AMPOLA 2 ML)",
@@ -11525,8 +11892,21 @@ const DATA = [
      [
       "CEFAZOLINA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
       "01 FRASCO-AMPOLA",
-      "RECONSTITUIR E ADMINISTRAR 1 G EV DE 8/8H, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MIN (2 G POR DOSE SE PESO > 120 KG OU INFECÇÃO GRAVE)",
-      "USO ENDOVENOSO"
+      "{FAIXA}",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "RECONSTITUIR E ADMINISTRAR 1 G EV DE 8/8H, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MIN (2 G POR DOSE SE PESO > 120 KG OU INFECÇÃO GRAVE)",
+       "faixas": [
+        {
+         "ate": 120,
+         "txt": "RECONSTITUIR E ADMINISTRAR 1 G EV DE 8/8H, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MIN (2 G POR DOSE SE INFECÇÃO GRAVE)"
+        },
+        {
+         "acima": 120,
+         "txt": "RECONSTITUIR E ADMINISTRAR 2 G EV DE 8/8H, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MIN (PESO > 120 KG)"
+        }
+       ]
+      }
      ],
      [
       "CLINDAMICINA 600 MG/4 ML SOLUÇÃO INJETÁVEL",
@@ -11558,8 +11938,31 @@ const DATA = [
      [
       "RINGER COM LACTATO 500 ML + GLICOSE 50% 50 ML (SOLUÇÃO DE MANUTENÇÃO COM GLICOSE ≈ 4,5%)",
       "01 BOLSA 500 ML + 05 AMPOLAS 10 ML",
-      "CRIANÇA ≤ 30 KG: INFUNDIR EM BOMBA DE INFUSÃO, EM PARALELO À RESSUSCITAÇÃO, NA VAZÃO DE MANUTENÇÃO (HOLLIDAY-SEGAR): 4 ML/KG/H PARA OS PRIMEIROS 10 KG + 2 ML/KG/H DE 10 A 20 KG + 1 ML/KG/H ACIMA DE 20 KG",
-      "USO ENDOVENOSO"
+      "{FAIXA}",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "CRIANÇA ≤ 30 KG: INFUNDIR EM BOMBA DE INFUSÃO, EM PARALELO À RESSUSCITAÇÃO, NA VAZÃO DE MANUTENÇÃO (HOLLIDAY-SEGAR): 4 ML/KG/H PARA OS PRIMEIROS 10 KG + 2 ML/KG/H DE 10 A 20 KG + 1 ML/KG/H ACIMA DE 20 KG",
+       "faixas": [
+        {
+         "ate": 10,
+         "txt": "INFUNDIR EM BOMBA DE INFUSÃO, EM PARALELO À RESSUSCITAÇÃO, NA VAZÃO DE MANUTENÇÃO (HOLLIDAY-SEGAR) DE {=4*P} ML/H (4 ML/KG/H)"
+        },
+        {
+         "acima": 10,
+         "ate": 20,
+         "txt": "INFUNDIR EM BOMBA DE INFUSÃO, EM PARALELO À RESSUSCITAÇÃO, NA VAZÃO DE MANUTENÇÃO (HOLLIDAY-SEGAR) DE {=40+2*(P-10)} ML/H (40 ML/H + 2 ML/KG/H ACIMA DE 10 KG)"
+        },
+        {
+         "acima": 20,
+         "ate": 30,
+         "txt": "INFUNDIR EM BOMBA DE INFUSÃO, EM PARALELO À RESSUSCITAÇÃO, NA VAZÃO DE MANUTENÇÃO (HOLLIDAY-SEGAR) DE {=60+(P-20)} ML/H (60 ML/H + 1 ML/KG/H ACIMA DE 20 KG)"
+        },
+        {
+         "acima": 30,
+         "txt": "SOLUÇÃO DE MANUTENÇÃO INDICADA SOMENTE PARA CRIANÇA ≤ 30 KG"
+        }
+       ]
+      }
      ]
     ],
     "orient": [
@@ -11996,8 +12399,21 @@ const DATA = [
      [
       "LORATADINA 1 MG/ML XAROPE",
       "01 FRASCO",
-      "TOMAR 01 VEZ AO DIA POR 14 DIAS, DEPOIS SE SINTOMAS (A PARTIR DE 2 ANOS): ATÉ 30 KG: 5 ML (5 MG); ACIMA DE 30 KG: 10 ML (10 MG)",
-      "USO ORAL"
+      "TOMAR 01 VEZ AO DIA POR 14 DIAS, DEPOIS SE SINTOMAS (A PARTIR DE 2 ANOS): {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "ATÉ 30 KG: 5 ML (5 MG); ACIMA DE 30 KG: 10 ML (10 MG)",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "5 ML (5 MG)"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (10 MG)"
+        }
+       ]
+      }
      ],
      [
       "DICLORIDRATO DE CETIRIZINA 1 MG/ML SOLUÇÃO ORAL",
@@ -13008,8 +13424,27 @@ const DATA = [
      [
       "TERBINAFINA 250 MG",
       "01 CAIXA",
-      "DAR VIA ORAL 01 VEZ AO DIA, POR 04 SEMANAS, CONFORME O PESO: 10 A 20 KG = 62,5 MG (1/4 COMPRIMIDO); 20 A 40 KG = 125 MG (1/2 COMPRIMIDO); ACIMA DE 40 KG = 250 MG (01 COMPRIMIDO)",
-      "USO ORAL"
+      "DAR VIA ORAL 01 VEZ AO DIA, POR 04 SEMANAS, CONFORME O PESO: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "10 A 20 KG = 62,5 MG (1/4 COMPRIMIDO); 20 A 40 KG = 125 MG (1/2 COMPRIMIDO); ACIMA DE 40 KG = 250 MG (01 COMPRIMIDO)",
+       "faixas": [
+        {
+         "de": 10,
+         "ate": 20,
+         "txt": "62,5 MG (1/4 COMPRIMIDO)"
+        },
+        {
+         "acima": 20,
+         "ate": 40,
+         "txt": "125 MG (1/2 COMPRIMIDO)"
+        },
+        {
+         "acima": 40,
+         "txt": "250 MG (01 COMPRIMIDO)"
+        }
+       ]
+      }
      ],
      [
       "CETOCONAZOL SHAMPOO 2%",
@@ -13141,8 +13576,27 @@ const DATA = [
      [
       "TERBINAFINA 250 MG",
       "14 COMPRIMIDOS",
-      "DAR 01 VEZ AO DIA, NO MESMO HORÁRIO, POR 02 SEMANAS (ATÉ 04 SEMANAS SE RESPOSTA INCOMPLETA), CONFORME O PESO — 10 A 20 KG: 1/4 DE COMPRIMIDO (62,5 MG); 20 A 40 KG: 1/2 COMPRIMIDO (125 MG); > 40 KG: 01 COMPRIMIDO (250 MG)",
-      "USO ORAL"
+      "DAR 01 VEZ AO DIA, NO MESMO HORÁRIO, POR 02 SEMANAS (ATÉ 04 SEMANAS SE RESPOSTA INCOMPLETA), CONFORME O PESO — {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "10 A 20 KG: 1/4 DE COMPRIMIDO (62,5 MG); 20 A 40 KG: 1/2 COMPRIMIDO (125 MG); > 40 KG: 01 COMPRIMIDO (250 MG)",
+       "faixas": [
+        {
+         "de": 10,
+         "ate": 20,
+         "txt": "1/4 DE COMPRIMIDO (62,5 MG)"
+        },
+        {
+         "acima": 20,
+         "ate": 40,
+         "txt": "1/2 COMPRIMIDO (125 MG)"
+        },
+        {
+         "acima": 40,
+         "txt": "01 COMPRIMIDO (250 MG)"
+        }
+       ]
+      }
      ]
     ],
     "orient": [
@@ -13716,8 +14170,21 @@ const DATA = [
      [
       "CEFAZOLINA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
       "02 FRASCOS-AMPOLA",
-      "ADMINISTRAR 2 G EV (3 G SE PESO ≥ 120 KG), DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MIN, DOSE ÚNICA NA INSERÇÃO DO DRENO",
-      "USO ENDOVENOSO"
+      "ADMINISTRAR {FAIXA}, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MIN, DOSE ÚNICA NA INSERÇÃO DO DRENO",
+      "USO ENDOVENOSO",
+      {
+       "sem_peso": "2 G EV (3 G SE PESO ≥ 120 KG)",
+       "faixas": [
+        {
+         "menor": 120,
+         "txt": "2 G EV"
+        },
+        {
+         "de": 120,
+         "txt": "3 G EV (PESO ≥ 120 KG)"
+        }
+       ]
+      }
      ],
      [
       "CLINDAMICINA 150 MG/ML SOLUÇÃO INJETÁVEL",
@@ -14636,8 +15103,21 @@ const DATA = [
      [
       "LORATADINA 1 MG/ML XAROPE",
       "01 FRASCO",
-      "DAR VIA ORAL 01 VEZ AO DIA ENQUANTO HOUVER COCEIRA — PESO < 30 KG: 5 ML (5 MG); PESO ≥ 30 KG: 10 ML (10 MG). SOMENTE ≥ 2 ANOS",
-      "USO ORAL"
+      "DAR VIA ORAL 01 VEZ AO DIA ENQUANTO HOUVER COCEIRA — {FAIXA}. SOMENTE ≥ 2 ANOS",
+      "USO ORAL",
+      {
+       "sem_peso": "PESO < 30 KG: 5 ML (5 MG); PESO ≥ 30 KG: 10 ML (10 MG)",
+       "faixas": [
+        {
+         "menor": 30,
+         "txt": "5 ML (5 MG)"
+        },
+        {
+         "de": 30,
+         "txt": "10 ML (10 MG)"
+        }
+       ]
+      }
      ]
     ]
    },
@@ -15294,7 +15774,8 @@ function renderConds(filter=""){
 /* ---- painel do meio ---- */
 function blockHTML({b,bi}){
   const isMenu = !!b.menu;
-  let h = `<div class="block${b.draft?' draft':''}">
+  // bloco que só vale para uma faixa de peso ("peso" no DATA): some quando o peso digitado está fora dela
+  let h = `<div class="block${b.draft?' draft':''}"${b.peso?` data-pb="${bi}"`:''}${fits(b.peso)?'':' hidden'}>
       <div class="block-head">
         <button type="button" class="bl-toggle" aria-expanded="true" aria-controls="blk-${bi}"><span class="chev" aria-hidden="true">▸</span><span class="bl">${esc(b.label)}</span></button>
         ${b.draft?`<span class="tag draft" title="Rascunho gerado por IA — revise as doses antes de prescrever">rascunho</span>`:``}
@@ -15304,9 +15785,11 @@ function blockHTML({b,bi}){
   b.items.forEach((it,ii)=>{
     const med=it[0], qty=it[1], pos=it[2]||"", route=it[3]||ORAL, spec=it[4];
     const rlab = route!==ORAL ? ` · <span class="qty">${esc(route)}</span>`:"";
-    // dose por peso: o "{DOSE}" da posologia vira o valor calculado (atualizado ao digitar o peso)
-    const ptxt = spec ? pos.split("{DOSE}").map(esc).join(`<b class="dose${peso>0?'':' vazio'}" data-b="${bi}" data-i="${ii}">${esc(doseTxt(spec))}</b>`) : esc(pos);
-    h += `<button type="button" class="item" data-b="${bi}" data-i="${ii}"${isMenu?' data-menu="1"':''} aria-label="Adicionar ${esc(med)}">
+    // dose por peso: "{DOSE}" vira o valor calculado e "{FAIXA}" só a faixa do peso digitado (atualizados ao digitar o peso)
+    const ptxt = spec ? posHTML(pos, spec, bi, ii) : esc(pos);
+    // opção que só vale para uma faixa de peso (spec.peso): some quando o peso digitado está fora dela
+    const pf = spec && spec.peso;
+    h += `<button type="button" class="item" data-b="${bi}" data-i="${ii}"${isMenu?' data-menu="1"':''}${pf?' data-pf="1"':''}${fits(pf)?'':' hidden'} aria-label="Adicionar ${esc(med)}">
         <span class="plus" aria-hidden="true">＋</span>
         <span class="txt"><span class="med">${esc(med)} <span class="qty">— ${esc(qty)}</span></span>
         <span class="pos">${ptxt}${rlab}</span></span></button>`;
@@ -15315,35 +15798,83 @@ function blockHTML({b,bi}){
 }
 
 /* ---- calculadora de peso ----
-   item com dose por peso = [med, qty, posologia com "{DOSE}", rota, spec]
-   spec = {kg | kgdia+vezes, max, conc, un: "ML"|"GOTAS"|"MG"|"MCG"|"UI", gotas} — ver CLAUDE.md */
+   item com dose por peso = [med, qty, posologia com "{DOSE}" e/ou "{FAIXA}", rota, spec]
+   spec = {kg | kgdia+vezes | fixo, max, conc, un: "ML"|"GOTAS"|"MG"|"MCG"|"UI", gotas,
+           sem_peso + faixas: [{de|acima|ate|menor, txt, dose?}], peso?: {de|acima|ate|menor}} — ver CLAUDE.md */
 const num = (x, d) => String(+x.toFixed(d)).replace(".", ",");
+// faixa de peso {de: ≥, acima: >, ate: ≤, menor: <}: vale se todos os limites dados batem; sem peso digitado, vale sempre
+function fits(r){
+  if(!r || !(peso>0)) return true;
+  return (r.de==null || peso>=r.de) && (r.acima==null || peso>r.acima) && (r.ate==null || peso<=r.ate) && (r.menor==null || peso<r.menor);
+}
+// faixa da posologia que vale para o peso digitado (null sem peso ou se o peso cai fora de todas)
+function pickFaixa(spec){ return peso>0 && spec && spec.faixas ? spec.faixas.find(f=> fits(f)) || null : null; }
+// conta dentro do texto da faixa: "{=P*100/3}" (P = peso em kg; só números, P, + - * / ( ), min e max)
+function calc(expr){
+  if(!/^(?:[\d.\sP+\-*/(),]|min|max)+$/.test(expr)) return "?";
+  const v = Function("P", "min", "max", `return (${expr});`)(peso, Math.min, Math.max);
+  return isFinite(v) ? num(v, Math.abs(v)<10 ? 1 : 0) : "?";
+}
+// texto que entra no lugar de "{FAIXA}": só a faixa do peso digitado, com as contas feitas; sem peso (ou fora das faixas), a tabela inteira
+function faixaTxt(spec){
+  const f = pickFaixa(spec);
+  return f ? f.txt.replace(/\{=([^}]+)\}/g, (_, e)=> calc(e)) : spec.sem_peso;
+}
 function doseTxt(spec){
-  if(!(peso>0)) return "__ " + spec.un;
-  let v = spec.kg!=null ? spec.kg*peso : spec.kgdia*peso/spec.vezes;
-  const capped = spec.max!=null && v > spec.max;
-  if(capped) v = spec.max;
+  const f = pickFaixa(spec), s = f && f.dose ? {...spec, ...f.dose} : spec;   // a faixa pode trocar a dose (ex.: mg/kg diferente)
+  if(!(peso>0)) return "__ " + s.un;
+  let v;
+  if(s.fixo!=null) v = s.fixo;
+  else if(s.kg!=null) v = s.kg*peso;
+  else if(s.kgdia!=null) v = s.kgdia*peso/s.vezes;
+  else return "__ " + s.un;   // peso fora das faixas que definem a dose
+  const capped = s.max!=null && v > s.max;
+  if(capped) v = s.max;
   let out;
-  if(spec.un==="GOTAS"){ const g = Math.max(1, Math.round(v/spec.conc*spec.gotas)); out = g + (g===1 ? " GOTA" : " GOTAS"); }
-  else if(spec.conc){ const ml = v/spec.conc; out = num(ml, ml<1 ? 2 : 1) + " " + spec.un; }
-  else if(spec.un==="MG" && v>=1000) out = num(v/1000, 2) + " G";   // 2000 MG → 2 G
-  else out = num(v, v<10 ? 1 : 0) + " " + spec.un;
+  if(s.un==="GOTAS"){ const g = Math.max(1, Math.round(v/s.conc*s.gotas)); out = g + (g===1 ? " GOTA" : " GOTAS"); }
+  else if(s.conc){ const ml = v/s.conc; out = num(ml, ml<1 ? 2 : 1) + " " + s.un; }
+  else if(s.un==="MG" && v>=1000) out = num(v/1000, 2) + " G";   // 2000 MG → 2 G
+  else out = num(v, v<10 ? 1 : 0) + " " + s.un;
   return out + (capped ? " (DOSE MÁXIMA)" : "");
 }
-function fillDose(pos, spec){ return spec ? pos.split("{DOSE}").join(doseTxt(spec)) : pos; }
+// posologia em texto puro (receita): resolve "{DOSE}" e "{FAIXA}" com o peso atual
+function fillDose(pos, spec){
+  if(!spec) return pos;
+  if(pos.includes("{DOSE}")) pos = pos.split("{DOSE}").join(doseTxt(spec));
+  if(pos.includes("{FAIXA}")) pos = pos.split("{FAIXA}").join(faixaTxt(spec));
+  return pos;
+}
+// posologia no painel do meio: os trechos calculados viram <b class="dose"> / <span class="faixa">, atualizados por applyPeso()
+function posHTML(pos, spec, bi, ii){
+  return pos.split(/(\{DOSE\}|\{FAIXA\})/).map(p=>
+    p==="{DOSE}" ? `<b class="dose${peso>0?'':' vazio'}" data-b="${bi}" data-i="${ii}">${esc(doseTxt(spec))}</b>`
+    : p==="{FAIXA}" ? `<span class="faixa${pickFaixa(spec)?' on':''}" data-b="${bi}" data-i="${ii}">${esc(faixaTxt(spec))}</span>`
+    : esc(p)).join("");
+}
 function pesoHint(){
   return peso>0 ? `doses calculadas para ${num(peso,1)} kg` : "digite o peso para calcular as doses por kg";
 }
-// peso mudou: atualiza as doses no painel do meio e a receita
-function refreshDoses(){
-  if(curCond) midBody.querySelectorAll(".dose").forEach(el=>{
-    el.textContent = doseTxt(curCond.blocks[+el.dataset.b].items[+el.dataset.i][4]);
-    el.classList.toggle("vazio", !(peso>0));
+// aplica o peso atual ao painel do meio sem redesenhar (o foco fica no campo de peso): doses, faixas,
+// opções/blocos de outras faixas de peso (ocultos) e o aviso de quantos ficaram ocultos em cada seção
+function applyPeso(){
+  if(!curCond) return;
+  const specOf = el => curCond.blocks[+el.dataset.b].items[+el.dataset.i][4];
+  midBody.querySelectorAll(".dose").forEach(el=>{ el.textContent = doseTxt(specOf(el)); el.classList.toggle("vazio", !(peso>0)); });
+  midBody.querySelectorAll(".faixa").forEach(el=>{ const sp = specOf(el); el.textContent = faixaTxt(sp); el.classList.toggle("on", !!pickFaixa(sp)); });
+  midBody.querySelectorAll(".item[data-pf]").forEach(el=>{ el.hidden = !fits(specOf(el).peso); });
+  midBody.querySelectorAll(".block[data-pb]").forEach(el=>{ el.hidden = !fits(curCond.blocks[+el.dataset.pb].peso); });
+  midBody.querySelectorAll(".sec").forEach(sec=>{
+    const nota = sec.querySelector(".faixa-nota");
+    if(!nota) return;
+    const n = sec.querySelectorAll(".block[data-pb][hidden]").length + sec.querySelectorAll(".block:not([hidden]) .item[data-pf][hidden]").length;
+    nota.hidden = !n;
+    if(n) nota.textContent = `Mostrando só o que vale para ${num(peso,1)} kg — ${n} ${n>1?"opções":"opção"} de outra faixa de peso ${n>1?"ocultas":"oculta"}.`;
   });
   const hint = midBody.querySelector(".peso-hint");
   if(hint) hint.textContent = pesoHint();
-  syncRx();
 }
+// peso mudou: atualiza o painel do meio e a receita
+function refreshDoses(){ applyPeso(); syncRx(); }
 
 /* ---- abas do topo: Padrão (prescritor) | Meu rascunho ----
    O CSS usa body[data-view] para trocar as colunas; a receita (#col-rx) é a mesma nas duas abas. */
@@ -15429,8 +15960,8 @@ function renderMid(c){
   }).join("");
   const mode = MODE_OF[currentPac][currentSet], ped = currentPac==="ped";
   const shown = c.blocks.map((b,bi)=>({b,bi})).filter(x=> modeOf(x.b)===mode);
-  // calculadora de peso: sempre no Pediátrico; no Adulto só se algum item tiver dose por peso
-  const pesoBox = ped || shown.some(x=> x.b.items.some(it=> it[4]))
+  // calculadora de peso: sempre no Pediátrico; no Adulto só se algum bloco/item depender do peso (dose, faixa ou opção por faixa)
+  const pesoBox = ped || shown.some(x=> x.b.peso || x.b.items.some(it=> it[4]))
     ? `<div class="peso-box"><label for="peso"><span aria-hidden="true">⚖️</span> Peso ${ped?"da criança":"do paciente"}</label>
         <input id="peso" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${peso>0?num(peso,1):""}"><span class="un">kg</span>
         <span class="peso-hint">${pesoHint()}</span></div>` : "";
@@ -15477,9 +16008,10 @@ function renderMid(c){
     const open = s.key==="padrao";
     h += `<div class="sec ${s.cls}${open?'':' collapsed'}${n?'':' none'}">
       <button type="button" class="sec-head" aria-expanded="${open}" aria-controls="sec-${s.key}"><span class="chev" aria-hidden="true">▸</span>${s.label}<span class="sc">${n}</span></button>
-      <div class="sec-body" id="sec-${s.key}">${body}</div></div>`;
+      <div class="sec-body" id="sec-${s.key}">${body}${s.key!=="rec"?'<div class="faixa-nota" hidden></div>':''}</div></div>`;
   });
   midBody.innerHTML = h;
+  applyPeso();   // avisos de opções ocultas por faixa de peso
 
   // bind: trocar Adulto | Pediátrico (mantém a subopção) e Ambulatorial | Internação; o foco volta para o botão clicado
   const pick = (sel, key, val)=>{ renderMid(c); const b = midBody.querySelector(`${sel}[data-${key}="${val}"]`); if(b) b.focus({preventScroll:true}); };
@@ -15503,7 +16035,7 @@ function renderMid(c){
     btn.onclick = ()=>{
       const b = c.blocks[+btn.dataset.b];
       let added=0, ao=0;
-      b.items.forEach(it=> added += addItem(it) );
+      b.items.forEach(it=>{ if(fits(it[4] && it[4].peso)) added += addItem(it); });   // pula opções de outra faixa de peso
       if(b.orient) b.orient.forEach(o=> ao += addOrient(o)?1:0 );
       const parts = [];
       if(added) parts.push(`${added} ${added>1?"itens":"item"}`);
@@ -15616,7 +16148,9 @@ function syncRx(){
     groupByRoute((it,idx)=>({it,idx})).forEach(g=>{
       h += `<div class="grp-h">${esc(g.route)}</div>`;
       g.items.forEach(({it,idx})=>{
-        h += `<div class="chip"><div class="cn">${esc(it.med)}<small>${esc(it.qty)}</small></div>
+        // opção de uma faixa de peso que não bate mais com o peso digitado (o peso mudou depois de adicionar)
+        const fora = it.spec && it.spec.peso && !fits(it.spec.peso);
+        h += `<div class="chip${fora?' fora':''}"><div class="cn">${esc(it.med)}<small>${esc(it.qty)}</small>${fora?'<small class="fora-txt">⚠ fora da faixa do peso digitado</small>':''}</div>
           <button type="button" class="x" data-i="${idx}" aria-label="Remover ${esc(it.med)}"><span aria-hidden="true">✕</span></button></div>`;
       });
     });

@@ -53,6 +53,7 @@ A **Block** is one prescription variant / section:
   "menu": true,                             // optional; see below
   "mode": "internacao",                     // optional; "amb" (default) | "internacao" | "ped" | "ped_internacao"
   "sec": "offlabel",                        // optional; "padrao" (default) | "offlabel" (shown as "Outras opções")
+  "peso": {"de": 3, "menor": 35},           // optional; block only applies to this weight range (see *Calculadora de peso*)
   "draft": true                             // optional; AI-drafted → shows a "rascunho" tag, needs clinical sign-off (unrelated to the "Meu rascunho" tab)
 }
 ```
@@ -81,7 +82,7 @@ An **Item** is a positional array (tuple), **not** an object — in the file eac
 
 - The 4th element (route) is optional and defaults to `ORAL`. Route constants are defined once at the top of the script: `ORAL, TOP, INAL, NASAL, AUD, SL, EV, IM, SC` (e.g. `"USO ORAL"`, `"USO TÓPICO"`, `"USO ENDOVENOSO"`, `"USO INTRAMUSCULAR"`). In the JSON `DATA` the route is written as the **literal string** (e.g. `"USO ENDOVENOSO"`), not the JS constant — the constants are only used in the script logic (`buildText`, `keyOf`, defaults).
 - Drug names and doses are written in **UPPERCASE** by convention — match it.
-- **Weight-based doses** use a 5th element, the PESO spec — then the route `[3]` is mandatory and the posologia contains the literal `{DOSE}` exactly once. See *Calculadora de peso*.
+- **Weight-based doses** use a 5th element, the PESO spec — then the route `[3]` is mandatory and the posologia contains the literal `{DOSE}` and/or `{FAIXA}` exactly once each. See *Calculadora de peso*.
 
 ```js
 [ "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)", "01 FRASCO", "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (25 MG/KG/DOSE)", "USO ORAL",
@@ -128,10 +129,24 @@ Top-to-bottom, the middle column of a condition is: **title** (`h3` + `.desc`) �
 
 ## Calculadora de peso
 
-- PESO spec fields: `kg` (amount per kg **per dose**, in the drug unit) **or** `kgdia` + `vezes` (per kg per day ÷ doses/day); `max` (cap per dose, in the drug unit — always set it); `conc` (drug unit per mL of the presentation; omit when the output is the drug unit itself, e.g. EV dose in MG or fluids in ML); `un` (`"ML" | "GOTAS" | "MG" | "MCG" | "UI"`, printed in place of `{DOSE}`); `gotas` (drops per mL, required for `"GOTAS"`).
-- `doseTxt(spec)` computes from the module-level `peso`: amount = min(kg × peso, max); ML = amount ÷ conc (2 decimals under 1 mL, else 1); GOTAS = round(amount ÷ conc × gotas); without `conc` the amount itself. Capped doses get "(DOSE MÁXIMA)". With no weight it prints `__ ML` / `__ GOTAS`.
-- The weight box (`.peso-box`, `#peso`) shows on the **Pediátrico** tab (both sub-options, labelled "Peso da criança"), and on Adulto only when the shown blocks contain a PESO item ("Peso do paciente"). Typing updates the `.dose` spans in place (`refreshDoses()`, no re-render, so focus stays) and the receita. The weight persists across conditions/tabs and is cleared by **Limpar**.
-- Selected items keep their `spec`, and `buildText()` fills `{DOSE}` at build time — changing the weight updates items already in the receita. When any selected item has a spec and a weight is set, the text starts with `PESO: N KG`.
+- PESO spec fields (5th element of an Item): `kg` (amount per kg **per dose**, in the drug unit) **or** `kgdia` + `vezes` (per kg per day ÷ doses/day) **or** `fixo` (fixed amount); `max` (cap per dose, in the drug unit — always set it with `kg`/`kgdia`); `conc` (drug unit per mL of the presentation; omit when the output is the drug unit itself, e.g. EV dose in MG or fluids in ML); `un` (`"ML" | "GOTAS" | "MG" | "MCG" | "UI"`, printed in place of `{DOSE}`); `gotas` (drops per mL, required for `"GOTAS"`).
+- `doseTxt(spec)` computes from the module-level `peso`: amount = min(kg × peso, max) (or `fixo`); ML = amount ÷ conc (2 decimals under 1 mL, else 1); GOTAS = round(amount ÷ conc × gotas); without `conc` the amount itself. Capped doses get "(DOSE MÁXIMA)". With no weight (or no dose for that weight) it prints `__ ML` / `__ GOTAS`.
+
+### Weight bands — show only the band that applies
+
+Many posologias used to list a table of weight bands ("ATÉ 10 KG …; DE 10 A 20 KG …; ACIMA DE 20 KG …"). With a weight typed, the site now shows **only the band for that weight**, with the arithmetic done; with no weight it shows the table exactly as before. Three mechanisms, all using the same range object `{de: ≥, acima: >, ate: ≤, menor: <}` (any subset; `fits(r)` is true when every given bound holds, and always true with no weight):
+
+1. **Band table inside one posologia** — the table part of the posologia is replaced by the literal `{FAIXA}`, and the spec gets:
+   - `"sem_peso"`: the **exact original text** of that part (no weight → the posologia reads exactly as before; keep this invariant),
+   - `"faixas"`: `[{<range>, "txt": "...", "dose"?: {...}}, ...]` — first band whose range fits wins; `txt` replaces `{FAIXA}`; inside `txt`, `{=expr}` is arithmetic with `P` = weight in kg (only numbers, `P`, `+ - * / ( )`, `min`, `max`; results ≥ 10 are rounded to integers, smaller ones get 1 decimal), e.g. `"{=P*100} ML (100 ML/KG)"`, `"{=min(1500+20*(P-20),2000)} ML"`. A band's `dose` overrides the dose fields for `{DOSE}` (e.g. zidovudina 12 mg/kg for 4–9 kg, 9 mg/kg for 9–30 kg, `fixo` 300 mg from 30 kg). A weight outside every band falls back to `sem_peso` (and `__` for the dose) — never guess a band. Bands must not overlap.
+   - Used in 23 items (2026-11): pediatric SRO/dengue, maintenance EV fluids (diarreia plano C, queimaduras — Holliday-Segar), zidovudina, dolutegravir, nebulized salbutamol, benzatina, loratadina (5 conditions), ondansetrona, ivermectina (escabiose, parasitoses), terbinafina (2); adult SG 4:1, ivermectina, cefazolina (3) and ceftriaxona dose by weight.
+2. **One option per band in an "escolha 1" menu** — the item's spec has `"peso": {<range>}` (no dose fields needed; the route `[3]` is then mandatory). Out-of-range options are hidden when a weight is typed (oseltamivir 15/23/40 kg, benzatina 27 kg). Age-defined options (e.g. oseltamivir for < 1 year) have no `peso` and always show.
+3. **Whole block for one band** — the block gets `"peso": {<range>}` right after `"label"` (the range is also written in the label): PEP-HIV < 35 / ≥ 35 kg, IST profilaxia < 45 kg, triptano ≥ 40 kg, codeína ≥ 40 kg, ivermectina ≥ 15 kg. Hidden when the typed weight is outside.
+
+Rendering: `posHTML()` turns `{DOSE}` into `<b class="dose">` and `{FAIXA}` into `<span class="faixa">` (highlighted `.on` when a band applies); `fillDose()` resolves both for the receita text, at build time, so changing the weight updates items already in the receita. `applyPeso()` (called by `renderMid` and on every weight keystroke via `refreshDoses()`, no re-render so focus stays) updates doses and bands, toggles `hidden` on `.item[data-pf]` / `.block[data-pb]`, and fills each section's `.faixa-nota` ("Mostrando só o que vale para N kg — X opções de outra faixa de peso ocultas"). **Adicionar receita** skips out-of-range options; a receita chip whose option no longer fits the weight gets a red "⚠ fora da faixa do peso digitado".
+
+- The weight box (`.peso-box`, `#peso`) shows on the **Pediátrico** tab (both sub-options, labelled "Peso da criança"), and on Adulto whenever a shown block has `peso` or an item has a spec ("Peso do paciente"). The weight persists across conditions/tabs and is cleared by **Limpar**. When any selected item has a spec and a weight is set, the receita starts with `PESO: N KG`.
+- Single **eligibility** thresholds inside a posologia ("NÃO USAR COM MENOS DE 5 KG", "ACIMA DE 10 ANOS OU MAIS DE 30 KG") are not bands and stay as text; so does the diurese target line in the queimaduras orientations.
 
 ## Meu rascunho (`MINHA`)
 
