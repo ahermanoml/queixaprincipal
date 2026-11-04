@@ -172,23 +172,30 @@
     color:#22343b;white-space:pre-wrap;word-break:break-word}
 
   /* tipo de prescrição em dois níveis: abas Adulto | Pediátrico (opção) e, dentro, Ambulatorial | Internação (subopção).
-     Abas = sublinhado grande; subopção = controle segmentado (trilho cinza, opção ativa em branco).
+     A cor diz quem é o paciente: Adulto = verde-azulado do site, Pediátrico = rosa. A aba ativa fica tingida e sublinhada
+     na cor dela; na subopção (trilho tingido) o botão ativo fica cheio, na cor do paciente da aba aberta.
      Tamanhos seguem a largura da coluna do meio (container query em #col-mid), não a da tela. */
   #col-mid{container:mid / inline-size}
+  .mid-head,.pac-tab[data-pac="adulto"]{--pc:var(--accent);--pc-d:var(--accent-d);--pc-soft:var(--accent-soft);--pc-track:#dcecf0}
+  .mid-head.pac-ped,.pac-tab[data-pac="ped"]{--pc:#c2255c;--pc-d:#a61e4d;--pc-soft:#fff0f6;--pc-track:#fde1ec}
   .pac-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px;border-bottom:1px solid var(--line)}
   .pac-tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:8px 6px;margin-bottom:-1px;
     border:0;border-bottom:3px solid transparent;border-radius:10px 10px 0 0;background:none;font:inherit;font-size:17px;font-weight:750;
     color:var(--muted);cursor:pointer;transition:color .12s,background .12s;white-space:nowrap}
-  .pac-tab:hover{color:var(--ink);background:#f7fafb}
-  .pac-tab.active{color:var(--accent-d);border-bottom-color:var(--accent);background:none}
+  .pac-tab:hover{color:var(--pc-d);background:var(--pc-soft)}
+  .pac-tab.active{color:var(--pc-d);border-bottom-color:var(--pc);background:var(--pc-soft)}
   .pac-tab.empty:not(.active){opacity:.55}
-  .set-box{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin-top:12px;padding:4px;background:#eef2f4;border-radius:14px}
+  .set-box{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin-top:12px;padding:4px;background:var(--pc-track);border-radius:14px}
   .set-btn{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:8px 6px;border:0;border-radius:11px;
-    background:none;font:inherit;font-size:15.5px;font-weight:700;color:var(--muted);cursor:pointer;transition:color .12s,background .12s;white-space:nowrap}
-  .set-btn:hover{color:var(--ink);background:rgba(255,255,255,.55)}
-  .set-btn.active{background:#fff;color:var(--accent-d);box-shadow:0 1px 4px rgba(16,40,50,.15)}
+    background:none;font:inherit;font-size:15.5px;font-weight:700;color:#4b6470;cursor:pointer;transition:color .12s,background .12s;white-space:nowrap}
+  .set-btn:hover{color:var(--pc-d);background:rgba(255,255,255,.6)}
+  .set-btn.active{background:var(--pc);color:#fff;box-shadow:0 2px 6px rgba(16,40,50,.22)}
   .set-btn.empty:not(.active){opacity:.55}
-  .pac-tab .n,.set-btn .n{background:var(--accent-soft);color:var(--accent-d);border-radius:20px;padding:1px 7px;font-size:11.5px;font-weight:700;line-height:1.4}
+  .pac-tab .n,.set-btn .n{border-radius:20px;padding:1px 7px;font-size:11.5px;font-weight:700;line-height:1.4}
+  .pac-tab .n{background:#eef2f4;color:var(--muted)}
+  .pac-tab.active .n,.pac-tab:hover .n{background:#fff;color:var(--pc-d)}
+  .set-btn .n{background:rgba(255,255,255,.75);color:var(--pc-d)}
+  .set-btn.active .n{background:rgba(255,255,255,.25);color:#fff}
   @container mid (max-width:559px){ .pac-tab{font-size:16px} .set-btn{font-size:15px} }
   @container mid (max-width:399px){ .pac-tab{font-size:15px;gap:6px} .set-btn{font-size:14px;gap:5px;padding:8px 3px} }
   @container mid (max-width:339px){ .pac-tab{font-size:14px;gap:5px} .set-btn .si{display:none} }
@@ -204,6 +211,13 @@
   .block-head .tag.draft{color:var(--warn);background:#fdf1e3;cursor:help}
   .block.draft{border-color:#f0dcc0}
   .block.draft .block-head{background:#fff8ee}
+  /* coluna do meio estreita (celular, telas médias): o título do bloco ocupa a linha inteira e as etiquetas
+     (rascunho / escolha 1) e o botão "Adicionar receita" descem para a linha de baixo — antes o título ficava espremido */
+  @container mid (max-width:559px){
+    .block-head{flex-wrap:wrap;row-gap:8px}
+    .block-head .bl-toggle{flex:1 1 100%}
+    .block-head .addall{margin-left:auto}
+  }
 
   /* right / receita */
   .rx-tools{display:flex;gap:7px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}
@@ -15421,7 +15435,7 @@ function renderMid(c){
         <input id="peso" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${peso>0?num(peso,1):""}"><span class="un">kg</span>
         <span class="peso-hint">${pesoHint()}</span></div>` : "";
   // ordem: título → abas Adulto | Pediátrico → subopção Ambulatorial | Internação → (peso) → seções
-  let h = `<div class="mid-head"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
+  let h = `<div class="mid-head pac-${currentPac}"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
     <div class="pac-tabs" role="tablist" aria-label="Paciente">${pacTabs}</div>
     <div class="set-box" role="tablist" aria-label="Ambulatorial ou internação">${setBtns}</div>${pesoBox}</div>`;
   // recomendações e instruções: orientações de todos os blocos do modo, sem repetir — primeiro as do padrão,
