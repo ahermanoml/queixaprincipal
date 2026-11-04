@@ -115,7 +115,21 @@
   .oitem .tag{flex:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--warn);
     background:#fdf1e3;border:1px solid #f0dcc0;padding:1px 7px;border-radius:20px;cursor:help}
 
-  /* seções do painel do meio: padrão (já aberta) → off label → recomendações e instruções */
+  /* abas do painel do meio: Padrão | Meu rascunho (entre o título da condição e o seletor de modo) */
+  [hidden]{display:none !important}
+  .view-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px;border-bottom:1px solid var(--line)}
+  .view-tab{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:10px 8px;
+    margin-bottom:-1px;border:0;border-bottom:3px solid transparent;border-radius:10px 10px 0 0;background:none;
+    font:inherit;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;transition:.12s;white-space:nowrap}
+  .view-tab:hover{color:var(--ink);background:#f7fafb}
+  .view-tab.active{color:var(--accent-d);border-bottom-color:var(--accent);background:none}
+  .view-tab.empty:not(.active){opacity:.6}
+  .view-tab .vc{background:var(--accent-soft);color:var(--accent-d);border-radius:20px;padding:1px 7px;font-size:11.5px}
+  @container mid (max-width:419px){ .view-tab{font-size:14px;gap:5px;padding:10px 4px} }
+  @container mid (max-width:349px){ .view-tab .vi{display:none} }
+  @container mid (max-width:319px){ .view-tab{font-size:13.5px} }
+
+  /* seções da aba Padrão: padrão (já aberta) → outras opções → recomendações e instruções */
   .sec-head{display:flex;align-items:center;gap:9px;width:calc(100% - 32px);margin:14px 16px 0;padding:8px 12px;
     border:0;border-radius:9px;background:var(--accent-soft);color:var(--accent-d);font:inherit;font-size:11px;
     font-weight:700;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;text-align:left}
@@ -129,7 +143,6 @@
   .sec-rec .sec-head{background:#fdf1e3;color:var(--warn)}
   .sec-empty{margin:10px 16px;padding:14px 16px;text-align:center;color:var(--muted);font-size:12px;
     background:#fbfdfe;border:1px dashed var(--line);border-radius:12px}
-  .sec-minha .sec-head{background:#e9f6ee;color:var(--ok)}
 
   /* calculadora de peso (pediátrica / itens com dose por kg) */
   .peso-box{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;padding:8px 11px;
@@ -143,7 +156,7 @@
   .item .dose{color:#1d4f91;background:#e3eefc;border-radius:5px;padding:0 4px;font-weight:700}
   .item .dose.vazio{color:var(--warn);background:#fdf1e3}
 
-  /* minha prescrição: modelos do próprio médico em texto livre */
+  /* meu rascunho: modelos do próprio médico em texto livre */
   .cond.mine{background:#f6fbf8;border-bottom:1px solid var(--line)}
   .cond.mine.active{background:var(--accent-soft)}
   .mgrp{margin:18px 16px 0;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
@@ -154,15 +167,36 @@
     padding:6px 10px;border-radius:8px;cursor:pointer;white-space:nowrap}
   .mbtn:hover{background:#f4f7f8}
 
-  /* prescription-mode selector (ambulatorial / internação / pediátrica) */
-  .mode-box{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-  .mode-btn{border:1px solid var(--line);background:#fff;border-radius:20px;padding:5px 11px;font-size:12px;
-    font-weight:650;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:.12s}
-  .mode-btn:hover{background:#f4f7f8}
-  .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  /* prescription-mode selector (ambulatorial / internação / pediátrica): três botões grandes, mesma largura.
+     O layout segue a largura da coluna do meio (container query em #col-mid), não a da tela:
+     larga (≥560px) → ícone, nome e contagem lado a lado; média → ícone em cima do nome, contagem no canto;
+     celular (<400px) → idem com fonte 14px; muito estreita (<365px: celular de 375px ou menos, tablet de ~900px)
+     → os três empilhados, cada um com a largura toda. Sem suporte a container query fica o layout médio. */
+  #col-mid{container:mid / inline-size}
+  .mode-box{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+  .mode-btn{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    min-height:70px;padding:10px 4px;border:1.5px solid var(--line);background:#fff;border-radius:12px;
+    font:inherit;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;transition:.12s;line-height:1.2}
+  .mode-btn .mi{font-size:21px;line-height:1}
+  .mode-btn .ml{white-space:nowrap}
+  .mode-btn:hover{background:#f4f7f8;border-color:#cfdbe0}
+  .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 6px rgba(12,116,137,.25)}
   .mode-btn.empty{opacity:.5}
-  .mode-btn .mc{background:var(--accent-soft);color:var(--accent-d);border-radius:20px;padding:0 6px;font-size:10.5px;font-weight:700}
+  .mode-btn .mc{position:absolute;top:5px;right:5px;background:var(--accent-soft);color:var(--accent-d);border-radius:20px;
+    padding:1px 7px;font-size:11.5px;font-weight:700;line-height:1.4}
   .mode-btn.active .mc{background:rgba(255,255,255,.22);color:#fff}
+  @container mid (min-width:560px){
+    .mode-btn{flex-direction:row;gap:8px;min-height:54px;padding:10px 12px;font-size:16px}
+    .mode-btn .mi{font-size:20px}
+    .mode-btn .mc{position:static}
+  }
+  @container mid (max-width:399px){ .mode-btn{font-size:14px} }
+  @container mid (max-width:364px){
+    .mode-box{grid-template-columns:1fr;gap:7px}
+    .mode-btn{flex-direction:row;justify-content:flex-start;gap:10px;min-height:52px;padding:10px 16px;font-size:16px}
+    .mode-btn .mi{font-size:20px}
+    .mode-btn .mc{position:static;margin-left:auto}
+  }
   .mode-empty{margin:14px 16px;padding:20px 16px;text-align:center;color:var(--muted);font-size:12.5px;
     background:#fbfdfe;border:1px dashed var(--line);border-radius:12px}
 
@@ -14649,7 +14683,7 @@ const KW = {
 };
 
 /* ============================================================
-   MINHA PRESCRIÇÃO — modelos do próprio médico, em texto livre
+   MEU RASCUNHO (const MINHA) — modelos do próprio médico, em texto livre
    card = {titulo, grupo, conds: [ids de DATA onde o card aparece], linhas: [uma linha por elemento], nota?}
    ============================================================ */
 const MINHA = [
@@ -15155,21 +15189,22 @@ let selected = [];          // {med, qty, pos, route, spec}
 let orientSet = [];         // strings (mantém ordem, sem duplicar)
 let freeEdit = false;
 let currentMode = "amb";    // tipo de prescrição em foco: "amb" | "internacao" | "ped"
-let curCond = null;         // condição aberta no painel do meio (null em "Minha prescrição")
+let currentTab = "padrao";  // aba em foco no painel do meio: "padrao" | "rascunho" (volta a "padrao" ao abrir condição / trocar modo)
+let curCond = null;         // condição aberta no painel do meio (null em "Meu rascunho")
 let peso = null;            // kg digitado na calculadora de peso (null = vazio)
 const MODES = [
   {key:"amb",        ic:"🏠", label:"Ambulatorial"},
   {key:"internacao", ic:"🏥", label:"Internação"},
   {key:"ped",        ic:"👶", label:"Pediátrica"}
 ];
-// seções do painel do meio, nesta ordem: "padrao" abre expandida; as demais ficam recolhidas abaixo
+// seções da aba "Padrão", nesta ordem: "padrao" abre expandida; as demais ficam recolhidas abaixo.
+// (os modelos do médico não entram aqui: ficam na aba "Meu rascunho")
 const SECS = [
   {key:"padrao",   cls:"sec-pad",   label:"Padrão",                     none:"Nenhuma prescrição padrão cadastrada para esta condição ainda."},
-  {key:"minha",    cls:"sec-minha", label:"Minha prescrição",           none:"Nenhum modelo seu ligado a esta condição — veja todos em ⭐ Minha prescrição, no topo da lista."},
-  {key:"offlabel", cls:"sec-off",   label:"Off label",                  none:"Nenhuma opção off label cadastrada para esta condição ainda."},
+  {key:"offlabel", cls:"sec-off",   label:"Outras opções",              none:"Nenhuma outra opção cadastrada para esta condição ainda."},
   {key:"rec",      cls:"sec-rec",   label:"Recomendações e instruções", none:"Nenhuma recomendação cadastrada para esta condição ainda."}
 ];
-const MINHA_ID = "__minha";   // entrada fixa no topo da lista de condições
+const MINHA_ID = "__minha";   // entrada fixa "⭐ Meu rascunho" no topo da lista de condições
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -15196,13 +15231,14 @@ function renderConds(filter=""){
   const f = filter.trim().toLowerCase();
   condList.innerHTML = "";
   let n = 0;
-  if(!f || ("minha prescrição "+MINHA.map(m=>m.titulo).join(" ")).toLowerCase().includes(f))
-    condBtn(MINHA_ID, "⭐", "Minha prescrição", "evolução · exame físico · receitas · laudos", renderMinha);
+  // "minha prescrição" (nome antigo) continua achando a entrada na busca
+  if(!f || ("meu rascunho minha prescrição "+MINHA.map(m=>m.titulo).join(" ")).toLowerCase().includes(f))
+    condBtn(MINHA_ID, "⭐", "Meu rascunho", "evolução · exame físico · receitas · laudos", renderMinha);
   DATA.forEach(c=>{
     if(f && !((c.nm+" "+(c.sub||"")+" "+(KW[c.id]||"")).toLowerCase().includes(f))) return;
     n++;
-    // toda condição abre na prescrição ambulatorial
-    condBtn(c.id, c.ic, c.nm, c.sub||"", ()=>{ currentMode = "amb"; renderMid(c); });
+    // toda condição abre na aba "Padrão" da prescrição ambulatorial
+    condBtn(c.id, c.ic, c.nm, c.sub||"", ()=>{ currentMode = "amb"; currentTab = "padrao"; renderMid(c); });
   });
   $("#cond-count").textContent = f ? n : DATA.length;
   if(!condList.children.length) condList.innerHTML = `<div class="rx-empty">Nada encontrado.</div>`;
@@ -15262,7 +15298,7 @@ function refreshDoses(){
   syncRx();
 }
 
-/* ---- minha prescrição: modelos do próprio médico, em texto livre (copiados como estão) ---- */
+/* ---- meu rascunho: modelos do próprio médico, em texto livre (copiados como estão) ---- */
 function cardHTML(m, mi, collapsed){
   return `<div class="block mcard${collapsed?' collapsed':''}">
       <div class="block-head">
@@ -15274,8 +15310,8 @@ function cardHTML(m, mi, collapsed){
 }
 function renderMinha(){
   curCond = null;
-  midTitle.textContent = "Minha prescrição";
-  let h = `<div class="mid-head"><h3><span aria-hidden="true">⭐</span> Minha prescrição</h3><div class="desc">Seus modelos, do jeito que você escreve · <b>Copiar</b> leva o texto direto; <b>＋ Receita</b> joga o texto na receita em edição livre.</div></div>`;
+  midTitle.textContent = "Meu rascunho";
+  let h = `<div class="mid-head"><h3><span aria-hidden="true">⭐</span> Meu rascunho</h3><div class="desc">Seus modelos, do jeito que você escreve · <b>Copiar</b> leva o texto direto; <b>＋ Receita</b> joga o texto na receita em edição livre.</div></div>`;
   [...new Set(MINHA.map(m=>m.grupo))].forEach(g=>{
     h += `<div class="mgrp">${esc(g)}</div>`;
     MINHA.forEach((m,mi)=>{ if(m.grupo===g) h += cardHTML(m, mi, true); });
@@ -15284,7 +15320,7 @@ function renderMinha(){
   bindBlocks();
 }
 
-// bind comum ao painel do meio: recolher seção / bloco e botões dos modelos de "Minha prescrição"
+// bind comum ao painel do meio: recolher seção / bloco e botões dos modelos de "Meu rascunho"
 function bindBlocks(){
   midBody.querySelectorAll(".sec-head, .bl-toggle").forEach(t=>{
     t.onclick = ()=>{
@@ -15303,6 +15339,20 @@ function bindBlocks(){
   });
 }
 
+// mostra a aba "currentTab" do painel do meio (Padrão | Meu rascunho); a calculadora de peso só aparece no Padrão
+function showTab(){
+  const pad = currentTab==="padrao";
+  midBody.querySelectorAll(".view-tab").forEach(t=>{
+    const on = t.dataset.tab===currentTab;
+    t.classList.toggle("active", on);
+    t.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  midBody.querySelector("#view-padrao").hidden = !pad;
+  midBody.querySelector("#view-rascunho").hidden = pad;
+  const pb = midBody.querySelector(".peso-box");
+  if(pb) pb.hidden = !pad;
+}
+
 function renderMid(c){
   curCond = c;
   midTitle.textContent = c.nm;
@@ -15310,17 +15360,26 @@ function renderMid(c){
   c.blocks.forEach(b=>{ counts[b.mode||"amb"] = (counts[b.mode||"amb"]||0)+1; });
   const modeBtns = MODES.map(m=>{
     const n = counts[m.key]||0;
-    return `<button type="button" role="tab" aria-selected="${m.key===currentMode?'true':'false'}" class="mode-btn${m.key===currentMode?' active':''}${n===0?' empty':''}" data-mode="${m.key}"><span aria-hidden="true">${m.ic}</span> ${m.label}${n?`<span class="mc">${n}</span>`:''}</button>`;
+    return `<button type="button" role="tab" aria-selected="${m.key===currentMode?'true':'false'}" class="mode-btn${m.key===currentMode?' active':''}${n===0?' empty':''}" data-mode="${m.key}"><span class="mi" aria-hidden="true">${m.ic}</span><span class="ml">${m.label}</span>${n?`<span class="mc">${n}</span>`:''}</button>`;
   }).join("");
+  // abas: "Padrão" (padrão + outras opções + recomendações do modo) | "Meu rascunho" (modelos MINHA ligados à condição, em qualquer modo)
+  const mine = MINHA.map((m,mi)=>({m,mi})).filter(x=> x.m.conds.includes(c.id));
+  const tabBtns = [
+    {key:"padrao",   label:"Padrão"},
+    {key:"rascunho", label:"Meu rascunho", ic:"⭐", n:mine.length}
+  ].map(t=> `<button type="button" role="tab" id="tab-${t.key}" aria-controls="view-${t.key}" class="view-tab${t.n===0?' empty':''}" data-tab="${t.key}">${t.ic?`<span class="vi" aria-hidden="true">${t.ic}</span>`:''}${t.label}${t.n!=null?`<span class="vc">${t.n}</span>`:''}</button>`).join("");
   const shown = c.blocks.map((b,bi)=>({b,bi})).filter(x=> (x.b.mode||"amb")===currentMode);
-  // calculadora de peso: sempre na pediátrica; nos outros modos só se algum item tiver dose por peso
+  // calculadora de peso: sempre na pediátrica; nos outros modos só se algum item tiver dose por peso (escondida na aba "Meu rascunho")
   const pesoBox = currentMode==="ped" || shown.some(x=> x.b.items.some(it=> it[4]))
     ? `<div class="peso-box"><label for="peso"><span aria-hidden="true">⚖️</span> Peso ${currentMode==="ped"?"da criança":"do paciente"}</label>
         <input id="peso" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${peso>0?num(peso,1):""}"><span class="un">kg</span>
         <span class="peso-hint">${pesoHint()}</span></div>` : "";
-  let h = `<div class="mid-head"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div><div class="mode-box" role="tablist" aria-label="Tipo de prescrição">${modeBtns}</div>${pesoBox}</div>`;
+  // ordem: título → abas Padrão | Meu rascunho → seletor de modo → (peso) → conteúdo da aba
+  let h = `<div class="mid-head"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
+    <div class="view-tabs" role="tablist" aria-label="Padrão ou meu rascunho">${tabBtns}</div>
+    <div class="mode-box" role="tablist" aria-label="Tipo de prescrição">${modeBtns}</div>${pesoBox}</div>`;
   // recomendações e instruções: orientações de todos os blocos do modo, sem repetir — primeiro as do padrão,
-  // depois as que só aparecem em blocos off label. "rascunho" só se todas as origens forem rascunho;
+  // depois as que só aparecem em blocos "offlabel" (outras opções). "rascunho" só se todas as origens forem rascunho;
   // a origem aparece quando a linha vem de um único bloco.
   const recs = [];
   shown.forEach(({b})=> (b.orient||[]).forEach(o=>{
@@ -15329,9 +15388,10 @@ function renderMid(c){
     if(r){ r.draft = r.draft && !!b.draft; r.pad = r.pad || pad; r.src.push(b); }
     else recs.push({txt:o, draft:!!b.draft, pad, src:[b]});
   }));
+  let pad = "";   // conteúdo da aba "Padrão"
   if(shown.length===0){
     const m = MODES.find(x=>x.key===currentMode);
-    h += `<div class="mode-empty"><span aria-hidden="true">${m.ic}</span> Sem prescrição de <b>${esc(m.label.toLowerCase())}</b> cadastrada para esta condição ainda.</div>`;
+    pad = `<div class="mode-empty"><span aria-hidden="true">${m.ic}</span> Sem prescrição de <b>${esc(m.label.toLowerCase())}</b> cadastrada para esta condição ainda.</div>`;
   } else SECS.forEach(s=>{
     let n, body;
     if(s.key==="rec"){
@@ -15345,14 +15405,10 @@ function renderMid(c){
       };
       recs.forEach((r,ri)=>{ if(r.pad) body += line(r,ri); });
       if(nPad < n){
-        if(nPad) body += `<div class="osub">Das opções off label</div>`;
+        if(nPad) body += `<div class="osub">Das outras opções</div>`;
         recs.forEach((r,ri)=>{ if(!r.pad) body += line(r,ri); });
       }
       body += `</div>`;
-    } else if(s.key==="minha"){
-      const mine = MINHA.map((m,mi)=>({m,mi})).filter(x=> x.m.conds.includes(c.id));
-      n = mine.length;
-      body = mine.map(x=> cardHTML(x.m, x.mi, false)).join("");
     } else {
       const bl = shown.filter(x=> (x.b.sec||"padrao")===s.key);
       n = bl.length;
@@ -15360,17 +15416,30 @@ function renderMid(c){
     }
     if(!n) body = `<div class="sec-empty">${s.none}</div>`;
     const open = s.key==="padrao";
-    h += `<div class="sec ${s.cls}${open?'':' collapsed'}${n?'':' none'}">
+    pad += `<div class="sec ${s.cls}${open?'':' collapsed'}${n?'':' none'}">
       <button type="button" class="sec-head" aria-expanded="${open}" aria-controls="sec-${s.key}"><span class="chev" aria-hidden="true">▸</span>${s.label}<span class="sc">${n}</span></button>
       <div class="sec-body" id="sec-${s.key}">${body}</div></div>`;
   });
+  // conteúdo da aba "Meu rascunho": só os modelos do médico ligados a esta condição, expandidos
+  const rasc = mine.length ? mine.map(x=> cardHTML(x.m, x.mi, false)).join("")
+    : `<div class="sec-empty">Nenhum modelo seu ligado a esta condição — veja todos em <b>⭐ Meu rascunho</b>, no topo da lista.</div>`;
+  // as duas abas ficam no DOM; trocar de aba só mostra/esconde (seções abertas e foco se mantêm)
+  h += `<div id="view-padrao" role="tabpanel" aria-labelledby="tab-padrao">${pad}</div>
+    <div id="view-rascunho" role="tabpanel" aria-labelledby="tab-rascunho">${rasc}</div>`;
   midBody.innerHTML = h;
+  showTab();
 
-  // bind: trocar modo de prescrição (ambulatorial / internação / pediátrica)
-  midBody.querySelectorAll(".mode-btn").forEach(btn=>{
-    btn.onclick = ()=>{ if(btn.dataset.mode!==currentMode){ currentMode = btn.dataset.mode; renderMid(c); } };
+  // bind: abas Padrão | Meu rascunho
+  midBody.querySelectorAll(".view-tab").forEach(btn=>{
+    btn.onclick = ()=>{ currentTab = btn.dataset.tab; showTab(); };
   });
-  // bind: recolher seções / blocos e botões dos modelos de "Minha prescrição"
+  // bind: trocar modo de prescrição (ambulatorial / internação / pediátrica) — sempre volta para a aba "Padrão"
+  midBody.querySelectorAll(".mode-btn").forEach(btn=>{
+    btn.onclick = ()=>{
+      if(btn.dataset.mode!==currentMode || currentTab!=="padrao"){ currentMode = btn.dataset.mode; currentTab = "padrao"; renderMid(c); }
+    };
+  });
+  // bind: recolher seções / blocos e botões dos modelos de "Meu rascunho"
   bindBlocks();
   // bind: calculadora de peso (aceita vírgula; vazio ou 0 = sem peso)
   const pin = midBody.querySelector("#peso");
@@ -15421,7 +15490,7 @@ function renderMid(c){
   });
   const all = midBody.querySelector(".orient-all");
   if(all) all.onclick = ()=>{
-    // com linhas do padrão, "todas" = as do padrão; as das opções off label vão uma a uma
+    // com linhas do padrão, "todas" = as do padrão; as das outras opções vão uma a uma
     const pick = recs.some(r=> r.pad) ? recs.filter(r=> r.pad) : recs;
     let a=0; pick.forEach(r=> a += addOrient(r.txt)?1:0 );
     toast(a>0?"Orientações adicionadas":"Já estavam na receita", a>0);
@@ -15539,7 +15608,7 @@ async function copyText(txt){
     return ok;
   }
 }
-// leva um texto livre (modelo de "Minha prescrição") para a receita, sem apagar o que já está lá
+// leva um texto livre (modelo de "Meu rascunho") para a receita, sem apagar o que já está lá
 function sendToRx(txt){
   freeEdit = true; $("#free-edit").checked = true;
   const cur = rxArea.value.replace(/\s+$/,"");
