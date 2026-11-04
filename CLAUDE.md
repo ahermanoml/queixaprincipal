@@ -51,7 +51,7 @@ A **Block** is one prescription variant / section:
   "items": [ Item, ... ],
   "orient": ["texto de orientação", ...],  // optional patient-guidance bullets
   "menu": true,                             // optional; see below
-  "mode": "internacao",                     // optional; "amb" (default) | "internacao" | "ped"
+  "mode": "internacao",                     // optional; "amb" (default) | "internacao" | "ped" | "ped_internacao"
   "sec": "offlabel",                        // optional; "padrao" (default) | "offlabel" (shown as "Outras opções")
   "draft": true                             // optional; AI-drafted → shows a "rascunho" tag, needs clinical sign-off (unrelated to the "Meu rascunho" tab)
 }
@@ -60,7 +60,16 @@ A **Block** is one prescription variant / section:
 - `"menu": true` marks a "choose one of these" block — the UI shows an `escolha` tag instead of the **Adicionar receita** (add-whole-block) button, so items must be added individually. By convention these blocks also carry an `— escolha 1` suffix in their `label`.
 - `orient` strings are not shown inside the block: `renderMid` gathers the `orient` of every block in the active mode (deduped) into the **Recomendações e instruções** section, where each line can be added on its own (or all at once). **Adicionar receita** on a block still adds that block's `orient` too. Added lines appear under an `ORIENTAÇÕES:` heading in the output.
 - `"sec"` picks the **section** of the middle column the block belongs to (see *Prescription modes & sections*): `"padrao"` (default when absent) or `"offlabel"`. In the ambulatorial mode, **Padrão** is the guideline-based standard prescription (AI-drafted from current guidelines, so it carries `"draft": true` until signed off) and the `"offlabel"` blocks — displayed as **Outras opções** — hold every older ambulatorial block that the new padrão did not already cover ("alternatives", not the regulatory off-label sense). The UI label was renamed from "Off label" to "Outras opções", but the data key stays `"sec": "offlabel"` — **don't rename the key**. `orient` text that points the clinician to those blocks says "(VER OUTRAS OPÇÕES)"; the remaining "OFF LABEL" mentions in `DATA` are the regulatory sense (bula / via não aprovada) and stay as written. Internação and pediátrica were rebuilt the same way: each mode has its own guideline-based padrão blocks plus `"offlabel"` alternatives, all `"draft": true`; pediatric weight-based doses use the PESO spec.
-- `"mode"` assigns the block to a **prescription mode**: `"amb"` (ambulatorial / outpatient — the default when the key is absent), `"internacao"` (inpatient), or `"ped"` (pediátrica). The middle column shows a mode selector and `renderMid` only renders blocks matching the active `currentMode`. See *Prescription modes & sections*.
+- `"mode"` puts the block in one of **four combinations** of patient × setting, picked in the middle column by the **Adulto | Pediátrico** tabs and the **Ambulatorial | Internação** sub-option (see *Prescription modes & sections*):
+
+  | `"mode"` | Shown in |
+  |----------|----------|
+  | `"amb"` (default when the key is absent) | Adulto › Ambulatorial |
+  | `"internacao"` | Adulto › Internação |
+  | `"ped"` | Pediátrico › Ambulatorial |
+  | `"ped_internacao"` | Pediátrico › Internação |
+
+  The `MODE_OF[pac][set]` table in the script maps the UI choice to these values. **Ambulatorial vs Internação follows one rule for adults and children:** *Internação* = care given in the hospital — PS/observação/enfermaria/UTI: EV or continuous drugs, crisis treatment in the PS, observação (e.g. anafilaxia, crise de asma no PS, dengue grupos C/D, plano C, pielonefrite EV, pneumonia internada, grande queimado, TCE em observação); *Ambulatorial* = what the patient takes home, including single IM doses given at the unit before going home (penicilina benzatina, ceftriaxona IM na otite, profilaxias, antitetânica). The pediatric blocks were split with this rule in 2026-11 (97 `"ped"`, 36 `"ped_internacao"`); keep new blocks consistent with it.
 - `"draft": true` flags AI-generated content awaiting the clinician's review — it renders a `rascunho` tag on a tinted block (and on its lines in **Recomendações e instruções**, unless a non-draft block carries the same line). Drop the flag once a block is signed off. This `rascunho` tag has **nothing to do** with the **Meu rascunho** header tab (the clinician's own `MINHA` templates) — keep the two separate.
 
 An **Item** is a positional array (tuple), **not** an object — in the file each element sits on its own line:
@@ -88,7 +97,7 @@ An **Item** is a positional array (tuple), **not** an object — in the file eac
 
 ## App logic flow
 
-`renderConds(filter)` builds the left list (filter matches `nm + sub + KW[id]`; only conditions — there is no pinned entry any more) → clicking a condition resets `currentMode = "amb"` and calls `renderMid(c)` → clicking an item / **Adicionar receita** calls `addItem` / `addOrient`, which mutate the module-level `selected[]` / `orientSet[]` and call `syncRx()` → `syncRx()` re-renders the right-hand chips and regenerates the textarea via `buildText()`. Copy uses `navigator.clipboard` with an `execCommand("copy")` fallback.
+`renderConds(filter)` builds the left list (filter matches `nm + sub + KW[id]`; only conditions — there is no pinned entry any more) → clicking a condition resets `currentPac = "adulto"` and `currentSet = "amb"` and calls `renderMid(c)` → clicking an item / **Adicionar receita** calls `addItem` / `addOrient`, which mutate the module-level `selected[]` / `orientSet[]` and call `syncRx()` → `syncRx()` re-renders the right-hand chips and regenerates the textarea via `buildText()`. Copy uses `navigator.clipboard` with an `execCommand("copy")` fallback.
 
 ## Header tabs: Padrão | Meu rascunho
 
@@ -101,14 +110,16 @@ The header (`header.top`) has a title row (`.top-row`) and, under it, two big **
 
 ## Prescription modes & sections
 
-Top-to-bottom, the middle column of a condition is: **title** (`h3` + `.desc`) → **mode selector** `Ambulatorial / Internação / Pediátrica` (`.mode-box`) → (weight box, when applicable) → **sections**. All of that header lives in `.mid-head`. There are no per-condition tabs: the clinician's templates live only in the **Meu rascunho** header tab.
+Top-to-bottom, the middle column of a condition is: **title** (`h3` + `.desc`) → **tabs `🧑 Adulto | 👶 Pediátrico`** (`.pac-tabs`, the option) → **`🏠 Ambulatorial | 🏥 Internação`** (`.set-box`, the sub-option inside the tab) → (weight box, when applicable) → **sections**. All of that header lives in `.mid-head`. There are no other per-condition tabs: the clinician's templates live only in the **Meu rascunho** header tab.
 
-`renderMid` state: module-level `currentMode` (`"amb" | "internacao" | "ped"`; the `MODES` array holds labels/icons).
+`renderMid` state: module-level `currentPac` (`"adulto" | "ped"`; `PACS` holds labels/icons) and `currentSet` (`"amb" | "internacao"`; `SETS`). The active `"mode"` is `MODE_OF[currentPac][currentSet]`; `modeOf(b)` is `b.mode || "amb"`.
 
-- **Mode selector.** `renderMid` counts blocks per mode, renders three big equal-width `.mode-btn` buttons (`.mi` icon, `.ml` label, `.mc` count), then renders only the blocks whose `(b.mode || "amb")` equals `currentMode`. Clicking a button sets `currentMode` and re-renders the same condition; opening a different condition resets to `"amb"`. A mode with no blocks renders a `.mode-empty` placeholder (the button is dimmed via `.empty`).
-- **Responsive sizing** uses a **container query** on `#col-mid` (`container: mid / inline-size`), because the middle column's width doesn't track the viewport (it is narrow both on phones and on ~900–1200px screens). Mode buttons: column ≥560px → icon + label + count in a row (54px tall, 16px); narrower → icon above label, count in the corner (70px tall, 15px; 14px under 400px); under 365px (375px phones and smaller, ~900px tablets) → the three stack full-width (52px tall, 16px). Browsers without container queries get the "icon above label" layout.
+- **Tabs (patient).** `.pac-tab` buttons — large, underlined when active — each show the total block count for that patient (both settings). Switching the patient **keeps the sub-option** (Adulto › Internação → Pediátrico › Internação).
+- **Sub-option (setting).** `.set-btn` buttons in a segmented control (grey track, active one white) show the count for the *current* patient. Both controls re-render the condition and put focus back on the clicked button. Opening a different condition resets to **Adulto › Ambulatorial**.
+- A combination with no blocks renders a `.mode-empty` placeholder ("Sem prescrição pediátrico · ambulatorial…"); its tab/button is dimmed via `.empty` but stays clickable.
+- **Responsive sizing** uses a **container query** on `#col-mid` (`container: mid / inline-size`), because the middle column's width doesn't track the viewport (it is narrow both on phones and on ~900–1200px screens): tabs 17px / sub-option 15.5px; under 560px 16 / 15px; under 400px 15 / 14px; under 340px the tab font drops to 14px and the sub-option icons (`.si`) hide, so everything fits a 320px phone.
 - **Block indices must stay stable.** `data-b` carries the block's *original* index into `c.blocks`; `renderMid` filters with `c.blocks.map((b,bi)=>({b,bi})).filter(...)` so the index survives filtering. The `addall`/item handlers do `c.blocks[+dataset.b]`, so never renumber.
-- **Sections (`SECS`)** — below the mode selector, three stacked, collapsible `.sec` sections, always in this order: **Padrão** (blocks with `sec` absent/`"padrao"`, starts **open**), **Outras opções** (`"sec": "offlabel"` blocks) and **Recomendações e instruções** (the deduped `orient` lines; lines that only come from Outras opções are listed under a "Das outras opções" sub-heading). The latter two start collapsed. Each `.sec-head` shows a count; an empty section is dimmed (`.none`) and shows a `.sec-empty` placeholder when opened. Choosing a condition or switching mode re-renders, so Padrão is open again. The clinician's templates are **not** a section — they are the Meu rascunho header tab.
+- **Sections (`SECS`)** — below the mode selector, three stacked, collapsible `.sec` sections, always in this order: **Padrão** (blocks with `sec` absent/`"padrao"`, starts **open**), **Outras opções** (`"sec": "offlabel"` blocks) and **Recomendações e instruções** (the deduped `orient` lines; lines that only come from Outras opções are listed under a "Das outras opções" sub-heading). The latter two start collapsed. Each `.sec-head` shows a count; an empty section is dimmed (`.none`) and shows a `.sec-empty` placeholder when opened. Choosing a condition, patient or setting re-renders, so Padrão is open again. The clinician's templates are **not** a section — they are the Meu rascunho header tab.
 - **Collapsible blocks:** each `.block-head` has a `.bl-toggle` button (chevron + label) that toggles `.block.collapsed` (CSS hides `.items`). Blocks start expanded. The whole-block **Adicionar receita** button works even while collapsed.
 - Block markup comes from `blockHTML()`, which closes both `.items` and `.block`. The earlier code left `.block` open, so blocks rendered nested — don't reintroduce that.
 - `bindBlocks()` wires the section/block toggles of the middle column.
@@ -117,7 +128,7 @@ Top-to-bottom, the middle column of a condition is: **title** (`h3` + `.desc`) �
 
 - PESO spec fields: `kg` (amount per kg **per dose**, in the drug unit) **or** `kgdia` + `vezes` (per kg per day ÷ doses/day); `max` (cap per dose, in the drug unit — always set it); `conc` (drug unit per mL of the presentation; omit when the output is the drug unit itself, e.g. EV dose in MG or fluids in ML); `un` (`"ML" | "GOTAS" | "MG" | "MCG" | "UI"`, printed in place of `{DOSE}`); `gotas` (drops per mL, required for `"GOTAS"`).
 - `doseTxt(spec)` computes from the module-level `peso`: amount = min(kg × peso, max); ML = amount ÷ conc (2 decimals under 1 mL, else 1); GOTAS = round(amount ÷ conc × gotas); without `conc` the amount itself. Capped doses get "(DOSE MÁXIMA)". With no weight it prints `__ ML` / `__ GOTAS`.
-- The weight box (`.peso-box`, `#peso`) shows in the **Pediátrica** mode, and in any other mode whose blocks contain a PESO item. Typing updates the `.dose` spans in place (`refreshDoses()`, no re-render, so focus stays) and the receita. The weight persists across conditions/modes and is cleared by **Limpar**.
+- The weight box (`.peso-box`, `#peso`) shows on the **Pediátrico** tab (both sub-options, labelled "Peso da criança"), and on Adulto only when the shown blocks contain a PESO item ("Peso do paciente"). Typing updates the `.dose` spans in place (`refreshDoses()`, no re-render, so focus stays) and the receita. The weight persists across conditions/tabs and is cleared by **Limpar**.
 - Selected items keep their `spec`, and `buildText()` fills `{DOSE}` at build time — changing the weight updates items already in the receita. When any selected item has a spec and a weight is set, the text starts with `PESO: N KG`.
 
 ## Meu rascunho (`MINHA`)

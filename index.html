@@ -171,36 +171,27 @@
   .rasc-doc .rl{font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12.5px;line-height:1.6;
     color:#22343b;white-space:pre-wrap;word-break:break-word}
 
-  /* prescription-mode selector (ambulatorial / internação / pediátrica): três botões grandes, mesma largura.
-     O layout segue a largura da coluna do meio (container query em #col-mid), não a da tela:
-     larga (≥560px) → ícone, nome e contagem lado a lado; média → ícone em cima do nome, contagem no canto;
-     celular (<400px) → idem com fonte 14px; muito estreita (<365px: celular de 375px ou menos, tablet de ~900px)
-     → os três empilhados, cada um com a largura toda. Sem suporte a container query fica o layout médio. */
+  /* tipo de prescrição em dois níveis: abas Adulto | Pediátrico (opção) e, dentro, Ambulatorial | Internação (subopção).
+     Abas = sublinhado grande; subopção = controle segmentado (trilho cinza, opção ativa em branco).
+     Tamanhos seguem a largura da coluna do meio (container query em #col-mid), não a da tela. */
   #col-mid{container:mid / inline-size}
-  .mode-box{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
-  .mode-btn{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-    min-height:70px;padding:10px 4px;border:1.5px solid var(--line);background:#fff;border-radius:12px;
-    font:inherit;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;transition:.12s;line-height:1.2}
-  .mode-btn .mi{font-size:21px;line-height:1}
-  .mode-btn .ml{white-space:nowrap}
-  .mode-btn:hover{background:#f4f7f8;border-color:#cfdbe0}
-  .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 6px rgba(12,116,137,.25)}
-  .mode-btn.empty{opacity:.5}
-  .mode-btn .mc{position:absolute;top:5px;right:5px;background:var(--accent-soft);color:var(--accent-d);border-radius:20px;
-    padding:1px 7px;font-size:11.5px;font-weight:700;line-height:1.4}
-  .mode-btn.active .mc{background:rgba(255,255,255,.22);color:#fff}
-  @container mid (min-width:560px){
-    .mode-btn{flex-direction:row;gap:8px;min-height:54px;padding:10px 12px;font-size:16px}
-    .mode-btn .mi{font-size:20px}
-    .mode-btn .mc{position:static}
-  }
-  @container mid (max-width:399px){ .mode-btn{font-size:14px} }
-  @container mid (max-width:364px){
-    .mode-box{grid-template-columns:1fr;gap:7px}
-    .mode-btn{flex-direction:row;justify-content:flex-start;gap:10px;min-height:52px;padding:10px 16px;font-size:16px}
-    .mode-btn .mi{font-size:20px}
-    .mode-btn .mc{position:static;margin-left:auto}
-  }
+  .pac-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px;border-bottom:1px solid var(--line)}
+  .pac-tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:8px 6px;margin-bottom:-1px;
+    border:0;border-bottom:3px solid transparent;border-radius:10px 10px 0 0;background:none;font:inherit;font-size:17px;font-weight:750;
+    color:var(--muted);cursor:pointer;transition:color .12s,background .12s;white-space:nowrap}
+  .pac-tab:hover{color:var(--ink);background:#f7fafb}
+  .pac-tab.active{color:var(--accent-d);border-bottom-color:var(--accent);background:none}
+  .pac-tab.empty:not(.active){opacity:.55}
+  .set-box{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin-top:12px;padding:4px;background:#eef2f4;border-radius:14px}
+  .set-btn{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:8px 6px;border:0;border-radius:11px;
+    background:none;font:inherit;font-size:15.5px;font-weight:700;color:var(--muted);cursor:pointer;transition:color .12s,background .12s;white-space:nowrap}
+  .set-btn:hover{color:var(--ink);background:rgba(255,255,255,.55)}
+  .set-btn.active{background:#fff;color:var(--accent-d);box-shadow:0 1px 4px rgba(16,40,50,.15)}
+  .set-btn.empty:not(.active){opacity:.55}
+  .pac-tab .n,.set-btn .n{background:var(--accent-soft);color:var(--accent-d);border-radius:20px;padding:1px 7px;font-size:11.5px;font-weight:700;line-height:1.4}
+  @container mid (max-width:559px){ .pac-tab{font-size:16px} .set-btn{font-size:15px} }
+  @container mid (max-width:399px){ .pac-tab{font-size:15px;gap:6px} .set-btn{font-size:14px;gap:5px;padding:8px 3px} }
+  @container mid (max-width:339px){ .pac-tab{font-size:14px;gap:5px} .set-btn .si{display:none} }
   .mode-empty{margin:14px 16px;padding:20px 16px;text-align:center;color:var(--muted);font-size:12.5px;
     background:#fbfdfe;border:1px dashed var(--line);border-radius:12px}
 
@@ -726,7 +717,7 @@ const DATA = [
    },
    {
     "label": "Padrão — dor intensa no PS (fratura, queimadura, pós-procedimento): dipirona EV + morfina EV titulada",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -784,7 +775,7 @@ const DATA = [
    },
    {
     "label": "Sem acesso venoso (a partir de 1 ano): fentanil intranasal",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -1630,7 +1621,7 @@ const DATA = [
    },
    {
     "label": "Padrão — anafilaxia: adrenalina IM imediata + suporte",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -1856,7 +1847,7 @@ const DATA = [
    },
    {
     "label": "Padrão — adrenalina IM pelo peso + oxigênio, volume e broncodilatador",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -1905,7 +1896,7 @@ const DATA = [
    },
    {
     "label": "Padrão — anafilaxia refratária: adrenalina EV contínua",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -1928,7 +1919,7 @@ const DATA = [
    },
    {
     "label": "Anti-histamínico após estabilização (sintomas cutâneos) — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "menu": true,
@@ -1958,7 +1949,7 @@ const DATA = [
    },
    {
     "label": "Corticoide — só broncoespasmo persistente ou anafilaxia refratária — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "menu": true,
@@ -2287,7 +2278,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Crise leve a moderada: salbutamol spray com espaçador + prednisolona",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -2325,7 +2316,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Crise grave: nebulização salbutamol + ipratrópio e hidrocortisona EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -2359,7 +2350,7 @@ const DATA = [
    },
    {
     "label": "Crise grave sem resposta na 1ª hora: sulfato de magnésio EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -2927,7 +2918,7 @@ const DATA = [
    },
    {
     "label": "Padrão — crise intensa ou com vômitos no PS (parenteral)",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -3578,7 +3569,7 @@ const DATA = [
    },
    {
     "label": "Conjuntivite hiperaguda gonocócica (após 28 dias de vida) — ceftriaxona dose única + irrigação",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -4259,7 +4250,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Grupo C (sinais de alarme): expansão e manutenção EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -4327,7 +4318,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Grupo D (choque): expansão rápida",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -4374,7 +4365,7 @@ const DATA = [
    },
    {
     "label": "Grupo D com choque persistente e hematócrito em ascensão (albumina)",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -5079,7 +5070,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Plano C (desidratação grave): reidratação EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -6284,7 +6275,7 @@ const DATA = [
    },
    {
     "label": "Padrão — crise intensa ou refratária no PS: hidratação + dipirona EV + metoclopramida EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -6643,7 +6634,7 @@ const DATA = [
    },
    {
     "label": "Padrão — internação (cefazolina EV)",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -6679,7 +6670,7 @@ const DATA = [
    },
    {
     "label": "Alergia grave a betalactâmicos ou suspeita de MRSA — clindamicina EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -6702,7 +6693,7 @@ const DATA = [
    },
    {
     "label": "Grave — sepse ou suspeita de fasceíte necrosante",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -10529,7 +10520,7 @@ const DATA = [
    },
    {
     "label": "Padrão — ceftriaxona EV 01 vez ao dia (≥ 28 dias de vida)",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -10554,7 +10545,7 @@ const DATA = [
    },
    {
     "label": "Padrão — antitérmico/analgésico — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "menu": true,
     "items": [
@@ -10588,7 +10579,7 @@ const DATA = [
    },
    {
     "label": "Transição para via oral (afebril 24-48h, conforme antibiograma) — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "menu": true,
@@ -10636,7 +10627,7 @@ const DATA = [
    },
    {
     "label": "Neonato (< 28 dias): ampicilina + gentamicina EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -11199,7 +11190,7 @@ const DATA = [
    },
    {
     "label": "Padrão — PAC com internação (enfermaria): ampicilina EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -11240,7 +11231,7 @@ const DATA = [
    },
    {
     "label": "Alternativa EV: penicilina cristalina ou ceftriaxona (vacinação incompleta, falha ou alergia não grave) — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "menu": true,
@@ -11272,7 +11263,7 @@ const DATA = [
    },
    {
     "label": "PAC grave ou complicada (empiema, pneumatocele, necrose, pós-influenza): ceftriaxona + oxacilina",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -11537,7 +11528,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Queimadura > 10% SCQ: ressuscitação volêmica (ABA) + manutenção",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -11567,7 +11558,7 @@ const DATA = [
    },
    {
     "label": "Padrão — Analgesia EV por peso e profilaxia do tétano",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -11648,7 +11639,7 @@ const DATA = [
    },
    {
     "label": "ATB EV somente se infecção da queimadura/celulite — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "menu": true,
@@ -12413,7 +12404,7 @@ const DATA = [
    },
    {
     "label": "Complicação orbitária ou intracraniana (internação): ceftriaxona + metronidazol EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -13458,7 +13449,7 @@ const DATA = [
    },
    {
     "label": "Padrão — TCE leve em observação: analgesia VO",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -13485,7 +13476,7 @@ const DATA = [
    },
    {
     "label": "Padrão — sem aceitação oral ou com vômitos: sintomáticos EV",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -13517,7 +13508,7 @@ const DATA = [
    },
    {
     "label": "Alergia ou contraindicação à dipirona: paracetamol VO",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "items": [
@@ -13781,7 +13772,7 @@ const DATA = [
    },
    {
     "label": "Padrão — em observação/internação: analgesia EV + O2 (dor intensa ou sem via oral)",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
@@ -13841,7 +13832,7 @@ const DATA = [
    },
    {
     "label": "Toracostomia (dreno de tórax): antibiótico profilático na inserção, dose única — escolha 1",
-    "mode": "ped",
+    "mode": "ped_internacao",
     "sec": "offlabel",
     "draft": true,
     "menu": true,
@@ -15227,15 +15218,22 @@ let activeCond = null;
 let selected = [];          // {med, qty, pos, route, spec}
 let orientSet = [];         // strings (mantém ordem, sem duplicar)
 let freeEdit = false;
-let currentMode = "amb";    // tipo de prescrição em foco: "amb" | "internacao" | "ped"
+let currentPac = "adulto";  // aba da condição (opção): "adulto" | "ped"
+let currentSet = "amb";     // subopção dentro da aba: "amb" (ambulatorial) | "internacao"
 let currentView = "padrao"; // aba do topo: "padrao" (prescritor) | "rascunho" (todos os modelos do médico num texto só)
 let curCond = null;         // condição aberta no painel do meio
 let peso = null;            // kg digitado na calculadora de peso (null = vazio)
-const MODES = [
-  {key:"amb",        ic:"🏠", label:"Ambulatorial"},
-  {key:"internacao", ic:"🏥", label:"Internação"},
-  {key:"ped",        ic:"👶", label:"Pediátrica"}
+const PACS = [
+  {key:"adulto", ic:"🧑", label:"Adulto"},
+  {key:"ped",    ic:"👶", label:"Pediátrico"}
 ];
+const SETS = [
+  {key:"amb",        ic:"🏠", label:"Ambulatorial"},
+  {key:"internacao", ic:"🏥", label:"Internação"}
+];
+// "mode" do bloco no DATA = paciente × subopção: "amb" (padrão) | "internacao" | "ped" (pediátrico ambulatorial) | "ped_internacao"
+const MODE_OF = {adulto:{amb:"amb", internacao:"internacao"}, ped:{amb:"ped", internacao:"ped_internacao"}};
+const modeOf = b => b.mode || "amb";
 // seções do painel do meio, nesta ordem: "padrao" abre expandida; as demais ficam recolhidas abaixo.
 // (os modelos do médico não entram aqui: ficam na aba "Meu rascunho" do topo)
 const SECS = [
@@ -15272,8 +15270,8 @@ function renderConds(filter=""){
   DATA.forEach(c=>{
     if(f && !((c.nm+" "+(c.sub||"")+" "+(KW[c.id]||"")).toLowerCase().includes(f))) return;
     n++;
-    // toda condição abre na prescrição ambulatorial
-    condBtn(c.id, c.ic, c.nm, c.sub||"", ()=>{ currentMode = "amb"; renderMid(c); });
+    // toda condição abre em Adulto › Ambulatorial
+    condBtn(c.id, c.ic, c.nm, c.sub||"", ()=>{ currentPac = "adulto"; currentSet = "amb"; renderMid(c); });
   });
   $("#cond-count").textContent = f ? n : DATA.length;
   if(!condList.children.length) condList.innerHTML = `<div class="rx-empty">Nada encontrado.</div>`;
@@ -15403,21 +15401,29 @@ function bindBlocks(){
 function renderMid(c){
   curCond = c;
   midTitle.textContent = c.nm;
-  const counts = {amb:0, internacao:0, ped:0};
-  c.blocks.forEach(b=>{ counts[b.mode||"amb"] = (counts[b.mode||"amb"]||0)+1; });
-  const modeBtns = MODES.map(m=>{
-    const n = counts[m.key]||0;
-    return `<button type="button" role="tab" aria-selected="${m.key===currentMode?'true':'false'}" class="mode-btn${m.key===currentMode?' active':''}${n===0?' empty':''}" data-mode="${m.key}"><span class="mi" aria-hidden="true">${m.ic}</span><span class="ml">${m.label}</span>${n?`<span class="mc">${n}</span>`:''}</button>`;
+  // contagem de blocos por "mode"; a aba mostra o total do paciente e a subopção, o do ambiente
+  const counts = {};
+  c.blocks.forEach(b=>{ counts[modeOf(b)] = (counts[modeOf(b)]||0)+1; });
+  const nOf = (pac, set) => counts[MODE_OF[pac][set]]||0;
+  const pacTabs = PACS.map(p=>{
+    const n = nOf(p.key,"amb") + nOf(p.key,"internacao"), on = p.key===currentPac;
+    return `<button type="button" role="tab" aria-selected="${on}" class="pac-tab${on?' active':''}${n?'':' empty'}" data-pac="${p.key}"><span aria-hidden="true">${p.ic}</span>${p.label}<span class="n">${n}</span></button>`;
   }).join("");
-  const shown = c.blocks.map((b,bi)=>({b,bi})).filter(x=> (x.b.mode||"amb")===currentMode);
-  // calculadora de peso: sempre na pediátrica; nos outros modos só se algum item tiver dose por peso
-  const pesoBox = currentMode==="ped" || shown.some(x=> x.b.items.some(it=> it[4]))
-    ? `<div class="peso-box"><label for="peso"><span aria-hidden="true">⚖️</span> Peso ${currentMode==="ped"?"da criança":"do paciente"}</label>
+  const setBtns = SETS.map(st=>{
+    const n = nOf(currentPac, st.key), on = st.key===currentSet;
+    return `<button type="button" role="tab" aria-selected="${on}" class="set-btn${on?' active':''}${n?'':' empty'}" data-set="${st.key}"><span class="si" aria-hidden="true">${st.ic}</span>${st.label}<span class="n">${n}</span></button>`;
+  }).join("");
+  const mode = MODE_OF[currentPac][currentSet], ped = currentPac==="ped";
+  const shown = c.blocks.map((b,bi)=>({b,bi})).filter(x=> modeOf(x.b)===mode);
+  // calculadora de peso: sempre no Pediátrico; no Adulto só se algum item tiver dose por peso
+  const pesoBox = ped || shown.some(x=> x.b.items.some(it=> it[4]))
+    ? `<div class="peso-box"><label for="peso"><span aria-hidden="true">⚖️</span> Peso ${ped?"da criança":"do paciente"}</label>
         <input id="peso" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${peso>0?num(peso,1):""}"><span class="un">kg</span>
         <span class="peso-hint">${pesoHint()}</span></div>` : "";
-  // ordem: título → seletor de modo → (peso) → seções
+  // ordem: título → abas Adulto | Pediátrico → subopção Ambulatorial | Internação → (peso) → seções
   let h = `<div class="mid-head"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
-    <div class="mode-box" role="tablist" aria-label="Tipo de prescrição">${modeBtns}</div>${pesoBox}</div>`;
+    <div class="pac-tabs" role="tablist" aria-label="Paciente">${pacTabs}</div>
+    <div class="set-box" role="tablist" aria-label="Ambulatorial ou internação">${setBtns}</div>${pesoBox}</div>`;
   // recomendações e instruções: orientações de todos os blocos do modo, sem repetir — primeiro as do padrão,
   // depois as que só aparecem em blocos "offlabel" (outras opções). "rascunho" só se todas as origens forem rascunho;
   // a origem aparece quando a linha vem de um único bloco.
@@ -15429,8 +15435,8 @@ function renderMid(c){
     else recs.push({txt:o, draft:!!b.draft, pad, src:[b]});
   }));
   if(shown.length===0){
-    const m = MODES.find(x=>x.key===currentMode);
-    h += `<div class="mode-empty"><span aria-hidden="true">${m.ic}</span> Sem prescrição de <b>${esc(m.label.toLowerCase())}</b> cadastrada para esta condição ainda.</div>`;
+    const p = PACS.find(x=>x.key===currentPac), st = SETS.find(x=>x.key===currentSet);
+    h += `<div class="mode-empty"><span aria-hidden="true">${st.ic}</span> Sem prescrição <b>${esc(p.label.toLowerCase())} · ${esc(st.label.toLowerCase())}</b> cadastrada para esta condição ainda.</div>`;
   } else SECS.forEach(s=>{
     let n, body;
     if(s.key==="rec"){
@@ -15461,9 +15467,13 @@ function renderMid(c){
   });
   midBody.innerHTML = h;
 
-  // bind: trocar modo de prescrição (ambulatorial / internação / pediátrica)
-  midBody.querySelectorAll(".mode-btn").forEach(btn=>{
-    btn.onclick = ()=>{ if(btn.dataset.mode!==currentMode){ currentMode = btn.dataset.mode; renderMid(c); } };
+  // bind: trocar Adulto | Pediátrico (mantém a subopção) e Ambulatorial | Internação; o foco volta para o botão clicado
+  const pick = (sel, key, val)=>{ renderMid(c); const b = midBody.querySelector(`${sel}[data-${key}="${val}"]`); if(b) b.focus({preventScroll:true}); };
+  midBody.querySelectorAll(".pac-tab").forEach(btn=>{
+    btn.onclick = ()=>{ if(btn.dataset.pac!==currentPac){ currentPac = btn.dataset.pac; pick(".pac-tab", "pac", currentPac); } };
+  });
+  midBody.querySelectorAll(".set-btn").forEach(btn=>{
+    btn.onclick = ()=>{ if(btn.dataset.set!==currentSet){ currentSet = btn.dataset.set; pick(".set-btn", "set", currentSet); } };
   });
   // bind: recolher seções / blocos
   bindBlocks();
