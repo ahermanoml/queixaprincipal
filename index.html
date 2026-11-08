@@ -15728,7 +15728,7 @@ const SETS = [
 // "mode" do bloco no DATA = paciente × subopção: "amb" (padrão) | "internacao" | "ped" (pediátrico ambulatorial) | "ped_internacao"
 const MODE_OF = {adulto:{amb:"amb", internacao:"internacao"}, ped:{amb:"ped", internacao:"ped_internacao"}};
 const modeOf = b => b.mode || "amb";
-// seções do painel do meio, nesta ordem: "padrao" abre expandida; as demais ficam recolhidas abaixo.
+// seções do painel do meio, nesta ordem: "padrao" e "rec" abrem expandidas; "offlabel" (outras opções) fica recolhida.
 // (os modelos do médico não entram aqui: ficam na aba "Meu rascunho" do topo)
 const SECS = [
   {key:"padrao",   cls:"sec-pad",   label:"Padrão",                     none:"Nenhuma prescrição padrão cadastrada para esta condição ainda."},
@@ -16005,7 +16005,7 @@ function renderMid(c){
       body = bl.map(blockHTML).join("");
     }
     if(!n) body = `<div class="sec-empty">${s.none}</div>`;
-    const open = s.key==="padrao";
+    const open = s.key!=="offlabel";
     h += `<div class="sec ${s.cls}${open?'':' collapsed'}${n?'':' none'}">
       <button type="button" class="sec-head" aria-expanded="${open}" aria-controls="sec-${s.key}"><span class="chev" aria-hidden="true">▸</span>${s.label}<span class="sc">${n}</span></button>
       <div class="sec-body" id="sec-${s.key}">${body}${s.key!=="rec"?'<div class="faixa-nota" hidden></div>':''}</div></div>`;
@@ -16030,17 +16030,14 @@ function renderMid(c){
     peso = v>0 && v<=250 ? v : null;
     refreshDoses();
   };
-  // bind: adicionar bloco inteiro (as orientações do bloco vão junto, mesmo exibidas em outra seção)
+  // bind: adicionar bloco inteiro — só as medicações; as orientações são adicionadas à parte,
+  // em "Recomendações e instruções"
   midBody.querySelectorAll(".addall[data-b]").forEach(btn=>{
     btn.onclick = ()=>{
       const b = c.blocks[+btn.dataset.b];
-      let added=0, ao=0;
+      let added=0;
       b.items.forEach(it=>{ if(fits(it[4] && it[4].peso)) added += addItem(it); });   // pula opções de outra faixa de peso
-      if(b.orient) b.orient.forEach(o=> ao += addOrient(o)?1:0 );
-      const parts = [];
-      if(added) parts.push(`${added} ${added>1?"itens":"item"}`);
-      if(ao) parts.push(`${ao} ${ao>1?"orientações":"orientação"}`);
-      toast(parts.length ? `Bloco adicionado (${parts.join(" + ")})` : "Itens já estavam na receita", parts.length>0);
+      toast(added ? `Bloco adicionado (${added} ${added>1?"itens":"item"})` : "Itens já estavam na receita", added>0);
     };
   });
   // bind: adicionar item individual (a linha inteira é o botão)
