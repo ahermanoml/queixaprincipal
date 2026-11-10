@@ -135,11 +135,11 @@ function cxPacHTML(p){
   if(!precisa && !idade) return "";
   let h = `<div class="cx-pac${ped ? " ped" : ""}">`;
   if(precisa){
-    h += `<div class="cx-pac-l"><label for="cx-peso"><span aria-hidden="true">⚖️</span> Peso ${ped ? "da criança" : "do paciente"}</label>
+    h += `<div class="cx-pac-l"><label for="cx-peso"><span aria-hidden="true">⚖️</span> Peso<span class="sr-only"> ${ped ? "da criança" : "do paciente"}</span></label>
       <span class="cx-peso-in"><input id="cx-peso" type="text" inputmode="decimal" autocomplete="off" placeholder="—" value="${peso>0 ? num(peso,1) : ""}" aria-describedby="cx-peso-st"><span class="un">kg</span></span>
       <span class="cx-est" id="cx-peso-st" role="status"></span></div>`;
-    if(!ped) h += `<div class="cx-pesos" role="group" aria-label="Peso estimado em um clique"><span class="lbl">sem balança?</span>${CX_PESOS.map(k=>
-      `<button type="button" class="cx-pchip" data-kg="${k}" aria-pressed="false">${k} kg</button>`).join("")}</div>`;
+    if(!ped) h += `<div class="cx-pesos" role="group" aria-label="Sem balança? Peso estimado em um clique" title="Sem balança? Peso estimado em um clique">${CX_PESOS.map(k=>
+      `<button type="button" class="cx-pchip" data-kg="${k}" aria-pressed="false" aria-label="${k} kg">${k}</button>`).join("")}<span class="lbl" aria-hidden="true">kg</span></div>`;
   }
   if(idade){
     h += `<div class="cx-pac-l cx-idade"><label for="cx-idade">Idade</label>
@@ -198,7 +198,7 @@ function cxCabecalho(p){
   const g = cxGrupo(p.grupo);
   const eyebrow = p.tipo==="inf" ? p.sub : g.nm;   // o grupo já está no título da coluna; na bomba, o subgrupo
   const apres = p.tipo==="inf" ? `<div class="cx-apres">${esc(p.D.apres)}</div>` : "";
-  return `<div class="cx-head"><div class="cx-eyebrow"><span aria-hidden="true">${g.ic}</span> ${esc(eyebrow)}</div>
+  return `<div class="cx-head">${p.tipo==="inf" ? "" : `<div class="cx-eyebrow"><span aria-hidden="true">${g.ic}</span> ${esc(eyebrow)}</div>`}
     <h3 id="cx-h" tabindex="-1">${esc(p.tipo==="iot" ? "Intubação — sequência rápida" : p.nm)} ${cxRascunhoTag()}</h3>${apres}</div>`;
 }
 function cxRodape(){
@@ -287,12 +287,13 @@ function cxRenderInf(c, p){
   const D = p.D, S = cxS, dils = CM.dilOptions(D), wk = CM.byKg(D.un);
   const edit = c.dataset.prepAberto==="1";
   c.innerHTML = `
-  <section class="cx-step" aria-labelledby="cx-s1"><h4 id="cx-s1"><span class="n" aria-hidden="true">1</span> Preparo</h4>
-    <div class="cx-presets" role="group" aria-label="Diluição pronta">${D.pre.map((x, i)=>
-      `<button type="button" class="cx-chip" data-pre="${i}" aria-pressed="${i===S.preset}">${esc(x.n)}</button>`).join("")}</div>
-    <div class="cx-prep"><div class="cx-frase" id="cx-frase"></div>
-      <div class="cx-conc"><span>concentração</span><b id="cx-conc"></b></div></div>
-    <button type="button" class="cx-edita" id="cx-edita" aria-expanded="${edit}" aria-controls="cx-prep-ed"><span aria-hidden="true">✎</span> Mudar ampolas, diluente ou a ampola do hospital</button>
+  <section class="cx-step" aria-labelledby="cx-s1">
+    <div class="cx-sh"><h4 id="cx-s1"><span class="n" aria-hidden="true">1</span> Preparo</h4>
+      <div class="cx-presets" role="group" aria-label="Diluição pronta">${D.pre.map((x, i)=>
+        `<button type="button" class="cx-chip" data-pre="${i}" aria-pressed="${i===S.preset}">${esc(x.n)}</button>`).join("")}</div>
+</div>
+    <div class="cx-prep"><b class="cx-conc" id="cx-conc"></b><span class="cx-frase" id="cx-frase"></span>
+      <button type="button" class="cx-edita" id="cx-edita" aria-expanded="${edit}" aria-controls="cx-prep-ed"><span aria-hidden="true">✎</span> mudar ampolas / diluente</button></div>
     <div class="cx-prep-ed" id="cx-prep-ed"${edit ? "" : " hidden"}>
       <label class="cx-fld"><span>${esc(D.ampLabel || "Ampolas")}</span><input id="cx-a" inputmode="decimal" autocomplete="off" value="${CM.fIn(S.a,2)}"></label>
       <span class="op" aria-hidden="true">+</span>
@@ -303,30 +304,31 @@ function cxRenderInf(c, p){
         em <input id="cx-ml" inputmode="decimal" autocomplete="off" value="${CM.fIn(S.ampMl,2)}" aria-label="Volume por ampola (mL)"> mL</span></div>
     </div>
   </section>
-  <section class="cx-step" aria-labelledby="cx-s2"><h4 id="cx-s2"><span class="n" aria-hidden="true">2</span> Dose <span aria-hidden="true">⇄</span><span class="sr-only">e</span> vazão</h4>
+  <section class="cx-step" aria-labelledby="cx-s2">
+    <div class="cx-sh"><h4 id="cx-s2"><span class="n" aria-hidden="true">2</span> Dose <span aria-hidden="true">⇄</span><span class="sr-only">e</span> vazão</h4>
     ${D.reg ? `<div class="cx-presets" role="group" aria-label="Esquema"><span class="lbl">Esquema</span>${D.reg.map((r, i)=>
-      `<button type="button" class="cx-chip" data-reg="${i}" aria-pressed="${i===S.reg}">${esc(r.n)} · ${CM.fmt(r.dose,3)}${r.capH ? " (máx " + CM.fmt(r.capH,0) + " " + esc(r.capU) + ")" : ""}</button>`).join("")}</div>` : ""}
+      `<button type="button" class="cx-chip" data-reg="${i}" aria-pressed="${i===S.reg}">${esc(r.n)} · ${CM.fmt(r.dose,3)}${r.capH ? " (máx " + CM.fmt(r.capH,0) + " " + esc(r.capU) + ")" : ""}</button>`).join("")}</div>` : ""}</div>
     <div class="cx-dv">
-      <div class="cx-campo"><label for="cx-dose">Quero esta dose</label>
+      <div class="cx-campo"><label for="cx-dose">Quero esta dose <small id="cx-dose-dica">→ calcula a vazão · Enter copia</small></label>
         <div class="iv"><button type="button" class="cx-step-b" id="cx-menos" aria-label="Diminuir para a dose anterior da tabela">−</button>
           <input id="cx-dose" inputmode="decimal" autocomplete="off" value="${CM.fIn(S.dose, S.dose < 0.1 ? 4 : 3)}" aria-describedby="cx-dose-un cx-dose-dica">
-          <button type="button" class="cx-step-b" id="cx-mais" aria-label="Aumentar para a próxima dose da tabela">+</button></div>
-        <span class="un"><b id="cx-dose-un">${esc(D.un)}</b> <small id="cx-dose-dica">→ calcula a vazão · Enter copia</small></span></div>
+          <button type="button" class="cx-step-b" id="cx-mais" aria-label="Aumentar para a próxima dose da tabela">+</button>
+          <span class="un" id="cx-dose-un">${esc(D.un)}</span></div></div>
       <div class="cx-seta" aria-hidden="true">⇄</div>
-      <div class="cx-campo"><label for="cx-vazao">Está correndo a</label>
-        <div class="iv"><input id="cx-vazao" inputmode="decimal" autocomplete="off" aria-describedby="cx-vazao-un cx-vazao-dica"></div>
-        <span class="un"><b id="cx-vazao-un">mL/h</b> <small id="cx-vazao-dica">→ calcula a dose</small></span></div>
+      <div class="cx-campo"><label for="cx-vazao">Está correndo a <small id="cx-vazao-dica">→ calcula a dose</small></label>
+        <div class="iv"><input id="cx-vazao" inputmode="decimal" autocomplete="off" aria-describedby="cx-vazao-un cx-vazao-dica">
+          <span class="un" id="cx-vazao-un">mL/h</span></div></div>
     </div>
     <div class="cx-falta" id="cx-falta" hidden><span>Falta o peso para calcular a vazão.</span><button type="button" class="btn" id="cx-ir-peso">Digitar o peso</button></div>
     <div class="cx-meta" id="cx-meta"></div>
     <div class="cx-escala" id="cx-escala"></div>
     <div class="cx-aviso" id="cx-aviso" role="status" hidden></div>
   </section>
-  <section class="cx-step cx-pronto" aria-labelledby="cx-s3"><h4 id="cx-s3"><span class="n" aria-hidden="true">3</span> Texto pronto</h4>
-    <div class="cx-aviso3" id="cx-aviso3" aria-hidden="true" hidden></div>
+  <section class="cx-step cx-pronto" aria-labelledby="cx-s3">
+    <div class="cx-sh"><h4 id="cx-s3"><span class="n" aria-hidden="true">3</span> Texto pronto</h4>
+      <div class="cx-acts"><button type="button" class="btn primary" id="cx-copiar"><span aria-hidden="true">📋</span> Copiar</button>
+        <button type="button" class="btn" id="cx-receita">＋ Receita</button></div></div>
     <p class="cx-rx" id="cx-rx"></p>
-    <div class="cx-acts"><button type="button" class="btn primary" id="cx-copiar"><span aria-hidden="true">📋</span> Copiar</button>
-      <button type="button" class="btn" id="cx-receita">＋ Receita</button></div>
   </section>
   <details class="cx-step cx-tt" open><summary>Tabela de titulação <small>clique numa linha para usar a dose</small></summary>
     <table><thead><tr><th scope="col">Dose (${esc(D.un)})</th><th scope="col">mL/h</th>${wk ? `<th scope="col">${esc(D.un.replace("/kg", ""))}</th>` : ""}</tr></thead><tbody id="cx-tt"></tbody></table></details>
@@ -413,8 +415,6 @@ function cxAtualizaInf(from){
   const av = $("#cx-aviso");
   const msg = semPeso ? "" : r.msg;
   av.hidden = !msg; av.textContent = msg; av.className = "cx-aviso" + (r.red ? " red" : "");
-  // o mesmo alerta, curto, junto do texto pronto (que fica grudado no pé da coluna e pode cobrir o alerta de cima)
-  const a3 = $("#cx-aviso3"); a3.hidden = !msg; a3.textContent = msg ? "⚠ " + msg : ""; a3.className = "cx-aviso3" + (r.red ? " red" : "");
   // ③ texto pronto
   const rx = $("#cx-rx");
   rx.classList.toggle("vazio", !r.pronto);
@@ -439,10 +439,10 @@ function cxEscala(D, dose, nivel){
   const pc = v=> Math.max(0, Math.min(100, v / top * 100));
   const F = v=> CM.fmt(v, 3);
   const temDose = Number.isFinite(dose) && dose >= 0;
-  el.innerHTML = `<div class="trk" aria-hidden="true"><div class="faixa" style="left:${pc(lo)}%;width:${pc(hi) - pc(lo)}%"></div>
+  el.innerHTML = `<span class="fx-l">faixa usual <b>${F(lo)}–${F(hi)}</b> ${esc(D.un)}</span><div class="trk" aria-hidden="true"><div class="faixa" style="left:${pc(lo)}%;width:${pc(hi) - pc(lo)}%"></div>
     ${mx!=null ? `<div class="acima" style="left:${pc(mx)}%"></div>` : ""}
     ${temDose ? `<div class="mk ${nivel || "ok"}" style="left:${pc(dose)}%"></div>` : ""}</div>
-    <div class="lbls"><span>faixa usual <b>${F(lo)}–${F(hi)}</b> ${esc(D.un)}</span>${mx!=null ? `<span class="mx">máx <b>${F(mx)}</b></span>` : ""}</div>`;
+    ${mx!=null ? `<span class="mx">máx <b>${F(mx)}</b></span>` : ""}`;
 }
 
 /* ---- linhas de dose (situações, intubação) ---- */

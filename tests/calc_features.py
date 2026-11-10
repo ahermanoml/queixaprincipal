@@ -258,6 +258,13 @@ def run(browser, url):
     rep.check(not p.problems, "console: " + "; ".join(p.problems[:5]))
     p.close()
 
+    layout(browser, url, rep)
+    # foco por programa no título: sem moldura
+    p = Page(browser, base + "#/calculadoras/emg-arritmias")   # página sem peso: o foco vai para o título
+    o = p.page.evaluate("() => { const h = document.querySelector('#cx-h'); return [document.activeElement === h, getComputedStyle(h).outlineStyle]; }")
+    rep.check(o == [True, "none"], f"título focado sem moldura: {o}")
+    p.close()
+
     # --- celular: sem rolagem horizontal; abrir pela lista rola até a calculadora
     for w, h in ((390, 844), (320, 640)):
         p = Page(browser, base + "#/calculadoras", w, h)
@@ -275,7 +282,60 @@ def run(browser, url):
     return rep.done()
 
 
-SIZES = [(1440, 900), (1024, 768), (390, 844), (320, 640)]
+SIZES = [(1440, 900), (1366, 768), (1280, 720), (1024, 768), (390, 844), (320, 640)]
+TELAS = [(1366, 768), (1280, 720), (1024, 768), (1440, 900)]   # monitores do hospital
+
+VISIVEL_JS = """(sels) => {
+  const area = document.querySelector('#cx-body').getBoundingClientRect();
+  const pronto = document.querySelector('.cx-pronto');
+  // nada grudado/fixo dentro da coluna da calculadora pode cobrir um campo
+  const fixos = [...document.querySelectorAll('#col-calc *')].filter(e => ['sticky', 'fixed'].includes(getComputedStyle(e).position));
+  const res = {};
+  for (const s of sels){
+    const el = document.querySelector(s);
+    if (!el){ res[s] = 'ausente'; continue; }
+    const r = el.getBoundingClientRect();
+    const dentro = r.width > 0 && r.height > 0 && r.top >= area.top - 0.5 && r.bottom <= area.bottom + 0.5 && r.left >= area.left - 0.5 && r.right <= area.right + 0.5
+                   && r.bottom <= innerHeight && r.right <= innerWidth;
+    const cobre = [...fixos, ...(pronto && !pronto.contains(el) ? [pronto] : [])].filter(f => {
+      const q = f.getBoundingClientRect(); return q.left < r.right && q.right > r.left && q.top < r.bottom && q.bottom > r.top; }).length;
+    const c = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    const topo = !!c && (c === el || el.contains(c));
+    res[s] = dentro && !cobre && topo ? 'ok' : `dentro=${dentro} cobre=${cobre} topo=${topo} (${Math.round(r.top)}–${Math.round(r.bottom)} de ${Math.round(area.top)}–${Math.round(area.bottom)})`;
+  }
+  res.fixos = fixos.length;
+  return res;
+}"""
+
+
+def layout(browser, url, rep):
+    """② (campos, unidades, régua) e ③ (texto + botões) visíveis sem rolar, sem nada por cima, nos monitores do hospital."""
+    base = url.split("#")[0]
+    campos = ["#cx-dose", "#cx-vazao", "#cx-dose-un", "#cx-vazao-un", "#cx-escala .trk"]
+    for w, h in TELAS:
+        p = Page(browser, base + "#/calculadoras", w, h)
+        pg = p.page
+        ok = tot = 0
+        for d in ("nora", "insu", "hnf", "vaso", "dobu", "propo"):
+            for kg in (None, "70"):
+                pg.evaluate(f"() => {{ navigate('calculadoras', {d!r}, 'click'); }}")
+                if pg.locator("#cx-peso").count():
+                    pg.fill("#cx-peso", kg or "")
+                pg.evaluate("() => { document.querySelector('#cx-body').scrollTop = 0; }")
+                sels = campos + (["#cx-rx", "#cx-copiar", "#cx-receita"] if kg or d == "vaso" else [])
+                r = pg.evaluate(VISIVEL_JS, sels)
+                bad = {k: v for k, v in r.items() if k != "fixos" and v != "ok"}
+                tot += 1
+                ok += not bad and r["fixos"] == 0
+                rep.check(not bad and r["fixos"] == 0, f"{w}x{h} {d} peso={kg}: {bad} fixos={r['fixos']}")
+                # a unidade fica ao lado do número (mesma linha do campo)
+                lado = pg.evaluate("""() => [['#cx-dose', '#cx-dose-un'], ['#cx-vazao', '#cx-vazao-un']].every(([a, b]) => {
+                    const x = document.querySelector(a).getBoundingClientRect(), y = document.querySelector(b).getBoundingClientRect();
+                    return y.left >= x.right - 1 && y.top < x.bottom && y.bottom > x.top; })""")
+                rep.check(lado, f"{w}x{h} {d}: unidade não está ao lado do número")
+        rep.note(f"layout {w}x{h}: {ok}/{tot} telas com ② e ③ visíveis e nada por cima")
+        rep.check(not p.problems, f"layout {w}x{h} console: " + "; ".join(p.problems[:3]))
+        p.close()
 
 
 def shots(browser, url, out_dir):
