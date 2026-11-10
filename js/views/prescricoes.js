@@ -255,3 +255,9 @@ function renderMid(c){
 }
 
 $("#cond-search").oninput = e=> renderConds(e.target.value);
+
+/* ---- registro da aba ---- */
+registerView({
+  key: "prescricoes", label: "Prescrições", icon: "💊",
+  cols: ["col-cond", "col-mid"], layout: "lista"
+});

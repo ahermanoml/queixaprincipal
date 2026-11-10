@@ -42,3 +42,9 @@ $("#rasc-copy").onclick = async ()=>{
   toast(ok ? "Rascunho inteiro copiado!" : "Não foi possível copiar", ok);
 };
 
+
+/* ---- registro da aba ---- */
+registerView({
+  key: "rascunho", label: "Meu rascunho", icon: "⭐",
+  cols: ["col-rascunho"], layout: "texto"
+});

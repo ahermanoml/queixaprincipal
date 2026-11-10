@@ -6,7 +6,7 @@
 <title>Prescritor — Queixa Principal</title>
 <link rel="stylesheet" href="css/app.css?v=20261110a">
 </head>
-<body data-view="padrao">
+<body data-view="prescricoes" data-layout="lista">
 <header class="top">
   <div class="top-row">
     <div class="logo" aria-hidden="true">℞</div>
@@ -17,10 +17,8 @@
     <div class="spacer"></div>
     <div class="hint">Modelos de receita prontos para usar. Revise sempre as doses antes de prescrever.</div>
   </div>
-  <nav class="top-tabs" role="tablist" aria-label="Seção do prescritor">
-    <button type="button" role="tab" class="top-tab active" id="tab-padrao" data-view="padrao" aria-selected="true" aria-controls="col-cond col-mid"><span aria-hidden="true">💊</span> Padrão</button>
-    <button type="button" role="tab" class="top-tab" id="tab-rascunho" data-view="rascunho" aria-selected="false" aria-controls="col-rascunho"><span aria-hidden="true">⭐</span> Meu rascunho</button>
-  </nav>
+  <!-- abas do topo: geradas a partir do registro VIEWS (js/core.js + cada js/views/*.js) -->
+  <nav class="top-tabs" id="top-tabs" role="tablist" aria-label="Seção do prescritor"></nav>
 </header>
 
 <div class="grid">
@@ -43,7 +41,7 @@
   </section>
 
   <!-- aba "Meu rascunho": todos os modelos do médico num texto só (no lugar das colunas 1 e 2) -->
-  <section class="col" id="col-rascunho" role="tabpanel" aria-labelledby="tab-rascunho">
+  <section class="col" id="col-rascunho" hidden>
     <h2>Meu rascunho</h2>
     <div class="rasc-tools">
       <button type="button" class="btn primary" id="rasc-copy"><span aria-hidden="true">📋</span> Copiar tudo</button>

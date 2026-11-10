@@ -21,3 +21,23 @@ async function copyText(txt){
     return ok;
   }
 }
+
+/* ---- registro das abas do topo (views) ----
+   Cada js/views/<aba>.js chama registerView({...}) uma vez; a ordem de registro (ordem dos <script>) é a ordem
+   das abas. O registro alimenta as abas do topo (app.js), os endereços #/<aba>/<item> (router.js) e a busca
+   única (busca.js). Campos:
+     key      id da aba: vai no endereço (#/key) e em body[data-view]
+     label    texto da aba; icon: emoji antes do texto
+     cols     ids das colunas de .grid que a aba mostra (a receita, #col-rx, aparece sempre)
+     layout   "lista" (coluna estreita + coluna larga + receita) | "texto" (coluna larga + receita)
+     itemId() opcional: id do item aberto agora (vai no endereço #/key/<id>), ou null
+     open(id, how) opcional: abre o item id; devolve false se ele não existe.
+              how = "route" (endereço / voltar-avançar) | "load" (endereço ao abrir a página) | "search" (busca)
+     close()  opcional: volta a aba ao estado "nenhum item aberto"
+     search() opcional: itens da busca única, [{id, title, sub, text, ic?}] — lido uma vez, na primeira busca */
+const VIEWS = [];
+function registerView(v){
+  if(VIEWS.some(x=> x.key===v.key)) throw new Error("aba repetida: " + v.key);
+  VIEWS.push(v);
+}
+const viewOf = key => VIEWS.find(v=> v.key===key) || null;
