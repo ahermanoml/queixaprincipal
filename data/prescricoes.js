@@ -62,8 +62,8 @@ const DATA = [
     "items": [
      [
       "PARACETAMOL 500 MG + CODEÍNA 30 MG",
-      "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H"
+      "12 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS. NÃO TOMAR JUNTO COM O PARACETAMOL (USAR NO LUGAR DELE)"
      ]
     ]
    },
@@ -6558,12 +6558,12 @@ const DATA = [
      [
       "SUMATRIPTANO 50 MG",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA, JUNTO COM O NAPROXENO. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 02 HORAS. MÁXIMO DE 04 COMPRIMIDOS EM 24 HORAS"
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 02 HORAS. MÁXIMO DE 04 COMPRIMIDOS EM 24 HORAS"
      ],
      [
-      "NARATRIPANO 2,5 MG",
+      "NARATRIPTANO 2,5 MG",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE REPETIR 01 COMPRIMIDO APÓS 6H HORAS."
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 04 HORAS. MÁXIMO DE 02 COMPRIMIDOS EM 24 HORAS"
      ]
     ],
     "orient": [
@@ -6679,9 +6679,9 @@ const DATA = [
     "sec": "offlabel",
     "items": [
      [
-      "NARATRIPANO 2,5 MG",
+      "NARATRIPTANO 2,5 MG",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE REPETIR 01 COMPRIMIDO APÓS 6H HORAS."
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 04 HORAS. MÁXIMO DE 02 COMPRIMIDOS EM 24 HORAS"
      ],
      [
       "DIPIRONA 500 MG",
@@ -9418,13 +9418,13 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Analgésico urinário (opcional, até 02 dias)",
+    "label": "Padrão — Analgésico urinário (opcional, até 02 dias; colher a urina antes; evitar se doença renal ou hepática grave ou deficiência de G6PD)",
     "draft": true,
     "items": [
      [
       "FENAZOPIRIDINA 200 MG",
       "06 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR ATÉ 02 DIAS. A URINA FICA ALARANJADA (EFEITO ESPERADO)"
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR ATÉ 02 DIAS. A URINA FICA ALARANJADA (EFEITO ESPERADO) E PODE MANCHAR ROUPAS E LENTES DE CONTATO"
      ]
     ]
    },
@@ -10480,7 +10480,7 @@ const DATA = [
      [
       "SULFATO DE NEOMICINA + SULFATO DE POLIMIXINA B + HIDROCORTISONA 11% SOLUÇÃO TÓPICA",
       "01 FRASCO",
-      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS (NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO) HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
       "USO TÓPICO AUDITIVO"
      ]
     ],
@@ -10577,7 +10577,7 @@ const DATA = [
      [
       "SULFATO DE NEOMICINA + SULFATO DE POLIMIXINA B + HIDROCORTISONA 11% SOLUÇÃO TÓPICA",
       "01 FRASCO",
-      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS (NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO) HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
       "USO TÓPICO AUDITIVO"
      ],
      [
@@ -10599,7 +10599,7 @@ const DATA = [
      [
       "OTOSPORIN",
       "01 FRASCO",
-      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS (NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO) HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
       "USO TÓPICO AUDITIVO"
      ],
      [
@@ -16728,7 +16728,7 @@ const KW = {
  "dismenorreia": "dismenorreia butilbrometo · piroxicam · meloxicam colica menstrual menstruacao tpm butilbrometo escopolamina meloxicam metoclopramida piroxicam ibuprofeno paracetamol naproxeno",
  "dpoc": "dpoc descompensada amoxicilina pulmao respiratoria bronquite aerossol amoxicilina azitromicina dipirona omeprazol prednisona salbutamol spray exacerbacao hidrocortisona fenoterol ipratropio brometo nebulizacao oxigenio clavulanato ceftriaxona ventilacao vni gasometria endovenoso internacao broncodilatador corticoide pseudomonas escarro doxiciclina amoxicilina-clavulanato oxigênio suplementar bromidrato inalação ipratrópio enoxaparina sódica potássio cefepima piperacilina tazobactam levofloxacino metilprednisolona doenca pulmonar obstrutiva cronica enfisema bronquite cronica",
  "eczema": "eczema de contato betametasona · clobetazol betametasona clobetazol creme loratadina hidrocortisona dexclorfeniramina cefazolina prednisolona dipirona valerato acetato prednisona hidroxizina clindamicina dermatite de contato",
- "enxaqueca": "enxaqueca naproxeno · naratripano · sumatriptano migranea migrânea aura triptano cefalium cefaliv codeína dipirona metoclopramida naproxeno naratripano paracetamol sumatriptano sódico cetoprofeno dexametasona cloreto clatonal status cocktail sumax imigran liófilo sódio clorpromazina sulfato magnésio ibuprofeno rizatriptano",
+ "enxaqueca": "enxaqueca naproxeno · naratripano · sumatriptano migranea migrânea aura triptano cefalium cefaliv codeína dipirona metoclopramida naproxeno naratripano paracetamol sumatriptano sódico cetoprofeno dexametasona cloreto clatonal status cocktail sumax imigran liófilo sódio clorpromazina sulfato magnésio ibuprofeno rizatriptano naratriptano naramig",
  "epididimite": "epididimite / orquite ciprofloxacino ciprofloxacino ceftriaxona doxiciclina ibuprofeno dipirona levofloxacino orquiepididimite",
  "erisipela": "erisipela e celulite cefalexina · clindamicina cefalexina clindamicina ssti infeccao de pele cefazolina vancomicina ceftriaxona dipirona mrsa forma purulenta abscesso estreptococo internacao pediatrico enoxaparina sódica benzilpenicilina potássica piperacilina tazobactam",
  "escabiose": "escabiose ivermectina sarna hidroxizina ivermectina permetrina dexclorfeniramina prurido coceira lesoes escabicida loção enxofre precipitado vaselina sólida",
