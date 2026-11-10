@@ -81,4 +81,4 @@ renderConds();
 renderEscList();
 renderRascunho();
 syncRx();
-onRoute("load");   // abre a aba / condição do endereço (#/prescricoes/itu); sem hash = Prescrições sem condição
+onRoute("load");   // abre a aba / condição do endereço (#/prescricoes/itu); sem hash = Meu rascunho (a primeira aba)

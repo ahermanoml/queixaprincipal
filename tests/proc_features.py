@@ -119,7 +119,7 @@ def run(browser, url):
 
     # abas e endereços
     tabs = pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view)")
-    rep.check(tabs.index("calculadoras") < tabs.index("procedimentos") < tabs.index("rascunho"), f"ordem das abas: {tabs}")
+    rep.check(tabs.index("rascunho") < tabs.index("calculadoras") < tabs.index("procedimentos"), f"ordem das abas: {tabs}")
     ids = pg.evaluate("() => PROCS.map(p => p.id)")
     for pid in ids:
         ir(pg, base, "#/procedimentos/" + pid)
@@ -129,7 +129,7 @@ def run(browser, url):
     for bad in ["#/procedimentos/naoexiste", "#/procedimentos/IOT", "#/procedimentos/iot/x"]:
         ir(pg, base, bad)
         s = st()
-        rep.check(s["aberto"] is None and s["hash"] in ("#/procedimentos", "#/prescricoes"), f"inválido {bad}: {s}")
+        rep.check(s["aberto"] is None and s["hash"] in ("#/procedimentos", "#/rascunho"), f"inválido {bad}: {s}")
     # clique na lista + voltar
     ir(pg, base, "#/procedimentos")
     pg.click('#pr-lista .pr-item[data-id="dreno"]'); pg.wait_for_function("location.hash === '#/procedimentos/dreno'")
