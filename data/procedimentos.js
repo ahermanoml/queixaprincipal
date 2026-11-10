@@ -44,11 +44,18 @@ const PROCS = [
   "kw": "iot sri isr intubacao orotraqueal sequencia rapida tubo laringoscopia videolaringoscopio bougie via aerea definitiva",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Pré-oxigenação/apneia: adotada a ventilação suave com BVM + PEEP durante a latência (DAS 2018, PREVENT 2019) no lugar da sequência clássica sem ventilar — decidir se fica como padrão do serviço.",
+   "Profundidade do tubo (~21 cm mulher / ~23 cm homem na rima): valor de memória, não conferido na fonte nesta revisão.",
+   "Máximo de 3 tentativas: DAS permite uma 4ª por operador mais experiente — manter 3?",
+   "Lista de contraindicações à succinilcolina ampliada pelo revisor: conferir."
+  ],
   "fontes": [
    "Difficult Airway Society — Guidelines for tracheal intubation in critically ill adults (Higgs et al., BJA 2018)",
    "Difficult Airway Society — Unanticipated difficult intubation in adults (Frerk et al., BJA 2015)",
    "AHA — Diretrizes de RCP e ACE 2020/2025 (capnografia em forma de onda)",
    "Walls & Murphy — Manual of Emergency Airway Management, 5ª ed.",
+   "Casey JD et al. — Bag-mask ventilation during tracheal intubation of critically ill adults (PREVENT, NEJM 2019)",
    "Medicina de Emergência — Abordagem Prática (HC-FMUSP)"
   ],
   "calc": [
@@ -68,7 +75,7 @@ const PROCS = [
    "relativas": [
     "Via aérea difícil prevista: planejar (acordado, videolaringoscópio, plano B pronto)",
     "Choque não corrigido: ressuscitar antes (risco de PCR peri-intubação)",
-    "Contraindicação à succinilcolina (hipercalemia, queimado/esmagamento > 24–72 h): usar rocurônio"
+    "Contraindicação à succinilcolina (hipercalemia, hipertermia maligna pessoal/familiar, doença neuromuscular ou desnervação, imobilização prolongada, queimado/esmagamento > 24–72 h): usar rocurônio"
    ]
   },
   "material": [
@@ -88,16 +95,16 @@ const PROCS = [
   ],
   "preparo": [
    "Checklist em voz alta; anunciar plano A → B → C",
-   "Posição: rampa / olfativa — meato acústico na altura do esterno; cabeceira 20–30°",
-   "Pré-oxigenar 3 min com O₂ a 100% (ou 8 inspirações profundas); VNI se a SpO₂ não sobe",
-   "Cateter nasal 15 L/min mantido durante a apneia",
+   "Posição: rampa / olfativa — meato acústico externo na altura da fúrcula esternal; cabeceira 20–30°",
+   "Pré-oxigenar 3 min com máscara bem acoplada (BVM com PEEP ou VNI); máscara com reservatório só com fluxo máximo (flush); ou 8 inspirações de capacidade vital",
+   "Cateter nasal 5 L/min acordado → 15 L/min após a indução",
    "Hemodinâmica antes do tubo: volume e vasopressor prontos",
    "Doses pelo peso: ver Calculadoras › Intubação"
   ],
   "tecnica": [
    "Monitor, capnógrafo e pré-oxigenação em curso",
    "Indutor em bolus, seguido logo do bloqueador neuromuscular",
-   {"t": "Aguardar 45–60 s sem ventilar com bolsa", "dica": "Se dessaturar, ventilar com bolsa a baixa pressão, duas mãos, com PEEP."},
+   {"t": "Aguardar 45–60 s (bloqueio completo) mantendo ventilação suave com bolsa-válvula-máscara, duas mãos, PEEP 5–10", "dica": "Pressão baixa (< 20 cmH₂O) reduz insuflação gástrica.", "cuidado": "Alto risco de aspiração (vômito ativo, hematêmese, obstrução intestinal): sequência clássica, sem ventilar."},
    {"t": "Laringoscopia: entrar pela direita, deslocar a língua, ponta na valécula", "cuidado": "Tracionar no eixo do cabo; não alavancar nos dentes."},
    "Sem visão das cordas: manipulação laríngea externa e bougie",
    "Passar o tubo até o cuff ficar 1–2 cm além das cordas",
@@ -162,6 +169,11 @@ const PROCS = [
   "kw": "crico cricotireoidostomia cricotomia via aerea cirurgica nino cico nao intubo nao oxigeno bisturi bougie puncao cricotireoidea",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Idade de corte para não fazer a cirúrgica: ATLS < 12 anos; algumas diretrizes pediátricas usam ~8–10.",
+   "Tubo 6,0 (ou 5,0): confirmar o que existe no kit do serviço.",
+   "Técnica por punção na criança: sistema de O₂ e tempo máximo de ponte conforme o material disponível."
+  ],
   "fontes": [
    "Difficult Airway Society — Unanticipated difficult intubation in adults (Frerk et al., BJA 2015): técnica bisturi–bougie–tubo",
    "ATLS — Advanced Trauma Life Support, 10ª ed. (ACS, 2018)",
@@ -177,7 +189,7 @@ const PROCS = [
   ],
   "contra": {
    "absolutas": [
-    "Criança menor de ~12 anos: fazer a técnica por punção, não a cirúrgica"
+    "Criança < 12 anos (ATLS; algumas diretrizes pediátricas usam ~8–10): técnica por punção, não a cirúrgica"
    ],
    "relativas": [
     "Fratura de laringe, massa ou hematoma cervical, coagulopatia — em situação de não oxigenar, nenhuma impede"
@@ -186,7 +198,7 @@ const PROCS = [
   "material": [
    "Bisturi com lâmina 10 (larga)",
    "Bougie",
-   "Tubo com cuff nº 6,0 (lubrificado)",
+   "Tubo com cuff 6,0 (ou 5,0), lubrificado",
    "Seringa de 10 mL",
    "Clorexidina",
    "Bolsa-válvula e capnógrafo",
@@ -201,15 +213,16 @@ const PROCS = [
    "Membrana não palpável: planejar incisão vertical na linha média"
   ],
   "tecnica": [
+   {"t": "Se membrana não palpável: incisão vertical de 8–10 cm na linha média, dissecção romba com os dedos até a membrana; depois seguir os passos abaixo"},
    "Mão não dominante estabiliza a laringe",
    "Incisão transversa única, pela pele e pela membrana, com a lâmina 10",
    {"t": "Girar o bisturi 90°, lâmina para os pés, e tracionar lateralmente", "dica": "O bisturi vira a guia: o bougie desliza ao lado dele."},
    "Passar o bougie pela abertura até a traqueia",
    "Retirar o bisturi",
-   {"t": "Passar o tubo 6,0 sobre o bougie, girando", "cuidado": "Parar quando o cuff passar a membrana: avançar demais causa seletiva."},
+   {"t": "Passar o tubo 6,0 (ou 5,0) sobre o bougie, girando", "cuidado": "Parar quando o cuff passar a membrana: avançar demais causa seletiva."},
    "Retirar o bougie, insuflar o cuff, ventilar",
    "Confirmar com capnografia em onda e fixar",
-   {"t": "Membrana não palpável: incisão vertical de 8–10 cm, dissecção romba com os dedos, depois o mesmo passo a passo", "dica": "Criança: punção com cateter 14G a 45° caudal, aspirando ar; O₂ intermitente pela saída lateral é ponte de curta duração."}
+   {"t": "Criança (< 12 anos): punção da membrana com cateter 14G a 45° em direção caudal, aspirando ar; O₂ intermitente pela saída lateral", "cuidado": "A punção é ponte de curta duração até a via aérea definitiva."}
   ],
   "depois": [
    "Capnografia contínua e RX de tórax",
@@ -263,6 +276,10 @@ const PROCS = [
   "kw": "descompressao toracica agulha toracocentese de alivio puncao de alivio toracostomia digital finger thoracostomy pneumotorax hipertensivo trauma",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Local adulto (4º–5º EIC anterior à LAM) e cateter de 8 cm: ATLS 10 conferido só por fontes secundárias; ATLS 11 (2025) não consultado.",
+   "Cateter de 8 cm raramente disponível: orientar toracostomia digital quando só houver o de ~5 cm — confirmar como conduta do serviço."
+  ],
   "fontes": [
    "ATLS — Advanced Trauma Life Support, 10ª ed. (ACS, 2018): local adulto 4º–5º EIC anterior à linha axilar média; 2º EIC na criança",
    "Laan DV et al. — Chest wall thickness and decompression failure (Injury, 2016)",
@@ -282,7 +299,7 @@ const PROCS = [
    ]
   },
   "material": [
-   "Cateter sobre agulha 14G de 8 cm (adulto)",
+   "Cateter sobre agulha 14G de 8 cm (adulto); se só houver o de ~5 cm (jelco comum), preferir a toracostomia digital no paciente de parede espessa",
    "Clorexidina e luvas",
    "Para digital: bisturi lâmina 10 e pinça Kelly curva",
    "Material de dreno de tórax para a sequência"
@@ -349,7 +366,13 @@ const PROCS = [
   "kw": "toracocentese puncao pleural derrame pleural liquido pleural alivio diagnostica light",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Local: BTS 2023 prefere o triângulo de segurança (linha axilar média) e evita a via posterior; a via posterior sentado é comum no Brasil — escolher qual fica como padrão.",
+   "Intervalos de suspensão de anticoagulantes (BTS 2023) transcritos pelo revisor: conferir.",
+   "Limite de 1,5 L por punção: consenso, não evidência forte."
+  ],
   "fontes": [
+   "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
    "British Thoracic Society — Guideline for pleural disease (Roberts et al., Thorax 2023)",
    "Roberts & Hedges — Clinical Procedures in Emergency Medicine, 7ª ed.",
    "SBPT — Diretrizes brasileiras para derrame pleural"
@@ -364,7 +387,7 @@ const PROCS = [
     "Infecção de pele no local (escolher outro ponto)"
    ],
    "relativas": [
-    "Coagulopatia ou anticoagulação: pesar risco (sem corte rígido nas diretrizes)",
+    "Anticoagulação (eletiva): varfarina suspensa 5 dias com INR ≤ 1,5; DOAC 24–48 h; clopidogrel/prasugrel 5 dias, ticagrelor 7 dias. Urgência: pesar risco",
     "Derrame pequeno ao US (lâmina fina)",
     "Ventilação mecânica: mais pneumotórax, não impede",
     "Paciente que não colabora"
@@ -383,7 +406,8 @@ const PROCS = [
   "preparo": [
    "Sentado, inclinado à frente, braços apoiados (ou decúbito lateral)",
    "US para marcar: maior coluna de líquido, longe de diafragma, fígado e baço",
-   "Ponto usual: linha escapular ou axilar posterior, 1–2 espaços abaixo do topo do derrame",
+   "Ponto preferido (BTS 2023): triângulo de segurança, linha axilar média, marcado por US",
+   "Alternativa comum: sentado, linha escapular/axilar posterior, 1–2 espaços abaixo do topo do derrame — perto da coluna a artéria intercostal é tortuosa e fica exposta no espaço: puncionar bem lateral à coluna",
    "Não descer abaixo do 8º–9º espaço intercostal",
    "Antissepsia, campo, anestesia em planos até a pleura"
   ],
@@ -415,7 +439,7 @@ const PROCS = [
     "lado",
     "consentimento",
     {"id": "guia", "rotulo": "Ultrassom", "tipo": "opcoes", "opcoes": ["GUIADA POR ULTRASSOM", "COM MARCAÇÃO PRÉVIA POR ULTRASSOM", "SEM ULTRASSOM"]},
-    {"id": "local", "rotulo": "Local", "tipo": "texto", "dica": "ex.: 8º EIC, linha escapular"},
+    {"id": "local", "rotulo": "Local", "tipo": "texto", "dica": "ex.: 6º EIC, linha axilar média / 8º EIC, linha escapular"},
     "antissepsia",
     "anestesia",
     {"id": "dispositivo", "rotulo": "Agulha / cateter", "tipo": "texto", "dica": "ex.: cateter 18G"},
@@ -445,7 +469,13 @@ const PROCS = [
   "kw": "dreno de torax drenagem toracica toracostomia fechada selo dagua hemotorax pneumotorax empiema derrame triangulo de seguranca",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Calibre no hemotórax: 28–32 Fr (ATLS/trauma) vs 14 Fr Seldinger no estável (ensaios de não inferioridade) — decidir.",
+   "Antibiótico profilático no trauma (algumas diretrizes usam amoxicilina-clavulanato) não foi incluído — decidir.",
+   "Critérios para cirurgia (≥ 1.500 mL inicial ou > 200 mL/h por 2–4 h): ATLS 10; conferir se mudou no ATLS 11."
+  ],
   "fontes": [
+   "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
    "British Thoracic Society — Guideline for pleural disease (Roberts et al., Thorax 2023)",
    "ATLS — Advanced Trauma Life Support, 10ª ed. (ACS, 2018): dreno 28–32 Fr no trauma, limites de débito para toracotomia",
    "Roberts & Hedges — Clinical Procedures in Emergency Medicine, 7ª ed.",
@@ -486,7 +516,7 @@ const PROCS = [
   "preparo": [
    "Decúbito dorsal, cabeceira 30–45°, braço do lado atrás da cabeça",
    "Triângulo de segurança: borda lateral do peitoral maior, borda anterior do grande dorsal, linha do 5º EIC (mamilo); ápice abaixo da axila",
-   "Calibre: trauma (sangue) 28–32 Fr; pneumotórax e derrame/empiema 12–14 Fr",
+   "Calibre: hemotórax com instabilidade, ou pneumotórax em VM, 28–32 Fr; hemotórax estável: 14 Fr (Seldinger) é alternativa; pneumotórax estável e derrame/empiema 12–14 Fr",
    "US antes em derrame",
    "Anestesia generosa: pele, trajeto, periósteo e pleura"
   ],
@@ -503,7 +533,7 @@ const PROCS = [
   "depois": [
    "RX de tórax: posição do dreno e reexpansão",
    "Selo abaixo do nível do tórax; não clampear dreno que borbulha",
-   "Derrame volumoso: drenar no máximo 1,5 L na 1ª hora",
+   "Derrame volumoso (não traumático): drenar no máximo 1,5 L na 1ª hora; clampear se tosse ou dor torácica. Hemotórax traumático: não clampear",
    "Hemotórax: ≥ 1.500 mL na drenagem inicial ou > 200 mL/h por 2–4 h → cirurgia",
    "Analgesia regular"
   ],
@@ -525,7 +555,8 @@ const PROCS = [
     "anestesia",
     {"id": "local", "rotulo": "Local", "tipo": "opcoes", "opcoes": [
      "5º EIC NA LINHA AXILAR MÉDIA (TRIÂNGULO DE SEGURANÇA)",
-     "4º EIC NA LINHA AXILAR ANTERIOR"
+     "4º EIC NA LINHA AXILAR ANTERIOR",
+     "2º EIC NA LINHA HEMICLAVICULAR"
     ]},
     {"id": "tecnica", "rotulo": "Técnica", "tipo": "opcoes", "opcoes": ["DISSECÇÃO ROMBA", "SELDINGER"]},
     {"id": "calibre", "rotulo": "Calibre", "tipo": "num", "un": "Fr", "dica": "ex.: 28"},
@@ -542,7 +573,7 @@ const PROCS = [
     "INDICAÇÃO: {indicacao}. {consentimento}.",
     "ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}.",
     "INCISÃO NO {local}; {tecnica} PELA BORDA SUPERIOR DA COSTELA.",
-    "DRENO TUBULAR {calibre} FR, FIXADO EM {fixacao} CM NA PELE, CONECTADO A SELO D'ÁGUA.",
+    "DRENO {calibre} FR, FIXADO EM {fixacao} CM NA PELE, CONECTADO A SELO D'ÁGUA.",
     "SAÍDA DE {saida}, DÉBITO INICIAL {volume} ML. SELO {selo}.",
     "{controle}.",
     "{intercorrencias}.",
@@ -558,10 +589,16 @@ const PROCS = [
   "kw": "cvc cateter venoso central acesso central puncao central jugular subclavia femoral ultrassom seldinger duplo lumen triplo lumen",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Profundidades por sítio são aproximações (variam com altura e lado): conferir.",
+   "Confirmação de posição por RX vs US: depende do serviço.",
+   "Conduta se o fio-guia não sair inteiro (não usar o cateter; RX; vascular/hemodinâmica) foi escrita por mim — conferir."
+  ],
   "fontes": [
    "ASA — Practice Guidelines for Central Venous Access (Anesthesiology, 2020)",
    "CDC — Guidelines for the Prevention of Intravascular Catheter-Related Infections (2011, atualizado 2017)",
    "Brass P et al. — Ultrasound guidance for central venous catheterisation (Cochrane, 2015)",
+   "MSD Manual Professional — How to do infraclavicular subclavian vein cannulation (landmark-guided)",
    "Roberts & Hedges — Clinical Procedures in Emergency Medicine, 7ª ed."
   ],
   "calc": [
@@ -597,10 +634,10 @@ const PROCS = [
   "preparo": [
    "Barreira máxima (gorro, máscara, avental, luvas, campo amplo) e checklist",
    "Jugular interna: Trendelenburg 10–15°, cabeça pouco rodada; veia lateral à carótida, compressível ao US",
-   "Subclávia: Trendelenburg; abaixo da clavícula, na junção do terço médio com o lateral, rumo à fúrcula",
+   "Subclávia: Trendelenburg; 1–2 cm abaixo da clavícula, na junção do terço medial com o médio, agulha rente à clavícula rumo à fúrcula",
    "Femoral: veia medial à artéria, 1–2 cm abaixo do ligamento inguinal",
    "US em tempo real é o padrão (forte na jugular)",
-   "Profundidade aproximada: JID 13–15 cm · JIE 16–18 · SCD 15–17 · SCE 17–20 · femoral: cateter inteiro"
+   "Profundidade aproximada (adulto médio): JID 13–15 cm · SCD 13–15 · JIE 16–18 · SCE 16–18 · femoral: cateter inteiro — confirmar ponta por RX/US"
   ],
   "tecnica": [
    "Preencher as vias com soro; preparar o fio-guia",
@@ -609,7 +646,7 @@ const PROCS = [
    {"t": "Ocluir a agulha e passar o fio-guia", "cuidado": "Nunca soltar o fio. Arritmia ao passar: recuar o fio."},
    {"t": "Confirmar o fio dentro da veia no US antes de dilatar", "cuidado": "Sangue claro ou pulsátil: parar. Dilatar artéria é a complicação grave."},
    "Pequena incisão na pele; dilatar só até a profundidade da veia",
-   "Passar o cateter sobre o fio até a marca planejada; retirar o fio",
+   {"t": "Passar o cateter sobre o fio até a marca planejada; retirar o fio e CONFERIR que saiu inteiro", "cuidado": "Fio que não saiu inteiro = corpo estranho intravascular: não usar o cateter; RX e cirurgia vascular/hemodinâmica."},
    "Aspirar e lavar todas as vias",
    "Fixar e fazer curativo transparente"
   ],
@@ -636,10 +673,14 @@ const PROCS = [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "texto", "dica": "ex.: droga vasoativa"},
     "consentimento",
     {"id": "guia", "rotulo": "Ultrassom", "tipo": "opcoes", "opcoes": ["GUIADA POR ULTRASSOM EM TEMPO REAL", "COM MARCAÇÃO POR ULTRASSOM", "POR REPAROS ANATÔMICOS"]},
-    {"id": "barreira", "rotulo": "Barreira", "tipo": "opcoes", "opcoes": ["PARAMENTAÇÃO COMPLETA (GORRO, MÁSCARA, AVENTAL, LUVAS) E CAMPO AMPLO"]},
+    {"id": "barreira", "rotulo": "Barreira", "tipo": "opcoes", "opcoes": [
+     "PARAMENTAÇÃO COMPLETA (GORRO, MÁSCARA, AVENTAL, LUVAS) E CAMPO AMPLO",
+     "INSERÇÃO DE EMERGÊNCIA SEM PARAMENTAÇÃO COMPLETA — TROCAR EM ATÉ 48 H"
+    ]},
     "antissepsia",
     "anestesia",
     {"id": "cateter", "rotulo": "Cateter", "tipo": "texto", "dica": "ex.: duplo lúmen 7 Fr 20 cm"},
+    {"id": "fio", "rotulo": "Fio-guia", "tipo": "opcoes", "opcoes": ["FIO-GUIA RETIRADO E CONFERIDO ÍNTEGRO"]},
     "tentativas",
     {"id": "fixacao", "rotulo": "Marca na pele", "tipo": "num", "un": "cm", "dica": "ex.: 15"},
     {"id": "refluxo", "rotulo": "Vias", "tipo": "opcoes", "opcoes": [
@@ -660,6 +701,7 @@ const PROCS = [
     "{barreira}. ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}.",
     "PUNÇÃO {guia}, TÉCNICA DE SELDINGER. TENTATIVAS: {tentativas}.",
     "CATETER {cateter}, FIXADO EM {fixacao} CM NA PELE.",
+    "{fio}.",
     "{refluxo}.",
     "{controle}.",
     "{intercorrencias}.",
@@ -675,11 +717,17 @@ const PROCS = [
   "kw": "io intraosseo intraossea acesso intraosseo tibia umero ez-io furadeira agulha intraossea pcr",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Referência na tíbia proximal (2 cm abaixo da tuberosidade, face medial; criança 1–2 cm abaixo, medial): a bula EZ-IO não traz referências anatômicas — conferir no material de treinamento do fabricante.",
+   "Tempo de permanência: idealmente < 24 h; máximo EZ-IO internacional 72 h — confirmar o dispositivo usado no serviço.",
+   "Lidocaína intraóssea: dose pelo protocolo do serviço (não há página na Calculadoras); \"aguardar ~1 min\" não está na bula.",
+   "Ângulo no úmero deixado ao fabricante."
+  ],
   "fontes": [
    "AHA — Diretrizes de RCP e ACE 2020/2025 (SAVC e PALS): via IO quando a IV não é obtida",
    "ERC — European Resuscitation Council Guidelines 2021",
    "Roberts & Hedges — Clinical Procedures in Emergency Medicine, 7ª ed.",
-   "Instruções do fabricante do dispositivo IO em uso"
+   "Teleflex — Arrow EZ-IO, instruções de uso (IFU internacional): contraindicações, lidocaína antes do flush, flush, 72 h"
   ],
   "calc": [
    ["emg-parada", "Parada cardíaca (doses)"],
@@ -693,7 +741,7 @@ const PROCS = [
   "contra": {
    "absolutas": [
     "Fratura no osso escolhido",
-    "IO no mesmo osso nas últimas 24–48 h",
+    "IO (ou tentativa) no mesmo osso nas últimas 48 h",
     "Infecção ou queimadura no local",
     "Prótese / cirurgia ortopédica no local"
    ],
@@ -716,7 +764,7 @@ const PROCS = [
    "Tíbia proximal: face medial plana, ~2 cm abaixo da tuberosidade (criança: 1–2 cm abaixo, medial)",
    "Úmero proximal (adulto): tubérculo maior; braço aduzido, mão sobre o umbigo — melhor fluxo",
    "Tíbia distal: 2–3 cm acima do maléolo medial",
-   "Criança pequena: fêmur distal é alternativa",
+   "Fêmur distal: conforme o fabricante do dispositivo",
    "Antissepsia"
   ],
   "tecnica": [
@@ -724,14 +772,15 @@ const PROCS = [
    "Tíbia: perpendicular ao osso. Úmero: ângulo indicado pelo fabricante",
    "Perfurar até a perda de resistência, sem forçar o perfurador",
    "Retirar o mandril; aspirar medula (pode não vir)",
-   "Conectar o extensor e fazer flush de 10 mL de SF",
-   "Consciente: lidocaína antes do flush (dose do protocolo do serviço)",
+   "Conectar o extensor preenchido",
+   "Consciente: lidocaína 2% sem vasoconstritor e sem conservante, lenta, pelo extensor ANTES do flush (dose do protocolo do serviço); aguardar ~1 min",
+   "Flush de 5–10 mL de SF (criança: 2–5 mL)",
    {"t": "Infundir sob pressão", "cuidado": "Edema do membro = extravasamento: parar e trocar de osso."}
   ],
   "depois": [
    "Checar extravasamento repetidamente",
    "Pode colher gasometria e tipagem (avisar o laboratório)",
-   "Retirar em até 24 h, assim que houver outro acesso",
+   "Retirar assim que houver outro acesso — idealmente < 24 h (máximo do fabricante: conferir o dispositivo; EZ-IO internacional 72 h)",
    "Anotar a hora da inserção"
   ],
   "complicacoes": [
@@ -778,6 +827,10 @@ const PROCS = [
   "kw": "paracentese puncao abdominal ascite pbe peritonite bacteriana espontanea albumina gasa cirrose alivio",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Albumina > 5 L: AASLD 'considerar' 6–8 g/L; EASL recomenda 8 g/L — escolher o padrão.",
+   "Não corrigir INR/plaquetas de rotina (AASLD): confirmar que é a conduta do serviço."
+  ],
   "fontes": [
    "AASLD — Practice Guidance: Diagnosis, evaluation and management of ascites, SBP and HRS (Biggins et al., Hepatology 2021)",
    "EASL — Clinical Practice Guidelines for decompensated cirrhosis (J Hepatol, 2018)",
@@ -826,7 +879,7 @@ const PROCS = [
    "Retirar e fazer curativo compressivo"
   ],
   "depois": [
-   "Mais de 5 L retirados: albumina 6–8 g por litro retirado",
+   "Mais de 5 L retirados: albumina 6–8 g por litro retirado (EASL: 8 g/L)",
    "PMN ≥ 250/mm³ = PBE: tratar",
    "GASA ≥ 1,1 g/dL = hipertensão portal",
    "Observar PA e vazamento pelo orifício"
@@ -878,10 +931,16 @@ const PROCS = [
   "kw": "pl puncao lombar raquicentese lcr liquor liquido cefalorraquidiano meningite encefalite hsa hemorragia subaracnoidea pressao de abertura",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Intervalos de anticoagulantes conferidos em resumo secundário da ASRA 2018 (4ª ed.), não no texto original.",
+   "Cortes de plaquetas < 50 mil e INR > 1,5: valores usuais, não vêm da ASRA — confirmar.",
+   "Critérios de TC antes da PL: IDSA 2004; ESCMID considera rebaixamento = Glasgow < 10.",
+   "Antibiótico + dexametasona antes da TC: corrigido nesta revisão (IDSA/ESCMID)."
+  ],
   "fontes": [
    "IDSA — Practice Guidelines for the Management of Bacterial Meningitis (Tunkel et al., CID 2004): critérios de TC antes da PL",
    "ESCMID — Guideline: diagnosis and treatment of acute bacterial meningitis (CMI, 2016)",
-   "ASRA — Regional anesthesia in the patient receiving antithrombotic therapy, 4ª ed. (2018)",
+   "ASRA — Regional anesthesia in the patient receiving antithrombotic therapy, 4ª ed. (2018): intervalos de suspensão",
    "Roberts & Hedges — Clinical Procedures in Emergency Medicine, 7ª ed."
   ],
   "calc": [],
@@ -896,7 +955,7 @@ const PROCS = [
     "Efeito de massa / sinais de herniação"
    ],
    "relativas": [
-    "Coagulopatia, plaquetopenia ou anticoagulante (ver intervalos de suspensão)",
+    "Plaquetas < 50 mil, INR > 1,5 ou anticoagulante sem intervalo (ASRA: enoxaparina profilática 12 h, plena 24 h; rivaroxabana/apixabana 72 h; dabigatrana 72–120 h; clopidogrel e ticagrelor 5–7 dias; prasugrel 7–10 dias; varfarina 5 dias + INR normal)",
     "Instabilidade hemodinâmica ou respiratória",
     "Convulsão em curso"
    ]
@@ -910,8 +969,8 @@ const PROCS = [
    "Curativo"
   ],
   "preparo": [
-   "TC antes se: imunossupressão, doença prévia do SNC, convulsão nova (≤ 1 semana), papiledema, rebaixamento, déficit focal",
-   "Se a TC vai atrasar: hemoculturas e antibiótico (± dexametasona) antes",
+   "TC antes se: imunossupressão, doença prévia do SNC, convulsão nova (≤ 1 semana), papiledema, rebaixamento (ESCMID: Glasgow < 10), déficit focal",
+   "Se for fazer TC antes da PL: hemoculturas + dexametasona + antibiótico ANTES de ir para a TC (não esperar a imagem)",
    "Decúbito lateral em posição fetal (para medir pressão) ou sentado",
    "Espaço L3–L4 ou L4–L5: a linha entre as cristas ilíacas cruza L4",
    "No adulto, sempre abaixo de L2 (cone medular)"
@@ -978,6 +1037,11 @@ const PROCS = [
   "kw": "cardioversao eletrica sincronizada cve choque sincronizado desfibrilacao fa flutter tsv tv taquiarritmia instavel joules",
   "draft": true,
   "revisado": null,
+  "pendencias": [
+   "Cargas iniciais AHA 2025 (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J) conferidas no algoritmo oficial.",
+   "Anticoagulação após cardioversão de FA (≥ 4 semanas): ajustar ao risco e ao protocolo do serviço.",
+   "Escolha da sedação: ver Calculadoras; definir o padrão do serviço."
+  ],
   "fontes": [
    "AHA — 2025 ACLS Electrical Cardioversion Algorithm (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J)",
    "AHA — 2025 Adult Tachyarrhythmia With a Pulse Algorithm",
@@ -1024,7 +1088,7 @@ const PROCS = [
    "Carga inicial (bifásico): FA 200 J · flutter 200 J · outras TSV 100 J · TV monomórfica 100 J",
    "Sedar",
    "“Afastem-se”, O₂ longe do tórax; apertar e SEGURAR o botão até o disparo",
-   {"t": "Reavaliar ritmo e pulso; sem reversão, aumentar a carga", "cuidado": "Muitos aparelhos desligam o SINC após cada choque: religar antes do próximo."},
+   {"t": "Reavaliar ritmo e pulso; sem reversão, aumentar a carga", "cuidado": "Muitos aparelhos desligam o SINC após cada choque: religar antes do próximo. Se não sincroniza e o paciente está crítico: choque NÃO sincronizado (dose de desfibrilação)."},
    {"t": "TV polimórfica ou FV: desfibrilar, sem sincronizar", "dica": "Desfibrilação: dose do fabricante (bifásico 120–200 J) ou máxima; monofásico 360 J."}
   ],
   "depois": [
