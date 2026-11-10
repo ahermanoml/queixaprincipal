@@ -24,6 +24,20 @@
   border:1px solid var(--cx-amber-line);padding:2px 8px;border-radius:20px;cursor:help}
 .cx-apres{margin-top:1px;font-size:12px;color:var(--muted-aa)}
 
+/* caixa "Para o revisor" (rascunho): fechada, discreta */
+.cx-revisor{margin:6px 16px 2px;border:1px dashed #e5c38f;border-radius:9px;background:#fffaf2;font-size:12.5px;color:#5c3d00}
+.cx-revisor summary{cursor:pointer;padding:4px 10px;font-weight:700}
+.cx-revisor summary small{font-weight:500;color:#8a4b00;margin-left:4px}
+.cx-revisor b{display:block;margin:4px 12px 2px;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+.cx-revisor ul{margin:0;padding:0 12px 6px 28px;display:grid;gap:3px}
+/* como um número digitado foi entendido (ponto de milhar) */
+.cx-ent{margin-left:6px;font-size:11.5px;font-weight:700;color:#8a4b00;background:#fdf1e3;border-radius:6px;padding:0 6px;text-transform:none;letter-spacing:0;white-space:nowrap}
+/* escolha do indutor / bloqueador do kit SRI */
+.cx-kit{display:flex;flex-direction:column;gap:4px;margin:4px 0 2px}
+.cx-kit-t{font-size:12.5px;font-weight:700;color:var(--ink)}
+.cx-kit-t small{font-weight:500;color:var(--muted-aa)}
+.cx-kit-esc{margin:0}
+
 /* ---- barra do paciente: peso (global) e idade ---- */
 .cx-pac{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:8px 16px 2px;padding:6px 10px;background:var(--cx-blue-soft);
   border:1px solid var(--cx-blue-line);border-radius:12px}
@@ -214,7 +228,7 @@
   .cx-dv{grid-template-columns:minmax(0,1fr)}
 }
 @container calc (max-width:480px){
-  .cx-head,.cx-step,.cx-pac,.cx-rows,.cx-obs,.cx-rodape,.cx-tudo,.cx-bloco,.cx-crianca,.cx-nota-ped,#cx-conteudo > .cx-links{margin-left:10px;margin-right:10px}
+  .cx-revisor,.cx-head,.cx-step,.cx-pac,.cx-rows,.cx-obs,.cx-rodape,.cx-tudo,.cx-bloco,.cx-crianca,.cx-nota-ped,#cx-conteudo > .cx-links{margin-left:10px;margin-right:10px}
   .cx-head{padding-left:4px;padding-right:4px}
   .cx-step{padding:6px 8px 7px;margin-top:5px;margin-bottom:5px}
   .cx-head{padding-top:7px}
