@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import REPO, browser, export_ref, file_url, http_server
 import parity
 import calc_paridade, calc_features   # aba Calculadoras: contas iguais ao dilui (gabarito) + comportamento
+import proc_features                  # aba Procedimentos: estrutura, comportamento, layout
 
 try:
     import features
@@ -44,9 +45,11 @@ def main():
                     print(f"# features over {label}", flush=True)
                     ok &= features.run(b, url)
                     ok &= calc_paridade.run(b, url) & calc_features.run(b, url)
+                    ok &= proc_features.run(b, url)
             if shots and a.shots:
                 ok &= shots.run(b, file_url(REPO), a.shots)
                 ok &= calc_features.shots(b, file_url(REPO), a.shots)
+                ok &= proc_features.shots(b, file_url(REPO), a.shots)
     finally:
         shutil.rmtree(old_root, ignore_errors=True)
     print("\nALL OK" if ok else "\nSOME CHECKS FAILED")
