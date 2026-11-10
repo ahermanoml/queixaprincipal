@@ -1,5 +1,6 @@
 """Cross-tab checks of the five tabs: receita column per tab, the shared weight, Limpar, busca única landing on a
 score, a drug row and a procedure, the procedures' "Doses:" links to Calculadoras (and Back), and the tab bar."""
+import json
 from lib import Page, Report
 
 STATE = """() => ({rxHidden: document.querySelector('#col-rx').hidden, rx: document.querySelector('#rx').value,
@@ -94,7 +95,7 @@ def run(browser, url):
                 if (!i) return null; i.value = 'teste 123'; i.dispatchEvent(new Event('input', {bubbles: true})); return i.id; }""")
             opt = pg.evaluate("""() => { const b = document.querySelector('#pr-body .pr-op'); if (!b) return null; if (b.getAttribute('aria-pressed') !== 'true') b.click(); return [b.dataset.c, b.dataset.v]; }""")
             before = pg.evaluate("() => prTexto(prAberto)")
-            pg.click("#pr-cx-doses > summary")   # the links live in the "Doses" box, collapsed on load
+            pg.click("#pr-guia-como"); pg.click("#pr-cx-doses > summary")   # the links live in the "Doses" box of the "Como fazer" tab
             pg.click(f'#pr-body [data-calc="{cid}"]'); pg.wait_for_timeout(80)
             s = st()
             open_id = pg.evaluate("() => viewOf('calculadoras').itemId()")
@@ -102,8 +103,8 @@ def run(browser, url):
                       f"{pid} → Doses {cid}: {s['view']} {s['hash']} open={open_id}")
             pg.evaluate("history.back()"); pg.wait_for_function(f"location.hash === '#/procedimentos/{pid}'"); pg.wait_for_timeout(80)
             after = pg.evaluate(f"""() => ({{view: document.body.dataset.view, ticks: [...document.querySelectorAll('#pr-body .pr-check input')].filter(c => c.checked).length,
-                field: {repr(field)} ? (document.getElementById({repr(field)}) || {{}}).value : null,
-                opt: {opt!r} ? (document.querySelector('#pr-body .pr-op[data-c="' + {opt!r}[0] + '"][data-v="' + {opt!r}[1] + '"]') || {{}}).getAttribute?.('aria-pressed') : null,
+                field: {json.dumps(field)} ? (document.getElementById({json.dumps(field)}) || {{}}).value : null,
+                opt: {json.dumps(opt)} ? (document.querySelector('#pr-body .pr-op[data-c="' + {json.dumps(opt)}[0] + '"][data-v="' + {json.dumps(opt)}[1] + '"]') || {{}}).getAttribute?.('aria-pressed') : null,
                 text: prTexto(prAberto), doses: document.querySelector('#pr-cx-doses').open}})""")
             good = (after["view"] == "procedimentos" and after["ticks"] >= 2 and (field is None or after["field"] == "teste 123")
                     and (opt is None or after["opt"] == "true") and after["text"] == before and after["doses"])
@@ -119,7 +120,7 @@ def run(browser, url):
     rep.check(par["kit"] == par["proc"] == ["ETOMIDATO", "SUCCINILCOLINA"]
               and par["linha"] == "DROGAS: ETOMIDATO 20 MG (10 ML) + SUCCINILCOLINA 100 MG (10 ML) — PESO 70 KG.",
               f"standard RSI pair: kit={par['kit']} procedure={par['proc']} line={par['linha']!r}")
-    pg.click("#pr-cx-doses > summary"); pg.click('#pr-body [data-calc="iot"]'); pg.wait_for_timeout(100)
+    pg.click("#pr-guia-como"); pg.click("#pr-cx-doses > summary"); pg.click('#pr-body [data-calc="iot"]'); pg.wait_for_timeout(100)
     sel = pg.evaluate("""() => ({hash: location.hash, ind: [...document.querySelectorAll('[data-kit="ind"][aria-pressed="true"]')].map(b => b.textContent.trim().toUpperCase()),
         bnm: [...document.querySelectorAll('[data-kit="bnm"][aria-pressed="true"]')].map(b => b.textContent.trim().toUpperCase())})""")
     rep.check(sel["hash"] == "#/calculadoras/iot" and [sel["ind"], sel["bnm"]] == [[par["proc"][0]], [par["proc"][1]]],

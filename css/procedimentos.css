@@ -1,122 +1,169 @@
 /* procedimentos.css — aba Procedimentos (js/views/procedimentos.js). Prefixo pr-. Reaproveita .cx-tag e .cx-link de
-   css/calculadoras.css. Uma coluna calma: título, registro padrão com Copiar, linha rápida dos brancos, e as caixas
-   fechadas (Ajustar, Material, Passo a passo…). */
+   css/calculadoras.css. Uma coluna calma: título + guias (Registro | Como fazer); no Registro, o texto padrão com Copiar,
+   trechos clicáveis e a linha rápida; no Como fazer, material, passo a passo (com figuras) e caixas fechadas.
+   Só variáveis de cor (:root de css/app.css), para o tema do site poder mudar sem mexer aqui. */
 #col-proc{container:proc / inline-size}
 
 /* ---- lista ---- */
-.pr-gh{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:7px;padding:9px 14px 7px;background:#f3f7f8;
+.pr-gh{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:7px;padding:9px 14px 7px;background:var(--bg);
   border-bottom:1px solid var(--line);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--accent-d)}
-.pr-item{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;padding:9px 14px;border:0;border-bottom:1px solid #f0f3f5;
+.pr-item{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;padding:9px 14px;border:0;border-bottom:1px solid var(--line);
   background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;transition:background .12s}
-.pr-item:hover{background:#f7fafb}
+.pr-item:hover{background:var(--accent-soft)}
 .pr-item.active{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
 .pr-item .nm{font-weight:600;font-size:13.5px}
 .pr-item .sub{font-size:11px;color:var(--muted-aa)}
 
 /* ---- página: uma coluna, largura de leitura ---- */
-.pr-pag{max-width:880px;padding:14px 22px 28px}
-.pr-pag h3{margin:0 0 12px;font-size:20px;font-weight:750;line-height:1.25;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.pr-pag{max-width:880px;padding:12px 22px 28px}
+.pr-cab{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin:0 0 10px}
+.pr-cab h3{margin:0;flex:1 1 auto;font-size:20px;font-weight:750;line-height:1.25;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
 #pr-h:focus,#pr-h:focus-visible{outline:none}
 .btn.ghostb{color:var(--muted-aa)}
+/* guias Registro | Como fazer: um controle segmentado */
+.pr-guias{display:inline-flex;flex:none;padding:3px;border-radius:10px;background:var(--chip);gap:2px}
+.pr-guia{border:0;background:none;font:inherit;font-size:13.5px;font-weight:700;color:var(--muted-aa);padding:6px 16px;border-radius:8px;cursor:pointer}
+.pr-guia:hover{color:var(--ink)}
+.pr-guia[aria-selected="true"]{background:var(--panel);color:var(--accent-d);box-shadow:var(--shadow)}
 
-/* registro padrão: o primeiro e maior bloco */
-.pr-padrao{padding:12px 14px 12px;border:1px solid #cfe3e8;border-radius:12px;background:#f7fbfc}
-.pr-padrao-top{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin-bottom:9px}
-.pr-padrao-top h4{margin:0;flex:1 1 auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:750;text-transform:uppercase;
-  letter-spacing:.5px;color:var(--accent-d)}
-.pr-estado{font-size:11.5px;font-weight:700;text-transform:none;letter-spacing:0;color:var(--ok);background:#e6f4ec;border-radius:20px;padding:1px 9px}
-.pr-estado.aj{color:#8a4b00;background:#fdf1e3}
-.pr-padrao-top .btn{font-size:13px;padding:7px 14px}
-.pr-padrao-top .pr-copiar{font-size:15px;font-weight:700;padding:9px 26px}
-.pr-texto{margin:0;padding:10px 13px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;background:#fff;
-  font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;
-  word-break:break-word;color:#22343b}
-.pr-texto mark{background:#fbe7a1;color:#5c3d00;border-radius:3px;padding:0 1px}
-.pr-rapido{display:flex;flex-wrap:wrap;align-items:center;gap:7px 18px;margin-top:10px}
+/* ---- guia Registro ---- */
+.pr-padrao{position:relative;padding:10px 14px 10px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.pr-padrao-top{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-bottom:8px}
+.pr-estado{font-size:11.5px;font-weight:700;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--panel));border-radius:20px;padding:1px 9px;cursor:default}
+.pr-estado.aj{color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,var(--panel))}
+.pr-acoes{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pr-acoes .btn{font-size:13px;padding:7px 12px}
+.pr-acoes .pr-copiar{font-size:15px;font-weight:700;padding:8px 26px}
+/* variação principal: escolha de um clique */
+.pr-var{display:flex;align-items:center;gap:6px}
+.pr-var .lbl,.pr-q .lbl{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.4px;color:var(--accent-d)}
+.pr-seg{display:inline-flex;flex-wrap:wrap;gap:3px}
+/* o texto: trechos clicáveis sublinhados de leve (o que se troca), brancos marcados */
+.pr-texto{margin:0;padding:10px 13px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;background:var(--panel);
+  font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12.5px;line-height:1.75;white-space:pre-wrap;
+  word-break:break-word;color:var(--ink)}
+.pr-tk{cursor:pointer;border-radius:3px;text-decoration:underline dotted color-mix(in srgb,var(--accent) 70%,transparent);text-underline-offset:3px;
+  text-decoration-thickness:1.5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pr-tk:hover{background:var(--accent-soft);color:var(--accent-d)}
+.pr-tk:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.pr-tk.vazio{text-decoration:none;background:color-mix(in srgb,var(--warn) 22%,var(--panel));color:var(--ink)}
+.pr-tk-in{font:inherit;font-size:12.5px;text-transform:uppercase;padding:0 4px;margin:0;border:1px solid var(--accent);border-radius:4px;
+  background:var(--panel);color:var(--ink);max-width:100%}
+.pr-tk-in:focus{outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.pr-livre{display:block;width:100%;margin:0;padding:10px 13px;border:1px solid var(--accent);border-radius:9px;background:var(--panel);color:var(--ink);
+  font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12.5px;line-height:1.75;resize:vertical;min-height:8em}
+.pr-livre:focus{outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+/* linha rápida dos brancos */
+.pr-rapido{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:8px}
 .pr-q{display:flex;align-items:center;flex-wrap:wrap;gap:5px 7px;min-width:0}
-.pr-q .lbl{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.4px;color:var(--accent-d)}
 .pr-q .pr-in input{width:15em}
 .pr-q .pr-in.num input{width:6em}
-.pr-faltam{margin:8px 0 0;font-size:12px;font-weight:650;color:#8a4b00}
+.pr-pe{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin-top:6px}
+.pr-mais-l{display:inline-flex;flex-wrap:wrap;gap:4px}
+.pr-mais{border:1px dashed var(--line);background:none;border-radius:16px;padding:2px 10px;font:inherit;font-size:12px;font-weight:600;color:var(--muted-aa);cursor:pointer}
+.pr-mais:hover{border-color:var(--accent);color:var(--accent-d)}
+.pr-faltam{margin-left:auto;font-size:12px;font-weight:650;color:var(--warn)}
 .pr-faltam.ok{color:var(--ok)}
-
-/* campos (linha rápida e Ajustar) */
-.pr-campos{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px 16px}
-.pr-campo{display:flex;flex-direction:column;gap:3px;min-width:0}
-.pr-campo .lbl{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.4px;color:var(--accent-d)}
-.pr-campo .lbl small{text-transform:none;font-weight:500;color:var(--muted-aa)}
+/* botões de opção (linha rápida e variação) */
 .pr-opcoes{display:flex;flex-wrap:wrap;gap:4px}
-.pr-op{border:1px solid var(--line);background:#fff;border-radius:16px;padding:3px 10px;font:inherit;font-size:12px;font-weight:600;color:var(--ink);
+.pr-op{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:3px 10px;font:inherit;font-size:12px;font-weight:600;color:var(--ink);
   cursor:pointer;text-align:left}
 .pr-op:hover{border-color:var(--accent)}
-.pr-op[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.pr-op[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--panel)}
 .pr-in{display:flex;align-items:center;gap:5px}
-.pr-in input{flex:1;min-width:0;border:1px solid #cfdbe0;border-radius:8px;padding:5px 8px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}
-.pr-in input::placeholder{color:#8a9ba3}
+.pr-in input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:inherit;font-size:13px;background:var(--panel);color:var(--ink)}
+.pr-in input::placeholder{color:var(--muted-aa);opacity:.75}
 .pr-in input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .pr-in .un{font-size:12.5px;font-weight:700;color:var(--ink)}
-.pr-fim{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:10px}
-.pr-fim .btn{font-size:13px;padding:7px 14px}
-.pr-nota-calc{margin:0 0 10px;font-size:12px;color:var(--muted-aa)}
+/* menu pequeno de um trecho */
+.pr-pop{position:absolute;z-index:6;min-width:200px;max-width:min(440px,calc(100% - 8px));padding:6px;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel);box-shadow:var(--shadow),0 10px 28px color-mix(in srgb,var(--ink) 18%,transparent)}
+.pr-pop-t{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.4px;color:var(--muted-aa);padding:2px 6px 4px}
+.pr-pop-ops{display:flex;flex-direction:column;gap:1px}
+.pr-pop-op{border:0;background:none;text-align:left;font:inherit;font-size:13px;color:var(--ink);padding:7px 10px;border-radius:7px;cursor:pointer}
+.pr-pop-op:hover,.pr-pop-op:focus-visible{background:var(--accent-soft);outline:none}
+.pr-pop-op[aria-selected="true"]{font-weight:700;color:var(--accent-d)}
+.pr-pop-op[aria-selected="true"]::before{content:"✓ "}
+.pr-pop-op.tirar{color:var(--muted-aa);border-top:1px solid var(--line);border-radius:0 0 7px 7px}
+.pr-pop-in{display:flex;gap:6px;padding:2px}
+.pr-pop-in input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;font-size:13px;background:var(--panel);color:var(--ink)}
+.pr-pop-in input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 
-/* caixas fechadas */
-.pr-caixas{margin-top:16px;border-top:1px solid var(--line)}
+/* ---- guia Como fazer ---- */
+.pr-sec{margin:0 0 14px}
+.pr-sec h4{margin:0 0 8px;font-size:13px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--accent-d)}
+.pr-sec h4 small{font-weight:600;text-transform:none;letter-spacing:0;color:var(--muted-aa);margin-left:6px}
+.pr-mat-tools{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:6px}
+.pr-mat-n{font-size:12.5px;font-weight:700;color:var(--muted-aa);min-width:7em}
+.pr-check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px 14px}
+.pr-check label{display:flex;align-items:flex-start;gap:8px;padding:4px 4px;border-radius:7px;cursor:pointer;font-size:13.5px}
+.pr-check label:hover{background:var(--accent-soft)}
+.pr-check input{width:17px;height:17px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
+.pr-check input:checked + span{color:var(--muted-aa);text-decoration:line-through}
+.pr-caixa-mat{margin:0 0 12px}
+.pr-passos-sec{padding-top:4px}
+.pr-passos-wrap{counter-reset:p}
+.pr-passos-wrap h5{margin:12px 0 6px;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--muted-aa)}
+.pr-passos-wrap h5:first-child{margin-top:0}
+.pr-passos{margin:0;padding-left:0;list-style:none;display:grid;gap:7px}
+.pr-passos li{counter-increment:p;position:relative;padding-left:34px;font-size:14px;line-height:1.5}
+.pr-passos li::before{content:counter(p);position:absolute;left:0;top:0;width:23px;height:23px;border-radius:50%;background:var(--accent);color:var(--panel);
+  font-size:12px;font-weight:750;display:flex;align-items:center;justify-content:center}
+.pr-passos .t{display:block}
+.pr-call{display:block;margin-top:3px;padding:3px 9px;border-radius:7px;font-size:12.5px}
+.pr-call b{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;margin-right:4px}
+.pr-call.cuidado{background:color-mix(in srgb,var(--danger) 9%,var(--panel));color:var(--danger)}
+.pr-call.dica{background:var(--accent-soft);color:var(--accent-d)}
+.pr-fig{margin:8px 0 4px;max-width:560px}
+.pr-fig img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.pr-fig figcaption{margin-top:4px;font-size:12.5px;color:var(--muted-aa)}
+.pr-fig figcaption b{color:var(--ink)}
+.pr-figs{display:grid;gap:10px;margin-top:10px}
+/* caixas fechadas (referência) */
+.pr-caixas{margin-top:6px;border-top:1px solid var(--line)}
 .pr-cx{border-bottom:1px solid var(--line)}
-.pr-cx > summary{display:flex;align-items:baseline;gap:12px;padding:11px 4px;cursor:pointer;list-style:none;min-width:0}
+.pr-cx > summary{display:flex;align-items:baseline;gap:12px;padding:10px 4px;cursor:pointer;list-style:none;min-width:0}
 .pr-cx > summary::-webkit-details-marker{display:none}
 .pr-cx > summary::before{content:"▸";flex:none;width:12px;color:var(--accent-d);transition:transform .12s}
 .pr-cx[open] > summary::before{transform:rotate(90deg)}
 .pr-cx > summary:hover .t{color:var(--accent)}
 .pr-cx > summary .t{flex:none;font-size:14px;font-weight:700;color:var(--ink)}
 .pr-cx > summary .s{flex:1 1 auto;min-width:0;font-size:12.5px;color:var(--muted-aa);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pr-cx.aj > summary .s{color:#8a4b00;font-weight:650}
 .pr-cx-corpo{padding:2px 4px 16px 24px;font-size:13.5px;line-height:1.45}
 .pr-cx-corpo h5{margin:10px 0 5px;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--accent-d)}
 .pr-cx-corpo h5:first-child{margin-top:2px}
 .pr-cx-corpo ul{margin:0;padding-left:18px;display:grid;gap:3px}
-.pr-cx-revisor{background:#fffaf2}
-.pr-cx-revisor > summary .t{color:#5c3d00}
+.pr-cx-revisor > summary .t{color:var(--warn)}
 .pr-ci{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 16px}
 .pr-ci b{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:1px 8px;border-radius:20px;margin-bottom:4px}
-.pr-ci b.abs{background:#fdecea;color:var(--danger)}
-.pr-ci b.rel{background:#fdf1e3;color:#8a4b00}
-.pr-mat-tools{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:6px}
-.pr-mat-n{font-size:12.5px;font-weight:700;color:var(--muted-aa);min-width:7em}
-.pr-check{list-style:none;padding:0 !important;display:grid !important;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px 14px !important}
-.pr-check label{display:flex;align-items:flex-start;gap:8px;padding:4px 4px;border-radius:7px;cursor:pointer;font-size:13.5px}
-.pr-check label:hover{background:#f7fafb}
-.pr-check input{width:17px;height:17px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
-.pr-check input:checked + span{color:var(--muted-aa);text-decoration:line-through}
-/* passo a passo: uma numeração só, de Preparo até Depois */
-.pr-passos-wrap{counter-reset:p}
-.pr-passos{margin:0;padding-left:0;list-style:none;display:grid;gap:5px}
-.pr-passos li{counter-increment:p;position:relative;padding-left:32px}
-.pr-passos li::before{content:counter(p);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
-  font-size:12px;font-weight:750;display:flex;align-items:center;justify-content:center}
-.pr-passos .t{display:block}
-.pr-call{display:block;margin-top:3px;padding:3px 9px;border-radius:7px;font-size:12.5px}
-.pr-call b{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;margin-right:4px}
-.pr-call.cuidado{background:#fdecea;color:#8f1d14}
-.pr-call.dica{background:var(--accent-soft);color:var(--accent-d)}
+.pr-ci b.abs{background:color-mix(in srgb,var(--danger) 10%,var(--panel));color:var(--danger)}
+.pr-ci b.rel{background:color-mix(in srgb,var(--warn) 12%,var(--panel));color:var(--warn)}
 .pr-tags{list-style:none;padding:0 !important;display:flex !important;flex-wrap:wrap;gap:5px !important}
-.pr-tags li{background:#f3f5f7;border-radius:20px;padding:2px 10px;font-size:12.5px}
+.pr-tags li{background:var(--chip);border-radius:20px;padding:2px 10px;font-size:12.5px}
 .pr-calc{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .pr-cx-fontes .pr-cx-corpo{font-size:12px;color:var(--muted-aa)}
-.pr-rev{margin:6px 0 0;font-weight:700;color:#8a4b00}
+.pr-aprov{margin:8px 0 0}
+.pr-rev{margin:6px 0 0;font-weight:700;color:var(--warn)}
 
 @container proc (max-width:560px){
   .pr-pag{padding:10px 10px 20px}
+  .pr-cab{margin-bottom:8px}
+  .pr-guias{flex:1 1 100%}
+  .pr-guia{flex:1;padding:8px 10px}
   .pr-padrao{padding:10px 10px}
-  .pr-texto{font-size:12px;padding:9px 10px}
-  .pr-padrao-top .pr-copiar{flex:1 1 100%;justify-content:center}
+  .pr-texto{font-size:12px;padding:9px 10px;line-height:1.9}
+  .pr-acoes{flex:1 1 100%;margin-left:0}
+  .pr-acoes .pr-copiar{flex:1 1 100%;justify-content:center;order:-1}
   .pr-q .pr-in input{width:12em}
+  .pr-faltam{margin-left:0}
+  .pr-pop-op{padding:10px 12px;font-size:14px}
   .pr-cx-corpo{padding-left:6px}
   .pr-check{grid-template-columns:1fr}
 }
 
 /* ---- celular: barra fixa com Copiar quando o Copiar do registro sai da tela ---- */
 .pr-barra{position:fixed;left:0;right:0;bottom:0;z-index:25;display:flex;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
-  background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(16,40,50,.12)}
+  background:var(--panel);border-top:1px solid var(--line);box-shadow:var(--shadow)}
 .pr-barra .btn{flex:1;justify-content:center;font-size:14px;padding:11px 10px}
 body.pr-com-barra{padding-bottom:64px}
 @media(min-width:821px){ .pr-barra{display:none !important} }

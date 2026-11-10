@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-descompressao-1" viewBox="0 0 560 420" role="img" aria-labelledby="descompressao-1-t descompressao-1-d">
+<title id="descompressao-1-t">Locais da descompressão</title>
+<desc id="descompressao-1-d">Tórax visto de frente, com as costelas. Ponto 1, adulto (padrão): 4º a 5º espaço intercostal, logo anterior à linha axilar média. Ponto 2, criança ou alternativa no adulto: 2º espaço intercostal na linha hemiclavicular; o ângulo de Louis marca a 2ª costela; não medializar a partir da linha hemiclavicular.</desc>
+<style>
+.qpf-descompressao-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-descompressao-1 .b{font-weight:700}
+.qpf-descompressao-1 .a{fill:#0b63c9}
+.qpf-descompressao-1 .r{fill:#c62828}
+.qpf-descompressao-1 .s{font-size:18px}
+.qpf-descompressao-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- tronco -->
+<path d="M246 0 V60 Q240 76 200 82 Q130 90 108 120 Q96 200 104 300 Q108 360 120 420 H440 Q452 360 456 300 Q464 200 452 120 Q430 90 360 82 Q320 76 314 60 V0 Z" fill="#ecd9cc" class="ln"/>
+<!-- costelas -->
+<path d="M295 104 Q380 98 452 76" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M295 104 Q380 98 452 76" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M295 128 Q380 122 452 100" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M295 128 Q380 122 452 100" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M295 154 Q380 148 452 126" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M295 154 Q380 148 452 126" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M295 180 Q380 174 452 152" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M295 180 Q380 174 452 152" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M295 206 Q380 200 452 178" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M295 206 Q380 200 452 178" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M295 232 Q380 226 452 204" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M295 232 Q380 226 452 204" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M265 104 Q180 98 108 76" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M265 104 Q180 98 108 76" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M265 128 Q180 122 108 100" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M265 128 Q180 122 108 100" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M265 154 Q180 148 108 126" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M265 154 Q180 148 108 126" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M265 180 Q180 174 108 152" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M265 180 Q180 174 108 152" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M265 206 Q180 200 108 178" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M265 206 Q180 200 108 178" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M265 232 Q180 226 108 204" fill="none" stroke="#1f2a33" stroke-width="12" stroke-linecap="round"/><path d="M265 232 Q180 226 108 204" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+<!-- esterno e ângulo de Louis -->
+<rect x="265" y="92" width="30" height="170" rx="8" fill="#fff" class="ln"/>
+<line x1="265" y1="128" x2="295" y2="128" stroke="#1f2a33" stroke-width="2.5"/>
+<!-- clavículas -->
+<path d="M290 92 Q330 82 360 88 Q400 94 432 80" fill="none" stroke="#1f2a33" stroke-width="16" stroke-linecap="round"/>
+<path d="M290 92 Q330 82 360 88 Q400 94 432 80" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+<path d="M270 92 Q230 82 200 88 Q160 94 128 80" fill="none" stroke="#1f2a33" stroke-width="16" stroke-linecap="round"/>
+<path d="M270 92 Q230 82 200 88 Q160 94 128 80" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+<!-- linhas: hemiclavicular e axilar média -->
+<line x1="345" y1="100" x2="345" y2="300" stroke="#1f2a33" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
+<line x1="455" y1="140" x2="455" y2="300" stroke="#1f2a33" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
+<!-- mamilo -->
+<circle cx="345" cy="185" r="6" fill="#c9a08e" class="ln"/>
+<!-- não medializar -->
+<g stroke="#c62828" stroke-width="3.5" stroke-linecap="round"><line x1="306" y1="129" x2="320" y2="143"/><line x1="320" y1="129" x2="306" y2="143"/></g>
+<!-- ponto 2 -->
+<circle cx="345" cy="136" r="11" fill="#fff" stroke="#0b63c9" stroke-width="3.5"/>
+<circle cx="345" cy="136" r="4" fill="#0b63c9"/>
+<!-- ponto 1 -->
+<circle cx="442" cy="194" r="13" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="442" cy="194" r="4.5" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="400" y="30" class="b a">② 2º EIC,</text>
+<text x="400" y="52" class="b a">hemiclavicular</text>
+<line x1="420" y1="58" x2="352" y2="127" stroke="#0b63c9" stroke-width="2"/>
+<text x="16" y="30" class="s">criança; ou adulto</text>
+<text x="16" y="50" class="s">sem acesso lateral</text>
+<text x="16" y="74" class="b r s">não medializar</text>
+<line x1="150" y1="68" x2="304" y2="132" stroke="#c62828" stroke-width="2"/>
+<text x="16" y="200" class="b s">Ângulo de Louis</text>
+<text x="16" y="222" class="s">= 2ª costela</text>
+<line x1="150" y1="194" x2="264" y2="130" class="ln"/>
+<text x="300" y="336" class="b a">① 4º–5º EIC</text>
+<text x="300" y="358" class="b a">logo anterior à LAM</text>
+<text x="300" y="380" class="s">adulto (padrão)</text>
+<line x1="420" y1="318" x2="440" y2="208" stroke="#0b63c9" stroke-width="2"/>
+<text x="460" y="296" class="s">LAM</text>
+</svg>

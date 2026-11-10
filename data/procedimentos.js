@@ -37,6 +37,57 @@ const PROC_CAMPOS = {
  "obs": {"rotulo": "Intercorrência / observação", "tipo": "texto", "opcional": true, "dica": "opcional — descreva se houve"}
 };
 
+/* figuras da guia "Como fazer", por procedimento: SVGs próprios em img/procedimentos/ (fundo claro, ~560 px). "passo" =
+   "<preparo|tecnica|depois>.<n>" (n = 1 para o primeiro passo da seção): a figura aparece logo abaixo desse passo; sem
+   passo válido, no fim do passo a passo. Para acrescentar: copiar o arquivo para img/procedimentos/ e pôr uma linha aqui. */
+const PROC_FIGURAS = {
+ "iot": [
+  {"arquivo": "iot-1.svg", "passo": "preparo.2", "titulo": "Rampa: orelha na altura da fúrcula", "legenda": "Cabeceira a 20–30° e coxim sob a cabeça até o meato acústico externo ficar na altura da fúrcula esternal, com a face paralela ao teto."},
+  {"arquivo": "iot-2.svg", "passo": "tecnica.4", "titulo": "Ponta da lâmina na valécula", "legenda": "A lâmina curva desliza sobre a língua até a valécula; tracione no eixo do cabo, para cima e para longe, sem alavancar nos dentes."},
+  {"arquivo": "iot-3.svg", "passo": "tecnica.5", "titulo": "Cormack-Lehane", "legenda": "O que se vê na laringoscopia: grau I glote inteira, II só a parte posterior, III só a epiglote, IV nem a epiglote."}
+ ],
+ "toracocentese": [
+  {"arquivo": "toracocentese-1.svg", "passo": "preparo.2", "titulo": "Local da punção: posterior (padrão)", "legenda": "Sentado, inclinado à frente: linha escapular, 1–2 EIC abaixo do topo da macicez, 5–10 cm da coluna, nunca abaixo do 9º arco; axilar média é alternativa, com US."},
+  {"arquivo": "toracocentese-2.svg", "passo": "tecnica.2", "titulo": "Rente à borda superior da costela", "legenda": "O feixe vásculo-nervoso corre sob a borda inferior de cada costela: a agulha entra logo acima da costela de baixo."}
+ ],
+ "dreno": [
+  {"arquivo": "dreno-1.svg", "passo": "preparo.2", "titulo": "Triângulo de segurança", "legenda": "Entre a borda do peitoral maior, a borda do grande dorsal e a linha do 5º EIC (mamilo), com o braço atrás da cabeça; inserção no 5º EIC, linha axilar média."},
+  {"arquivo": "dreno-2.svg", "passo": "tecnica.2", "titulo": "Trajeto sobre a costela de baixo", "legenda": "Incisão sobre a costela de baixo, dissecção romba pela borda superior dela; todos os orifícios do dreno dentro do tórax."},
+  {"arquivo": "dreno-3.svg", "passo": "tecnica.7", "titulo": "Selo d'água", "legenda": "Haste ~2 cm sob a água, respiro aberto, frasco sempre abaixo do tórax; oscila com a respiração, borbulha quando sai ar."}
+ ],
+ "crico": [
+  {"arquivo": "crico-1.svg", "passo": "preparo.4", "titulo": "Membrana cricotireóidea", "legenda": "Entre a tireoide e a cricoide; a mão não dominante fixa a laringe. Incisão transversa — ou vertical na linha média se não palpável."},
+  {"arquivo": "crico-2.svg", "passo": "tecnica.4", "titulo": "Bisturi, bougie, tubo", "legenda": "Corta pele e membrana e gira 90° com o fio para os pés; o bougie desliza ao lado do bisturi; o tubo 6,0 desce sobre o bougie até o cuff passar a membrana."}
+ ],
+ "descompressao": [
+  {"arquivo": "descompressao-1.svg", "passo": "preparo.2", "titulo": "Locais da descompressão", "legenda": "Adulto: 4º–5º EIC logo anterior à linha axilar média. Criança (ou adulto sem acesso lateral): 2º EIC na hemiclavicular, sem medializar."},
+  {"arquivo": "descompressao-2.svg", "passo": "tecnica.2", "titulo": "Cateter curto não chega", "legenda": "Na parede espessa, o cateter de ~5 cm pode terminar antes da pleura; o de 8 cm chega. Sempre rente à borda superior da costela de baixo."}
+ ],
+ "cvc": [
+  {"arquivo": "cvc-1.svg", "passo": "preparo.3", "titulo": "Jugular interna: referências", "legenda": "No ápice do triângulo entre as cabeças do esternocleidomastoideo; a veia passa sob ele, lateral à carótida. Rumo ao mamilo do mesmo lado."},
+  {"arquivo": "cvc-2.svg", "passo": "tecnica.2", "titulo": "Ultrassom: veia ou artéria", "legenda": "Em eixo curto, a jugular é maior, ovalada e colaba com a compressão; a carótida é redonda, pulsa e não colaba."},
+  {"arquivo": "cvc-3.svg", "passo": "preparo.7", "titulo": "Onde fica a ponta", "legenda": "A ponta fica na junção cava–átrio. À esquerda o tronco braquiocefálico é mais longo: ~13–15 cm à direita, ~16–18 cm à esquerda."}
+ ],
+ "io": [
+  {"arquivo": "io-1.svg", "passo": "preparo.1", "titulo": "Intraósseo na tíbia", "legenda": "Tíbia proximal: face medial plana, ~2 cm abaixo da tuberosidade (criança: 1–2 cm). Tíbia distal: 2–3 cm acima do maléolo medial."},
+  {"arquivo": "io-2.svg", "passo": "preparo.2", "titulo": "Intraósseo no úmero", "legenda": "Braço aduzido, mão sobre o umbigo; punção no tubérculo maior, logo abaixo do acrômio. Ângulo conforme o fabricante."},
+  {"arquivo": "io-3.svg", "passo": "tecnica.1", "titulo": "A agulha tem o tamanho certo?", "legenda": "Encostada no osso através da pele, deve sobrar ao menos uma marca preta visível; sem marca, a agulha é curta."}
+ ],
+ "paracentese": [
+  {"arquivo": "paracentese-1.svg", "passo": "preparo.2", "titulo": "Local da paracentese", "legenda": "Fossa ilíaca esquerda, ~3 cm medial e cranial à EIAS, lateral ao reto e aos vasos epigástricos; alternativa: linha média infraumbilical."},
+  {"arquivo": "paracentese-2.svg", "passo": "tecnica.2", "titulo": "Técnica em Z", "legenda": "Puxe a pele ~2 cm, puncione aspirando e solte: o furo da pele fica desalinhado do furo profundo e vaza menos."}
+ ],
+ "pl": [
+  {"arquivo": "pl-1.svg", "passo": "preparo.3", "titulo": "Posição", "legenda": "Decúbito lateral em posição fetal, costas arqueadas na borda da maca (para medir a pressão), ou sentado, inclinado à frente."},
+  {"arquivo": "pl-2.svg", "passo": "preparo.4", "titulo": "L3–L4 ou L4–L5", "legenda": "A linha entre as cristas ilíacas cruza L4; puncionar L3–L4 ou L4–L5 — o cone medular termina em L1–L2."},
+  {"arquivo": "pl-3.svg", "passo": "tecnica.2", "titulo": "O que a agulha atravessa", "legenda": "Na linha média, levemente cefálica: pele, supraespinhoso, interespinhoso, ligamento amarelo, epidural, dura — e o LCR."}
+ ],
+ "cardioversao": [
+  {"arquivo": "cardioversao-1.svg", "passo": "preparo.1", "titulo": "Posição das pás", "legenda": "Anterolateral: infraclavicular direita + ápice. Anteroposterior: precórdio à esquerda + costas, entre a escápula esquerda e a coluna."},
+  {"arquivo": "cardioversao-2.svg", "passo": "tecnica.2", "titulo": "Marca de sincronização", "legenda": "Com o SINC ligado, cada QRS precisa da marca; se faltar, trocar de derivação ou ajustar o ganho."}
+ ]
+};
+
 const PROCS = [
  {
   "id": "iot",
@@ -48,10 +99,9 @@ const PROCS = [
   "revisado": null,
   "pendencias": [
    "Pré-oxigenação/apneia: adotada a ventilação suave com BVM + PEEP durante a latência (DAS 2018, PREVENT 2019) no lugar da sequência clássica sem ventilar — decidir se fica como padrão do serviço.",
-   "Profundidade do tubo (~21 cm mulher / ~23 cm homem na rima): valor de memória, não conferido na fonte nesta revisão.",
+   "Profundidade do tubo (~21 cm mulher / ~23 cm homem na rima): valor de memória, não conferido na fonte nesta revisão. O dono confirmou 22 cm como fixação padrão do registro (10/11/2026).",
    "Máximo de 3 tentativas: DAS permite uma 4ª por operador mais experiente — manter 3?",
    "Lista de contraindicações à succinilcolina ampliada pelo revisor: conferir.",
-   "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane. O par indutor + bloqueador do padrão vem de CM.KIT_PADRAO, o mesmo do kit SRI da aba Calculadoras (mudar lá muda aqui). Diferença esperada: a Calculadora mostra a dose calculada (70 kg: etomidato 21 mg = 10,5 mL; succinilcolina 70–105 mg) e o registro mostra o volume aspirado (20 mg/10 mL; 100 mg/10 mL).",
    "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
@@ -136,6 +186,9 @@ const PROCS = [
    "Pneumotórax"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane. O par indutor + bloqueador do padrão vem de CM.KIT_PADRAO, o mesmo do kit SRI da aba Calculadoras (mudar lá muda aqui). Diferença esperada: a Calculadora mostra a dose calculada (70 kg: etomidato 21 mg = 10,5 mL; succinilcolina 70–105 mg) e o registro mostra o volume aspirado (20 mg/10 mL; 100 mg/10 mL).",
+   "variacoes": [{"campo": "dispositivo", "rotulo": "Laringoscopia", "curtos": {"LARINGOSCOPIA DIRETA": "Direta", "VIDEOLARINGOSCOPIA": "Vídeo"}}],
    "padrao": {"peso": "70", "dispositivo": "LARINGOSCOPIA DIRETA", "bougie": "SEM BOUGIE", "tubo": "7,5", "marca": "22", "confirmacao": "CAPNOGRAFIA EM ONDA, AUSCULTA E EXPANSÃO SIMÉTRICA"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "texto", "dica": "ex.: rebaixamento do nível de consciência"},
@@ -181,7 +234,6 @@ const PROCS = [
    "Idade de corte para não fazer a cirúrgica: ATLS < 12 anos; algumas diretrizes pediátricas usam ~8–10.",
    "Tubo 6,0 (ou 5,0): confirmar o que existe no kit do serviço.",
    "Técnica por punção na criança: sistema de O₂ e tempo máximo de ponte conforme o material disponível.",
-   "Padrão do registro: técnica cirúrgica bisturi–bougie–tubo, tubo 6,0 com cuff, 1 tentativa, capnografia em onda, sem intercorrências. Fica em branco: indicação.",
    "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
@@ -248,6 +300,9 @@ const PROCS = [
    "Estenose subglótica (tardia)"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: técnica cirúrgica bisturi–bougie–tubo, tubo 6,0 com cuff, 1 tentativa, capnografia em onda, sem intercorrências. Fica em branco: indicação.",
+   "variacoes": [{"campo": "tecnica", "rotulo": "Técnica", "curtos": {"CIRÚRGICA (BISTURI–BOUGIE–TUBO)": "Bisturi–bougie–tubo", "CIRÚRGICA COM INCISÃO VERTICAL (BISTURI–BOUGIE–TUBO)": "Incisão vertical", "POR PUNÇÃO COM CATETER 14G": "Punção 14G"}}],
    "padrao": {"tecnica": "CIRÚRGICA (BISTURI–BOUGIE–TUBO)", "dispositivo": "tubo 6,0 com cuff", "confirmacao": "CAPNOGRAFIA EM ONDA E AUSCULTA"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "opcoes", "opcoes": [
@@ -290,7 +345,6 @@ const PROCS = [
   "pendencias": [
    "Local adulto (4º–5º EIC anterior à LAM) e cateter de 8 cm: ATLS 10 conferido só por fontes secundárias; ATLS 11 (2025) não consultado.",
    "Cateter de 8 cm raramente disponível: orientar toracostomia digital quando só houver o de ~5 cm — confirmar como conduta do serviço.",
-   "Padrão do registro: descompressão por agulha no 4º–5º EIC anterior à linha axilar média, cateter 14G de 8 cm, drenagem de tórax em seguida, sem intercorrências. Ficam em branco: lado, achado e resposta.",
    "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
@@ -346,6 +400,9 @@ const PROCS = [
    "Pneumotórax iatrogênico se o diagnóstico estava errado"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: descompressão por agulha no 4º–5º EIC anterior à linha axilar média, cateter 14G de 8 cm, drenagem de tórax em seguida, sem intercorrências. Ficam em branco: lado, achado e resposta.",
+   "variacoes": [{"campo": "tecnica", "rotulo": "Técnica", "curtos": {"DESCOMPRESSÃO POR AGULHA": "Agulha", "TORACOSTOMIA DIGITAL": "Digital"}}],
    "padrao": {"tecnica": "DESCOMPRESSÃO POR AGULHA", "local": "4º–5º EIC ANTERIOR À LINHA AXILAR MÉDIA", "dispositivo": "cateter 14G de 8 cm", "seguimento": "DRENAGEM DE TÓRAX EM SEGUIDA"},
    "campos": [
     {"id": "tecnica", "rotulo": "Técnica", "tipo": "opcoes", "opcoes": ["DESCOMPRESSÃO POR AGULHA", "TORACOSTOMIA DIGITAL"]},
@@ -381,11 +438,9 @@ const PROCS = [
   "draft": true,
   "revisado": null,
   "pendencias": [
-   "Local: BTS 2023 prefere o triângulo de segurança (linha axilar média) e evita a via posterior; a via posterior sentado é comum no Brasil — escolher qual fica como padrão.",
    "Intervalos de suspensão de anticoagulantes (BTS 2023) transcritos pelo revisor: conferir.",
    "Limite de 1,5 L por punção: consenso, não evidência forte.",
-   "Padrão do registro: diagnóstica, guiada por ultrassom, 6º EIC na linha axilar média (triângulo de segurança, BTS 2023), clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras enviadas, sem intercorrências. Ficam em branco: lado, volume e aspecto.",
-   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
+   "Consentimento: fora do padrão (frase opcional, só entra pelo \"＋ Consentimento\" do registro) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
@@ -410,7 +465,7 @@ const PROCS = [
    ]
   },
   "material": [
-   "Ultrassom",
+   "Ultrassom (se disponível)",
    "Clorexidina, campo e luvas estéreis",
    "Lidocaína 1–2%, agulhas 25G e 21G",
    "Seringas de 10, 20 e 50 mL",
@@ -420,16 +475,15 @@ const PROCS = [
    "Curativo"
   ],
   "preparo": [
-   "Sentado, inclinado à frente, braços apoiados (ou decúbito lateral)",
-   "US para marcar: maior coluna de líquido, longe de diafragma, fígado e baço",
-   "Ponto preferido (BTS 2023): triângulo de segurança, linha axilar média, marcado por US",
-   "Alternativa comum: sentado, linha escapular/axilar posterior, 1–2 espaços abaixo do topo do derrame — perto da coluna a artéria intercostal é tortuosa e fica exposta no espaço: puncionar bem lateral à coluna",
-   "Não descer abaixo do 8º–9º espaço intercostal",
+   "Sentado, inclinado para a frente, braços apoiados (decúbito lateral se não puder sentar)",
+   "Ponto por referências anatômicas (padrão): punção posterior, na linha escapular média ou axilar posterior, 1–2 espaços intercostais abaixo do limite superior da macicez à percussão, 5–10 cm lateral à coluna — perto da coluna a artéria intercostal é tortuosa e fica exposta no espaço",
+   "Alternativa: linha axilar média no triângulo de segurança (preferida pela BTS 2023), de preferência marcada ou guiada por ultrassom — maior coluna de líquido, longe de diafragma, fígado e baço",
+   "Nunca abaixo do 9º arco costal",
    "Antissepsia, campo, anestesia em planos até a pleura"
   ],
   "tecnica": [
    "Anestesiar pele → periósteo → pleura, rente à borda superior da costela",
-   "Introduzir a agulha pela borda superior da costela, aspirando, até vir líquido",
+   "Introduzir a agulha rente à borda superior da costela de baixo, aspirando, até vir líquido",
    "Diagnóstica: colher 50–60 mL e distribuir nos frascos",
    "Alívio: avançar o cateter, retirar a agulha, conectar torneira e drenar",
    {"t": "Parar em 1,5 L ou antes se tosse, dor torácica ou dispneia", "cuidado": "Retirar volumes maiores de uma vez aumenta o risco de edema de reexpansão."},
@@ -450,12 +504,15 @@ const PROCS = [
    "Infecção"
   ],
   "registro": {
-   "padrao": {"finalidade": "DIAGNÓSTICA", "guia": "GUIADA POR ULTRASSOM", "local": "6º EIC, linha axilar média", "dispositivo": "cateter 18G", "amostras": "AMOSTRAS ENVIADAS PARA ANÁLISE"},
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: diagnóstica, por referências anatômicas sem ultrassom (sentado; linha escapular ou axilar posterior, 1–2 EIC abaixo do limite superior da macicez, 5–10 cm lateral à coluna, nunca abaixo do 9º arco costal; marcação prévia ou guiada por US a um clique), clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras enviadas, sem intercorrências. Ficam em branco: lado, volume e aspecto.",
+   "variacoes": [{"campo": "guia", "rotulo": "Ultrassom", "curtos": {"POR REFERÊNCIAS ANATÔMICAS, SEM ULTRASSOM": "Sem US", "COM MARCAÇÃO PRÉVIA POR ULTRASSOM": "Marcação por US", "GUIADA POR ULTRASSOM": "Guiada por US"}}],
+   "padrao": {"finalidade": "DIAGNÓSTICA", "guia": "POR REFERÊNCIAS ANATÔMICAS, SEM ULTRASSOM", "local": "linha escapular ou axilar posterior, 1–2 EIC abaixo do limite da macicez, 5–10 cm lateral à coluna", "dispositivo": "cateter 18G", "amostras": "AMOSTRAS ENVIADAS PARA ANÁLISE"},
    "campos": [
     {"id": "finalidade", "rotulo": "Finalidade", "tipo": "opcoes", "opcoes": ["DIAGNÓSTICA", "DE ALÍVIO", "DIAGNÓSTICA E DE ALÍVIO"]},
     "lado",
     "consentimento",
-    {"id": "guia", "rotulo": "Ultrassom", "tipo": "opcoes", "opcoes": ["GUIADA POR ULTRASSOM", "COM MARCAÇÃO PRÉVIA POR ULTRASSOM", "SEM ULTRASSOM"]},
+    {"id": "guia", "rotulo": "Ultrassom", "tipo": "opcoes", "opcoes": ["POR REFERÊNCIAS ANATÔMICAS, SEM ULTRASSOM", "COM MARCAÇÃO PRÉVIA POR ULTRASSOM", "GUIADA POR ULTRASSOM"]},
     {"id": "local", "rotulo": "Local", "tipo": "texto", "dica": "ex.: 6º EIC, linha axilar média / 8º EIC, linha escapular"},
     "antissepsia",
     "anestesia",
@@ -490,8 +547,7 @@ const PROCS = [
    "Calibre no hemotórax: 28–32 Fr (ATLS/trauma) vs 14 Fr Seldinger no estável (ensaios de não inferioridade) — decidir.",
    "Antibiótico profilático no trauma (algumas diretrizes usam amoxicilina-clavulanato) não foi incluído — decidir.",
    "Critérios para cirurgia (≥ 1.500 mL inicial ou > 200 mL/h por 2–4 h): ATLS 10; conferir se mudou no ATLS 11.",
-   "Padrão do registro: 5º EIC na linha axilar média (triângulo de segurança), dissecção romba, dreno 28 Fr, clorexidina alcoólica, lidocaína 2% 10 mL, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação, saída, débito, selo e fixação na pele.",
-   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
+   "Consentimento: fora do padrão (frase opcional, só entra pelo \"＋ Consentimento\" do registro) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
@@ -566,6 +622,9 @@ const PROCS = [
    "Saída acidental"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: 5º EIC na linha axilar média (triângulo de segurança), dissecção romba, dreno 28 Fr, clorexidina alcoólica, lidocaína 2% 10 mL, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação, saída, débito, selo e fixação na pele.",
+   "variacoes": [{"campo": "tecnica", "rotulo": "Técnica", "curtos": {"DISSECÇÃO ROMBA": "Dissecção romba", "SELDINGER": "Seldinger"}}],
    "padrao": {"local": "5º EIC NA LINHA AXILAR MÉDIA (TRIÂNGULO DE SEGURANÇA)", "tecnica": "DISSECÇÃO ROMBA", "calibre": "28", "controle": "RX DE TÓRAX DE CONTROLE SOLICITADO"},
    "campos": [
     "lado",
@@ -614,8 +673,7 @@ const PROCS = [
    "Profundidades por sítio são aproximações (variam com altura e lado): conferir.",
    "Confirmação de posição por RX vs US: depende do serviço.",
    "Conduta se o fio-guia não sair inteiro (não usar o cateter; RX; vascular/hemodinâmica) foi escrita por mim — conferir.",
-   "Padrão do registro: jugular interna guiada por US em tempo real, paramentação completa, clorexidina alcoólica, lidocaína 2% 10 mL, cateter duplo lúmen 7 Fr 20 cm, 1 tentativa, fio-guia conferido, refluxo em todas as vias, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação e fixação na pele (cm).",
-   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
+   "Consentimento: fora do padrão (frase opcional, só entra pelo \"＋ Consentimento\" do registro) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "ASA — Practice Guidelines for Central Venous Access (Anesthesiology, 2020)",
@@ -657,6 +715,7 @@ const PROCS = [
   "preparo": [
    "Barreira máxima (gorro, máscara, avental, luvas, campo amplo) e checklist",
    "Jugular interna: Trendelenburg 10–15°, cabeça pouco rodada; veia lateral à carótida, compressível ao US",
+   "Jugular sem US (referências anatômicas): ápice do triângulo entre as duas cabeças do esternocleidomastoideo; a veia passa sob o músculo, lateral à carótida palpada; agulha rumo ao mamilo do mesmo lado",
    "Subclávia: Trendelenburg; 1–2 cm abaixo da clavícula, na junção do terço medial com o médio, agulha rente à clavícula rumo à fúrcula",
    "Femoral: veia medial à artéria, 1–2 cm abaixo do ligamento inguinal",
    "US em tempo real é o padrão (forte na jugular)",
@@ -690,6 +749,9 @@ const PROCS = [
    "Trombose"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: jugular interna guiada por US em tempo real, paramentação completa, clorexidina alcoólica, lidocaína 2% 10 mL, cateter duplo lúmen 7 Fr 20 cm, 1 tentativa, fio-guia conferido, refluxo em todas as vias, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação e fixação na pele (cm).",
+   "variacoes": [{"campo": "sitio", "rotulo": "Via", "curtos": {"JUGULAR INTERNA": "Jugular", "SUBCLÁVIA": "Subclávia", "FEMORAL": "Femoral"}}, {"campo": "guia", "rotulo": "Ultrassom", "curtos": {"GUIADA POR ULTRASSOM EM TEMPO REAL": "Tempo real", "COM MARCAÇÃO POR ULTRASSOM": "Marcação", "POR REPAROS ANATÔMICOS": "Sem US"}}],
    "padrao": {"sitio": "JUGULAR INTERNA", "guia": "GUIADA POR ULTRASSOM EM TEMPO REAL", "barreira": "PARAMENTAÇÃO COMPLETA (GORRO, MÁSCARA, AVENTAL, LUVAS) E CAMPO AMPLO", "cateter": "duplo lúmen 7 Fr 20 cm", "fio": "FIO-GUIA RETIRADO E CONFERIDO ÍNTEGRO", "refluxo": "REFLUXO SANGUÍNEO E LAVAGEM SEM RESISTÊNCIA EM TODAS AS VIAS", "controle": "RX DE TÓRAX SOLICITADO PARA POSIÇÃO E PARA AFASTAR PNEUMOTÓRAX"},
    "campos": [
     {"id": "sitio", "rotulo": "Veia", "tipo": "opcoes", "opcoes": ["JUGULAR INTERNA", "SUBCLÁVIA", "FEMORAL"]},
@@ -747,7 +809,6 @@ const PROCS = [
    "Tempo de permanência: idealmente < 24 h; máximo EZ-IO internacional 72 h — confirmar o dispositivo usado no serviço.",
    "Lidocaína intraóssea: dose pelo protocolo do serviço (não há página na Calculadoras); \"aguardar ~1 min\" não está na bula.",
    "Ângulo no úmero deixado ao fabricante.",
-   "Padrão do registro: tíbia proximal, perfurador elétrico, agulha 15G 25 mm, clorexidina alcoólica, 1 tentativa, aspirado e flush sem extravasamento, sem intercorrências. Ficam em branco: lado, indicação, analgesia (depende de o paciente estar consciente) e hora.",
    "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
@@ -818,6 +879,9 @@ const PROCS = [
    "Dor à infusão"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: tíbia proximal, perfurador elétrico, agulha 15G 25 mm, clorexidina alcoólica, 1 tentativa, aspirado e flush sem extravasamento, sem intercorrências. Ficam em branco: lado, indicação, analgesia (depende de o paciente estar consciente) e hora.",
+   "variacoes": [{"campo": "sitio", "rotulo": "Sítio", "curtos": {"TÍBIA PROXIMAL": "Tíbia prox.", "ÚMERO PROXIMAL": "Úmero", "TÍBIA DISTAL": "Tíbia dist.", "FÊMUR DISTAL": "Fêmur"}}],
    "padrao": {"sitio": "TÍBIA PROXIMAL", "dispositivo": "PERFURADOR ELÉTRICO", "agulha": "15G 25 mm", "confirmacao": "ASPIRADO DE MEDULA E FLUSH SEM RESISTÊNCIA OU EXTRAVASAMENTO"},
    "campos": [
     {"id": "sitio", "rotulo": "Local", "tipo": "opcoes", "opcoes": ["TÍBIA PROXIMAL", "ÚMERO PROXIMAL", "TÍBIA DISTAL", "FÊMUR DISTAL"]},
@@ -858,8 +922,7 @@ const PROCS = [
   "pendencias": [
    "Albumina > 5 L: AASLD 'considerar' 6–8 g/L; EASL recomenda 8 g/L — escolher o padrão.",
    "Não corrigir INR/plaquetas de rotina (AASLD): confirmar que é a conduta do serviço.",
-   "Padrão do registro: diagnóstica, guiada por ultrassom, fossa ilíaca esquerda, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras colhidas, sem intercorrências. Ficam em branco: volume, aspecto e albumina (depende do volume).",
-   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
+   "Consentimento: fora do padrão (frase opcional, só entra pelo \"＋ Consentimento\" do registro) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "AASLD — Practice Guidance: Diagnosis, evaluation and management of ascites, SBP and HRS (Biggins et al., Hepatology 2021)",
@@ -922,6 +985,9 @@ const PROCS = [
    "Hipotensão após grande volume sem albumina"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: diagnóstica, guiada por ultrassom, fossa ilíaca esquerda, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras colhidas, sem intercorrências. Ficam em branco: volume, aspecto e albumina (depende do volume).",
+   "variacoes": [{"campo": "guia", "rotulo": "Ultrassom", "curtos": {"GUIADA POR ULTRASSOM": "Guiada por US", "COM MARCAÇÃO PRÉVIA POR ULTRASSOM": "Marcação por US", "SEM ULTRASSOM": "Sem US"}}],
    "padrao": {"finalidade": "DIAGNÓSTICA", "guia": "GUIADA POR ULTRASSOM", "local": "FOSSA ILÍACA ESQUERDA", "dispositivo": "cateter 18G", "amostras": "COLHIDAS AMOSTRAS PARA CELULARIDADE, BIOQUÍMICA E CULTURA EM FRASCOS DE HEMOCULTURA"},
    "campos": [
     {"id": "finalidade", "rotulo": "Finalidade", "tipo": "opcoes", "opcoes": ["DIAGNÓSTICA", "DE ALÍVIO", "DIAGNÓSTICA E DE ALÍVIO"]},
@@ -967,8 +1033,7 @@ const PROCS = [
    "Cortes de plaquetas < 50 mil e INR > 1,5: valores usuais, não vêm da ASRA — confirmar.",
    "Critérios de TC antes da PL: IDSA 2004; ESCMID considera rebaixamento = Glasgow < 10.",
    "Antibiótico + dexametasona antes da TC: corrigido nesta revisão (IDSA/ESCMID).",
-   "Padrão do registro: decúbito lateral, espaço L3–L4, agulha espinal 22G, clorexidina alcoólica, lidocaína 2% 10 mL, 1 tentativa, sem intercorrências. Ficam em branco: indicação, TC prévia, pressão de abertura, aspecto e volume.",
-   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
+   "Consentimento: fora do padrão (frase opcional, só entra pelo \"＋ Consentimento\" do registro) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "IDSA — Practice Guidelines for the Management of Bacterial Meningitis (Tunkel et al., CID 2004): critérios de TC antes da PL",
@@ -1031,6 +1096,9 @@ const PROCS = [
    "Herniação (rara; com efeito de massa)"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: decúbito lateral, espaço L3–L4, agulha espinal 22G, clorexidina alcoólica, lidocaína 2% 10 mL, 1 tentativa, sem intercorrências. Ficam em branco: indicação, TC prévia, pressão de abertura, aspecto e volume.",
+   "variacoes": [{"campo": "posicao", "rotulo": "Posição", "curtos": {"DECÚBITO LATERAL": "Decúbito lateral", "SENTADO": "Sentado"}}],
    "padrao": {"posicao": "DECÚBITO LATERAL", "espaco": "L3–L4", "agulha": "espinal 22G"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "texto", "dica": "ex.: suspeita de meningite"},
@@ -1075,8 +1143,7 @@ const PROCS = [
    "Cargas iniciais AHA 2025 (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J) conferidas no algoritmo oficial.",
    "Anticoagulação após cardioversão de FA (≥ 4 semanas): ajustar ao risco e ao protocolo do serviço.",
    "Escolha da sedação: ver Calculadoras; definir o padrão do serviço.",
-   "Padrão do registro: pás anterolaterais, modo sincronizado, sem intercorrências. Ficam em branco: ritmo, indicação, sedação (sem padrão do serviço; ver pendência acima), choques (a carga depende do ritmo) e resultado.",
-   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
+   "Consentimento: fora do padrão (frase opcional, só entra pelo \"＋ Consentimento\" do registro) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "AHA — 2025 ACLS Electrical Cardioversion Algorithm (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J)",
@@ -1141,6 +1208,9 @@ const PROCS = [
    "Depressão respiratória pela sedação"
   ],
   "registro": {
+   "aprovado": "2026-11-10",
+   "resumo": "Padrão do registro: pás anterolaterais, modo sincronizado, sem intercorrências. Ficam em branco: ritmo, indicação, sedação (sem padrão do serviço; ver pendência acima), choques (a carga depende do ritmo) e resultado.",
+   "variacoes": [{"campo": "modo", "rotulo": "Modo", "curtos": {"SINCRONIZADO": "Sincronizado", "NÃO SINCRONIZADO (DESFIBRILAÇÃO)": "Não sincronizado"}}],
    "padrao": {"pas": "ANTEROLATERAL", "modo": "SINCRONIZADO"},
    "campos": [
     {"id": "ritmo", "rotulo": "Ritmo", "tipo": "texto", "dica": "ex.: FA de alta resposta, FC 170"},

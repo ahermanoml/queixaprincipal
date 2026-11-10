@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-pl-1" viewBox="0 0 560 400" role="img" aria-labelledby="pl-1-t pl-1-d">
+<title id="pl-1-t">Posição para a punção lombar</title>
+<desc id="pl-1-d">À esquerda, visto de cima: paciente em decúbito lateral, em posição fetal, com joelhos e queixo em direção ao peito e as costas arqueadas na borda da maca, do lado do operador. É a posição para medir a pressão de abertura. À direita, a alternativa: sentado, inclinado para a frente.</desc>
+<style>
+.qpf-pl-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-pl-1 .b{font-weight:700}
+.qpf-pl-1 .a{fill:#0b63c9}
+.qpf-pl-1 .s{font-size:18px}
+.qpf-pl-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="400" rx="18" fill="#f7f8fa"/>
+<!-- maca vista de cima -->
+<rect x="20" y="70" width="330" height="230" rx="10" fill="#e3e7ec" class="ln"/>
+<!-- coxas e pernas (joelhos ao peito) -->
+<path d="M246 250 L196 140 L300 112" fill="none" stroke="#1f2a33" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M246 250 L196 140 L300 112" fill="none" stroke="#ecd9cc" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- tronco curvado, costas na borda de baixo -->
+<path d="M104 212 Q170 300 246 252" fill="none" stroke="#1f2a33" stroke-width="80" stroke-linecap="round"/>
+<path d="M104 212 Q170 300 246 252" fill="none" stroke="#ecd9cc" stroke-width="76" stroke-linecap="round"/>
+<!-- coluna (linha das costas) -->
+<path d="M86 248 Q166 336 262 286" fill="none" stroke="#0b63c9" stroke-width="3" stroke-dasharray="3 6" stroke-linecap="round"/>
+<!-- cabeça, queixo no peito -->
+<circle cx="86" cy="168" r="34" fill="#ecd9cc" class="ln"/>
+<!-- lado do operador -->
+<path d="M150 344 V312" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"/>
+<path d="M140 322 L150 310 L160 322" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linejoin="round"/>
+<text x="172" y="344" class="s">operador</text>
+<text x="20" y="36" class="b">Decúbito lateral, fetal</text>
+<text x="20" y="58" class="s">visto de cima · para medir a pressão</text>
+<text x="20" y="384" class="s">costas arqueadas na borda da maca</text>
+<!-- alternativa: sentado -->
+<g transform="translate(372 116) scale(.38)" stroke="#1f2a33" stroke-width="5">
+<rect x="70" y="332" width="170" height="18" rx="4" fill="#e3e7ec"/>
+<rect x="356" y="252" width="184" height="14" rx="3" fill="#e3e7ec"/>
+<line x1="510" y1="266" x2="510" y2="404"/>
+<line x1="94" y1="350" x2="94" y2="404"/><line x1="216" y1="350" x2="216" y2="404"/>
+<path d="M170 312 L300 318 L306 396" fill="none" stroke="#ecd9cc" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="-56" y="-196" width="112" height="206" rx="52" fill="#ecd9cc" transform="translate(160 315) rotate(36)"/>
+<circle cx="322" cy="128" r="36" fill="#ecd9cc"/>
+<rect x="372" y="226" width="150" height="28" rx="14" fill="#fff"/>
+<path d="M272 172 L366 232 L470 232" fill="none" stroke="#ecd9cc" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="372" y="110" class="b s">ou sentado,</text>
+<text x="372" y="130" class="b s">inclinado à frente</text>
+</svg>

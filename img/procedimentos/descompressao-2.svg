@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-descompressao-2" viewBox="0 0 560 420" role="img" aria-labelledby="descompressao-2-t descompressao-2-d">
+<title id="descompressao-2-t">Cateter curto não chega na parede espessa</title>
+<desc id="descompressao-2-d">Corte de uma parede torácica espessa, em escala aproximada, com pneumotórax. Os cateteres entram perpendiculares, rente à borda superior da costela de baixo, longe do feixe vásculo-nervoso. O cateter de cerca de 5 cm termina dentro da parede; o de 8 cm chega ao espaço pleural.</desc>
+<style>
+.qpf-descompressao-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-descompressao-2 .b{font-weight:700}
+.qpf-descompressao-2 .a{fill:#0b63c9}
+.qpf-descompressao-2 .r{fill:#c62828}
+.qpf-descompressao-2 .s{font-size:18px}
+.qpf-descompressao-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- parede: pele/subcutâneo espesso + músculo/costelas -->
+<rect x="44" y="16" width="96" height="388" fill="#f1e4da"/>
+<rect x="140" y="16" width="86" height="388" fill="#ead7d0"/>
+<rect x="226" y="16" width="178" height="388" fill="#fff"/>
+<path d="M404 16 H544 V404 H404 Q388 210 404 16 Z" fill="#f1dcdc"/>
+<line x1="44" y1="16" x2="44" y2="404" class="ln"/>
+<line x1="226" y1="16" x2="226" y2="404" class="ln"/>
+<path d="M404 16 Q388 210 404 404" class="ln" fill="none"/>
+<!-- costelas -->
+<g fill="#fff" stroke="#1f2a33" stroke-width="2">
+<rect x="160" y="36" width="56" height="70" rx="12"/>
+<rect x="160" y="176" width="56" height="70" rx="12"/>
+<rect x="160" y="316" width="56" height="70" rx="12"/>
+</g>
+<!-- feixes sob cada costela -->
+<g stroke="#c62828" stroke-width="2" fill="#f2b8b8">
+<circle cx="208" cy="114" r="6"/><circle cx="208" cy="128" r="6"/>
+<circle cx="208" cy="254" r="6"/><circle cx="208" cy="268" r="6"/>
+</g>
+<!-- cateter de 5 cm (escala 30 px/cm): não chega -->
+<rect x="6" y="160" width="38" height="16" rx="3" fill="#8a96a3" class="ln"/>
+<line x1="44" y1="168" x2="194" y2="168" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+<g stroke="#c62828" stroke-width="4" stroke-linecap="round"><line x1="198" y1="154" x2="216" y2="172"/><line x1="216" y1="154" x2="198" y2="172"/></g>
+<!-- cateter de 8 cm: chega ao espaço pleural -->
+<rect x="6" y="300" width="38" height="16" rx="3" fill="#0b63c9"/>
+<line x1="44" y1="308" x2="284" y2="308" stroke="#0b63c9" stroke-width="6" stroke-linecap="round"/>
+<!-- rótulos -->
+<text x="60" y="60" class="b s">Parede</text>
+<text x="60" y="80" class="b s">espessa</text>
+<text x="238" y="150" class="b r s">~5 cm: termina</text>
+<text x="238" y="172" class="b r s">na parede</text>
+<text x="238" y="342" class="b a s">8 cm: chega</text>
+<text x="238" y="364" class="b a s">à pleura</text>
+<text x="246" y="222" class="s">Ar</text>
+<text x="246" y="242" class="s">(pneumotórax)</text>
+<text x="420" y="200" class="s">Pulmão</text>
+<text x="420" y="220" class="s">colapsado</text>
+<text x="238" y="64" class="b r s">Feixe sob a</text>
+<text x="238" y="84" class="b r s">costela de cima</text>
+<line x1="236" y1="90" x2="216" y2="114" stroke="#c62828" stroke-width="2"/>
+</svg>
