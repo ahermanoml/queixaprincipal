@@ -3,7 +3,9 @@
    fontes listadas em cada procedimento; nada copiado de Whitebook/WeMEDS/livros. Doses de drogas não ficam aqui: o campo
    "calc" liga a página da aba Calculadoras.
    Registro para o prontuário: "registro.modelo" são linhas de texto com variáveis {id} (obrigatória: vazia vira ____) e
-   {id?} (opcional: vazia apaga a linha). Cada variável tem um campo em "registro.campos" (objeto ou id de PROC_CAMPOS). */
+   {id?} (opcional: vazia apaga a linha). Cada variável tem um campo em "registro.campos" (objeto ou id de PROC_CAMPOS).
+   Padrão: "padrao" no campo (PROC_CAMPOS) ou em "registro.padrao" (vale para o procedimento; null tira o padrão). Campo
+   sem padrão (lado, achados, medidas) fica em branco e aparece na linha rápida embaixo do texto. Ver CLAUDE.md. */
 const PROC_AREAS = [
  {"key": "via-aerea", "nm": "Via aérea", "ic": "🫁"},
  {"key": "torax", "nm": "Tórax", "ic": "🫀"},
@@ -16,19 +18,19 @@ const PROC_AREAS = [
 /* campos repetidos em vários registros (referidos pelo id) */
 const PROC_CAMPOS = {
  "lado": {"rotulo": "Lado", "tipo": "opcoes", "opcoes": ["DIREITO", "ESQUERDO"]},
- "consentimento": {"rotulo": "Consentimento", "tipo": "opcoes", "opcoes": [
+ "consentimento": {"rotulo": "Consentimento", "tipo": "opcoes", "padrao": "CONSENTIMENTO OBTIDO COM O PACIENTE", "opcoes": [
   "CONSENTIMENTO OBTIDO COM O PACIENTE",
   "CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL",
   "PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"
  ]},
- "antissepsia": {"rotulo": "Antissepsia", "tipo": "opcoes", "opcoes": [
+ "antissepsia": {"rotulo": "Antissepsia", "tipo": "opcoes", "padrao": "CLOREXIDINA ALCOÓLICA E CAMPOS ESTÉREIS", "opcoes": [
   "CLOREXIDINA ALCOÓLICA E CAMPOS ESTÉREIS",
   "CLOREXIDINA DEGERMANTE + ALCOÓLICA E CAMPOS ESTÉREIS",
   "PVPI E CAMPOS ESTÉREIS"
  ]},
- "anestesia": {"rotulo": "Anestesia local", "tipo": "texto", "dica": "ex.: lidocaína 2% sem vasoconstritor, 10 mL"},
- "tentativas": {"rotulo": "Tentativas", "tipo": "opcoes", "opcoes": ["1", "2", "3", "MAIS DE 3"]},
- "intercorrencias": {"rotulo": "Intercorrências", "tipo": "opcoes", "opcoes": [
+ "anestesia": {"rotulo": "Anestesia local", "tipo": "texto", "padrao": "lidocaína 2% sem vasoconstritor, 10 mL", "dica": "ex.: lidocaína 2% sem vasoconstritor, 10 mL"},
+ "tentativas": {"rotulo": "Tentativas", "tipo": "opcoes", "padrao": "1", "opcoes": ["1", "2", "3", "MAIS DE 3"]},
+ "intercorrencias": {"rotulo": "Intercorrências", "tipo": "opcoes", "padrao": "SEM INTERCORRÊNCIAS IMEDIATAS", "opcoes": [
   "SEM INTERCORRÊNCIAS IMEDIATAS",
   "COM INTERCORRÊNCIA (DESCRITA ABAIXO)"
  ]},
@@ -48,7 +50,8 @@ const PROCS = [
    "Pré-oxigenação/apneia: adotada a ventilação suave com BVM + PEEP durante a latência (DAS 2018, PREVENT 2019) no lugar da sequência clássica sem ventilar — decidir se fica como padrão do serviço.",
    "Profundidade do tubo (~21 cm mulher / ~23 cm homem na rima): valor de memória, não conferido na fonte nesta revisão.",
    "Máximo de 3 tentativas: DAS permite uma 4ª por operador mais experiente — manter 3?",
-   "Lista de contraindicações à succinilcolina ampliada pelo revisor: conferir."
+   "Lista de contraindicações à succinilcolina ampliada pelo revisor: conferir.",
+   "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane."
   ],
   "fontes": [
    "Difficult Airway Society — Guidelines for tracheal intubation in critically ill adults (Higgs et al., BJA 2018)",
@@ -132,9 +135,13 @@ const PROCS = [
    "Pneumotórax"
   ],
   "registro": {
+   "padrao": {"peso": "70", "indutor": "ETOMIDATO", "bloqueador": "SUCCINILCOLINA", "dispositivo": "LARINGOSCOPIA DIRETA", "bougie": "SEM BOUGIE", "tubo": "7,5", "marca": "22", "confirmacao": "CAPNOGRAFIA EM ONDA, AUSCULTA E EXPANSÃO SIMÉTRICA"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "texto", "dica": "ex.: rebaixamento do nível de consciência"},
-    {"id": "drogas", "rotulo": "Drogas (indução + bloqueio)", "tipo": "texto", "dica": "ex.: etomidato 20 mg + rocurônio 80 mg"},
+    {"id": "peso", "rotulo": "Peso de referência", "tipo": "num", "un": "kg", "dica": "ex.: 70"},
+    {"id": "indutor", "rotulo": "Indutor", "tipo": "opcoes", "fonte": "IOT.ind"},
+    {"id": "bloqueador", "rotulo": "Bloqueador neuromuscular", "tipo": "opcoes", "fonte": "IOT.bnm"},
+    {"id": "drogas", "rotulo": "Drogas", "tipo": "derivado", "de": "sri"},
     {"id": "dispositivo", "rotulo": "Laringoscopia", "tipo": "opcoes", "opcoes": ["LARINGOSCOPIA DIRETA", "VIDEOLARINGOSCOPIA"]},
     {"id": "cormack", "rotulo": "Cormack-Lehane", "tipo": "opcoes", "opcoes": ["I", "II", "III", "IV"]},
     {"id": "bougie", "rotulo": "Bougie", "tipo": "opcoes", "opcoes": ["SEM BOUGIE", "COM BOUGIE"]},
@@ -172,7 +179,8 @@ const PROCS = [
   "pendencias": [
    "Idade de corte para não fazer a cirúrgica: ATLS < 12 anos; algumas diretrizes pediátricas usam ~8–10.",
    "Tubo 6,0 (ou 5,0): confirmar o que existe no kit do serviço.",
-   "Técnica por punção na criança: sistema de O₂ e tempo máximo de ponte conforme o material disponível."
+   "Técnica por punção na criança: sistema de O₂ e tempo máximo de ponte conforme o material disponível.",
+   "Padrão do registro: técnica cirúrgica bisturi–bougie–tubo, tubo 6,0 com cuff, 1 tentativa, capnografia em onda, sem intercorrências. Fica em branco: indicação."
   ],
   "fontes": [
    "Difficult Airway Society — Unanticipated difficult intubation in adults (Frerk et al., BJA 2015): técnica bisturi–bougie–tubo",
@@ -238,6 +246,7 @@ const PROCS = [
    "Estenose subglótica (tardia)"
   ],
   "registro": {
+   "padrao": {"tecnica": "CIRÚRGICA (BISTURI–BOUGIE–TUBO)", "dispositivo": "tubo 6,0 com cuff", "confirmacao": "CAPNOGRAFIA EM ONDA E AUSCULTA"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "opcoes", "opcoes": [
      "SITUAÇÃO NÃO INTUBO, NÃO OXIGENO",
@@ -278,7 +287,8 @@ const PROCS = [
   "revisado": null,
   "pendencias": [
    "Local adulto (4º–5º EIC anterior à LAM) e cateter de 8 cm: ATLS 10 conferido só por fontes secundárias; ATLS 11 (2025) não consultado.",
-   "Cateter de 8 cm raramente disponível: orientar toracostomia digital quando só houver o de ~5 cm — confirmar como conduta do serviço."
+   "Cateter de 8 cm raramente disponível: orientar toracostomia digital quando só houver o de ~5 cm — confirmar como conduta do serviço.",
+   "Padrão do registro: descompressão por agulha no 4º–5º EIC anterior à linha axilar média, cateter 14G de 8 cm, drenagem de tórax em seguida, sem intercorrências. Ficam em branco: lado, achado e resposta."
   ],
   "fontes": [
    "ATLS — Advanced Trauma Life Support, 10ª ed. (ACS, 2018): local adulto 4º–5º EIC anterior à linha axilar média; 2º EIC na criança",
@@ -333,6 +343,7 @@ const PROCS = [
    "Pneumotórax iatrogênico se o diagnóstico estava errado"
   ],
   "registro": {
+   "padrao": {"tecnica": "DESCOMPRESSÃO POR AGULHA", "local": "4º–5º EIC ANTERIOR À LINHA AXILAR MÉDIA", "dispositivo": "cateter 14G de 8 cm", "seguimento": "DRENAGEM DE TÓRAX EM SEGUIDA"},
    "campos": [
     {"id": "tecnica", "rotulo": "Técnica", "tipo": "opcoes", "opcoes": ["DESCOMPRESSÃO POR AGULHA", "TORACOSTOMIA DIGITAL"]},
     {"id": "lado", "rotulo": "Lado", "tipo": "opcoes", "opcoes": ["DIREITO", "ESQUERDO", "BILATERAL"]},
@@ -369,7 +380,8 @@ const PROCS = [
   "pendencias": [
    "Local: BTS 2023 prefere o triângulo de segurança (linha axilar média) e evita a via posterior; a via posterior sentado é comum no Brasil — escolher qual fica como padrão.",
    "Intervalos de suspensão de anticoagulantes (BTS 2023) transcritos pelo revisor: conferir.",
-   "Limite de 1,5 L por punção: consenso, não evidência forte."
+   "Limite de 1,5 L por punção: consenso, não evidência forte.",
+   "Padrão do registro: diagnóstica, guiada por ultrassom, 6º EIC na linha axilar média (triângulo de segurança, BTS 2023), consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras enviadas, sem intercorrências. Ficam em branco: lado, volume e aspecto."
   ],
   "fontes": [
    "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
@@ -434,6 +446,7 @@ const PROCS = [
    "Infecção"
   ],
   "registro": {
+   "padrao": {"finalidade": "DIAGNÓSTICA", "guia": "GUIADA POR ULTRASSOM", "local": "6º EIC, linha axilar média", "dispositivo": "cateter 18G", "amostras": "AMOSTRAS ENVIADAS PARA ANÁLISE"},
    "campos": [
     {"id": "finalidade", "rotulo": "Finalidade", "tipo": "opcoes", "opcoes": ["DIAGNÓSTICA", "DE ALÍVIO", "DIAGNÓSTICA E DE ALÍVIO"]},
     "lado",
@@ -472,7 +485,8 @@ const PROCS = [
   "pendencias": [
    "Calibre no hemotórax: 28–32 Fr (ATLS/trauma) vs 14 Fr Seldinger no estável (ensaios de não inferioridade) — decidir.",
    "Antibiótico profilático no trauma (algumas diretrizes usam amoxicilina-clavulanato) não foi incluído — decidir.",
-   "Critérios para cirurgia (≥ 1.500 mL inicial ou > 200 mL/h por 2–4 h): ATLS 10; conferir se mudou no ATLS 11."
+   "Critérios para cirurgia (≥ 1.500 mL inicial ou > 200 mL/h por 2–4 h): ATLS 10; conferir se mudou no ATLS 11.",
+   "Padrão do registro: 5º EIC na linha axilar média (triângulo de segurança), dissecção romba, dreno 28 Fr, consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação, saída, débito, selo e fixação na pele."
   ],
   "fontes": [
    "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
@@ -547,6 +561,7 @@ const PROCS = [
    "Saída acidental"
   ],
   "registro": {
+   "padrao": {"local": "5º EIC NA LINHA AXILAR MÉDIA (TRIÂNGULO DE SEGURANÇA)", "tecnica": "DISSECÇÃO ROMBA", "calibre": "28", "controle": "RX DE TÓRAX DE CONTROLE SOLICITADO"},
    "campos": [
     "lado",
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "opcoes", "opcoes": ["PNEUMOTÓRAX", "HEMOTÓRAX", "HEMOPNEUMOTÓRAX", "DERRAME PLEURAL", "EMPIEMA"]},
@@ -592,7 +607,8 @@ const PROCS = [
   "pendencias": [
    "Profundidades por sítio são aproximações (variam com altura e lado): conferir.",
    "Confirmação de posição por RX vs US: depende do serviço.",
-   "Conduta se o fio-guia não sair inteiro (não usar o cateter; RX; vascular/hemodinâmica) foi escrita por mim — conferir."
+   "Conduta se o fio-guia não sair inteiro (não usar o cateter; RX; vascular/hemodinâmica) foi escrita por mim — conferir.",
+   "Padrão do registro: jugular interna guiada por US em tempo real, paramentação completa, clorexidina alcoólica, lidocaína 2% 10 mL, cateter duplo lúmen 7 Fr 20 cm, 1 tentativa, fio-guia conferido, refluxo em todas as vias, RX de controle solicitado, consentimento do paciente, sem intercorrências. Ficam em branco: lado, indicação e fixação na pele (cm)."
   ],
   "fontes": [
    "ASA — Practice Guidelines for Central Venous Access (Anesthesiology, 2020)",
@@ -667,6 +683,7 @@ const PROCS = [
    "Trombose"
   ],
   "registro": {
+   "padrao": {"sitio": "JUGULAR INTERNA", "guia": "GUIADA POR ULTRASSOM EM TEMPO REAL", "barreira": "PARAMENTAÇÃO COMPLETA (GORRO, MÁSCARA, AVENTAL, LUVAS) E CAMPO AMPLO", "cateter": "duplo lúmen 7 Fr 20 cm", "fio": "FIO-GUIA RETIRADO E CONFERIDO ÍNTEGRO", "refluxo": "REFLUXO SANGUÍNEO E LAVAGEM SEM RESISTÊNCIA EM TODAS AS VIAS", "controle": "RX DE TÓRAX SOLICITADO PARA POSIÇÃO E PARA AFASTAR PNEUMOTÓRAX"},
    "campos": [
     {"id": "sitio", "rotulo": "Veia", "tipo": "opcoes", "opcoes": ["JUGULAR INTERNA", "SUBCLÁVIA", "FEMORAL"]},
     "lado",
@@ -721,7 +738,8 @@ const PROCS = [
    "Referência na tíbia proximal (2 cm abaixo da tuberosidade, face medial; criança 1–2 cm abaixo, medial): a bula EZ-IO não traz referências anatômicas — conferir no material de treinamento do fabricante.",
    "Tempo de permanência: idealmente < 24 h; máximo EZ-IO internacional 72 h — confirmar o dispositivo usado no serviço.",
    "Lidocaína intraóssea: dose pelo protocolo do serviço (não há página na Calculadoras); \"aguardar ~1 min\" não está na bula.",
-   "Ângulo no úmero deixado ao fabricante."
+   "Ângulo no úmero deixado ao fabricante.",
+   "Padrão do registro: tíbia proximal, perfurador elétrico, agulha 15G 25 mm, clorexidina alcoólica, 1 tentativa, aspirado e flush sem extravasamento, sem intercorrências. Ficam em branco: lado, indicação, analgesia (depende de o paciente estar consciente) e hora."
   ],
   "fontes": [
    "AHA — Diretrizes de RCP e ACE 2020/2025 (SAVC e PALS): via IO quando a IV não é obtida",
@@ -791,6 +809,7 @@ const PROCS = [
    "Dor à infusão"
   ],
   "registro": {
+   "padrao": {"sitio": "TÍBIA PROXIMAL", "dispositivo": "PERFURADOR ELÉTRICO", "agulha": "15G 25 mm", "confirmacao": "ASPIRADO DE MEDULA E FLUSH SEM RESISTÊNCIA OU EXTRAVASAMENTO"},
    "campos": [
     {"id": "sitio", "rotulo": "Local", "tipo": "opcoes", "opcoes": ["TÍBIA PROXIMAL", "ÚMERO PROXIMAL", "TÍBIA DISTAL", "FÊMUR DISTAL"]},
     "lado",
@@ -829,7 +848,8 @@ const PROCS = [
   "revisado": null,
   "pendencias": [
    "Albumina > 5 L: AASLD 'considerar' 6–8 g/L; EASL recomenda 8 g/L — escolher o padrão.",
-   "Não corrigir INR/plaquetas de rotina (AASLD): confirmar que é a conduta do serviço."
+   "Não corrigir INR/plaquetas de rotina (AASLD): confirmar que é a conduta do serviço.",
+   "Padrão do registro: diagnóstica, guiada por ultrassom, fossa ilíaca esquerda, consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras colhidas, sem intercorrências. Ficam em branco: volume, aspecto e albumina (depende do volume)."
   ],
   "fontes": [
    "AASLD — Practice Guidance: Diagnosis, evaluation and management of ascites, SBP and HRS (Biggins et al., Hepatology 2021)",
@@ -892,6 +912,7 @@ const PROCS = [
    "Hipotensão após grande volume sem albumina"
   ],
   "registro": {
+   "padrao": {"finalidade": "DIAGNÓSTICA", "guia": "GUIADA POR ULTRASSOM", "local": "FOSSA ILÍACA ESQUERDA", "dispositivo": "cateter 18G", "amostras": "COLHIDAS AMOSTRAS PARA CELULARIDADE, BIOQUÍMICA E CULTURA EM FRASCOS DE HEMOCULTURA"},
    "campos": [
     {"id": "finalidade", "rotulo": "Finalidade", "tipo": "opcoes", "opcoes": ["DIAGNÓSTICA", "DE ALÍVIO", "DIAGNÓSTICA E DE ALÍVIO"]},
     "consentimento",
@@ -935,7 +956,8 @@ const PROCS = [
    "Intervalos de anticoagulantes conferidos em resumo secundário da ASRA 2018 (4ª ed.), não no texto original.",
    "Cortes de plaquetas < 50 mil e INR > 1,5: valores usuais, não vêm da ASRA — confirmar.",
    "Critérios de TC antes da PL: IDSA 2004; ESCMID considera rebaixamento = Glasgow < 10.",
-   "Antibiótico + dexametasona antes da TC: corrigido nesta revisão (IDSA/ESCMID)."
+   "Antibiótico + dexametasona antes da TC: corrigido nesta revisão (IDSA/ESCMID).",
+   "Padrão do registro: decúbito lateral, espaço L3–L4, agulha espinal 22G, consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, 1 tentativa, sem intercorrências. Ficam em branco: indicação, TC prévia, pressão de abertura, aspecto e volume."
   ],
   "fontes": [
    "IDSA — Practice Guidelines for the Management of Bacterial Meningitis (Tunkel et al., CID 2004): critérios de TC antes da PL",
@@ -998,6 +1020,7 @@ const PROCS = [
    "Herniação (rara; com efeito de massa)"
   ],
   "registro": {
+   "padrao": {"posicao": "DECÚBITO LATERAL", "espaco": "L3–L4", "agulha": "espinal 22G"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "texto", "dica": "ex.: suspeita de meningite"},
     {"id": "tc", "rotulo": "Imagem prévia", "tipo": "opcoes", "opcoes": [
@@ -1040,7 +1063,8 @@ const PROCS = [
   "pendencias": [
    "Cargas iniciais AHA 2025 (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J) conferidas no algoritmo oficial.",
    "Anticoagulação após cardioversão de FA (≥ 4 semanas): ajustar ao risco e ao protocolo do serviço.",
-   "Escolha da sedação: ver Calculadoras; definir o padrão do serviço."
+   "Escolha da sedação: ver Calculadoras; definir o padrão do serviço.",
+   "Padrão do registro: pás anterolaterais, modo sincronizado, consentimento do paciente, sem intercorrências. Ficam em branco: ritmo, indicação, sedação (sem padrão do serviço; ver pendência acima), choques (a carga depende do ritmo) e resultado."
   ],
   "fontes": [
    "AHA — 2025 ACLS Electrical Cardioversion Algorithm (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J)",
@@ -1105,6 +1129,7 @@ const PROCS = [
    "Depressão respiratória pela sedação"
   ],
   "registro": {
+   "padrao": {"pas": "ANTEROLATERAL", "modo": "SINCRONIZADO"},
    "campos": [
     {"id": "ritmo", "rotulo": "Ritmo", "tipo": "texto", "dica": "ex.: FA de alta resposta, FC 170"},
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "opcoes", "opcoes": ["INSTABILIDADE HEMODINÂMICA", "ELETIVA"]},

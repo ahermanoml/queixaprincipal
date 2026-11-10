@@ -109,7 +109,7 @@ def abas(browser, url, out_dir, sizes=((1366, 768), (1440, 900), (390, 844))):
         pg.goto("about:blank"); pg.goto(base + "#/procedimentos/dreno"); pg.wait_for_timeout(120)
         pg.click('.pr-op[data-c="lado"][data-v="DIREITO"]')
         pg.click('.pr-op[data-c="indicacao"][data-v="HEMOTÓRAX"]')
-        pg.fill("#pr-c-calibre", "28")
+        pg.fill("#pr-c-volume", "300")
         if w > 820:
             pg.evaluate("() => { document.querySelector('#pr-body').scrollTop = 0; }")
         pg.wait_for_timeout(80)

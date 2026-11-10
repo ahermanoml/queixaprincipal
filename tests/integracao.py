@@ -94,6 +94,7 @@ def run(browser, url):
                 if (!i) return null; i.value = 'teste 123'; i.dispatchEvent(new Event('input', {bubbles: true})); return i.id; }""")
             opt = pg.evaluate("""() => { const b = document.querySelector('#pr-body .pr-op'); if (!b) return null; if (b.getAttribute('aria-pressed') !== 'true') b.click(); return [b.dataset.c, b.dataset.v]; }""")
             before = pg.evaluate("() => prTexto(prAberto)")
+            pg.click("#pr-cx-doses > summary")   # the links live in the "Doses" box, collapsed on load
             pg.click(f'#pr-body [data-calc="{cid}"]'); pg.wait_for_timeout(80)
             s = st()
             open_id = pg.evaluate("() => viewOf('calculadoras').itemId()")
@@ -103,10 +104,10 @@ def run(browser, url):
             after = pg.evaluate(f"""() => ({{view: document.body.dataset.view, ticks: [...document.querySelectorAll('#pr-body .pr-check input')].filter(c => c.checked).length,
                 field: {repr(field)} ? (document.getElementById({repr(field)}) || {{}}).value : null,
                 opt: {opt!r} ? (document.querySelector('#pr-body .pr-op[data-c="' + {opt!r}[0] + '"][data-v="' + {opt!r}[1] + '"]') || {{}}).getAttribute?.('aria-pressed') : null,
-                text: prTexto(prAberto)}})""")
+                text: prTexto(prAberto), doses: document.querySelector('#pr-cx-doses').open}})""")
             good = (after["view"] == "procedimentos" and after["ticks"] >= 2 and (field is None or after["field"] == "teste 123")
-                    and (opt is None or after["opt"] == "true") and after["text"] == before)
-            rep.check(good, f"{pid} ← Back from {cid}: {after['view']} ticks={after['ticks']} field={after['field']!r} opt={after['opt']} same note={after['text'] == before}")
+                    and (opt is None or after["opt"] == "true") and after["text"] == before and after["doses"])
+            rep.check(good, f"{pid} ← Back from {cid}: {after['view']} ticks={after['ticks']} field={after['field']!r} opt={after['opt']} same note={after['text'] == before} doses box open={after['doses']}")
             total += 1
             n += 2
     rep.note(f"{total} 'Doses:' links followed and returned with Back")
