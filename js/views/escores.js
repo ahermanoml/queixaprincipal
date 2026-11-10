@@ -106,6 +106,8 @@ function openEsc(slug, how){
   if(how==="search" || how==="keyboard"){
     const first = escBody.querySelector("#nihss-rapida") || escBody.querySelector(".esc-item:not([hidden]) button, .esc-item:not([hidden]) input");
     if(first) first.focus({preventScroll: true});
+    // NIHSS: a Entrada rápida já vem com os 15 zeros do padrão; selecionada, o que for digitado substitui tudo
+    if(first && first.id==="nihss-rapida") first.select();
   }
   return true;
 }
@@ -272,16 +274,19 @@ function escUpdate(def){
 }
 
 /* ---- NIHSS (página própria no original) ---- */
+// padrão do Queixa Principal (pedido do dono): a NIHSS abre com os 15 itens em 0 (exame normal), pronta para copiar;
+// o médico muda só o que está alterado. O cálculo e o texto continuam os do original (NIHSSM), só o estado inicial muda.
+const nihssPadrao = () => Object.fromEntries(NIHSS.ITEMS.map(it=> [it.id, 0]));
 function renderNihss(){
   const S = NIHSSM.state;
-  S.v = {};
+  S.v = nihssPadrao();
   if(!NIHSS.FMTS.some(f=> f.id===S.fmt)) S.fmt = "lista";
   const items = NIHSS.ITEMS.map(it=>
     `<div class="esc-item" data-item="${esc(it.id)}"><div class="esc-lbl"><span class="esc-chip">${esc(it.id)}</span><div><b>${esc(it.t)}</b><small>${esc(it.h)}</small></div></div>
      <div class="esc-opts" role="group" aria-label="${esc(it.t)}">${it.o.map((l, n)=> `<button type="button" class="esc-opt" data-val="${n}" aria-pressed="false"><b>${n}</b>${esc(l)}</button>`).join("")}</div></div>`).join("");
   escBody.innerHTML = `<div class="esc esc-nihss" data-slug="nihss">${escHead(ESC_NIHSS, `<span class="esc-credit">Versão brasileira: Pontes-Neto (HCFMRP-USP)</span>`)}
     <div class="esc-layout">
-      <div class="esc-items">${items}<p class="esc-note">Pontuar o que o paciente faz, não o que se acha que ele consegue. Registrar a 1ª resposta. Clique de novo para desmarcar.</p></div>
+      <div class="esc-items">${items}<p class="esc-note">Pontuar o que o paciente faz, não o que se acha que ele consegue. Registrar a 1ª resposta. Começa com tudo em 0 (exame normal): marque só o que estiver alterado. Clique de novo para desmarcar (item não avaliado).</p></div>
       <aside class="esc-side">
         <div class="esc-panel esc-res" aria-live="polite"><div class="esc-meta esc-meta2"><span>Total · 0 a 42</span><span id="nihss-answered">0 de 15 itens</span></div>
           <div class="esc-total-row"><span class="esc-total" id="esc-value">0</span><span class="esc-band" id="esc-band">Clique nas respostas</span></div>
@@ -319,9 +324,10 @@ function renderNihss(){
   escBody.querySelectorAll("[data-mom]").forEach(b=> b.onclick = ()=>{ S.moment = b.dataset.mom; nihssUpdate(false); });
   escBody.querySelectorAll("[data-fmt]").forEach(b=> b.onclick = ()=>{ S.fmt = b.dataset.fmt; nihssUpdate(false); });
   escBody.querySelectorAll("[data-caixa]").forEach(b=> b.onclick = ()=>{ escCaixa = b.dataset.caixa; nihssUpdate(false); });
-  // como no original: sem nenhum item marcado não há o que copiar
+  // como no original: sem nenhum item marcado (só desmarcando tudo à mão, ou apagando a Entrada rápida) não há o que copiar
   $("#esc-copy").onclick = ()=>{ if(NIHSSM.totals().answered===0) return; escCopy(escComCaixa(NIHSSM.buildText())); };
-  $("#esc-reset").onclick = ()=>{ S.v = {}; $("#nihss-warn").hidden = true; nihssUpdate(true); };
+  // "Zerar tudo" volta ao padrão: todos os itens em 0
+  $("#esc-reset").onclick = ()=>{ S.v = nihssPadrao(); $("#nihss-warn").hidden = true; nihssUpdate(true); };
   $("#esc-print").onclick = ()=> escPrint(()=>{
     $("#ficha").innerHTML = $("#tpl-ficha-nihss").innerHTML;
     $("#ficha").querySelectorAll("img[data-src]").forEach(i=> i.src = i.dataset.src);

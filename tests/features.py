@@ -1,6 +1,6 @@
 """Tests for the phase-1 features: hash routing (#/view/item, back/forward) and the global search ("busca única")."""
 import re, unicodedata
-from lib import Page, Report
+from lib import REPO, Page, Report
 
 STATE = """() => ({
   hash: location.hash, view: document.body.dataset.view,
@@ -394,9 +394,118 @@ def escores(browser, url, rep):
     rep.note(f"escores: {n} checks")
 
 
+def nihss_padrao(browser, url, rep):
+    """The NIHSS opens with every item at 0 (normal exam), ready to copy; 'Zerar tudo' returns there; the other scores open blank.
+    The expected texts come from the frozen 'tudo-0' case (every item marked 0 by hand, from nothing), so the new start state
+    must give exactly the text the original gives for the same answers."""
+    import json, os
+    import escores_lib as E
+    fx = json.load(open(os.path.join(REPO, "tests/fixtures/escores.json"), encoding="utf-8"))
+    z = E.unpack(next(c for c in fx["nihss"] if c["case"] == "tudo-0")["expect"])
+    base = url.split("#")[0]
+    n = 0
+    STATE = """() => [document.querySelector('#esc-value').textContent, document.querySelector('#esc-band').textContent,
+        document.querySelector('#nihss-answered').textContent, document.querySelector('#nihss-rapida').value,
+        [...document.querySelectorAll('#esc-body [data-item] button[aria-pressed="true"]')].map(b => b.closest('[data-item]').dataset.item + '=' + b.dataset.val).join(),
+        document.querySelector('#esc-preview').textContent]"""
+    zeros = ",".join(f"{i}=0" for i in ["1a", "1b", "1c", "2", "3", "4", "5a", "5b", "6a", "6b", "7", "8", "9", "10", "11"])
+    want = [z["value"], z["band"], z["answered"], z["quick"], zeros, z["texts"]["Admissão|lista"]]
+
+    def copied(pg, sel="#esc-copy"):
+        pg.evaluate("window.__clip = null"); pg.click(sel); pg.wait_for_timeout(30)
+        return pg.evaluate("window.__clip")
+
+    p = Page(browser, base)
+    pg = p.page
+    rep.check(want[:4] == ["0", "Sem déficit", "15 de 15 itens", "000000000000000"], f"frozen tudo-0 case is the normal exam: {want[:4]}")
+    # three ways in: address (fresh load), the list, the busca única
+    pg.goto("about:blank"); pg.goto(base + "#/escores/nihss"); pg.wait_for_timeout(60)
+    rep.check(pg.evaluate(STATE) == want, f"address: opens with every item at 0: {pg.evaluate(STATE)[:5]}")
+    rep.check(copied(pg) == z["copy"], "address: Copiar copies the all-0 text with no click before")
+    pg.goto("about:blank"); pg.goto(base + "#/escores/heart"); pg.wait_for_timeout(50)
+    pg.click('#esc-list .esc-row[data-slug="nihss"]'); pg.wait_for_timeout(50)
+    rep.check(pg.evaluate(STATE) == want and copied(pg) == z["copy"], "list: opens at 0 and copies")
+    pg.goto("about:blank"); pg.goto(base + "#/escores/heart"); pg.wait_for_timeout(50)
+    pg.keyboard.press("Control+k"); pg.keyboard.type("nihss"); pg.keyboard.press("Enter"); pg.wait_for_timeout(60)
+    rep.check(pg.evaluate(STATE) == want, "search: opens at 0")
+    sel = pg.evaluate("() => { const i = document.activeElement; return [i.id, i.selectionStart, i.selectionEnd]; }")
+    rep.check(sel == ["nihss-rapida", 0, 15], f"search: focus on Entrada rápida with the 15 zeros selected: {sel}")
+    n += 6
+    # quick entry: typing replaces everything (same rule as the original: digits typed = items answered, in order)
+    pg.keyboard.type("1")
+    s = pg.evaluate(STATE)
+    rep.check(s[:5] == ["1", "Leve", "1 de 15 itens", "1", "1a=1"], f"quick entry replaces the whole exam: {s[:5]}")
+    pg.fill("#nihss-rapida", "000000000000000")
+    pg.evaluate("() => { const i = document.querySelector('#nihss-rapida'); i.focus(); i.setSelectionRange(3, 4); }")
+    pg.keyboard.type("2")
+    s = pg.evaluate(STATE)
+    rep.check(s[:4] == ["2", "Leve", "15 de 15 itens", "000200000000000"] and ",2=2," in s[4], f"quick entry: overwrite one digit (4th = item 2): {s[:5]}")
+    pg.fill("#nihss-rapida", "")
+    s = pg.evaluate(STATE)
+    rep.check(s[2] == "0 de 15 itens" and s[4] == "" and copied(pg) is None, f"quick entry emptied: nothing marked, nothing copied: {s[:5]}")
+    pg.click("#esc-reset"); pg.wait_for_timeout(30)
+    rep.check(pg.evaluate(STATE) == want and copied(pg) == z["copy"], "Zerar tudo after the quick entry: back to every item at 0")
+    n += 4
+    # change one item, Zerar tudo; unmark by clicking again; moments and formats from the default
+    pg.click('[data-item="4"] button[data-val="2"]'); pg.wait_for_timeout(20)
+    s = pg.evaluate(STATE)
+    rep.check(s[:3] == ["2", "Leve", "15 de 15 itens"] and "4=2" in s[4] and copied(pg) == s[5], f"changing one item updates everything: {s[:4]}")
+    pg.click('[data-item="4"] button[data-val="2"]'); pg.wait_for_timeout(20)
+    s = pg.evaluate(STATE)
+    rep.check(s[:3] == ["0", "Sem déficit", "14 de 15 itens"] and "4=" not in s[4] and "4. " in s[5] and "não avaliado" in s[5], f"clicking the marked option again unmarks it: {s[:3]}")
+    pg.click("#esc-reset"); pg.wait_for_timeout(20)
+    rep.check(pg.evaluate(STATE) == want, "Zerar tudo returns to every item at 0")
+    texts = pg.evaluate("""() => { const o = {};
+        for (const m of ['Admissão', 'Pós-trombólise', '24 h', 'Alta']) for (const f of ['lista', 'descritivo', 'linha']) {
+          document.querySelector(`#esc-body [data-mom="${m}"]`).click(); document.querySelector(`#esc-body [data-fmt="${f}"]`).click();
+          window.__clip = null; document.querySelector('#esc-copy').click(); o[m + '|' + f] = document.querySelector('#esc-preview').textContent; }
+        document.querySelector('#esc-body [data-mom="Admissão"]').click(); document.querySelector('#esc-body [data-fmt="lista"]').click();
+        return o; }""")
+    rep.check(texts == z["texts"], f"every moment x format of the default = the frozen all-0 texts: {[k for k in texts if texts[k] != z['texts'].get(k)]}")
+    n += 4
+    # state kept across tab switches; a fresh load starts again from the default
+    pg.click('[data-item="5a"] button[data-val="3"]'); pg.wait_for_timeout(20)
+    pg.click("#tab-prescricoes"); pg.click("#tab-escores"); pg.wait_for_timeout(30)
+    s = pg.evaluate(STATE)
+    rep.check(s[0] == "3" and "5a=3" in s[4], f"tab switch keeps the NIHSS answers: {s[:1]}")
+    pg.goto("about:blank"); pg.goto(base + "#/escores/nihss"); pg.wait_for_timeout(60)
+    rep.check(pg.evaluate(STATE) == want, "fresh load: back to the default")
+    # the blank form stays blank with the default answers
+    pg.evaluate("() => { window.print = () => {}; }")
+    pg.click("#esc-print"); pg.wait_for_timeout(400)
+    s = pg.evaluate("() => [document.querySelector('#fScore').style.display, document.querySelectorAll('#fBody td.on').length, [...document.querySelectorAll('#fBody td.c')].filter(t => !t.classList.contains('dt') && t.textContent).length]")
+    rep.check(s == ["none", 0, 0], f"blank form printed blank: {s}")
+    pg.evaluate("() => window.dispatchEvent(new Event('afterprint'))")
+    n += 3
+    # the other 25 scores still open blank
+    slugs = pg.evaluate("() => ESC_ALL.map(s => s.slug).filter(s => s !== 'nihss')")
+    bad = []
+    for slug in slugs:
+        pg.goto("about:blank"); pg.goto(base + "#/escores/" + slug); pg.wait_for_timeout(30)
+        ok = pg.evaluate(f"() => {{ const d = ESC_DEFS.find(x => x.slug === '{slug}'); return JSON.stringify(escV) === JSON.stringify(FV.initState(d)); }}")
+        if not ok:
+            bad.append(slug)
+    rep.check(len(slugs) == 25 and not bad, f"the other 25 scores open in the original's start state (FV.initState: checks at 'Não', no choice marked): {bad}")
+    n += 1
+    rep.check(not p.problems, "nihss default problems: " + "; ".join(p.problems[:5]))
+    p.close()
+    # phone: the bottom bar shows 0 and copies right away
+    p = Page(browser, base + "#/escores/nihss", 390, 844)
+    pg = p.page
+    pg.wait_for_timeout(60)
+    s = pg.evaluate("() => [document.querySelector('#esc-bar').hidden, document.querySelector('#esc-bar-v').textContent, document.querySelector('#esc-bar-b').textContent]")
+    rep.check(s == [False, "0", "Sem déficit"], f"phone: result bar shows 0 / Sem déficit: {s}")
+    rep.check(copied(pg, "#esc-bar-copy") == z["copy"], "phone: the bar's Copiar copies the all-0 text with no click before")
+    n += 2
+    rep.check(not p.problems, "nihss phone problems: " + "; ".join(p.problems[:5]))
+    p.close()
+    rep.note(f"nihss default: {n} checks")
+
+
 def run(browser, url):
     rep = Report("features")
     routing(browser, url, rep)
     search(browser, url, rep)
     escores(browser, url, rep)
+    nihss_padrao(browser, url, rep)
     return rep.done()

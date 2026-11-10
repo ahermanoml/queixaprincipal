@@ -48,7 +48,10 @@ async ({states, A}) => {
 NIHSS_ORIG = {"reset": "#btnReset", "value": "#total", "band": "#band", "answered": "#answered", "preview": "#preview", "copy": "#btnCopy",
               "quick": "#rapida", "warn": "#warn", "btn": "#item-ID .opt:nth-child(N)", "seg": "#SEG button", "orig": True}
 NIHSS_NEW = {"reset": "#esc-reset", "value": "#esc-value", "band": "#esc-band", "answered": "#nihss-answered", "preview": "#esc-preview",
-             "copy": "#esc-copy", "quick": "#nihss-rapida", "warn": "#nihss-warn", "btn": '[data-item="ID"] button[data-val="V"]', "orig": False}
+             "copy": "#esc-copy", "quick": "#nihss-rapida", "warn": "#nihss-warn", "btn": '[data-item="ID"] button[data-val="V"]', "orig": False,
+             # the tab opens (and "Zerar tudo" returns) with every item at 0; the frozen cases start from "nothing marked", so the
+             # driver first unmarks every pressed answer with real clicks (clicking the marked option again unmarks it)
+             "clear": '#esc-body [data-item] button[data-val][aria-pressed="true"]'}
 NIHSS_MOMENTS = ["Admissão", "Pós-trombólise", "24 h", "Alta"]
 NIHSS_FMTS = [("lista", "Lista"), ("descritivo", "Descritivo"), ("linha", "Uma linha")]
 
@@ -72,6 +75,7 @@ async ({states, quick, A, moments, fmts}) => {
   const out = [];
   for (const st of states) {
     q(A.reset).click();
+    if (A.clear) document.querySelectorAll(A.clear).forEach(b => b.click());
     for (const [id, n] of st) q(A.orig ? A.btn.replace('ID', id).replace('N', n + 1) : A.btn.replace('ID', id).replace('V', n)).click();
     const r = read();
     window.__clip = null; q(A.copy).click(); await tick(); r.copy = window.__clip;
