@@ -28,6 +28,7 @@ function condBtn(id, ic, nm, sub, open){
   const el = document.createElement("button");
   el.type = "button";
   el.className = "cond" + (activeCond===id ? " active":"");
+  el.dataset.id = id;
   el.setAttribute("aria-pressed", activeCond===id ? "true":"false");
   el.innerHTML = `<span class="ic" aria-hidden="true">${ic}</span>
     <span><span class="nm">${esc(nm)}</span><br><span class="sub">${esc(sub)}</span></span>`;
@@ -36,6 +37,7 @@ function condBtn(id, ic, nm, sub, open){
     condList.querySelectorAll(".cond.active").forEach(x=>{ x.classList.remove("active"); x.setAttribute("aria-pressed","false"); });
     el.classList.add("active"); el.setAttribute("aria-pressed","true");
     open();
+    routeChanged();   // grava #/prescricoes/<id> (nova entrada no histórico)
   };
   condList.appendChild(el);
 }
@@ -256,8 +258,45 @@ function renderMid(c){
 
 $("#cond-search").oninput = e=> renderConds(e.target.value);
 
+/* ---- abrir / fechar condição pelo id (endereço #/prescricoes/<id>, voltar/avançar, busca única) ---- */
+const MID_EMPTY = midBody.innerHTML, MID_TITLE = midTitle.textContent;   // painel do meio sem condição aberta
+// igual a clicar na condição na lista (Adulto › Ambulatorial); false se o id não existe
+function openCond(id, how){
+  const c = DATA.find(x=> x.id===id);
+  if(!c) return false;
+  activeCond = id;
+  condList.querySelectorAll(".cond").forEach(x=>{
+    const on = x.dataset.id===id;
+    x.classList.toggle("active", on); x.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  currentPac = "adulto"; currentSet = "amb";
+  renderMid(c);
+  if(how==="search" || how==="load") revealCond();
+  return true;
+}
+// mostra a condição aberta: no celular rola a página até o painel do meio; no computador, rola só a lista até ela
+function revealCond(){
+  if(pageScrolls()){ scrollIntoPlace($("#col-mid")); return; }
+  const b = condList.querySelector(".cond.active");
+  if(b){
+    const top = b.offsetTop - condList.offsetTop, bot = top + b.offsetHeight;
+    if(top < condList.scrollTop || bot > condList.scrollTop + condList.clientHeight) condList.scrollTop = top - condList.clientHeight/3;
+  }
+  midBody.scrollTop = 0;
+}
+// volta ao estado inicial (nenhuma condição aberta); a receita, o peso e o modo não mudam
+function closeCond(){
+  activeCond = null; curCond = null;
+  condList.querySelectorAll(".cond.active").forEach(x=>{ x.classList.remove("active"); x.setAttribute("aria-pressed","false"); });
+  midTitle.textContent = MID_TITLE;
+  midBody.innerHTML = MID_EMPTY;
+}
+
 /* ---- registro da aba ---- */
 registerView({
   key: "prescricoes", label: "Prescrições", icon: "💊",
-  cols: ["col-cond", "col-mid"], layout: "lista"
+  cols: ["col-cond", "col-mid"], layout: "lista",
+  itemId: () => curCond ? curCond.id : null,
+  open: openCond,
+  close: closeCond
 });

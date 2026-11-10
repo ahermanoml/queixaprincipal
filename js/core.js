@@ -22,6 +22,20 @@ async function copyText(txt){
   }
 }
 
+/* ---- rolagem ----
+   Até 820px a página rola inteira (header grudado no topo); acima disso cada coluna rola sozinha. */
+const pageScrolls = () => window.matchMedia("(max-width:820px)").matches;
+// rola até el ficar no topo da área visível: da página (descontando o header) ou da coluna (.scroll) que o contém
+function scrollIntoPlace(el, gap=12){
+  if(pageScrolls()){
+    const hdr = document.querySelector("header.top");
+    window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - hdr.offsetHeight - gap));
+  } else {
+    const sc = el.closest(".scroll");
+    if(sc) sc.scrollTop += el.getBoundingClientRect().top - sc.getBoundingClientRect().top - gap;
+  }
+}
+
 /* ---- registro das abas do topo (views) ----
    Cada js/views/<aba>.js chama registerView({...}) uma vez; a ordem de registro (ordem dos <script>) é a ordem
    das abas. O registro alimenta as abas do topo (app.js), os endereços #/<aba>/<item> (router.js) e a busca

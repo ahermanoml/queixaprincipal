@@ -9,7 +9,12 @@ function renderTabs(){
   topTabs.innerHTML = VIEWS.map(v=>
     `<button type="button" role="tab" class="top-tab" id="tab-${esc(v.key)}" data-view="${esc(v.key)}" aria-selected="false"${(v.cols||[]).length?` aria-controls="${esc(v.cols.join(" "))}"`:""}><span aria-hidden="true">${v.icon}</span> ${esc(v.label)}</button>`
   ).join("");
-  topTabs.querySelectorAll(".top-tab").forEach(t=> t.onclick = ()=>{ if(t.dataset.view!==currentView) showView(t.dataset.view); });
+  // trocar de aba grava o endereço (#/aba ou #/aba/<item aberto nela>), então voltar/avançar funcionam
+  topTabs.querySelectorAll(".top-tab").forEach(t=> t.onclick = ()=>{
+    if(t.dataset.view===currentView) return;
+    const v = viewOf(t.dataset.view);
+    navigate(v.key, v.itemId ? v.itemId() : null, "tab");   // a aba volta com o item que estava aberto nela
+  });
   VIEWS.forEach(v=> (v.cols||[]).forEach(id=>{
     const col = document.getElementById(id);
     if(col){ col.setAttribute("role", "tabpanel"); col.setAttribute("aria-labelledby", "tab-" + v.key); }
@@ -72,3 +77,4 @@ renderTabs();
 renderConds();
 renderRascunho();
 syncRx();
+onRoute("load");   // abre a aba / condição do endereço (#/prescricoes/itu); sem hash = Prescrições sem condição
