@@ -117,6 +117,8 @@ function prPagina(p){
       <div class="pr-sub">${esc(p.sub)}</div>
       <div class="pr-acoes"><button type="button" class="btn primary" id="pr-ir-nota"><span aria-hidden="true">📝</span> Registro para o prontuário</button>${calc}</div>
       <nav class="pr-nav" aria-label="Seções">${PR_SECOES.map(([k, t])=> `<a href="#pr-s-${k}" data-sec="${k}">${t}</a>`).join("")}</nav></div>
+    ${p.draft && (p.pendencias || []).length ? `<details class="pr-revisor"><summary><span aria-hidden="true">🔎</span> Para o revisor <small>${p.pendencias.length} ${p.pendencias.length>1 ? "pontos a decidir ou conferir" : "ponto a decidir ou conferir"}</small></summary>
+      <ul>${prLi(p.pendencias)}</ul></details>` : ""}
     ${prSecao("indicacoes", "Indicações", `<ul>${prLi(p.indicacoes)}</ul>`)}
     ${prSecao("contra", "Contraindicações", contra)}
     ${prSecao("material", "Material", prMaterial(p))}

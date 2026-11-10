@@ -233,6 +233,9 @@ Step-by-step emergency procedures with a paste-ready procedure note. **All conte
   "nm": "Drenagem de tórax", "sub": "dreno · selo d'água · …",
   "kw": "dreno de torax drenagem …",   // searched (list filter + busca única), never shown: synonyms + abbreviations
   "draft": true, "revisado": null,     // revisado: "AAAA-MM-DD" after the doctor signs it off (then drop draft)
+  "pendencias": ["…"],                 // points the doctor must decide/confirm for THIS procedure (guideline variations,
+                                       // values not confirmed at the source); shown as a collapsed "Para o revisor" box
+                                       // only while draft is true — empty it (or drop draft) once he has decided
   "fontes": ["…"],                     // references used for this procedure
   "calc": [["emg-analgesia", "Analgesia e sedação"]],   // optional links to Calculadoras pages (ids of CX_PAGS)
   "indicacoes": ["…"], "contra": {"absolutas": ["…"], "relativas": ["…"]},
@@ -250,7 +253,7 @@ Step-by-step emergency procedures with a paste-ready procedure note. **All conte
 
 ### Page
 
-- Left: the list grouped by area, filterable. Middle: title + `rascunho` + a **📝 Registro para o prontuário** button and the dose links (top of the page), section links, then Indicações · Contraindicações (absolutas/relativas) · Material (checklist, counter, Copiar material, Desmarcar) · Preparo · Técnica (numbered) · Confirmação e cuidados depois · Complicações · Fontes.
+- Left: the list grouped by area, filterable. Middle: title + `rascunho` + a **📝 Registro para o prontuário** button and the dose links (top of the page), section links, the collapsed **Para o revisor** box (`pendencias`, drafts only), then Indicações · Contraindicações (absolutas/relativas) · Material (checklist, counter, Copiar material, Desmarcar) · Preparo · Técnica (numbered) · Confirmação e cuidados depois · Complicações · Fontes.
 - **Registro**: header with "faltam N campos" / "completo", **Copiar registro** (+ a second one after the last field), Limpar, the live text (blanks highlighted), the fields. Copying an incomplete note is allowed (the blanks stay visible) and the toast says how many are blank. Keyboard: the top button focuses the first empty field; Enter in a text field moves to the next field; Ctrl/Cmd+Enter copies.
 - **Where the note sits:** with the procedure column ≥ 900px (receita column hidden by `rx: false`, or a wide screen) it is a right-hand column, sticky at the top of the middle column; only its fields scroll inside it, so nothing covers an input. Narrower (today at 1366 with the receita visible, 1024, phones) it comes after the text and the top button jumps to it.
 - **Phones:** a fixed bottom bar (`#pr-barra`: Registro + Copiar registro) shows while a procedure is open and the note is not on screen (IntersectionObserver); `body.pr-com-barra` adds bottom padding, and a `focusin` handler scrolls a focused control out from under the bar.
