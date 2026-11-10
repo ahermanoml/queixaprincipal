@@ -38,7 +38,8 @@ def run(browser, url, out_dir):
         pg.keyboard.press("Escape")
         pg.keyboard.press("Escape")
         # 7 tabs: register 5 dummy views at runtime and re-render the tab bar
-        pg.evaluate("""(d) => { d.forEach(([key, label, icon]) => registerView({key, label, icon, cols: [], layout: "texto"})); renderTabs(); }""",
+        # (pula as abas de mentira que já existem de verdade, para que o total continue 7)
+        pg.evaluate("""(d) => { d.filter(([key]) => !viewOf(key)).slice(0, 7 - VIEWS.length).forEach(([key, label, icon]) => registerView({key, label, icon, cols: [], layout: "texto"})); renderTabs(); }""",
                     DUMMIES)
         pg.wait_for_timeout(100)
         pg.screenshot(path=f"{out_dir}/7abas-{tag}.png", clip={"x": 0, "y": 0, "width": w, "height": min(h, 260)})
