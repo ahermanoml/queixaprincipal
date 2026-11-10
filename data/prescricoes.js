@@ -4687,20 +4687,27 @@ const DATA = [
   "id": "crise_hipertensiva",
   "ic": "📈",
   "nm": "Crise hipertensiva (urgência e emergência)",
-  "sub": "captopril · clonidina · nitroprussiato · nitroglicerina · losartana · anlodipino",
+  "sub": "captopril · nitroprussiato · nitroglicerina · losartana · anlodipino",
   "blocks": [
    {
-    "label": "Padrão — Elevação importante da PA sem lesão aguda de órgão-alvo: repouso por 30 min e reavaliar; se não baixar, anti-hipertensivo oral, reduzindo aos poucos (nifedipina de liberação rápida é proscrita) — escolha 1",
+    "label": "Padrão — Elevação importante da PA sem lesão aguda de órgão-alvo: repouso por 30 min e reavaliar; se não baixar, anti-hipertensivo oral, reduzindo aos poucos (nifedipina de liberação rápida é proscrita)",
     "mode": "internacao",
     "draft": true,
-    "menu": true,
     "items": [
      [
       "CAPTOPRIL 25 MG",
       "02 COMPRIMIDOS",
       "ADMINISTRAR 25 MG VIA ORAL (NÃO SUBLINGUAL); REAVALIAR A PA EM 01 HORA E, SE NECESSÁRIO, REPETIR 25 MG. NÃO USAR NA GESTAÇÃO",
       "USO ORAL"
-     ],
+     ]
+    ]
+   },
+   {
+    "label": "Exceção — clonidina (só em situações específicas; crise hipertensiva não tem indicação de clonidina, salvo exceções)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
      [
       "CLONIDINA 0,100 MG",
       "06 COMPRIMIDOS",
