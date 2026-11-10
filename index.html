@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prescritor — Queixa Principal</title>
-<link rel="stylesheet" href="css/app.css?v=20261110a">
+<link rel="stylesheet" href="css/app.css?v=20261110c">
+<link rel="stylesheet" href="css/calculadoras.css?v=20261110c">
 </head>
 <body data-view="prescricoes" data-layout="lista">
 <header class="top">
@@ -57,6 +58,20 @@
     </div>
   </section>
 
+  <!-- aba "Calculadoras" (js/views/calculadoras.js): lista filtrável + calculadora aberta -->
+  <section class="col" id="col-calc-lista" hidden>
+    <h2>Calculadoras <span class="count" id="cx-count">0</span></h2>
+    <div class="search">
+      <label for="cx-filtro" class="sr-only">Filtrar calculadoras</label>
+      <input id="cx-filtro" type="search" placeholder="🔎  Remédio ou situação..." autocomplete="off">
+    </div>
+    <div class="scroll" id="cx-lista"></div>
+  </section>
+  <section class="col" id="col-calc" hidden>
+    <h2 id="cx-titulo">Calculadora</h2>
+    <div class="scroll" id="cx-body"></div>
+  </section>
+
   <!-- aba "Meu rascunho": todos os modelos do médico num texto só (no lugar das colunas 1 e 2) -->
   <section class="col" id="col-rascunho" hidden>
     <h2>Meu rascunho</h2>
@@ -87,15 +102,18 @@
 
 <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<script src="data/prescricoes.js?v=20261110a"></script>
-<script src="data/rascunho.js?v=20261110a"></script>
-<script src="js/core.js?v=20261110a"></script>
-<script src="js/peso.js?v=20261110a"></script>
-<script src="js/receita.js?v=20261110a"></script>
-<script src="js/views/prescricoes.js?v=20261110a"></script>
-<script src="js/views/rascunho.js?v=20261110a"></script>
-<script src="js/router.js?v=20261110a"></script>
-<script src="js/busca.js?v=20261110a"></script>
-<script src="js/app.js?v=20261110a"></script>
+<script src="data/prescricoes.js?v=20261110c"></script>
+<script src="data/rascunho.js?v=20261110c"></script>
+<script src="data/calculadoras.js?v=20261110c"></script>
+<script src="js/core.js?v=20261110c"></script>
+<script src="js/peso.js?v=20261110c"></script>
+<script src="js/receita.js?v=20261110c"></script>
+<script src="js/calc-motor.js?v=20261110c"></script>
+<script src="js/views/prescricoes.js?v=20261110c"></script>
+<script src="js/views/calculadoras.js?v=20261110c"></script>
+<script src="js/views/rascunho.js?v=20261110c"></script>
+<script src="js/router.js?v=20261110c"></script>
+<script src="js/busca.js?v=20261110c"></script>
+<script src="js/app.js?v=20261110c"></script>
 </body>
 </html>
