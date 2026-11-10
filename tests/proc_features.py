@@ -15,6 +15,7 @@ ESTRUTURA_JS = r"""() => {
     for (const k of ['nm', 'sub', 'kw']) if (!(typeof p[k] === 'string' && p[k].trim())) e('sem ' + k);
     if (p.draft !== true) e('sem draft:true');
     if (!('revisado' in p) || p.revisado !== null) e('revisado deve existir e ser null');
+    if (p.draft && !lista(p.pendencias)) e('rascunho sem pendencias para o revisor');
     for (const k of ['fontes', 'indicacoes', 'material', 'preparo', 'depois', 'complicacoes']) if (!lista(p[k])) e('bloco vazio: ' + k);
     if (!p.contra || !lista(p.contra.absolutas) || !lista(p.contra.relativas)) e('contraindicações incompletas');
     if (!Array.isArray(p.tecnica) || !p.tecnica.length) e('sem técnica');
@@ -122,6 +123,12 @@ def run(browser, url):
     pg.keyboard.press("Enter"); pg.wait_for_timeout(80)
     rep.check(st()["aberto"] == "dreno" and st()["view"] == "procedimentos", f"Enter na busca abre: {st()}")
 
+    # caixa "Para o revisor": só em rascunho, fechada, com todas as pendências
+    ir(pg, base, "#/procedimentos/dreno")
+    rv = pg.evaluate("() => { const d = document.querySelector('details.pr-revisor'); return d && [d.open, d.querySelectorAll('li').length, prAberto.pendencias.length]; }")
+    rep.check(rv and rv[0] is False and rv[1] == rv[2] > 0, f"caixa Para o revisor: {rv}")
+    sem = pg.evaluate("() => { const p = PROCS.find(x => x.id === 'pl'); p.draft = false; prAbrir('pl', 'route'); const n = !!document.querySelector('details.pr-revisor'); p.draft = true; prAbrir('dreno', 'route'); return n; }")
+    rep.check(sem is False, "sem draft, a caixa do revisor some")
     # checklist e Copiar material
     ir(pg, base, "#/procedimentos/dreno")
     pg.click('.pr-check input[data-m="0"]'); pg.click('.pr-check input[data-m="3"]')
@@ -147,7 +154,7 @@ def run(browser, url):
     rep.check(txt().splitlines()[0].endswith("— ____"), "clicar de novo desmarca")
     pg.click('.pr-op[data-c="lado"][data-v="DIREITO"]')
     pg.fill("#pr-c-calibre", "28")
-    rep.check("DRENO TUBULAR 28 FR" in txt(), "campo numérico entra no texto")
+    rep.check("DRENO 28 FR" in txt(), "campo numérico entra no texto")
     pg.fill("#pr-c-anestesia", "lidocaína 2% 10 mL")
     rep.check("ANESTESIA: LIDOCAÍNA 2% 10 ML." in txt(), "texto livre em maiúsculas")
     falt = pg.evaluate("() => document.querySelector('#pr-faltam').textContent")

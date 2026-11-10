@@ -27,6 +27,10 @@
 .pr-nav{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;padding-top:6px;border-top:1px solid var(--line)}
 .pr-nav a{font-size:12px;font-weight:650;color:var(--accent-d);text-decoration:none;padding:2px 0}
 .pr-nav a:hover{text-decoration:underline}
+.pr-revisor{margin:0 16px 8px;border:1px dashed #e5c38f;border-radius:9px;background:#fffaf2;font-size:12.5px;color:#5c3d00}
+.pr-revisor summary{cursor:pointer;padding:5px 10px;font-weight:700}
+.pr-revisor summary small{font-weight:500;color:#8a4b00;margin-left:4px}
+.pr-revisor ul{margin:0;padding:0 12px 8px 28px;display:grid;gap:3px}
 .pr-sec{margin:0 16px;padding:10px 0 8px;border-top:1px solid var(--line)}
 .pr-sec h4{margin:0 0 6px;font-size:13px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--accent-d)}
 .pr-sec ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:13.5px;line-height:1.4}
@@ -96,7 +100,7 @@
   .pr-campos{grid-template-columns:1fr 1fr;flex:1 1 auto;min-height:0;overflow:auto;padding:2px 4px 4px 2px}
 }
 @container proc (max-width:480px){
-  .pr-head,.pr-sec,.pr-fontes{margin-left:10px;margin-right:10px}
+  .pr-head,.pr-sec,.pr-fontes,.pr-revisor{margin-left:10px;margin-right:10px}
   .pr-head{padding-left:0;padding-right:0}
   .pr-nota{margin-left:8px;margin-right:8px}
   .pr-check{grid-template-columns:1fr}
