@@ -1,10 +1,11 @@
 /* js/calc-motor.js — contas da aba Calculadoras (porte do dilui). Expõe um objeto global: CM.
-   Parte 1 (até "daqui para baixo"): funções do dilui copiadas SEM MUDANÇA, por script — formatação pt-BR (fmt, fAuto,
-   fML, fRate, fIn, num), concentração/vazão/dose da bomba (concOf, rateOf, doseOf, perUnit, concLabel), bolus por peso
-   (bolus, byAge, rangeStr), cálculos especiais (CALC), pediatria (viaPed, lma, pesoEst, pasMin, idadeTxt) e os textos
-   prontos (rxText, kitText). Não "melhore" estas funções: os textos copiados e as doses têm de bater com o dilui
-   (tests/calc_paridade.py confere contra tests/calc_gabarito.json). Tudo fica dentro de uma função para que os nomes
-   do dilui (num, fmt, S...) não colidam com os do site (num em js/peso.js é outra função). */
+   Parte 1: funções do dilui copiadas por script — formatação pt-BR (fmt, fAuto, fML, fRate, fIn, num), concentração/
+   vazão/dose da bomba (concOf, rateOf, doseOf, perUnit, concLabel), bolus por peso (bolus, byAge, rangeStr), cálculos
+   especiais (CALC), pediatria (viaPed, lma, pesoEst, pasMin, idadeTxt) e os textos prontos (rxText, kitText).
+   Corrigidas na revisão clínica de 2026-11 (fase 4; ver CLAUDE.md "Divergências em relação ao dilui"): num (milhar com
+   ponto), CALC.salbutamol (via INAL) e kitText (um indutor e um bloqueador: padrão etomidato + succinilcolina, trocável). O resto segue o
+   dilui; tests/calc_paridade.py confere tudo contra tests/calc_gabarito.json.gz (congelado do site corrigido).
+   Tudo fica dentro de uma função para que os nomes do dilui (num, fmt, S...) não colidam com os do site. */
 const CM = (() => {
 const { INF, IOT, PED, EMG, RODAPE } = CALC_DADOS;
 // estado da calculadora (mesmos campos do dilui). kg e age vêm da tela; o peso começa VAZIO (o dilui começava em 70).
@@ -12,7 +13,18 @@ const { INF, IOT, PED, EMG, RODAPE } = CALC_DADOS;
 const S = { kg:NaN, age:null, drug:'nora', a:4, d:234, ampQ:4, ampMl:4, dose:0.1, dil:'SG 5%', preset:0, reg:-1, altura:NaN, sexo:null };
 
 /* ===== copiado do dilui sem mudança ===== */
-const num = s => { if (s == null) return NaN; let t = String(s).trim().replace(/\s/g,''); if (t.includes(',')) t = t.replace(/\./g,'').replace(',','.'); return t === '' ? NaN : Number(t); };
+// num: leitura de número digitado (corrigida na revisão clínica — no dilui "25.000" virava 25). Com vírgula, a vírgula é o
+// decimal e os pontos são milhar ("1.250,5" → 1250,5). Sem vírgula, pontos em grupos de 3 depois de 1–3 dígitos são milhar
+// ("25.000" → 25000, "1.000" → 1000); o resto como antes ("0.5", "1.5", "0.500", "70.5"). numInfo diz se houve milhar.
+const MILHAR = /^[1-9]\d{0,2}(\.\d{3})+$/;
+function numInfo(s){
+  if (s == null) return { v: NaN, milhar: false };
+  let t = String(s).trim().replace(/\s/g,''), milhar = false;
+  if (t.includes(',')){ milhar = t.includes('.'); t = t.replace(/\./g,'').replace(',','.'); }
+  else if (MILHAR.test(t)){ milhar = true; t = t.replace(/\./g,''); }
+  return { v: t === '' ? NaN : Number(t), milhar };
+}
+const num = s => numInfo(s).v;
 const fIn = (n, d) => Number.isFinite(n) ? n.toLocaleString('pt-BR', { maximumFractionDigits: d, useGrouping: false }) : '';
 const fmt = (n, d) => Number.isFinite(n) ? n.toLocaleString('pt-BR', { maximumFractionDigits: d }) : '—';
 const fAuto = n => { const a = Math.abs(n); return fmt(n, a >= 100 ? 0 : a >= 10 ? 1 : a >= 0.1 ? 2 : 3); };
@@ -72,7 +84,7 @@ const CALC = {
     let hi = Math.min(10, Math.max(lo, Math.round(kg/2)));
     const main = lo === hi ? `${lo} jatos` : `${lo}–${hi} jatos`;
     const sub = `<div class="sub">100 mcg/jato com espaçador · 1 jato a cada 2–3 kg (máx 10).</div><div class="sub">A cada 20 min na 1ª hora, depois conforme resposta.</div>`;
-    return rowCustom('Salbutamol spray', 'IN', 'salbutamol aerolin spray asma broncoespasmo', main, '', sub, `Salbutamol spray 100 mcg/jato com espaçador: ${main} a cada 20 min na 1ª hora (peso ${fmt(kg,1)} kg).`);
+    return rowCustom('Salbutamol spray', 'INAL', 'salbutamol aerolin spray asma broncoespasmo', main, '', sub, `Salbutamol spray 100 mcg/jato com espaçador: ${main} a cada 20 min na 1ª hora (peso ${fmt(kg,1)} kg).`);
   },
   altepAVC(kg){
     if (!okKg(kg)) return noKg('Alteplase (AVC)');
@@ -140,14 +152,26 @@ function rxText(D, tot, conc, rate){
   return `${D.n}${rg}: ${prep}. Infundir em BIC a ${fRate(rate)} mL/h = ${fmt(S.dose, 3)} ${D.un}${wk ? ` (peso ${fmt(S.kg,1)} kg)` : ''}${D.alvo ? '; ' + D.alvo : ''}.`;
 }
 
-function kitText(){
+// kit SRI. ind / bnm = índice escolhido em IOT.ind / IOT.bnm; sem escolha (ou índice inválido) vale o padrão do médico,
+// KIT_PADRAO = etomidato + succinilcolina. O kit traz sempre UM indutor e UM bloqueador.
+// Revisão clínica: no dilui o kit listava os dois indutores e os dois bloqueadores, como se fossem para dar os quatro.
+const KIT_PADRAO = {
+  ind: Math.max(0, IOT.ind.findIndex(it => it.n === 'Etomidato')),
+  bnm: Math.max(0, IOT.bnm.findIndex(it => it.n === 'Succinilcolina')),
+};
+function kitText(ind = null, bnm = null){
   const kg = S.kg, age = S.age, ped = isPed();
   if (!okKg(kg)) return 'Informe o peso.';
-  const pick = [IOT.pre[0], ...(ped ? IOT.ped : []), IOT.ind[0], IOT.ind[1], IOT.bnm[0], IOT.bnm[1]];
-  return `Kit SRI — peso ${fmt(kg,1)} kg\n` + pick.map(it => {
+  const L = it => {
     const b = bolus(it, kg, age, ped);
-    return `• ${it.n}: ${rangeStr(b.lo, b.hi, fAuto)} ${b.unit}${b.ml ? ' = ' + rangeStr(b.ml[0], b.ml[1], fML) + ' mL' : ''} (${it.apres})`;
-  }).join('\n');
+    return `${it.n}: ${rangeStr(b.lo, b.hi, fAuto)} ${b.unit}${b.ml ? ' = ' + rangeStr(b.ml[0], b.ml[1], fML) + ' mL' : ''} (${it.apres})`;
+  };
+  const um = (lista, k, padrao) => lista[k != null && lista[k] ? k : padrao];
+  const out = [`Kit SRI — peso ${fmt(kg,1)} kg`, '• ' + L(IOT.pre[0])];
+  if (ped) IOT.ped.forEach(it => out.push('• ' + L(it).replace(it.n + ':', it.n + ' (se indicada):')));
+  out.push('• Indução: ' + L(um(IOT.ind, ind, KIT_PADRAO.ind)));
+  out.push('• Bloqueador: ' + L(um(IOT.bnm, bnm, KIT_PADRAO.bnm)));
+  return out.join('\n');
 }
 
 /* ===== daqui para baixo: código do qprincipal =====
@@ -274,7 +298,7 @@ function ventilacao(){
     : null;
 }
 
-return { INF, IOT, PED, EMG, RODAPE, S, CALC, num, fIn, fmt, fAuto, fML, fRate, byKg, perUnit, concOf, concLabel, dilOptions,
-         bolus, rangeStr, okKg, viaPed, lma, pesoEst, pasMin, idadeTxt, isPed, rxText, kitText,
+return { INF, IOT, PED, EMG, RODAPE, S, CALC, num, numInfo, fIn, fmt, fAuto, fML, fRate, byKg, perUnit, concOf, concLabel, dilOptions,
+         bolus, rangeStr, okKg, viaPed, lma, pesoEst, pasMin, idadeTxt, isPed, rxText, kitText, KIT_PADRAO,
          drug, linha, selectDrug, setPreset, setReg, infusao, ventilacao };
 })();

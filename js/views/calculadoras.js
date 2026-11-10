@@ -65,6 +65,7 @@ let cxAberta = null;        // página aberta
 let cxPesoEst = null;       // como o peso atual foi escolhido aqui: null (digitado) | "chip" | "idade"
 let cxIdade = {txt: "", un: "a"};   // campo de idade (o valor em anos fica em cxS.age)
 let cxHlT;
+let cxKit = {...CM.KIT_PADRAO};   // indutor e bloqueador do kit SRI (índices em IOT.ind / IOT.bnm); começa no padrão do médico
 
 /* ---- lista ---- */
 function cxRenderLista(filtro=""){
@@ -175,7 +176,7 @@ function cxPacEstado(){
 function cxBindPac(){
   const pin = $("#cx-peso");
   if(pin){
-    pin.oninput = ()=>{ const v = parseFloat(pin.value.replace(",", ".")); cxSetPeso(v, null); };
+    pin.oninput = ()=>{ const i = cxEnt(pin, "kg"); cxSetPeso(i.v, null); };
     pin.onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); cxFocoProximo(); } };
   }
   cxBody.querySelectorAll(".cx-pchip").forEach(b=> b.onclick = ()=>{ cxSetPeso(+b.dataset.kg, "chip"); const i = $("#cx-peso"); if(i) i.value = b.dataset.kg; });
@@ -183,7 +184,7 @@ function cxBindPac(){
   if(ii){
     const lerIdade = ()=>{
       cxIdade = {txt: ii.value, un: iu.value};
-      const a = CM.num(ii.value);
+      const a = cxEnt(ii, iu.value==="m" ? "meses" : "anos").v;
       cxS.age = Number.isFinite(a) && a >= 0 ? (iu.value==="m" ? a/12 : a) : null;   // mesma leitura do dilui (readPt)
       cxPacEstado(); cxRenderConteudo();
     };
@@ -199,7 +200,33 @@ function cxCabecalho(p){
   const eyebrow = p.tipo==="inf" ? p.sub : g.nm;   // o grupo já está no título da coluna; na bomba, o subgrupo
   const apres = p.tipo==="inf" ? `<div class="cx-apres">${esc(p.D.apres)}</div>` : "";
   return `<div class="cx-head">${p.tipo==="inf" ? "" : `<div class="cx-eyebrow"><span aria-hidden="true">${g.ic}</span> ${esc(eyebrow)}</div>`}
-    <h3 id="cx-h" tabindex="-1">${esc(p.tipo==="iot" ? "Intubação — sequência rápida" : p.nm)} ${cxRascunhoTag()}</h3>${apres}</div>`;
+    <h3 id="cx-h" tabindex="-1">${esc(p.tipo==="iot" ? "Intubação — sequência rápida" : p.nm)} ${cxRascunhoTag()}</h3>${apres}</div>${p.tipo==="inf" ? "" : cxRevisorHTML(p)}`;
+}
+// caixa "Para o revisor" (fechada; só enquanto a página é rascunho): o que mudou em relação ao dilui + decisões em aberto.
+// Na bomba ela vem logo depois do ③ (acima dele não cabe: ② e ③ têm de caber sem rolar em 1024×768 — ver layout());
+// nas outras páginas, logo abaixo do título.
+function cxRevisorItens(p){
+  const r = CALC_REVISAO[p.id] || {}, g = p.tipo==="inf" ? (CALC_REVISAO._bomba || {}) : {};
+  return {mud: [...(g.mudancas || []), ...(r.mudancas || [])], pend: [...(g.pendencias || []), ...(r.pendencias || [])]};
+}
+function cxRevisorHTML(p){
+  const {mud, pend} = cxRevisorItens(p), n = mud.length + pend.length;
+  if(!n) return "";
+  return `<details class="cx-revisor"><summary><span aria-hidden="true">🔎</span> Para o revisor <small>${n} ${n>1 ? "itens" : "item"}</small></summary>
+    ${mud.length ? `<b>Mudou em relação ao dilui</b><ul class="mud">${mud.map(x=> `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+    ${pend.length ? `<b>Para decidir</b><ul class="pend">${pend.map(x=> `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</details>`;
+}
+// número digitado: mostra ao lado do campo como foi entendido quando um ponto virou separador de milhar ("25.000")
+function cxEnt(el, un){
+  const i = CM.numInfo(el.value);
+  const box = el.closest(".cx-campo") ? el.closest(".cx-campo").querySelector("label") : el.parentNode;
+  let sp = box.querySelector(`.cx-ent[data-for="${el.id}"]`);
+  if(!sp){ sp = document.createElement("span"); sp.className = "cx-ent"; sp.dataset.for = el.id; sp.setAttribute("aria-live", "polite");
+    if(box===el.parentNode) el.insertAdjacentElement("afterend", sp); else box.appendChild(sp); }
+  const mostra = i.milhar && Number.isFinite(i.v);
+  sp.hidden = !mostra;
+  sp.textContent = mostra ? `entendido: ${CM.fmt(i.v, 3)}${un ? " " + un : ""}` : "";
+  return i;
 }
 function cxRodape(){
   return `<div class="cx-rodape">${CM.RODAPE.map(t=> `<p>${t}</p>`).join("")}</div>`;
@@ -330,6 +357,7 @@ function cxRenderInf(c, p){
         <button type="button" class="btn" id="cx-receita">＋ Receita</button></div></div>
     <p class="cx-rx" id="cx-rx"></p>
   </section>
+  ${cxRevisorHTML(p)}
   <details class="cx-step cx-tt" open><summary>Tabela de titulação <small>clique numa linha para usar a dose</small></summary>
     <table><thead><tr><th scope="col">Dose (${esc(D.un)})</th><th scope="col">mL/h</th>${wk ? `<th scope="col">${esc(D.un.replace("/kg", ""))}</th>` : ""}</tr></thead><tbody id="cx-tt"></tbody></table></details>
   <section class="cx-obs" aria-label="Observações"><ul>${D.obs.map(o=> `<li>${esc(o)}</li>`).join("")}</ul>${cxLinks(CX_LINK_PAG[p.id])}</section>`;
@@ -339,12 +367,12 @@ function cxRenderInf(c, p){
 function cxBindInf(c, p){
   const D = p.D, S = cxS, on = (id, fn)=>{ const el = $("#" + id); if(el) el.addEventListener("input", fn); };
   const markPre = ()=> c.querySelectorAll("[data-pre]").forEach(b=> b.setAttribute("aria-pressed", String(+b.dataset.pre===S.preset)));
-  on("cx-a", e=>{ S.a = CM.num(e.target.value); S.preset = -1; markPre(); cxAtualizaInf("dose"); });
-  on("cx-d", e=>{ S.d = CM.num(e.target.value); S.preset = -1; markPre(); cxAtualizaInf("dose"); });
-  on("cx-q", e=>{ S.ampQ = CM.num(e.target.value); cxAtualizaInf("dose"); });
-  on("cx-ml", e=>{ S.ampMl = CM.num(e.target.value); cxAtualizaInf("dose"); });
-  on("cx-dose", e=>{ S.dose = CM.num(e.target.value); cxAtualizaInf("dose"); });
-  on("cx-vazao", ()=> cxAtualizaInf("rate"));
+  on("cx-a", e=>{ S.a = cxEnt(e.target, D.ampLabel ? "mL" : "ampolas").v; S.preset = -1; markPre(); cxAtualizaInf("dose"); });
+  on("cx-d", e=>{ S.d = cxEnt(e.target, "mL").v; S.preset = -1; markPre(); cxAtualizaInf("dose"); });
+  on("cx-q", e=>{ S.ampQ = cxEnt(e.target, D.amp.u).v; cxAtualizaInf("dose"); });
+  on("cx-ml", e=>{ S.ampMl = cxEnt(e.target, "mL").v; cxAtualizaInf("dose"); });
+  on("cx-dose", e=>{ S.dose = cxEnt(e.target, D.un).v; cxAtualizaInf("dose"); });
+  on("cx-vazao", e=>{ cxEnt(e.target, "mL/h"); cxAtualizaInf("rate"); });
   const dl = $("#cx-dil"); if(dl) dl.onchange = e=>{ S.dil = e.target.value; cxAtualizaInf("dose"); };
   c.querySelectorAll("[data-pre]").forEach(b=> b.onclick = ()=>{
     CM.setPreset(+b.dataset.pre);
@@ -534,8 +562,11 @@ function cxRenderIot(c, p){
   const kg = cxS.kg, age = cxS.age, ped = CM.isPed();
   cxCopias = {};
   const linha = (key, it)=>{ const l = CM.linha(it, kg, age, ped); if(l.copy) cxCopias[key] = l.copy; return cxLinhaHTML(key, it, l, ped, "iot"); };
-  const kit = CM.okKg(kg) ? CM.kitText() : "";
+  const kit = CM.okKg(kg) ? CM.kitText(cxKit.ind, cxKit.bnm) : "";
+  const esc1 = (k, rot, lista)=> `<div class="cx-presets cx-kit-esc" role="group" aria-label="${rot} para o kit"><span class="lbl">${rot}</span>${lista.map((it, i)=>
+    `<button type="button" class="cx-chip" data-kit="${k}" data-i="${i}" aria-pressed="${cxKit[k]===i}">${esc(it.n)}</button>`).join("")}</div>`;
   let h = `<section class="cx-bloco" aria-labelledby="cx-iot-d"><h4 id="cx-iot-d">Doses${CM.okKg(kg) ? ` <small>para ${CM.fmt(kg,1)} kg${ped ? " · pediátrico" : ""}</small>` : ped ? " <small>pediátrico</small>" : ""}</h4>`;
+  h += `<div class="cx-kit"><span class="cx-kit-t">Kit SRI <small>padrão etomidato + succinilcolina · troque com 1 clique</small></span>${esc1("ind", "Indução", CM.IOT.ind)}${esc1("bnm", "Bloqueador", CM.IOT.bnm)}</div>`;
   h += cxCopiarTudoBtn("iot", kit, "Copiar kit SRI");
   CX_IOT_GR.forEach(([g, t])=>{
     if(g==="ped" && !ped) return;
@@ -570,13 +601,21 @@ function cxRenderIot(c, p){
   c.innerHTML = h;
   cxBindLinhas(c);
   cxBindTudo(kit, "Kit SRI copiado!");
+  // troca do indutor / bloqueador do kit (sempre um de cada: clicar no já escolhido não desmarca); o foco volta ao botão
+  c.querySelectorAll("[data-kit]").forEach(b=> b.onclick = ()=>{
+    const k = b.dataset.kit, i = +b.dataset.i;
+    if(cxKit[k]===i) return;
+    cxKit[k] = i;
+    cxRenderConteudo();
+    const nb = $(`#cx-conteudo [data-kit="${k}"][data-i="${i}"]`); if(nb) nb.focus({preventScroll: true});
+  });
   if(!ped){
     const upd = ()=>{
       const v = cxS.sexo ? CM.ventilacao() : null;
       $("#cx-vc").innerHTML = v ? `<dl class="cx-kv"><div><dt>Peso predito</dt><dd>${v.pp}</dd></div><div><dt>Volume corrente</dt><dd>${v.vc}</dd></div></dl>`
         : `<p class="cx-nota-ped">${Number.isFinite(cxS.altura) ? "Escolha o sexo" : "Informe a altura e o sexo"} para ver o peso predito e o volume corrente.</p>`;
     };
-    $("#cx-alt").oninput = e=>{ cxS.altura = CM.num(e.target.value); upd(); };
+    $("#cx-alt").oninput = e=>{ cxS.altura = cxEnt(e.target, "cm").v; upd(); };
     c.querySelectorAll("[data-sexo]").forEach(b=> b.onclick = ()=>{ cxS.sexo = b.dataset.sexo; c.querySelectorAll("[data-sexo]").forEach(x=> x.setAttribute("aria-pressed", String(x===b))); upd(); });
     upd();
   }
@@ -593,7 +632,7 @@ function cxBindVazio(){ cxBody.querySelectorAll("[data-go]").forEach(b=> b.oncli
 document.addEventListener("input", e=>{ if(e.target && e.target.id==="peso"){ cxPesoEst = null; cxPesoMudou(false); } });
 $("#btn-clear").addEventListener("click", ()=>{
   // receita nova = paciente novo: peso (o handler da receita já zerou), idade e altura/sexo também
-  cxPesoEst = null; cxIdade = {txt: "", un: "a"}; cxS.age = null; cxS.altura = NaN; cxS.sexo = null;
+  cxPesoEst = null; cxIdade = {txt: "", un: "a"}; cxS.age = null; cxS.altura = NaN; cxS.sexo = null; cxKit = {...CM.KIT_PADRAO};
   if(cxAberta) cxAbrirMesmo();
 });
 // redesenha a página aberta mantendo a droga, a diluição e a dose (só peso/idade mudaram)

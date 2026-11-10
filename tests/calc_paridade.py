@@ -1,21 +1,47 @@
-"""Calculadoras: as contas e os textos têm de bater com o dilui, número por número.
+"""Calculadoras: as contas e os textos têm de bater com o gabarito, número por número.
 
-Dois usos:
-  python3 tests/calc_paridade.py --dilui CAMINHO/dilui/index.html   # (re)gera tests/calc_gabarito.json a partir do dilui
-                                                                    # original e compara o site com ele na hora
-  run(browser, url)  (chamado por tests/run.py)                     # compara o site com o gabarito já gravado
+O gabarito (tests/calc_gabarito.json.gz) é congelado do SITE CORRIGIDO (revisão clínica de 2026-11). O dilui original
+fica em tests/calc_gabarito_dilui.json.gz como histórico: toda diferença entre os dois tem de cair num item aprovado
+(DIVERG_LINHAS / item_do_caso; ver CLAUDE.md, "Divergências em relação ao dilui").
 
-O gabarito guarda, para cada caso (droga × diluição × peso × dose/vazão; linha de dose × peso × idade; kit SRI; peso
-estimado/PAS/tubo; volume corrente), o que o dilui mostrou: concentração, mL/h, linha de apoio (mcg/min, gotas, duração),
-alertas, texto da prescrição, tabela de titulação, dose/volume de cada linha e o texto que cada botão copia.
-Do lado do site, as linhas são desenhadas pela própria função da tela (cxLinhaHTML) e lidas do HTML — então o teste
-confere o que aparece na tela, não só a conta. Diferença zero exigida."""
-import argparse, gzip, json, os, sys
+Usos:
+  python3 tests/calc_paridade.py --congelar                          # recongela o gabarito a partir do site atual (depois de
+                                                                     # uma mudança aprovada) e imprime o diff por item vs dilui
+  python3 tests/calc_paridade.py --dilui CAMINHO/dilui/index.html    # regrava o histórico do dilui a partir do original
+  run(browser, url)  (chamado por tests/run.py)                      # compara o site com o gabarito + diff vs dilui
+
+Cada caso (droga × diluição × peso × dose/vazão; linha de dose × peso × idade; kit SRI; peso estimado/PAS/tubo; volume
+corrente) guarda: concentração, mL/h, linha de apoio (mcg/min, gotas, duração), alertas, texto da prescrição, tabela de
+titulação, dose/volume de cada linha e o texto que cada botão copia. Do lado do site, as linhas são desenhadas pela
+própria função da tela (cxLinhaHTML) e lidas do HTML — o teste confere o que aparece na tela. Diferença zero exigida."""
+import argparse, gzip, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import REPO, Page, Report, browser, file_url
 
-GABARITO = os.path.join(REPO, "tests", "calc_gabarito.json.gz")
+GABARITO = os.path.join(REPO, "tests", "calc_gabarito.json.gz")              # congelado do site corrigido (a verdade)
+GABARITO_DILUI = os.path.join(REPO, "tests", "calc_gabarito_dilui.json.gz")  # o que o dilui original mostrava (histórico)
+
+# Divergências aprovadas em relação ao dilui (revisão clínica de 2026-11, itens 1–13 — ver CLAUDE.md). Cada caso do gabarito
+# que difere do dilui tem de cair em um destes itens; qualquer outra diferença é bug. Itens sem efeito nos casos
+# congelados (notas de rodapé/observações, nipride obs, RODAPE) aparecem com 0.
+DIVERG_LINHAS = [   # (tabela, seção, nome da linha ou "calc:<chave>", item)
+    ("EMG", "Anticoagulação", "Enoxaparina (IAM com fibrinólise, ≥ 75 anos)", 2),
+    ("EMG", "Analgesia, sedação e outros", "Morfina", 3),
+    ("PED", "Respiratório e anafilaxia", "calc:salbutamol", 5),
+    ("PED", "Respiratório e anafilaxia", "Adrenalina IM (anafilaxia)", 6),
+    ("EMG", "Hemorragia", "Ácido tranexâmico (HPP)", 7),
+    ("PED", "Convulsão", "Diazepam retal", 8),
+    ("PED", "Analgesia, sedação e sintomáticos", "Midazolam (ansiólise)", 9),
+    ("EMG", "Antídotos", "Flumazenil", 10),
+    ("EMG", "Trombólise", "Alteplase (TEP)", 11),
+]
+ITENS = {1: "num: ponto de milhar", 2: "enoxaparina ≥ 75 anos máx 75 mg", 3: "morfina adulto diluída 1 mg/mL", 4: "kit SRI: um indutor + um bloqueador",
+         5: "salbutamol via INAL", 6: "adrenalina IM ped máx 0,3 mg", 7: "TXA HPP nota", 8: "diazepam retal nota",
+         9: "midazolam ansiólise nota", 10: "flumazenil", 11: "alteplase TEP nota", 12: "nipride nota (fora do gabarito)",
+         13: "rodapé AVC (fora do gabarito)"}
+POS_JS = """(L) => L.map(([src, sec, nome]) => { const T = src === 'EMG' ? CM.EMG : CM.PED; const s = T.findIndex(x => x.sec === sec);
+  const i = s < 0 ? -1 : T[s].itens.findIndex(it => nome.startsWith('calc:') ? it.calc === nome.slice(5) : it.n === nome); return [s, i]; })"""
 PESOS = [None, 3, 10, 20, 40, 60, 70, 90, 120]
 IDADES = [None, 2 / 12, 1, 4, 8, 13, 40, 80]          # anos (2 meses = 2/12)
 RATES = ["0,5", "1", "5", "10", "33,3", "100", "200"]   # vazões digitadas (mL/h), sentido inverso
@@ -236,18 +262,65 @@ def contar_inf(C):
     return d
 
 
+def item_do_caso(grupo, c, pos):
+    """Em qual divergência aprovada este caso cai (None = nenhuma)."""
+    if grupo == "kit":
+        return 4
+    if grupo == "inf" and c.get("custom") and any(re.fullmatch(r"[1-9]\d{0,2}(\.\d{3})+", str(v)) for v in c["custom"].values()):
+        return 1
+    if grupo == "linhas":
+        return pos.get((c["src"], c.get("s"), c.get("i")))
+    return None
+
+
+def diff_dilui(rep, novo, pos, estrito=True):
+    """Compara o gabarito do site corrigido com o do dilui: toda diferença tem de ser explicada por um item 1–13."""
+    with gzip.open(GABARITO_DILUI, "rt", encoding="utf-8") as f:
+        D = json.load(f)
+    cont = {k: 0 for k in ITENS}
+    inexplicado = []
+    rep.check(D["casos"] == novo["casos"], "os casos do gabarito mudaram em relação ao do dilui")
+    for g in D["casos"]:
+        for c, e, n in zip(D["casos"][g], D["esperado"][g], novo["esperado"][g]):
+            if g == "linhas":
+                e, n = chave_linha(e), chave_linha(n)
+            if e == n:
+                continue
+            it = item_do_caso(g, c, pos)
+            if it is None:
+                inexplicado.append((g, c))
+            else:
+                cont[it] += 1
+    rep.note("diferenças vs dilui por item: " + ", ".join(f"{k} ({ITENS[k]}): {v}" for k, v in cont.items()))
+    if estrito:
+        rep.check(not inexplicado, f"{len(inexplicado)} diferenças vs dilui sem item que as explique: {inexplicado[:5]}")
+        for k in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11):
+            rep.check(cont[k] > 0, f"item {k} ({ITENS[k]}) não aparece em nenhum caso — divergência não aplicada?")
+    return cont, inexplicado
+
+
+def posicoes(pg):
+    r = pg.evaluate(POS_JS, [list(x[:3]) for x in DIVERG_LINHAS])
+    pos = {}
+    for (src, sec, nome, item), (si, ii) in zip(DIVERG_LINHAS, r):
+        assert si >= 0 and ii >= 0, (sec, nome)
+        pos[(src, si, ii)] = item
+    return pos
+
+
 def run(browser, url):
-    """Compara o site com o gabarito gravado (sem precisar do dilui)."""
-    rep = Report("calculadoras: paridade com o dilui (gabarito)")
+    """Compara o site com o gabarito congelado do site corrigido, e o gabarito com o do dilui (só diferenças aprovadas)."""
+    rep = Report("calculadoras: paridade com o gabarito (conteúdo revisado)")
     with gzip.open(GABARITO, "rt", encoding="utf-8") as f:
         G = json.load(f)
     p = Page(browser, url.split("#")[0])
     tab = tabela_js(p.page, True)
-    rep.check(tab == G["tabelas"], "as tabelas do site mudaram desde o gabarito (INF/PED/EMG/IOT): regenere com --dilui e revise")
+    rep.check(tab == G["tabelas"], "as tabelas do site mudaram desde o gabarito (INF/PED/EMG/IOT): recongele com --congelar e revise")
     got = rodar(p.page, SITE_JS, G["casos"])
     n = comparar(rep, G["casos"], G["esperado"], got)
     for k, (tot, bad) in n.items():
         rep.note(f"{k}: {tot} casos, {bad} diferenças")
+    diff_dilui(rep, G, posicoes(p.page))
     rep.check(not p.problems, "console: " + "; ".join(p.problems[:3]))
     p.close()
     return rep.done()
@@ -255,31 +328,36 @@ def run(browser, url):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dilui", required=True, help="caminho do index.html do dilui (o original)")
+    g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--congelar", action="store_true", help="recongela tests/calc_gabarito.json.gz a partir do site atual (depois de uma mudança aprovada)")
+    g.add_argument("--dilui", help="caminho do index.html do dilui: regrava tests/calc_gabarito_dilui.json.gz a partir do original")
     a = ap.parse_args()
-    rep = Report("calculadoras: paridade direta com o dilui")
+    rep = Report("calculadoras: congelar gabarito")
     with browser() as b:
-        d = Page(b, "file://" + os.path.abspath(a.dilui))     # o dilui pede Google Fonts: ignorado (sem rede)
-        tab = tabela_js(d.page, False)
-        C = casos(tab)
-        esperado = rodar(d.page, DILUI_JS, C)
-        d.close()
-        s = Page(b, file_url(REPO))
-        rep.check(tabela_js(s.page, True) == tab, "tabelas diferentes entre o dilui e o site")
-        obtido = rodar(s.page, SITE_JS, C)
-        rep.check(not s.problems, "console do site: " + "; ".join(s.problems[:3]))
-        s.close()
-    n = comparar(rep, C, esperado, obtido)
-    for k, (tot, bad) in n.items():
-        rep.note(f"{k}: {tot} casos, {bad} diferenças")
-    rep.note("infusão por tipo: " + json.dumps(contar_inf(C), ensure_ascii=False))
-    ok = rep.done()
-    # o gabarito é sempre o que o dilui mostrou (mesmo que o site ainda difira)
-    if True:
-        with gzip.open(GABARITO, "wt", encoding="utf-8", compresslevel=9) as f:
-            json.dump({"tabelas": tab, "casos": C, "esperado": esperado}, f, ensure_ascii=False, separators=(",", ":"))
-        print(f"gabarito gravado: {GABARITO} ({os.path.getsize(GABARITO)} bytes)")
-    return 0 if ok else 1
+        if a.dilui:
+            d = Page(b, "file://" + os.path.abspath(a.dilui))     # o dilui pede Google Fonts: ignorado (sem rede)
+            tab = tabela_js(d.page, False)
+            C = casos(tab)
+            esperado = rodar(d.page, DILUI_JS, C)
+            d.close()
+            alvo = GABARITO_DILUI
+        else:
+            with gzip.open(GABARITO_DILUI, "rt", encoding="utf-8") as f:
+                C = json.load(f)["casos"]          # mesmos casos do gabarito do dilui (para o relatório de diferenças)
+            s = Page(b, file_url(REPO))
+            tab = tabela_js(s.page, True)
+            esperado = rodar(s.page, SITE_JS, C)
+            pos = posicoes(s.page)
+            rep.check(not s.problems, "console do site: " + "; ".join(s.problems[:3]))
+            s.close()
+            alvo = GABARITO
+    novo = {"tabelas": tab, "casos": C, "esperado": esperado}
+    with gzip.open(alvo, "wt", encoding="utf-8", compresslevel=9) as f:
+        json.dump(novo, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"gabarito gravado: {alvo} ({os.path.getsize(alvo)} bytes)")
+    if not a.dilui:
+        diff_dilui(rep, novo, pos)
+    return 0 if rep.done() else 1
 
 
 if __name__ == "__main__":

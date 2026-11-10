@@ -1,11 +1,12 @@
 /* data/calculadoras.js — conteúdo clínico da aba Calculadoras.
-   GERADO POR SCRIPT a partir do dilui (index.html): o trecho entre os marcadores abaixo é uma cópia BYTE A BYTE do
-   original, do comentário "DILUI — banco de drogas" até o "];" final de EMG (tabelas INF, IOT, PED, EMG).
-   Não reformate nem "corrija" doses aqui: qualquer mudança clínica passa pela revisão do médico (ver CLAUDE.md,
-   seção Calculadoras). O invólucro (função) só evita que INF/IOT/PED/EMG virem nomes globais soltos.
+   Origem: tabelas INF, IOT, PED, EMG do dilui (index.html), copiadas por script. Desde a revisão clínica de 2026-11
+   (fase 4) este arquivo é conteúdo CORRIGIDO: as divergências em relação ao dilui estão listadas em CLAUDE.md
+   ("Divergências em relação ao dilui") e na caixa "Para o revisor" de cada página (data/calc-revisao.js).
+   Não reformate; toda mudança clínica passa pela revisão do médico e pelo recongelamento do gabarito (ver CLAUDE.md).
+   O invólucro (função) só evita que INF/IOT/PED/EMG virem nomes globais soltos.
    Conteúdo gerado por IA, ainda não revisado: a aba mostra a etiqueta "rascunho" em todas as calculadoras. */
 const CALC_DADOS = (() => {
-// ===== início da cópia do dilui =====
+// ===== tabelas (origem: dilui; corrigidas na revisão clínica — ver CLAUDE.md) =====
 /* ============ DILUI — banco de drogas ============
    Convenções
    INF (infusões): amp = conteúdo de 1 ampola {q, u, ml}; pre = diluições prontas {n, a: nº ampolas, d: mL de diluente, amp?: override};
@@ -83,7 +84,7 @@ const INF = [
     un:'mcg/kg/min', ini:0.3, faixa:[0.3,3], max:8, passos:[0.3,0.5,1,2,3,5],
     alvo:'titular a cada 5 min pela PA',
     obs:['Somente SG 5%. Proteger da luz (frasco e equipo fotoprotetores).',
-         'Máximo pela bula brasileira: 8 mcg/kg/min (literatura: 10 por até 10 min). Risco de cianeto/tiocianato com dose alta, uso > 48–72 h ou insuficiência renal/hepática.',
+         'Máx (bula): 8 mcg/kg/min no adulto, por no máximo 10 min — se a PA não controlar, suspender. Uso prolongado: média ≤ 2,5 mcg/kg/min. Risco de cianeto/tiocianato com dose alta, uso > 48–72 h ou insuficiência renal/hepática.',
          'Emergência hipertensiva: reduzir no máximo 25% da PA na 1ª hora. Dissecção de aorta: betabloqueador antes; alvo PAS < 120 e FC < 60.'] },
 
   // ---------------- SEDAÇÃO / ANALGESIA ----------------
@@ -237,13 +238,13 @@ const PED = [
     { n:'Midazolam intranasal', via:'IN', d:[0.2], u:'mg/kg', c:5, max:10, apres:'5 mg/mL', nota:'Dividir entre as narinas, de preferência com atomizador.' },
     { n:'Midazolam IV', via:'IV', d:[0.1,0.2], u:'mg/kg', c:5, max:10, apres:'5 mg/mL', nota:'Pode repetir 1 vez em 5 min.' },
     { n:'Diazepam IV', via:'IV', d:[0.15,0.2], u:'mg/kg', c:5, max:10, apres:'5 mg/mL', nota:'Pode repetir 1 vez em 5 min.' },
-    { n:'Diazepam retal', via:'VR', d:[0.2,0.5], dAge:[[6,[0.5]],[12,[0.3]],[999,[0.2]]], u:'mg/kg', c:5, max:20, apres:'5 mg/mL', nota:'≥ 2 anos. Por idade: 2–5 a 0,5 · 6–11 a 0,3 · ≥ 12 a 0,2 mg/kg. Informe a idade para ajustar.' },
+    { n:'Diazepam retal', via:'VR', d:[0.2,0.5], dAge:[[6,[0.5]],[12,[0.3]],[999,[0.2]]], u:'mg/kg', c:5, max:20, apres:'5 mg/mL', nota:'Bula: ≥ 2 anos (2–5 a 0,5 · 6–11 a 0,3 · ≥ 12 a 0,2 mg/kg). < 2 anos: uso fora da bula. Usar a solução injetável 5 mg/mL por via retal. Informe a idade para ajustar.' },
     { n:'Fenitoína', via:'IV', d:[20], u:'mg/kg', c:50, max:1500, ratePerKg:1, rate:50, apres:'50 mg/mL', nota:'Diluir em SF. Infundir ≤ 1 mg/kg/min (máx 50 mg/min), com monitor.' },
     { n:'Levetiracetam', via:'IV', d:[60], u:'mg/kg', c:100, max:4500, apres:'100 mg/mL', nota:'Em 10–15 min. Menos efeito hemodinâmico.' },
     { n:'Fenobarbital', via:'IV', d:[20], u:'mg/kg', c:100, max:1000, ratePerKg:1, rate:60, apres:'100 mg/mL · ampola 2 mL', nota:'Infundir ≤ 1 mg/kg/min (mín 20 min; máx 60 mg/min). Depressão respiratória e hipotensão.' },
   ]},
   { sec:'Respiratório e anafilaxia', itens:[
-    { n:'Adrenalina IM (anafilaxia)', via:'IM', d:[0.01], u:'mg/kg', c:1, max:0.5, maxBy:[[12,0.3],[999,0.5]], apres:'Pura 1 mg/mL', nota:'Vasto lateral da coxa. Repetir a cada 5–15 min. Máx 0,3 mg (< 12 anos) ou 0,5 mg (≥ 12 anos).' },
+    { n:'Adrenalina IM (anafilaxia)', via:'IM', d:[0.01], u:'mg/kg', c:1, max:0.3, maxBy:[[12,0.3],[999,0.5]], apres:'Pura 1 mg/mL', nota:'Vasto lateral da coxa. Repetir a cada 5–15 min. Máx 0,3 mg (< 12 anos) ou 0,5 mg (≥ 12 anos).' },
     { n:'Adrenalina inalatória (crupe)', via:'NBZ', d:[0.5], u:'mL/kg', max:5, apres:'Pura 1 mg/mL, sem diluir', nota:'Observar 2–4 h após (efeito rebote).' },
     { n:'Dexametasona (crupe)', via:'VO/IM/IV', d:[0.15,0.6], u:'mg/kg', c:4, max:10, apres:'Injetável 4 mg/mL', nota:'Crupe leve: 0,15 mg/kg. Moderado/grave: 0,6 mg/kg. Dose única.' },
     { n:'Prednisolona (asma)', via:'VO', d:[1,2], u:'mg/kg', c:3, max:40, maxBy:[[2,20],[6,30],[999,40]], apres:'Solução oral 3 mg/mL (existe 1 mg/mL)', nota:'Dose diária, 3–5 dias. Máx 20 mg (< 2 a), 30 mg (2–5 a), 40 mg (≥ 6 a).' },
@@ -256,7 +257,7 @@ const PED = [
     { n:'Morfina', via:'IV', d:[0.05,0.1], u:'mg/kg', c:1, max:5, apres:'Diluir para 1 mg/mL (1 amp de 10 mg/mL + 9 mL SF)', nota:'Titular a cada 10–15 min.' },
     { n:'Cetamina (procedimento) IV', via:'IV', d:[1,1.5], u:'mg/kg', c:50, apres:'50 mg/mL (cetamina racêmica)', nota:'Sedação dissociativa. Repetir 0,5 mg/kg se preciso. Escetamina (Ketamin S+): metade da dose.' },
     { n:'Cetamina (procedimento) IM', via:'IM', d:[4,5], u:'mg/kg', c:50, apres:'50 mg/mL (cetamina racêmica)', nota:'Início em 3–5 min. Escetamina (Ketamin S+): metade da dose.' },
-    { n:'Midazolam (ansiólise)', via:'IV', d:[0.025,0.05], dAge:[[6,[0.05,0.1]],[999,[0.025,0.05]]], u:'mg/kg', c:5, max:2, apres:'5 mg/mL (existe 1 mg/mL)', nota:'Dose inicial: 6 m–5 a 0,05–0,1 · 6–12 a 0,025–0,05 mg/kg (máx 2 mg por dose). Titular a cada 2–3 min.' },
+    { n:'Midazolam (ansiólise)', via:'IV', d:[0.025,0.05], dAge:[[6,[0.05,0.1]],[999,[0.025,0.05]]], u:'mg/kg', c:5, max:2, apres:'5 mg/mL (existe 1 mg/mL)', nota:'Dose inicial: 6 m–5 a 0,05–0,1 · 6–12 a 0,025–0,05 mg/kg (máx 2 mg por dose). Titular a cada 2–3 min. < 6 meses: sem dose estabelecida em bula — titular em pequenos incrementos, com monitorização.' },
     { n:'Dipirona', via:'VO', d:[15,25], u:'mg/kg', c:500, max:1000, gotas:20, apres:'500 mg/mL (gotas: 20 gotas = 1 mL)', nota:'Até 6/6 h. Evitar < 3 meses ou < 5 kg. Injetável: < 1 ano só IM (bula); IV pode causar hipotensão.' },
     { n:'Paracetamol', via:'VO', d:[10,15], u:'mg/kg', c:200, max:1000, apres:'Gotas 200 mg/mL', nota:'Até 6/6 h. Máx 75 mg/kg/dia (≤ 4 g).' },
     { n:'Ibuprofeno', via:'VO', d:[5,10], u:'mg/kg', c:50, max:400, maxBy:[[12,200],[999,400]], apres:'Gotas 50 mg/mL (existe 100 mg/mL)', nota:'≥ 6 meses. Até 6/6–8/8 h. Máx 200 mg/dose (< 12 a, bula) e 40 mg/kg/dia.' },
@@ -294,18 +295,18 @@ const EMG = [
     { n:'Tenecteplase (AVC)', via:'IV', d:[0.25], u:'mg/kg', c:5, max:25, apres:'Reconstituída 5 mg/mL', nota:'Bolus único em 5–10 s.' },
     { calc:'tnkIAM' },
     { calc:'altepIAM' },
-    { n:'Alteplase (TEP)', via:'IV', fixo:'100 mg em 2 h', nota:'PCR por TEP: 0,6 mg/kg (máx 50 mg) em 15 min.' },
+    { n:'Alteplase (TEP)', via:'IV', fixo:'100 mg em 2 h', nota:'Regime acelerado: 0,6 mg/kg (máx 50 mg) em 15 min. PCR por TEP: 50 mg em bolus; pode repetir após 15 min.' },
     { n:'Estreptoquinase (IAM)', via:'IV', fixo:'1.500.000 UI em SF 100 mL em 30–60 min', nota:'Hipotensão: reduzir a velocidade.' },
   ]},
   { sec:'Anticoagulação', itens:[
     { n:'Enoxaparina (plena)', via:'SC', d:[1], u:'mg/kg', apres:'Seringas de 20 a 150 mg', nota:'12/12 h. ClCr < 30: 1 mg/kg 1×/dia. Profilaxia: 40 mg 1×/dia.' },
-    { n:'Enoxaparina (IAM com fibrinólise, ≥ 75 anos)', via:'SC', d:[0.75], u:'mg/kg', apres:'Seringas de 20 a 150 mg', nota:'12/12 h, sem bolus IV (máx 75 mg nas 2 primeiras doses). < 75 anos com fibrinólise: 30 mg IV + 1 mg/kg SC 12/12 h (máx 100 mg nas 2 primeiras).' },
+    { n:'Enoxaparina (IAM com fibrinólise, ≥ 75 anos)', via:'SC', d:[0.75], u:'mg/kg', max:75, apres:'Seringas de 20 a 150 mg', nota:'12/12 h, sem bolus IV. Máx 75 mg nas 2 primeiras doses; depois 0,75 mg/kg sem teto. ClCr < 30: 1 mg/kg SC 1×/dia. < 75 anos com fibrinólise: 30 mg IV + 1 mg/kg SC 12/12 h (máx 100 mg nas 2 primeiras).' },
     { n:'Heparina — bolus TEP/TVP', via:'IV', d:[80], u:'UI/kg', c:5000, apres:'5.000 UI/mL', nota:'Depois 18 UI/kg/h (aba Bomba).' },
     { n:'Heparina — bolus SCA', via:'IV', d:[60], u:'UI/kg', c:5000, max:4000, apres:'5.000 UI/mL', nota:'Depois 12 UI/kg/h, máx 1.000 UI/h (aba Bomba).' },
   ]},
   { sec:'Hemorragia', itens:[
     { n:'Ácido tranexâmico (trauma)', via:'IV', fixo:'1 g em 10 min + 1 g em 8 h', nota:'Até 3 h do trauma. Ampola 250 mg/5 mL: 1 g = 4 ampolas.' },
-    { n:'Ácido tranexâmico (HPP)', via:'IV', fixo:'1 g em 10 min', nota:'Repetir 1 g se sangramento persistir após 30 min.' },
+    { n:'Ácido tranexâmico (HPP)', via:'IV', fixo:'1 g em 10 min', nota:'Até 3 h do parto. Repetir 1 g se sangramento persistir após 30 min.' },
     { n:'Terlipressina (HDA varicosa)', via:'IV', fixo:'2 mg a cada 4 h', nota:'Após controle, 1 mg a cada 4 h, por 2–5 dias.' },
   ]},
   { sec:'Hipercalemia e hipoglicemia', itens:[
@@ -316,7 +317,7 @@ const EMG = [
   ]},
   { sec:'Antídotos', itens:[
     { n:'Naloxona', via:'IV', fixo:'0,04–0,4 mg, titular a cada 2–3 min (até 2 mg; pode repetir)', nota:'Ampola 0,4 mg/mL. Usuário crônico: começar com 0,04 mg (1 amp em 10 mL = 0,04 mg/mL) para evitar abstinência.' },
-    { n:'Flumazenil', via:'IV', fixo:'0,2 mg em 30 s, repetir 0,2 mg/min até 1 mg', nota:'Ampola 0,1 mg/mL. Evitar em uso crônico de BZD ou co-ingestão pró-convulsivante.' },
+    { n:'Flumazenil', via:'IV', fixo:'0,2 mg IV em 15 s; se preciso, 0,1 mg a cada 60 s (máx 1 mg)', nota:'Ampola 0,1 mg/mL. Evitar em uso crônico de BZD ou co-ingestão pró-convulsivante.' },
   ]},
   { sec:'Obstetrícia', itens:[
     { n:'Sulfato de magnésio — ataque', via:'IV', fixo:'4 g em 10–20 min (8 mL de MgSO₄ 50% + 12 mL de AD)', nota:'Manutenção 1 g/h na aba Bomba.' },
@@ -327,17 +328,17 @@ const EMG = [
     { n:'Cetamina (analgesia)', via:'IV', d:[0.1,0.3], u:'mg/kg', c:50, apres:'50 mg/mL (cetamina racêmica)', nota:'Em 10–15 min (diluída em SF 100 mL) para evitar disforia. Escetamina (Ketamin S+): metade da dose.' },
     { n:'Cetamina (sedação dissociativa)', via:'IV', d:[1,1.5], u:'mg/kg', c:50, apres:'50 mg/mL (cetamina racêmica)', nota:'Repetir 0,5 mg/kg se preciso. Escetamina (Ketamin S+): metade da dose.' },
     { n:'Fentanil', via:'IV', d:[0.5,1], u:'mcg/kg', c:50, apres:'50 mcg/mL', nota:'Titular a cada 5 min.' },
-    { n:'Morfina', via:'IV', d:[0.05,0.1], u:'mg/kg', c:10, apres:'10 mg/mL (diluir)', nota:'Titular a cada 5–10 min. Idoso: começar com 2 mg.' },
+    { n:'Morfina', via:'IV', d:[0.05,0.1], u:'mg/kg', c:1, apres:'Diluir para 1 mg/mL (1 amp de 10 mg/mL + 9 mL SF)', nota:'Titular a cada 5–10 min. Idoso: começar com 2 mg.' },
     { n:'Propofol (sedação)', via:'IV', d:[0.5,1], u:'mg/kg', c:10, apres:'10 mg/mL', nota:'Depois 0,25–0,5 mg/kg a cada 3–5 min.' },
     { n:'Furosemida (EAP)', via:'IV', d:[0.5,1], u:'mg/kg', c:10, apres:'10 mg/mL · ampola 2 mL = 20 mg', nota:'IV é ~2× mais potente que VO (biodisponibilidade oral ~50%): 40 mg VO ≈ 20 mg IV. Quem já usa: 1–2,5× a dose oral diária, IV.' },
   ]},
 ];
-// ===== fim da cópia do dilui =====
-// rodapé do dilui (aviso + apresentações parecidas + referências), HTML copiado como está
+// ===== fim das tabelas =====
+// rodapé do dilui (aviso + apresentações parecidas + referências), HTML
 const RODAPE = [
   "<b>Ferramenta de apoio.</b> Confira a apresentação disponível no seu hospital, a dose e as contraindicações antes de administrar. Doses por peso usam o peso informado no topo.",
   "<b>Apresentações parecidas</b> mudam o volume: atropina 0,5 mg/mL, midazolam 1 mg/mL, MgSO₄ 10%, heparina SC 5.000 UI/0,25 mL, octreotida 0,5 mg/mL, ibuprofeno 100 mg/mL, succinilcolina 500 mg. Na Bomba, use “A ampola do seu hospital é diferente?”.",
-  "Referências: AHA/ILCOR 2020–2025 (SAVC e PALS), Surviving Sepsis Campaign 2021, diretriz PADIS 2018, consenso ADA de crises hiperglicêmicas 2024, AES 2016 (estado de mal epiléptico), AHA/ASA 2019 (AVC), ESC 2023 (síndromes coronarianas), Ministério da Saúde/FEBRASGO (pré-eclâmpsia), bulas ANVISA."
+  "Referências: AHA/ILCOR 2020–2025 (SAVC e PALS), Surviving Sepsis Campaign 2021, diretriz PADIS 2018, consenso ADA de crises hiperglicêmicas 2024, AES 2016 (estado de mal epiléptico), AHA/ASA 2026 (AVC isquêmico agudo), ESC 2023 (síndromes coronarianas), Ministério da Saúde/FEBRASGO (pré-eclâmpsia), bulas ANVISA."
 ];
 return { INF, IOT, PED, EMG, RODAPE };
 })();

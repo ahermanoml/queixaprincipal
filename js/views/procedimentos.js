@@ -28,7 +28,15 @@ function prCampos(p){
     const o = typeof c==="string" ? {id: c, ...PROC_CAMPOS[c]} : {...c};
     if(o.id in pad) o.padrao = pad[o.id];
     if(o.padrao == null) delete o.padrao;
-    if(o.fonte) o.opcoes = prFonte(o.fonte);
+    if(o.fonte){
+      o.opcoes = prFonte(o.fonte);
+      // indutor/bloqueador: o padrão é o do kit SRI da aba Calculadoras (CM.KIT_PADRAO) — um lugar só para as duas abas
+      const [tab, lista] = o.fonte.split(".");
+      if(o.padrao == null && tab==="IOT" && typeof CM!=="undefined" && CM.KIT_PADRAO && CM.KIT_PADRAO[lista] != null){
+        const it = CALC_DADOS.IOT[lista][CM.KIT_PADRAO[lista]];
+        if(it) o.padrao = prUp(it.n);
+      }
+    }
     return o;
   });
   prCamposCache.set(p.id, cs);

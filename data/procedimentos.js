@@ -51,7 +51,7 @@ const PROCS = [
    "Profundidade do tubo (~21 cm mulher / ~23 cm homem na rima): valor de memória, não conferido na fonte nesta revisão.",
    "Máximo de 3 tentativas: DAS permite uma 4ª por operador mais experiente — manter 3?",
    "Lista de contraindicações à succinilcolina ampliada pelo revisor: conferir.",
-   "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane.",
+   "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane. O par indutor + bloqueador do padrão vem de CM.KIT_PADRAO, o mesmo do kit SRI da aba Calculadoras (mudar lá muda aqui). Diferença esperada: a Calculadora mostra a dose calculada (70 kg: etomidato 21 mg = 10,5 mL; succinilcolina 70–105 mg) e o registro mostra o volume aspirado (20 mg/10 mL; 100 mg/10 mL).",
    "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
@@ -136,7 +136,7 @@ const PROCS = [
    "Pneumotórax"
   ],
   "registro": {
-   "padrao": {"peso": "70", "indutor": "ETOMIDATO", "bloqueador": "SUCCINILCOLINA", "dispositivo": "LARINGOSCOPIA DIRETA", "bougie": "SEM BOUGIE", "tubo": "7,5", "marca": "22", "confirmacao": "CAPNOGRAFIA EM ONDA, AUSCULTA E EXPANSÃO SIMÉTRICA"},
+   "padrao": {"peso": "70", "dispositivo": "LARINGOSCOPIA DIRETA", "bougie": "SEM BOUGIE", "tubo": "7,5", "marca": "22", "confirmacao": "CAPNOGRAFIA EM ONDA, AUSCULTA E EXPANSÃO SIMÉTRICA"},
    "campos": [
     {"id": "indicacao", "rotulo": "Indicação", "tipo": "texto", "dica": "ex.: rebaixamento do nível de consciência"},
     {"id": "peso", "rotulo": "Peso de referência", "tipo": "num", "un": "kg", "dica": "ex.: 70"},

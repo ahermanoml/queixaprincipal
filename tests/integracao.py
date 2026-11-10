@@ -111,6 +111,26 @@ def run(browser, url):
             total += 1
             n += 2
     rep.note(f"{total} 'Doses:' links followed and returned with Back")
+    # the owner's RSI standard comes from ONE place (CM.KIT_PADRAO): Procedimentos' default pair = Calculadoras' kit pair
+    pg.goto("about:blank"); pg.goto(base + "#/procedimentos/iot"); pg.wait_for_timeout(60)
+    par = pg.evaluate("""() => { const k = CM.KIT_PADRAO, v = prPadraoVals(prAberto);
+        return {kit: [CALC_DADOS.IOT.ind[k.ind].n.toUpperCase(), CALC_DADOS.IOT.bnm[k.bnm].n.toUpperCase()], proc: [v.indutor, v.bloqueador],
+                linha: document.querySelector('#pr-texto').textContent.split('\\n').find(l => l.startsWith('DROGAS'))}; }""")
+    rep.check(par["kit"] == par["proc"] == ["ETOMIDATO", "SUCCINILCOLINA"]
+              and par["linha"] == "DROGAS: ETOMIDATO 20 MG (10 ML) + SUCCINILCOLINA 100 MG (10 ML) — PESO 70 KG.",
+              f"standard RSI pair: kit={par['kit']} procedure={par['proc']} line={par['linha']!r}")
+    pg.click("#pr-cx-doses > summary"); pg.click('#pr-body [data-calc="iot"]'); pg.wait_for_timeout(100)
+    sel = pg.evaluate("""() => ({hash: location.hash, ind: [...document.querySelectorAll('[data-kit="ind"][aria-pressed="true"]')].map(b => b.textContent.trim().toUpperCase()),
+        bnm: [...document.querySelectorAll('[data-kit="bnm"][aria-pressed="true"]')].map(b => b.textContent.trim().toUpperCase())})""")
+    rep.check(sel["hash"] == "#/calculadoras/iot" and [sel["ind"], sel["bnm"]] == [[par["proc"][0]], [par["proc"][1]]],
+              f"Doses link lands on the Calculadoras intubation page with the same pair selected: {sel}")
+    # changing the standard in one place changes the Procedimentos default too
+    alt = pg.evaluate("""() => { const k = CM.KIT_PADRAO, old = {...k};
+        k.ind = CALC_DADOS.IOT.ind.findIndex(d => d.n === 'Cetamina'); k.bnm = CALC_DADOS.IOT.bnm.findIndex(d => d.n === 'Rocurônio');
+        prCamposCache.clear(); const p = PROCS.find(x => x.id === 'iot'); const v = prPadraoVals(p);
+        Object.assign(k, old); prCamposCache.clear(); return [v.indutor, v.bloqueador]; }""")
+    rep.check(alt == ["CETAMINA", "ROCURÔNIO"], f"Procedimentos follows CM.KIT_PADRAO: {alt}")
+    n += 3
     rep.check(not p.problems, "problems: " + "; ".join(p.problems[:5]))
     p.close()
     # 5 tabs: one row, nothing clipped, active tab in view, no page-level horizontal scroll
