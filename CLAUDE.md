@@ -20,20 +20,24 @@ A **static site with no build step**: plain HTML + CSS + classic `<script src>` 
 | File | Contents |
 |------|----------|
 | `index.html` | Markup shell only: `header.top` (title row with the **busca única** field, then the tab bar `#top-tabs`, filled from the registry) above `.grid`: `#col-cond` (conditions) → `#col-mid` (blocks/meds) → `#col-rascunho` (Meu rascunho text) → `#col-rx` (receita, shared by all tabs). Then the `<script>` tags, **in load order**. |
-| `css/app.css` | All CSS. Theme via CSS custom properties in `:root` (`--accent`, `--ink`, `--muted`, `--muted-aa`…). |
+| `css/app.css` | All shared CSS (each new tab may add its own `css/<tab>.css`). Theme via CSS custom properties in `:root` (`--accent`, `--ink`, `--muted`, `--muted-aa`…). |
 | `data/prescricoes.js` | Route constants (`ORAL`, `EV`…), `DATA` (64 conditions, pretty-printed JSON) and `KW` (search keywords). The bulk of the repo. |
 | `data/rascunho.js` | `MINHA` — the clinician's own templates (**Meu rascunho**). |
 | `js/core.js` | Shared helpers: `$`, `esc`, `norm` (lowercase, no accents — use it for every text search), toast, `copyText`, `pageScrolls` / `scrollIntoPlace`, and the **view registry** (`VIEWS`, `registerView`, `viewOf`). |
 | `js/peso.js` | Weight calculator: `peso`, `fits`, `pickFaixa`, `doseTxt`, `faixaTxt`, `fillDose` (used by the receita and by Prescrições). |
 | `js/receita.js` | The receita column: `selected[]`, `orientSet[]`, `freeEdit`, `addItem`, `addOrient`, `buildText`, `syncRx`, `sendToRx`, Copiar / Limpar / edição livre. |
 | `js/views/prescricoes.js` | **Prescrições** tab: `renderConds`, `renderMid`, `blockHTML`, `applyPeso`, `openCond` / `closeCond`; registers the view. |
+| `data/calculadoras.js` | `CALC_DADOS` — clinical content of the **Calculadoras** tab (`INF`, `IOT`, `PED`, `EMG` + the dilui footer `RODAPE`), copied **byte for byte** from dilui by script. See *Calculadoras*. |
+| `js/calc-motor.js` | `CM` — the Calculadoras math: dilui's formatting/infusion/bolus/`CALC`/pediatric functions copied unchanged, plus `linha`, `infusao`, `selectDrug`, `setPreset`, `setReg`, `ventilacao` (same texts, returned as data). |
+| `js/views/calculadoras.js` | **Calculadoras** tab: list, patient bar (global weight, age), infusion page (① ② ③), situation pages, intubation; registers the view. |
+| `css/calculadoras.css` | Styles of the Calculadoras tab only (`cx-` prefix; container query `calc` on `#col-calc`). |
 | `js/views/rascunho.js` | **Meu rascunho** tab: `renderRascunho`, `rascText`, ＋ Receita, `openCard`; registers the view. |
 | `js/router.js` | Hash routing (`#/<view>/<item>`), derived from the registry. |
 | `js/busca.js` | Global search, fed by each view's `search()`. |
 | `js/app.js` | Renders the tabs (`renderTabs`), `showView`, start-up (`renderConds`, `renderRascunho`, `syncRx`, `onRoute("load")`). Loaded last. |
-| `tests/` | Dev-only checks (not loaded by the site): `run.py` (entry point), `parity.py`, `features.py`, `shots.py`, `lib.py`. |
+| `tests/` | Dev-only checks (not loaded by the site): `run.py` (entry point), `parity.py`, `features.py`, `shots.py`, `lib.py`, `calc_paridade.py` + `calc_gabarito.json.gz`, `calc_features.py`. |
 
-All scripts are classic scripts sharing one global scope: top-level `const`/`let`/`function` of one file are visible to the files after it. Load order matters only for code that **runs at load** (each file may use, at top level, only what earlier files declared; handlers can call anything). Order: `data/*` → `core` → `peso` → `receita` → `views/*` → `router` → `busca` → `app`.
+All scripts are classic scripts sharing one global scope: top-level `const`/`let`/`function` of one file are visible to the files after it. Load order matters only for code that **runs at load** (each file may use, at top level, only what earlier files declared; handlers can call anything). Order: `data/*` → `core` → `peso` → `receita` → `calc-motor` → `views/*` (prescricoes, calculadoras, rascunho = tab order) → `router` → `busca` → `app`.
 
 ### Cache busting (`?v=`)
 
@@ -127,7 +131,7 @@ The header tabs, the addresses and the global search all come from **one registr
 | `close()` | optional: back to "nothing open" |
 | `search()` | optional: entries for the busca única, `[{id, title, sub?, kw?, text?, ic?}]`, read once on the first search. `kw` is searched but never shown; `text` is searched and the matching line is shown as a snippet |
 
-Registered today, in this order: `prescricoes` (**💊 Prescrições** — formerly the "Padrão" tab; `cols: col-cond, col-mid`, `layout: lista`, `itemId/open/close` = the open condition, `search` = the 64 conditions with `nm` + `sub` + `KW`) and `rascunho` (**⭐ Meu rascunho**; `cols: col-rascunho`, `layout: texto`, no `itemId` so the address stays `#/rascunho`, `open` = scroll to a card and highlight it, `search` = the 26 cards' `titulo` + `grupo` + `linhas`). Only the header tab was renamed: the **Padrão** section inside a condition (`SECS`) keeps its name.
+Registered today, in this order: `prescricoes` (**💊 Prescrições** — formerly the "Padrão" tab; `cols: col-cond, col-mid`, `layout: lista`, `itemId/open/close` = the open condition, `search` = the 64 conditions with `nm` + `sub` + `KW`), `calculadoras` (**🧮 Calculadoras**; `cols: col-calc-lista, col-calc`, `layout: lista`, `itemId/open/close` = the open calculator, `search` = every calculator and every drug row — see *Calculadoras*) and `rascunho` (**⭐ Meu rascunho**; `cols: col-rascunho`, `layout: texto`, no `itemId` so the address stays `#/rascunho`, `open` = scroll to a card and highlight it, `search` = the 26 cards' `titulo` + `grupo` + `linhas`). Only the header tab was renamed: the **Padrão** section inside a condition (`SECS`) keeps its name.
 
 ### Adding a tab (later phases)
 
@@ -200,6 +204,18 @@ Rendering: `posHTML()` turns `{DOSE}` into `<b class="dose">` and `{FAIXA}` into
 
 - The weight box (`.peso-box`, `#peso`) shows on the **Pediátrico** tab (both sub-options, labelled "Peso da criança"), and on Adulto whenever a shown block has `peso` or an item has a spec ("Peso do paciente"). The weight persists across conditions/tabs and is cleared by **Limpar**. When any selected item has a spec and a weight is set, the receita starts with `PESO: N KG`.
 - Single **eligibility** thresholds inside a posologia ("NÃO USAR COM MENOS DE 5 KG", "ACIMA DE 10 ANOS OU MAIS DE 30 KG") are not bands and stay as text; so does the diurese target line in the queimaduras orientations.
+
+## Calculadoras (`#/calculadoras`)
+
+Port of the owner's **dilui** shift calculator (infusion pumps, RSI doses, pediatric and adult emergency bolus doses), redesigned around what the doctor is looking for. Content and math are dilui's, unchanged; only the experience is new.
+
+- **Content is frozen.** `data/calculadoras.js` is generated by a script from dilui's `index.html` (the region from the `DILUI — banco de drogas` comment to the `];` closing `EMG`), wrapped in `const CALC_DADOS = (() => { … return {INF, IOT, PED, EMG, RODAPE}; })();` so the dilui names don't become globals. Don't reformat or "fix" doses there: list suspected problems for the owner instead. All of it is AI-drafted: every calculator header shows the `rascunho` tag (same meaning as `"draft": true`), and dilui's disclaimer/references (`RODAPE`) close every page.
+- **Math is frozen.** The top of `js/calc-motor.js` is dilui's code copied unchanged (`num`, `fIn`, `fmt`, `fAuto`, `fML`, `fRate`, `concOf`, `rateOf`, `doseOf`, `perUnit`, `concLabel`, `dilOptions`, `bolus`, `byAge`, `rangeStr`, `CALC`, `viaPed`, `lma`, `pesoEst`, `pasMin`, `idadeTxt`, `isPed`, `rxText`, `kitText`), inside `CM = (() => {…})()` because dilui's `num`/`esc`/`$` differ from the site's. The bottom part turns dilui's HTML-building code into data with the same strings: `CM.linha(it, kg, age, ped)` → `{tipo: "fixo"|"bolus"|"calc"|"semPeso", main, small, sub, caps, nota, copy}`; `CM.infusao("dose"|"rate", rate)` → concentration, mL/h, the support line (dose/min, drops, duration), the alert (`msg`, `red`, `nivel`), `rx` (dilui's prescription text) and the titration table. State lives in `CM.S` (dilui's `S`).
+- **Pages** (`CX_PAGS`): the 18 infusions (`#/calculadoras/<dilui id>`, e.g. `nora`), `iot`, one page per `EMG` section (`emg-<slug>`) and per `PED` section (`ped-<slug>`); slugs in `CX_SLUG`. A row inside a page is `<page>.<index>` (`emg-arritmias.1`, `iot.ind0`): the busca única lists every drug row, and opening one highlights the row (`.hl`, ~2.4 s); the address then shows the page.
+- **Weight = the global `peso`** (`js/peso.js`), starts empty. Typing it here updates `peso`, the Prescrições field and the receita (`refreshDoses()`); a `document` `input` listener picks up changes typed in Prescrições, and a second listener on `#btn-clear` resets weight, age and height/sex (no edits to core/peso/receita). With no weight nothing is computed from an assumed weight: infusion rate is disabled, step ③ shows a prompt, weight-based rows show the per-kg dose and "falta o peso" with no copy button. One-click chips (50–100 kg) and, for children, "Usar N kg" from the age (APLS formula shown) are explicit and label the weight "peso estimado" until a weight is typed.
+- **Infusion page**: ① Preparo (preset chips, the recipe sentence, concentration; "Mudar ampolas…" opens amps/diluent/diluent type/ampoule-of-your-hospital fields), ② Dose ⇄ vazão (either input drives the other; −/+ step through dilui's `passos`; scale with `faixa` and `max`, marker amber outside the usual range and red above max; dilui's alert texts), ③ Texto pronto (sticky at the bottom of the column on desktop; **Copiar** and **＋ Receita** = `sendToRx`). Enter in the dose or rate field copies. Then the titration table (rows clickable) and dilui's notes.
+- **Situation pages / intubation**: rows in dilui's order, dose in large type, per-row Copiar / ＋ Receita (icons on narrow columns, with aria-labels). "Copiar tudo" only where the page is a sequence (`CX_TUDO`); intubation has "Copiar kit SRI" = dilui's `kitText()`. Cross-links between calculators: `CX_LINK_PAG`, `CX_LINK_LINHA`, `CX_POS_IOT`.
+- **Tests**: `tests/calc_paridade.py` compares the site with `tests/calc_gabarito.json.gz` (outputs of the original dilui for ~10 400 cases: every infusion × preset × weight × dose/rate, custom ampoule/diluent cases, every bolus row × weight × age, RSI kit, pediatric helpers, tidal volume). Rows are compared as the site renders them (`cxLinhaHTML`). To regenerate after an approved content change: `python3 tests/calc_paridade.py --dilui path/to/dilui/index.html`. `tests/calc_features.py` covers the behaviour (no-weight state on all 35 pages, weight sync, chips, age estimate, addresses, search, Copiar / ＋ Receita, keyboard, alerts, phone widths) and, with `--shots`, the screenshots.
 
 ## Meu rascunho (`MINHA`)
 
