@@ -133,10 +133,15 @@ function escHead(s, extra){
   return `<div class="esc-head"><div><span class="esc-kicker">${esc(s.kicker)}</span><h3>${esc(s.title)}</h3><p class="esc-what">${esc(s.what)}</p>${extra||""}</div>
     <button type="button" class="btn esc-print" id="esc-print" title="Ficha para preencher à caneta">${ESC_PRINT_ICON} Imprimir ficha em branco</button></div>`;
 }
-const escCopyPanel = (segs) => `<div class="esc-panel esc-pront"><h4>Para o prontuário</h4>${segs}
+// "Copiar para o prontuário" fica no cartão do resultado, logo abaixo do valor e da faixa: em 1366×768 e 1280×720
+// o resultado e o botão aparecem sem rolar. As opções do texto (formato, letras) ficam recolhidas, com a escolha à vista.
+const ESC_COPY_BTN = `<button type="button" class="btn primary esc-copy" id="esc-copy">Copiar para o prontuário</button>`;
+const escCopyPanel = (visible, opts) => `<div class="esc-panel esc-pront"><h4>Para o prontuário</h4>${visible}
+  <details class="esc-opcoes"><summary>Opções do texto: <span id="esc-opc-sum"></span></summary>${opts}</details>
   <pre class="esc-preview" id="esc-preview"></pre>
-  <button type="button" class="btn primary esc-copy" id="esc-copy">Copiar para o prontuário</button>
   <button type="button" class="btn ghost esc-reset" id="esc-reset">Zerar tudo</button></div>`;
+const escOpcSum = (fmt, fmts) => (fmts.find(f=> f.id===fmt) || fmts[0]).label + " · " + (ESC_CAIXAS.find(c=> c.id===escCaixa) || ESC_CAIXAS[0]).label;
+const ESC_FMTS = [{id: "lista", label: "Lista"}, {id: "linha", label: "Uma linha"}];
 // barra fixa no celular: resultado e "Copiar" sempre à vista enquanto se preenche
 function escBarSet(value, label, bg, fg){
   escBar.hidden = false;
@@ -195,8 +200,9 @@ function renderEsc(def){
       <aside class="esc-side">
         <div class="esc-panel esc-res" aria-live="polite"><span class="esc-meta">Resultado${def.range ? " · " + esc(def.range) : ""}</span>
           <div class="esc-total-row"><span class="esc-total${def.kind==="rule" || def.kind==="parkland" ? " txt" : ""}" id="esc-value"></span><span class="esc-band" id="esc-band"></span></div>
+          ${ESC_COPY_BTN}
           <p class="esc-rtext" id="esc-text"></p><p class="esc-rextra" id="esc-extra" hidden></p></div>
-        ${escCopyPanel(`<span class="esc-seg-l">Formato</span>${escSeg("Formato", [{id: "lista", label: "Lista"}, {id: "linha", label: "Uma linha"}], escFmt)}<span class="esc-hint" id="esc-fmt-hint"></span>
+        ${escCopyPanel("", `<span class="esc-seg-l">Formato</span>${escSeg("Formato", ESC_FMTS, escFmt)}<span class="esc-hint" id="esc-fmt-hint"></span>
           <span class="esc-seg-l">Letras</span>${escSeg("Letras", ESC_CAIXAS, escCaixa)}`)}
         <div class="esc-panel"><h4>Interpretação</h4><div class="esc-bands">${bands}</div>${alt}</div>
       </aside>
@@ -260,6 +266,7 @@ function escUpdate(def){
   escBody.querySelectorAll("[data-fmt]").forEach(b=> b.setAttribute("aria-pressed", b.dataset.fmt===escFmt ? "true" : "false"));
   escBody.querySelectorAll("[data-caixa]").forEach(b=> b.setAttribute("aria-pressed", b.dataset.caixa===escCaixa ? "true" : "false"));
   $("#esc-fmt-hint").textContent = escFmt==="linha" ? "Tudo numa linha, para prontuários que juntam as linhas." : "Um item por linha, com a resposta e os pontos.";
+  $("#esc-opc-sum").textContent = escOpcSum(escFmt, ESC_FMTS);
   $("#esc-preview").textContent = escComCaixa(FV.buildText(def, escV, escFmt));
   escBarSet(R.valueText, label, lv.bg, lv.fg);
 }
@@ -278,13 +285,14 @@ function renderNihss(){
       <aside class="esc-side">
         <div class="esc-panel esc-res" aria-live="polite"><div class="esc-meta esc-meta2"><span>Total · 0 a 42</span><span id="nihss-answered">0 de 15 itens</span></div>
           <div class="esc-total-row"><span class="esc-total" id="esc-value">0</span><span class="esc-band" id="esc-band">Clique nas respostas</span></div>
+          ${ESC_COPY_BTN}
           <div class="esc-scale"><div class="esc-scale-bar"><i style="flex:1;background:#E3E8EA"></i><i style="flex:4;background:#F6D58B"></i><i style="flex:11;background:#F2A65A"></i><i style="flex:5;background:#E07A4F"></i><i style="flex:22;background:#C2413A"></i></div><div class="esc-marker" id="nihss-marker"></div></div></div>
         <div class="esc-panel"><label class="esc-seg-l" for="nihss-rapida">Entrada rápida</label>
           <input id="nihss-rapida" class="esc-rapida" type="text" inputmode="numeric" maxlength="15" autocomplete="off" placeholder="Digite os 15 escores em ordem">
           <span class="esc-warn" id="nihss-warn" hidden></span>
           <span class="esc-hint">Um dígito por item, de 1a até 11. Os botões ao lado acompanham.</span></div>
-        ${escCopyPanel(`<span class="esc-seg-l">Momento</span>${escSeg("Momento", NIHSS.MOMENTS.map(m=> ({id: m, label: m})), S.moment)}
-          <span class="esc-seg-l">Formato</span>${escSeg("Formato", NIHSS.FMTS, S.fmt)}<span class="esc-hint" id="esc-fmt-hint"></span>
+        ${escCopyPanel(`<span class="esc-seg-l">Momento</span>${escSeg("Momento", NIHSS.MOMENTS.map(m=> ({id: m, label: m})), S.moment)}`,
+          `<span class="esc-seg-l">Formato</span>${escSeg("Formato", NIHSS.FMTS, S.fmt)}<span class="esc-hint" id="esc-fmt-hint"></span>
           <span class="esc-seg-l">Letras</span>${escSeg("Letras", ESC_CAIXAS, escCaixa)}`)}
       </aside>
       <div class="esc-foot">${escGuia("nihss")}<p class="esc-disc">${ESC_DISCLAIMER}</p></div>
@@ -339,6 +347,7 @@ function nihssUpdate(syncQuick){
   escBody.querySelectorAll("[data-fmt]").forEach(b=> b.setAttribute("aria-pressed", b.dataset.fmt===S.fmt ? "true" : "false"));
   escBody.querySelectorAll("[data-caixa]").forEach(b=> b.setAttribute("aria-pressed", b.dataset.caixa===escCaixa ? "true" : "false"));
   $("#esc-fmt-hint").textContent = (NIHSS.FMTS.find(f=> f.id===S.fmt) || NIHSS.FMTS[0]).hint;
+  $("#esc-opc-sum").textContent = escOpcSum(S.fmt, NIHSS.FMTS);
   $("#esc-preview").textContent = escComCaixa(NIHSSM.buildText());
   escBarSet(T.total, T.band.label, T.band.bg, T.band.fg);
 }

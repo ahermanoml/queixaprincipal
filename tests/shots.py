@@ -5,7 +5,7 @@ Saves, for each viewport: Prescrições with a condition open, Meu rascunho, the
 import os
 from lib import Page, Report
 
-SIZES = [(1440, 900), (1024, 768), (390, 844), (320, 640)]
+SIZES = [(1440, 900), (1366, 768), (1280, 720), (1024, 768), (390, 844), (320, 640)]   # 1366x768 / 1280x720 = hospital desktops
 # Escores is real now: 4 dummies make the 7 tabs of the plan (Prescrições, Escores, Meu rascunho + 4)
 DUMMIES = [("procedimentos", "Procedimentos", "🩺"), ("calculadoras", "Calculadoras", "🧮"),
            ("documentos", "Documentos", "📄"), ("alta", "Alta", "🏠")]

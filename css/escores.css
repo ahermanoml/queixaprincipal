@@ -14,6 +14,9 @@ body[data-rx="off"][data-layout="texto"] .grid{grid-template-columns:1fr}
 
 /* calculadora */
 #col-esc{container:esc / inline-size}
+/* computador: a área que rola (#esc-body) é um container de tamanho, para o painel fixo (.esc-side) nunca passar da
+   altura visível (max-height em cqh). No celular a página rola inteira e não há painel fixo. */
+@media(min-width:821px){ #esc-body{container-type:size} }
 .esc{padding:16px 18px 26px;max-width:1180px}
 .esc-head{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
 .esc-head > div{flex:1 1 300px;min-width:0}
@@ -31,7 +34,7 @@ body[data-rx="off"][data-layout="texto"] .grid{grid-template-columns:1fr}
 @container esc (min-width:760px){
   .esc-layout{grid-template-columns:minmax(0,1fr) minmax(300px,360px);grid-template-areas:"items side" "foot side";grid-template-rows:auto 1fr;align-items:start}
   /* o painel do resultado acompanha a rolagem; com altura limitada ele rola por dentro e o resultado nunca sai da tela */
-  .esc-side{position:sticky;top:0;max-height:calc(100vh - 190px);overflow-y:auto;scrollbar-width:thin}
+  .esc-side{position:sticky;top:0;max-height:calc(100cqh - 12px);overflow-y:auto;scrollbar-width:thin}
 }
 .esc-items{display:flex;flex-direction:column;gap:8px;min-width:0}
 .esc-grp{margin:10px 0 0;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--accent-d)}
@@ -80,9 +83,16 @@ body[data-rx="off"][data-layout="texto"] .grid{grid-template-columns:1fr}
 .esc-warn{display:block;margin-top:4px;font-size:12px;font-weight:650;color:var(--danger)}
 .esc-rapida{width:100%;border:1px solid #cfdbe0;border-radius:9px;padding:9px 10px;font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
   font-size:16px;letter-spacing:2px}
-.esc-preview{margin:10px 0 8px;padding:10px;max-height:200px;overflow:auto;background:#fbfdfe;border:1px solid var(--line);border-radius:9px;
+.esc-preview{margin:10px 0 8px;padding:10px;max-height:180px;overflow:auto;background:#fbfdfe;border:1px solid var(--line);border-radius:9px;
   font-family:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-size:11.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;color:#22343b}
-.esc-copy{width:100%;justify-content:center;padding:11px 14px;font-size:14px}
+.esc-copy{width:100%;justify-content:center;padding:11px 14px;font-size:14px;margin:4px 0 8px}
+.esc-res .esc-scale{margin-bottom:4px}
+/* opções do texto recolhidas: a escolha atual aparece no resumo */
+.esc-opcoes{margin:2px 0 0;border:1px solid var(--line);border-radius:9px;background:#fbfdfe}
+.esc-opcoes summary{cursor:pointer;padding:7px 10px;font-size:12px;font-weight:650;color:var(--muted-aa);list-style-position:inside}
+.esc-opcoes summary span{color:var(--accent-d)}
+.esc-opcoes[open]{padding-bottom:8px}
+.esc-opcoes > :not(summary){margin-left:10px;margin-right:10px}
 .esc-reset{width:100%;justify-content:center;margin-top:6px}
 .esc-bands{display:flex;flex-direction:column;gap:3px}
 .esc-bandrow{display:flex;gap:10px;padding:6px 8px;border-radius:8px;font-size:12.5px}

@@ -13,7 +13,7 @@ import argparse, os, shutil, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import REPO, browser, export_ref, file_url, http_server
-import parity, escores_golden, escores_parity
+import parity, escores_golden, escores_parity, escores_layout
 
 try:
     import features
@@ -45,6 +45,8 @@ def main():
             for label, url in (("file://", file_url(REPO)), ("http://", new_http)):
                 print(f"# escores golden fixtures over {label}", flush=True)
                 ok &= escores_golden.run(b, url)
+            print("# escores layout (1366x768, 1280x720, 1024x768, 1440x900)", flush=True)
+            ok &= escores_layout.run(b, file_url(REPO))
             if a.fv:
                 with http_server(a.fv) as fv_http:
                     print("# escores vs Ficha Vermelha (original site, local copy)", flush=True)
