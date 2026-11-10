@@ -69,7 +69,7 @@ function buscaRender(){
     // lista natural: "A", "A e B", "A, B, C e D"
     const nomes = VIEWS.filter(v=> v.search).map(v=> `<b>${v.icon} ${esc(v.label)}</b>`);
     const lista = nomes.length > 1 ? nomes.slice(0, -1).join(", ") + " e " + nomes[nomes.length - 1] : nomes.join("");
-    buscaVazio.innerHTML = `Busca em ${lista}: nome da condição, sintoma, escore, remédio, dose ou trecho de um modelo.`;
+    buscaVazio.innerHTML = `Busca em ${lista}: condição, sintoma, escore, remédio, dose, procedimento ou trecho de um modelo.`;
     buscaVazio.hidden = false;
     buscaStatus.textContent = "";
     return;

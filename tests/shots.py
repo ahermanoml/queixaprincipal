@@ -82,8 +82,9 @@ def run(browser, url, out_dir):
 
 
 def abas(browser, url, out_dir, sizes=((1366, 768), (1440, 900), (390, 844))):
-    """One screenshot per tab with something open (a condition, HEART answered, noradrenalina with a weight,
-    Meu rascunho) and the busca única showing results from several groups."""
+    """The header at each width, one screenshot per tab with something open (a condition, HEART answered,
+    noradrenalina with a weight, the chest drain with its note partly filled, Meu rascunho) and the busca única
+    showing results from several groups."""
     rep = Report("screenshots das abas")
     os.makedirs(out_dir, exist_ok=True)
     base = url.split("#")[0]
@@ -91,6 +92,8 @@ def abas(browser, url, out_dir, sizes=((1366, 768), (1440, 900), (390, 844))):
         tag = f"{w}x{h}"
         p = Page(browser, base, w, h)
         pg = p.page
+        pg.goto("about:blank"); pg.goto(base); pg.wait_for_timeout(100)
+        pg.screenshot(path=f"{out_dir}/0-header-{tag}.png", clip={"x": 0, "y": 0, "width": w, "height": 140 if w > 820 else 120})
         pg.goto("about:blank"); pg.goto(base + "#/prescricoes/pneumonia"); pg.wait_for_timeout(120)
         pg.locator(".addall:visible").first.click()
         pg.screenshot(path=f"{out_dir}/1-prescricoes-{tag}.png")
@@ -103,13 +106,21 @@ def abas(browser, url, out_dir, sizes=((1366, 768), (1440, 900), (390, 844))):
         pg.goto("about:blank"); pg.goto(base + "#/calculadoras/nora"); pg.wait_for_timeout(120)
         pg.fill("#cx-peso", "70"); pg.wait_for_timeout(80)
         pg.screenshot(path=f"{out_dir}/3-calculadoras-nora-{tag}.png")
+        pg.goto("about:blank"); pg.goto(base + "#/procedimentos/dreno"); pg.wait_for_timeout(120)
+        pg.click('.pr-op[data-c="lado"][data-v="DIREITO"]')
+        pg.click('.pr-op[data-c="indicacao"][data-v="HEMOTÓRAX"]')
+        pg.fill("#pr-c-calibre", "28")
+        if w > 820:
+            pg.evaluate("() => { document.querySelector('#pr-body').scrollTop = 0; }")
+        pg.wait_for_timeout(80)
+        pg.screenshot(path=f"{out_dir}/4-procedimentos-dreno-{tag}.png")
         pg.click("#tab-rascunho"); pg.wait_for_timeout(80)
-        pg.screenshot(path=f"{out_dir}/4-rascunho-{tag}.png")
-        for k, q in enumerate(("asma", "glasgow")):   # results from three groups each, all visible
+        pg.screenshot(path=f"{out_dir}/5-rascunho-{tag}.png")
+        for k, q in enumerate(("IOT", "glasgow")):   # IOT: Prescrições + Calculadoras + Procedimentos + Meu rascunho
             pg.keyboard.press("Control+k"); pg.keyboard.type(q); pg.wait_for_timeout(120)
             groups = pg.evaluate("() => document.querySelectorAll('#busca-list [role=group]').length")
             rep.check(groups >= 3, f"{tag}: search {q!r} shows {groups} groups")
-            pg.screenshot(path=f"{out_dir}/{5 + k}-busca-{q}-{tag}.png")
+            pg.screenshot(path=f"{out_dir}/{6 + k}-busca-{q.lower()}-{tag}.png")
             pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
         rep.check(not p.problems, f"{tag}: " + "; ".join(p.problems[:3]))
         p.close()

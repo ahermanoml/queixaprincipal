@@ -16,6 +16,7 @@ from lib import REPO, browser, export_ref, file_url, http_server
 import parity, escores_golden, escores_parity, escores_layout
 import integracao
 import calc_paridade, calc_features   # aba Calculadoras: contas iguais ao dilui (gabarito) + comportamento
+import proc_features                  # aba Procedimentos: estrutura, comportamento, layout
 
 try:
     import features
@@ -59,10 +60,12 @@ def main():
                     print(f"# features over {label}", flush=True)
                     ok &= features.run(b, url)
                     ok &= calc_paridade.run(b, url) & calc_features.run(b, url)
-                    ok &= integracao.run(b, url)   # Escores x Calculadoras x Prescrições: receita, peso, Limpar, busca, abas
+                    ok &= proc_features.run(b, url)
+                    ok &= integracao.run(b, url)   # the five tabs together: receita, peso, Limpar, busca, links, tab bar
             if shots and a.shots:
                 ok &= shots.run(b, file_url(REPO), a.shots)
                 ok &= calc_features.shots(b, file_url(REPO), a.shots)
+                ok &= proc_features.shots(b, file_url(REPO), a.shots)
                 ok &= shots.abas(b, file_url(REPO), a.shots)
     finally:
         shutil.rmtree(old_root, ignore_errors=True)
