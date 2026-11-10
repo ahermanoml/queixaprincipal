@@ -145,7 +145,7 @@ function prRenderLista(filtro=""){
   PROC_AREAS.forEach(a=>{
     const ps = PROCS.filter(p=> p.area===a.key && (!f || norm(prBuscaTexto(p)).includes(f)));
     if(!ps.length) return;
-    h += `<div class="pr-gh"><span aria-hidden="true">${a.ic}</span> ${esc(a.nm)}</div>`;
+    h += `<div class="pr-gh">${esc(a.nm)}</div>`;
     ps.forEach(p=>{
       n++;
       h += `<button type="button" class="pr-item${prAberto===p ? " active" : ""}" data-id="${esc(p.id)}" aria-pressed="${prAberto===p}">
@@ -200,9 +200,9 @@ function prRegistroHTML(p){
       <div class="pr-padrao-top"><span class="pr-estado" id="pr-estado">padrão</span>
         ${vars.map(v=> prVariacaoHTML(p, v)).join("")}
         <span class="pr-acoes">
-          <button type="button" class="btn ghostb" id="pr-voltar" hidden>↺ Voltar ao padrão</button>
+          <button type="button" class="btn ghostb" id="pr-voltar" hidden>Voltar ao padrão</button>
           <button type="button" class="btn ghostb" id="pr-editar" aria-pressed="false">Editar texto</button>
-          <button type="button" class="btn primary pr-copiar" id="pr-copiar">Copiar</button></span></div>
+          <button type="button" class="btn primary pr-copiar" id="pr-copiar"><span class="i i-copy" aria-hidden="true"></span>Copiar</button></span></div>
       <pre class="pr-texto" id="pr-texto" aria-label="Texto do registro: clique numa palavra sublinhada para trocar"></pre>
       <textarea class="pr-livre" id="pr-livre" aria-label="Texto do registro (edição livre)" spellcheck="false" hidden></textarea>
       ${rap.length ? `<div class="pr-rapido" id="pr-rapido" role="group" aria-label="Preencher os brancos">${rap.map(c=> prCampoHTML(p, c)).join("")}</div>` : ""}
@@ -228,7 +228,7 @@ function prPassos(p, secao){
 function prMaterial(p){
   const st = prEst(p);
   return `<div class="pr-mat-tools"><span class="pr-mat-n" id="pr-mat-n" aria-live="polite"></span>
-      <button type="button" class="btn" id="pr-mat-copiar">Copiar material</button>
+      <button type="button" class="btn" id="pr-mat-copiar"><span class="i i-copy" aria-hidden="true"></span> Copiar material</button>
       <button type="button" class="btn ghostb" id="pr-mat-limpar">Desmarcar</button></div>
     <ul class="pr-check">${p.material.map((m, i)=> `<li><label><input type="checkbox" data-m="${i}"${st.mat.has(i) ? " checked" : ""}> <span>${esc(m)}</span></label></li>`).join("")}</ul>`;
 }
@@ -309,7 +309,7 @@ function prAtualizaNota(){
   const ed = $("#pr-editar"); ed.textContent = livre ? "Voltar aos campos" : "Editar texto"; ed.setAttribute("aria-pressed", String(livre));
   // "＋" das linhas opcionais que ainda não estão no texto
   $("#pr-mais").innerHTML = livre ? "" : prOpcionais(p).filter(c=> !prVal(p, c.id)).map(c=>
-    `<button type="button" class="pr-mais" data-add="${c.id}" aria-haspopup="true">＋ ${esc(c.id==="obs" ? "Observação" : c.rotulo)}</button>`).join("");
+    `<button type="button" class="pr-mais" data-add="${c.id}" aria-haspopup="true"><span class="i i-plus" aria-hidden="true"></span>${esc(c.id==="obs" ? "Observação" : c.rotulo)}</button>`).join("");
   ["pr-rapido"].forEach(id=>{ const el = document.getElementById(id); if(el) el.hidden = livre; });
   prBody.querySelectorAll(".pr-var").forEach(el=> el.hidden = livre);
 }

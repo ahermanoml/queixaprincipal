@@ -452,7 +452,8 @@ VIS_JS = """(sels) => {
       let bot = pageSc ? innerHeight : Math.min(area.bottom, innerHeight);
       if (!barra.hidden && !barra.contains(el)) bot = Math.min(bot, barra.getBoundingClientRect().top);
       const dentro = r.width > 0 && r.top >= top - 0.5 && r.bottom <= bot + 0.5 && r.left >= -0.5 && r.right <= innerWidth + 0.5;
-      const pts = [[r.left + r.width / 2, r.top + r.height / 2], [r.left + 3, r.top + 3], [r.right - 3, r.bottom - 3]];
+      const ix = Math.min(14, r.width / 4), iy = Math.min(14, r.height / 4);   // longe dos cantos arredondados
+      const pts = [[r.left + r.width / 2, r.top + r.height / 2], [r.left + ix, r.top + iy], [r.right - ix, r.bottom - iy]];
       const topo = pts.every(([x, y]) => { const c = document.elementFromPoint(x, y); return !!c && (c === el || el.contains(c)); });
       if (!(dentro && topo)) ruins.push(`${el.id || el.dataset.campo || el.className}: dentro=${dentro} topo=${topo} (${Math.round(r.top)}–${Math.round(r.bottom)} de ${Math.round(bot)})`);
     }
