@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-iot-1" viewBox="0 0 560 420" role="img" aria-labelledby="iot-1-t iot-1-d">
+<title id="iot-1-t">Posição: rampa e meato na altura da fúrcula</title>
+<desc id="iot-1-d">Paciente visto de lado, cabeceira elevada entre 20 e 30 graus e coxim sob a cabeça. O meato acústico externo fica na mesma linha horizontal da fúrcula esternal e a face fica paralela ao teto.</desc>
+<style>
+.qpf-iot-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-iot-1 .b{font-weight:700}
+.qpf-iot-1 .a{fill:#0b63c9}
+.qpf-iot-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- cama: cabeceira inclinada -->
+<path d="M206 263 L560 429 V420 H190 V270 Z" fill="#e3e7ec"/>
+<path d="M206 263 L560 429" class="ln" fill="none"/>
+<!-- coxim sob a cabeça -->
+<path d="M54 242 Q54 220 76 220 H196 Q210 220 214 240 L218 262 Q220 280 200 280 H76 Q54 280 54 258 Z" fill="#fff" class="ln"/>
+<!-- perfil: cabeça, pescoço e tronco -->
+<path d="M70 160
+ Q72 124 98 108 Q112 102 128 102
+ Q136 102 140 106
+ Q150 96 155 88 Q160 82 164 90 L167 100
+ Q172 102 172 106 Q178 108 182 107 Q186 110 186 113
+ Q194 110 200 112 Q208 116 208 124
+ Q214 142 232 165
+ L560 319 V429 L206 263
+ Q196 240 172 226 Q140 222 116 216
+ Q78 204 70 160 Z" fill="#ecd9cc" class="ln" stroke-linejoin="round"/>
+<!-- olho -->
+<path d="M120 112 Q127 108 134 112" fill="none" stroke="#1f2a33" stroke-width="2" stroke-linecap="round"/>
+<!-- orelha e meato -->
+<ellipse cx="132" cy="165" rx="9" ry="14" fill="#dfc3b4" class="ln"/>
+<circle cx="132" cy="165" r="3.5" fill="#1f2a33"/>
+<!-- fúrcula -->
+<circle cx="232" cy="165" r="5" fill="#1f2a33"/>
+<!-- linha horizontal meato–fúrcula -->
+<line x1="132" y1="165" x2="336" y2="165" stroke="#0b63c9" stroke-width="3" stroke-dasharray="8 6"/>
+<text x="344" y="171" class="b a">mesma altura</text>
+<!-- face paralela ao teto -->
+<line x1="104" y1="62" x2="210" y2="62" stroke="#1f2a33" stroke-width="2" stroke-dasharray="4 5"/>
+<text x="220" y="68" style="font-size:18px">face paralela ao teto</text>
+<!-- ângulo da cabeceira -->
+<line x1="347" y1="400" x2="537" y2="400" stroke="#1f2a33" stroke-width="2" stroke-dasharray="4 5"/>
+<path d="M417.5 400 A 80 80 0 0 1 425.0 366.2" fill="none" stroke="#1f2a33" stroke-width="2"/>
+<text x="347" y="394" style="font-size:18px">20–30°</text>
+<!-- rótulos -->
+<text x="20" y="318" class="b">Meato acústico</text>
+<text x="20" y="342" class="b">externo</text>
+<line x1="80" y1="298" x2="128" y2="180" class="ln"/>
+<text x="246" y="226" class="b">Fúrcula esternal</text>
+<line x1="246" y1="214" x2="236" y2="173" class="ln"/>
+<text x="306" y="282" style="font-size:18px">cabeceira elevada</text>
+</svg>

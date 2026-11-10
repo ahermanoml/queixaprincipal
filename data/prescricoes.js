@@ -486,6 +486,146 @@ const DATA = [
   ]
  },
  {
+  "id": "abscesso_cutaneo",
+  "ic": "🩹",
+  "nm": "Abscesso cutâneo / furúnculo",
+  "sub": "drenagem · dipirona · cefalexina · sulfametoxazol-trimetoprima",
+  "blocks": [
+   {
+    "label": "Padrão — Após a drenagem: analgésico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ]
+    ],
+    "orient": [
+     "TROCAR O CURATIVO 01 A 02 VEZES AO DIA, LAVANDO COM ÁGUA E SABÃO",
+     "COMPRESSAS MORNAS 3 A 4 VEZES AO DIA AJUDAM A DRENAR; NÃO ESPREMER",
+     "LAVAR BEM AS MÃOS E NÃO COMPARTILHAR TOALHAS, LÂMINAS OU ROUPAS",
+     "RETORNAR SE A VERMELHIDÃO AUMENTAR, FEBRE, A DOR PIORAR OU VOLTAR A JUNTAR PUS"
+    ]
+   },
+   {
+    "label": "Padrão — Antibiótico se celulite ao redor, febre, lesões múltiplas ou imunossupressão — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ],
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 800/160 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS (SE SUSPEITA DE ESTAFILOCOCO RESISTENTE OU FALHA)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Após a drenagem: analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ],
+     [
+      "IBUPROFENO 100 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 8/8H SE DOR OU FEBRE, APÓS ALIMENTAÇÃO (10 MG/KG/DOSE; SOMENTE A PARTIR DE 6 MESES; NÃO USAR SE SUSPEITA DE DENGUE, DESIDRATAÇÃO OU VÔMITOS)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 100,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 400
+      }
+     ]
+    ],
+    "orient": [
+     "TROCAR O CURATIVO 01 A 02 VEZES AO DIA, LAVANDO COM ÁGUA E SABÃO",
+     "COMPRESSAS MORNAS 3 A 4 VEZES AO DIA AJUDAM A DRENAR; NÃO ESPREMER",
+     "RETORNAR SE A VERMELHIDÃO AUMENTAR, FEBRE, A DOR PIORAR OU VOLTAR A JUNTAR PUS"
+    ]
+   },
+   {
+    "label": "Padrão — Antibiótico pelo peso se celulite ao redor, febre ou lesões múltiplas — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CEFALEXINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H POR 07 DIAS (50 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 4,
+       "conc": 50,
+       "un": "ML",
+       "max": 500
+      }
+     ],
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 200 MG + 40 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 12/12H POR 07 DIAS (8 MG/KG/DIA DE TRIMETOPRIMA). ALERGIA GRAVE A BETALACTÂMICOS OU SUSPEITA DE MRSA; NÃO USAR EM MENORES DE 2 MESES",
+      "USO ORAL",
+      {
+       "kgdia": 8,
+       "vezes": 2,
+       "conc": 8,
+       "un": "ML",
+       "max": 160
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
   "id": "abstinencia",
   "ic": "🍺",
   "nm": "Abstinência alcoólica",
@@ -1056,6 +1196,159 @@ const DATA = [
   ]
  },
  {
+  "id": "peconhentos",
+  "ic": "🦂",
+  "nm": "Acidentes por animais peçonhentos (escorpião e serpente)",
+  "sub": "lidocaína local · dipirona · soro antiescorpiônico · soro antiofídico",
+  "blocks": [
+   {
+    "label": "Padrão — Dor local (escorpião): anestesia local + analgesia",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "LIDOCAÍNA 2% SEM VASOCONSTRITOR",
+      "01 FRASCO-AMPOLA",
+      "INFILTRAR NO LOCAL DA PICADA 3 A 4 ML (CRIANÇA: 1 A 2 ML, SEM PASSAR DE 0,2 ML/KG = 4 MG/KG POR APLICAÇÃO); PODE REPETIR ATÉ 3 VEZES COM INTERVALO DE 40 A 60 MINUTOS SE A DOR VOLTAR",
+      "USO SUBCUTÂNEO"
+     ],
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 01 G (02 ML) EV DILUÍDO EM 100 ML DE SF 0,9% EM 15 MINUTOS, DE 6/6H (HORÁRIO FIXO ENQUANTO DOR MODERADA A INTENSA)",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Escorpião moderado ou grave: soro (em hospital de referência)",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "SORO ANTIESCORPIÔNICO (SAESC)",
+      "AMPOLAS CONFORME GRAVIDADE",
+      "LEVE (SÓ DOR LOCAL): SEM SORO. MODERADO (MANIFESTAÇÕES SISTÊMICAS DISCRETAS NÃO EXPLICADAS SÓ PELA DOR): 3 AMPOLAS. GRAVE: 6 AMPOLAS (MÁXIMO 6, EM QUALQUER IDADE). EV, DILUÍDO 1:2 A 1:5 EM SF 0,9% OU SG 5%, EM 10 A 15 MINUTOS (SORO ANTIARACNÍDICO: 20 A 60 MINUTOS), EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA; SEM PRÉ-MEDICAÇÃO. CRIANÇA: MESMA DOSE, COM CUIDADO NO VOLUME DA DILUIÇÃO. NA FALTA, SORO ANTIARACNÍDICO (SAA) NAS MESMAS DOSES",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Serpente (botrópico, crotálico, laquético ou elapídico): soro específico pelo gênero e gravidade",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "SORO ANTIOFÍDICO ESPECÍFICO (ANTIBOTRÓPICO, ANTICROTÁLICO, ANTIBOTRÓPICO-LAQUÉTICO OU ANTIELAPÍDICO)",
+      "AMPOLAS CONFORME GÊNERO E GRAVIDADE",
+      "AMPOLAS CONFORME O GÊNERO E A GRAVIDADE — BOTRÓPICO: LEVE 3, MODERADO 6, GRAVE 12; LAQUÉTICO: MODERADO 10, GRAVE 20; CROTÁLICO: LEVE 5, MODERADO 10, GRAVE 20; ELAPÍDICO: LEVE SEM SORO, MODERADO 5, GRAVE 10. DOSE INTEIRA DE UMA VEZ, EV, EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA; SEM PRÉ-MEDICAÇÃO. COLHER TEMPO DE COAGULAÇÃO ANTES. NÃO FAZER TORNIQUETE, INCISÃO, SUCÇÃO NEM INJEÇÕES IM; ELEVAR O MEMBRO E HIDRATAR",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Escorpião, quadro leve (só dor local), após observação: analgésico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ],
+    "orient": [
+     "LAVAR O LOCAL COM ÁGUA E SABÃO; COMPRESSA MORNA PODE ALIVIAR A DOR",
+     "NÃO FAZER TORNIQUETE (GARROTE), NÃO CORTAR, NÃO FURAR NEM CHUPAR O LOCAL DA PICADA",
+     "RETORNAR IMEDIATAMENTE SE VÔMITOS, SUOR EXCESSIVO, SALIVAÇÃO, AGITAÇÃO OU SONOLÊNCIA, TREMORES, FALTA DE AR OU CORAÇÃO ACELERADO (SINAIS DE ENVENENAMENTO)",
+     "PARA EVITAR NOVOS ACIDENTES: SACUDIR ROUPAS E SAPATOS ANTES DE USAR, VEDAR RALOS E FRESTAS E MANTER O QUINTAL LIMPO, SEM ENTULHO"
+    ]
+   },
+   {
+    "label": "Padrão — Dor local (escorpião): anestesia local + analgesia pelo peso",
+    "mode": "ped_internacao",
+    "draft": true,
+    "items": [
+     [
+      "LIDOCAÍNA 2% SEM VASOCONSTRITOR",
+      "01 FRASCO-AMPOLA",
+      "INFILTRAR NO LOCAL DA PICADA 3 A 4 ML (CRIANÇA: 1 A 2 ML, SEM PASSAR DE 0,2 ML/KG = 4 MG/KG POR APLICAÇÃO); PODE REPETIR ATÉ 3 VEZES COM INTERVALO DE 40 A 60 MINUTOS SE A DOR VOLTAR",
+      "USO SUBCUTÂNEO"
+     ],
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR {DOSE} EV LENTO, DILUÍDO EM ÁGUA DESTILADA OU SF 0,9%, ATÉ DE 6/6H SE DOR (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ENDOVENOSO",
+      {
+       "kg": 15,
+       "conc": 500,
+       "un": "ML",
+       "max": 1000
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Escorpião moderado ou grave: soro (mesma dose do adulto)",
+    "mode": "ped_internacao",
+    "draft": true,
+    "items": [
+     [
+      "SORO ANTIESCORPIÔNICO (SAESC)",
+      "AMPOLAS CONFORME GRAVIDADE",
+      "LEVE (SÓ DOR LOCAL): SEM SORO. MODERADO (MANIFESTAÇÕES SISTÊMICAS DISCRETAS NÃO EXPLICADAS SÓ PELA DOR): 3 AMPOLAS. GRAVE: 6 AMPOLAS (MÁXIMO 6, EM QUALQUER IDADE). EV, DILUÍDO 1:2 A 1:5 EM SF 0,9% OU SG 5%, EM 10 A 15 MINUTOS (SORO ANTIARACNÍDICO: 20 A 60 MINUTOS), EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA; SEM PRÉ-MEDICAÇÃO. CRIANÇA: MESMA DOSE, COM CUIDADO NO VOLUME DA DILUIÇÃO. NA FALTA, SORO ANTIARACNÍDICO (SAA) NAS MESMAS DOSES",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Escorpião leve (só dor local), após observação: analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ],
+    "orient": [
+     "LAVAR O LOCAL COM ÁGUA E SABÃO; COMPRESSA MORNA PODE ALIVIAR A DOR",
+     "NÃO FAZER TORNIQUETE (GARROTE), NÃO CORTAR, NÃO FURAR NEM CHUPAR O LOCAL DA PICADA",
+     "RETORNAR IMEDIATAMENTE SE A CRIANÇA VOMITAR, SUAR MUITO, BABAR, FICAR AGITADA OU SONOLENTA, TIVER TREMORES, FALTA DE AR OU CORAÇÃO ACELERADO"
+    ]
+   }
+  ]
+ },
+ {
   "id": "aftas",
   "ic": "👄",
   "nm": "Aftas orais (estomatite)",
@@ -1112,6 +1405,86 @@ const DATA = [
       "01 BISNAGA",
       "APLICAR UMA FINA CAMADA SOBRE A LESÃO, SEM ESFREGAR, TRÊS VEZES AO DIA POR 07 DIAS",
       "USO TÓPICO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "agitacao_psicomotora",
+  "ic": "😵",
+  "nm": "Agitação psicomotora / intoxicação alcoólica aguda",
+  "sub": "haloperidol · prometazina · midazolam · risperidona · tiamina",
+  "blocks": [
+   {
+    "label": "Padrão — Agitação leve a moderada, aceita via oral — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "HALOPERIDOL 5 MG",
+      "01 COMPRIMIDO",
+      "ADMINISTRAR 01 COMPRIMIDO (5 MG) VIA ORAL; SE NECESSÁRIO, REPETIR SÓ APÓS 8 HORAS (MÁXIMO 15 MG EM 24 H)",
+      "USO ORAL"
+     ],
+     [
+      "RISPERIDONA 2 MG",
+      "01 COMPRIMIDO",
+      "ADMINISTRAR 01 COMPRIMIDO (2 MG) VIA ORAL; PODE REPETIR APÓS 60 MINUTOS SE NECESSÁRIO (MÁXIMO 8 MG EM 24 H)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Agitação grave, sem colaboração: haloperidol + prometazina IM",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "HALOPERIDOL 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "APLICAR 5 MG (1 ML) IM (IDOSO: 2,5 MG); PODE REPETIR APÓS 30 MINUTOS SE NECESSÁRIO (MÁXIMO 30 MG EM 24 H). MONITORIZAR SINAIS VITAIS; ECG SE CARDIOPATIA, DISTÚRBIO ELETROLÍTICO OU HISTÓRIA DESCONHECIDA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "PROMETAZINA 25 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "APLICAR 50 MG (2 ML) IM PROFUNDO, JUNTO COM O HALOPERIDOL (REDUZ REAÇÕES EXTRAPIRAMIDAIS); MÁXIMO 100 MG EM 24 H. NÃO APLICAR EV",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Intoxicação alcoólica aguda: tiamina antes da glicose; glicemia capilar",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "TIAMINA (CLORIDRATO) 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "ADMINISTRAR 100 MG (1 ML) IM OU EV, ANTES DE QUALQUER SOLUÇÃO GLICOSADA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "GLICOSE 50% SOLUÇÃO INJETÁVEL",
+      "08 AMPOLAS 10 ML",
+      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA (A ABA CALCULADORAS USA 25 G = 50 ML); REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. ETILISTA OU DESNUTRIDO: TIAMINA 100 MG EV ANTES OU JUNTO, SEM ATRASAR A GLICOSE. NÃO DAR ALTA SE A HIPOGLICEMIA FOR POR SULFONILUREIA OU INSULINA DE AÇÃO LONGA: OBSERVAR DE 12 A 24 H COM SORO GLICOSADO E GLICEMIAS SERIADAS",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Alternativa: midazolam IM (agitação por estimulante ou abstinência; evitar se intoxicação alcoólica ou por outro depressor)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "MIDAZOLAM 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "APLICAR 7,5 A 15 MG (1,5 A 3 ML) IM; MONITORIZAR SATURAÇÃO, FREQUÊNCIA RESPIRATÓRIA E NÍVEL DE CONSCIÊNCIA",
+      "USO INTRAMUSCULAR"
      ]
     ]
    }
@@ -4174,6 +4547,229 @@ const DATA = [
   ]
  },
  {
+  "id": "crise_convulsiva",
+  "ic": "⚡",
+  "nm": "Crise convulsiva",
+  "sub": "diazepam · midazolam · fenitoína · levetiracetam",
+  "blocks": [
+   {
+    "label": "Padrão — Crise ≥ 5 minutos: benzodiazepínico (doses pelo peso em Calculadoras › Emergência › Convulsão) — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIAZEPAM 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "CRISE ≥ 5 MINUTOS: ADMINISTRAR 10 MG (2 ML) EV LENTO (ATÉ 5 MG/MIN), SEM DILUIR; PODE REPETIR 01 VEZ APÓS 5 MINUTOS SE A CRISE CONTINUAR. RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "MIDAZOLAM 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "SEM ACESSO VENOSO: APLICAR 10 MG (2 ML) IM EM DOSE ÚNICA (PESO > 40 KG; 13 A 40 KG: 5 MG). RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Crise que persiste após o benzodiazepínico: 2ª droga EV — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "FENITOÍNA 50 MG/ML SOLUÇÃO INJETÁVEL",
+      "AMPOLAS DE 5 ML CONFORME DOSE",
+      "ATAQUE: {DOSE} EV DILUÍDO EM SF 0,9% ATÉ CONCENTRAÇÃO FINAL ≥ 5 MG/ML (ADULTO: EM 100 ML), NUNCA EM SORO GLICOSADO, COM FILTRO DE LINHA SE DISPONÍVEL, EM VEIA CALIBROSA; NO MÁXIMO 50 MG/MIN (IDOSO OU CARDIOPATA: 25 MG/MIN), COM MONITORIZAÇÃO DE ECG E PA. NÃO USAR SE BRADICARDIA OU BAV DE 2º OU 3º GRAU (20 MG/KG; MÁXIMO 1.500 MG)",
+      "USO ENDOVENOSO",
+      {
+       "kg": 20,
+       "un": "MG",
+       "max": 1500
+      }
+     ],
+     [
+      "LEVETIRACETAM 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "AMPOLAS DE 5 ML CONFORME DOSE",
+      "ATAQUE: {DOSE} EV DILUÍDO EM 100 ML DE SF 0,9%, EM 15 MINUTOS (60 MG/KG; MÁXIMO 4.500 MG)",
+      "USO ENDOVENOSO",
+      {
+       "kg": 60,
+       "un": "MG",
+       "max": 4500
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Glicemia capilar < 70 mg/dL (tiamina antes da glicose se etilista ou desnutrido)",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "TIAMINA (CLORIDRATO) 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "ETILISTA OU DESNUTRIDO: ADMINISTRAR 100 MG (1 ML) EV ANTES DA GLICOSE, SEM ATRASÁ-LA",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "GLICOSE 50% SOLUÇÃO INJETÁVEL",
+      "08 AMPOLAS 10 ML",
+      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA (A ABA CALCULADORAS USA 25 G = 50 ML); REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. ETILISTA OU DESNUTRIDO: TIAMINA 100 MG EV ANTES OU JUNTO, SEM ATRASAR A GLICOSE. NÃO DAR ALTA SE A HIPOGLICEMIA FOR POR SULFONILUREIA OU INSULINA DE AÇÃO LONGA: OBSERVAR DE 12 A 24 H COM SORO GLICOSADO E GLICEMIAS SERIADAS",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Crise ≥ 5 minutos: benzodiazepínico pelo peso (tabela completa em Calculadoras › Pediatria › Convulsão) — escolha 1",
+    "mode": "ped_internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIAZEPAM 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR {DOSE} EV LENTO (ATÉ 5 MG/MIN), SEM DILUIR (0,2 MG/KG; MÁXIMO 10 MG); PODE REPETIR 01 VEZ APÓS 5 MINUTOS SE A CRISE CONTINUAR. RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
+      "USO ENDOVENOSO",
+      {
+       "kg": 0.2,
+       "un": "MG",
+       "max": 10
+      }
+     ],
+     [
+      "MIDAZOLAM 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "SEM ACESSO VENOSO: APLICAR {DOSE} IM EM DOSE ÚNICA (0,2 MG/KG; MÁXIMO 10 MG). RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
+      "USO INTRAMUSCULAR",
+      {
+       "kg": 0.2,
+       "un": "MG",
+       "max": 10
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Crise que persiste após o benzodiazepínico: 2ª droga EV pelo peso — escolha 1",
+    "mode": "ped_internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "FENITOÍNA 50 MG/ML SOLUÇÃO INJETÁVEL",
+      "AMPOLAS DE 5 ML CONFORME DOSE",
+      "ATAQUE: {DOSE} EV DILUÍDO EM SF 0,9% ATÉ CONCENTRAÇÃO FINAL ≥ 5 MG/ML, NUNCA EM SORO GLICOSADO, COM FILTRO DE LINHA SE DISPONÍVEL, EM VEIA CALIBROSA; NO MÁXIMO 1 MG/KG/MIN (ATÉ 50 MG/MIN), COM MONITORIZAÇÃO DE ECG E PA. NÃO USAR SE BRADICARDIA OU BAV DE 2º OU 3º GRAU (20 MG/KG; MÁXIMO 1.500 MG)",
+      "USO ENDOVENOSO",
+      {
+       "kg": 20,
+       "un": "MG",
+       "max": 1500
+      }
+     ],
+     [
+      "LEVETIRACETAM 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "AMPOLAS DE 5 ML CONFORME DOSE",
+      "ATAQUE: {DOSE} EV DILUÍDO EM SF 0,9%, EM 15 MINUTOS (60 MG/KG; MÁXIMO 4.500 MG)",
+      "USO ENDOVENOSO",
+      {
+       "kg": 60,
+       "un": "MG",
+       "max": 4500
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "crise_hipertensiva",
+  "ic": "📈",
+  "nm": "Crise hipertensiva (urgência e emergência)",
+  "sub": "captopril · nitroprussiato · nitroglicerina · losartana · anlodipino",
+  "blocks": [
+   {
+    "label": "Padrão — Elevação importante da PA sem lesão aguda de órgão-alvo: repouso por 30 min e reavaliar; se não baixar, anti-hipertensivo oral, reduzindo aos poucos (nifedipina de liberação rápida é proscrita)",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "CAPTOPRIL 25 MG",
+      "02 COMPRIMIDOS",
+      "ADMINISTRAR 25 MG VIA ORAL (NÃO SUBLINGUAL); REAVALIAR A PA EM 01 HORA E, SE NECESSÁRIO, REPETIR 25 MG. NÃO USAR NA GESTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Exceção — clonidina (só em situações específicas; crise hipertensiva não tem indicação de clonidina, salvo exceções)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CLONIDINA 0,100 MG",
+      "06 COMPRIMIDOS",
+      "ADMINISTRAR 0,100 A 0,200 MG VIA ORAL; SE NECESSÁRIO, REPETIR 0,100 MG A CADA HORA ATÉ O MÁXIMO DE 0,600 MG",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Emergência hipertensiva (com lesão aguda de órgão-alvo): vasodilatador EV em bomba — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NITROPRUSSIATO DE SÓDIO 50 MG/2 ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA",
+      "INFUNDIR EM BOMBA, PROTEGIDO DA LUZ — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROPRUSSIATO. META: REDUZIR A PA MÉDIA EM ATÉ 25% NA 1ª HORA (DISSECÇÃO DE AORTA, AVC E ECLÂMPSIA TÊM METAS E DROGAS PRÓPRIAS)",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "NITROGLICERINA 5 MG/ML (TRIDIL®) SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 10 ML",
+      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Início ou ajuste do anti-hipertensivo (retorno à unidade em 1 a 7 dias) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "LOSARTANA 50 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO 01 VEZ AO DIA, NO MESMO HORÁRIO. NÃO USAR NA GESTAÇÃO",
+      "USO ORAL"
+     ],
+     [
+      "ANLODIPINO 5 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO 01 VEZ AO DIA, NO MESMO HORÁRIO",
+      "USO ORAL"
+     ],
+     [
+      "HIDROCLOROTIAZIDA 25 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "ESTA RECEITA É PARA COMEÇAR OU AJUSTAR O TRATAMENTO: MARCAR CONSULTA NA UNIDADE DE SAÚDE EM 1 A 7 DIAS PARA REAVALIAR A PRESSÃO",
+     "NÃO PARAR OS REMÉDIOS DE PRESSÃO POR CONTA PRÓPRIA; DIMINUIR O SAL, EVITAR BEBIDA ALCOÓLICA E CIGARRO",
+     "SE TIVER APARELHO, MEDIR A PRESSÃO SENTADO, EM REPOUSO, E ANOTAR PARA MOSTRAR NA CONSULTA",
+     "RETORNAR IMEDIATAMENTE OU LIGAR 192 (SAMU) SE DOR NO PEITO, FALTA DE AR, DOR DE CABEÇA MUITO FORTE, CONFUSÃO, FRAQUEZA OU FORMIGAMENTO EM UM LADO DO CORPO, DIFICULDADE PARA FALAR OU ENXERGAR"
+    ]
+   }
+  ]
+ },
+ {
   "id": "dengue",
   "ic": "🦟",
   "nm": "Dengue",
@@ -5965,6 +6561,294 @@ const DATA = [
   ]
  },
  {
+  "id": "dor_abdominal",
+  "ic": "🩺",
+  "nm": "Dor abdominal, cólica biliar e dispepsia",
+  "sub": "escopolamina · dipirona · diclofenaco · omeprazol",
+  "blocks": [
+   {
+    "label": "Padrão — Antiespasmódico se cólica — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "BUSCOPAN COMPOSTO®",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H. JÁ CONTÉM DIPIRONA — NÃO ASSOCIAR COM DIPIRONA",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "EVITAR ALIMENTOS GORDUROSOS, FRITURAS E BEBIDA ALCOÓLICA ATÉ MELHORAR",
+     "A CAUSA DA DOR NA BARRIGA PODE FICAR MAIS CLARA COM AS HORAS (EX.: APENDICITE NO INÍCIO): SE A DOR MUDAR DE LUGAR, FICAR MAIS FORTE OU NÃO MELHORAR EM 24 HORAS, VOLTAR PARA SER REAVALIADO",
+     "SE O ULTRASSOM MOSTRAR PEDRA NA VESÍCULA (COLELITÍASE), PROCURAR A UNIDADE DE SAÚDE PARA ENCAMINHAMENTO AO CIRURGIÃO",
+     "RETORNAR IMEDIATAMENTE SE FEBRE, VÔMITOS QUE NÃO PARAM, PELE OU OLHOS AMARELADOS, URINA ESCURA OU FEZES CLARAS, BARRIGA DURA, SANGUE NO VÔMITO OU FEZES PRETAS"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Cólica biliar: AINE por curto prazo (evitar se doença renal, úlcera ou sangramento digestivo, gestação, IC ou uso de anticoagulante)",
+    "draft": true,
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dispepsia / epigastralgia",
+    "draft": true,
+    "items": [
+     [
+      "OMEPRAZOL 20 MG",
+      "28 CÁPSULAS",
+      "TOMAR 01 CÁPSULA PELA MANHÃ, EM JEJUM, 30 MINUTOS ANTES DO CAFÉ DA MANHÃ, POR 04 SEMANAS",
+      "USO ORAL"
+     ],
+     [
+      "HIDRÓXIDO DE ALUMÍNIO 61,5 MG/ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "TOMAR 10 ML SE AZIA OU QUEIMAÇÃO, 01 HORA APÓS AS REFEIÇÕES E AO DEITAR, ATÉ 04 VEZES AO DIA. TOMAR COM INTERVALO DE 02 HORAS DE OUTROS MEDICAMENTOS"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgesia + antiespasmódico EV",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 01 G (02 ML) EV DILUÍDO EM 100 ML DE SF 0,9% EM 15 MINUTOS, DE 6/6H (HORÁRIO FIXO ENQUANTO DOR MODERADA A INTENSA)",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "ESCOPOLAMINA (BUTILBROMETO) 20 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA",
+      "ADMINISTRAR 20 MG (01 AMPOLA) EV LENTO, ATÉ DE 8/8H SE CÓLICA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Cólica biliar ou dor intensa — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CETOPROFENO 100 MG PÓ LIÓFILO PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "SE SEM CONTRAINDICAÇÃO A AINE: ADMINISTRAR 100 MG EV DILUÍDO EM 100 ML DE SF 0,9% EM 20 MINUTOS, DE 12/12H, POR NO MÁXIMO 03 DIAS",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "TRAMADOL 50 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 50 A 100 MG EV DILUÍDO EM 100 ML DE SF 0,9% EM 30 MINUTOS, ATÉ DE 6/6H SE DOR (MÁXIMO 400 MG/DIA; ACIMA DE 75 ANOS MÁXIMO 300 MG/DIA; CLCR < 30: DE 12/12H, MÁXIMO 200 MG/DIA)",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "MORFINA 10 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "DILUIR 01 AMPOLA EM 9 ML DE SF 0,9% (1 MG/ML). ADMINISTRAR 2 A 3 MG EV LENTO A CADA 05-10 MIN ATÉ DOR ≤ 4 OU SONOLÊNCIA (MÁXIMO 15 MG NA TITULAÇÃO); DEPOIS 2 A 4 MG EV ATÉ DE 4/4H SE DOR. IDOSO OU DOENÇA RENAL: 1 A 2 MG POR DOSE",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético EV — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 10 MG (2 ML) EV, DILUÍDO EM 100 ML DE SF 0,9%, EM 15 MINUTOS; PODE REPETIR ATÉ DE 8/8H",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "ONDANSETRONA 2 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 4 MG (02 ML) EV LENTO ATÉ DE 8/8H SE NÁUSEAS OU VÔMITOS",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dispepsia / suspeita de doença péptica",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "OMEPRAZOL 40 MG PÓ PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "RECONSTITUIR E ADMINISTRAR 40 MG EV LENTO (EM 05 MINUTOS) OU DILUÍDO EM 100 ML DE SF 0,9% EM 20 A 30 MINUTOS, 01 VEZ AO DIA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dor_toracica",
+  "ic": "❤️",
+  "nm": "Dor torácica / síndrome coronariana aguda",
+  "sub": "AAS · clopidogrel · isossorbida · nitroglicerina · enoxaparina · atorvastatina",
+  "blocks": [
+   {
+    "label": "Padrão — Suspeita de SCA: AAS imediato (se sem contraindicação)",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "ÁCIDO ACETILSALICÍLICO (AAS) 100 MG",
+      "03 COMPRIMIDOS",
+      "ATAQUE: MASTIGAR 03 COMPRIMIDOS (300 MG) EM DOSE ÚNICA — NÃO USAR COMPRIMIDO DE REVESTIMENTO ENTÉRICO NO ATAQUE; DEPOIS 100 MG VIA ORAL 01 VEZ AO DIA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — IAM com supra de ST: reperfusão",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "REPERFUSÃO: ANGIOPLASTIA PRIMÁRIA OU TROMBÓLISE",
+      "CONFORME PROTOCOLO",
+      "ACIONAR A REGULAÇÃO PARA ANGIOPLASTIA PRIMÁRIA SE PUDER SER FEITA EM ATÉ 120 MINUTOS DO DIAGNÓSTICO; SENÃO, TROMBÓLISE O MAIS CEDO POSSÍVEL, SE SEM CONTRAINDICAÇÃO — DROGA E DOSE PELA ABA CALCULADORAS › EMERGÊNCIA › TROMBÓLISE",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — SCA confirmada: 2º antiagregante",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "CLOPIDOGREL 75 MG",
+      "08 COMPRIMIDOS",
+      "ATAQUE: 300 MG (04 COMPRIMIDOS) VIA ORAL; SE ANGIOPLASTIA PRIMÁRIA, 600 MG (08 COMPRIMIDOS); SE TROMBÓLISE EM MAIOR DE 75 ANOS, SÓ 75 MG (SEM ATAQUE). DEPOIS 75 MG 01 VEZ AO DIA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dor anginosa: nitrato — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DINITRATO DE ISOSSORBIDA 5 MG",
+      "03 COMPRIMIDOS",
+      "COLOCAR 01 COMPRIMIDO EMBAIXO DA LÍNGUA SE DOR; PODE REPETIR A CADA 5 MINUTOS ATÉ 03 DOSES, SE A PA PERMITIR. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
+      "USO SUBLINGUAL"
+     ],
+     [
+      "NITROGLICERINA 5 MG/ML (TRIDIL®) SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 10 ML",
+      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Anticoagulação (SCA confirmada, conforme a estratégia)",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "ENOXAPARINA SÓDICA (SERINGAS DE 40, 60, 80 E 100 MG)",
+      "CONFORME A DOSE",
+      "SCA SEM SUPRA: 1 MG/KG SC DE 12/12H (CLCR < 30: 1 MG/KG 01 VEZ AO DIA). DOSE PELO PESO E ESQUEMA DO IAM COM FIBRINÓLISE NA ABA CALCULADORAS › EMERGÊNCIA › ANTICOAGULAÇÃO",
+      "USO SUBCUTÂNEO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Estatina de alta potência",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "ATORVASTATINA 80 MG",
+      "01 COMPRIMIDO",
+      "TOMAR 01 COMPRIMIDO VIA ORAL 01 VEZ AO DIA, INICIANDO NA ADMISSÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dor refratária aos nitratos",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "MORFINA 10 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "DILUIR 01 AMPOLA EM 9 ML DE SF 0,9% (1 MG/ML). ADMINISTRAR 2 A 3 MG EV LENTO A CADA 05-10 MIN ATÉ DOR ≤ 4 OU SONOLÊNCIA (MÁXIMO 15 MG NA TITULAÇÃO); DEPOIS 2 A 4 MG EV ATÉ DE 4/4H SE DOR. IDOSO OU DOENÇA RENAL: 1 A 2 MG POR DOSE",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dor torácica de baixo risco após avaliação (ECG e troponina normais), causa musculoesquelética: analgésico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ]
+    ],
+    "orient": [
+     "ESTA RECEITA É PARA DOR DE ORIGEM MUSCULAR OU DAS COSTELAS, DEPOIS DE AFASTADO PROBLEMA DO CORAÇÃO NO ATENDIMENTO",
+     "PROCURAR A UNIDADE DE SAÚDE PARA CONSULTA DE RETORNO E CONTROLE DOS FATORES DE RISCO (PRESSÃO, DIABETES, COLESTEROL, CIGARRO)",
+     "LIGAR 192 (SAMU) OU RETORNAR IMEDIATAMENTE SE A DOR VOLTAR EM APERTO OU PESO NO PEITO, IRRADIAR PARA BRAÇO, PESCOÇO OU MANDÍBULA, VIER COM SUOR FRIO, FALTA DE AR, DESMAIO OU PALPITAÇÃO"
+    ]
+   }
+  ]
+ },
+ {
   "id": "dpoc",
   "ic": "🫁",
   "nm": "DPOC descompensada",
@@ -6540,6 +7424,99 @@ const DATA = [
        "max": 40
       }
      ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "edema_agudo_pulmao",
+  "ic": "🫁",
+  "nm": "Edema agudo de pulmão / IC descompensada",
+  "sub": "furosemida · isossorbida · nitroglicerina · ventilação não invasiva",
+  "blocks": [
+   {
+    "label": "Padrão — Diurético EV",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "FUROSEMIDA 10 MG/ML SOLUÇÃO INJETÁVEL",
+      "02 AMPOLAS 2 ML",
+      "SEM USO PRÉVIO DE DIURÉTICO: 20 A 40 MG (02 A 04 ML) EV EM BOLUS; SE JÁ USA FUROSEMIDA ORAL: 1 A 2 VEZES A DOSE ORAL DIÁRIA, EV. REAVALIAR DIURESE EM 2 A 6 HORAS E REPETIR OU DOBRAR SE RESPOSTA INSUFICIENTE",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Vasodilatador se PAS > 110 mmHg — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DINITRATO DE ISOSSORBIDA 5 MG",
+      "03 COMPRIMIDOS",
+      "SE PAS > 110 MMHG: COLOCAR 01 COMPRIMIDO EMBAIXO DA LÍNGUA, PODENDO REPETIR A CADA 5 A 10 MINUTOS (ATÉ 03 DOSES) ENQUANTO PREPARA A INFUSÃO. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
+      "USO SUBLINGUAL"
+     ],
+     [
+      "NITROGLICERINA 5 MG/ML (TRIDIL®) SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 10 ML",
+      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Oxigênio e suporte ventilatório",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "OXIGÊNIO / VENTILAÇÃO NÃO INVASIVA (CPAP OU BIPAP)",
+      "CONFORME NECESSIDADE",
+      "OFERECER O2 SE SATO2 < 90%; SE DESCONFORTO RESPIRATÓRIO (FR > 25, SATO2 < 90% OU USO DE MUSCULATURA ACESSÓRIA), INICIAR VNI PRECOCEMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Choque cardiogênico ou baixo débito: droga vasoativa em bomba — escolha 1",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NORADRENALINA 4 MG/4 ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA",
+      "SE PAS < 90 MMHG COM HIPOPERFUSÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NORADRENALINA",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "DOBUTAMINA 250 MG/20 ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA",
+      "SE BAIXO DÉBITO (HIPOPERFUSÃO) COM PAS ≥ 90 MMHG: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › DOBUTAMINA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — IC descompensada leve, compensada no PS: diurético oral até o retorno",
+    "draft": true,
+    "items": [
+     [
+      "FUROSEMIDA 40 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ (DOSE A AJUSTAR NA CONSULTA DE RETORNO PELO PESO DIÁRIO E PELO INCHAÇO)",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "PESAR-SE TODOS OS DIAS, PELA MANHÃ, APÓS URINAR E ANTES DO CAFÉ; SE GANHAR MAIS DE 2 KG EM 3 DIAS, PROCURAR A UNIDADE DE SAÚDE",
+     "DIMINUIR O SAL E SEGUIR A QUANTIDADE DE LÍQUIDOS ORIENTADA PELO MÉDICO; NÃO PARAR OS REMÉDIOS DO CORAÇÃO POR CONTA PRÓPRIA",
+     "MARCAR CONSULTA NA UNIDADE DE SAÚDE OU COM O CARDIOLOGISTA EM ATÉ 7 A 14 DIAS",
+     "RETORNAR IMEDIATAMENTE OU LIGAR 192 (SAMU) SE A FALTA DE AR PIORAR, NÃO CONSEGUIR DEITAR, TOSSE COM ESPUMA ROSADA, DOR NO PEITO OU DESMAIO"
     ]
    }
   ]
@@ -8990,6 +9967,77 @@ const DATA = [
   ]
  },
  {
+  "id": "hiperglicemia",
+  "ic": "🍬",
+  "nm": "Hiperglicemia e hipoglicemia",
+  "sub": "glicose 50% · glucagon · insulina regular · soro fisiológico · metformina",
+  "blocks": [
+   {
+    "label": "Padrão — Hipoglicemia (glicemia < 70 mg/dL) — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "GLICOSE 50% SOLUÇÃO INJETÁVEL",
+      "08 AMPOLAS 10 ML",
+      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA (A ABA CALCULADORAS USA 25 G = 50 ML); REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. ETILISTA OU DESNUTRIDO: TIAMINA 100 MG EV ANTES OU JUNTO, SEM ATRASAR A GLICOSE. NÃO DAR ALTA SE A HIPOGLICEMIA FOR POR SULFONILUREIA OU INSULINA DE AÇÃO LONGA: OBSERVAR DE 12 A 24 H COM SORO GLICOSADO E GLICEMIAS SERIADAS",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "GLUCAGON 1 MG PÓ LIÓFILO PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "SEM ACESSO VENOSO: RECONSTITUIR E APLICAR 1 MG IM OU SC; QUANDO ACORDAR, OFERECER CARBOIDRATO VIA ORAL. POUCO EFICAZ EM ETILISTAS E DESNUTRIDOS",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Cetoacidose / estado hiperosmolar: hidratação, potássio e insulina em bomba",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "CLORETO DE SÓDIO 0,9% (SORO FISIOLÓGICO)",
+      "01 BOLSA 1000 ML",
+      "INFUNDIR 1.000 ML EV NA 1ª HORA (15 A 20 ML/KG); DEPOIS AJUSTAR VOLUME E TIPO DE SORO PELO SÓDIO CORRIGIDO, HIDRATAÇÃO E DIURESE (CAUTELA EM CARDIOPATAS E DOENTES RENAIS)",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "CLORETO DE POTÁSSIO 19,1% SOLUÇÃO INJETÁVEL (2,56 MEQ/ML)",
+      "01 AMPOLA 10 ML",
+      "POTÁSSIO > 5,0 MEQ/L: NÃO REPOR. ENTRE 3,5 E 5,0: ACRESCENTAR 20 A 30 MEQ (08 A 12 ML) EM CADA LITRO DE SORO, PARA MANTER O POTÁSSIO ENTRE 4 E 5 — NÃO NO 1º LITRO DA 1ª HORA. < 3,5: REPOR ANTES DE INICIAR A INSULINA. MÁXIMO 10 MEQ/H EM VEIA PERIFÉRICA (20 MEQ/H SÓ COM MONITORIZAÇÃO CARDÍACA). NUNCA EM BOLUS",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "INSULINA REGULAR HUMANA 100 UI/ML",
+      "01 FRASCO-AMPOLA",
+      "INICIAR SÓ COM POTÁSSIO ≥ 3,5 MEQ/L: INFUSÃO CONTÍNUA EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › INSULINA REGULAR (CAD/EHH). GLICEMIA CAPILAR DE HORA EM HORA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — DM2 recém-diagnosticado, sem descompensação: metformina",
+    "draft": true,
+    "items": [
+     [
+      "METFORMINA 500 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO APÓS O JANTAR POR 07 DIAS; DEPOIS, 01 COMPRIMIDO APÓS O CAFÉ DA MANHÃ E 01 APÓS O JANTAR. NÃO USAR SE DOENÇA RENAL GRAVE (TFG < 30)",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "SE TREMOR, SUOR FRIO, FOME, CORAÇÃO ACELERADO OU CONFUSÃO (AÇÚCAR BAIXO) E ESTIVER ACORDADO: TOMAR 01 COPO DE SUCO DE LARANJA OU REFRIGERANTE COMUM (NÃO DIET) OU 01 COLHER DE SOPA DE AÇÚCAR EM MEIO COPO DE ÁGUA; MEDIR DE NOVO EM 15 MINUTOS E REPETIR SE CONTINUAR ABAIXO DE 70",
+     "DEPOIS QUE A GLICOSE NORMALIZAR, FAZER UM LANCHE; NÃO PULAR REFEIÇÕES ENQUANTO USA INSULINA OU REMÉDIO QUE BAIXA O AÇÚCAR",
+     "MARCAR CONSULTA NA UNIDADE DE SAÚDE EM ATÉ 7 DIAS PARA AJUSTAR O TRATAMENTO DO DIABETES",
+     "RETORNAR IMEDIATAMENTE SE GLICOSE ACIMA DE 300 COM VÔMITOS, DOR NA BARRIGA, RESPIRAÇÃO RÁPIDA OU FUNDA, MUITA SEDE E MUITA URINA, SONOLÊNCIA OU CONFUSÃO; OU SE A GLICOSE BAIXA NÃO MELHORAR OU VOLTAR"
+    ]
+   }
+  ]
+ },
+ {
   "id": "hordeolo",
   "ic": "👁",
   "nm": "Hordéolo / Blefarite",
@@ -10163,6 +11211,237 @@ const DATA = [
   ]
  },
  {
+  "id": "mordedura",
+  "ic": "🐕",
+  "nm": "Mordedura de cão ou gato",
+  "sub": "amoxicilina-clavulanato · vacina antirrábica · soro antirrábico · antitetânica",
+  "blocks": [
+   {
+    "label": "Padrão — Antibiótico profilático (ferida profunda, na mão, de gato ou em imunossuprimido; doxiciclina se alergia à penicilina) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AMOXICILINA 875 MG + CLAVULANATO 125 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H, NO INÍCIO DAS REFEIÇÕES, POR 05 DIAS",
+      "USO ORAL"
+     ],
+     [
+      "DOXICICLINA 100 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS, COM UM COPO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES. NÃO USAR EM GESTANTES",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "LAVAR A FERIDA COM BASTANTE ÁGUA CORRENTE E SABÃO, O QUANTO ANTES, E MANTER LIMPA",
+     "OBSERVAR O CÃO OU O GATO POR 10 DIAS: SE O ANIMAL ADOECER, SUMIR OU MORRER, AVISAR A UNIDADE DE SAÚDE IMEDIATAMENTE",
+     "TOMAR TODAS AS DOSES DA VACINA ANTIRRÁBICA NAS DATAS MARCADAS, MESMO QUE A FERIDA JÁ ESTEJA BOA",
+     "RETORNAR SE VERMELHIDÃO, CALOR, INCHAÇO, PUS, FEBRE OU DOR QUE AUMENTA NO LOCAL"
+    ]
+   },
+   {
+    "label": "Padrão — Vacina antirrábica (cão ou gato saudável e observável: não vacinar, observar 10 dias)",
+    "draft": true,
+    "items": [
+     [
+      "VACINA ANTIRRÁBICA HUMANA (CULTIVO CELULAR)",
+      "04 DOSES",
+      "SÓ SE O ANIMAL NÃO PUDER SER OBSERVADO, FOR SUSPEITO DE RAIVA, MORRER OU DESAPARECER, OU SE MORCEGO OU ANIMAL SILVESTRE: APLICAR 01 DOSE IM NOS DIAS 0, 3, 7 E 14, NO DELTOIDE (MENORES DE 2 ANOS: VASTO LATERAL DA COXA; NUNCA NO GLÚTEO). CÃO OU GATO SEM SINAIS DE RAIVA E QUE PODE SER OBSERVADO: NÃO VACINAR — OBSERVAR O ANIMAL POR 10 DIAS",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Soro ou imunoglobulina antirrábica (só exposição grave com animal não observável/suspeito, ou morcego) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "SORO ANTIRRÁBICO (SAR)",
+      "CONFORME O PESO",
+      "SÓ EM EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU EM QUALQUER EXPOSIÇÃO A MORCEGO: 40 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITO ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA. TER MATERIAL PARA TRATAR ANAFILAXIA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "IMUNOGLOBULINA HUMANA ANTIRRÁBICA (IGHAR)",
+      "CONFORME O PESO",
+      "MESMAS INDICAÇÕES DO SORO (EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU QUALQUER EXPOSIÇÃO A MORCEGO): 20 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITA ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Vacina antitetânica (conforme o cartão vacinal)",
+    "draft": true,
+    "items": [
+     [
+      "VACINA DUPLA ADULTO (DIFTERIA E TÉTANO) 0,5 ML",
+      "01 DOSE",
+      "APLICAR 0,5 ML NO DELTOIDE EM DOSE ÚNICA (REFORÇO OU INÍCIO/COMPLEMENTAÇÃO DO ESQUEMA, CONFORME CARTÃO VACINAL)",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Imunoglobulina antitetânica (ferimento de alto risco com esquema incompleto ou desconhecido; junto com a vacina)",
+    "draft": true,
+    "items": [
+     [
+      "IMUNOGLOBULINA HUMANA ANTITETÂNICA 250 UI",
+      "01 AMPOLA",
+      "APLICAR 01 AMPOLA (250 UI) EM DOSE ÚNICA NO GLÚTEO, EM LOCAL DIFERENTE DA VACINA (SE FERIMENTO DE ALTO RISCO E ESQUEMA VACINAL INCOMPLETO OU DESCONHECIDO)",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antibiótico profilático pelo peso (ferida profunda, na mão, de gato ou imunossuprimido)",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 400 MG + CLAVULANATO DE POTÁSSIO 57 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 12/12H, NO INÍCIO DAS REFEIÇÕES, POR 03 A 05 DIAS (50 MG/KG/DIA DE AMOXICILINA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 2,
+       "conc": 80,
+       "un": "ML",
+       "max": 875
+      }
+     ]
+    ],
+    "orient": [
+     "LAVAR A FERIDA COM BASTANTE ÁGUA CORRENTE E SABÃO, O QUANTO ANTES, E MANTER LIMPA",
+     "OBSERVAR O CÃO OU O GATO POR 10 DIAS: SE O ANIMAL ADOECER, SUMIR OU MORRER, AVISAR A UNIDADE DE SAÚDE IMEDIATAMENTE",
+     "LEVAR A CRIANÇA PARA TODAS AS DOSES DA VACINA ANTIRRÁBICA NAS DATAS MARCADAS",
+     "RETORNAR SE VERMELHIDÃO, CALOR, INCHAÇO, PUS, FEBRE OU DOR QUE AUMENTA NO LOCAL"
+    ]
+   },
+   {
+    "label": "Padrão — Vacina antirrábica (cão ou gato saudável e observável: não vacinar, observar 10 dias)",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "VACINA ANTIRRÁBICA HUMANA (CULTIVO CELULAR)",
+      "04 DOSES",
+      "SÓ SE O ANIMAL NÃO PUDER SER OBSERVADO, FOR SUSPEITO DE RAIVA, MORRER OU DESAPARECER, OU SE MORCEGO OU ANIMAL SILVESTRE: APLICAR 01 DOSE IM NOS DIAS 0, 3, 7 E 14, NO DELTOIDE (MENORES DE 2 ANOS: VASTO LATERAL DA COXA; NUNCA NO GLÚTEO). CÃO OU GATO SEM SINAIS DE RAIVA E QUE PODE SER OBSERVADO: NÃO VACINAR — OBSERVAR O ANIMAL POR 10 DIAS",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Soro ou imunoglobulina antirrábica (só exposição grave com animal não observável/suspeito, ou morcego) — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "SORO ANTIRRÁBICO (SAR)",
+      "CONFORME O PESO",
+      "SÓ EM EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU EM QUALQUER EXPOSIÇÃO A MORCEGO: 40 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITO ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA. TER MATERIAL PARA TRATAR ANAFILAXIA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "IMUNOGLOBULINA HUMANA ANTIRRÁBICA (IGHAR)",
+      "CONFORME O PESO",
+      "MESMAS INDICAÇÕES DO SORO (EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU QUALQUER EXPOSIÇÃO A MORCEGO): 20 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITA ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Vacina antitetânica conforme a idade e a caderneta — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "VACINA ADSORVIDA DIFTERIA, TÉTANO E PERTUSSIS (DTP) 0,5 ML",
+      "01 DOSE",
+      "MENORES DE 07 ANOS: APLICAR 0,5 ML IM EM DOSE ÚNICA (VASTO LATERAL DA COXA SE < 02 ANOS; DELTOIDE NOS MAIORES), CONFORME CADERNETA VACINAL",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "VACINA DUPLA ADULTO (DIFTERIA E TÉTANO) 0,5 ML",
+      "01 DOSE",
+      "A PARTIR DE 07 ANOS: APLICAR 0,5 ML NO DELTOIDE EM DOSE ÚNICA (REFORÇO OU INÍCIO/COMPLEMENTAÇÃO DO ESQUEMA, CONFORME CADERNETA VACINAL)",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Imunoglobulina antitetânica (ferimento de alto risco com esquema incompleto ou desconhecido; junto com a vacina)",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "IMUNOGLOBULINA HUMANA ANTITETÂNICA 250 UI",
+      "01 AMPOLA",
+      "APLICAR 01 AMPOLA (250 UI) IM EM DOSE ÚNICA, EM MEMBRO DIFERENTE DA VACINA (SE FERIMENTO DE ALTO RISCO E ESQUEMA VACINAL INCOMPLETO OU DESCONHECIDO)",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
   "id": "nasofaringite",
   "ic": "🤧",
   "nm": "Nasofaringite / Resfriado",
@@ -10448,6 +11727,295 @@ const DATA = [
        "gotas": 10,
        "un": "GOTAS",
        "max": 200
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "nauseas_vomitos",
+  "ic": "🤢",
+  "nm": "Náuseas e vômitos",
+  "sub": "metoclopramida · ondansetrona · dimenidrinato · soro de reidratação oral",
+  "blocks": [
+   {
+    "label": "Padrão — Antiemético — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "ONDANSETRONA 8 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "DIMENIDRINATO 50 MG + PIRIDOXINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 6/6H"
+     ]
+    ],
+    "orient": [
+     "TOMAR LÍQUIDOS EM PEQUENOS GOLES, VÁRIAS VEZES POR HORA; VOLTAR A COMER AOS POUCOS, COM ALIMENTOS LEVES",
+     "A METOCLOPRAMIDA PODE CAUSAR INQUIETAÇÃO OU MOVIMENTOS INVOLUNTÁRIOS (PESCOÇO, OLHOS, LÍNGUA): SE ACONTECER, PARAR O REMÉDIO E PROCURAR ATENDIMENTO",
+     "RETORNAR SE NÃO CONSEGUIR BEBER LÍQUIDOS, VÔMITO COM SANGUE OU ESCURO (BORRA DE CAFÉ), DOR FORTE NA BARRIGA, BARRIGA ESTUFADA E DURA, URINA MUITO ESCURA OU EM POUCA QUANTIDADE, TONTURA AO LEVANTAR OU SONOLÊNCIA"
+    ]
+   },
+   {
+    "label": "Padrão — Hidratação oral",
+    "draft": true,
+    "items": [
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA. TOMAR EM PEQUENOS GOLES (01 A 02 COLHERES DE SOPA A CADA 5 MINUTOS), AUMENTANDO CONFORME A TOLERÂNCIA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético EV — escolha 1",
+    "mode": "internacao",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 10 MG (2 ML) EV, DILUÍDO EM 100 ML DE SF 0,9%, EM 15 MINUTOS; PODE REPETIR ATÉ DE 8/8H",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "ONDANSETRONA 2 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 4 MG (02 ML) EV LENTO ATÉ DE 8/8H SE NÁUSEAS OU VÔMITOS",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "BROMOPRIDA 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 10 MG (2 ML) EV LENTO, ATÉ DE 12/12H SE NÁUSEAS OU VÔMITOS (MÁXIMO 20 MG/DIA). PODE CAUSAR REAÇÃO EXTRAPIRAMIDAL, COMO A METOCLOPRAMIDA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Hidratação EV se desidratação ou intolerância oral",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "CLORETO DE SÓDIO 0,9% (SORO FISIOLÓGICO)",
+      "01 BOLSA 500 ML",
+      "INFUNDIR 500 ML EV EM 30 A 60 MINUTOS; REAVALIAR E REPETIR CONFORME HIDRATAÇÃO, DIURESE E TOLERÂNCIA ORAL (CAUTELA EM CARDIOPATAS E DOENTES RENAIS CRÔNICOS)",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Se vômitos persistentes (a partir de 6 meses): ondansetrona antes de reiniciar a SRO",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "ONDANSETRONA 4 MG/5 ML SOLUÇÃO ORAL",
+      "01 FRASCO",
+      "SE VÔMITOS PERSISTENTES, DAR DOSE ÚNICA 15 MINUTOS ANTES DE REINICIAR A SRO: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 A 10 ANOS (ATÉ 30 KG) 5 ML (4 MG); ACIMA DE 10 ANOS (MAIS DE 30 KG) 10 ML (8 MG)",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 ANOS 5 ML (4 MG)"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (8 MG)"
+        }
+       ]
+      }
+     ]
+    ],
+    "orient": [
+     "OFERECER O SORO EM POUCA QUANTIDADE E COM FREQUÊNCIA (01 COLHER A CADA 1 A 2 MINUTOS); SE VOMITAR, ESPERAR 10 MINUTOS E RECOMEÇAR MAIS DEVAGAR",
+     "MANTER O ALEITAMENTO MATERNO E A ALIMENTAÇÃO HABITUAL ASSIM QUE PARAR DE VOMITAR",
+     "RETORNAR SE A CRIANÇA NÃO CONSEGUIR BEBER, VOMITAR TUDO, FICAR MUITO SONOLENTA OU MUITO IRRITADA, BOCA SECA E CHORO SEM LÁGRIMAS, FRALDA SECA POR MAIS DE 6 HORAS, VÔMITO COM SANGUE OU VERDE, OU DOR FORTE NA BARRIGA"
+    ]
+   },
+   {
+    "label": "Padrão — Hidratação oral (planos A e B)",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA. PLANO B (NA UNIDADE): OFERECER {DOSE} EM 4 A 6 HORAS, EM PEQUENOS VOLUMES FREQUENTES, CONFORME A SEDE (75 ML/KG; FAIXA DE 50 A 100 ML/KG). PLANO A (HIDRATADA): APÓS CADA EVACUAÇÃO, MENOR DE 1 ANO 50-100 ML; 1 A 10 ANOS 100-200 ML; ACIMA DE 10 ANOS O VOLUME TOLERADO",
+      "USO ORAL",
+      {
+       "kg": 75,
+       "un": "ML",
+       "max": 3750
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético EV pelo peso",
+    "mode": "ped_internacao",
+    "draft": true,
+    "items": [
+     [
+      "ONDANSETRONA 2 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR {DOSE} EV LENTO ATÉ DE 8/8H SE NÁUSEAS OU VÔMITOS (0,15 MG/KG/DOSE; MÁXIMO 4 MG; A PARTIR DE 6 MESES)",
+      "USO ENDOVENOSO",
+      {
+       "kg": 0.15,
+       "un": "MG",
+       "max": 4
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "odontalgia",
+  "ic": "🦷",
+  "nm": "Odontalgia / abscesso dentário",
+  "sub": "ibuprofeno · dipirona · paracetamol · amoxicilina",
+  "blocks": [
+   {
+    "label": "Padrão — AINE (1ª escolha na dor de dente) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "IBUPROFENO 600 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR 05 DIAS"
+     ],
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ]
+    ],
+    "orient": [
+     "PROCURAR O DENTISTA (UNIDADE DE SAÚDE OU CENTRO DE ESPECIALIDADES ODONTOLÓGICAS) O QUANTO ANTES: O TRATAMENTO DEFINITIVO É FEITO NO DENTE",
+     "ANTIBIÓTICO NÃO TRATA DOR DE DENTE SEM INFECÇÃO ESPALHADA; USE SÓ SE FOI RECEITADO",
+     "RETORNAR IMEDIATAMENTE SE O INCHAÇO NO ROSTO OU NO PESCOÇO AUMENTAR, DIFICULDADE PARA ABRIR A BOCA, ENGOLIR OU RESPIRAR, OU FEBRE ALTA"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico (pode ser associado ao AINE) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Abscesso com inchaço no rosto, febre ou mal-estar: antibiótico + encaminhar ao dentista (clindamicina se alergia à penicilina) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "21 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS"
+     ],
+     [
+      "CLINDAMICINA 300 MG",
+      "28 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 6/6H POR 07 DIAS (ALERGIA À PENICILINA)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "IBUPROFENO 100 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 8/8H SE DOR OU FEBRE, APÓS ALIMENTAÇÃO (10 MG/KG/DOSE; SOMENTE A PARTIR DE 6 MESES; NÃO USAR SE SUSPEITA DE DENGUE, DESIDRATAÇÃO OU VÔMITOS)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 100,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 400
+      }
+     ],
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ],
+    "orient": [
+     "LEVAR A CRIANÇA AO DENTISTA (UNIDADE DE SAÚDE) O QUANTO ANTES: O TRATAMENTO DEFINITIVO É FEITO NO DENTE",
+     "RETORNAR IMEDIATAMENTE SE O INCHAÇO NO ROSTO AUMENTAR, FEBRE, DIFICULDADE PARA ABRIR A BOCA OU ENGOLIR"
+    ]
+   },
+   {
+    "label": "Padrão — Abscesso com febre ou inchaço no rosto: amoxicilina pelo peso + encaminhar ao dentista",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 8/8H POR 05 DIAS (50 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 3,
+       "conc": 50,
+       "un": "ML",
+       "max": 1000
       }
      ]
     ]
@@ -16768,5 +18336,17 @@ const KW = {
  "ulceras": "úlceras de causas variadas clorafenicol · iruxol cefalexina clorafenicol colagenase diosmina hesperidina iruxol pomada fisiológica dipirona soro fisiológico ferida cronica ulcera venosa ulcera de pressao escara",
  "vaginites": "vaginites / vaginoses / ists metronidazol · nistatina · fluconazol corrimento candidiase ist dst aciclovir azitromicina benzatina ceftriaxona ciprofloxacino creme dipirona doxiciclina doxicilina fluconazol geleia metoclopramida metronidazol nistatina penicilina vaginal miconazol vaginose bacteriana candidiase vaginal tricomoniase",
  "vertigem": "vertigem e tontura dimenidrinato · flunarizina tontura labirintite betaistina cinarizina dimenidrinato dipirona flunarizina meclizina piridoxina prednisona metoclopramida",
- "zika": "zika vírus dipirona arbovirose dipirona hidroxizina paracetamol ondansetrona imunoglobulina imunoglobulina humana enoxaparina dexclorfeniramina guillain barre guillain-barre soro fisiologico hidratacao internacao exantema prurido loratadina cloreto sódio metoclopramida intravenosa desloratadina"
+ "zika": "zika vírus dipirona arbovirose dipirona hidroxizina paracetamol ondansetrona imunoglobulina imunoglobulina humana enoxaparina dexclorfeniramina guillain barre guillain-barre soro fisiologico hidratacao internacao exantema prurido loratadina cloreto sódio metoclopramida intravenosa desloratadina",
+ "nauseas_vomitos": "nauseas e vomitos nauseas e vomitos enjoo enjoado ansia de vomito vomito vomitando gastroenterite mal estar estomago embrulhado desidratacao hiperemese metoclopramida ondansetrona dimenidrinato piridoxina soro reidratacao bromoprida cloreto fisiologico",
+ "dor_abdominal": "dor abdominal, colica biliar e dispepsia dor abdominal dor de barriga dor na barriga colica biliar colica de vesicula calculo na vesicula colelitiase dispepsia epigastralgia queimacao no estomago empachamento indigestao gastrite azia butilbrometo escopolamina buscopan composto dipirona paracetamol diclofenaco omeprazol hidroxido aluminio cetoprofeno tramadol morfina metoclopramida ondansetrona",
+ "crise_hipertensiva": "crise hipertensiva (urgencia e emergencia) crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva hipertensao has pa elevada pressao 20 por 12 nitroprussiato nipride tridil captopril clonidina nitroglicerina losartana anlodipino hidroclorotiazida",
+ "hiperglicemia": "hiperglicemia e hipoglicemia hiperglicemia hipoglicemia glicose alta glicose baixa acucar alto acucar baixo diabetes descompensado cetoacidose cad estado hiperosmolar ehh hipo glicemia baixa insulina metformina dm2 glucagon cloreto soro fisiologico potassio regular",
+ "crise_convulsiva": "crise convulsiva crise convulsiva convulsao ataque epileptico epilepsia estado de mal epileptico crise epileptica ataque crise tonico clonica desmaio com tremores diazepam midazolam fenitoina hidantal levetiracetam keppra glicose tiamina",
+ "dor_toracica": "dor toracica / sindrome coronariana aguda dor toracica dor no peito aperto no peito angina infarto iam sca sindrome coronariana aguda iamcsst iamssst coracao precordialgia aas aspirina clopidogrel isordil isossorbida tridil nitroglicerina enoxaparina atorvastatina acido acetilsalicilico angioplastia primaria trombolise dinitrato morfina dipirona paracetamol ibuprofeno",
+ "edema_agudo_pulmao": "edema agudo de pulmao / ic descompensada edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao pulmonar falta de ar cansaco inchaco nas pernas dispneia ortopneia furosemida lasix isordil isossorbida tridil nitroglicerina dobutamina noradrenalina vni cpap dinitrato oxigenio ventilacao invasiva bipap",
+ "peconhentos": "acidentes por animais peconhentos (escorpiao, serpente, aranha) acidente por animal peconhento picada de escorpiao escorpiao escorpionismo cobra picada de cobra serpente ofidismo jararaca cascavel coral aranha armadeira aranha marrom loxosceles phoneutria picada veneno soro antiescorpionico soro antiofidico soro antiaracnidico lidocaina vasoconstritor dipirona saesc antibotropico anticrotalico antielapidico paracetamol (escorpiao e serpente)",
+ "mordedura": "mordedura de cao ou gato mordedura mordida de cachorro mordida de cao mordida de gato arranhadura acidente com animal raiva antirrabica profilaxia da raiva vacina antirrabica soro antirrabico imunoglobulina antirrabica tetano antitetanica amoxicilina clavulanato doxiciclina cultivo celular ighar dupla adulto difteria dipirona paracetamol potassio adsorvida pertussis",
+ "abscesso_cutaneo": "abscesso cutaneo / furunculo abscesso cutaneo abscesso de pele furunculo carbunculo antraz tumor com pus caroco inflamado pus na pele foliculite drenagem cefalexina sulfametoxazol trimetoprima bactrim dipirona paracetamol ibuprofeno",
+ "odontalgia": "odontalgia / abscesso dentario odontalgia dor de dente dente doendo abscesso dentario abscesso dental carie inflamada pulpite rosto inchado por dente gengiva inchada dentista ibuprofeno amoxicilina clindamicina naproxeno sodico dipirona paracetamol",
+ "agitacao_psicomotora": "agitacao psicomotora / intoxicacao alcoolica aguda agitacao psicomotora paciente agitado agressivo surto psicotico surto contencao quimica intoxicacao alcoolica embriaguez bebado alcoolizado coma alcoolico haloperidol haldol prometazina fenergan midazolam dormonid risperidona tiamina glicose"
 };

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-paracentese-1" viewBox="0 0 560 420" role="img" aria-labelledby="paracentese-1-t paracentese-1-d">
+<title id="paracentese-1-t">Local da paracentese</title>
+<desc id="paracentese-1-d">Abdome visto de frente. Os músculos retos ficam de cada lado da linha média; os vasos epigástricos inferiores sobem por trás deles a partir da região inguinal. Ponto 1 (padrão): fossa ilíaca esquerda, cerca de 3 cm medial e cranial à espinha ilíaca anterossuperior, lateral ao reto. Ponto 2 (alternativa): linha média, abaixo do umbigo.</desc>
+<style>
+.qpf-paracentese-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-paracentese-1 .b{font-weight:700}
+.qpf-paracentese-1 .a{fill:#0b63c9}
+.qpf-paracentese-1 .r{fill:#c62828}
+.qpf-paracentese-1 .s{font-size:18px}
+.qpf-paracentese-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- abdome -->
+<path d="M110 0 Q100 120 112 220 Q118 290 150 330 Q210 400 280 410 Q350 400 410 330 Q442 290 448 220 Q460 120 450 0 Z" fill="#ecd9cc" class="ln"/>
+<!-- rebordos costais -->
+<path d="M120 40 Q200 110 268 40" fill="none" class="ln"/>
+<path d="M440 40 Q360 110 292 40" fill="none" class="ln"/>
+<!-- retos abdominais -->
+<path d="M272 70 L206 80 Q196 220 222 372 L274 392 Z" fill="#dfc3b4" class="ln" stroke-linejoin="round"/>
+<path d="M288 70 L354 80 Q364 220 338 372 L286 392 Z" fill="#dfc3b4" class="ln" stroke-linejoin="round"/>
+<!-- vasos epigástricos inferiores (por trás do reto) -->
+<path d="M190 352 Q232 300 240 180" fill="none" stroke="#c62828" stroke-width="4" stroke-dasharray="8 5"/>
+<path d="M370 352 Q328 300 320 180" fill="none" stroke="#c62828" stroke-width="4" stroke-dasharray="8 5"/>
+<!-- ligamentos inguinais -->
+<path d="M134 296 Q200 340 262 392" fill="none" class="ln"/>
+<path d="M426 296 Q360 340 298 392" fill="none" class="ln"/>
+<!-- EIAS -->
+<circle cx="134" cy="294" r="6" fill="#fff" class="ln"/>
+<circle cx="426" cy="294" r="6" fill="#fff" class="ln"/>
+<!-- umbigo -->
+<path d="M272 200 Q280 192 288 200 Q280 210 272 200 Z" fill="#c9a08e" class="ln"/>
+<!-- ponto 1 -->
+<circle cx="404" cy="268" r="13" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="404" cy="268" r="4.5" fill="#0b63c9"/>
+<!-- ponto 2 -->
+<circle cx="280" cy="252" r="11" fill="#fff" stroke="#0b63c9" stroke-width="3" stroke-dasharray="4 3"/>
+<circle cx="280" cy="252" r="3.5" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="370" y="142" class="b a">① Fossa ilíaca E</text>
+<text x="370" y="164" class="s">~3 cm medial e</text>
+<text x="370" y="184" class="s">cranial à EIAS</text>
+<line x1="420" y1="192" x2="406" y2="254" stroke="#0b63c9" stroke-width="2"/>
+<text x="460" y="300" class="s">EIAS</text>
+<line x1="458" y1="296" x2="434" y2="294" class="ln"/>
+<text x="16" y="120" class="b a">② Linha média</text>
+<text x="16" y="142" class="s">infraumbilical</text>
+<text x="16" y="162" class="s">(alternativa)</text>
+<line x1="120" y1="168" x2="270" y2="246" stroke="#0b63c9" stroke-width="2"/>
+<text x="16" y="372" class="b r s">Epigástricos</text>
+<text x="16" y="392" class="b r s">inferiores</text>
+<line x1="120" y1="366" x2="200" y2="340" stroke="#c62828" stroke-width="2"/>
+<text x="16" y="250" class="s">Reto</text>
+<text x="16" y="270" class="s">abdominal</text>
+<line x1="96" y1="262" x2="208" y2="270" class="ln"/>
+<text x="452" y="410" class="b s">esquerda →</text>
+</svg>

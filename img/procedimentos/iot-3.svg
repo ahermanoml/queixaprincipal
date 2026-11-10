@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-iot-3" viewBox="0 0 560 480" role="img" aria-labelledby="iot-3-t iot-3-d">
+<title id="iot-3-t">Cormack-Lehane</title>
+<desc id="iot-3-d">Quatro quadros da visão na laringoscopia, com a lâmina no alto (anterior). Grau I: glote inteira, com as cordas vocais e as aritenoides. Grau II: só a parte posterior da glote e as aritenoides. Grau III: só a epiglote. Grau IV: nem a epiglote aparece.</desc>
+<style>
+.qpf-iot-3 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:19px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-iot-3 .b{font-weight:700}
+.qpf-iot-3 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<defs>
+<!-- moldura de um quadro (visão pela boca) -->
+<clipPath id="iot-3-v"><rect x="0" y="0" width="236" height="160" rx="80"/></clipPath>
+<!-- pregas e glote completas -->
+<g id="iot-3-glote">
+<path d="M118 58 L80 128 Q118 140 156 128 Z" fill="#3b3b3b"/>
+<path d="M118 58 L80 128 L92 130 L118 72 Z" fill="#fff" class="ln" stroke-linejoin="round"/>
+<path d="M118 58 L156 128 L144 130 L118 72 Z" fill="#fff" class="ln" stroke-linejoin="round"/>
+</g>
+<g id="iot-3-arit">
+<ellipse cx="88" cy="138" rx="20" ry="14" fill="#e7bcbc" class="ln"/>
+<ellipse cx="148" cy="138" rx="20" ry="14" fill="#e7bcbc" class="ln"/>
+</g>
+<!-- lâmina no alto -->
+<rect id="iot-3-lam" x="-10" y="-10" width="256" height="24" fill="#c9d0d8"/>
+</defs>
+<rect width="560" height="480" rx="18" fill="#f7f8fa"/>
+
+<!-- Grau I -->
+<g transform="translate(24 52)">
+<g clip-path="url(#iot-3-v)">
+<rect width="236" height="160" fill="#f3d6d6"/>
+<use href="#iot-3-glote"/><use href="#iot-3-arit"/>
+<path d="M40 14 Q118 84 196 14 Z" fill="#e7bcbc" class="ln"/>
+<use href="#iot-3-lam"/>
+</g>
+<rect width="236" height="160" rx="80" fill="none" class="ln"/>
+</g>
+<text x="24" y="40" class="b">Grau I</text>
+<text x="104" y="40">glote inteira</text>
+<text x="142" y="82" text-anchor="middle" style="font-size:16px">epiglote</text>
+<text x="38" y="156" style="font-size:16px">cordas</text>
+<line x1="92" y1="151" x2="118" y2="146" class="ln"/>
+
+<!-- Grau II -->
+<g transform="translate(300 52)">
+<g clip-path="url(#iot-3-v)">
+<rect width="236" height="160" fill="#f3d6d6"/>
+<use href="#iot-3-glote"/><use href="#iot-3-arit"/>
+<path d="M24 14 Q118 190 212 14 Z" fill="#e7bcbc" class="ln"/>
+<use href="#iot-3-lam"/>
+</g>
+<rect width="236" height="160" rx="80" fill="none" class="ln"/>
+</g>
+<text x="300" y="40" class="b">Grau II</text>
+<text x="384" y="40">glote posterior</text>
+
+<!-- Grau III -->
+<g transform="translate(24 292)">
+<g clip-path="url(#iot-3-v)">
+<rect width="236" height="160" fill="#f3d6d6"/>
+<path d="M28 14 Q118 176 208 14 Z" fill="#e7bcbc" class="ln"/>
+<use href="#iot-3-lam"/>
+</g>
+<rect width="236" height="160" rx="80" fill="none" class="ln"/>
+</g>
+<text x="24" y="280" class="b">Grau III</text>
+<text x="112" y="280">só a epiglote</text>
+
+<!-- Grau IV -->
+<g transform="translate(300 292)">
+<g clip-path="url(#iot-3-v)">
+<rect width="236" height="160" fill="#f3d6d6"/>
+<path d="M-10 70 Q118 30 246 70 V170 H-10 Z" fill="#ebc6c6" class="ln"/>
+<use href="#iot-3-lam"/>
+</g>
+<rect width="236" height="160" rx="80" fill="none" class="ln"/>
+</g>
+<text x="300" y="280" class="b">Grau IV</text>
+<text x="390" y="280">nem a epiglote</text>
+</svg>

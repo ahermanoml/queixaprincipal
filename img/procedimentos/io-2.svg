@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-io-2" viewBox="0 0 560 420" role="img" aria-labelledby="io-2-t io-2-d">
+<title id="io-2-t">Intraósseo no úmero proximal</title>
+<desc id="io-2-d">Ombro direito visto de frente, com o úmero desenhado por transparência. O braço fica aduzido, junto ao corpo, com o cotovelo dobrado e a mão sobre o umbigo. O ponto de punção fica no tubérculo maior, logo abaixo do acrômio, na face anterolateral do ombro. O ângulo da agulha segue o fabricante.</desc>
+<style>
+.qpf-io-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-io-2 .b{font-weight:700}
+.qpf-io-2 .a{fill:#0b63c9}
+.qpf-io-2 .s{font-size:18px}
+.qpf-io-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- tronco -->
+<path d="M360 0 V40 Q340 70 260 84 Q190 94 170 120 L196 420 H560 V0 Z" fill="#ecd9cc" class="ln"/>
+<!-- umbigo -->
+<path d="M436 318 Q442 312 448 318 Q442 326 436 318 Z" fill="#c9a08e" class="ln"/>
+<!-- braço (aduzido) -->
+<path d="M170 108 Q118 112 112 170 L116 300 Q118 330 150 332 Q176 330 180 300 L184 170 Z" fill="#e6cfc1" class="ln"/>
+<!-- antebraço sobre a barriga, mão no umbigo -->
+<path d="M150 300 L404 304" fill="none" stroke="#1f2a33" stroke-width="44" stroke-linecap="round"/>
+<path d="M150 300 L404 304" fill="none" stroke="#e6cfc1" stroke-width="40" stroke-linecap="round"/>
+<ellipse cx="430" cy="306" rx="34" ry="24" fill="#e6cfc1" class="ln"/>
+<!-- úmero e acrômio por transparência -->
+<path d="M150 154 Q136 146 140 132 Q146 112 170 110 Q194 112 196 134 Q194 150 178 160 L160 290 Q156 300 148 298 Q140 294 142 284 Z" fill="#fff" fill-opacity=".85" class="ln"/>
+<path d="M140 98 Q170 86 216 94 L214 104 Q172 98 144 108 Z" fill="#fff" class="ln"/>
+<!-- tubérculo maior -->
+<circle cx="144" cy="140" r="12" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="144" cy="140" r="4.5" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="240" y="140" class="b a">Tubérculo maior</text>
+<text x="240" y="162" class="s">logo abaixo do acrômio,</text>
+<text x="240" y="182" class="s">face anterolateral</text>
+<line x1="238" y1="134" x2="158" y2="140" stroke="#0b63c9" stroke-width="2"/>
+<text x="240" y="44" class="s">Acrômio</text>
+<line x1="238" y1="40" x2="190" y2="92" class="ln"/>
+<text x="240" y="236" class="b s">Braço aduzido,</text>
+<text x="240" y="256" class="b s">mão sobre o umbigo</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-cardioversao-1" viewBox="0 0 560 420" role="img" aria-labelledby="cardioversao-1-t cardioversao-1-d">
+<title id="cardioversao-1-t">Posição das pás</title>
+<desc id="cardioversao-1-d">Três troncos. Anterolateral, de frente: uma pá abaixo da clavícula direita, ao lado do esterno, e outra no ápice, à esquerda, na linha axilar média abaixo da axila. Anteroposterior: uma pá na frente, sobre o precórdio à esquerda do esterno, e outra nas costas, entre a escápula esquerda e a coluna.</desc>
+<style>
+.qpf-cardioversao-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-cardioversao-1 .b{font-weight:700}
+.qpf-cardioversao-1 .a{fill:#0b63c9}
+.qpf-cardioversao-1 .s{font-size:17px}
+.qpf-cardioversao-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<path transform="translate(16 0)" d="M62 70 V92 Q60 102 34 108 Q10 116 8 140 L14 340 H146 L152 140 Q150 116 126 108 Q100 102 98 92 V70 Z" fill="#ecd9cc" stroke="#1f2a33" stroke-width="2"/><circle cx="96" cy="58" r="22" fill="#ecd9cc" stroke="#1f2a33" stroke-width="2"/><path transform="translate(220 0)" d="M62 70 V92 Q60 102 34 108 Q10 116 8 140 L14 340 H146 L152 140 Q150 116 126 108 Q100 102 98 92 V70 Z" fill="#ecd9cc" stroke="#1f2a33" stroke-width="2"/><circle cx="300" cy="58" r="22" fill="#ecd9cc" stroke="#1f2a33" stroke-width="2"/><path transform="translate(382 0)" d="M62 70 V92 Q60 102 34 108 Q10 116 8 140 L14 340 H146 L152 140 Q150 116 126 108 Q100 102 98 92 V70 Z" fill="#ecd9cc" stroke="#1f2a33" stroke-width="2"/><circle cx="462" cy="58" r="22" fill="#ecd9cc" stroke="#1f2a33" stroke-width="2"/>
+<!-- marcas: esterno e mamilos (frente), coluna e escápulas (costas) -->
+<line x1="96" y1="110" x2="96" y2="210" stroke="#1f2a33" stroke-width="2" stroke-dasharray="3 5"/>
+<circle cx="60" cy="196" r="4" fill="#c9a08e" class="ln"/><circle cx="132" cy="196" r="4" fill="#c9a08e" class="ln"/>
+<line x1="300" y1="110" x2="300" y2="210" stroke="#1f2a33" stroke-width="2" stroke-dasharray="3 5"/>
+<circle cx="264" cy="196" r="4" fill="#c9a08e" class="ln"/><circle cx="336" cy="196" r="4" fill="#c9a08e" class="ln"/>
+<line x1="462" y1="96" x2="462" y2="330" stroke="#1f2a33" stroke-width="2" stroke-dasharray="3 5"/>
+<path d="M448 126 L438 210 L404 132 Z" fill="#dfc3b4" class="ln"/>
+<path d="M476 126 L486 210 L520 132 Z" fill="#dfc3b4" class="ln"/>
+<!-- pás -->
+<rect x="40.0" y="122.0" width="44" height="40" rx="8" fill="#0b63c9" fill-opacity=".22" stroke="#0b63c9" stroke-width="3" transform="rotate(0 62 142)"/>
+<rect x="136.0" y="198.0" width="36" height="56" rx="8" fill="#0b63c9" fill-opacity=".22" stroke="#0b63c9" stroke-width="3" transform="rotate(0 154 226)"/>
+<rect x="302.0" y="166.0" width="40" height="56" rx="8" fill="#0b63c9" fill-opacity=".22" stroke="#0b63c9" stroke-width="3" transform="rotate(0 322 194)"/>
+<rect x="408.0" y="208.0" width="44" height="56" rx="8" fill="#0b63c9" fill-opacity=".22" stroke="#0b63c9" stroke-width="3" transform="rotate(0 430 236)"/>
+<!-- rótulos -->
+<text x="16" y="30" class="b">Anterolateral</text>
+<text x="216" y="30" class="b">Anteroposterior</text>
+<text x="96" y="372" class="s" text-anchor="middle">frente</text>
+<text x="300" y="372" class="s" text-anchor="middle">frente</text>
+<text x="462" y="372" class="s" text-anchor="middle">costas</text>
+<text x="16" y="400" class="s">D infraclavicular + ápice</text>
+<text x="230" y="400" class="s">precórdio E + costas, à E</text>
+<text x="38" y="290" class="s">D</text><text x="144" y="290" class="s">E</text>
+<text x="242" y="290" class="s">D</text><text x="348" y="290" class="s">E</text>
+<text x="404" y="290" class="s">E</text><text x="510" y="290" class="s">D</text>
+</svg>

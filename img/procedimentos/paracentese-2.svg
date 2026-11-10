@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-paracentese-2" viewBox="0 0 560 400" role="img" aria-labelledby="paracentese-2-t paracentese-2-d">
+<title id="paracentese-2-t">Técnica em Z</title>
+<desc id="paracentese-2-d">Três cortes da parede abdominal. 1: a pele é tracionada cerca de 2 cm antes da punção. 2: a agulha atravessa a pele deslocada e a parede até o líquido ascítico, aspirando. 3: ao soltar a pele, o furo da pele fica desalinhado do furo das camadas profundas, formando um Z que reduz o vazamento.</desc>
+<style>
+.qpf-paracentese-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-paracentese-2 .b{font-weight:700}
+.qpf-paracentese-2 .a{fill:#0b63c9}
+.qpf-paracentese-2 .s{font-size:17px}
+.qpf-paracentese-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<defs>
+<g id="paracentese-2-parede">
+<rect x="0" y="70" width="170" height="40" fill="#f1e4da"/>
+<rect x="0" y="110" width="170" height="54" fill="#dfc3b4"/>
+<rect x="0" y="164" width="170" height="96" fill="#f4eccb"/>
+<line x1="0" y1="70" x2="170" y2="70" stroke="#1f2a33" stroke-width="2"/>
+<line x1="0" y1="110" x2="170" y2="110" stroke="#1f2a33" stroke-width="1.5"/>
+<line x1="0" y1="164" x2="170" y2="164" stroke="#1f2a33" stroke-width="2"/>
+</g>
+<clipPath id="paracentese-2-pn"><rect x="0" y="50" width="170" height="210" rx="10"/></clipPath>
+</defs>
+<rect width="560" height="400" rx="18" fill="#f7f8fa"/>
+
+<!-- 1: tracionar -->
+<g transform="translate(12 0)">
+<g clip-path="url(#paracentese-2-pn)"><use href="#paracentese-2-parede"/>
+<circle cx="56" cy="70" r="6" fill="none" stroke="#1f2a33" stroke-width="2" stroke-dasharray="3 3"/>
+<path d="M60 90 H104" stroke="#1f2a33" stroke-width="3"/>
+<path d="M96 82 L106 90 L96 98" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="110" cy="70" r="6" fill="#fff" stroke="#1f2a33" stroke-width="2"/>
+</g>
+<rect x="0" y="50" width="170" height="210" rx="10" fill="none" class="ln"/>
+<text x="85" y="224" class="s" text-anchor="middle">líquido</text>
+</g>
+<text x="12" y="36" class="b">① Tracionar</text>
+<text x="12" y="290" class="s">puxar a pele</text>
+<text x="12" y="310" class="s">~2 cm e segurar</text>
+
+<!-- 2: puncionar -->
+<g transform="translate(195 0)">
+<g clip-path="url(#paracentese-2-pn)"><use href="#paracentese-2-parede"/>
+<line x1="110" y1="10" x2="110" y2="200" stroke="#0b63c9" stroke-width="6" stroke-linecap="round"/>
+<circle cx="110" cy="70" r="6" fill="#fff" stroke="#1f2a33" stroke-width="2"/>
+</g>
+<rect x="0" y="50" width="170" height="210" rx="10" fill="none" class="ln"/>
+</g>
+<text x="195" y="36" class="b">② Puncionar</text>
+<text x="195" y="290" class="s">com a pele puxada,</text>
+<text x="195" y="310" class="s">aspirando</text>
+
+<!-- 3: soltar -->
+<g transform="translate(378 0)">
+<g clip-path="url(#paracentese-2-pn)"><use href="#paracentese-2-parede"/>
+<path d="M56 70 V110 H110 V164" fill="none" stroke="#0b63c9" stroke-width="4" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<circle cx="56" cy="70" r="6" fill="#fff" stroke="#1f2a33" stroke-width="2"/>
+</g>
+<rect x="0" y="50" width="170" height="210" rx="10" fill="none" class="ln"/>
+</g>
+<text x="378" y="36" class="b">③ Soltar</text>
+<text x="378" y="290" class="s">furos desalinhados:</text>
+<text x="378" y="310" class="s">menos vazamento</text>
+
+<!-- legenda das camadas -->
+<rect x="12" y="338" width="18" height="18" fill="#f1e4da" class="ln"/>
+<text x="38" y="353" class="s">pele</text>
+<rect x="100" y="338" width="18" height="18" fill="#dfc3b4" class="ln"/>
+<text x="126" y="353" class="s">músculo e peritônio</text>
+<rect x="320" y="338" width="18" height="18" fill="#f4eccb" class="ln"/>
+<text x="346" y="353" class="s">ascite</text>
+<circle cx="21" cy="380" r="6" fill="#fff" stroke="#1f2a33" stroke-width="2"/>
+<text x="38" y="386" class="s">furo da pele</text>
+</svg>

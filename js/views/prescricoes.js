@@ -4,12 +4,12 @@ let currentPac = "adulto";  // aba da condição (opção): "adulto" | "ped"
 let currentSet = "amb";     // subopção dentro da aba: "amb" (ambulatorial) | "internacao"
 let curCond = null;         // condição aberta no painel do meio
 const PACS = [
-  {key:"adulto", ic:"🧑", label:"Adulto"},
-  {key:"ped",    ic:"👶", label:"Pediátrico"}
+  {key:"adulto", ic:"user", label:"Adulto"},       // ic = ícone de linha (css/icones.css)
+  {key:"ped",    ic:"baby", label:"Pediátrico"}
 ];
 const SETS = [
-  {key:"amb",        ic:"🏠", label:"Ambulatorial"},
-  {key:"internacao", ic:"🏥", label:"Internação"}
+  {key:"amb",        ic:"house",    label:"Ambulatorial"},
+  {key:"internacao", ic:"hospital", label:"Internação"}
 ];
 // "mode" do bloco no DATA = paciente × subopção: "amb" (padrão) | "internacao" | "ped" (pediátrico ambulatorial) | "ped_internacao"
 const MODE_OF = {adulto:{amb:"amb", internacao:"internacao"}, ped:{amb:"ped", internacao:"ped_internacao"}};
@@ -61,10 +61,10 @@ function blockHTML({b,bi}){
   // bloco que só vale para uma faixa de peso ("peso" no DATA): some quando o peso digitado está fora dela
   let h = `<div class="block${b.draft?' draft':''}"${b.peso?` data-pb="${bi}"`:''}${fits(b.peso)?'':' hidden'}>
       <div class="block-head">
-        <button type="button" class="bl-toggle" aria-expanded="true" aria-controls="blk-${bi}"><span class="chev" aria-hidden="true">▸</span><span class="bl">${esc(b.label)}</span></button>
+        <button type="button" class="bl-toggle" aria-expanded="true" aria-controls="blk-${bi}"><span class="chev i i-chevron" aria-hidden="true"></span><span class="bl">${esc(b.label)}</span></button>
         ${b.draft?`<span class="tag draft" title="Rascunho gerado por IA — revise as doses antes de prescrever">rascunho</span>`:``}
         ${isMenu ? `<span class="tag menu">escolha 1</span>`
-                 : `<button type="button" class="addall" data-b="${bi}">＋ Adicionar receita</button>`}
+                 : `<button type="button" class="addall" data-b="${bi}"><span class="i i-plus" aria-hidden="true"></span>Adicionar receita</button>`}
       </div><div class="items" id="blk-${bi}">`;
   b.items.forEach((it,ii)=>{
     const med=it[0], qty=it[1], pos=it[2]||"", route=it[3]||ORAL, spec=it[4];
@@ -74,7 +74,7 @@ function blockHTML({b,bi}){
     // opção que só vale para uma faixa de peso (spec.peso): some quando o peso digitado está fora dela
     const pf = spec && spec.peso;
     h += `<button type="button" class="item" data-b="${bi}" data-i="${ii}"${isMenu?' data-menu="1"':''}${pf?' data-pf="1"':''}${fits(pf)?'':' hidden'} aria-label="Adicionar ${esc(med)}">
-        <span class="plus" aria-hidden="true">＋</span>
+        <span class="plus" aria-hidden="true"><span class="i i-plus"></span></span>
         <span class="txt"><span class="med">${esc(med)} <span class="qty">— ${esc(qty)}</span></span>
         <span class="pos">${ptxt}${rlab}</span></span></button>`;
   });
@@ -132,23 +132,23 @@ function renderMid(c){
   const nOf = (pac, set) => counts[MODE_OF[pac][set]]||0;
   const pacTabs = PACS.map(p=>{
     const n = nOf(p.key,"amb") + nOf(p.key,"internacao"), on = p.key===currentPac;
-    return `<button type="button" role="tab" aria-selected="${on}" class="pac-tab${on?' active':''}${n?'':' empty'}" data-pac="${p.key}"><span aria-hidden="true">${p.ic}</span>${p.label}<span class="n">${n}</span></button>`;
+    return `<button type="button" role="tab" aria-selected="${on}" class="pac-tab${on?' active':''}${n?'':' empty'}" data-pac="${p.key}"><span class="i i-${p.ic}" aria-hidden="true"></span>${p.label}<span class="n">${n}</span></button>`;
   }).join("");
   const setBtns = SETS.map(st=>{
     const n = nOf(currentPac, st.key), on = st.key===currentSet;
-    return `<button type="button" role="tab" aria-selected="${on}" class="set-btn${on?' active':''}${n?'':' empty'}" data-set="${st.key}"><span class="si" aria-hidden="true">${st.ic}</span>${st.label}<span class="n">${n}</span></button>`;
+    return `<button type="button" role="tab" aria-selected="${on}" class="set-btn${on?' active':''}${n?'':' empty'}" data-set="${st.key}"><span class="si i i-${st.ic}" aria-hidden="true"></span>${st.label}<span class="n">${n}</span></button>`;
   }).join("");
   const mode = MODE_OF[currentPac][currentSet], ped = currentPac==="ped";
   const shown = c.blocks.map((b,bi)=>({b,bi})).filter(x=> modeOf(x.b)===mode);
   // calculadora de peso: sempre no Pediátrico; no Adulto só se algum bloco/item depender do peso (dose, faixa ou opção por faixa)
   const pesoBox = ped || shown.some(x=> x.b.peso || x.b.items.some(it=> it[4]))
-    ? `<div class="peso-box"><label for="peso"><span aria-hidden="true">⚖️</span> Peso ${ped?"da criança":"do paciente"}</label>
+    ? `<div class="peso-box"><label for="peso"><span class="i i-scale" aria-hidden="true"></span> Peso ${ped?"da criança":"do paciente"}</label>
         <input id="peso" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${peso>0?num(peso,1):""}"><span class="un">kg</span>
         <span class="peso-hint">${pesoHint()}</span></div>` : "";
   // ordem: título → abas Adulto | Pediátrico → subopção Ambulatorial | Internação → (peso) → seções
-  let h = `<div class="mid-head pac-${currentPac}"><h3><span aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
-    <div class="pac-tabs" role="tablist" aria-label="Paciente">${pacTabs}</div>
-    <div class="set-box" role="tablist" aria-label="Ambulatorial ou internação">${setBtns}</div>${pesoBox}</div>`;
+  let h = `<div class="mid-head pac-${currentPac}"><h3><span class="ic" aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
+    <div class="modo"><div class="pac-tabs" role="tablist" aria-label="Paciente">${pacTabs}</div>
+    <div class="set-box" role="tablist" aria-label="Ambulatorial ou internação">${setBtns}</div></div>${pesoBox}</div>`;
   // recomendações e instruções: orientações de todos os blocos do modo, sem repetir — primeiro as do padrão,
   // depois as que só aparecem em blocos "offlabel" (outras opções). "rascunho" só se todas as origens forem rascunho;
   // a origem aparece quando a linha vem de um único bloco.
@@ -161,17 +161,17 @@ function renderMid(c){
   }));
   if(shown.length===0){
     const p = PACS.find(x=>x.key===currentPac), st = SETS.find(x=>x.key===currentSet);
-    h += `<div class="mode-empty"><span aria-hidden="true">${st.ic}</span> Sem prescrição <b>${esc(p.label.toLowerCase())} · ${esc(st.label.toLowerCase())}</b> cadastrada para esta condição ainda.</div>`;
+    h += `<div class="mode-empty"><span class="i i-${st.ic}" aria-hidden="true"></span> Sem prescrição <b>${esc(p.label.toLowerCase())} · ${esc(st.label.toLowerCase())}</b> cadastrada para esta condição ainda.</div>`;
   } else SECS.forEach(s=>{
     let n, body;
     if(s.key==="rec"){
       n = recs.length;
       const nPad = recs.filter(r=> r.pad).length;
-      body = `<div class="orient-box"><div class="ohd"><span aria-hidden="true">🛈</span> Clique numa linha para adicionar
-        <button type="button" class="orient-all">＋ Adicionar todas${nPad && nPad<n ? ' do padrão' : ''}</button></div>`;
+      body = `<div class="orient-box"><div class="ohd"><span class="i i-info" aria-hidden="true"></span> Clique numa linha para adicionar
+        <button type="button" class="orient-all"><span class="i i-plus" aria-hidden="true"></span>Adicionar todas${nPad && nPad<n ? ' do padrão' : ''}</button></div>`;
       const line = (r,ri)=>{
         const src = r.src.length===1 ? `<span class="src">${esc(r.src[0].label)}</span>` : "";
-        return `<button type="button" class="oitem" data-o="${ri}"><span class="plus" aria-hidden="true">＋</span><span class="txt">${esc(r.txt)}${src}</span>${r.draft?`<span class="tag" title="Rascunho gerado por IA — revise antes de usar">rascunho</span>`:``}</button>`;
+        return `<button type="button" class="oitem" data-o="${ri}"><span class="plus" aria-hidden="true"><span class="i i-plus"></span></span><span class="txt">${esc(r.txt)}${src}</span>${r.draft?`<span class="tag" title="Rascunho gerado por IA — revise antes de usar">rascunho</span>`:``}</button>`;
       };
       recs.forEach((r,ri)=>{ if(r.pad) body += line(r,ri); });
       if(nPad < n){
@@ -187,7 +187,7 @@ function renderMid(c){
     if(!n) body = `<div class="sec-empty">${s.none}</div>`;
     const open = s.key!=="offlabel";
     h += `<div class="sec ${s.cls}${open?'':' collapsed'}${n?'':' none'}">
-      <button type="button" class="sec-head" aria-expanded="${open}" aria-controls="sec-${s.key}"><span class="chev" aria-hidden="true">▸</span>${s.label}<span class="sc">${n}</span></button>
+      <button type="button" class="sec-head" aria-expanded="${open}" aria-controls="sec-${s.key}"><span class="chev i i-chevron" aria-hidden="true"></span>${s.label}<span class="sc">${n}</span></button>
       <div class="sec-body" id="sec-${s.key}">${body}${s.key!=="rec"?'<div class="faixa-nota" hidden></div>':''}</div></div>`;
   });
   midBody.innerHTML = h;

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-io-1" viewBox="0 0 560 420" role="img" aria-labelledby="io-1-t io-1-d">
+<title id="io-1-t">Intraósseo na tíbia</title>
+<desc id="io-1-d">Perna direita vista de frente, com a tíbia e a fíbula desenhadas por transparência. Ponto 1, tíbia proximal: na face medial plana, cerca de 2 cm abaixo da tuberosidade da tíbia (na criança, 1 a 2 cm abaixo, medial). Ponto 2, tíbia distal: 2 a 3 cm acima do maléolo medial.</desc>
+<style>
+.qpf-io-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-io-1 .b{font-weight:700}
+.qpf-io-1 .a{fill:#0b63c9}
+.qpf-io-1 .s{font-size:18px}
+.qpf-io-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- perna (pele) -->
+<path d="M168 0 Q160 60 166 110 Q150 170 170 250 Q190 330 196 380 L194 420 H322 L320 380 Q326 330 338 250 Q352 170 336 110 Q344 60 338 0 Z" fill="#ecd9cc" class="ln"/>
+<!-- fíbula (lateral, à esquerda) -->
+<path d="M186 120 Q176 110 188 106 Q202 106 206 120 L206 134 Q200 250 210 384 Q214 404 198 404 Q186 402 190 384 Q186 250 192 136 Z" fill="#fff" fill-opacity=".85" class="ln"/>
+<!-- tíbia -->
+<path d="M200 86 Q252 74 312 86 Q320 104 300 118 Q280 130 278 160 L276 330 Q282 352 302 372 Q308 400 292 402 Q282 400 280 388 Q260 392 238 384 Q230 360 236 340 L234 160 Q232 128 210 116 Q194 104 200 86 Z" fill="#fff" fill-opacity=".85" class="ln"/>
+<!-- tuberosidade -->
+<ellipse cx="254" cy="128" rx="16" ry="11" fill="#dfc3b4" class="ln"/>
+<!-- patela -->
+<ellipse cx="254" cy="44" rx="30" ry="34" fill="#fff" class="ln"/>
+<!-- ponto 1: 2 cm abaixo e medial à tuberosidade -->
+<circle cx="270" cy="152" r="12" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="270" cy="152" r="4.5" fill="#0b63c9"/>
+<!-- ponto 2: 2–3 cm acima do maléolo medial -->
+<circle cx="290" cy="360" r="11" fill="#fff" stroke="#0b63c9" stroke-width="3.5"/>
+<circle cx="290" cy="360" r="4" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="360" y="40" class="s">Patela</text>
+<line x1="358" y1="34" x2="286" y2="44" class="ln"/>
+<text x="16" y="120" class="s">Tuberosidade</text>
+<text x="16" y="140" class="s">da tíbia</text>
+<line x1="132" y1="128" x2="236" y2="128" class="ln"/>
+<text x="360" y="128" class="b a">① Tíbia proximal</text>
+<text x="360" y="150" class="s">~2 cm abaixo,</text>
+<text x="360" y="170" class="s">face medial plana</text>
+<text x="360" y="194" class="s">criança: 1–2 cm</text>
+<line x1="358" y1="142" x2="284" y2="150" stroke="#0b63c9" stroke-width="2"/>
+<text x="360" y="320" class="b a">② Tíbia distal</text>
+<text x="360" y="342" class="s">2–3 cm acima do</text>
+<text x="360" y="362" class="s">maléolo medial</text>
+<line x1="358" y1="336" x2="302" y2="356" stroke="#0b63c9" stroke-width="2"/>
+<text x="16" y="300" class="s">Fíbula</text>
+<line x1="76" y1="294" x2="196" y2="290" class="ln"/>
+<text x="360" y="402" class="b s">medial →</text>
+<text x="16" y="402" class="s">← lateral</text>
+</svg>

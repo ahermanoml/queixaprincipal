@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-cvc-1" viewBox="0 0 560 420" role="img" aria-labelledby="cvc-1-t cvc-1-d">
+<title id="cvc-1-t">Jugular interna: referências</title>
+<desc id="cvc-1-d">Lado direito do pescoço visto de frente. O esternocleidomastoideo se divide em cabeça esternal (medial) e clavicular (lateral); entre elas e a clavícula fica um triângulo. A veia jugular interna passa sob o triângulo, lateral à artéria carótida. Punção no ápice do triângulo, agulha a 30–45° em direção ao mamilo do mesmo lado.</desc>
+<style>
+.qpf-cvc-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-cvc-1 .b{font-weight:700}
+.qpf-cvc-1 .a{fill:#0b63c9}
+.qpf-cvc-1 .r{fill:#c62828}
+.qpf-cvc-1 .s{font-size:18px}
+.qpf-cvc-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- pescoço e ombro direito do paciente (à esquerda da figura) -->
+<path d="M150 0 Q150 40 140 70 Q130 110 132 190 Q100 250 20 270 V420 H560 V270 Q480 250 448 190 Q450 110 440 70 Q430 40 430 0 Z" fill="#ecd9cc" class="ln"/>
+<!-- mandíbula -->
+<path d="M150 40 Q200 96 290 104 Q380 96 430 40" fill="none" class="ln"/>
+<!-- vasos sob o músculo (tracejados) -->
+<path d="M188 84 Q214 200 228 330" fill="none" stroke="#5b6b7d" stroke-width="22" stroke-opacity=".28" stroke-linecap="round"/>
+<path d="M188 84 Q214 200 228 330" fill="none" stroke="#1f2a33" stroke-width="2" stroke-dasharray="6 5"/>
+<path d="M228 100 Q250 210 262 330" fill="none" stroke="#c62828" stroke-width="12" stroke-opacity=".35" stroke-linecap="round"/>
+<path d="M228 100 Q250 210 262 330" fill="none" stroke="#c62828" stroke-width="2" stroke-dasharray="6 5"/>
+<!-- esternocleidomastoideo: ventre (semitransparente para mostrar os vasos) e as duas cabeças -->
+<g fill="#dfc3b4" fill-opacity=".8" stroke="#1f2a33" stroke-width="2" stroke-linejoin="round">
+<path d="M138 64 Q156 52 178 58 L234 198 L214 206 L194 202 Z"/>
+<path d="M214 206 L234 198 L290 316 L258 320 Z"/>
+<path d="M194 202 L214 206 L198 320 L156 318 Z"/>
+</g>
+<!-- clavícula e esterno -->
+<path d="M290 326 Q240 314 200 318 Q140 324 70 306" fill="none" stroke="#1f2a33" stroke-width="18" stroke-linecap="round"/>
+<path d="M290 326 Q240 314 200 318 Q140 324 70 306" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+<path d="M290 316 Q300 310 310 316 L314 420 H266 L270 316 Z" fill="#fff" class="ln"/>
+<!-- ápice e direção da agulha -->
+<line x1="216" y1="226" x2="208" y2="302" stroke="#0b63c9" stroke-width="3" stroke-dasharray="7 6"/>
+<path d="M200 290 L208 304 L216 291" fill="none" stroke="#0b63c9" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="216" cy="214" r="12" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="216" cy="214" r="4.5" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="16" y="150" class="b a">Ápice do</text>
+<text x="16" y="172" class="b a">triângulo</text>
+<line x1="104" y1="166" x2="200" y2="210" stroke="#0b63c9" stroke-width="2"/>
+<text x="16" y="360" class="s">rumo ao mamilo</text>
+<text x="16" y="380" class="s">do mesmo lado</text>
+<line x1="96" y1="344" x2="200" y2="300" stroke="#0b63c9" stroke-width="2"/>
+<text x="330" y="160" class="b r">Carótida</text>
+<text x="330" y="182" class="s">medial (pulso)</text>
+<line x1="328" y1="168" x2="246" y2="186" stroke="#c62828" stroke-width="2"/>
+<text x="330" y="232" class="b">Jugular interna</text>
+<text x="330" y="254" class="s">lateral, sob o</text>
+<text x="330" y="274" class="s">triângulo</text>
+<line x1="328" y1="240" x2="226" y2="270" class="ln"/>
+<text x="330" y="88" class="s">Esternocleido-</text>
+<text x="330" y="108" class="s">mastoideo</text>
+<line x1="328" y1="100" x2="192" y2="120" class="ln"/>
+<text x="330" y="352" class="s">Clavícula</text>
+<line x1="328" y1="346" x2="286" y2="326" class="ln"/>
+</svg>

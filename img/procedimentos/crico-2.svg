@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-crico-2" viewBox="0 0 560 420" role="img" aria-labelledby="crico-2-t crico-2-d">
+<title id="crico-2-t">Bisturi, bougie, tubo</title>
+<desc id="crico-2-d">Três cortes sagitais, paciente olhando para a esquerda. 1: o bisturi corta pele e membrana cricotireóidea e é girado 90 graus, com o fio da lâmina para os pés. 2: o bougie desliza ao lado do bisturi para dentro da traqueia. 3: sem o bisturi, o tubo 6,0 passa sobre o bougie e o cuff fica logo abaixo da membrana.</desc>
+<style>
+.qpf-crico-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-crico-2 .b{font-weight:700}
+.qpf-crico-2 .a{fill:#0b63c9}
+.qpf-crico-2 .s{font-size:17px}
+.qpf-crico-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<defs>
+<g id="crico-2-anat">
+<rect x="30" y="56" width="146" height="270" fill="#ecd9cc"/>
+<line x1="30" y1="56" x2="30" y2="326" stroke="#1f2a33" stroke-width="2"/>
+<rect x="96" y="56" width="54" height="270" fill="#fff"/>
+<line x1="150" y1="56" x2="150" y2="326" stroke="#1f2a33" stroke-width="2"/>
+<rect x="60" y="70" width="36" height="80" rx="6" fill="#fff" stroke="#1f2a33" stroke-width="2"/>
+<line x1="92" y1="150" x2="92" y2="176" stroke="#0b63c9" stroke-width="3"/>
+<rect x="60" y="176" width="36" height="28" rx="6" fill="#fff" stroke="#1f2a33" stroke-width="2"/>
+<g fill="#fff" stroke="#1f2a33" stroke-width="2">
+<rect x="72" y="214" width="24" height="14" rx="5"/><rect x="72" y="236" width="24" height="14" rx="5"/>
+<rect x="72" y="258" width="24" height="14" rx="5"/><rect x="72" y="280" width="24" height="14" rx="5"/>
+<rect x="72" y="302" width="24" height="14" rx="5"/>
+</g>
+</g>
+<g id="crico-2-bist">
+<rect x="-10" y="156" width="40" height="14" rx="3" fill="#8a96a3" stroke="#1f2a33" stroke-width="2"/>
+<path d="M30 154 H104 Q118 162 104 178 L30 172 Z" fill="#e3e7ec" stroke="#1f2a33" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<clipPath id="crico-2-p"><rect x="0" y="50" width="176" height="282" rx="10"/></clipPath>
+</defs>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+
+<!-- painel 1 -->
+<g transform="translate(8 0)">
+<g clip-path="url(#crico-2-p)"><use href="#crico-2-anat"/><use href="#crico-2-bist"/></g>
+<rect x="0" y="50" width="176" height="282" rx="10" fill="none" class="ln"/>
+<!-- seta de giro -->
+<path d="M126 132 A 26 26 0 1 1 126 196" fill="none" stroke="#1f2a33" stroke-width="2.5"/>
+<path d="M118 188 L126 198 L134 188" fill="none" stroke="#1f2a33" stroke-width="2.5" stroke-linejoin="round"/>
+</g>
+<text x="12" y="36" class="b">① Bisturi</text>
+<text x="12" y="360" class="s">pele + membrana;</text>
+<text x="12" y="382" class="s">gira 90°, fio</text>
+<text x="12" y="404" class="s">para os pés</text>
+
+<!-- painel 2 -->
+<g transform="translate(192 0)">
+<g clip-path="url(#crico-2-p)"><use href="#crico-2-anat"/><use href="#crico-2-bist"/>
+<path d="M-6 165 H100 Q128 168 126 214 V340" fill="none" stroke="#0b63c9" stroke-width="7" stroke-linecap="round"/>
+</g>
+<rect x="0" y="50" width="176" height="282" rx="10" fill="none" class="ln"/>
+</g>
+<text x="196" y="36" class="b">② Bougie</text>
+<text x="196" y="360" class="s">desliza junto ao</text>
+<text x="196" y="382" class="s">bisturi, para</text>
+<text x="196" y="404" class="s">baixo na traqueia</text>
+
+<!-- painel 3 -->
+<g transform="translate(376 0)">
+<g clip-path="url(#crico-2-p)"><use href="#crico-2-anat"/>
+<path d="M-6 168 H96 Q124 172 123 214 V262" fill="none" stroke="#0b63c9" stroke-width="18" stroke-linecap="butt"/>
+<path d="M-6 168 H96 Q124 172 123 214 V262" fill="none" stroke="#dbe9f6" stroke-width="10" stroke-linecap="butt"/>
+<path d="M-6 168 H96 Q124 172 123 214 V340" fill="none" stroke="#0b63c9" stroke-width="4"/>
+<ellipse cx="123" cy="226" rx="24" ry="16" fill="#0b63c9" fill-opacity=".25" stroke="#0b63c9" stroke-width="2.5"/>
+</g>
+<rect x="0" y="50" width="176" height="282" rx="10" fill="none" class="ln"/>
+</g>
+<text x="380" y="36" class="b">③ Tubo 6,0</text>
+<text x="380" y="360" class="s">sobre o bougie;</text>
+<text x="380" y="382" class="s">parar com o cuff</text>
+<text x="380" y="404" class="s">logo abaixo</text>
+</svg>

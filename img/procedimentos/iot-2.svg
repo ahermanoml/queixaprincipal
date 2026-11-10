@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-iot-2" viewBox="0 0 560 420" role="img" aria-labelledby="iot-2-t iot-2-d">
+<title id="iot-2-t">Lâmina curva na valécula</title>
+<desc id="iot-2-d">Corte sagital esquemático, paciente deitado com a cabeça à esquerda. A lâmina curva desliza sobre a língua e a ponta fica na valécula, entre a base da língua e a epiglote. A força vai no eixo do cabo, para cima e para longe do operador; não se alavanca o cabo apoiando a lâmina nos dentes superiores. A traqueia fica à frente do esôfago.</desc>
+<style>
+.qpf-iot-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:19px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-iot-2 .b{font-weight:700}
+.qpf-iot-2 .a{fill:#0b63c9}
+.qpf-iot-2 .r{fill:#c62828}
+.qpf-iot-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<clipPath id="iot-2-cx"><rect width="560" height="420" rx="18"/></clipPath>
+<g clip-path="url(#iot-2-cx)">
+<!-- cabeça e pescoço: perfil com a face para cima -->
+<path d="M-10 160 Q8 112 40 104 L64 76 Q72 70 76 80 L82 100 Q100 102 112 106 L124 110
+ L172 112 Q196 110 204 122 Q214 150 244 182 Q262 200 300 206 Q330 208 344 200 Q356 198 366 206 Q420 214 570 222 V430 H-10 Z" fill="#ecd9cc" class="ln" stroke-linejoin="round"/>
+<!-- luz da via aérea: boca, faringe, laringe/traqueia e esôfago -->
+<path d="M126 112 L166 114
+ Q162 160 180 204 Q204 246 250 254 L292 260
+ L570 262 V300 L338 300
+ Q322 300 312 308 L570 308 V326 L300 326
+ Q240 340 150 336 Q104 330 98 290 Q96 248 112 222 Q120 202 118 172 Q118 136 126 112 Z" fill="#fff" class="ln" stroke-linejoin="round"/>
+<!-- palato mole / úvula -->
+<path d="M118 174 Q132 202 128 228 Q124 240 116 234" fill="#ecd9cc" class="ln"/>
+<!-- epiglote: presa à parede anterior, ponta voltada para a cabeça; a valécula é o fundo de saco entre ela e a base da língua -->
+<path d="M302 262 Q272 266 234 292 Q228 298 236 300 Q266 288 306 282 Z" fill="#dfc3b4" class="ln" stroke-linejoin="round"/>
+<!-- aritenoides -->
+<ellipse cx="322" cy="305" rx="19" ry="11" fill="#dfc3b4" class="ln"/>
+<!-- cordas vocais -->
+<path d="M346 263 L357 281 M346 299 L357 283" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"/>
+<!-- dentes superiores -->
+<path d="M120 106 L131 106 L133 126 L124 126 Z" fill="#fff" class="ln"/>
+<!-- lâmina curva sobre a língua, ponta na valécula -->
+<path d="M146 108 Q148 172 176 212 Q206 250 284 259" fill="none" stroke="#0b63c9" stroke-width="9" stroke-linecap="round"/>
+<!-- cabo -->
+<path d="M140 108 L196 28" stroke="#0b63c9" stroke-width="26" stroke-linecap="round"/>
+<!-- ponta -->
+<circle cx="285" cy="259" r="10" fill="none" stroke="#0b63c9" stroke-width="3"/>
+<!-- força correta: no eixo do cabo -->
+<path d="M226 108 L280 30" stroke="#0b63c9" stroke-width="4" stroke-linecap="round"/>
+<path d="M264 36 L282 27 L281 47" fill="none" stroke="#0b63c9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- alavanca errada -->
+<path d="M176 52 Q150 40 124 56" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round"/>
+<path d="M122 40 L122 58 L140 62" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g stroke="#c62828" stroke-width="3" stroke-linecap="round"><line x1="144" y1="22" x2="158" y2="36"/><line x1="158" y1="22" x2="144" y2="36"/></g>
+</g>
+<!-- rótulos -->
+<text x="290" y="54" class="b a">Tracionar no</text>
+<text x="290" y="76" class="b a">eixo do cabo</text>
+<text x="14" y="26" class="b r" style="font-size:17px">Não</text>
+<text x="14" y="46" class="b r" style="font-size:17px">alavancar</text>
+<text x="14" y="66" class="b r" style="font-size:17px">nos dentes</text>
+<text x="380" y="150" style="font-size:18px">Cordas vocais</text>
+<line x1="390" y1="158" x2="354" y2="266" class="ln"/>
+<text x="296" y="244" class="b" style="font-size:18px">Valécula</text>
+<line x1="300" y1="248" x2="292" y2="254" class="ln"/>
+<text x="208" y="176" style="font-size:18px">Língua</text>
+<text x="176" y="392" class="b">Epiglote</text>
+<line x1="222" y1="374" x2="250" y2="298" class="ln"/>
+<text x="420" y="289" class="b" style="font-size:18px">Traqueia</text>
+<text x="420" y="356" style="font-size:18px">Esôfago</text>
+<line x1="446" y1="338" x2="446" y2="320" class="ln"/>
+<text x="290" y="392" class="b" style="font-size:18px">Aritenoides</text>
+<line x1="318" y1="374" x2="322" y2="318" class="ln"/>
+</svg>

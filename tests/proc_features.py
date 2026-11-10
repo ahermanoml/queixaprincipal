@@ -2,7 +2,7 @@
 Ajustar, Voltar ao padrão, doses da IOT, estado), layout (padrão inteiro + Copiar + linha rápida na primeira tela) e,
 com --shots, as capturas."""
 import os, re
-from lib import Page, Report
+from lib import Page, Report, REPO
 
 ESTRUTURA_JS = r"""() => {
   const erros = [], ids = new Set(), areas = new Set(PROC_AREAS.map(a => a.key));
@@ -18,7 +18,18 @@ ESTRUTURA_JS = r"""() => {
     if (p.draft !== true) e('sem draft:true');
     if (!('revisado' in p) || p.revisado !== null) e('revisado deve existir e ser null');
     if (p.draft && !lista(p.pendencias)) e('rascunho sem pendencias para o revisor');
-    if (!(p.pendencias || []).some(x => x.startsWith('Padrão do registro'))) e('pendências sem a linha "Padrão do registro"');
+    // o padrão foi aprovado pelo dono (10/11/2026): sai das pendências e fica em registro.resumo + registro.aprovado
+    if ((p.pendencias || []).some(x => x.startsWith('Padrão do registro'))) e('"Padrão do registro" ainda nas pendências');
+    if (!/^Padrão do registro/.test(p.registro.resumo || '') || p.registro.aprovado !== '2026-11-10') e('registro sem resumo/aprovação do padrão');
+    // variação principal: 1–2 por procedimento, campos de opções do registro, rótulos curtos só de opções existentes
+    const vars = p.registro.variacoes || [];
+    if (vars.length < 1 || vars.length > 2) e('variações principais: ' + vars.length + ' (1 a 2)');
+    vars.forEach(v => { const c = prCampo(p, v.campo);
+      if (!c || c.tipo !== 'opcoes' || !prTemPadrao(c)) e('variação inválida: ' + v.campo);
+      else Object.keys(v.curtos || {}).forEach(o => { if (!c.opcoes.includes(o)) e('rótulo curto de opção inexistente: ' + v.campo + ' ' + o); }); });
+    // figuras: passo existente, arquivo .svg em img/procedimentos/ (a existência no disco é conferida pelo Python)
+    const passos = new Set(['preparo', 'tecnica', 'depois'].flatMap(s => p[s].map((_, i) => s + '.' + (i + 1))));
+    prFiguras(p).forEach(f => { if (!/^[a-z0-9-]+\.svg$/.test(f.arquivo) || !f.titulo || !f.legenda || !passos.has(f.passo)) e('figura mal descrita: ' + JSON.stringify(f)); });
     for (const k of ['fontes', 'indicacoes', 'material', 'preparo', 'depois', 'complicacoes']) if (!lista(p[k])) e('bloco vazio: ' + k);
     if (!p.contra || !lista(p.contra.absolutas) || !lista(p.contra.relativas)) e('contraindicações incompletas');
     if (!Array.isArray(p.tecnica) || !p.tecnica.length) e('sem técnica');
@@ -83,7 +94,8 @@ ESTRUTURA_JS = r"""() => {
     if (prTexto(p, semObs).split('\n').length !== t.split('\n').length - campos.filter(c => c.opcional).length) e('linha opcional não some quando vazia');
     resumo.push([p.id, rap.map(c => c.id), prAjustes(p).filter(c => prTemPadrao(c)).length]);
   }
-  return {erros, n: PROCS.length, resumo};
+  if (typeof PROC_FIGURAS !== 'undefined') Object.keys(PROC_FIGURAS).forEach(k => { if (!PROCS.some(p => p.id === k)) erros.push('figuras de procedimento inexistente: ' + k); });
+  return {erros, n: PROCS.length, resumo, figs: PROCS.flatMap(p => prFiguras(p).map(f => f.arquivo))};
 }"""
 
 PG = """() => ({hash: location.hash, view: document.body.dataset.view, aberto: prAberto && prAberto.id,
@@ -116,6 +128,9 @@ def run(browser, url):
     rep.check(not r["erros"], "estrutura: " + "; ".join(r["erros"][:12]))
     rep.note(f"estrutura: {r['n']} procedimentos, {len(r['erros'])} problemas; brancos do padrão: "
              + ", ".join(f"{pid}={'+'.join(rap) or '-'}" for pid, rap, _ in r["resumo"]))
+    faltam = [f for f in r["figs"] if not os.path.isfile(os.path.join(REPO, "img", "procedimentos", f))]
+    rep.check(not faltam, f"figuras listadas sem arquivo em img/procedimentos/: {faltam}")
+    rep.note(f"figuras: {len(r['figs'])} listadas, todas com arquivo")
 
     # abas e endereços
     tabs = pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view)")
@@ -161,21 +176,38 @@ def run(browser, url):
     txt = lambda: pg.evaluate("() => document.querySelector('#pr-texto').textContent")
     clip = lambda: pg.evaluate("window.__clip")
     estado = lambda: pg.evaluate("""() => ({estado: document.querySelector('#pr-estado').textContent,
-        voltar: !document.querySelector('#pr-voltar').hidden, resumo: document.querySelector('#pr-cx-s-ajustar').textContent})""")
+        voltar: !document.querySelector('#pr-voltar').hidden})""")
 
-    # ao abrir (cada procedimento, página nova): caixas todas fechadas, o padrão na tela, Copiar copia exatamente o padrão
+    def opcao(c, v):   # clica no trecho do campo c no texto e escolhe v no menu
+        pg.click(f'#pr-texto .pr-tk[data-c="{c}"]')
+        pg.click(f'#pr-pop .pr-pop-op[data-v="{v}"]')
+
+    def escreve(c, v):   # clica no trecho de texto livre c: vira campo no lugar; Enter confirma
+        pg.click(f'#pr-texto .pr-tk[data-c="{c}"]')
+        pg.fill("#pr-texto .pr-tk-in", v)
+        pg.keyboard.press("Enter")
+
+    # ao abrir (cada procedimento, página nova): guia Registro, sem caixa "Ajustar", padrão na tela, Copiar copia o padrão;
+    # cada campo ajustável tem um trecho clicável no texto padrão; a variação principal aparece como escolha de um clique
     for pid in pg.evaluate("() => PROCS.map(p => p.id)"):
         ir(pg, base, "#/procedimentos/" + pid)
-        s = pg.evaluate("""() => ({cx: [...document.querySelectorAll('#pr-body details.pr-cx')].map(d => d.dataset.cx + ':' + d.open),
+        s = pg.evaluate("""() => ({guia: document.querySelector('.pr-guia[aria-selected="true"]').dataset.guia, como: document.querySelector('#pr-g-como').hidden,
+            ajustar: !!document.querySelector('#pr-cx-ajustar'), cx: [...document.querySelectorAll('#pr-body details.pr-cx')].map(d => d.dataset.cx + ':' + d.open),
             igual: document.querySelector('#pr-texto').textContent === prPadraoTexto(prAberto), estado: document.querySelector('#pr-estado').textContent,
             voltar: document.querySelector('#pr-voltar').hidden, rap: document.querySelectorAll('#pr-rapido .pr-q').length, nrap: prRapidos(prAberto).length,
-            ordem: [...document.querySelectorAll('#pr-body .pr-cx')].map(d => d.dataset.cx).join(), doses: (prAberto.calc || []).length,
-            antes: [...document.querySelectorAll('#pr-body .pr-pag > *')].map(x => x.id || x.className).join()})""")
-        fechadas = all(x.endswith(":false") for x in s["cx"])
-        esperada = ",".join(k for k in ["ajustar", "material", "passos", "indicacoes", "complicacoes", "doses", "revisor", "fontes"]
-                            if k != "doses" or s["doses"])
-        rep.check(fechadas and s["igual"] and s["estado"] == "padrão" and s["voltar"] and s["rap"] == s["nrap"] and s["ordem"] == esperada
-                  and s["antes"] == "pr-h,pr-padrao,pr-caixas", f"{pid} ao abrir: {s}")
+            doses: (prAberto.calc || []).length, antes: [...document.querySelectorAll('#pr-body .pr-pag > *')].map(x => x.id || x.className).join(),
+            semTrecho: prAjustes(prAberto).filter(c => !c.opcional && !document.querySelector(`#pr-texto .pr-tk[data-c="${c.id}"]`)).map(c => c.id),
+            brancos: [...document.querySelectorAll('#pr-texto .pr-tk.vazio')].map(t => t.dataset.c).sort().join(),
+            rapIds: prRapidos(prAberto).map(c => c.id).sort().join(),
+            vars: [...document.querySelectorAll('.pr-var')].map(v => v.dataset.campo + ':' + [...v.querySelectorAll('.pr-op')].filter(b => b.getAttribute('aria-pressed') === 'true').length).join(),
+            mais: [...document.querySelectorAll('#pr-mais [data-add]')].map(b => b.dataset.add).join(),
+            opc: prOpcionais(prAberto).map(c => c.id).join()})""")
+        esperada = ",".join(k for k in ["material", "indicacoes", "complicacoes", "doses", "revisor", "fontes"] if k != "doses" or s["doses"])
+        ordem = ",".join(x.split(":")[0] for x in s["cx"])
+        rep.check(s["guia"] == "registro" and s["como"] and not s["ajustar"] and all(x.endswith(":false") for x in s["cx"]) and ordem == esperada
+                  and s["igual"] and s["estado"] == "padrão" and s["voltar"] and s["rap"] == s["nrap"] and s["antes"] == "pr-cab,pr-g-registro,pr-g-como"
+                  and not s["semTrecho"] and s["brancos"] == s["rapIds"] and s["vars"] and all(x.endswith(":1") for x in s["vars"].split(","))
+                  and s["mais"] == s["opc"], f"{pid} ao abrir: {s}")
         pg.evaluate("window.__clip = null"); pg.click("#pr-copiar"); pg.wait_for_timeout(30)
         c = clip()
         toast_ = pg.evaluate("() => document.querySelector('#toast').textContent")
@@ -183,138 +215,218 @@ def run(browser, url):
         rep.check(c == pg.evaluate("prPadraoTexto(prAberto)") and all(x in toast_ for x in rotulos) and ("em branco" in toast_) == bool(rotulos),
                   f"{pid}: Copiar ao abrir copia o padrão e o aviso diz o que falta: {toast_!r}")
 
-    # IOT: o padrão do dono (70 kg) e o recálculo pelo peso
+    # toracocentese: padrão por referências anatômicas; ultrassom a um clique (variação)
+    ir(pg, base, "#/procedimentos/toracocentese")
+    t = txt()
+    rep.check("POR REFERÊNCIAS ANATÔMICAS, SEM ULTRASSOM. LOCAL: LINHA ESCAPULAR OU AXILAR POSTERIOR" in t and "GUIADA" not in t and "MARCAÇÃO" not in t,
+              f"toracocentese padrão sem ultrassom: {t!r}")
+    pg.click('.pr-var .pr-op[data-c="guia"][data-v="GUIADA POR ULTRASSOM"]')
+    rep.check("\nGUIADA POR ULTRASSOM. LOCAL:" in txt() and estado()["estado"].startswith("ajustado"), "variação: guiada por US em um clique")
+    pg.click('.pr-var .pr-op[data-c="guia"][data-v="GUIADA POR ULTRASSOM"]')
+    rep.check(pg.evaluate("prEst(prAberto).vals.guia") == "GUIADA POR ULTRASSOM", "variação: clicar de novo não apaga a escolha")
+    pg.click('.pr-var .pr-op[data-c="guia"][data-v="COM MARCAÇÃO PRÉVIA POR ULTRASSOM"]')
+    rep.check("\nCOM MARCAÇÃO PRÉVIA POR ULTRASSOM. LOCAL:" in txt(), "variação: marcação prévia por US")
+    rep.check(pg.evaluate("""() => document.querySelector('#pr-texto .pr-tk[data-c="guia"]').textContent""") == "COM MARCAÇÃO PRÉVIA POR ULTRASSOM",
+              "variação e trecho do texto são o mesmo campo")
+    pg.click("#pr-voltar")
+    rep.check(txt() == pg.evaluate("prPadraoTexto(prAberto)"), "Voltar ao padrão (toracocentese)")
+
+    # IOT: o padrão do dono (70 kg) e o recálculo pelo peso, tudo pelo próprio texto
     ir(pg, base, "#/procedimentos/iot")
     t = txt()
-    rep.check(IOT_DOSES["70"] in t and "TUBO OROTRAQUEAL Nº 7,5 COM CUFF" in t and "TENTATIVAS: 1." in t and "SEM INTERCORRÊNCIAS IMEDIATAS." in t
+    rep.check(IOT_DOSES["70"] in t and "TUBO OROTRAQUEAL Nº 7,5 COM CUFF, FIXADO EM 22 CM" in t and "TENTATIVAS: 1." in t and "SEM INTERCORRÊNCIAS IMEDIATAS." in t
               and "CORMACK-LEHANE ____" in t and "INDICAÇÃO: ____." in t, f"IOT padrão 70 kg: {t!r}")
-    rep.check(estado()["resumo"].startswith("70 kg · padrão"), f"IOT: resumo do Ajustar {estado()}")
-    pg.click("#pr-cx-ajustar > summary")
     for kg, linha in IOT_DOSES.items():
-        pg.fill("#pr-c-peso", kg)
+        escreve("peso", kg)
         rep.check(linha in txt(), f"IOT peso {kg}: {[l for l in txt().splitlines() if l.startswith('DROGAS')]}")
-    e = estado()
-    rep.check(e["estado"] == "ajustado" and e["voltar"] and e["resumo"].startswith("12 kg · ajustado · 1 mudança"), f"IOT ajustado pelo peso: {e}")
-    pg.fill("#pr-c-peso", "70")
-    pg.click('.pr-op[data-c="bloqueador"][data-v="ROCURÔNIO"]')
+    rep.check(estado()["estado"] == "ajustado · 1 mudança" and estado()["voltar"], f"IOT ajustado pelo peso: {estado()}")
+    escreve("peso", "70")
+    opcao("bloqueador", "ROCURÔNIO")
     rep.check("DROGAS: ETOMIDATO 20 MG (10 ML) + ROCURÔNIO 80 MG (8 ML) — PESO 70 KG." in txt(), "IOT: rocurônio 1,2 mg/kg a 70 kg")
-    pg.click('.pr-op[data-c="indutor"][data-v="CETAMINA"]')
+    opcao("indutor", "CETAMINA")
     rep.check("DROGAS: CETAMINA 70 MG (1,4 ML) + ROCURÔNIO 80 MG (8 ML) — PESO 70 KG." in txt(), "IOT: cetamina 1 mg/kg a 70 kg")
-    pg.click('.pr-op[data-c="indutor"][data-v="CETAMINA"]')
-    rep.check(pg.evaluate("prEst(prAberto).vals.indutor") == "CETAMINA", "nos ajustes, clicar de novo não apaga a escolha")
-    pg.fill("#pr-c-peso", "")
-    rep.check("DROGAS: ____." in txt() and "Drogas" in pg.evaluate("() => document.querySelector('#pr-faltam').textContent"), "IOT sem peso: drogas em branco")
+    escreve("tubo", "8,0")
+    rep.check("TUBO OROTRAQUEAL Nº 8,0 COM CUFF" in txt(), "IOT: tubo trocado no próprio texto")
+    escreve("peso", "")
+    rep.check("DROGAS: ____." in txt() and pg.evaluate("""() => !!document.querySelector('#pr-texto .pr-tk.vazio[data-c="peso"]')""")
+              and "Drogas" in pg.evaluate("() => document.querySelector('#pr-faltam').title"), "IOT sem peso: drogas em branco, clicável (abre o peso)")
+    escreve("peso", "70")
     pg.click("#pr-voltar")
-    rep.check(txt() == pg.evaluate("prPadraoTexto(prAberto)") and estado()["estado"] == "padrão" and not estado()["voltar"]
-              and pg.evaluate("document.querySelector('#pr-c-peso').value") == "70"
-              and pg.evaluate("""document.querySelector('.pr-op[data-c="indutor"][data-v="ETOMIDATO"]').getAttribute('aria-pressed')""") == "true",
-              "IOT: Voltar ao padrão restaura 70 kg, etomidato e succinilcolina")
+    rep.check(txt() == pg.evaluate("prPadraoTexto(prAberto)") and estado()["estado"] == "padrão" and not estado()["voltar"],
+              "IOT: Voltar ao padrão restaura 70 kg, etomidato, succinilcolina e tubo 7,5")
 
-    # cada campo do Ajustar muda o texto; "ajustado" aparece; Voltar ao padrão restaura exatamente o padrão (em todos)
+    # cada campo ajustável, em todos os procedimentos: o clique no trecho troca o texto, "ajustado" aparece e Voltar ao padrão
+    # restaura exatamente o padrão; as linhas opcionais entram pelo "＋" e saem pelo menu
     tot = 0
     for pid in pg.evaluate("() => PROCS.map(p => p.id)"):
         ir(pg, base, "#/procedimentos/" + pid)
         res = pg.evaluate("""() => { const p = prAberto, pad = prPadraoTexto(p), ruins = [];
-          document.querySelector('#pr-cx-ajustar').open = true;
+          const enter = el => el.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter', bubbles: true}));
           for (const c of prAjustes(p)){
             const antes = document.querySelector('#pr-texto').textContent;
-            if (c.tipo === 'opcoes'){ const b = [...document.querySelectorAll(`.pr-op[data-c="${c.id}"]`)].find(x => x.getAttribute('aria-pressed') !== 'true'); if (!b){ ruins.push(c.id + ': só uma opção'); continue; } b.click(); }
-            else { const i = document.querySelector('#pr-c-' + c.id); i.value = c.tipo === 'num' ? '33' : 'teste ' + c.id; i.dispatchEvent(new Event('input', {bubbles: true})); }
+            if (c.opcional){
+              const b = document.querySelector(`#pr-mais [data-add="${c.id}"]`); if (!b){ ruins.push(c.id + ': sem ＋'); continue; }
+              b.click();
+              if (c.tipo === 'opcoes') document.querySelector('#pr-pop .pr-pop-op').click();
+              else { const i = document.querySelector('#pr-pop-in'); i.value = 'teste ' + c.id; enter(i); }
+            } else {
+              const tk = document.querySelector(`#pr-texto .pr-tk[data-c="${c.id}"]`); if (!tk){ ruins.push(c.id + ': sem trecho'); continue; }
+              tk.click();
+              if (c.tipo === 'opcoes'){ const b = [...document.querySelectorAll('#pr-pop .pr-pop-op')].find(x => x.getAttribute('aria-selected') !== 'true' && x.dataset.v);
+                if (!b){ document.querySelector('#pr-pop').hidden = true; if (c.opcoes.length > 1) ruins.push(c.id + ': menu sem outra opção'); continue; } b.click(); }
+              else { const i = document.querySelector('#pr-texto .pr-tk-in'); if (!i){ ruins.push(c.id + ': sem campo no lugar'); continue; } i.value = c.tipo === 'num' ? '33' : 'teste ' + c.id; enter(i); }
+            }
             const depois = document.querySelector('#pr-texto').textContent;
             if (depois === antes) ruins.push(c.id + ': texto não mudou');
-            if (document.querySelector('#pr-estado').textContent !== 'ajustado' || document.querySelector('#pr-voltar').hidden) ruins.push(c.id + ': sem "ajustado"');
-            document.querySelector('#pr-voltar2').click();
+            if (!document.querySelector('#pr-estado').textContent.startsWith('ajustado') || document.querySelector('#pr-voltar').hidden) ruins.push(c.id + ': sem "ajustado"');
+            document.querySelector('#pr-voltar').click();
             if (document.querySelector('#pr-texto').textContent !== pad) ruins.push(c.id + ': Voltar não restaurou');
           }
           return {n: prAjustes(p).length, ruins}; }""")
         tot += res["n"]
-        rep.check(not res["ruins"] or res["ruins"] == ["fio: só uma opção"], f"{pid} Ajustar: {res['ruins']}")
-    rep.note(f"Ajustar: {tot} campos, cada um muda o texto e Voltar ao padrão restaura")
+        rep.check(not res["ruins"], f"{pid} trechos: {res['ruins']}")
+    rep.note(f"ajuste no texto: {tot} campos, cada um muda o texto pelo clique e Voltar ao padrão restaura")
 
-    # linha rápida (dreno): preenche os brancos; clicar de novo desmarca; Voltar ao padrão não apaga o que a pessoa escolheu
+    # linha rápida e brancos clicáveis (dreno); consentimento pelo "＋"; editar texto
     ir(pg, base, "#/procedimentos/dreno")
     pad = pg.evaluate("prPadraoTexto(prAberto)")
     pg.click('#pr-rapido .pr-op[data-c="lado"][data-v="ESQUERDO"]')
     rep.check(txt().splitlines()[0].endswith("— ESQUERDO"), f"linha rápida entra no texto: {txt().splitlines()[0]}")
     pg.click('#pr-rapido .pr-op[data-c="lado"][data-v="ESQUERDO"]')
     rep.check(txt() == pad, "linha rápida: clicar de novo desmarca")
-    pg.click('#pr-rapido .pr-op[data-c="lado"][data-v="DIREITO"]')
-    pg.click('#pr-rapido .pr-op[data-c="indicacao"][data-v="HEMOTÓRAX"]')
-    pg.click('#pr-rapido .pr-op[data-c="saida"][data-v="SANGUE"]')
-    pg.fill("#pr-c-volume", "300"); pg.fill("#pr-c-fixacao", "12")
-    pg.click('#pr-rapido .pr-op[data-c="selo"][data-v="OSCILANTE, SEM BORBULHAMENTO"]')
+    opcao("lado", "DIREITO")   # o branco no texto também abre o menu
+    rep.check(txt().splitlines()[0].endswith("— DIREITO") and pg.evaluate("""document.querySelector('#pr-rapido .pr-op[data-c="lado"][data-v="DIREITO"]').getAttribute('aria-pressed')""") == "true",
+              "branco clicado no texto preenche e a linha rápida acompanha")
+    pg.click('#pr-texto .pr-tk[data-c="lado"]'); pg.click('#pr-pop .pr-pop-op.tirar')
+    rep.check(txt() == pad, "menu de um branco preenchido: Deixar em branco")
+    opcao("lado", "DIREITO")
+    opcao("indicacao", "HEMOTÓRAX"); opcao("saida", "SANGUE"); opcao("selo", "OSCILANTE, SEM BORBULHAMENTO")
+    escreve("volume", "300")
+    pg.fill("#pr-c-fixacao", "12")
     t = txt()
     rep.check("____" not in t and "DÉBITO INICIAL 300 ML" in t and "FIXADO EM 12 CM" in t
-              and pg.evaluate("() => document.querySelector('#pr-faltam').textContent") == "Sem brancos.", f"linha rápida completa: {t!r}")
-    rep.check(estado()["estado"] == "padrão", "a linha rápida não conta como ajuste")
-    pg.click("#pr-cx-ajustar > summary")
-    # consentimento: fora do padrão; escolher acrescenta a frase (ajustado); clicar de novo tira
+              and pg.evaluate("() => document.querySelector('#pr-faltam').textContent") == "Sem brancos.", f"brancos preenchidos: {t!r}")
+    rep.check(estado()["estado"] == "padrão", "os brancos não contam como ajuste")
     rep.check("CONSENTIMENTO" not in pad, "dreno: padrão sem frase de consentimento")
-    pg.click('.pr-op[data-c="consentimento"][data-v="PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"]')
-    rep.check("PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO." in txt().splitlines() and estado()["estado"] == "ajustado",
-              f"consentimento escolhido entra como linha própria e conta como ajuste: {estado()}")
-    pg.click('.pr-op[data-c="consentimento"][data-v="PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"]')
-    rep.check("CONSENTIMENTO" not in txt() and estado()["estado"] == "padrão", "clicar de novo tira o consentimento")
-    pg.click('.pr-op[data-c="consentimento"][data-v="CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL"]')
-    pg.fill("#pr-c-calibre", "32"); pg.click('.pr-op[data-c="tecnica"][data-v="SELDINGER"]')
-    pg.fill("#pr-c-obs", "sangramento discreto, compressão")
+    pg.click('#pr-mais [data-add="consentimento"]'); pg.click('#pr-pop .pr-pop-op[data-v="PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"]')
+    rep.check("PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO." in txt().splitlines() and estado()["estado"].startswith("ajustado")
+              and not pg.evaluate("""() => !!document.querySelector('#pr-mais [data-add="consentimento"]')"""),
+              f"＋ Consentimento acrescenta a linha (ajustado) e o ＋ some: {estado()}")
+    pg.click('#pr-texto .pr-tk[data-c="consentimento"]'); pg.click('#pr-pop .pr-pop-op.tirar')
+    rep.check("CONSENTIMENTO" not in txt() and estado()["estado"] == "padrão", "Tirar esta linha remove o consentimento")
+    pg.click('#pr-mais [data-add="consentimento"]'); pg.click('#pr-pop .pr-pop-op[data-v="CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL"]')
+    pg.click('#pr-mais [data-add="obs"]'); pg.fill("#pr-pop-in", "sangramento discreto, compressão"); pg.keyboard.press("Enter")
+    escreve("calibre", "32"); opcao("tecnica", "SELDINGER")
     t2 = txt()
     rep.check("DRENO 32 FR" in t2 and "SELDINGER PELA BORDA" in t2 and t2.splitlines()[-1] == "SANGRAMENTO DISCRETO, COMPRESSÃO"
-              and "CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL." in t2 and estado()["resumo"] == "ajustado · 4 mudanças", f"ajustes no dreno: {estado()}")
-    rep.check(pg.evaluate("document.querySelector('#pr-cx-ajustar').classList.contains('aj')"), "cabeçalho do Ajustar marcado como ajustado")
-    # estado mantido ao trocar de aba (texto, caixas abertas, checklist)
-    pg.click("#pr-cx-material > summary"); pg.click('.pr-check input[data-m="0"]'); pg.click('.pr-check input[data-m="3"]')
-    rep.check(pg.evaluate("() => document.querySelector('#pr-cx-s-material').textContent") == f"{pg.evaluate('prAberto.material.length')} itens · 2 separados", "resumo do Material")
+              and "CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL." in t2 and estado()["estado"] == "ajustado · 4 mudanças", f"ajustes no dreno: {estado()}")
+    rep.check(pg.evaluate("""document.querySelector('.pr-var .pr-op[data-v="SELDINGER"]').getAttribute('aria-pressed')""") == "true", "trecho e variação mostram a mesma escolha")
+    # estado mantido ao trocar de aba (texto, guia, caixas abertas, checklist)
+    pg.click("#pr-guia-como"); pg.click("#pr-cx-material > summary"); pg.click('.pr-check input[data-m="0"]'); pg.click('.pr-check input[data-m="3"]')
+    rep.check(pg.evaluate("() => document.querySelector('#pr-cx-s-material').textContent").startswith(f"{pg.evaluate('prAberto.material.length')} itens · 2 separados"), "resumo do Material")
     pg.click("#tab-prescricoes"); pg.click("#tab-procedimentos")
-    s = pg.evaluate("""() => ({t: document.querySelector('#pr-texto').textContent, aj: document.querySelector('#pr-cx-ajustar').open,
+    s = pg.evaluate("""() => ({t: document.querySelector('#pr-texto').textContent, guia: document.querySelector('.pr-guia[aria-selected="true"]').dataset.guia,
         mat: document.querySelector('#pr-cx-material').open, ticks: document.querySelectorAll('.pr-check input:checked').length,
-        passos: document.querySelector('#pr-cx-passos').open})""")
-    rep.check(s["t"] == t2 and s["aj"] and s["mat"] and s["ticks"] == 2 and not s["passos"], f"estado mantido ao trocar de aba: {s}")
+        reg: document.querySelector('#pr-g-registro').hidden})""")
+    rep.check(s["t"] == t2 and s["guia"] == "como" and s["reg"] and s["mat"] and s["ticks"] == 2, f"estado mantido ao trocar de aba: {s}")
+    pg.click("#pr-guia-registro")
     pg.click("#pr-voltar")
     t3 = txt()
-    rep.check("DRENO 28 FR" in t3 and "DISSECÇÃO ROMBA" in t3 and "— DIREITO" in t3 and "DÉBITO INICIAL 300 ML" in t3 and "SANGRAMENTO" not in t3 and "CONSENTIMENTO" not in t3
-              and pg.evaluate("document.querySelector('#pr-c-calibre').value") == "28" and pg.evaluate("document.querySelector('#pr-c-obs').value") == "",
-              "Voltar ao padrão desfaz os ajustes e mantém a linha rápida")
+    rep.check("DRENO 28 FR" in t3 and "DISSECÇÃO ROMBA" in t3 and "— DIREITO" in t3 and "DÉBITO INICIAL 300 ML" in t3 and "SANGRAMENTO" not in t3 and "CONSENTIMENTO" not in t3,
+              "Voltar ao padrão desfaz os ajustes e mantém os brancos preenchidos")
     pg.click("#pr-copiar"); pg.wait_for_timeout(30)
     rep.check(clip() == t3 and pg.evaluate("() => document.querySelector('#toast').textContent") == "Registro copiado!", "Copiar sem brancos")
+    # editar texto: vira texto livre; Copiar copia o editado; "Voltar aos campos" descarta; Voltar ao padrão também sai
+    pg.click("#pr-editar")
+    rep.check(pg.evaluate("() => [document.querySelector('#pr-texto').hidden, document.querySelector('#pr-livre').hidden, document.querySelector('#pr-livre').value, document.activeElement.id]")
+              == [True, False, t3, "pr-livre"], "Editar texto mostra o texto atual numa caixa editável")
+    pg.fill("#pr-livre", t3 + "\nPACIENTE ORIENTADO.")
+    pg.click("#pr-copiar"); pg.wait_for_timeout(30)
+    rep.check(clip() == t3 + "\nPACIENTE ORIENTADO." and estado()["estado"] == "editado", "Copiar copia o texto editado à mão")
+    pg.click("#tab-escores"); pg.click("#tab-procedimentos")
+    rep.check(pg.evaluate("() => document.querySelector('#pr-livre').value").endswith("PACIENTE ORIENTADO."), "texto editado sobrevive à troca de aba")
+    pg.click("#pr-editar")
+    rep.check(txt() == t3 and estado()["estado"] == "padrão", "Voltar aos campos descarta a edição")
     # material
+    pg.click("#pr-guia-como")
     pg.click("#pr-mat-copiar"); pg.wait_for_timeout(30)
     nmat = pg.evaluate("prAberto.material.length")
     rep.check(clip().startswith("MATERIAL — DRENAGEM DE TÓRAX\n- ") and clip().count("\n- ") == nmat, f"Copiar material: {clip()[:60]!r}")
     pg.click("#pr-mat-limpar")
     rep.check(pg.evaluate("() => document.querySelectorAll('.pr-check input:checked').length") == 0, "Desmarcar")
-    # passo a passo: uma numeração só, com os avisos
-    pz = pg.evaluate("""() => ({n: document.querySelectorAll('#pr-cx-passos .pr-passos li').length, s: document.querySelector('#pr-cx-s-passos').textContent,
-        esp: prAberto.preparo.length + prAberto.tecnica.length + prAberto.depois.length, call: document.querySelectorAll('#pr-cx-passos .pr-call').length})""")
-    rep.check(pz["n"] == pz["esp"] and pz["s"] == f"{pz['esp']} passos" and pz["call"] > 0, f"Passo a passo: {pz}")
-    # Para o revisor: só em rascunho, fechada, com todas as pendências
-    rv = pg.evaluate("() => { const d = document.querySelector('#pr-cx-revisor'); return d && [d.open, d.querySelectorAll('li').length, prAberto.pendencias.length]; }")
-    rep.check(rv and rv[0] is False and rv[1] == rv[2] > 0, f"caixa Para o revisor: {rv}")
+    # passo a passo: uma numeração só, avisos e figuras no passo que ilustram
+    pz = pg.evaluate("""() => ({n: document.querySelectorAll('.pr-passos li').length, esp: prAberto.preparo.length + prAberto.tecnica.length + prAberto.depois.length,
+        call: document.querySelectorAll('.pr-passos .pr-call').length, figs: [...document.querySelectorAll('.pr-passos li .pr-fig img')].map(i => i.getAttribute('src')),
+        ok: [...document.querySelectorAll('.pr-passos li .pr-fig img')].every(i => i.complete && i.naturalWidth > 0),
+        lista: prFiguras(prAberto).map(f => 'img/procedimentos/' + f.arquivo)})""")
+    rep.check(pz["n"] == pz["esp"] and pz["call"] > 0 and pz["figs"] == pz["lista"] and len(pz["figs"]) == 3, f"Passo a passo do dreno: {pz}")
+    pg.wait_for_function("() => [...document.querySelectorAll('.pr-fig img')].every(i => i.complete && i.naturalWidth > 0)", timeout=5000)
+    # figura sob o passo certo; procedimento sem figura não mostra nenhuma
+    onde = pg.evaluate("""() => { const li = [...document.querySelectorAll('.pr-passos')][1].children[6]; return !!li.querySelector('img[src$="dreno-3.svg"]'); }""")
+    rep.check(onde, "dreno-3 (selo d'água) logo abaixo do passo técnica.7")
+    # todos os procedimentos: cada figura da lista sob o seu passo, carregada
+    for pid in pg.evaluate("() => PROCS.map(p => p.id)"):
+        ir(pg, base, "#/procedimentos/" + pid)
+        pg.click("#pr-guia-como")
+        pg.wait_for_function("() => [...document.querySelectorAll('.pr-fig img')].every(i => i.complete)", timeout=5000)
+        fz = pg.evaluate("""() => { const secs = ['preparo', 'tecnica', 'depois'], ols = [...document.querySelectorAll('.pr-passos')];
+            return prFiguras(prAberto).filter(f => { const [s, n] = f.passo.split('.'); const li = ols[secs.indexOf(s)].children[+n - 1];
+              const img = li && li.querySelector(`img[src$="${f.arquivo}"]`); return !(img && img.naturalWidth > 0); }).map(f => f.arquivo); }""")
+        rep.check(not fz, f"{pid}: figuras fora do passo ou sem carregar: {fz}")
+    # procedimento sem figura (lista vazia): passo a passo normal, nenhuma figura
+    ir(pg, base, "#/procedimentos/pl")
+    pg.evaluate("() => { window.__f = PROC_FIGURAS.pl; PROC_FIGURAS.pl = []; prAbrir('pl', 'route'); prGuia('como'); }")
+    rep.check(pg.evaluate("() => document.querySelectorAll('.pr-fig').length") == 0 and pg.evaluate("() => document.querySelectorAll('.pr-passos li').length") > 0,
+              "procedimento sem figura: passo a passo normal")
+    pg.evaluate("() => { PROC_FIGURAS.pl = window.__f; }")
+    # Para o revisor: só em rascunho, fechada, com todas as pendências; nenhuma pendência "Padrão do registro"
+    ir(pg, base, "#/procedimentos/dreno")
+    rv = pg.evaluate("() => { const d = document.querySelector('#pr-cx-revisor'); return d && [d.open, d.querySelectorAll('li').length, prAberto.pendencias.length, d.textContent.includes('Padrão do registro')]; }")
+    rep.check(rv and rv[0] is False and rv[1] == rv[2] > 0 and not rv[3], f"caixa Para o revisor: {rv}")
+    ap = pg.evaluate("() => document.querySelector('#pr-cx-fontes').textContent")
+    rep.check("Aprovado pelo médico em 10/11/2026" in ap and "Padrão do registro" in ap, "aprovação do padrão registrada nas Fontes")
     sem = pg.evaluate("() => { const p = PROCS.find(x => x.id === 'pl'); p.draft = false; prAbrir('pl', 'route'); const n = !!document.querySelector('#pr-cx-revisor'); p.draft = true; prAbrir('dreno', 'route'); return n; }")
     rep.check(sem is False, "sem draft, a caixa do revisor some")
-    rep.check(pg.evaluate("() => !document.querySelector('#pr-cx-doses') === !(prAberto.calc || []).length"), "caixa Doses só onde há calculadora")
     ir(pg, base, "#/procedimentos/paracentese")
     rep.check(pg.evaluate("() => !document.querySelector('#pr-cx-doses')"), "paracentese: sem caixa Doses")
 
-    # teclado: Enter na linha rápida avança; Ctrl+Enter copia de qualquer campo
+    # teclado: Tab chega aos trechos; Enter abre; ↓/Enter troca; Esc fecha e volta ao trecho; Enter na linha rápida avança;
+    # ← → entre as guias; Ctrl+Enter copia de qualquer lugar
     ir(pg, base, "#/procedimentos/toracocentese")
+    pg.focus("#pr-copiar"); pg.keyboard.press("Tab")
+    rep.check(pg.evaluate("() => document.activeElement.classList.contains('pr-tk')"), f"Tab a partir do Copiar chega ao primeiro trecho: {st()['foco']}")
+    pg.focus('#pr-texto .pr-tk[data-c="antissepsia"]'); pg.keyboard.press("Enter")
+    rep.check(pg.evaluate("() => document.activeElement.getAttribute('aria-selected')") == "true", "Enter abre o menu com a opção atual em foco")
+    pg.keyboard.press("Escape")
+    rep.check(pg.evaluate("() => [document.querySelector('#pr-pop').hidden, document.activeElement.dataset.c]") == [True, "antissepsia"], "Esc fecha e volta ao trecho")
+    pg.keyboard.press("Enter"); pg.keyboard.press("ArrowDown"); pg.keyboard.press("Enter")
+    rep.check("ANTISSEPSIA: CLOREXIDINA DEGERMANTE + ALCOÓLICA E CAMPOS ESTÉREIS." in txt() and st()["foco"] == "antissepsia", "↓ + Enter troca e o foco volta ao trecho")
+    pg.keyboard.press("Enter")   # trecho de opção: abre o menu de novo; Esc
+    pg.keyboard.press("Escape")
+    pg.focus('#pr-texto .pr-tk[data-c="dispositivo"]'); pg.keyboard.press("Enter")
+    rep.check(pg.evaluate("() => document.activeElement.classList.contains('pr-tk-in')"), "Enter num trecho de texto livre abre o campo no lugar")
+    pg.keyboard.press("Control+a"); pg.keyboard.type("cateter 16G"); pg.keyboard.press("Enter")
+    rep.check("DISPOSITIVO: CATETER 16G." in txt() and st()["foco"] == "dispositivo", "Enter confirma o campo no lugar e o foco volta ao trecho")
+    pg.focus('#pr-texto .pr-tk[data-c="dispositivo"]'); pg.keyboard.press("Enter"); pg.keyboard.type("xxx"); pg.keyboard.press("Escape")
+    rep.check("DISPOSITIVO: CATETER 16G." in txt(), "Esc no campo no lugar desiste")
     pg.focus("#pr-c-volume"); pg.keyboard.type("800"); pg.keyboard.press("Enter")
     rep.check(st()["foco"] == "aspecto", f"Enter na linha rápida avança: {st()['foco']}")
-    pg.evaluate("window.__clip = null"); pg.focus("#pr-c-volume"); pg.keyboard.press("Control+Enter"); pg.wait_for_timeout(30)
+    pg.evaluate("window.__clip = null"); pg.focus('#pr-texto .pr-tk[data-c="dispositivo"]'); pg.keyboard.press("Control+Enter"); pg.wait_for_timeout(30)
     rep.check(clip() == pg.evaluate("prTexto(prAberto)") and "RETIRADOS 800 ML" in clip(), "Ctrl+Enter copia o registro")
+    pg.focus("#pr-guia-registro"); pg.keyboard.press("ArrowRight")
+    rep.check(pg.evaluate("() => [document.activeElement.id, document.querySelector('#pr-g-como').hidden]") == ["pr-guia-como", False], "→ nas guias abre Como fazer")
+    pg.keyboard.press("ArrowLeft")
 
-    # ida e volta pela Calculadora (Doses): ajustes, linha rápida e caixa aberta continuam
+    # ida e volta pela Calculadora (Doses, na guia Como fazer): valores, guia e caixa aberta continuam
     ir(pg, base, "#/procedimentos/iot")
-    pg.fill("#pr-c-indicacao", "rebaixamento"); pg.click('#pr-rapido .pr-op[data-c="cormack"][data-v="II"]')
-    pg.click("#pr-cx-ajustar > summary"); pg.fill("#pr-c-peso", "80")
+    pg.click('#pr-rapido .pr-op[data-c="cormack"][data-v="II"]'); escreve("indicacao", "rebaixamento"); escreve("peso", "80")
     antes = txt()
-    pg.click("#pr-cx-doses > summary"); pg.click('#pr-cx-doses [data-calc="iot"]'); pg.wait_for_timeout(80)
+    pg.click("#pr-guia-como"); pg.click("#pr-cx-doses > summary"); pg.click('#pr-cx-doses [data-calc="iot"]'); pg.wait_for_timeout(80)
     rep.check(pg.evaluate("location.hash") == "#/calculadoras/iot", "link de doses abre a Calculadora")
     pg.evaluate("history.back()"); pg.wait_for_function("location.hash === '#/procedimentos/iot'"); pg.wait_for_timeout(80)
     s = pg.evaluate("""() => ({t: document.querySelector('#pr-texto').textContent, doses: document.querySelector('#pr-cx-doses').open,
-        aj: document.querySelector('#pr-cx-ajustar').open, peso: document.querySelector('#pr-c-peso').value})""")
-    rep.check(s["t"] == antes and IOT_DOSES["80"] in s["t"] and "INDICAÇÃO: REBAIXAMENTO." in s["t"] and s["doses"] and s["aj"] and s["peso"] == "80",
-              f"volta da Calculadora: {s}")
+        guia: document.querySelector('.pr-guia[aria-selected="true"]').dataset.guia})""")
+    rep.check(s["t"] == antes and IOT_DOSES["80"] in s["t"] and "INDICAÇÃO: REBAIXAMENTO." in s["t"] and s["doses"] and s["guia"] == "como", f"volta da Calculadora: {s}")
     rep.check(not p.problems, "console: " + "; ".join(p.problems[:5]))
     p.close()
 
@@ -340,7 +452,8 @@ VIS_JS = """(sels) => {
       let bot = pageSc ? innerHeight : Math.min(area.bottom, innerHeight);
       if (!barra.hidden && !barra.contains(el)) bot = Math.min(bot, barra.getBoundingClientRect().top);
       const dentro = r.width > 0 && r.top >= top - 0.5 && r.bottom <= bot + 0.5 && r.left >= -0.5 && r.right <= innerWidth + 0.5;
-      const pts = [[r.left + r.width / 2, r.top + r.height / 2], [r.left + 3, r.top + 3], [r.right - 3, r.bottom - 3]];
+      const ix = Math.min(14, r.width / 4), iy = Math.min(14, r.height / 4);   // longe dos cantos arredondados
+      const pts = [[r.left + r.width / 2, r.top + r.height / 2], [r.left + ix, r.top + iy], [r.right - ix, r.bottom - iy]];
       const topo = pts.every(([x, y]) => { const c = document.elementFromPoint(x, y); return !!c && (c === el || el.contains(c)); });
       if (!(dentro && topo)) ruins.push(`${el.id || el.dataset.campo || el.className}: dentro=${dentro} topo=${topo} (${Math.round(r.top)}–${Math.round(r.bottom)} de ${Math.round(bot)})`);
     }
@@ -352,7 +465,7 @@ VIS_JS = """(sels) => {
 # todos os controles da página (com as caixas abertas): ao receber foco, nenhum pode ficar escondido
 FOCO_JS = """async () => {
   document.querySelectorAll('#pr-body details.pr-cx').forEach(d => d.open = true);
-  const els = [...document.querySelectorAll('#pr-body button, #pr-body input, #pr-body a, #pr-body summary')].filter(el => el.getClientRects().length);
+  const els = [...document.querySelectorAll('#pr-body button, #pr-body input, #pr-body a, #pr-body summary, #pr-body [tabindex="0"]')].filter(el => el.getClientRects().length && !el.closest('[hidden]'));
   let ruins = [];
   for (const el of els){
     el.focus(); await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
@@ -360,7 +473,7 @@ FOCO_JS = """async () => {
     await new Promise(r => requestAnimationFrame(r));
     const b = document.querySelector('#pr-barra');
     if (!b.hidden){ const t = b.getBoundingClientRect().top, r = el.getBoundingClientRect(); if (r.bottom > t - 8) window.scrollBy(0, r.bottom - t + 16); }
-    const r = el.getBoundingClientRect();
+    const r = el.getClientRects()[0];   // trecho do texto que quebra linha: o primeiro pedaço
     const c = document.elementFromPoint(r.left + Math.min(r.width / 2, 20), r.top + r.height / 2);
     if (!(c && (c === el || el.contains(c)))) ruins.push((el.id || el.dataset.c || el.textContent.trim()).slice(0, 30) + '→' + (c ? (c.id || c.className) : 'nada'));
   }
@@ -379,16 +492,25 @@ def layout(browser, url, rep):
             pg.wait_for_timeout(30)
             semrx = pg.evaluate("() => document.getElementById('col-rx').hidden && document.body.dataset.rx === 'off'")
             rep.check(semrx, f"{w}x{h} {pid}: receita escondida pelo registro (rx:false)")
-            r = pg.evaluate(VIS_JS, ["#pr-texto", "#pr-copiar", "#pr-rapido", "#pr-rapido .pr-q", "#pr-faltam"])
+            r = pg.evaluate(VIS_JS, [".pr-guias", "#pr-texto", "#pr-copiar", "#pr-rapido", "#pr-rapido .pr-q", ".pr-var", "#pr-faltam", "#pr-mais"])
             rolapre = pg.evaluate("() => { const t = document.querySelector('#pr-texto'); return t.scrollHeight > t.clientHeight + 1; }")
             bad = {k: v for k, v in r.items() if v != "ok"}
             tot += 1
             ok += not bad and not rolapre
             rep.check(not bad and not rolapre, f"{w}x{h} {pid}: primeira tela {bad} texto-rola={rolapre}")
-        pg.evaluate("() => navigate('procedimentos', 'dreno', 'click')")
+        # o menu de um trecho cabe na tela e não fica atrás de nada
+        pg.evaluate("() => navigate('procedimentos', 'cvc', 'click')"); pg.wait_for_timeout(30)
+        pg.click('#pr-texto .pr-tk[data-c="barreira"]')
+        m = pg.evaluate(VIS_JS, ["#pr-pop .pr-pop-op"])
+        dentro = pg.evaluate("() => { const r = document.querySelector('#pr-pop').getBoundingClientRect(), a = document.querySelector('#pr-body').getBoundingClientRect(); return r.top >= a.top && r.bottom <= a.bottom && r.right <= a.right; }")
+        rep.check(all(v == "ok" for v in m.values()) and dentro, f"{w}x{h}: menu de um trecho visível: {m} dentro={dentro}")
+        pg.keyboard.press("Escape")
         f = pg.evaluate(FOCO_JS)
-        rep.check(not f["nruins"], f"{w}x{h} dreno: controles escondidos ao focar {f['ruins']}")
-        rep.note(f"layout {w}x{h}: {ok}/{tot} com padrão inteiro + Copiar + linha rápida na primeira tela; {f['n']} controles focáveis visíveis")
+        pg.evaluate("() => prGuia('como')")
+        f2 = pg.evaluate(FOCO_JS)
+        pg.evaluate("() => prGuia('registro')")
+        rep.check(not f["nruins"] and not f2["nruins"], f"{w}x{h} cvc: controles escondidos ao focar {f['ruins']} {f2['ruins']}")
+        rep.note(f"layout {w}x{h}: {ok}/{tot} com guias + registro inteiro + Copiar + linha rápida na primeira tela; {f['n']}+{f2['n']} controles focáveis visíveis")
         rep.check(not p.problems, f"layout {w}x{h} console: " + "; ".join(p.problems[:3]))
         p.close()
     for w, h in CELULARES:
@@ -399,28 +521,36 @@ def layout(browser, url, rep):
         for pid in ids:
             pg.evaluate("() => scrollTo(0, 0)")
             pg.click(f'#pr-lista .pr-item[data-id="{pid}"]'); pg.wait_for_timeout(150)
-            # o texto vem primeiro (antes das caixas) e o Copiar está à mão: o do registro na tela, ou a barra fixa
-            ordem = pg.evaluate("() => document.querySelector('#pr-texto').getBoundingClientRect().bottom <= document.querySelector('.pr-caixas').getBoundingClientRect().top")
+            # o registro vem primeiro e o Copiar está à mão: o do registro na tela, ou a barra fixa
+            ordem = pg.evaluate("() => document.querySelector('.pr-guia[aria-selected=\"true\"]').dataset.guia === 'registro' && !document.querySelector('#pr-texto').hidden")
             r = pg.evaluate(VIS_JS, ["#pr-copiar"])
             barra = pg.evaluate("document.querySelector('#pr-barra').hidden")
             topo_ok = r["#pr-copiar"] == "ok" and barra
-            # descendo até o fim da linha rápida: se o Copiar do registro saiu da tela, a barra aparece e copia
-            pg.evaluate("() => { const q = [...document.querySelectorAll('#pr-faltam')].pop(); q.scrollIntoView({block: 'end'}); scrollBy(0, 80); }")
+            pg.evaluate("() => { document.querySelector('#pr-faltam').scrollIntoView({block: 'end'}); scrollBy(0, 80); }")
             pg.wait_for_timeout(150)
             vis = pg.evaluate(VIS_JS, ["#pr-copiar"])["#pr-copiar"] == "ok"
             bar = pg.evaluate(VIS_JS, ["#pr-barra-copiar"])["#pr-barra-copiar"] == "ok"
-            alcance = vis or bar
             pg.evaluate("window.__clip = null")
             pg.click("#pr-barra-copiar" if bar else "#pr-copiar"); pg.wait_for_timeout(30)
             copia = pg.evaluate("window.__clip") == pg.evaluate("prTexto(prAberto)")
-            good = ordem and topo_ok and alcance and copia
+            good = ordem and topo_ok and (vis or bar) and copia
             ok += good
-            rep.check(good, f"{w}px {pid}: texto primeiro={ordem} Copiar ao abrir={r} barra escondida={barra} Copiar ao descer={vis}/{bar} copia={copia}")
+            rep.check(good, f"{w}px {pid}: registro primeiro={ordem} Copiar ao abrir={r} barra escondida={barra} Copiar ao descer={vis}/{bar} copia={copia}")
+        # opções de um trecho fáceis de tocar (≥ 40 px de altura), dentro da tela
+        pg.evaluate("() => scrollTo(0, 0)")
+        pg.click('#pr-lista .pr-item[data-id="toracocentese"]'); pg.wait_for_timeout(150)
+        pg.click('#pr-texto .pr-tk[data-c="antissepsia"]')
+        alt = pg.evaluate("() => [...document.querySelectorAll('#pr-pop .pr-pop-op')].map(b => { const r = b.getBoundingClientRect(); return [Math.round(r.height), r.left >= 0 && r.right <= innerWidth]; })")
+        rep.check(alt and all(hh >= 40 and dentro for hh, dentro in alt), f"{w}px: opções do menu fáceis de tocar: {alt}")
+        pg.keyboard.press("Escape")
+        pg.evaluate("() => prGuia('como')"); pg.wait_for_timeout(80)
+        rep.check(pg.evaluate("document.querySelector('#pr-barra').hidden"), f"{w}px: na guia Como fazer a barra de Copiar some")
+        pg.evaluate("() => prGuia('registro')")
         f = pg.evaluate(FOCO_JS)
         rep.check(not f["nruins"], f"{w}px: controles escondidos ao focar {f['ruins']}")
         sx = pg.evaluate("() => document.documentElement.scrollWidth > innerWidth")
         rep.check(not sx, f"{w}px: rolagem horizontal")
-        rep.note(f"layout {w}x{h}: {ok}/{len(ids)} com o texto primeiro e o Copiar à mão; {f['n']} controles focáveis visíveis")
+        rep.note(f"layout {w}x{h}: {ok}/{len(ids)} com o registro primeiro e o Copiar à mão; {f['n']} controles focáveis visíveis")
         rep.check(not p.problems, f"{w}px console: " + "; ".join(p.problems[:3]))
         p.close()
 
@@ -438,16 +568,21 @@ def shots(browser, url, out_dir):
         p = Page(browser, base + "#/procedimentos", w, h)
         pg = p.page
         pg.screenshot(path=f"{out_dir}/proc-lista-{tag}.png")
-        for pid in ("iot", "dreno", "cvc"):
+        for pid in ("toracocentese", "iot", "dreno", "cvc"):
             pg.evaluate("() => scrollTo(0, 0)")
             pg.evaluate(f"() => navigate('procedimentos', {pid!r}, 'load')"); pg.wait_for_timeout(150)
-            pg.screenshot(path=f"{out_dir}/proc-{pid}-{tag}.png")
-            pg.click("#pr-cx-ajustar > summary"); pg.wait_for_timeout(60)
+            pg.screenshot(path=f"{out_dir}/proc-{pid}-registro-{tag}.png")
+            tk = {"toracocentese": "guia", "iot": "dispositivo", "dreno": "antissepsia", "cvc": "barreira"}[pid]
+            pg.click(f'#pr-texto .pr-tk[data-c="{tk}"]'); pg.wait_for_timeout(80)
+            pg.screenshot(path=f"{out_dir}/proc-{pid}-opcoes-{tag}.png")
+            pg.keyboard.press("Escape")
+            pg.evaluate("() => prGuia('como')"); pg.wait_for_timeout(60)
+            pg.evaluate("() => { scrollTo(0, 0); document.querySelector('#pr-body').scrollTop = 0; }")
             if phone:
-                pg.evaluate("() => scrollIntoPlace(document.querySelector('#pr-cx-ajustar'), 8)")
-            pg.wait_for_timeout(150)
-            pg.screenshot(path=f"{out_dir}/proc-{pid}-ajustar-{tag}.png")
-            pg.click("#pr-cx-ajustar > summary")   # fecha de novo (o estado da caixa dura a sessão)
+                pg.evaluate("() => scrollIntoPlace(document.querySelector('#col-proc'), 0)")
+            pg.wait_for_timeout(200)
+            pg.screenshot(path=f"{out_dir}/proc-{pid}-como-{tag}.png")
+            pg.evaluate("() => prGuia('registro')")
         pg.evaluate("() => scrollTo(0, 0)")
         if phone:
             pg.click("#busca-abrir")
