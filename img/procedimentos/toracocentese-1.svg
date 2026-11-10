@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-toracocentese-1" viewBox="0 0 560 420" role="img" aria-labelledby="tc-1-t tc-1-d">
+<title id="tc-1-t">Local da toracocentese: posterior (padrão) e axilar média</title>
+<desc id="tc-1-d">Paciente sentado, inclinado para a frente, braços apoiados, visto de costas. O derrame ocupa a base do hemitórax direito até o limite superior da macicez. Ponto 1, padrão: na linha escapular, 1 a 2 espaços abaixo do topo da macicez, 5 a 10 cm lateral à coluna, acima do 9º arco costal. Ponto 2, alternativa: linha axilar média, no triângulo de segurança, de preferência com ultrassom.</desc>
+<style>
+.qpf-toracocentese-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-toracocentese-1 .b{font-weight:700}
+.qpf-toracocentese-1 .a{fill:#0b63c9}
+.qpf-toracocentese-1 .r{fill:#c62828}
+.qpf-toracocentese-1 .s{font-size:18px}
+.qpf-toracocentese-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- miniatura: posição sentado, inclinado, braços apoiados -->
+<g transform="translate(4 8) scale(.26)" stroke="#1f2a33" stroke-width="7">
+<rect x="70" y="332" width="170" height="18" rx="4" fill="#e3e7ec"/>
+<rect x="356" y="252" width="184" height="14" rx="3" fill="#e3e7ec"/>
+<line x1="510" y1="266" x2="510" y2="404"/>
+<line x1="94" y1="350" x2="94" y2="404"/><line x1="216" y1="350" x2="216" y2="404"/>
+<path d="M170 312 L300 318 L306 396" fill="none" stroke="#ecd9cc" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="-56" y="-196" width="112" height="206" rx="52" fill="#ecd9cc" transform="translate(160 315) rotate(36)"/>
+<circle cx="322" cy="128" r="36" fill="#ecd9cc"/>
+<rect x="372" y="226" width="150" height="28" rx="14" fill="#fff"/>
+<path d="M272 172 L366 232 L470 232" fill="none" stroke="#ecd9cc" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<!-- cabeça (inclinada para a frente, vista de trás) -->
+<circle cx="250" cy="82" r="34" fill="#ecd9cc" class="ln"/>
+<!-- tronco visto de costas -->
+<clipPath id="tc-1-tr"><path d="M140 404 Q124 300 122 200 Q120 140 142 118 Q192 102 250 104 Q308 102 358 118 Q380 140 378 200 Q376 300 360 404 Z"/></clipPath>
+<path d="M140 404 Q124 300 122 200 Q120 140 142 118 Q192 102 250 104 Q308 102 358 118 Q380 140 378 200 Q376 300 360 404 Z" fill="#ecd9cc" class="ln"/>
+<!-- derrame: base do hemitórax direito do paciente, até o topo da macicez -->
+<g clip-path="url(#tc-1-tr)">
+<path d="M252 196 H390 V318 Q320 336 252 326 Z" fill="#f4eccb"/>
+</g>
+<line x1="252" y1="196" x2="384" y2="196" stroke="#1f2a33" stroke-width="2.5" stroke-dasharray="8 5"/>
+<!-- escápulas (braços à frente) -->
+<path d="M206 130 L188 224 L150 140 Z" fill="#dfc3b4" class="ln" stroke-linejoin="round"/>
+<path d="M294 130 L312 224 L350 140 Z" fill="#dfc3b4" class="ln" stroke-linejoin="round"/>
+<!-- coluna: processos espinhosos -->
+<line x1="250" y1="108" x2="250" y2="404" stroke="#1f2a33" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+<g fill="#fff" stroke="#1f2a33" stroke-width="2">
+<rect x="244" y="124" width="12" height="9" rx="3"/><rect x="244" y="152" width="12" height="9" rx="3"/>
+<rect x="244" y="180" width="12" height="9" rx="3"/><rect x="244" y="208" width="12" height="9" rx="3"/>
+<rect x="244" y="236" width="12" height="9" rx="3"/><rect x="244" y="264" width="12" height="9" rx="3"/>
+<rect x="244" y="292" width="12" height="9" rx="3"/><rect x="244" y="320" width="12" height="9" rx="3"/>
+<rect x="244" y="348" width="12" height="9" rx="3"/><rect x="244" y="376" width="12" height="9" rx="3"/>
+</g>
+<!-- linha escapular -->
+<line x1="312" y1="226" x2="312" y2="330" stroke="#1f2a33" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+<!-- limite inferior: 9º arco costal -->
+<line x1="258" y1="290" x2="384" y2="290" stroke="#c62828" stroke-width="3" stroke-dasharray="10 6"/>
+<!-- distância da coluna -->
+<line x1="256" y1="270" x2="312" y2="270" stroke="#1f2a33" stroke-width="2"/>
+<line x1="256" y1="263" x2="256" y2="277" stroke="#1f2a33" stroke-width="2"/>
+<line x1="312" y1="263" x2="312" y2="277" stroke="#1f2a33" stroke-width="2"/>
+<!-- ponto 1: posterior (padrão) -->
+<circle cx="312" cy="248" r="13" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="312" cy="248" r="4.5" fill="#0b63c9"/>
+<!-- ponto 2: axilar média (na lateral) -->
+<circle cx="378" cy="236" r="11" fill="#fff" stroke="#0b63c9" stroke-width="3" stroke-dasharray="4 3"/>
+<circle cx="378" cy="236" r="3.5" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="396" y="40" class="b a">① Posterior</text>
+<text x="396" y="62" class="s">padrão: linha</text>
+<text x="396" y="82" class="s">escapular, 1–2 EIC</text>
+<text x="396" y="102" class="s">abaixo da macicez</text>
+<line x1="420" y1="110" x2="320" y2="238" stroke="#0b63c9" stroke-width="2"/>
+<text x="396" y="164" class="b s">Topo da</text>
+<text x="396" y="184" class="b s">macicez</text>
+<line x1="394" y1="180" x2="372" y2="194" class="ln"/>
+<text x="396" y="232" class="b a">② Axilar</text>
+<text x="396" y="254" class="b a">média</text>
+<text x="396" y="274" class="s">alternativa,</text>
+<text x="396" y="294" class="s">com US</text>
+<text x="396" y="336" class="b r s">Nunca abaixo</text>
+<text x="396" y="356" class="b r s">do 9º arco</text>
+<line x1="394" y1="330" x2="378" y2="294" stroke="#c62828" stroke-width="2"/>
+<text x="284" y="392" class="b s" text-anchor="middle">5–10 cm da coluna</text>
+<line x1="284" y1="374" x2="284" y2="276" class="ln"/>
+</svg>

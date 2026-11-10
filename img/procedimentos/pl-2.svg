@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-pl-2" viewBox="0 0 560 420" role="img" aria-labelledby="pl-2-t pl-2-d">
+<title id="pl-2-t">Onde puncionar: L3–L4 ou L4–L5</title>
+<desc id="pl-2-d">Coluna lombar e pelve vistas por trás. A linha que une o topo das cristas ilíacas cruza o processo espinhoso de L4. Os espaços L3–L4 e L4–L5 são os locais da punção. No adulto, a medula termina no cone medular, na altura de L1–L2: puncionar sempre abaixo de L2.</desc>
+<style>
+.qpf-pl-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-pl-2 .b{font-weight:700}
+.qpf-pl-2 .a{fill:#0b63c9}
+.qpf-pl-2 .r{fill:#c62828}
+.qpf-pl-2 .s{font-size:18px}
+.qpf-pl-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- ílios -->
+<path d="M40 420 Q46 300 90 252 Q130 222 176 232 Q214 246 226 330 L222 420 Z" fill="#fff" class="ln"/>
+<path d="M520 420 Q514 300 470 252 Q430 222 384 232 Q346 246 334 330 L338 420 Z" fill="#fff" class="ln"/>
+<!-- sacro -->
+<path d="M226 342 H334 L304 420 H256 Z" fill="#fff" class="ln"/>
+<!-- vértebras lombares (vista posterior) -->
+<rect x="222" y="30" width="116" height="44" rx="12" fill="#fff" class="ln"/><rect x="268" y="38" width="24" height="30" rx="6" fill="#e3e7ec" class="ln"/><text x="210" y="59" class="s" text-anchor="end">L1</text><rect x="222" y="92" width="116" height="44" rx="12" fill="#fff" class="ln"/><rect x="268" y="100" width="24" height="30" rx="6" fill="#e3e7ec" class="ln"/><text x="210" y="121" class="s" text-anchor="end">L2</text><rect x="222" y="154" width="116" height="44" rx="12" fill="#fff" class="ln"/><rect x="268" y="162" width="24" height="30" rx="6" fill="#e3e7ec" class="ln"/><text x="210" y="183" class="s" text-anchor="end">L3</text><rect x="222" y="216" width="116" height="44" rx="12" fill="#fff" class="ln"/><rect x="268" y="224" width="24" height="30" rx="6" fill="#e3e7ec" class="ln"/><text x="210" y="245" class="s" text-anchor="end">L4</text><rect x="222" y="278" width="116" height="44" rx="12" fill="#fff" class="ln"/><rect x="268" y="286" width="24" height="30" rx="6" fill="#e3e7ec" class="ln"/><text x="210" y="307" class="s" text-anchor="end">L5</text>
+<!-- medula e cone (por trás das lâminas) -->
+<path d="M266 0 V70 Q280 104 294 70 V0" fill="none" stroke="#c62828" stroke-width="2.5" stroke-dasharray="6 4"/>
+<g stroke="#8a96a3" stroke-width="1.5"><line x1="274" y1="86" x2="270" y2="340"/><line x1="280" y1="90" x2="280" y2="340"/><line x1="286" y1="86" x2="290" y2="340"/></g>
+<!-- linha das cristas (Tuffier) -->
+<line x1="80" y1="232" x2="480" y2="232" stroke="#1f2a33" stroke-width="2.5" stroke-dasharray="10 6"/>
+<!-- alvos -->
+<circle cx="280" cy="211" r="10" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="280" cy="211" r="3.5" fill="#0b63c9"/>
+<circle cx="280" cy="273" r="10" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="280" cy="273" r="3.5" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="360" y="186" class="b a">L3–L4 ou</text>
+<text x="360" y="208" class="b a">L4–L5</text>
+<line x1="358" y1="200" x2="292" y2="211" stroke="#0b63c9" stroke-width="2"/>
+<line x1="358" y1="204" x2="292" y2="270" stroke="#0b63c9" stroke-width="2"/>
+<text x="16" y="226" class="b s">Linha das cristas</text>
+<text x="16" y="270" class="s">cruza L4</text>
+<text x="360" y="40" class="b r s">Cone medular</text>
+<text x="360" y="60" class="r s">termina em L1–L2:</text>
+<text x="360" y="80" class="b r s">sempre abaixo de L2</text>
+<line x1="358" y1="62" x2="296" y2="78" stroke="#c62828" stroke-width="2"/>
+<text x="16" y="400" class="s">crista ilíaca</text>
+</svg>

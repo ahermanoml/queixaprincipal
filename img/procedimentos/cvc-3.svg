@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-cvc-3" viewBox="0 0 560 420" role="img" aria-labelledby="cvc-3-t cvc-3-d">
+<title id="cvc-3-t">Onde fica a ponta do cateter</title>
+<desc id="cvc-3-d">Esquema das grandes veias vistas de frente. O cateter entra pela jugular interna direita e desce pelo tronco braquiocefálico direito até a veia cava superior; a ponta fica na junção da cava com o átrio direito. O tronco braquiocefálico esquerdo é mais longo e cruza a linha média, por isso os acessos à esquerda precisam de cateter mais fundo: cerca de 13 a 15 cm à direita e 16 a 18 cm à esquerda, no adulto médio.</desc>
+<style>
+.qpf-cvc-3 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-cvc-3 .b{font-weight:700}
+.qpf-cvc-3 .a{fill:#0b63c9}
+.qpf-cvc-3 .s{font-size:18px}
+.qpf-cvc-3 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- veias: contorno escuro + preenchimento claro -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<g stroke="#1f2a33" stroke-width="30">
+<path d="M196 12 V150 L238 206"/>
+<path d="M60 146 L196 150"/>
+<path d="M344 12 V150 L238 206"/>
+<path d="M500 146 L344 150"/>
+<path d="M238 206 V300"/>
+</g>
+<g stroke="#e3e7ec" stroke-width="26">
+<path d="M196 12 V150 L238 206"/>
+<path d="M60 146 L196 150"/>
+<path d="M344 12 V150 L238 206"/>
+<path d="M500 146 L344 150"/>
+<path d="M238 206 V300"/>
+</g>
+</g>
+<!-- átrio direito -->
+<path d="M238 292 Q186 296 180 344 Q182 396 240 400 Q290 396 294 350 Q292 300 238 292 Z" fill="#e3e7ec" class="ln"/>
+<!-- recobre o contorno na junção -->
+<rect x="226" y="286" width="24" height="16" fill="#e3e7ec"/>
+<!-- junção cava–átrio -->
+<line x1="214" y1="296" x2="262" y2="296" stroke="#1f2a33" stroke-width="2" stroke-dasharray="4 4"/>
+<!-- linha média -->
+<line x1="270" y1="20" x2="270" y2="410" stroke="#1f2a33" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+<!-- cateter pela jugular interna direita -->
+<path d="M196 60 V150 L236 204 V290" fill="none" stroke="#0b63c9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="236" cy="292" r="8" fill="#0b63c9"/>
+<!-- rótulos -->
+<text x="20" y="48" class="b s">Jugular D</text>
+<text x="20" y="196" class="s">Subclávia D</text>
+<text x="370" y="48" class="b s">Jugular E</text>
+<text x="420" y="196" class="s">Subclávia E</text>
+<text x="300" y="232" class="s">tronco E: mais</text>
+<text x="300" y="252" class="s">longo, cruza</text>
+<text x="300" y="272" class="s">a linha média</text>
+<text x="20" y="250" class="s">Cava superior</text>
+<line x1="138" y1="244" x2="222" y2="250" class="ln"/>
+<text x="16" y="352" class="s">Átrio D</text>
+<line x1="88" y1="346" x2="182" y2="350" class="ln"/>
+<text x="300" y="316" class="b a">Ponta: junção</text>
+<text x="300" y="338" class="b a">cava–átrio</text>
+<line x1="298" y1="310" x2="246" y2="294" stroke="#0b63c9" stroke-width="2"/>
+<text x="20" y="96" class="s">à direita</text>
+<text x="20" y="118" class="b a">13–15 cm</text>
+<text x="370" y="96" class="s">à esquerda</text>
+<text x="370" y="118" class="b a">16–18 cm</text>
+<text x="300" y="386" class="s">confirmar por RX/US</text>
+</svg>

@@ -67,7 +67,7 @@ function buscaRender(){
   if(!toks.length){
     buscaList.innerHTML = "";
     // lista natural: "A", "A e B", "A, B, C e D"
-    const nomes = VIEWS.filter(v=> v.search).map(v=> `<b>${v.icon} ${esc(v.label)}</b>`);
+    const nomes = VIEWS.filter(v=> v.search).map(v=> `<b>${viewIcon(v)} ${esc(v.label)}</b>`);
     const lista = nomes.length > 1 ? nomes.slice(0, -1).join(", ") + " e " + nomes[nomes.length - 1] : nomes.join("");
     buscaVazio.innerHTML = `Busca em ${lista}: condição, sintoma, escore, remédio, dose, procedimento ou trecho de um modelo.`;
     buscaVazio.hidden = false;
@@ -77,12 +77,12 @@ function buscaRender(){
   const groups = buscaFind(q);
   let h = "";
   groups.forEach(({v, hits}, gi)=>{
-    h += `<div role="group" class="bg" aria-labelledby="bg-${gi}"><div role="presentation" class="bg-h" id="bg-${gi}"><span aria-hidden="true">${v.icon}</span> ${esc(v.label)} <span class="bg-n">${hits.length}</span></div>`;
+    h += `<div role="group" class="bg" aria-labelledby="bg-${gi}"><div role="presentation" class="bg-h" id="bg-${gi}">${viewIcon(v)} ${esc(v.label)} <span class="bg-n">${hits.length}</span></div>`;
     hits.forEach(e=>{
       const n = buscaRes.length, tr = buscaTrecho(e, toks);
       buscaRes.push({v, e});
       h += `<div role="option" class="bo" id="bo-${n}" data-n="${n}" aria-selected="false">
-        <span class="bo-ic" aria-hidden="true">${e.ic || v.icon}</span>
+        <span class="bo-ic" aria-hidden="true">${v.key==="prescricoes" && e.ic ? e.ic : viewIcon(v)}</span>
         <span class="bo-t"><span class="bo-tt">${buscaMark(e.title, toks)}</span>
         <span class="bo-s">${buscaMark(e.sub||"", toks)}${tr ? `${e.sub ? " · " : ""}<span class="bo-tr">${buscaMark(tr, toks)}</span>` : ""}</span></span></div>`;
     });

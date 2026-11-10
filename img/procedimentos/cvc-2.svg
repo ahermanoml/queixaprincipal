@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-cvc-2" viewBox="0 0 560 400" role="img" aria-labelledby="cvc-2-t cvc-2-d">
+<title id="cvc-2-t">Ultrassom em eixo curto: veia ou artéria</title>
+<desc id="cvc-2-d">Duas imagens esquemáticas de ultrassom em eixo curto do pescoço. Sem compressão: a veia jugular interna, maior e ovalada, fica lateral e um pouco superficial; a carótida, redonda, fica medial. Comprimindo com a sonda: a veia colaba e a carótida continua redonda e pulsátil.</desc>
+<style>
+.qpf-cvc-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-cvc-2 .b{font-weight:700}
+.qpf-cvc-2 .a{fill:#0b63c9}
+.qpf-cvc-2 .r{fill:#c62828}
+.qpf-cvc-2 .s{font-size:18px}
+.qpf-cvc-2 .w{fill:#fff;stroke:none;font-size:18px;font-weight:700}
+.qpf-cvc-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<defs>
+<clipPath id="cvc-2-us"><path d="M0 0 H250 V230 Q125 260 0 230 Z"/></clipPath>
+</defs>
+<rect width="560" height="400" rx="18" fill="#f7f8fa"/>
+
+<!-- painel 1: sem compressão -->
+<g transform="translate(20 70)">
+<g clip-path="url(#cvc-2-us)">
+<rect width="250" height="260" fill="#2b2f33"/>
+<rect width="250" height="14" fill="#6b7178"/>
+<!-- músculo (ECM) -->
+<path d="M30 24 Q125 10 230 30 L230 52 Q125 36 30 46 Z" fill="#5a6066"/>
+<!-- veia -->
+<ellipse cx="96" cy="104" rx="52" ry="34" fill="#111"/>
+<!-- artéria -->
+<circle cx="176" cy="128" r="24" fill="#111" stroke="#9aa1a8" stroke-width="3"/>
+</g>
+<path d="M0 0 H250 V230 Q125 260 0 230 Z" fill="none" class="ln"/>
+<text x="96" y="110" class="w" text-anchor="middle">VJI</text>
+<text x="176" y="134" class="w" text-anchor="middle">ACC</text>
+</g>
+<text x="20" y="34" class="b">Sem compressão</text>
+<text x="20" y="58" class="s">veia maior, ovalada</text>
+
+<!-- painel 2: comprimindo -->
+<g transform="translate(290 70)">
+<g clip-path="url(#cvc-2-us)">
+<rect width="250" height="260" fill="#2b2f33"/>
+<rect width="250" height="14" fill="#6b7178"/>
+<path d="M30 22 Q125 10 230 28 L230 46 Q125 32 30 40 Z" fill="#5a6066"/>
+<!-- veia colabada -->
+<path d="M44 112 Q96 104 148 112 Q96 120 44 112 Z" fill="#111" stroke="#9aa1a8" stroke-width="1.5"/>
+<circle cx="176" cy="128" r="24" fill="#111" stroke="#9aa1a8" stroke-width="3"/>
+</g>
+<path d="M0 0 H250 V230 Q125 260 0 230 Z" fill="none" class="ln"/>
+<text x="176" y="134" class="w" text-anchor="middle">ACC</text>
+<!-- seta da compressão -->
+<path d="M96 -26 V-6" stroke="#0b63c9" stroke-width="4" stroke-linecap="round"/>
+<path d="M86 -16 L96 -4 L106 -16" fill="none" stroke="#0b63c9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="290" y="34" class="b">Comprimindo</text>
+<text x="400" y="58" class="s">a veia colaba</text>
+<!-- rótulos inferiores -->
+<text x="20" y="352" class="s">lateral</text>
+<text x="270" y="352" class="s" text-anchor="end">medial</text>
+<text x="290" y="352" class="s">lateral</text>
+<text x="540" y="352" class="s" text-anchor="end">medial</text>
+<text x="20" y="384" class="s"><tspan class="b">VJI</tspan> jugular interna · <tspan class="b r">ACC</tspan> carótida (não colaba, pulsa)</text>
+</svg>

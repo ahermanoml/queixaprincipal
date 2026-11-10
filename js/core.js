@@ -43,7 +43,7 @@ function scrollIntoPlace(el, gap=12){
    das abas. O registro alimenta as abas do topo (app.js), os endereços #/<aba>/<item> (router.js) e a busca
    única (busca.js). Campos:
      key      id da aba: vai no endereço (#/key) e em body[data-view]
-     label    texto da aba; icon: emoji antes do texto
+     label    texto da aba; icon: emoji de reserva (a aba mostra o ícone de linha da key, css/icones.css)
      cols     ids das colunas de .grid que a aba mostra (a receita, #col-rx, aparece sempre)
      layout   "lista" (coluna estreita + coluna larga + receita) | "texto" (coluna larga + receita)
      rx       opcional: false = a aba não mostra a coluna da receita (#col-rx fica escondida, sem perder o conteúdo)
@@ -60,3 +60,5 @@ function registerView(v){
   VIEWS.push(v);
 }
 const viewOf = key => VIEWS.find(v=> v.key===key) || null;
+// ícone de linha da aba (css/icones.css, por key); o emoji do registro fica dentro, invisível, como reserva
+const viewIcon = v => `<span class="i" data-v="${esc(v.key)}" aria-hidden="true">${esc(v.icon||"")}</span>`;
