@@ -176,7 +176,7 @@ def run(browser, url):
     rep.check(tudo.startswith("Parada cardíaca — peso 70 kg\n• Adrenalina IV/IO: 1 mg") and tudo.count("\n• ") == 5, f"Copiar tudo: {tudo!r}")
     pg.evaluate("() => navigate('calculadoras', 'iot', 'click')")
     pg.click("#cx-tudo"); pg.wait_for_timeout(50)
-    rep.check(pg.evaluate("window.__clip") == pg.evaluate("CM.kitText()") and pg.evaluate("window.__clip").startswith("Kit SRI — peso 70 kg"), "Copiar kit SRI = kitText do dilui")
+    rep.check(pg.evaluate("window.__clip") == pg.evaluate("CM.kitText()") and pg.evaluate("window.__clip").startswith("Kit SRI — peso 70 kg"), "Copiar kit SRI = kitText (sem escolha)")
     limpar(pg)
 
     # --- teclado: foco ao abrir, Enter no peso, Enter na dose copia, ordem do Tab segue os passos
@@ -258,6 +258,7 @@ def run(browser, url):
     rep.check(not p.problems, "console: " + "; ".join(p.problems[:5]))
     p.close()
 
+    revisao(browser, url, rep)
     layout(browser, url, rep)
     # foco por programa no título: sem moldura
     p = Page(browser, base + "#/calculadoras/emg-arritmias")   # página sem peso: o foco vai para o título
@@ -280,6 +281,136 @@ def run(browser, url):
         rep.check(not p.problems, f"{w}px console: " + "; ".join(p.problems[:3]))
         p.close()
     return rep.done()
+
+
+# --- revisão clínica de 2026-11 (itens 1–13; ver CLAUDE.md, "Divergências em relação ao dilui")
+NUM_CASOS = [("25.000", 25000, True), ("5.000", 5000, True), ("1.000", 1000, True), ("1.5", 1.5, False), ("0.5", 0.5, False),
+             ("0,5", 0.5, False), ("1.250,5", 1250.5, True), ("70.5", 70.5, False), ("1,000", 1.0, False), ("12.345.678", 12345678, True),
+             ("0.500", 0.5, False), ("25.00", 25.0, False), (" 25.000 ", 25000, True), ("abc", None, False), ("", None, False),
+             ("1.2.3", None, False), ("1,2,3", None, False), ("--5", None, False)]
+CAMPOS = [   # (página, preparo, campo, unidade mostrada)
+    ("hnf", "", "#cx-peso", "kg"), ("ped-parada", "", "#cx-idade", "anos"), ("iot", "", "#cx-alt", "cm"),
+    ("hnf", "", "#cx-dose", "UI/kg/h"), ("hnf", "", "#cx-vazao", "mL/h"),
+    ("hnf", "#cx-edita", "#cx-a", None), ("hnf", "#cx-edita", "#cx-d", "mL"),
+    ("hnf", "#cx-edita", "#cx-q", None), ("hnf", "#cx-edita", "#cx-ml", "mL")]
+ACHA_JS = """([T, nome]) => { for (const s of CM[T]) for (const it of s.itens) if (it.n === nome || it.calc === nome) return it; return null; }"""
+
+
+def revisao(browser, url, rep):
+    base = url.split("#")[0]
+    p = Page(browser, base + "#/calculadoras")
+    pg = p.page
+    # 1. leitura dos números: ponto de milhar só em "1.000", "25.000"…; vírgula decimal; ponto decimal fora disso
+    for txt, v, mil in NUM_CASOS:
+        r = pg.evaluate("(t) => { const i = CM.numInfo(t); return [Number.isFinite(i.v) ? i.v : null, i.milhar, Number.isFinite(CM.num(t)) ? CM.num(t) : null]; }", txt)
+        rep.check(r[0] == v and r[2] == v and (r[1] == mil or v is None), f"num({txt!r}) = {r}, esperado {v} milhar={mil}")
+    # cada campo: "25.000"-like vira milhar e o campo diz como entendeu; "1,5"/"70.5" não mostram nada
+    for pag, prep, campo, un in CAMPOS:
+        ir(pg, base, "#/calculadoras/" + pag)
+        if campo not in ("#cx-peso",) and pg.locator("#cx-peso").count():
+            pg.fill("#cx-peso", "70")
+        if prep:
+            pg.click(prep)
+        if un is None:
+            un = pg.evaluate("(c) => c === '#cx-q' ? cxAberta.D.amp.u : (cxAberta.D.ampLabel ? 'mL' : 'ampolas')", campo)
+        ent = lambda: pg.evaluate("(c) => { const s = document.querySelector(`.cx-ent[data-for=\"${c.slice(1)}\"]`); return s && !s.hidden ? s.textContent : ''; }", campo)
+        for txt, esperado in (("1.000", f"entendido: 1.000 {un}"), ("1,5", ""), ("70.5", ""), ("abc", "")):
+            pg.fill(campo, txt)
+            rep.check(ent() == esperado, f"{pag} {campo} {txt!r}: {ent()!r} (esperado {esperado!r})")
+        pg.fill(campo, "1.000")
+        limpar(pg)
+    # o número entendido entra na conta: heparina 25.000 UI em 250 mL → 100 UI/mL; peso "1.000" = 1000 kg é recusado
+    ir(pg, base, "#/calculadoras/hnf")
+    pg.fill("#cx-peso", "70"); pg.click("#cx-edita")
+    pg.fill("#cx-a", "1"); pg.fill("#cx-q", "25.000"); pg.fill("#cx-ml", "5"); pg.fill("#cx-d", "245")
+    conc = pg.evaluate("() => document.querySelector('#cx-conc').textContent")
+    rep.check(conc.startswith("100 UI/mL"), f"heparina 1 amp de 25.000 UI + 245 mL → 100 UI/mL: {conc!r}")
+    pg.fill("#cx-peso", "1.000")
+    rep.check(pg.evaluate("peso") is None, f"peso '1.000' (= 1000 kg) recusado: {pg.evaluate('peso')}")
+    limpar(pg)
+
+    lin = lambda T, nome, kg, idade, ped: pg.evaluate("([T, n, kg, a, ped]) => { const f = " + ACHA_JS + "; return CM.linha(f([T, n]), kg, a, ped); }", [T, nome, kg, idade, ped])
+    # 2. enoxaparina ≥ 75 anos: 120 kg → 75 mg com a etiqueta do teto
+    r = lin("EMG", "Enoxaparina (IAM com fibrinólise, ≥ 75 anos)", 120, None, False)
+    rep.check(r["main"] == "75 mg" and r["caps"] == ["dose máxima 75 mg"] and "ClCr < 30: 1 mg/kg SC 1×/dia" in r["nota"], f"enoxaparina ≥ 75 a, 120 kg: {r['main']} {r['caps']}")
+    ir(pg, base, "#/calculadoras/emg-anticoagulacao")
+    pg.fill("#cx-peso", "120")
+    t = pg.evaluate("() => [...document.querySelectorAll('.cx-row')].find(r => r.textContent.includes('≥ 75 anos')).textContent")
+    rep.check("75 mg" in t and "dose máxima 75 mg" in t, f"tela da enoxaparina 120 kg: {t!r}")
+    # 3. morfina adulto diluída a 1 mg/mL: 70 kg → 3,5–7 mL
+    r = lin("EMG", "Morfina", 70, None, False)
+    rep.check(r["main"] == "3,5–7 mg" and r["small"] == "3,5–7 mL" and "Diluir para 1 mg/mL" in r["sub"], f"morfina 70 kg: {r['main']} {r['small']} {r['sub']}")
+    # 4. kit SRI: começa no padrão do médico (etomidato + succinilcolina), um de cada; alternativas a um clique
+    ir(pg, base, "#/calculadoras/iot")
+    pg.fill("#cx-peso", "70")
+    nomes = lambda k: pg.evaluate(f"() => [...document.querySelectorAll('.cx-kit [data-kit=\"{k}\"][aria-pressed=\"true\"]')].map(b => b.textContent)")
+    rep.check(nomes("ind") == ["Etomidato"] and nomes("bnm") == ["Succinilcolina"], f"kit pré-escolhido: {nomes('ind')} {nomes('bnm')}")
+    def kit_ok(kit, ind, bnm):
+        todos = ["Etomidato", "Cetamina", "Propofol", "Midazolam", "Succinilcolina", "Rocurônio"]
+        return (f"• Indução: {ind}:" in kit and f"• Bloqueador: {bnm}:" in kit and "escolher" not in kit and " | " not in kit
+                and all(n not in kit for n in todos if n not in (ind, bnm)) and kit.count("\n• ") == 3)
+    pg.click("#cx-tudo"); pg.wait_for_timeout(50)
+    kit = pg.evaluate("window.__clip")
+    rep.check(kit == pg.evaluate("CM.kitText()") and kit_ok(kit, "Etomidato", "Succinilcolina") and "Etomidato: 21 mg = 10,5 mL" in kit, f"kit padrão: {kit!r}")
+    pg.click('.cx-kit [data-kit="ind"][data-i="1"]'); pg.click('.cx-kit [data-kit="bnm"][data-i="1"]')
+    rep.check(pg.evaluate("[document.activeElement.dataset.kit, document.activeElement.dataset.i]") == ["bnm", "1"], "o foco volta ao botão clicado")
+    pg.click("#cx-tudo"); pg.wait_for_timeout(50)
+    kit = pg.evaluate("window.__clip")
+    rep.check(kit == pg.evaluate("CM.kitText(1, 1)") and kit_ok(kit, "Cetamina", "Rocurônio"), f"kit Cetamina + Rocurônio: {kit!r}")
+    pg.click('.cx-kit [data-kit="bnm"][data-i="1"]')
+    rep.check(nomes("bnm") == ["Rocurônio"], f"clicar no já escolhido não desmarca: {nomes('bnm')}")
+    pg.click('.cx-kit [data-kit="ind"][data-i="2"]'); pg.click("#cx-tudo"); pg.wait_for_timeout(50)
+    rep.check(kit_ok(pg.evaluate("window.__clip"), "Propofol", "Rocurônio"), "kit Propofol + Rocurônio")
+    limpar(pg)
+    rep.check(pg.evaluate("() => cxKit.ind === CM.KIT_PADRAO.ind && cxKit.bnm === CM.KIT_PADRAO.bnm"), "Limpar volta ao padrão do kit")
+    ped = pg.evaluate("() => { CM.S.age = 3; const kg = CM.S.kg; CM.S.kg = 14; const t = CM.kitText(); CM.S.kg = kg; CM.S.age = null; return t; }")
+    rep.check("Atropina (se indicada):" in ped and kit_ok(ped.replace("\n• Atropina", " Atropina"), "Etomidato", "Succinilcolina"), f"kit pediátrico: {ped!r}")
+    # 5. salbutamol: via INAL
+    r = lin("PED", "salbutamol", 20, None, True)
+    rep.check(r["via"] == "INAL", f"salbutamol via: {r['via']}")
+    # 6. adrenalina IM pediátrica: 35 kg sem idade → 0,3 mg (teto); com 13 anos → 0,35 mg
+    a, b = lin("PED", "Adrenalina IM (anafilaxia)", 35, None, True), lin("PED", "Adrenalina IM (anafilaxia)", 35, 13, True)
+    rep.check(a["main"] == "0,3 mg" and a["caps"] == ["dose máxima 0,3 mg"] and b["main"] == "0,35 mg" and not b["caps"], f"adrenalina IM 35 kg: {a['main']} {a['caps']} / 13 a: {b['main']} {b['caps']}")
+    c = lin("PED", "Adrenalina IM (anafilaxia)", 60, 13, True)
+    rep.check(c["main"] == "0,5 mg", f"adrenalina IM 60 kg, 13 anos: {c['main']}")
+    # 7–13. notas e textos
+    notas = [("EMG", "Ácido tranexâmico (HPP)", "Até 3 h do parto. Repetir 1 g se sangramento persistir após 30 min."),
+             ("PED", "Diazepam retal", "< 2 anos: uso fora da bula. Usar a solução injetável 5 mg/mL por via retal."),
+             ("PED", "Midazolam (ansiólise)", "< 6 meses: sem dose estabelecida em bula"),
+             ("EMG", "Alteplase (TEP)", "PCR por TEP: 50 mg em bolus; pode repetir após 15 min.")]
+    for T, nome, frase in notas:
+        r = lin(T, nome, 20 if T == "PED" else 70, None, T == "PED")
+        rep.check(frase in (r.get("nota") or ""), f"nota de {nome}: {r.get('nota')!r}")
+    r = lin("EMG", "Flumazenil", 70, None, False)
+    rep.check(r.get("fixo") == "0,2 mg IV em 15 s; se preciso, 0,1 mg a cada 60 s (máx 1 mg)" and r["fixo"] in r["copy"], f"flumazenil: {r.get('fixo')!r}")
+    obs = pg.evaluate("() => CX_PAGS.find(p => p.id === 'nipride').D.obs.join(' ')")
+    rep.check("Máx (bula): 8 mcg/kg/min no adulto, por no máximo 10 min" in obs and "média ≤ 2,5 mcg/kg/min" in obs, f"nipride obs: {obs!r}")
+    ir(pg, base, "#/calculadoras/emg-trombolise")
+    rod = pg.evaluate("() => document.querySelector('.cx-rodape').textContent")
+    rep.check("AHA/ASA 2026 (AVC isquêmico agudo)" in rod and "AHA/ASA 2019" not in rod, "rodapé AHA/ASA 2026")
+
+    # caixa "Para o revisor": fechada, nas páginas certas, com o que mudou e o que falta decidir
+    esperado = {"iot": ["etomidato + succinilcolina", "Atropina (se indicada)", "Seu padrão", "Succinilcolina", "Obesidade"],
+                "emg-anticoagulacao": ["Enoxaparina", "Heparina"], "emg-analgesia": ["Morfina", "Furosemida"],
+                "emg-hemorragia": ["Ácido tranexâmico"], "emg-antidotos": ["Flumazenil", "0,3 mg"],
+                "emg-trombolise": ["Alteplase", "AHA/ASA 2026", "Estreptoquinase"], "emg-convulsao": ["Fenobarbital"],
+                "emg-obstetricia": ["magnésio"], "ped-parada": ["Amiodarona", "via tubo"], "ped-respiratorio": ["INAL", "0,3 mg"],
+                "ped-convulsao": ["Diazepam retal", "Midazolam IM"], "ped-analgesia": ["< 6 meses"],
+                "nora": ["25.000"], "nipride": ["25.000", "2,5 mcg/kg/min"], "vaso": ["0,01–0,03"], "mgso4": ["20–30 min"], "propo": ["Propofol 2%"]}
+    for pid in pg.evaluate("() => CX_PAGS.map(p => p.id)"):
+        ir(pg, base, "#/calculadoras/" + pid)
+        r = pg.evaluate("""() => { const d = document.querySelectorAll('.cx-revisor');
+            return d.length ? {n: d.length, open: d[0].open, txt: d[0].textContent, mud: d[0].querySelectorAll('.mud li').length, pend: d[0].querySelectorAll('.pend li').length,
+              alvo: cxRevisorItens(cxAberta)} : {n: 0, alvo: cxRevisorItens(cxAberta)}; }""")
+        tem = bool(r["alvo"]["mud"] or r["alvo"]["pend"])
+        rep.check(r["n"] == (1 if tem else 0), f"{pid}: caixa do revisor aparece {r['n']}× (itens: {tem})")
+        if r["n"]:
+            rep.check(r["open"] is False and r["mud"] == len(r["alvo"]["mud"]) and r["pend"] == len(r["alvo"]["pend"]), f"{pid}: caixa fechada e completa {r}")
+        for frase in esperado.get(pid, []):
+            rep.check(r["n"] and frase in r["txt"], f"{pid}: caixa do revisor sem {frase!r}")
+    rep.check(set(esperado) - {"nora", "nipride", "vaso", "mgso4", "propo"} <= set(k for k in pg.evaluate("Object.keys(CALC_REVISAO)")), "páginas com itens")
+    rep.check(not p.problems, "console (revisão): " + "; ".join(p.problems[:5]))
+    p.close()
 
 
 SIZES = [(1440, 900), (1366, 768), (1280, 720), (1024, 768), (390, 844), (320, 640)]

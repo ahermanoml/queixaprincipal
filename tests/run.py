@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import REPO, browser, export_ref, file_url, http_server
 import parity, escores_golden, escores_parity, escores_layout
 import integracao
-import calc_paridade, calc_features   # aba Calculadoras: contas iguais ao dilui (gabarito) + comportamento
+import calc_paridade, calc_features   # aba Calculadoras: contas iguais ao gabarito (site corrigido; diff vs dilui) + comportamento
 import proc_features                  # aba Procedimentos: estrutura, comportamento, layout
 
 try:
