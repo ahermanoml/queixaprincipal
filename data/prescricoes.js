@@ -1468,8 +1468,8 @@ const DATA = [
      ],
      [
       "GLICOSE 50% SOLUÇÃO INJETÁVEL",
-      "04 AMPOLAS 10 ML",
-      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA; REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. DOSE PELO PESO NA ABA CALCULADORAS › EMERGÊNCIA › HIPERCALEMIA E HIPOGLICEMIA",
+      "08 AMPOLAS 10 ML",
+      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA (A ABA CALCULADORAS USA 25 G = 50 ML); REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. ETILISTA OU DESNUTRIDO: TIAMINA 100 MG EV ANTES OU JUNTO, SEM ATRASAR A GLICOSE. NÃO DAR ALTA SE A HIPOGLICEMIA FOR POR SULFONILUREIA OU INSULINA DE AÇÃO LONGA: OBSERVAR DE 12 A 24 H COM SORO GLICOSADO E GLICEMIAS SERIADAS",
       "USO ENDOVENOSO"
      ]
     ]
@@ -4609,8 +4609,8 @@ const DATA = [
     "items": [
      [
       "GLICOSE 50% SOLUÇÃO INJETÁVEL",
-      "04 AMPOLAS 10 ML",
-      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA; REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. DOSE PELO PESO NA ABA CALCULADORAS › EMERGÊNCIA › HIPERCALEMIA E HIPOGLICEMIA",
+      "08 AMPOLAS 10 ML",
+      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA (A ABA CALCULADORAS USA 25 G = 50 ML); REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. ETILISTA OU DESNUTRIDO: TIAMINA 100 MG EV ANTES OU JUNTO, SEM ATRASAR A GLICOSE. NÃO DAR ALTA SE A HIPOGLICEMIA FOR POR SULFONILUREIA OU INSULINA DE AÇÃO LONGA: OBSERVAR DE 12 A 24 H COM SORO GLICOSADO E GLICEMIAS SERIADAS",
       "USO ENDOVENOSO"
      ]
     ]
@@ -4684,7 +4684,7 @@ const DATA = [
   "sub": "captopril · clonidina · nitroprussiato · nitroglicerina · losartana · anlodipino",
   "blocks": [
    {
-    "label": "Padrão — Urgência hipertensiva (sem lesão aguda de órgão): anti-hipertensivo oral no PS, reduzir a PA aos poucos em 24 a 48 h — escolha 1",
+    "label": "Padrão — Elevação importante da PA sem lesão aguda de órgão-alvo: repouso por 30 min e reavaliar; se não baixar, anti-hipertensivo oral, reduzindo aos poucos (nifedipina de liberação rápida é proscrita) — escolha 1",
     "mode": "internacao",
     "draft": true,
     "menu": true,
@@ -4692,7 +4692,7 @@ const DATA = [
      [
       "CAPTOPRIL 25 MG",
       "02 COMPRIMIDOS",
-      "ADMINISTRAR 25 MG VIA ORAL (NÃO SUBLINGUAL); REAVALIAR A PA EM 01 HORA E, SE NECESSÁRIO, REPETIR 25 MG",
+      "ADMINISTRAR 25 MG VIA ORAL (NÃO SUBLINGUAL); REAVALIAR A PA EM 01 HORA E, SE NECESSÁRIO, REPETIR 25 MG. NÃO USAR NA GESTAÇÃO",
       "USO ORAL"
      ],
      [
@@ -4704,7 +4704,7 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Emergência hipertensiva (lesão aguda de órgão-alvo): vasodilatador EV em bomba — escolha 1",
+    "label": "Padrão — Emergência hipertensiva (com lesão aguda de órgão-alvo): vasodilatador EV em bomba — escolha 1",
     "mode": "internacao",
     "draft": true,
     "menu": true,
@@ -4718,20 +4718,20 @@ const DATA = [
      [
       "NITROGLICERINA 5 MG/ML (TRIDIL®) SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 10 ML",
-      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO OU USO DE SILDENAFILA/TADALAFILA NAS ÚLTIMAS 24 A 48 HORAS",
+      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
       "USO ENDOVENOSO"
      ]
     ]
    },
    {
-    "label": "Padrão — Início ou ajuste do anti-hipertensivo (retorno à unidade em até 7 dias) — escolha 1",
+    "label": "Padrão — Início ou ajuste do anti-hipertensivo (retorno à unidade em 1 a 7 dias) — escolha 1",
     "draft": true,
     "menu": true,
     "items": [
      [
       "LOSARTANA 50 MG",
       "30 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO 01 VEZ AO DIA, NO MESMO HORÁRIO",
+      "TOMAR 01 COMPRIMIDO 01 VEZ AO DIA, NO MESMO HORÁRIO. NÃO USAR NA GESTAÇÃO",
       "USO ORAL"
      ],
      [
@@ -4748,7 +4748,7 @@ const DATA = [
      ]
     ],
     "orient": [
-     "ESTA RECEITA É PARA COMEÇAR OU AJUSTAR O TRATAMENTO: MARCAR CONSULTA NA UNIDADE DE SAÚDE EM ATÉ 7 DIAS PARA REAVALIAR A PRESSÃO",
+     "ESTA RECEITA É PARA COMEÇAR OU AJUSTAR O TRATAMENTO: MARCAR CONSULTA NA UNIDADE DE SAÚDE EM 1 A 7 DIAS PARA REAVALIAR A PRESSÃO",
      "NÃO PARAR OS REMÉDIOS DE PRESSÃO POR CONTA PRÓPRIA; DIMINUIR O SAL, EVITAR BEBIDA ALCOÓLICA E CIGARRO",
      "SE TIVER APARELHO, MEDIR A PRESSÃO SENTADO, EM REPOUSO, E ANOTAR PARA MOSTRAR NA CONSULTA",
      "RETORNAR IMEDIATAMENTE OU LIGAR 192 (SAMU) SE DOR NO PEITO, FALTA DE AR, DOR DE CABEÇA MUITO FORTE, CONFUSÃO, FRAQUEZA OU FORMIGAMENTO EM UM LADO DO CORPO, DIFICULDADE PARA FALAR OU ENXERGAR"
@@ -6566,12 +6566,14 @@ const DATA = [
      [
       "BUSCOPAN COMPOSTO®",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H. JÁ CONTÉM DIPIRONA — NÃO ASSOCIAR COM DIPIRONA",
+      "USO ORAL"
      ]
     ],
     "orient": [
      "EVITAR ALIMENTOS GORDUROSOS, FRITURAS E BEBIDA ALCOÓLICA ATÉ MELHORAR",
      "A CAUSA DA DOR NA BARRIGA PODE FICAR MAIS CLARA COM AS HORAS (EX.: APENDICITE NO INÍCIO): SE A DOR MUDAR DE LUGAR, FICAR MAIS FORTE OU NÃO MELHORAR EM 24 HORAS, VOLTAR PARA SER REAVALIADO",
+     "SE O ULTRASSOM MOSTRAR PEDRA NA VESÍCULA (COLELITÍASE), PROCURAR A UNIDADE DE SAÚDE PARA ENCAMINHAMENTO AO CIRURGIÃO",
      "RETORNAR IMEDIATAMENTE SE FEBRE, VÔMITOS QUE NÃO PARAM, PELE OU OLHOS AMARELADOS, URINA ESCURA OU FEZES CLARAS, BARRIGA DURA, SANGUE NO VÔMITO OU FEZES PRETAS"
     ]
    },
@@ -6593,7 +6595,7 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Cólica biliar: AINE por curto prazo",
+    "label": "Padrão — Cólica biliar: AINE por curto prazo (evitar se doença renal, úlcera ou sangramento digestivo, gestação, IC ou uso de anticoagulante)",
     "draft": true,
     "items": [
      [
@@ -6707,16 +6709,36 @@ const DATA = [
   "sub": "AAS · clopidogrel · isossorbida · nitroglicerina · enoxaparina · atorvastatina",
   "blocks": [
    {
-    "label": "Padrão — Suspeita de SCA: antiagregação imediata (se sem contraindicação)",
+    "label": "Padrão — Suspeita de SCA: AAS imediato (se sem contraindicação)",
     "mode": "internacao",
     "draft": true,
     "items": [
      [
       "ÁCIDO ACETILSALICÍLICO (AAS) 100 MG",
       "03 COMPRIMIDOS",
-      "ATAQUE: MASTIGAR 03 COMPRIMIDOS (300 MG) EM DOSE ÚNICA; DEPOIS 100 MG VIA ORAL 01 VEZ AO DIA",
+      "ATAQUE: MASTIGAR 03 COMPRIMIDOS (300 MG) EM DOSE ÚNICA — NÃO USAR COMPRIMIDO DE REVESTIMENTO ENTÉRICO NO ATAQUE; DEPOIS 100 MG VIA ORAL 01 VEZ AO DIA",
       "USO ORAL"
-     ],
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — IAM com supra de ST: reperfusão",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
+     [
+      "REPERFUSÃO: ANGIOPLASTIA PRIMÁRIA OU TROMBÓLISE",
+      "CONFORME PROTOCOLO",
+      "ACIONAR A REGULAÇÃO PARA ANGIOPLASTIA PRIMÁRIA SE PUDER SER FEITA EM ATÉ 120 MINUTOS DO DIAGNÓSTICO; SENÃO, TROMBÓLISE O MAIS CEDO POSSÍVEL, SE SEM CONTRAINDICAÇÃO — DROGA E DOSE PELA ABA CALCULADORAS › EMERGÊNCIA › TROMBÓLISE",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — SCA confirmada: 2º antiagregante",
+    "mode": "internacao",
+    "draft": true,
+    "items": [
      [
       "CLOPIDOGREL 75 MG",
       "08 COMPRIMIDOS",
@@ -6726,7 +6748,7 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Dor anginosa (PAS > 90 mmHg e sem sildenafila/tadalafila nas últimas 24–48 h) — escolha 1",
+    "label": "Padrão — Dor anginosa: nitrato — escolha 1",
     "mode": "internacao",
     "draft": true,
     "menu": true,
@@ -6734,13 +6756,13 @@ const DATA = [
      [
       "DINITRATO DE ISOSSORBIDA 5 MG",
       "03 COMPRIMIDOS",
-      "COLOCAR 01 COMPRIMIDO EMBAIXO DA LÍNGUA SE DOR; PODE REPETIR A CADA 5 MINUTOS ATÉ 03 DOSES, SE A PA PERMITIR",
+      "COLOCAR 01 COMPRIMIDO EMBAIXO DA LÍNGUA SE DOR; PODE REPETIR A CADA 5 MINUTOS ATÉ 03 DOSES, SE A PA PERMITIR. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
       "USO SUBLINGUAL"
      ],
      [
       "NITROGLICERINA 5 MG/ML (TRIDIL®) SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 10 ML",
-      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO OU USO DE SILDENAFILA/TADALAFILA NAS ÚLTIMAS 24 A 48 HORAS",
+      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
       "USO ENDOVENOSO"
      ]
     ]
@@ -7421,13 +7443,13 @@ const DATA = [
      [
       "DINITRATO DE ISOSSORBIDA 5 MG",
       "03 COMPRIMIDOS",
-      "SE PAS > 110 MMHG: COLOCAR 01 COMPRIMIDO EMBAIXO DA LÍNGUA, PODENDO REPETIR A CADA 5 A 10 MINUTOS (ATÉ 03 DOSES) ENQUANTO PREPARA A INFUSÃO",
+      "SE PAS > 110 MMHG: COLOCAR 01 COMPRIMIDO EMBAIXO DA LÍNGUA, PODENDO REPETIR A CADA 5 A 10 MINUTOS (ATÉ 03 DOSES) ENQUANTO PREPARA A INFUSÃO. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
       "USO SUBLINGUAL"
      ],
      [
       "NITROGLICERINA 5 MG/ML (TRIDIL®) SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 10 ML",
-      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO OU USO DE SILDENAFILA/TADALAFILA NAS ÚLTIMAS 24 A 48 HORAS",
+      "SE DOR PERSISTENTE, HIPERTENSÃO OU CONGESTÃO: INFUNDIR EM BOMBA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROGLICERINA. NÃO USAR SE PAS < 90 MMHG, INFARTO DE VENTRÍCULO DIREITO, SILDENAFILA NAS ÚLTIMAS 24 H OU TADALAFILA NAS ÚLTIMAS 48 H",
       "USO ENDOVENOSO"
      ]
     ]
@@ -9945,8 +9967,8 @@ const DATA = [
     "items": [
      [
       "GLICOSE 50% SOLUÇÃO INJETÁVEL",
-      "04 AMPOLAS 10 ML",
-      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA; REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. DOSE PELO PESO NA ABA CALCULADORAS › EMERGÊNCIA › HIPERCALEMIA E HIPOGLICEMIA",
+      "08 AMPOLAS 10 ML",
+      "SE GLICEMIA CAPILAR < 70 MG/DL E NÃO CONSEGUE INGERIR POR VIA ORAL: ADMINISTRAR 40 ML (20 G) EV EM VEIA CALIBROSA (A ABA CALCULADORAS USA 25 G = 50 ML); REPETIR A GLICEMIA EM 15 MINUTOS E REPETIR A DOSE SE AINDA < 70 MG/DL. ETILISTA OU DESNUTRIDO: TIAMINA 100 MG EV ANTES OU JUNTO, SEM ATRASAR A GLICOSE. NÃO DAR ALTA SE A HIPOGLICEMIA FOR POR SULFONILUREIA OU INSULINA DE AÇÃO LONGA: OBSERVAR DE 12 A 24 H COM SORO GLICOSADO E GLICEMIAS SERIADAS",
       "USO ENDOVENOSO"
      ],
      [
@@ -9971,7 +9993,7 @@ const DATA = [
      [
       "CLORETO DE POTÁSSIO 19,1% SOLUÇÃO INJETÁVEL (2,56 MEQ/ML)",
       "01 AMPOLA 10 ML",
-      "POTÁSSIO ENTRE 3,5 E 5,0 MEQ/L: ACRESCENTAR 20 A 30 MEQ (08 A 12 ML) EM CADA LITRO DE SORO, PARA MANTER O POTÁSSIO ENTRE 4 E 5. POTÁSSIO < 3,5: REPOR ANTES DE INICIAR A INSULINA. NUNCA EM BOLUS",
+      "POTÁSSIO > 5,0 MEQ/L: NÃO REPOR. ENTRE 3,5 E 5,0: ACRESCENTAR 20 A 30 MEQ (08 A 12 ML) EM CADA LITRO DE SORO, PARA MANTER O POTÁSSIO ENTRE 4 E 5 — NÃO NO 1º LITRO DA 1ª HORA. < 3,5: REPOR ANTES DE INICIAR A INSULINA. MÁXIMO 10 MEQ/H EM VEIA PERIFÉRICA (20 MEQ/H SÓ COM MONITORIZAÇÃO CARDÍACA). NUNCA EM BOLUS",
       "USO ENDOVENOSO"
      ],
      [
@@ -11722,7 +11744,7 @@ const DATA = [
      [
       "BROMOPRIDA 5 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 2 ML",
-      "ADMINISTRAR 10 MG (2 ML) EV LENTO OU IM, ATÉ DE 12/12H SE NÁUSEAS OU VÔMITOS",
+      "ADMINISTRAR 10 MG (2 ML) EV LENTO, ATÉ DE 12/12H SE NÁUSEAS OU VÔMITOS (MÁXIMO 20 MG/DIA). PODE CAUSAR REAÇÃO EXTRAPIRAMIDAL, COMO A METOCLOPRAMIDA",
       "USO ENDOVENOSO"
      ]
     ]
@@ -18245,7 +18267,7 @@ const KW = {
  "crise_hipertensiva": "crise hipertensiva (urgencia e emergencia) crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva hipertensao has pa elevada pressao 20 por 12 nitroprussiato nipride tridil captopril clonidina nitroglicerina losartana anlodipino hidroclorotiazida",
  "hiperglicemia": "hiperglicemia e hipoglicemia hiperglicemia hipoglicemia glicose alta glicose baixa acucar alto acucar baixo diabetes descompensado cetoacidose cad estado hiperosmolar ehh hipo glicemia baixa insulina metformina dm2 glucagon cloreto soro fisiologico potassio regular",
  "crise_convulsiva": "crise convulsiva crise convulsiva convulsao ataque epileptico epilepsia estado de mal epileptico crise epileptica ataque crise tonico clonica desmaio com tremores diazepam midazolam fenitoina hidantal levetiracetam keppra glicose",
- "dor_toracica": "dor toracica / sindrome coronariana aguda dor toracica dor no peito aperto no peito angina infarto iam sca sindrome coronariana aguda iamcsst iamssst coracao precordialgia aas aspirina clopidogrel isordil isossorbida tridil nitroglicerina enoxaparina atorvastatina acido acetilsalicilico dinitrato morfina dipirona paracetamol ibuprofeno",
+ "dor_toracica": "dor toracica / sindrome coronariana aguda dor toracica dor no peito aperto no peito angina infarto iam sca sindrome coronariana aguda iamcsst iamssst coracao precordialgia aas aspirina clopidogrel isordil isossorbida tridil nitroglicerina enoxaparina atorvastatina acido acetilsalicilico angioplastia primaria trombolise dinitrato morfina dipirona paracetamol ibuprofeno",
  "edema_agudo_pulmao": "edema agudo de pulmao / ic descompensada edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao pulmonar falta de ar cansaco inchaco nas pernas dispneia ortopneia furosemida lasix isordil isossorbida tridil nitroglicerina dobutamina noradrenalina vni cpap dinitrato oxigenio ventilacao invasiva bipap",
  "peconhentos": "acidentes por animais peconhentos (escorpiao, serpente, aranha) acidente por animal peconhento picada de escorpiao escorpiao escorpionismo cobra picada de cobra serpente ofidismo jararaca cascavel coral aranha armadeira aranha marrom loxosceles phoneutria picada veneno soro antiescorpionico soro antiofidico soro antiaracnidico lidocaina vasoconstritor dipirona saesc antibotropico anticrotalico antielapidico paracetamol",
  "mordedura": "mordedura de cao ou gato mordedura mordida de cachorro mordida de cao mordida de gato arranhadura acidente com animal raiva antirrabica profilaxia da raiva vacina antirrabica soro antirrabico imunoglobulina antirrabica tetano antitetanica amoxicilina clavulanato doxiciclina cultivo celular ighar dupla adulto difteria dipirona paracetamol potassio adsorvida pertussis",
