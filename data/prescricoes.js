@@ -1198,7 +1198,7 @@ const DATA = [
  {
   "id": "peconhentos",
   "ic": "🦂",
-  "nm": "Acidentes por animais peçonhentos (escorpião, serpente, aranha)",
+  "nm": "Acidentes por animais peçonhentos (escorpião e serpente)",
   "sub": "lidocaína local · dipirona · soro antiescorpiônico · soro antiofídico",
   "blocks": [
    {
@@ -1209,7 +1209,7 @@ const DATA = [
      [
       "LIDOCAÍNA 2% SEM VASOCONSTRITOR",
       "01 FRASCO-AMPOLA",
-      "INFILTRAR NO LOCAL DA PICADA 3 A 4 ML (CRIANÇA: 1 A 2 ML); PODE REPETIR ATÉ 3 VEZES COM INTERVALO DE 30 A 60 MINUTOS SE A DOR VOLTAR",
+      "INFILTRAR NO LOCAL DA PICADA 3 A 4 ML (CRIANÇA: 1 A 2 ML, SEM PASSAR DE 0,2 ML/KG = 4 MG/KG POR APLICAÇÃO); PODE REPETIR ATÉ 3 VEZES COM INTERVALO DE 40 A 60 MINUTOS SE A DOR VOLTAR",
       "USO SUBCUTÂNEO"
      ],
      [
@@ -1228,7 +1228,7 @@ const DATA = [
      [
       "SORO ANTIESCORPIÔNICO (SAESC)",
       "AMPOLAS CONFORME GRAVIDADE",
-      "SÓ SE QUADRO MODERADO (VÔMITOS OCASIONAIS, SUDORESE, AGITAÇÃO, TAQUICARDIA, HIPERTENSÃO) OU GRAVE (VÔMITOS PROFUSOS, CHOQUE, EDEMA PULMONAR, ARRITMIA, SONOLÊNCIA): MODERADO 2 A 3 AMPOLAS; GRAVE 4 A 6 AMPOLAS — EV EM 15 A 30 MINUTOS, EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA. NA FALTA, SORO ANTIARACNÍDICO (SAAR) NAS MESMAS DOSES",
+      "LEVE (SÓ DOR LOCAL): SEM SORO. MODERADO (MANIFESTAÇÕES SISTÊMICAS DISCRETAS NÃO EXPLICADAS SÓ PELA DOR): 3 AMPOLAS. GRAVE: 6 AMPOLAS (MÁXIMO 6, EM QUALQUER IDADE). EV, DILUÍDO 1:2 A 1:5 EM SF 0,9% OU SG 5%, EM 10 A 15 MINUTOS (SORO ANTIARACNÍDICO: 20 A 60 MINUTOS), EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA; SEM PRÉ-MEDICAÇÃO. CRIANÇA: MESMA DOSE, COM CUIDADO NO VOLUME DA DILUIÇÃO. NA FALTA, SORO ANTIARACNÍDICO (SAA) NAS MESMAS DOSES",
       "USO ENDOVENOSO"
      ]
     ]
@@ -1241,7 +1241,7 @@ const DATA = [
      [
       "SORO ANTIOFÍDICO ESPECÍFICO (ANTIBOTRÓPICO, ANTICROTÁLICO, ANTIBOTRÓPICO-LAQUÉTICO OU ANTIELAPÍDICO)",
       "AMPOLAS CONFORME GÊNERO E GRAVIDADE",
-      "NÚMERO DE AMPOLAS PELA TABELA DO MINISTÉRIO DA SAÚDE CONFORME O GÊNERO E A GRAVIDADE; EV EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA. COLHER TEMPO DE COAGULAÇÃO ANTES. NÃO FAZER TORNIQUETE, INCISÃO NEM SUCÇÃO",
+      "AMPOLAS CONFORME O GÊNERO E A GRAVIDADE — BOTRÓPICO: LEVE 3, MODERADO 6, GRAVE 12; LAQUÉTICO: MODERADO 10, GRAVE 20; CROTÁLICO: LEVE 5, MODERADO 10, GRAVE 20; ELAPÍDICO: LEVE SEM SORO, MODERADO 5, GRAVE 10. DOSE INTEIRA DE UMA VEZ, EV, EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA; SEM PRÉ-MEDICAÇÃO. COLHER TEMPO DE COAGULAÇÃO ANTES. NÃO FAZER TORNIQUETE, INCISÃO, SUCÇÃO NEM INJEÇÕES IM; ELEVAR O MEMBRO E HIDRATAR",
       "USO ENDOVENOSO"
      ]
     ]
@@ -1277,7 +1277,7 @@ const DATA = [
      [
       "LIDOCAÍNA 2% SEM VASOCONSTRITOR",
       "01 FRASCO-AMPOLA",
-      "INFILTRAR NO LOCAL DA PICADA 3 A 4 ML (CRIANÇA: 1 A 2 ML); PODE REPETIR ATÉ 3 VEZES COM INTERVALO DE 30 A 60 MINUTOS SE A DOR VOLTAR",
+      "INFILTRAR NO LOCAL DA PICADA 3 A 4 ML (CRIANÇA: 1 A 2 ML, SEM PASSAR DE 0,2 ML/KG = 4 MG/KG POR APLICAÇÃO); PODE REPETIR ATÉ 3 VEZES COM INTERVALO DE 40 A 60 MINUTOS SE A DOR VOLTAR",
       "USO SUBCUTÂNEO"
      ],
      [
@@ -1295,14 +1295,14 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Escorpião moderado ou grave: soro (mesma dose do adulto; criança evolui pior — observar de 6 a 12 h)",
+    "label": "Padrão — Escorpião moderado ou grave: soro (mesma dose do adulto)",
     "mode": "ped_internacao",
     "draft": true,
     "items": [
      [
       "SORO ANTIESCORPIÔNICO (SAESC)",
       "AMPOLAS CONFORME GRAVIDADE",
-      "SÓ SE QUADRO MODERADO (VÔMITOS OCASIONAIS, SUDORESE, AGITAÇÃO, TAQUICARDIA, HIPERTENSÃO) OU GRAVE (VÔMITOS PROFUSOS, CHOQUE, EDEMA PULMONAR, ARRITMIA, SONOLÊNCIA): MODERADO 2 A 3 AMPOLAS; GRAVE 4 A 6 AMPOLAS — EV EM 15 A 30 MINUTOS, EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA. NA FALTA, SORO ANTIARACNÍDICO (SAAR) NAS MESMAS DOSES",
+      "LEVE (SÓ DOR LOCAL): SEM SORO. MODERADO (MANIFESTAÇÕES SISTÊMICAS DISCRETAS NÃO EXPLICADAS SÓ PELA DOR): 3 AMPOLAS. GRAVE: 6 AMPOLAS (MÁXIMO 6, EM QUALQUER IDADE). EV, DILUÍDO 1:2 A 1:5 EM SF 0,9% OU SG 5%, EM 10 A 15 MINUTOS (SORO ANTIARACNÍDICO: 20 A 60 MINUTOS), EM HOSPITAL DE REFERÊNCIA, COM MONITORIZAÇÃO E MATERIAL PARA ANAFILAXIA; SEM PRÉ-MEDICAÇÃO. CRIANÇA: MESMA DOSE, COM CUIDADO NO VOLUME DA DILUIÇÃO. NA FALTA, SORO ANTIARACNÍDICO (SAA) NAS MESMAS DOSES",
       "USO ENDOVENOSO"
      ]
     ]
@@ -1425,13 +1425,13 @@ const DATA = [
      [
       "HALOPERIDOL 5 MG",
       "01 COMPRIMIDO",
-      "ADMINISTRAR 01 COMPRIMIDO (5 MG) VIA ORAL; PODE REPETIR APÓS 60 MINUTOS SE NECESSÁRIO",
+      "ADMINISTRAR 01 COMPRIMIDO (5 MG) VIA ORAL; SE NECESSÁRIO, REPETIR SÓ APÓS 8 HORAS (MÁXIMO 15 MG EM 24 H)",
       "USO ORAL"
      ],
      [
       "RISPERIDONA 2 MG",
       "01 COMPRIMIDO",
-      "ADMINISTRAR 01 COMPRIMIDO (2 MG) VIA ORAL; PODE REPETIR APÓS 60 MINUTOS SE NECESSÁRIO",
+      "ADMINISTRAR 01 COMPRIMIDO (2 MG) VIA ORAL; PODE REPETIR APÓS 60 MINUTOS SE NECESSÁRIO (MÁXIMO 8 MG EM 24 H)",
       "USO ORAL"
      ]
     ]
@@ -1444,13 +1444,13 @@ const DATA = [
      [
       "HALOPERIDOL 5 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 1 ML",
-      "APLICAR 5 MG (1 ML) IM; PODE REPETIR APÓS 30 A 60 MINUTOS SE NECESSÁRIO. MONITORIZAR SINAIS VITAIS",
+      "APLICAR 5 MG (1 ML) IM (IDOSO: 2,5 MG); PODE REPETIR APÓS 30 MINUTOS SE NECESSÁRIO (MÁXIMO 30 MG EM 24 H). MONITORIZAR SINAIS VITAIS; ECG SE CARDIOPATIA, DISTÚRBIO ELETROLÍTICO OU HISTÓRIA DESCONHECIDA",
       "USO INTRAMUSCULAR"
      ],
      [
       "PROMETAZINA 25 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 2 ML",
-      "APLICAR 50 MG (2 ML) IM PROFUNDO, JUNTO COM O HALOPERIDOL (REDUZ REAÇÕES EXTRAPIRAMIDAIS). NÃO APLICAR EV",
+      "APLICAR 50 MG (2 ML) IM PROFUNDO, JUNTO COM O HALOPERIDOL (REDUZ REAÇÕES EXTRAPIRAMIDAIS); MÁXIMO 100 MG EM 24 H. NÃO APLICAR EV",
       "USO INTRAMUSCULAR"
      ]
     ]
@@ -4561,13 +4561,13 @@ const DATA = [
      [
       "DIAZEPAM 5 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 2 ML",
-      "CRISE ≥ 5 MINUTOS: ADMINISTRAR 10 MG (2 ML) EV LENTO, SEM DILUIR; PODE REPETIR 01 VEZ APÓS 5 MINUTOS SE A CRISE CONTINUAR",
+      "CRISE ≥ 5 MINUTOS: ADMINISTRAR 10 MG (2 ML) EV LENTO (ATÉ 5 MG/MIN), SEM DILUIR; PODE REPETIR 01 VEZ APÓS 5 MINUTOS SE A CRISE CONTINUAR. RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
       "USO ENDOVENOSO"
      ],
      [
       "MIDAZOLAM 5 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 3 ML",
-      "SEM ACESSO VENOSO: APLICAR 10 MG (2 ML) IM EM DOSE ÚNICA (PESO > 40 KG; 13 A 40 KG: 5 MG)",
+      "SEM ACESSO VENOSO: APLICAR 10 MG (2 ML) IM EM DOSE ÚNICA (PESO > 40 KG; 13 A 40 KG: 5 MG). RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
       "USO INTRAMUSCULAR"
      ]
     ]
@@ -4581,7 +4581,7 @@ const DATA = [
      [
       "FENITOÍNA 50 MG/ML SOLUÇÃO INJETÁVEL",
       "AMPOLAS DE 5 ML CONFORME DOSE",
-      "ATAQUE: {DOSE} EV DILUÍDO EM 100 A 250 ML DE SF 0,9% (NUNCA EM SORO GLICOSADO), NO MÁXIMO 50 MG/MIN, COM MONITORIZAÇÃO DE ECG E PA (20 MG/KG; MÁXIMO 1.500 MG)",
+      "ATAQUE: {DOSE} EV DILUÍDO EM SF 0,9% ATÉ CONCENTRAÇÃO FINAL ≥ 5 MG/ML (ADULTO: EM 100 ML), NUNCA EM SORO GLICOSADO, COM FILTRO DE LINHA SE DISPONÍVEL, EM VEIA CALIBROSA; NO MÁXIMO 50 MG/MIN (IDOSO OU CARDIOPATA: 25 MG/MIN), COM MONITORIZAÇÃO DE ECG E PA. NÃO USAR SE BRADICARDIA OU BAV DE 2º OU 3º GRAU (20 MG/KG; MÁXIMO 1.500 MG)",
       "USO ENDOVENOSO",
       {
        "kg": 20,
@@ -4603,10 +4603,16 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Glicemia capilar < 70 mg/dL",
+    "label": "Padrão — Glicemia capilar < 70 mg/dL (tiamina antes da glicose se etilista ou desnutrido)",
     "mode": "internacao",
     "draft": true,
     "items": [
+     [
+      "TIAMINA (CLORIDRATO) 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "ETILISTA OU DESNUTRIDO: ADMINISTRAR 100 MG (1 ML) EV ANTES DA GLICOSE, SEM ATRASÁ-LA",
+      "USO ENDOVENOSO"
+     ],
      [
       "GLICOSE 50% SOLUÇÃO INJETÁVEL",
       "08 AMPOLAS 10 ML",
@@ -4624,7 +4630,7 @@ const DATA = [
      [
       "DIAZEPAM 5 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 2 ML",
-      "ADMINISTRAR {DOSE} EV LENTO, SEM DILUIR (0,2 MG/KG; MÁXIMO 10 MG); PODE REPETIR 01 VEZ APÓS 5 MINUTOS SE A CRISE CONTINUAR",
+      "ADMINISTRAR {DOSE} EV LENTO (ATÉ 5 MG/MIN), SEM DILUIR (0,2 MG/KG; MÁXIMO 10 MG); PODE REPETIR 01 VEZ APÓS 5 MINUTOS SE A CRISE CONTINUAR. RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
       "USO ENDOVENOSO",
       {
        "kg": 0.2,
@@ -4635,7 +4641,7 @@ const DATA = [
      [
       "MIDAZOLAM 5 MG/ML SOLUÇÃO INJETÁVEL",
       "01 AMPOLA 3 ML",
-      "SEM ACESSO VENOSO: APLICAR {DOSE} IM EM DOSE ÚNICA (0,2 MG/KG; MÁXIMO 10 MG)",
+      "SEM ACESSO VENOSO: APLICAR {DOSE} IM EM DOSE ÚNICA (0,2 MG/KG; MÁXIMO 10 MG). RISCO DE DEPRESSÃO RESPIRATÓRIA: MONITORIZAR SATO2 E TER MATERIAL DE VIA AÉREA",
       "USO INTRAMUSCULAR",
       {
        "kg": 0.2,
@@ -4654,7 +4660,7 @@ const DATA = [
      [
       "FENITOÍNA 50 MG/ML SOLUÇÃO INJETÁVEL",
       "AMPOLAS DE 5 ML CONFORME DOSE",
-      "ATAQUE: {DOSE} EV DILUÍDO EM SF 0,9% (NUNCA EM SORO GLICOSADO), NO MÁXIMO 1 MG/KG/MIN (ATÉ 50 MG/MIN), COM MONITORIZAÇÃO DE ECG E PA (20 MG/KG; MÁXIMO 1.500 MG)",
+      "ATAQUE: {DOSE} EV DILUÍDO EM SF 0,9% ATÉ CONCENTRAÇÃO FINAL ≥ 5 MG/ML, NUNCA EM SORO GLICOSADO, COM FILTRO DE LINHA SE DISPONÍVEL, EM VEIA CALIBROSA; NO MÁXIMO 1 MG/KG/MIN (ATÉ 50 MG/MIN), COM MONITORIZAÇÃO DE ECG E PA. NÃO USAR SE BRADICARDIA OU BAV DE 2º OU 3º GRAU (20 MG/KG; MÁXIMO 1.500 MG)",
       "USO ENDOVENOSO",
       {
        "kg": 20,
@@ -11217,7 +11223,8 @@ const DATA = [
      [
       "DOXICICLINA 100 MG",
       "10 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS, COM UM COPO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES"
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS, COM UM COPO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES. NÃO USAR EM GESTANTES",
+      "USO ORAL"
      ]
     ],
     "orient": [
@@ -11228,25 +11235,38 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Profilaxia antirrábica (conforme o animal e o tipo de exposição)",
+    "label": "Padrão — Vacina antirrábica (cão ou gato saudável e observável: não vacinar, observar 10 dias)",
     "draft": true,
     "items": [
      [
       "VACINA ANTIRRÁBICA HUMANA (CULTIVO CELULAR)",
       "04 DOSES",
-      "APLICAR 01 DOSE IM NOS DIAS 0, 3, 7 E 14 (DELTOIDE; MENORES DE 2 ANOS: VASTO LATERAL DA COXA), CONFORME O TIPO DE EXPOSIÇÃO E A OBSERVAÇÃO DO ANIMAL (CÃO OU GATO: OBSERVAR POR 10 DIAS) — PROTOCOLO DO MINISTÉRIO DA SAÚDE",
-      "USO INTRAMUSCULAR"
-     ],
-     [
-      "SORO ANTIRRÁBICO (SAR) OU IMUNOGLOBULINA HUMANA ANTIRRÁBICA (IGHAR)",
-      "CONFORME O PESO",
-      "SE EXPOSIÇÃO GRAVE COM INDICAÇÃO PELO PROTOCOLO: SAR 40 UI/KG OU IGHAR 20 UI/KG, EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL AO REDOR DA(S) LESÃO(ÕES); O RESTANTE IM EM LOCAL DIFERENTE DA VACINA",
+      "SÓ SE O ANIMAL NÃO PUDER SER OBSERVADO, FOR SUSPEITO DE RAIVA, MORRER OU DESAPARECER, OU SE MORCEGO OU ANIMAL SILVESTRE: APLICAR 01 DOSE IM NOS DIAS 0, 3, 7 E 14, NO DELTOIDE (MENORES DE 2 ANOS: VASTO LATERAL DA COXA; NUNCA NO GLÚTEO). CÃO OU GATO SEM SINAIS DE RAIVA E QUE PODE SER OBSERVADO: NÃO VACINAR — OBSERVAR O ANIMAL POR 10 DIAS",
       "USO INTRAMUSCULAR"
      ]
     ]
    },
    {
-    "label": "Padrão — Profilaxia antitetânica (conforme o cartão vacinal)",
+    "label": "Padrão — Soro ou imunoglobulina antirrábica (só exposição grave com animal não observável/suspeito, ou morcego) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "SORO ANTIRRÁBICO (SAR)",
+      "CONFORME O PESO",
+      "SÓ EM EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU EM QUALQUER EXPOSIÇÃO A MORCEGO: 40 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITO ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA. TER MATERIAL PARA TRATAR ANAFILAXIA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "IMUNOGLOBULINA HUMANA ANTIRRÁBICA (IGHAR)",
+      "CONFORME O PESO",
+      "MESMAS INDICAÇÕES DO SORO (EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU QUALQUER EXPOSIÇÃO A MORCEGO): 20 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITA ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Vacina antitetânica (conforme o cartão vacinal)",
     "draft": true,
     "items": [
      [
@@ -11254,7 +11274,13 @@ const DATA = [
       "01 DOSE",
       "APLICAR 0,5 ML NO DELTOIDE EM DOSE ÚNICA (REFORÇO OU INÍCIO/COMPLEMENTAÇÃO DO ESQUEMA, CONFORME CARTÃO VACINAL)",
       "USO INTRAMUSCULAR"
-     ],
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Imunoglobulina antitetânica (ferimento de alto risco com esquema incompleto ou desconhecido; junto com a vacina)",
+    "draft": true,
+    "items": [
      [
       "IMUNOGLOBULINA HUMANA ANTITETÂNICA 250 UI",
       "01 AMPOLA",
@@ -11307,28 +11333,43 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Profilaxia antirrábica (conforme o animal e o tipo de exposição)",
+    "label": "Padrão — Vacina antirrábica (cão ou gato saudável e observável: não vacinar, observar 10 dias)",
     "mode": "ped",
     "draft": true,
     "items": [
      [
       "VACINA ANTIRRÁBICA HUMANA (CULTIVO CELULAR)",
       "04 DOSES",
-      "APLICAR 01 DOSE IM NOS DIAS 0, 3, 7 E 14 (DELTOIDE; MENORES DE 2 ANOS: VASTO LATERAL DA COXA), CONFORME O TIPO DE EXPOSIÇÃO E A OBSERVAÇÃO DO ANIMAL (CÃO OU GATO: OBSERVAR POR 10 DIAS) — PROTOCOLO DO MINISTÉRIO DA SAÚDE",
-      "USO INTRAMUSCULAR"
-     ],
-     [
-      "SORO ANTIRRÁBICO (SAR) OU IMUNOGLOBULINA HUMANA ANTIRRÁBICA (IGHAR)",
-      "CONFORME O PESO",
-      "SE EXPOSIÇÃO GRAVE COM INDICAÇÃO PELO PROTOCOLO: SAR 40 UI/KG OU IGHAR 20 UI/KG, EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL AO REDOR DA(S) LESÃO(ÕES); O RESTANTE IM EM LOCAL DIFERENTE DA VACINA",
+      "SÓ SE O ANIMAL NÃO PUDER SER OBSERVADO, FOR SUSPEITO DE RAIVA, MORRER OU DESAPARECER, OU SE MORCEGO OU ANIMAL SILVESTRE: APLICAR 01 DOSE IM NOS DIAS 0, 3, 7 E 14, NO DELTOIDE (MENORES DE 2 ANOS: VASTO LATERAL DA COXA; NUNCA NO GLÚTEO). CÃO OU GATO SEM SINAIS DE RAIVA E QUE PODE SER OBSERVADO: NÃO VACINAR — OBSERVAR O ANIMAL POR 10 DIAS",
       "USO INTRAMUSCULAR"
      ]
     ]
    },
    {
-    "label": "Padrão — Profilaxia antitetânica (conforme a caderneta vacinal)",
+    "label": "Padrão — Soro ou imunoglobulina antirrábica (só exposição grave com animal não observável/suspeito, ou morcego) — escolha 1",
     "mode": "ped",
     "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "SORO ANTIRRÁBICO (SAR)",
+      "CONFORME O PESO",
+      "SÓ EM EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU EM QUALQUER EXPOSIÇÃO A MORCEGO: 40 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITO ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA. TER MATERIAL PARA TRATAR ANAFILAXIA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "IMUNOGLOBULINA HUMANA ANTIRRÁBICA (IGHAR)",
+      "CONFORME O PESO",
+      "MESMAS INDICAÇÕES DO SORO (EXPOSIÇÃO GRAVE COM ANIMAL NÃO OBSERVÁVEL OU SUSPEITO, OU QUALQUER EXPOSIÇÃO A MORCEGO): 20 UI/KG EM DOSE ÚNICA, INFILTRANDO O MÁXIMO POSSÍVEL NA(S) LESÃO(ÕES); O RESTANTE IM EM GRUPO MUSCULAR DIFERENTE DO DA VACINA. PODE SER FEITA ATÉ 7 DIAS APÓS A 1ª DOSE DA VACINA",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Vacina antitetânica conforme a idade e a caderneta — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
     "items": [
      [
       "VACINA ADSORVIDA DIFTERIA, TÉTANO E PERTUSSIS (DTP) 0,5 ML",
@@ -11341,7 +11382,14 @@ const DATA = [
       "01 DOSE",
       "A PARTIR DE 07 ANOS: APLICAR 0,5 ML NO DELTOIDE EM DOSE ÚNICA (REFORÇO OU INÍCIO/COMPLEMENTAÇÃO DO ESQUEMA, CONFORME CADERNETA VACINAL)",
       "USO INTRAMUSCULAR"
-     ],
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Imunoglobulina antitetânica (ferimento de alto risco com esquema incompleto ou desconhecido; junto com a vacina)",
+    "mode": "ped",
+    "draft": true,
+    "items": [
      [
       "IMUNOGLOBULINA HUMANA ANTITETÂNICA 250 UI",
       "01 AMPOLA",
@@ -11943,6 +11991,26 @@ const DATA = [
     "orient": [
      "LEVAR A CRIANÇA AO DENTISTA (UNIDADE DE SAÚDE) O QUANTO ANTES: O TRATAMENTO DEFINITIVO É FEITO NO DENTE",
      "RETORNAR IMEDIATAMENTE SE O INCHAÇO NO ROSTO AUMENTAR, FEBRE, DIFICULDADE PARA ABRIR A BOCA OU ENGOLIR"
+    ]
+   },
+   {
+    "label": "Padrão — Abscesso com febre ou inchaço no rosto: amoxicilina pelo peso + encaminhar ao dentista",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 8/8H POR 05 DIAS (50 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 3,
+       "conc": 50,
+       "un": "ML",
+       "max": 1000
+      }
+     ]
     ]
    }
   ]
@@ -18266,10 +18334,10 @@ const KW = {
  "dor_abdominal": "dor abdominal, colica biliar e dispepsia dor abdominal dor de barriga dor na barriga colica biliar colica de vesicula calculo na vesicula colelitiase dispepsia epigastralgia queimacao no estomago empachamento indigestao gastrite azia butilbrometo escopolamina buscopan composto dipirona paracetamol diclofenaco omeprazol hidroxido aluminio cetoprofeno tramadol morfina metoclopramida ondansetrona",
  "crise_hipertensiva": "crise hipertensiva (urgencia e emergencia) crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva hipertensao has pa elevada pressao 20 por 12 nitroprussiato nipride tridil captopril clonidina nitroglicerina losartana anlodipino hidroclorotiazida",
  "hiperglicemia": "hiperglicemia e hipoglicemia hiperglicemia hipoglicemia glicose alta glicose baixa acucar alto acucar baixo diabetes descompensado cetoacidose cad estado hiperosmolar ehh hipo glicemia baixa insulina metformina dm2 glucagon cloreto soro fisiologico potassio regular",
- "crise_convulsiva": "crise convulsiva crise convulsiva convulsao ataque epileptico epilepsia estado de mal epileptico crise epileptica ataque crise tonico clonica desmaio com tremores diazepam midazolam fenitoina hidantal levetiracetam keppra glicose",
+ "crise_convulsiva": "crise convulsiva crise convulsiva convulsao ataque epileptico epilepsia estado de mal epileptico crise epileptica ataque crise tonico clonica desmaio com tremores diazepam midazolam fenitoina hidantal levetiracetam keppra glicose tiamina",
  "dor_toracica": "dor toracica / sindrome coronariana aguda dor toracica dor no peito aperto no peito angina infarto iam sca sindrome coronariana aguda iamcsst iamssst coracao precordialgia aas aspirina clopidogrel isordil isossorbida tridil nitroglicerina enoxaparina atorvastatina acido acetilsalicilico angioplastia primaria trombolise dinitrato morfina dipirona paracetamol ibuprofeno",
  "edema_agudo_pulmao": "edema agudo de pulmao / ic descompensada edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao pulmonar falta de ar cansaco inchaco nas pernas dispneia ortopneia furosemida lasix isordil isossorbida tridil nitroglicerina dobutamina noradrenalina vni cpap dinitrato oxigenio ventilacao invasiva bipap",
- "peconhentos": "acidentes por animais peconhentos (escorpiao, serpente, aranha) acidente por animal peconhento picada de escorpiao escorpiao escorpionismo cobra picada de cobra serpente ofidismo jararaca cascavel coral aranha armadeira aranha marrom loxosceles phoneutria picada veneno soro antiescorpionico soro antiofidico soro antiaracnidico lidocaina vasoconstritor dipirona saesc antibotropico anticrotalico antielapidico paracetamol",
+ "peconhentos": "acidentes por animais peconhentos (escorpiao, serpente, aranha) acidente por animal peconhento picada de escorpiao escorpiao escorpionismo cobra picada de cobra serpente ofidismo jararaca cascavel coral aranha armadeira aranha marrom loxosceles phoneutria picada veneno soro antiescorpionico soro antiofidico soro antiaracnidico lidocaina vasoconstritor dipirona saesc antibotropico anticrotalico antielapidico paracetamol (escorpiao e serpente)",
  "mordedura": "mordedura de cao ou gato mordedura mordida de cachorro mordida de cao mordida de gato arranhadura acidente com animal raiva antirrabica profilaxia da raiva vacina antirrabica soro antirrabico imunoglobulina antirrabica tetano antitetanica amoxicilina clavulanato doxiciclina cultivo celular ighar dupla adulto difteria dipirona paracetamol potassio adsorvida pertussis",
  "abscesso_cutaneo": "abscesso cutaneo / furunculo abscesso cutaneo abscesso de pele furunculo carbunculo antraz tumor com pus caroco inflamado pus na pele foliculite drenagem cefalexina sulfametoxazol trimetoprima bactrim dipirona paracetamol ibuprofeno",
  "odontalgia": "odontalgia / abscesso dentario odontalgia dor de dente dente doendo abscesso dentario abscesso dental carie inflamada pulpite rosto inchado por dente gengiva inchada dentista ibuprofeno amoxicilina clindamicina naproxeno sodico dipirona paracetamol",
