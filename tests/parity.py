@@ -96,7 +96,8 @@ FILTER = r"""
 }
 """
 
-LANDMARKS = [("DATA+KW", r"^const DATA = \[$", r"^\};$", r"^const KW = \{$"),
+LANDMARKS = [("DATA", r"^const DATA = \[$", r"^\];$", None),
+             ("KW", r"^const KW = \{$", r"^\};$", None),
              ("MINHA", r"^const MINHA = \[$", r"^\];$", None)]
 
 
@@ -125,18 +126,27 @@ def run(browser, old_url, new_url, old_root, new_root, full=True):
     rep = Report("parity")
     # 1. data: source text and parsed values
     ro, rn = data_regions(old_root), data_regions(new_root)
-    for name in ("DATA+KW", "MINHA"):
+    # DATA and MINHA must be byte-identical. KW may only grow: phase 2 appended synonyms to some entries (never removed a word).
+    for name in ("DATA", "KW", "MINHA"):
         ho = hashlib.sha256(ro.get(name, "").encode()).hexdigest()
         hn = hashlib.sha256(rn.get(name, "").encode()).hexdigest()
-        rep.check(name in ro and name in rn and ho == hn, f"{name} source text differs")
+        if name != "KW":
+            rep.check(name in ro and name in rn and ho == hn, f"{name} source text differs")
         rep.note(f"{name} source region: {len(rn.get(name, '').encode())} bytes, sha256 old={ho[:16]} new={hn[:16]}")
     po, pn = Page(browser, old_url), Page(browser, new_url)
     get = "() => JSON.stringify({DATA, KW, MINHA})"
     do, dn = json.loads(po.page.evaluate(get)), json.loads(pn.page.evaluate(get))
-    rep.check(do == dn, "parsed DATA/KW/MINHA differ")
+    rep.check(do["DATA"] == dn["DATA"] and do["MINHA"] == dn["MINHA"], "parsed DATA/MINHA differ")
+    kw_ok = do["KW"].keys() == dn["KW"].keys() and all(dn["KW"][k].startswith(do["KW"][k]) for k in do["KW"])
+    rep.check(kw_ok, "KW changed other than by appending text")
+    grown = {k: dn["KW"][k][len(do["KW"][k]):].strip() for k in do["KW"] if k in dn["KW"] and dn["KW"][k] != do["KW"][k]}
     nblocks = sum(len(c["blocks"]) for c in dn["DATA"])
-    rep.note(f"parsed data deep-equal: {do == dn} (DATA {len(dn['DATA'])} conditions / {nblocks} blocks, "
-             f"KW {len(dn['KW'])} keys, MINHA {len(dn['MINHA'])} cards)")
+    rep.note(f"parsed DATA/MINHA deep-equal: {do['DATA'] == dn['DATA'] and do['MINHA'] == dn['MINHA']} (DATA {len(dn['DATA'])} conditions / "
+             f"{nblocks} blocks, MINHA {len(dn['MINHA'])} cards); KW {len(dn['KW'])} keys, append-only: {kw_ok}, {len(grown)} entries grew")
+    # the KW region itself: identical except the grown entries (each old line is a prefix of the new one, minus the closing quote)
+    ol, nl = ro.get("KW", "").split("\n"), rn.get("KW", "").split("\n")
+    rep.check(len(ol) == len(nl) and all(a == b or (a.endswith('",') and b.startswith(a[:-2])) or (a.endswith('"') and b.startswith(a[:-1]))
+                                         for a, b in zip(ol, nl)), "KW source lines changed other than by appending")
 
     # 2. receita for every condition × mode × weight
     n_cond = po.page.evaluate("() => document.querySelectorAll('#cond-list .cond').length")
