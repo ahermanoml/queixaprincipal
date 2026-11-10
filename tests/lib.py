@@ -36,8 +36,9 @@ def free_port():
 @contextlib.contextmanager
 def http_server(root):
     port = free_port()
-    p = subprocess.Popen([sys.executable, "-m", "http.server", str(port), "--bind", "127.0.0.1"],
-                         cwd=root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # -I and --directory: nothing from the served folder is ever imported (it may be downloaded input)
+    p = subprocess.Popen([sys.executable, "-I", "-m", "http.server", str(port), "--bind", "127.0.0.1", "--directory", os.path.abspath(root)],
+                         cwd="/", stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
         for _ in range(100):
             try:
@@ -73,6 +74,9 @@ class Page:
         self.ctx = browser.new_context(viewport={"width": width, "height": height})
         self.ctx.add_init_script(CLIPBOARD_STUB)
         self.page = self.ctx.new_page()
+        # nothing outside this machine is ever fetched (the original Ficha Vermelha pages ask for Google Fonts)
+        self.page.route("**/*", lambda r: r.continue_() if r.request.url.startswith(("file://", "http://127.0.0.1", "data:", "about:"))
+                        else r.abort())
         self.problems = []
         # "Failed to load resource" console lines carry no URL; failed responses are checked below instead
         self.page.on("console", lambda m: m.type in ("error", "warning") and

@@ -127,13 +127,15 @@ def search(browser, url, rep):
     p = Page(browser, base)
     pg = p.page
     n = 0
-    data = pg.evaluate("() => ({DATA: DATA.map(c => ({id: c.id, nm: c.nm, sub: c.sub || '', kw: KW[c.id] || ''})), MINHA})")
+    data = pg.evaluate("() => ({DATA: DATA.map(c => ({id: c.id, nm: c.nm, sub: c.sub || '', kw: KW[c.id] || ''})), MINHA, "
+                       "ESC: ESC_ALL.map(s => ({id: s.slug, hay: s.name + ' ' + s.kicker + ' ' + escKw(s)}))})")
 
     def expected(q):
         toks = jsnorm(q).split()
         conds = [c["id"] for c in data["DATA"] if all(t in jsnorm(c["nm"] + " " + c["sub"] + " " + c["kw"]) for t in toks)]
         cards = [str(i) for i, m in enumerate(data["MINHA"]) if all(t in jsnorm(m["titulo"] + " " + m["grupo"] + " " + "\n".join(m["linhas"])) for t in toks)]
-        return conds, cards
+        scores = [s["id"] for s in data["ESC"] if all(t in jsnorm(s["hay"]) for t in toks)]
+        return conds, cards, scores
 
     def st():
         return pg.evaluate(SEARCH_STATE)
@@ -166,23 +168,26 @@ def search(browser, url, rep):
     n += 6
 
     # accent/case-insensitive matching, against an independent count
-    for q in ["infeccao", "INFECÇÃO", "Infecção urinária", "dor", "amoxicilina", "febre crianca", "evolucao", "cefaleia", "PNEUMONIA", "zzzzqx"]:
+    for q in ["infeccao", "INFECÇÃO", "Infecção urinária", "dor", "amoxicilina", "febre crianca", "evolucao", "cefaleia", "PNEUMONIA", "zzzzqx",
+              "nihss", "wells", "avc", "tep", "cha2ds2", "glasgow"]:
         pg.click("#mid-title")
         pg.keyboard.press("Control+k")
         pg.keyboard.type(q)
         s = st()
-        conds, cards = expected(q)
+        conds, cards, scores = expected(q)
         got_c = sorted(x.split(":", 1)[1] for x in s["ids"] if x.startswith("prescricoes:"))
         got_r = sorted(x.split(":", 1)[1] for x in s["ids"] if x.startswith("rascunho:"))
-        rep.check(got_c == sorted(conds) and got_r == sorted(cards), f"search {q!r}: got {len(got_c)}+{len(got_r)}, expected {len(conds)}+{len(cards)}")
-        if conds or cards:
+        got_e = sorted(x.split(":", 1)[1] for x in s["ids"] if x.startswith("escores:"))
+        rep.check(got_c == sorted(conds) and got_r == sorted(cards) and got_e == sorted(scores),
+                  f"search {q!r}: got {len(got_c)}+{len(got_e)}+{len(got_r)}, expected {len(conds)}+{len(scores)}+{len(cards)}")
+        if conds or cards or scores:
             names = [re.sub(r"\s+\d+$", "", g[0]) for g in s["groups"]]
-            rep.check(names == [x for x, ok in (("💊 Prescrições", conds), ("⭐ Meu rascunho", cards)) if ok]
+            rep.check(names == [x for x, ok in (("💊 Prescrições", conds), ("📊 Escores", scores), ("⭐ Meu rascunho", cards)) if ok]
                       and s["active"] == "bo-0", f"search {q!r}: groups/active {s['groups']} {s['active']}")
         else:
             rep.check(s["empty"] and "Nada encontrado" in s["empty"] and s["status"] == "Nenhum resultado" and s["open"],
                       f"empty state for {q!r}: {s}")
-        rep.note(f"search {q!r}: {len(got_c)} conditions + {len(got_r)} rascunho cards")
+        rep.note(f"search {q!r}: {len(got_c)} conditions + {len(got_e)} scores + {len(got_r)} rascunho cards")
         n += 1
         pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
     same = pg.evaluate("() => { const f = q => { const i = document.querySelector('#busca-input'); i.value = q; i.dispatchEvent(new Event('input')); return buscaRes.map(r => r.e.id).join(); }; return [f('infeccao'), f('INFECÇÃO'), f('Infecção')]; }")
@@ -247,6 +252,9 @@ def search(browser, url, rep):
     pg.fill("#cond-search", "infeccao")
     nf = pg.evaluate("() => document.querySelectorAll('#cond-list .cond').length")
     rep.check(nf > 0 and nf == len(expected("infeccao")[0]), f"column filter 'infeccao' finds {nf}")
+    pg.fill("#cond-search", "infecção urinária")
+    rep.check("itu" in pg.evaluate("() => [...document.querySelectorAll('#cond-list .cond')].map(b => b.dataset.id)"),
+              "column filter 'infecção urinária' finds ITU / Cistite (KW synonym)")
     n += 1
     rep.check(not p.problems, "search console problems: " + "; ".join(p.problems[:5]))
     p.close()
@@ -275,8 +283,107 @@ def search(browser, url, rep):
     rep.note(f"search: {n} check groups")
 
 
+def escores(browser, url, rep):
+    base = url.split("#")[0]
+    n = 0
+    p = Page(browser, base)
+    pg = p.page
+    slugs = pg.evaluate("() => ESC_ALL.map(s => s.slug)")
+    rep.check(len(slugs) == 26 and slugs[0] == "nihss", f"26 entries, NIHSS first: {slugs[:3]}")
+    rep.check(pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view).join()") == "prescricoes,escores,rascunho",
+              "tab order Prescrições, Escores, Meu rascunho")
+    order = pg.evaluate("() => [...document.querySelectorAll('#esc-list .esc-lgrp')].map(e => e.textContent)")
+    rep.check(order[0] == "Mais usados" and order[1:] == sorted(order[1:], key=lambda s: jsnorm(s)), f"list groups: {order}")
+    n += 3
+    # receita: fill it, go to Escores (hidden), come back (same content)
+    pg.click('#cond-list .cond >> nth=0')
+    pg.locator(".addall:visible").first.click()
+    rx = pg.input_value("#rx")
+    pg.click("#tab-escores")
+    s = pg.evaluate("() => [document.querySelector('#col-rx').hidden, document.body.dataset.rx, location.hash, getComputedStyle(document.querySelector('.grid')).gridTemplateColumns.split(' ').length]")
+    rep.check(s[0] and s[1] == "off" and s[2] == "#/escores" and s[3] == 2, f"Escores hides the receita column: {s}")
+    pg.click('#esc-list .esc-row[data-slug="heart"]')
+    pg.wait_for_timeout(50)
+    rep.check(pg.evaluate("location.hash") == "#/escores/heart", "clicking a score sets #/escores/<slug>")
+    pg.click("#tab-prescricoes")
+    s = pg.evaluate("() => [document.querySelector('#col-rx').hidden, document.querySelector('#rx').value, curCond && curCond.id]")
+    rep.check(not s[0] and s[1] == rx and rx and s[2], f"receita back on Prescrições with its content: {s[:1]} same={s[1] == rx}")
+    pg.click("#tab-escores")
+    rep.check(pg.evaluate("() => curEsc && curEsc.slug") == "heart" and pg.evaluate("location.hash") == "#/escores/heart", "Escores keeps the open score")
+    n += 5
+    # addresses
+    for h, want in [("#/escores/nihss", "nihss"), ("#/escores/wells-tep", "wells-tep"), ("#/escores/cha2ds2-va", "cha2ds2-va"),
+                    ("#/escores", None), ("#/escores/naoexiste", None)]:
+        pg.goto("about:blank"); pg.goto(base + h); pg.wait_for_timeout(60)
+        s = pg.evaluate("() => [document.body.dataset.view, curEsc && curEsc.slug, location.hash, document.querySelector('#esc-title').textContent]")
+        exp_hash = h if want or h == "#/escores" else "#/escores"
+        rep.check(s[0] == "escores" and s[1] == want and s[2] == exp_hash, f"address {h}: {s}")
+        n += 1
+    pg.goto("about:blank"); pg.goto(base + "#/escores/heart"); pg.wait_for_timeout(50)
+    pg.click('#esc-list .esc-row[data-slug="glasgow"]'); pg.wait_for_timeout(50)
+    pg.evaluate("history.back()"); pg.wait_for_function("location.hash === '#/escores/heart'"); pg.wait_for_timeout(50)
+    rep.check(pg.evaluate("() => curEsc.slug") == "heart", "back returns to the previous score")
+    n += 1
+    # keyboard flow: open from the search with the keyboard, answer with Enter, focus walks item to item
+    pg.keyboard.press("Control+k"); pg.keyboard.type("heart"); pg.keyboard.press("Enter"); pg.wait_for_timeout(60)
+    f = pg.evaluate("() => document.activeElement.closest('[data-item]') && document.activeElement.closest('[data-item]').dataset.item")
+    rep.check(f == "h", f"search + Enter puts focus on the first item: {f}")
+    for _ in range(5):          # first option of each item, then the focus moves on by itself
+        pg.keyboard.press("ArrowRight"); pg.keyboard.press("Enter")
+    s = pg.evaluate("() => [document.querySelector('#esc-value').textContent, document.querySelector('#esc-band').textContent, document.activeElement.id]")
+    rep.check(s == ["5", "Risco moderado", "esc-copy"], f"keyboard: 5 answers, total 5, focus on Copiar: {s}")
+    pg.keyboard.press("Enter"); pg.wait_for_timeout(30)
+    clip = pg.evaluate("window.__clip")
+    rep.check(clip and clip.startswith("Escore HEART\nResultado: 5 pontos - risco moderado"), f"Enter copies: {clip and clip[:60]!r}")
+    n += 3
+    # NIHSS quick entry from the keyboard
+    pg.keyboard.press("Control+k"); pg.keyboard.type("nihss"); pg.keyboard.press("Enter"); pg.wait_for_timeout(60)
+    rep.check(pg.evaluate("document.activeElement.id") == "nihss-rapida", "NIHSS: the quick-entry field gets the focus")
+    pg.keyboard.type("102130000001001")
+    s = pg.evaluate("() => [document.querySelector('#esc-value').textContent, document.querySelector('#nihss-answered').textContent, document.querySelector('#esc-band').textContent]")
+    rep.check(s == ["9", "15 de 15 itens", "Moderado"], f"NIHSS quick entry: {s}")
+    n += 2
+    # blank form for printing (window.print stubbed): generic score and NIHSS (with its two images, loaded only now)
+    for slug, sel in (("heart", "#ficha .fpage .ftable"), ("nihss", "#ficha #fBody tr")):
+        pg.goto("about:blank"); pg.goto(base + "#/escores/" + slug); pg.wait_for_timeout(60)
+        rep.check(pg.evaluate("() => document.querySelectorAll('img').length") == 0, f"{slug}: no image loaded before printing")
+        pg.evaluate("() => { window.print = () => { window.__printed = (window.__printed || 0) + 1; }; }")
+        pg.click("#esc-print"); pg.wait_for_timeout(400)
+        s = pg.evaluate(f"""() => [window.__printed, document.body.classList.contains('imprimindo'), !!document.querySelector('{sel}'),
+            document.querySelector('#ficha').textContent.includes('Queixa Principal'), document.querySelector('#ficha').textContent.includes('Ficha Vermelha'),
+            [...document.querySelectorAll('#ficha img')].map(i => i.complete && i.naturalWidth > 0).join()]""")
+        rep.check(s[:5] == [1, True, True, True, False] and s[5] == ("true,true" if slug == "nihss" else ""), f"{slug}: blank form ready to print: {s}")
+        n += 2
+    pg.goto("about:blank"); pg.goto(base + "#/escores/nihss"); pg.wait_for_timeout(60)
+    # search entries
+    for q, slug in [("nihss", "nihss"), ("wells", "wells-tep"), ("avc", "nihss"), ("tep", "wells-tep"), ("cha2ds2", "cha2ds2-va"), ("pneumonia", "curb-65")]:
+        ids = pg.evaluate("q => { const i = document.querySelector('#busca-input'); i.value = q; i.dispatchEvent(new Event('input')); return buscaRes.map(r => r.v.key + ':' + r.e.id); }", q)
+        rep.check(f"escores:{slug}" in ids, f"search {q!r} finds {slug}: {[x for x in ids if x.startswith('escores')]}")
+        n += 1
+    rep.check(not p.problems, "escores problems: " + "; ".join(p.problems[:5]))
+    p.close()
+    # phones: 3 tabs at 320 px, result bar visible while answering
+    p = Page(browser, base + "#/escores/heart", 320, 640)
+    pg = p.page
+    bar = pg.evaluate("""() => { const n = document.querySelector('#top-tabs'), t = [...n.children];
+        return {n: t.length, rows: new Set(t.map(x => x.offsetTop)).size, clipped: t.filter(x => x.scrollWidth > x.clientWidth).length,
+                pageX: document.documentElement.scrollWidth > innerWidth}; }""")
+    rep.check(bar == {"n": 3, "rows": 1, "clipped": 0, "pageX": False}, f"320 px: 3 tabs in one row, no clipping: {bar}")
+    pg.click('[data-item="t"] button[data-val="2"]')
+    s = pg.evaluate("""() => { const b = document.querySelector('#esc-bar'), r = b.getBoundingClientRect();
+        return [getComputedStyle(b).position, r.bottom <= innerHeight + 1 && r.top < innerHeight, document.querySelector('#esc-bar-v').textContent]; }""")
+    rep.check(s == ["fixed", True, "2"], f"320 px: result bar fixed at the bottom: {s}")
+    pg.click("#tab-prescricoes")
+    rep.check(pg.evaluate("getComputedStyle(document.querySelector('#esc-bar')).display") == "none", "result bar hidden outside Escores")
+    n += 3
+    rep.check(not p.problems, "escores phone problems: " + "; ".join(p.problems[:5]))
+    p.close()
+    rep.note(f"escores: {n} checks")
+
+
 def run(browser, url):
     rep = Report("features")
     routing(browser, url, rep)
     search(browser, url, rep)
+    escores(browser, url, rep)
     return rep.done()
