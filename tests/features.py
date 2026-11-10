@@ -192,7 +192,9 @@ def search(browser, url, rep):
         rep.note(f"search {q!r}: {len(got_c)} conditions + {len(got_e)} scores + {len(got_r)} rascunho cards")
         n += 1
         pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
-    same = pg.evaluate("() => { const f = q => { const i = document.querySelector('#busca-input'); i.value = q; i.dispatchEvent(new Event('input')); return buscaRes.map(r => r.e.id).join(); }; return [f('infeccao'), f('INFECÇÃO'), f('Infecção')]; }")
+    same = pg.evaluate("() => { const f = q => { const i = document.querySelector('#busca-input'); i.value = q; i.dispatchEvent(new Event('input')); return buscaRes.map(r => r.e.id).join(); }; const r = [f('infeccao'), f('INFECÇÃO'), f('Infecção')]; document.querySelector('#busca-input').value = ''; buscaClose(false); return r; }")
+    # (the input events above open the list without focusing the field, so the Esc presses below cannot close it; it is closed
+    #  here instead — since phase 6 the search is centred and its list covers #mid-title, which the next step clicks)
     rep.check(same[0] == same[1] == same[2] and same[0], "accented, unaccented and uppercase queries give the same results")
     pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
     n += 1
