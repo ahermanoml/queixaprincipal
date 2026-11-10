@@ -42,11 +42,11 @@ function condBtn(id, ic, nm, sub, open){
   condList.appendChild(el);
 }
 function renderConds(filter=""){
-  const f = filter.trim().toLowerCase();
+  const f = norm(filter.trim());   // sem diferenciar maiúsculas nem acentos ("infeccao" acha "infecção")
   condList.innerHTML = "";
   let n = 0;
   DATA.forEach(c=>{
-    if(f && !((c.nm+" "+(c.sub||"")+" "+(KW[c.id]||"")).toLowerCase().includes(f))) return;
+    if(f && !norm(c.nm+" "+(c.sub||"")+" "+(KW[c.id]||"")).includes(f)) return;
     n++;
     // toda condição abre em Adulto › Ambulatorial
     condBtn(c.id, c.ic, c.nm, c.sub||"", ()=>{ currentPac = "adulto"; currentSet = "amb"; renderMid(c); });
@@ -298,5 +298,7 @@ registerView({
   cols: ["col-cond", "col-mid"], layout: "lista",
   itemId: () => curCond ? curCond.id : null,
   open: openCond,
-  close: closeCond
+  close: closeCond,
+  // busca única: os mesmos campos do filtro da coluna (nome + subtítulo + KW)
+  search: () => DATA.map(c=> ({id: c.id, ic: c.ic, title: c.nm, sub: c.sub||"", kw: KW[c.id]||""}))
 });

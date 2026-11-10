@@ -10,12 +10,29 @@
 <header class="top">
   <div class="top-row">
     <div class="logo" aria-hidden="true">℞</div>
-    <div>
+    <div class="titulo">
       <h1>Prescritor — Queixa Principal</h1>
       <p>Escolha a condição · monte a receita · copie e cole no seu sistema</p>
     </div>
     <div class="spacer"></div>
     <div class="hint">Modelos de receita prontos para usar. Revise sempre as doses antes de prescrever.</div>
+    <!-- busca única (js/busca.js): procura em todas as abas registradas. Até 820px vira a lupa que abre o campo. -->
+    <div class="busca" id="busca">
+      <button type="button" class="busca-abrir" id="busca-abrir" aria-label="Buscar" aria-expanded="false" aria-controls="busca-box" title="Buscar (atalho: / ou Ctrl+K)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <div class="busca-box" id="busca-box">
+        <span class="busca-ic"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <input id="busca-input" type="text" role="combobox" aria-label="Buscar em todo o site" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-list" aria-describedby="busca-dica" placeholder="Buscar condição, remédio, modelo…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <kbd class="busca-kbd" aria-hidden="true" title="Atalho: / ou Ctrl+K">/</kbd>
+        <button type="button" class="busca-fechar" id="busca-fechar" aria-label="Fechar busca"><span aria-hidden="true">✕</span></button>
+        <div class="busca-pop" id="busca-pop" hidden>
+          <div class="busca-list" id="busca-list" role="listbox" aria-label="Resultados da busca"></div>
+          <div class="busca-vazio" id="busca-vazio" hidden></div>
+          <div class="busca-rodape" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> escolher · <kbd>Enter</kbd> abrir · <kbd>Esc</kbd> fechar</div>
+        </div>
+      </div>
+      <span class="sr-only" id="busca-dica">Atalhos: tecla barra ou Ctrl+K. Use as setas para escolher, Enter para abrir e Esc para fechar.</span>
+      <span class="sr-only" id="busca-status" role="status" aria-live="polite"></span>
+    </div>
   </div>
   <!-- abas do topo: geradas a partir do registro VIEWS (js/core.js + cada js/views/*.js) -->
   <nav class="top-tabs" id="top-tabs" role="tablist" aria-label="Seção do prescritor"></nav>
@@ -78,6 +95,7 @@
 <script src="js/views/prescricoes.js?v=20261110a"></script>
 <script src="js/views/rascunho.js?v=20261110a"></script>
 <script src="js/router.js?v=20261110a"></script>
+<script src="js/busca.js?v=20261110a"></script>
 <script src="js/app.js?v=20261110a"></script>
 </body>
 </html>

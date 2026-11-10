@@ -20,7 +20,8 @@ def run(browser, url, out_dir):
         p = Page(browser, url, w, h)
         pg = p.page
         cid = pg.evaluate(f"() => DATA.find(c => c.id.includes({COND!r})).id")
-        pg.goto(url.split("#")[0] + "#/prescricoes/" + cid)
+        pg.goto("about:blank")
+        pg.goto(url.split("#")[0] + "#/prescricoes/" + cid)   # fresh load (a hash-only change does not reveal on phones)
         pg.wait_for_timeout(150)
         pg.screenshot(path=f"{out_dir}/prescricoes-{tag}.png")
         if w <= 820:   # phones: the condition panel sits below the list

@@ -15,9 +15,10 @@ function renderRascunho(){
   let h = "";
   rascGroups().forEach(g=>{
     h += `<div class="rg">${esc(g)}</div>`;
-    MINHA.forEach(m=>{
+    MINHA.forEach((m,i)=>{
       if(m.grupo!==g) return;
-      h += `<div class="rt">${esc(m.titulo)}</div>${m.nota?`<div class="rn">${esc(m.nota)}</div>`:""}<div class="rl">${esc(m.linhas.join("\n"))}</div>`;
+      // data-card = índice no MINHA: a busca única rola até o modelo e o destaca
+      h += `<div class="rt" data-card="${i}">${esc(m.titulo)}</div>${m.nota?`<div class="rn" data-card="${i}">${esc(m.nota)}</div>`:""}<div class="rl" data-card="${i}">${esc(m.linhas.join("\n"))}</div>`;
     });
   });
   rascDoc.innerHTML = h;
@@ -43,8 +44,26 @@ $("#rasc-copy").onclick = async ()=>{
 };
 
 
-/* ---- registro da aba ---- */
+/* ---- busca única: rola até um modelo e o destaca por alguns segundos ---- */
+let rascHlT;
+function openCard(id){
+  const i = Number(id);
+  if(!Number.isInteger(i) || String(i)!==String(id) || !MINHA[i]) return false;
+  rascDoc.querySelectorAll(".hl").forEach(e=> e.classList.remove("hl"));
+  const els = rascDoc.querySelectorAll(`[data-card="${i}"]`);
+  void rascDoc.offsetWidth;   // reinicia o destaque se o mesmo modelo for escolhido de novo
+  els.forEach(e=> e.classList.add("hl"));
+  scrollIntoPlace(els[0], 16);
+  clearTimeout(rascHlT);
+  rascHlT = setTimeout(()=> els.forEach(e=> e.classList.remove("hl")), 2400);
+  return true;
+}
+
+/* ---- registro da aba ----
+   Sem itemId: os modelos não têm endereço próprio (o endereço fica #/rascunho); a busca abre com open(). */
 registerView({
   key: "rascunho", label: "Meu rascunho", icon: "⭐",
-  cols: ["col-rascunho"], layout: "texto"
+  cols: ["col-rascunho"], layout: "texto",
+  open: openCard,
+  search: () => MINHA.map((m,i)=> ({id: String(i), title: m.titulo, sub: m.grupo, text: m.linhas.join("\n")}))
 });

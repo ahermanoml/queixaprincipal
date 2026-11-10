@@ -1,6 +1,8 @@
 /* core.js — helpers compartilhados por todas as abas. */
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+// texto para comparar em buscas: minúsculo e sem acento ("Infecção" → "infeccao")
+const norm = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
 /* ---- toast ---- */
 let toastT;
@@ -48,7 +50,9 @@ function scrollIntoPlace(el, gap=12){
      open(id, how) opcional: abre o item id; devolve false se ele não existe.
               how = "route" (endereço / voltar-avançar) | "load" (endereço ao abrir a página) | "search" (busca)
      close()  opcional: volta a aba ao estado "nenhum item aberto"
-     search() opcional: itens da busca única, [{id, title, sub, text, ic?}] — lido uma vez, na primeira busca */
+     search() opcional: itens da busca única, [{id, title, sub?, kw?, text?, ic?}] — lido uma vez, na primeira busca.
+              Busca em title + sub + kw + text. kw = palavras-chave (procuradas, nunca mostradas); text = texto do item
+              (procurado; a linha que bateu aparece como trecho no resultado). ic padrão = icon da aba. */
 const VIEWS = [];
 function registerView(v){
   if(VIEWS.some(x=> x.key===v.key)) throw new Error("aba repetida: " + v.key);
