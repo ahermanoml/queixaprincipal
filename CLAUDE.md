@@ -31,13 +31,16 @@ A **static site with no build step**: plain HTML + CSS + classic `<script src>` 
 | `js/calc-motor.js` | `CM` — the Calculadoras math: dilui's formatting/infusion/bolus/`CALC`/pediatric functions copied unchanged, plus `linha`, `infusao`, `selectDrug`, `setPreset`, `setReg`, `ventilacao` (same texts, returned as data). |
 | `js/views/calculadoras.js` | **Calculadoras** tab: list, patient bar (global weight, age), infusion page (① ② ③), situation pages, intubation; registers the view. |
 | `css/calculadoras.css` | Styles of the Calculadoras tab only (`cx-` prefix; container query `calc` on `#col-calc`). |
+| `data/procedimentos.js` | `PROC_AREAS`, `PROC_CAMPOS` (fields shared by many notes) and `PROCS` (10 procedures, pretty-printed JSON) of the **Procedimentos** tab. See *Procedimentos*. |
+| `js/views/procedimentos.js` | **Procedimentos** tab: list by area, procedure page, material checklist, the live **Registro para o prontuário** (`prTexto`), the phone action bar; registers the view (`rx: false`). |
+| `css/procedimentos.css` | Styles of the Procedimentos tab (`pr-` prefix; container query `proc` on `#col-proc`; reuses `.cx-eyebrow`, `.cx-tag`, `.cx-link` from `css/calculadoras.css`). |
 | `js/views/rascunho.js` | **Meu rascunho** tab: `renderRascunho`, `rascText`, ＋ Receita, `openCard`; registers the view. |
 | `js/router.js` | Hash routing (`#/<view>/<item>`), derived from the registry. |
 | `js/busca.js` | Global search, fed by each view's `search()`. |
 | `js/app.js` | Renders the tabs (`renderTabs`), `showView`, start-up (`renderConds`, `renderRascunho`, `syncRx`, `onRoute("load")`). Loaded last. |
-| `tests/` | Dev-only checks (not loaded by the site): `run.py` (entry point), `parity.py`, `features.py`, `shots.py`, `lib.py`, `calc_paridade.py` + `calc_gabarito.json.gz`, `calc_features.py`. |
+| `tests/` | Dev-only checks (not loaded by the site): `run.py` (entry point), `parity.py`, `features.py`, `shots.py`, `lib.py`, `calc_paridade.py` + `calc_gabarito.json.gz`, `calc_features.py`, `proc_features.py`. |
 
-All scripts are classic scripts sharing one global scope: top-level `const`/`let`/`function` of one file are visible to the files after it. Load order matters only for code that **runs at load** (each file may use, at top level, only what earlier files declared; handlers can call anything). Order: `data/*` → `core` → `peso` → `receita` → `calc-motor` → `views/*` (prescricoes, calculadoras, rascunho = tab order) → `router` → `busca` → `app`.
+All scripts are classic scripts sharing one global scope: top-level `const`/`let`/`function` of one file are visible to the files after it. Load order matters only for code that **runs at load** (each file may use, at top level, only what earlier files declared; handlers can call anything). Order: `data/*` → `core` → `peso` → `receita` → `calc-motor` → `views/*` (prescricoes, calculadoras, procedimentos, rascunho = tab order) → `router` → `busca` → `app`.
 
 ### Cache busting (`?v=`)
 
@@ -131,7 +134,7 @@ The header tabs, the addresses and the global search all come from **one registr
 | `close()` | optional: back to "nothing open" |
 | `search()` | optional: entries for the busca única, `[{id, title, sub?, kw?, text?, ic?}]`, read once on the first search. `kw` is searched but never shown; `text` is searched and the matching line is shown as a snippet |
 
-Registered today, in this order: `prescricoes` (**💊 Prescrições** — formerly the "Padrão" tab; `cols: col-cond, col-mid`, `layout: lista`, `itemId/open/close` = the open condition, `search` = the 64 conditions with `nm` + `sub` + `KW`), `calculadoras` (**🧮 Calculadoras**; `cols: col-calc-lista, col-calc`, `layout: lista`, `itemId/open/close` = the open calculator, `search` = every calculator and every drug row — see *Calculadoras*) and `rascunho` (**⭐ Meu rascunho**; `cols: col-rascunho`, `layout: texto`, no `itemId` so the address stays `#/rascunho`, `open` = scroll to a card and highlight it, `search` = the 26 cards' `titulo` + `grupo` + `linhas`). Only the header tab was renamed: the **Padrão** section inside a condition (`SECS`) keeps its name.
+Registered today, in this order: `prescricoes` (**💊 Prescrições** — formerly the "Padrão" tab; `cols: col-cond, col-mid`, `layout: lista`, `itemId/open/close` = the open condition, `search` = the 64 conditions with `nm` + `sub` + `KW`), `calculadoras` (**🧮 Calculadoras**; `cols: col-calc-lista, col-calc`, `layout: lista`, `itemId/open/close` = the open calculator, `search` = every calculator and every drug row — see *Calculadoras*), `procedimentos` (**🩺 Procedimentos**; `cols: col-proc-lista, col-proc`, `layout: lista`, `rx: false`, `itemId/open/close` = the open procedure, `search` = name + subtitle + `kw` — see *Procedimentos*) and `rascunho` (**⭐ Meu rascunho**; `cols: col-rascunho`, `layout: texto`, no `itemId` so the address stays `#/rascunho`, `open` = scroll to a card and highlight it, `search` = the 26 cards' `titulo` + `grupo` + `linhas`). Only the header tab was renamed: the **Padrão** section inside a condition (`SECS`) keeps its name.
 
 ### Adding a tab (later phases)
 
@@ -216,6 +219,43 @@ Port of the owner's **dilui** shift calculator (infusion pumps, RSI doses, pedia
 - **Infusion page**: ① Preparo (preset chips, the recipe sentence, concentration; "Mudar ampolas…" opens amps/diluent/diluent type/ampoule-of-your-hospital fields), ② Dose ⇄ vazão (either input drives the other; −/+ step through dilui's `passos`; scale with `faixa` and `max`, marker amber outside the usual range and red above max; dilui's alert texts), ③ Texto pronto (**Copiar** and **＋ Receita** = `sendToRx`). The page is dense on purpose: with a weight, ② (both inputs, with the unit beside each number, and the range bar) and ③ (text + buttons) fit without scrolling at 1366×768, 1280×720, 1024×768 and 1440×900 — nothing is pinned over the inputs (checked by `layout()` in `tests/calc_features.py`). Keep it that way when adding content above step ③. Enter in the dose or rate field copies. Then the titration table (rows clickable) and dilui's notes.
 - **Situation pages / intubation**: rows in dilui's order, dose in large type, per-row Copiar / ＋ Receita (icons on narrow columns, with aria-labels). "Copiar tudo" only where the page is a sequence (`CX_TUDO`); intubation has "Copiar kit SRI" = dilui's `kitText()`. Cross-links between calculators: `CX_LINK_PAG`, `CX_LINK_LINHA`, `CX_POS_IOT`.
 - **Tests**: `tests/calc_paridade.py` compares the site with `tests/calc_gabarito.json.gz` (outputs of the original dilui for ~10 400 cases: every infusion × preset × weight × dose/rate, custom ampoule/diluent cases, every bolus row × weight × age, RSI kit, pediatric helpers, tidal volume). Rows are compared as the site renders them (`cxLinhaHTML`). To regenerate after an approved content change: `python3 tests/calc_paridade.py --dilui path/to/dilui/index.html`. `tests/calc_features.py` covers the behaviour (no-weight state on all 35 pages, ②/③ visible and unobstructed on the four hospital monitor sizes, weight sync, chips, age estimate, addresses, search, Copiar / ＋ Receita, keyboard, alerts, phone widths) and, with `--shots`, the screenshots.
+
+## Procedimentos (`#/procedimentos`)
+
+Step-by-step emergency procedures with a paste-ready procedure note. **All content is AI-drafted and unreviewed**: every procedure has `"draft": true` (shows the `rascunho` tag), `"revisado": null` (the page says "Ainda não revisado") and its own `"fontes"`. Text is original (not copied from Whitebook/WeMEDS/books). No drug doses here: `"calc"` links to the Calculadoras page instead.
+
+### Data model (`data/procedimentos.js`)
+
+```js
+{
+  "id": "dreno",                       // address #/procedimentos/dreno — lowercase [a-z0-9_-], never rename
+  "area": "torax",                     // a PROC_AREAS key (via-aerea, torax, vascular, abdome, neuro, cardiaco)
+  "nm": "Drenagem de tórax", "sub": "dreno · selo d'água · …",
+  "kw": "dreno de torax drenagem …",   // searched (list filter + busca única), never shown: synonyms + abbreviations
+  "draft": true, "revisado": null,     // revisado: "AAAA-MM-DD" after the doctor signs it off (then drop draft)
+  "fontes": ["…"],                     // references used for this procedure
+  "calc": [["emg-analgesia", "Analgesia e sedação"]],   // optional links to Calculadoras pages (ids of CX_PAGS)
+  "indicacoes": ["…"], "contra": {"absolutas": ["…"], "relativas": ["…"]},
+  "material": ["…"],                   // the checklist (+ "Copiar material")
+  "preparo": ["…"],
+  "tecnica": ["passo", {"t": "passo", "cuidado": "…"}, {"t": "passo", "dica": "…"}],   // one action per step
+  "depois": ["…"], "complicacoes": ["…"],
+  "registro": {"campos": [...], "modelo": ["linha com {var}", "…"]}
+}
+```
+
+- Keep every list short (one idea per line); callouts (`cuidado` / `dica`) only where they prevent a real error.
+- **Registro (the note).** `modelo` is one string per output line, written in UPPERCASE like the doctor's own laudos (`data/rascunho.js`). `{id}` = required variable: its value (uppercased) or `____` while empty, so an incomplete note is obvious; `{id?}` = optional: if empty, the **whole line** is dropped. Each variable has exactly one field in `campos`, and each field is used in the template (checked by the tests). A field is either an object `{"id", "rotulo", "tipo": "opcoes"|"texto"|"num", "opcoes"?: [UPPERCASE values], "un"?, "dica"? (placeholder), "opcional"?: true}` or the id of a shared field in `PROC_CAMPOS` (`lado`, `consentimento`, `antissepsia`, `anestesia`, `tentativas`, `intercorrencias`, `obs`). **Never pre-select or pre-fill a clinical value** (option buttons start unselected; clicking the selected one clears it), and keep fixed template text to what is inherent to the procedure — anything that may or may not have happened is a field. `prTexto(p, vals)` is pure/deterministic.
+- **Adding a procedure:** append an object to `PROCS` with all the blocks above (the tests reject a missing block, an unknown area, a variable without a field, a field without a variable, a duplicate id or a stray `{}`); put abbreviations in `kw` (and in `nm`, e.g. "(CVC)", if the abbreviation should rank first in the search); run `python3 tests/run.py`.
+
+### Page
+
+- Left: the list grouped by area, filterable. Middle: title + `rascunho` + a **📝 Registro para o prontuário** button and the dose links (top of the page), section links, then Indicações · Contraindicações (absolutas/relativas) · Material (checklist, counter, Copiar material, Desmarcar) · Preparo · Técnica (numbered) · Confirmação e cuidados depois · Complicações · Fontes.
+- **Registro**: header with "faltam N campos" / "completo", **Copiar registro** (+ a second one after the last field), Limpar, the live text (blanks highlighted), the fields. Copying an incomplete note is allowed (the blanks stay visible) and the toast says how many are blank. Keyboard: the top button focuses the first empty field; Enter in a text field moves to the next field; Ctrl/Cmd+Enter copies.
+- **Where the note sits:** with the procedure column ≥ 900px (receita column hidden by `rx: false`, or a wide screen) it is a right-hand column, sticky at the top of the middle column; only its fields scroll inside it, so nothing covers an input. Narrower (today at 1366 with the receita visible, 1024, phones) it comes after the text and the top button jumps to it.
+- **Phones:** a fixed bottom bar (`#pr-barra`: Registro + Copiar registro) shows while a procedure is open and the note is not on screen (IntersectionObserver); `body.pr-com-barra` adds bottom padding, and a `focusin` handler scrolls a focused control out from under the bar.
+- State per procedure (ticked material, note values) lives in memory for the session (`prEstado`) and survives tab switches; nothing is stored.
+- Tests: `tests/proc_features.py` — structure (every block, ids, fields ↔ variables, blanks, determinism, optional lines), behaviour (addresses, filter, busca by IOT/SRI/crico/dreno/CVC/IO/PL, checklist, live note, Copiar/Copiar material, keyboard, calc link) and layout at 1366×768, 1280×720, 1024×768, 1440×900 with and without the receita column, and at 390/320 px (entry point and Copiar visible, every focusable control visible and unobstructed when focused); `--shots` adds the screenshots.
 
 ## Meu rascunho (`MINHA`)
 
