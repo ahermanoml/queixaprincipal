@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Queixa Principal — prescrições, escores, calculadoras e procedimentos</title>
+<meta name="color-scheme" content="light dark">
+<!-- tema: antes do CSS, para não piscar o tema errado. "qp-tema" = escolha do botão (claro/escuro); sem ela, o do sistema.
+     Sem localStorage (janela anônima, bloqueado) o site segue o sistema e funciona igual. -->
+<script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("qp-tema")}catch(e){}
+if(t==="dark"||t==="light")d.setAttribute("data-theme",t);
+var e=t||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-tema-efetivo",e)})();</script>
+<link rel="stylesheet" href="css/icones.css?v=20261110q">
 <link rel="stylesheet" href="css/app.css?v=20261110q">
 <link rel="stylesheet" href="css/escores.css?v=20261110q">
 <link rel="stylesheet" href="css/calculadoras.css?v=20261110q">
@@ -17,16 +24,15 @@
       <h1>Queixa Principal</h1>
       <p>Tudo pronto para copiar e colar no seu sistema</p>
     </div>
-    <div class="spacer"></div>
     <div class="hint">Apoio à decisão: confira doses e condutas.</div>
     <!-- busca única (js/busca.js): procura em todas as abas registradas. Até 820px vira a lupa que abre o campo. -->
     <div class="busca" id="busca">
-      <button type="button" class="busca-abrir" id="busca-abrir" aria-label="Buscar" aria-expanded="false" aria-controls="busca-box" title="Buscar (atalho: / ou Ctrl+K)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <button type="button" class="busca-abrir" id="busca-abrir" aria-label="Buscar" aria-expanded="false" aria-controls="busca-box" title="Buscar (atalho: / ou Ctrl+K)"><span class="i i-search" aria-hidden="true" style="--isz:21px"></span></button>
       <div class="busca-box" id="busca-box">
-        <span class="busca-ic"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span class="busca-ic"><span class="i i-search" aria-hidden="true" style="--isz:19px"></span></span>
         <input id="busca-input" type="text" role="combobox" aria-label="Buscar em todo o site" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-list" aria-describedby="busca-dica" placeholder="Buscar condição, escore, remédio…" autocomplete="off" spellcheck="false" enterkeyhint="search">
         <kbd class="busca-kbd" aria-hidden="true" title="Atalho: / ou Ctrl+K">/</kbd>
-        <button type="button" class="busca-fechar" id="busca-fechar" aria-label="Fechar busca"><span aria-hidden="true">✕</span></button>
+        <button type="button" class="busca-fechar" id="busca-fechar" aria-label="Fechar busca"><span class="i i-x" aria-hidden="true"></span></button>
         <div class="busca-pop" id="busca-pop" hidden>
           <div class="busca-list" id="busca-list" role="listbox" aria-label="Resultados da busca"></div>
           <div class="busca-vazio" id="busca-vazio" hidden></div>
@@ -36,6 +42,8 @@
       <span class="sr-only" id="busca-dica">Atalhos: tecla barra ou Ctrl+K. Use as setas para escolher, Enter para abrir e Esc para fechar.</span>
       <span class="sr-only" id="busca-status" role="status" aria-live="polite"></span>
     </div>
+    <!-- tema claro/escuro (js/app.js): o ícone mostra o tema que o clique vai pôr -->
+    <button type="button" class="tema" id="tema" aria-pressed="false" aria-label="Tema escuro" title="Tema escuro"><span class="i i-moon" aria-hidden="true"></span><span class="i i-sun" aria-hidden="true"></span></button>
   </div>
   <!-- abas do topo: geradas a partir do registro VIEWS (js/core.js + cada js/views/*.js) -->
   <nav class="top-tabs" id="top-tabs" role="tablist" aria-label="Seção do prescritor"></nav>
@@ -47,7 +55,7 @@
     <h2>Condições <span class="count" id="cond-count">0</span></h2>
     <div class="search">
       <label for="cond-search" class="sr-only">Buscar condição</label>
-      <input id="cond-search" type="search" aria-label="Buscar condição" placeholder="🔎  Buscar condição..." autocomplete="off">
+      <input id="cond-search" type="search" aria-label="Buscar condição" placeholder="Buscar condição" autocomplete="off">
     </div>
     <div class="scroll" id="cond-list"></div>
   </section>
@@ -65,7 +73,7 @@
     <h2>Escores <span class="count" id="esc-count">0</span></h2>
     <div class="search">
       <label for="esc-search" class="sr-only">Filtrar escores</label>
-      <input id="esc-search" type="search" placeholder="🔎  Filtrar escores..." autocomplete="off">
+      <input id="esc-search" type="search" placeholder="Filtrar escores" autocomplete="off">
     </div>
     <div class="scroll" id="esc-list"></div>
   </section>
@@ -83,7 +91,7 @@
     <h2>Calculadoras <span class="count" id="cx-count">0</span></h2>
     <div class="search">
       <label for="cx-filtro" class="sr-only">Filtrar calculadoras</label>
-      <input id="cx-filtro" type="search" placeholder="🔎  Remédio ou situação..." autocomplete="off">
+      <input id="cx-filtro" type="search" placeholder="Remédio ou situação" autocomplete="off">
     </div>
     <div class="scroll" id="cx-lista"></div>
   </section>
@@ -97,7 +105,7 @@
     <h2>Procedimentos <span class="count" id="pr-count">0</span></h2>
     <div class="search">
       <label for="pr-filtro" class="sr-only">Filtrar procedimentos</label>
-      <input id="pr-filtro" type="search" placeholder="🔎  Procedimento ou sigla (IOT, CVC…)" autocomplete="off">
+      <input id="pr-filtro" type="search" placeholder="Procedimento ou sigla (IOT, CVC…)" autocomplete="off">
     </div>
     <div class="scroll" id="pr-lista"></div>
   </section>
@@ -110,8 +118,8 @@
   <section class="col" id="col-rascunho" hidden>
     <h2>Meu rascunho</h2>
     <div class="rasc-tools">
-      <button type="button" class="btn primary" id="rasc-copy"><span aria-hidden="true">📋</span> Copiar tudo</button>
-      <button type="button" class="btn" id="rasc-send">＋ Receita</button>
+      <button type="button" class="btn primary" id="rasc-copy"><span class="i i-copy" aria-hidden="true"></span> Copiar tudo</button>
+      <button type="button" class="btn" id="rasc-send"><span class="i i-plus" aria-hidden="true"></span>Receita</button>
       <span class="rasc-hint">Seus modelos, do jeito que você escreve. Selecione um trecho e clique em <b>＋ Receita</b> para levar só ele à receita.</span>
     </div>
     <div class="scroll"><div class="rasc-doc" id="rasc-doc"></div></div>
@@ -121,8 +129,8 @@
   <section class="col" id="col-rx">
     <h2>Receita <span class="count" id="rx-count">0</span></h2>
     <div class="rx-tools">
-      <button class="btn primary" id="btn-copy"><span aria-hidden="true">📋</span> Copiar</button>
-      <button class="btn ghost" id="btn-clear"><span aria-hidden="true">🗑</span> Limpar</button>
+      <button class="btn primary" id="btn-copy"><span class="i i-copy" aria-hidden="true"></span> Copiar</button>
+      <button class="btn ghost" id="btn-clear"><span class="i i-trash" aria-hidden="true"></span> Limpar</button>
       <label class="toggle"><input type="checkbox" id="free-edit"> edição livre</label>
     </div>
     <div class="chips" id="rx-chips"><div class="rx-empty">Nenhum item adicionado ainda.</div></div>
@@ -130,7 +138,7 @@
       <label for="rx"><span class="dot" aria-hidden="true">●</span> Texto pronto para colar</label>
       <textarea id="rx" spellcheck="false" placeholder="A receita formatada aparece aqui..."></textarea>
     </div>
-    <div class="disclaimer"><b><span aria-hidden="true">⚠</span> Apoio à decisão, não prescrição automática.</b> Confira medicamento, dose, posologia, alergias e contraindicações de cada paciente antes de prescrever.</div>
+    <div class="disclaimer"><b><span class="i i-alert" aria-hidden="true"></span> Apoio à decisão, não prescrição automática.</b> Confira medicamento, dose, posologia, alergias e contraindicações de cada paciente antes de prescrever.</div>
   </section>
 </div>
 
@@ -190,7 +198,7 @@
 
 <!-- Procedimentos no celular: atalho fixo para o registro (some quando o registro está na tela) -->
 <div class="pr-barra" id="pr-barra" hidden>
-  <button type="button" class="btn primary" id="pr-barra-copiar"><span aria-hidden="true">📋</span> Copiar registro</button>
+  <button type="button" class="btn primary" id="pr-barra-copiar"><span class="i i-copy" aria-hidden="true"></span> Copiar registro</button>
 </div>
 
 <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>

@@ -25,7 +25,19 @@ async ({ci, pacs, sets, weights}) => {
     mid.querySelector(`.set-btn[data-set="${st}"]`).click();
     const hasPeso = setW(w == null ? '' : String(w));
     const key = `${pac}/${st}/${w}`;
-    out.push('### ' + key + ' peso=' + hasPeso + ' midhash=' + mid.innerHTML.length + ':' + [...mid.innerHTML].reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 0));
+    // painel do meio: compara o que a tela diz e o que dá para clicar, não a marcação visual (ícones, classes de estilo e o
+    // emoji/"＋" decorativos mudaram na fase 6 — design). Entram: o texto visível sem os elementos aria-hidden e sem "＋"
+    // (sem espaços), e cada elemento clicável/ocultável com seus data-* e o estado hidden/aria-*.
+    const sig = (() => {
+      const c = mid.cloneNode(true);
+      c.querySelectorAll('[aria-hidden="true"], svg').forEach(e => e.remove());
+      const txt = c.textContent.replace(/＋/g, '').replace(/\s+/g, '');
+      const ctl = [...mid.querySelectorAll('button, input, [data-b], [data-pb], [data-pf], [data-o], [hidden]')].map(e =>
+        e.tagName + [...e.attributes].filter(a => /^(data-|aria-(selected|expanded|pressed|label|controls)$|hidden$|role$|id$)/.test(a.name))
+          .map(a => a.name + '=' + a.value).sort().join(',')).join('|');
+      return txt + '##' + ctl;
+    })();
+    out.push('### ' + key + ' peso=' + hasPeso + ' midsig=' + sig.length + ':' + [...sig].reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 0));
     mid.querySelectorAll('.addall').forEach((b, i) => { if (vis(b)) { b.click(); snap('addall ' + i); } });
     mid.querySelectorAll('.item[data-menu]').forEach((b, i) => { if (vis(b)) { b.click(); snap('menu ' + i); } });
     mid.querySelectorAll('.item:not([data-menu])').forEach((b, i) => { if (vis(b)) b.click(); });
