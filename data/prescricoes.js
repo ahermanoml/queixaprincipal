@@ -10,10 +10,66 @@ const DATA = [
   "id": "analgesia",
   "ic": "💊",
   "nm": "Analgesia / Dor",
-  "sub": "dipirona · ibuprofeno · paracetamol",
+  "sub": "dipirona · paracetamol · ibuprofeno · paracetamol + codeína",
   "blocks": [
    {
-    "label": "Padrão — Dipirona + ibuprofeno (AINE por curto prazo)",
+    "label": "Padrão — Analgésico / antitérmico",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ],
+    "orient": [
+     "USAR O ANTI-INFLAMATÓRIO PELO MENOR TEMPO POSSÍVEL E NÃO ASSOCIAR OUTROS ANTI-INFLAMATÓRIOS (DICLOFENACO, NIMESULIDA, CETOPROFENO ETC.)",
+     "EVITAR AINE SE GESTAÇÃO, DOENÇA RENAL, ÚLCERA OU SANGRAMENTO DIGESTIVO PRÉVIO, INSUFICIÊNCIA CARDÍACA, USO DE ANTICOAGULANTE OU IDOSO COM COMORBIDADES — USAR O ESQUEMA SEM AINE",
+     "OPIOIDE (CODEÍNA, TRAMADOL) APENAS SE DOR INTENSA QUE NÃO MELHORA COM OS ANALGÉSICOS COMUNS, NA MENOR DOSE E POR NO MÁXIMO 03 DIAS",
+     "RETORNAR IMEDIATAMENTE SE DOR INTENSA SEM MELHORA COM AS MEDICAÇÕES, FEBRE PERSISTENTE, VÔMITOS, FEZES ESCURAS (COMO BORRA DE CAFÉ) OU FALTA DE AR"
+    ]
+   },
+   {
+    "label": "Padrão — AINE (anti-inflamatório) por curto prazo — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "IBUPROFENO 600 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR 05 DIAS"
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dor intensa: paracetamol + codeína (Paco)",
+    "draft": true,
+    "items": [
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "12 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS. NÃO TOMAR JUNTO COM O PARACETAMOL (USAR NO LUGAR DELE)"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — Dipirona + ibuprofeno (AINE por curto prazo)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -26,16 +82,11 @@ const DATA = [
       "15 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR 05 DIAS"
      ]
-    ],
-    "orient": [
-     "USAR O ANTI-INFLAMATÓRIO PELO MENOR TEMPO POSSÍVEL E NÃO ASSOCIAR OUTROS ANTI-INFLAMATÓRIOS (DICLOFENACO, NIMESULIDA, CETOPROFENO ETC.)",
-     "EVITAR AINE SE GESTAÇÃO, DOENÇA RENAL, ÚLCERA OU SANGRAMENTO DIGESTIVO PRÉVIO, INSUFICIÊNCIA CARDÍACA, USO DE ANTICOAGULANTE OU IDOSO COM COMORBIDADES — USAR O ESQUEMA SEM AINE",
-     "OPIOIDE (CODEÍNA, TRAMADOL) APENAS SE DOR INTENSA QUE NÃO MELHORA COM OS ANALGÉSICOS COMUNS, NA MENOR DOSE E POR NO MÁXIMO 03 DIAS",
-     "RETORNAR IMEDIATAMENTE SE DOR INTENSA SEM MELHORA COM AS MEDICAÇÕES, FEBRE PERSISTENTE, VÔMITOS, FEZES ESCURAS (COMO BORRA DE CAFÉ) OU FALTA DE AR"
     ]
    },
    {
-    "label": "Padrão — Contraindicação a AINE: dipirona + paracetamol",
+    "label": "Combinação pronta — Contraindicação a AINE: dipirona + paracetamol",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -438,10 +489,45 @@ const DATA = [
   "id": "abstinencia",
   "ic": "🍺",
   "nm": "Abstinência alcoólica",
-  "sub": "tiamina · diazepam",
+  "sub": "tiamina · diazepam · lorazepam",
   "blocks": [
    {
-    "label": "Padrão — tiamina + diazepam em doses decrescentes",
+    "label": "Padrão — Tiamina",
+    "draft": true,
+    "items": [
+     [
+      "TIAMINA 300 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 7 DIAS, DEPOIS 01 COMPRIMIDO AO DIA HORÁRIO SUGERIDO (12/12h): 08:00 / 20:00"
+     ]
+    ],
+    "orient": [
+     "ABSTINÊNCIA TOTAL DE BEBIDA ALCOÓLICA. NÃO BEBER JUNTO COM O DIAZEPAM (RISCO DE PARADA RESPIRATÓRIA). NÃO DIRIGIR OU OPERAR MÁQUINAS DURANTE O TRATAMENTO",
+     "A MEDICAÇÃO DEVE FICAR SOB A GUARDA DE UM FAMILIAR OU ACOMPANHANTE RESPONSÁVEL, QUE DEVE PERMANECER COM O PACIENTE NOS PRIMEIROS DIAS. MANTER BOA HIDRATAÇÃO E ALIMENTAÇÃO",
+     "RETORNAR À UBS EM 24 A 48H PARA REAVALIAÇÃO DOS SINTOMAS (CIWA-AR) E AJUSTE DA DOSE. ENCAMINHAMENTO AO CAPS AD PARA TRATAMENTO DO USO DE ÁLCOOL",
+     "RETORNAR IMEDIATAMENTE SE TREMORES INTENSOS, AGITAÇÃO, CONFUSÃO MENTAL, ALUCINAÇÕES, CONVULSÃO, FEBRE, VÔMITOS PERSISTENTES, ANDAR CAMBALEANTE, VISÃO DUPLA OU SONOLÊNCIA EXCESSIVA"
+    ]
+   },
+   {
+    "label": "Padrão — Benzodiazepínico em doses decrescentes (lorazepam se hepatopatia grave ou idoso) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIAZEPAM 10 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 03 DIAS, DEPOIS 01 COMPRIMIDO DE 12/12H POR 02 DIAS, DEPOIS 01 COMPRIMIDO À NOITE POR 02 DIAS E SUSPENDER. NÃO TOMAR A DOSE SE ESTIVER MUITO SONOLENTO"
+     ],
+     [
+      "LORAZEPAM 1 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 03 DIAS, DEPOIS 01 COMPRIMIDO DE 12/12H POR 02 DIAS, DEPOIS 01 COMPRIMIDO À NOITE POR 02 DIAS E SUSPENDER. NÃO TOMAR A DOSE SE ESTIVER MUITO SONOLENTO"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — tiamina + diazepam em doses decrescentes",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -454,16 +540,11 @@ const DATA = [
       "15 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO DE 8/8H POR 03 DIAS, DEPOIS 01 COMPRIMIDO DE 12/12H POR 02 DIAS, DEPOIS 01 COMPRIMIDO À NOITE POR 02 DIAS E SUSPENDER. NÃO TOMAR A DOSE SE ESTIVER MUITO SONOLENTO"
      ]
-    ],
-    "orient": [
-     "ABSTINÊNCIA TOTAL DE BEBIDA ALCOÓLICA. NÃO BEBER JUNTO COM O DIAZEPAM (RISCO DE PARADA RESPIRATÓRIA). NÃO DIRIGIR OU OPERAR MÁQUINAS DURANTE O TRATAMENTO",
-     "A MEDICAÇÃO DEVE FICAR SOB A GUARDA DE UM FAMILIAR OU ACOMPANHANTE RESPONSÁVEL, QUE DEVE PERMANECER COM O PACIENTE NOS PRIMEIROS DIAS. MANTER BOA HIDRATAÇÃO E ALIMENTAÇÃO",
-     "RETORNAR À UBS EM 24 A 48H PARA REAVALIAÇÃO DOS SINTOMAS (CIWA-AR) E AJUSTE DA DOSE. ENCAMINHAMENTO AO CAPS AD PARA TRATAMENTO DO USO DE ÁLCOOL",
-     "RETORNAR IMEDIATAMENTE SE TREMORES INTENSOS, AGITAÇÃO, CONFUSÃO MENTAL, ALUCINAÇÕES, CONVULSÃO, FEBRE, VÔMITOS PERSISTENTES, ANDAR CAMBALEANTE, VISÃO DUPLA OU SONOLÊNCIA EXCESSIVA"
     ]
    },
    {
-    "label": "Padrão — hepatopatia grave ou idoso (lorazepam)",
+    "label": "Combinação pronta — hepatopatia grave ou idoso (lorazepam)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -1040,16 +1121,32 @@ const DATA = [
   "id": "alergia",
   "ic": "🌿",
   "nm": "Alergia / Prurido",
-  "sub": "loratadina · prednisona",
+  "sub": "loratadina · cetirizina · hidroxizina · prednisona",
   "blocks": [
    {
-    "label": "Padrão — anti-histamínico H1 de 2ª geração",
+    "label": "Padrão — Anti-histamínico — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "LORATADINA 10 MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "CETIRIZINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "LEVOCETIRIZINA 5MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "HIDROXIZINA 25MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS"
      ]
     ],
     "orient": [
@@ -1067,6 +1164,18 @@ const DATA = [
       "PREDNISONA 20 MG",
       "10 COMPRIMIDOS",
       "TOMAR 02 COMPRIMIDOS PELA MANHÃ, APÓS O CAFÉ, POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — anti-histamínico H1 de 2ª geração",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
      ]
     ]
    },
@@ -1787,10 +1896,60 @@ const DATA = [
   "id": "asma",
   "ic": "🫁",
   "nm": "Asma",
-  "sub": "prednisona · budesonida/formoterol · salbutamol",
+  "sub": "prednisona · budesonida/formoterol · beclometasona · salbutamol",
   "blocks": [
    {
-    "label": "Padrão — alta pós-crise: prednisona + budesonida/formoterol (manutenção e resgate)",
+    "label": "Padrão — Corticoide oral (alta pós-crise)",
+    "draft": true,
+    "items": [
+     [
+      "PREDNISONA 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS PELA MANHÃ, APÓS O CAFÉ, POR 05 DIAS SEGUIDOS"
+     ]
+    ],
+    "orient": [
+     "USAR ESPAÇADOR COM O SPRAY AEROSSOL E ENXAGUAR A BOCA COM ÁGUA APÓS INALAR O CORTICOIDE (NÃO ENGOLIR)",
+     "NÃO SUSPENDER A BOMBINHA DE MANUTENÇÃO POR CONTA PRÓPRIA, MESMO COM MELHORA",
+     "CONSULTA NA UBS EM ATÉ 07 DIAS PARA REAVALIAR A ASMA, A TÉCNICA INALATÓRIA E AJUSTAR O TRATAMENTO DE MANUTENÇÃO",
+     "EVITAR CIGARRO, FUMAÇA, POEIRA E OUTROS GATILHOS CONHECIDOS",
+     "RETORNAR IMEDIATAMENTE SE FALTA DE AR INTENSA, DIFICULDADE PARA FALAR, LÁBIOS ROXOS, SONOLÊNCIA OU NECESSIDADE DE RESGATE REPETIDO SEM MELHORA"
+    ]
+   },
+   {
+    "label": "Padrão — Corticoide inalatório (budesonida/formoterol serve de manutenção e resgate; beclometasona = SUS/Farmácia Popular) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "BUDESONIDA + FORMOTEROL 200/6MCG",
+      "01 FRASCO",
+      "INALAR 01 DOSE DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00. SE FALTA DE AR OU CHIADO, INALAR 01 DOSE EXTRA, PODENDO REPETIR APÓS ALGUNS MINUTOS. NÃO ULTRAPASSAR 12 DOSES AO DIA",
+      "USO INALATÓRIO"
+     ],
+     [
+      "BECLOMETASONA AEROSSOL 250 MCG",
+      "01 FRASCO",
+      "INALAR 02 JATOS COM ESPAÇADOR DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Resgate (se não usar budesonida/formoterol como resgate)",
+    "draft": true,
+    "items": [
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 01 PUFF NO MEIO DA RESPIRAÇÃO PROFUNDA E SEGURAR A RESPIRAÇÃO POR 10 SEG. PODE REPETIR UMA VEZ APÓS UM MINUTO. SE NECESSÁRIO, PODE REPETIR AS DUAS INALAÇÕES APÓS 6H DA ÚLTIMA DOSE. NA AUSÊNCIA DE MELHORA, RETORNAR À EMERGÊNCIA IMEDIATAMENTE",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — alta pós-crise: prednisona + budesonida/formoterol (manutenção e resgate)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -1804,17 +1963,11 @@ const DATA = [
       "INALAR 01 DOSE DE 12/12H, DIARIAMENTE HORÁRIO SUGERIDO: 08:00 – 20:00. SE FALTA DE AR OU CHIADO, INALAR 01 DOSE EXTRA, PODENDO REPETIR APÓS ALGUNS MINUTOS. NÃO ULTRAPASSAR 12 DOSES AO DIA",
       "USO INALATÓRIO"
      ]
-    ],
-    "orient": [
-     "USAR ESPAÇADOR COM O SPRAY AEROSSOL E ENXAGUAR A BOCA COM ÁGUA APÓS INALAR O CORTICOIDE (NÃO ENGOLIR)",
-     "NÃO SUSPENDER A BOMBINHA DE MANUTENÇÃO POR CONTA PRÓPRIA, MESMO COM MELHORA",
-     "CONSULTA NA UBS EM ATÉ 07 DIAS PARA REAVALIAR A ASMA, A TÉCNICA INALATÓRIA E AJUSTAR O TRATAMENTO DE MANUTENÇÃO",
-     "EVITAR CIGARRO, FUMAÇA, POEIRA E OUTROS GATILHOS CONHECIDOS",
-     "RETORNAR IMEDIATAMENTE SE FALTA DE AR INTENSA, DIFICULDADE PARA FALAR, LÁBIOS ROXOS, SONOLÊNCIA OU NECESSIDADE DE RESGATE REPETIDO SEM MELHORA"
     ]
    },
    {
-    "label": "Padrão — alternativa SUS/Farmácia Popular: prednisona + beclometasona + salbutamol",
+    "label": "Combinação pronta — alternativa SUS/Farmácia Popular: prednisona + beclometasona + salbutamol",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -2121,10 +2274,56 @@ const DATA = [
   "id": "bursites",
   "ic": "🦵",
   "nm": "Bursites",
-  "sub": "ibuprofeno · dipirona · diclofenaco gel",
+  "sub": "ibuprofeno · diclofenaco gel · dipirona",
   "blocks": [
    {
-    "label": "Padrão — AINE oral por curto prazo + analgésico",
+    "label": "Padrão — AINE oral ou tópico (tópico se idoso ou risco com AINE oral) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "IBUPROFENO 600 MG",
+      "21 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR 07 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DICLOFENACO DIETILAMÔNIO 11,6 MG/G GEL",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A REGIÃO DOLORIDA, MASSAGEANDO LEVEMENTE, 03 A 04 VEZES AO DIA POR ATÉ 14 DIAS",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "REPOUSO RELATIVO DA ARTICULAÇÃO, EVITAR APOIAR OU FAZER PRESSÃO SOBRE A REGIÃO (USAR ACOLCHOAMENTO) E EVITAR MOVIMENTOS REPETITIVOS. GELO ENVOLTO EM PANO POR 15 A 20 MINUTOS, 3 A 4 VEZES AO DIA, NOS PRIMEIROS DIAS",
+     "BURSITE SUPERFICIAL (OLÉCRANO/PRÉ-PATELAR) QUENTE E VERMELHA, COM FEBRE OU FERIMENTO NO LOCAL: SUSPEITAR DE BURSITE SÉPTICA — PUNÇÃO DO LÍQUIDO (GRAM E CULTURA) E ANTIBIÓTICO ANTIESTAFILOCÓCICO",
+     "SEM MELHORA EM 2 A 4 SEMANAS: FISIOTERAPIA E AVALIAR INFILTRAÇÃO COM CORTICOIDE NA BURSITE NÃO SÉPTICA (SUBACROMIAL/TROCANTÉRICA) — ORTOPEDIA OU REUMATOLOGIA",
+     "RETORNAR IMEDIATAMENTE SE FEBRE, VERMELHIDÃO OU CALOR QUE SE ESPALHA, SAÍDA DE PUS OU PIORA PROGRESSIVA DA DOR E DO INCHAÇO"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — AINE oral por curto prazo + analgésico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -2137,16 +2336,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
      ]
-    ],
-    "orient": [
-     "REPOUSO RELATIVO DA ARTICULAÇÃO, EVITAR APOIAR OU FAZER PRESSÃO SOBRE A REGIÃO (USAR ACOLCHOAMENTO) E EVITAR MOVIMENTOS REPETITIVOS. GELO ENVOLTO EM PANO POR 15 A 20 MINUTOS, 3 A 4 VEZES AO DIA, NOS PRIMEIROS DIAS",
-     "BURSITE SUPERFICIAL (OLÉCRANO/PRÉ-PATELAR) QUENTE E VERMELHA, COM FEBRE OU FERIMENTO NO LOCAL: SUSPEITAR DE BURSITE SÉPTICA — PUNÇÃO DO LÍQUIDO (GRAM E CULTURA) E ANTIBIÓTICO ANTIESTAFILOCÓCICO",
-     "SEM MELHORA EM 2 A 4 SEMANAS: FISIOTERAPIA E AVALIAR INFILTRAÇÃO COM CORTICOIDE NA BURSITE NÃO SÉPTICA (SUBACROMIAL/TROCANTÉRICA) — ORTOPEDIA OU REUMATOLOGIA",
-     "RETORNAR IMEDIATAMENTE SE FEBRE, VERMELHIDÃO OU CALOR QUE SE ESPALHA, SAÍDA DE PUS OU PIORA PROGRESSIVA DA DOR E DO INCHAÇO"
     ]
    },
    {
-    "label": "Padrão — Idoso ou risco com AINE oral: AINE tópico + dipirona",
+    "label": "Combinação pronta — Idoso ou risco com AINE oral: AINE tópico + dipirona",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -2389,10 +2583,83 @@ const DATA = [
   "id": "cefaleia",
   "ic": "🤕",
   "nm": "Cefaleia",
-  "sub": "dipirona · naproxeno · metoclopramida",
+  "sub": "dipirona · paracetamol · naproxeno · metoclopramida · sumatriptana",
   "blocks": [
    {
-    "label": "Padrão — analgésico simples + AINE + antiemético",
+    "label": "Padrão — Analgésico / antitérmico",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ],
+    "orient": [
+     "TOMAR A MEDICAÇÃO LOGO NO INÍCIO DA DOR; EVITAR ANALGÉSICOS POR MAIS DE 10 DIAS NO MÊS (RISCO DE CEFALEIA POR USO EXCESSIVO DE MEDICAMENTOS)",
+     "MANTER SONO REGULAR, BOA HIDRATAÇÃO E REFEIÇÕES EM HORÁRIOS REGULARES; ANOTAR AS CRISES EM UM DIÁRIO DE DOR DE CABEÇA",
+     "PROCURAR A UBS PARA AVALIAR TRATAMENTO PREVENTIVO SE 04 OU MAIS CRISES POR MÊS OU CRISES INCAPACITANTES",
+     "RETORNAR IMEDIATAMENTE SE: DOR SÚBITA E MUITO FORTE (PIOR DA VIDA), FEBRE COM RIGIDEZ DE NUCA, CONFUSÃO, CONVULSÃO, FRAQUEZA OU FORMIGAMENTO, ALTERAÇÃO DA FALA OU DA VISÃO, OU DOR QUE PIORA PROGRESSIVAMENTE"
+    ]
+   },
+   {
+    "label": "Padrão — AINE (anti-inflamatório) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético se náuseas — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "ONDANSETRONA 8 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — enxaqueca moderada a grave (triptano)",
+    "draft": true,
+    "items": [
+     [
+      "SUMATRIPTANA 50 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR VOLTAR, PODE REPETIR APÓS 02 HORAS. MÁXIMO DE 04 COMPRIMIDOS EM 24 HORAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — analgésico simples + AINE + antiemético",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -2409,23 +2676,6 @@ const DATA = [
       "METOCLOPRAMIDA 10 MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
-     ]
-    ],
-    "orient": [
-     "TOMAR A MEDICAÇÃO LOGO NO INÍCIO DA DOR; EVITAR ANALGÉSICOS POR MAIS DE 10 DIAS NO MÊS (RISCO DE CEFALEIA POR USO EXCESSIVO DE MEDICAMENTOS)",
-     "MANTER SONO REGULAR, BOA HIDRATAÇÃO E REFEIÇÕES EM HORÁRIOS REGULARES; ANOTAR AS CRISES EM UM DIÁRIO DE DOR DE CABEÇA",
-     "PROCURAR A UBS PARA AVALIAR TRATAMENTO PREVENTIVO SE 04 OU MAIS CRISES POR MÊS OU CRISES INCAPACITANTES",
-     "RETORNAR IMEDIATAMENTE SE: DOR SÚBITA E MUITO FORTE (PIOR DA VIDA), FEBRE COM RIGIDEZ DE NUCA, CONFUSÃO, CONVULSÃO, FRAQUEZA OU FORMIGAMENTO, ALTERAÇÃO DA FALA OU DA VISÃO, OU DOR QUE PIORA PROGRESSIVAMENTE"
-    ]
-   },
-   {
-    "label": "Padrão — enxaqueca moderada a grave (triptano)",
-    "draft": true,
-    "items": [
-     [
-      "SUMATRIPTANA 50 MG",
-      "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR VOLTAR, PODE REPETIR APÓS 02 HORAS. MÁXIMO DE 04 COMPRIMIDOS EM 24 HORAS"
      ]
     ]
    },
@@ -2789,7 +3039,43 @@ const DATA = [
   "sub": "dipirona · paracetamol · codeína",
   "blocks": [
    {
-    "label": "Padrão — fase aguda (dor leve a moderada): dipirona + paracetamol em horários fixos",
+    "label": "Padrão — Dipirona em horários fixos",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "56 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H, EM HORÁRIOS FIXOS (MESMO SEM DOR), POR 07 DIAS. HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ]
+    ],
+    "orient": [
+     "BEBER PELO MENOS 02 LITROS DE LÍQUIDOS POR DIA (ÁGUA, SUCOS, SORO DE REIDRATAÇÃO ORAL)",
+     "REPOUSO; APLICAR COMPRESSAS FRIAS NAS ARTICULAÇÕES DOLORIDAS POR 20 MINUTOS A CADA 04 HORAS; NÃO USAR CALOR NAS ARTICULAÇÕES; RETIRAR ANÉIS E ALIANÇAS",
+     "NÃO USAR ANTI-INFLAMATÓRIOS (IBUPROFENO, DICLOFENACO, NIMESULIDA, NAPROXENO), AAS OU CORTICOIDES NESTA FASE DA DOENÇA E EVITAR AUTOMEDICAÇÃO",
+     "RETORNAR SE A FEBRE DURAR MAIS DE 05 DIAS OU SE A DOR PERSISTIR APÓS O TRATAMENTO (GESTANTES, IDOSOS E PORTADORES DE DOENÇAS CRÔNICAS: REAVALIAÇÃO DIÁRIA ATÉ O FIM DA FEBRE)",
+     "RETORNAR IMEDIATAMENTE SE VÔMITOS PERSISTENTES, DOR ABDOMINAL INTENSA, SANGRAMENTOS, FALTA DE AR, DOR NO PEITO OU PALPITAÇÕES, DIMINUIÇÃO DA URINA, TONTURA OU DESMAIO, SONOLÊNCIA, CONVULSÃO, DOR DE CABEÇA FORTE OU FRAQUEZA NOS BRAÇOS OU PERNAS"
+    ]
+   },
+   {
+    "label": "Padrão — Intercalar com a dipirona (paracetamol + codeína se dor intensa, EVA ≥ 7) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "PARACETAMOL 750 MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H, EM HORÁRIOS FIXOS, INTERCALANDO COM A DIPIRONA (03 HORAS APÓS CADA DOSE DE DIPIRONA), POR 07 DIAS. HORÁRIO SUGERIDO: 09:00 / 15:00 / 21:00 / 03:00"
+     ],
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "20 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H, EM HORÁRIOS FIXOS, INTERCALANDO COM A DIPIRONA (03 HORAS APÓS CADA DOSE DE DIPIRONA), POR 05 DIAS. HORÁRIO SUGERIDO: 09:00 / 15:00 / 21:00 / 03:00"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — fase aguda (dor leve a moderada): dipirona + paracetamol em horários fixos",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -2802,17 +3088,11 @@ const DATA = [
       "28 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO DE 6/6H, EM HORÁRIOS FIXOS, INTERCALANDO COM A DIPIRONA (03 HORAS APÓS CADA DOSE DE DIPIRONA), POR 07 DIAS. HORÁRIO SUGERIDO: 09:00 / 15:00 / 21:00 / 03:00"
      ]
-    ],
-    "orient": [
-     "BEBER PELO MENOS 02 LITROS DE LÍQUIDOS POR DIA (ÁGUA, SUCOS, SORO DE REIDRATAÇÃO ORAL)",
-     "REPOUSO; APLICAR COMPRESSAS FRIAS NAS ARTICULAÇÕES DOLORIDAS POR 20 MINUTOS A CADA 04 HORAS; NÃO USAR CALOR NAS ARTICULAÇÕES; RETIRAR ANÉIS E ALIANÇAS",
-     "NÃO USAR ANTI-INFLAMATÓRIOS (IBUPROFENO, DICLOFENACO, NIMESULIDA, NAPROXENO), AAS OU CORTICOIDES NESTA FASE DA DOENÇA E EVITAR AUTOMEDICAÇÃO",
-     "RETORNAR SE A FEBRE DURAR MAIS DE 05 DIAS OU SE A DOR PERSISTIR APÓS O TRATAMENTO (GESTANTES, IDOSOS E PORTADORES DE DOENÇAS CRÔNICAS: REAVALIAÇÃO DIÁRIA ATÉ O FIM DA FEBRE)",
-     "RETORNAR IMEDIATAMENTE SE VÔMITOS PERSISTENTES, DOR ABDOMINAL INTENSA, SANGRAMENTOS, FALTA DE AR, DOR NO PEITO OU PALPITAÇÕES, DIMINUIÇÃO DA URINA, TONTURA OU DESMAIO, SONOLÊNCIA, CONVULSÃO, DOR DE CABEÇA FORTE OU FRAQUEZA NOS BRAÇOS OU PERNAS"
     ]
    },
    {
-    "label": "Padrão — dor intensa (EVA ≥ 7): dipirona + paracetamol/codeína em horários fixos",
+    "label": "Combinação pronta — dor intensa (EVA ≥ 7): dipirona + paracetamol/codeína em horários fixos",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -2997,10 +3277,79 @@ const DATA = [
   "id": "colica_nefretica",
   "ic": "🪨",
   "nm": "Cólica nefrética",
-  "sub": "ibuprofeno · dipirona · tansulosina",
+  "sub": "ibuprofeno · diclofenaco · dipirona · tansulosina",
   "blocks": [
    {
-    "label": "Padrão — AINE + dipirona + tansulosina (terapia expulsiva)",
+    "label": "Padrão — AINE (anti-inflamatório) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "CETOPROFENO 150 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDO"
+     ]
+    ],
+    "orient": [
+     "BEBER BASTANTE ÁGUA E DIMINUIR A INGESTA DE SÓDIO E PROTEÍNAS (EX: EVITAR CARNES, SAL E REFRIGERANTES)",
+     "COAR A URINA E GUARDAR O CÁLCULO, SE ELIMINADO, PARA LEVAR À CONSULTA",
+     "SOLICITO: USG DE RINS E VIAS URINÁRIAS (OU TC DE ABDOME SEM CONTRASTE, BAIXA DOSE) E CONSULTA COM UROLOGISTA EM ATÉ 04 SEMANAS",
+     "A TANSULOSINA PODE CAUSAR TONTURA AO LEVANTAR-SE: LEVANTAR DEVAGAR",
+     "RETORNAR IMEDIATAMENTE SE FEBRE OU CALAFRIOS, DOR QUE NÃO MELHORA COM A MEDICAÇÃO, VÔMITOS PERSISTENTES OU DIMINUIÇÃO/AUSÊNCIA DE URINA"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético se náuseas — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "ONDANSETRONA 8 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Terapia expulsiva (cálculo distal ≤ 10 mm)",
+    "draft": true,
+    "items": [
+     [
+      "TANSULOSINA 0,4 MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO APÓS O CAFÉ DA MANHÃ, POR 04 SEMANAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — AINE + dipirona + tansulosina (terapia expulsiva)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -3023,13 +3372,6 @@ const DATA = [
       "28 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO APÓS O CAFÉ DA MANHÃ, POR 04 SEMANAS"
      ]
-    ],
-    "orient": [
-     "BEBER BASTANTE ÁGUA E DIMINUIR A INGESTA DE SÓDIO E PROTEÍNAS (EX: EVITAR CARNES, SAL E REFRIGERANTES)",
-     "COAR A URINA E GUARDAR O CÁLCULO, SE ELIMINADO, PARA LEVAR À CONSULTA",
-     "SOLICITO: USG DE RINS E VIAS URINÁRIAS (OU TC DE ABDOME SEM CONTRASTE, BAIXA DOSE) E CONSULTA COM UROLOGISTA EM ATÉ 04 SEMANAS",
-     "A TANSULOSINA PODE CAUSAR TONTURA AO LEVANTAR-SE: LEVANTAR DEVAGAR",
-     "RETORNAR IMEDIATAMENTE SE FEBRE OU CALAFRIOS, DOR QUE NÃO MELHORA COM A MEDICAÇÃO, VÔMITOS PERSISTENTES OU DIMINUIÇÃO/AUSÊNCIA DE URINA"
     ]
    },
    {
@@ -3445,8 +3787,76 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — após remoção: colírio antibiótico + analgesia VO",
+    "label": "Padrão — Após remoção: colírio antibiótico",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "TOBRAMICINA 3 MG/ML COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 01 GOTA NO OLHO AFETADO DE 6/6H POR 05 DIAS. HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "NÃO COÇAR NEM ESFREGAR O OLHO; NÃO É NECESSÁRIO TAMPÃO (A OCLUSÃO NÃO ACELERA A CICATRIZAÇÃO)",
+     "NÃO USAR COLÍRIO ANESTÉSICO NEM COLÍRIO COM CORTICOIDE; LAVAR AS MÃOS ANTES E DEPOIS DE PINGAR O COLÍRIO",
+     "ENCAMINHAR AO OFTALMOLOGISTA EM 24 A 48H SE ANEL DE FERRUGEM, CORPO ESTRANHO NÃO REMOVIDO, ABRASÃO EXTENSA, USO DE LENTE DE CONTATO OU SINTOMAS PERSISTENTES",
+     "SUSPEITA DE PERFURAÇÃO OU CORPO ESTRANHO INTRAOCULAR (MARTELAR METAL, PROJÉTIL, PUPILA IRREGULAR): NÃO REMOVER NEM PRESSIONAR, PROTETOR OCULAR RÍGIDO E OFTALMOLOGIA DE URGÊNCIA",
+     "RETORNAR IMEDIATAMENTE SE PIORA DA DOR, BAIXA DA VISÃO, VERMELHIDÃO INTENSA, SECREÇÃO PURULENTA OU MANCHA BRANCA NO OLHO"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ],
+     [
+      "IBUPROFENO 50 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 8/8H SE DOR, APÓS ALIMENTAÇÃO, POR ATÉ 05 DIAS (10 MG/KG/DOSE). SOMENTE ≥ 06 MESES",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 50,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 200
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — após remoção: colírio antibiótico + analgesia VO",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -3468,13 +3878,6 @@ const DATA = [
        "max": 1000
       }
      ]
-    ],
-    "orient": [
-     "NÃO COÇAR NEM ESFREGAR O OLHO; NÃO É NECESSÁRIO TAMPÃO (A OCLUSÃO NÃO ACELERA A CICATRIZAÇÃO)",
-     "NÃO USAR COLÍRIO ANESTÉSICO NEM COLÍRIO COM CORTICOIDE; LAVAR AS MÃOS ANTES E DEPOIS DE PINGAR O COLÍRIO",
-     "ENCAMINHAR AO OFTALMOLOGISTA EM 24 A 48H SE ANEL DE FERRUGEM, CORPO ESTRANHO NÃO REMOVIDO, ABRASÃO EXTENSA, USO DE LENTE DE CONTATO OU SINTOMAS PERSISTENTES",
-     "SUSPEITA DE PERFURAÇÃO OU CORPO ESTRANHO INTRAOCULAR (MARTELAR METAL, PROJÉTIL, PUPILA IRREGULAR): NÃO REMOVER NEM PRESSIONAR, PROTETOR OCULAR RÍGIDO E OFTALMOLOGIA DE URGÊNCIA",
-     "RETORNAR IMEDIATAMENTE SE PIORA DA DOR, BAIXA DA VISÃO, VERMELHIDÃO INTENSA, SECREÇÃO PURULENTA OU MANCHA BRANCA NO OLHO"
     ]
    },
    {
@@ -3539,10 +3942,56 @@ const DATA = [
   "id": "constipacao",
   "ic": "🚽",
   "nm": "Constipação",
-  "sub": "macrogol · benefiber · bisacodil",
+  "sub": "macrogol · lactulose · fibra · bisacodil",
   "blocks": [
    {
-    "label": "Padrão — Macrogol (PEG 3350) + fibra solúvel",
+    "label": "Padrão — Laxativo osmótico (lactulose = alternativa SUS) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "MACROGOL 3350 + ELETRÓLITOS (MUVINLAX ®)",
+      "01 CAIXA",
+      "DISSOLVER 01 SACHÊ EM 01 COPO (125 ML) DE ÁGUA E TOMAR 01 VEZ AO DIA, PELA MANHÃ. SE NÃO EVACUAR EM 02 A 03 DIAS, AUMENTAR PARA 02 SACHÊS AO DIA; SE FEZES AMOLECIDAS, REDUZIR. USAR POR 14 DIAS E REAVALIAR"
+     ],
+     [
+      "LACTULOSE 667 MG/ML XAROPE",
+      "01 FRASCO",
+      "TOMAR 15 ML 01 VEZ AO DIA, PELA MANHÃ. PODE AUMENTAR ATÉ 15 ML DE 12/12H OU REDUZIR CONFORME O FUNCIONAMENTO DO INTESTINO"
+     ]
+    ],
+    "orient": [
+     "INGERIR BASTANTE LÍQUIDO (8 A 10 COPOS DE 200 ML POR DIA), DIETA RICA EM FIBRAS (FRUTAS, VERDURAS CRUAS, ALIMENTOS INTEGRAIS...), EXERCÍCIO FÍSICO E PROCURAR EVACUAR DIARIAMENTE SEMPRE NO MESMO HORÁRIO",
+     "APROVEITAR A VONTADE APÓS O CAFÉ DA MANHÃ, NÃO ADIAR A EVACUAÇÃO E APOIAR OS PÉS EM UM BANQUINHO AO USAR O VASO SANITÁRIO",
+     "REVISAR MEDICAMENTOS CONSTIPANTES (OPIOIDES, ANTICOLINÉRGICOS, SAIS DE FERRO E CÁLCIO, VERAPAMIL). SINAIS DE ALARME (INÍCIO RECENTE APÓS 45-50 ANOS, SANGUE NAS FEZES, ANEMIA, PERDA DE PESO, HISTÓRIA FAMILIAR DE CÂNCER COLORRETAL): ENCAMINHAR PARA COLONOSCOPIA",
+     "RETORNAR IMEDIATAMENTE SE DOR ABDOMINAL INTENSA, BARRIGA MUITO DISTENDIDA, VÔMITOS, PARADA DE ELIMINAÇÃO DE GASES OU SANGRAMENTO PELO ÂNUS"
+    ]
+   },
+   {
+    "label": "Padrão — Fibra solúvel",
+    "draft": true,
+    "items": [
+     [
+      "BENEFIBER ®",
+      "01 CAIXA",
+      "DISSOLVER 01 SACHÊ EM 01 COPO DE ÁGUA OU SUCO E TOMAR AO ALMOÇO POR 28 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Resgate",
+    "draft": true,
+    "items": [
+     [
+      "BISACODIL 5 MG",
+      "01 CAIXA",
+      "TOMAR 01 A 02 COMPRIMIDOS À NOITE SE NÃO EVACUAR POR 03 DIAS SEGUIDOS (RESGATE)"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — Macrogol (PEG 3350) + fibra solúvel",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -3560,16 +4009,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 01 A 02 COMPRIMIDOS À NOITE SE NÃO EVACUAR POR 03 DIAS SEGUIDOS (RESGATE)"
      ]
-    ],
-    "orient": [
-     "INGERIR BASTANTE LÍQUIDO (8 A 10 COPOS DE 200 ML POR DIA), DIETA RICA EM FIBRAS (FRUTAS, VERDURAS CRUAS, ALIMENTOS INTEGRAIS...), EXERCÍCIO FÍSICO E PROCURAR EVACUAR DIARIAMENTE SEMPRE NO MESMO HORÁRIO",
-     "APROVEITAR A VONTADE APÓS O CAFÉ DA MANHÃ, NÃO ADIAR A EVACUAÇÃO E APOIAR OS PÉS EM UM BANQUINHO AO USAR O VASO SANITÁRIO",
-     "REVISAR MEDICAMENTOS CONSTIPANTES (OPIOIDES, ANTICOLINÉRGICOS, SAIS DE FERRO E CÁLCIO, VERAPAMIL). SINAIS DE ALARME (INÍCIO RECENTE APÓS 45-50 ANOS, SANGUE NAS FEZES, ANEMIA, PERDA DE PESO, HISTÓRIA FAMILIAR DE CÂNCER COLORRETAL): ENCAMINHAR PARA COLONOSCOPIA",
-     "RETORNAR IMEDIATAMENTE SE DOR ABDOMINAL INTENSA, BARRIGA MUITO DISTENDIDA, VÔMITOS, PARADA DE ELIMINAÇÃO DE GASES OU SANGRAMENTO PELO ÂNUS"
     ]
    },
    {
-    "label": "Padrão — Alternativa SUS: lactulose",
+    "label": "Combinação pronta — Alternativa SUS: lactulose",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -3733,17 +4177,12 @@ const DATA = [
   "id": "dengue",
   "ic": "🦟",
   "nm": "Dengue",
-  "sub": "dipirona · soro de reidratação oral",
+  "sub": "soro de reidratação oral · dipirona · paracetamol",
   "blocks": [
    {
-    "label": "Padrão — grupos A e B (hidratação oral + sintomático)",
+    "label": "Padrão — Hidratação oral",
     "draft": true,
     "items": [
-     [
-      "DIPIRONA 500 MG",
-      "01 CAIXA",
-      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
-     ],
      [
       "SORO DE REIDRATAÇÃO ORAL",
       "01 CAIXA",
@@ -3756,6 +4195,57 @@ const DATA = [
      "RETORNAR IMEDIATAMENTE EM CASO DE DOR DE BARRIGA INTENSA E SEM MELHORA, VÔMITOS PERSISTENTES, SANGRAMENTOS IMPORTANTES, AUSÊNCIA DE URINA POR UM DIA APESAR DA HIDRATAÇÃO, SONOLÊNCIA INTENSA OU IRRITABILIDADE, VONTADE DE DESMAIAR, DESMAIO, MAL ESTAR IMPORTANTE OU MESMO DÚVIDAS.",
      "GRUPO A: RETORNAR PARA REAVALIAÇÃO NO DIA EM QUE A FEBRE PASSAR (INÍCIO DA FASE CRÍTICA) OU NO 5º DIA DE DOENÇA SE A FEBRE PERSISTIR",
      "GRUPO B (HEMATÓCRITO NORMAL): REAVALIAÇÃO CLÍNICA E HEMOGRAMA DIÁRIOS ATÉ 48H APÓS O FIM DA FEBRE"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético se náuseas — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "ONDANSETRONA 8 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — grupos A e B (hidratação oral + sintomático)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO AO MENOS 10 VEZES POR DIA, OU MAIS, CONFORME ACEITAÇÃO"
+     ]
     ]
    },
    {
@@ -3967,8 +4457,80 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — grupos A e B: hidratação oral + antitérmico",
+    "label": "Padrão — Hidratação oral (grupos A e B)",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA. VOLUME TOTAL DE LÍQUIDOS POR DIA: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "ATÉ 10 KG 130 ML/KG; DE 10 A 20 KG 100 ML/KG; ACIMA DE 20 KG 80 ML/KG — 1/3 EM SORO DE REIDRATAÇÃO ORAL E O RESTANTE EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER 1/3 DESSE VOLUME",
+       "faixas": [
+        {
+         "ate": 10,
+         "txt": "{=P*130} ML (130 ML/KG) — {=P*130/3} ML EM SORO DE REIDRATAÇÃO ORAL E {=P*130*2/3} ML EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER {=P*130/3} ML"
+        },
+        {
+         "acima": 10,
+         "ate": 20,
+         "txt": "{=P*100} ML (100 ML/KG) — {=P*100/3} ML EM SORO DE REIDRATAÇÃO ORAL E {=P*100*2/3} ML EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER {=P*100/3} ML"
+        },
+        {
+         "acima": 20,
+         "txt": "{=P*80} ML (80 ML/KG) — {=P*80/3} ML EM SORO DE REIDRATAÇÃO ORAL E {=P*80*2/3} ML EM ÁGUA, SUCOS, CHÁS E LEITE (MANTER O ALEITAMENTO). NAS PRIMEIRAS 4 A 6 HORAS, OFERECER {=P*80/3} ML"
+        }
+       ]
+      }
+     ]
+    ],
+    "orient": [
+     "NÃO USAR AAS, IBUPROFENO, DICLOFENACO, NIMESULIDA OU OUTRO ANTI-INFLAMATÓRIO, CORTICOIDE OU MEDICAÇÃO INTRAMUSCULAR",
+     "GRUPO A: REAVALIAR NO DIA EM QUE A FEBRE PASSAR OU NO 5º DIA DE DOENÇA. GRUPO B: HEMOGRAMA E REAVALIAÇÃO DIÁRIOS ATÉ 48 HORAS APÓS O FIM DA FEBRE",
+     "RETORNAR IMEDIATAMENTE SE: DOR ABDOMINAL INTENSA, VÔMITOS PERSISTENTES, SANGRAMENTOS, RECUSA DE LÍQUIDOS, POUCA URINA, SONOLÊNCIA OU IRRITABILIDADE, EXTREMIDADES FRIAS, DESMAIO OU PIORA QUANDO A FEBRE BAIXA",
+     "REPOUSO, USO DE REPELENTE E ELIMINAÇÃO DE CRIADOUROS; ANOTAR O VOLUME INGERIDO NO CARTÃO DE ACOMPANHAMENTO DA DENGUE"
+    ]
+   },
+   {
+    "label": "Padrão — Antitérmico pelo peso (sem AINE na dengue) — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (10 MG/KG/DOSE — MS 2024). ACIMA DE 3 MESES OU 5 KG",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (10 MG/KG/DOSE — MS 2024; DOSES MAIORES SÃO HEPATOTÓXICAS)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — grupos A e B: hidratação oral + antitérmico",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -4008,12 +4570,30 @@ const DATA = [
        "max": 1000
       }
      ]
+    ]
+   },
+   {
+    "label": "Antitérmico alternativo (alergia à dipirona)",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (10 MG/KG/DOSE — MS 2024; DOSES MAIORES SÃO HEPATOTÓXICAS)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
     ],
     "orient": [
-     "NÃO USAR AAS, IBUPROFENO, DICLOFENACO, NIMESULIDA OU OUTRO ANTI-INFLAMATÓRIO, CORTICOIDE OU MEDICAÇÃO INTRAMUSCULAR",
-     "GRUPO A: REAVALIAR NO DIA EM QUE A FEBRE PASSAR OU NO 5º DIA DE DOENÇA. GRUPO B: HEMOGRAMA E REAVALIAÇÃO DIÁRIOS ATÉ 48 HORAS APÓS O FIM DA FEBRE",
-     "RETORNAR IMEDIATAMENTE SE: DOR ABDOMINAL INTENSA, VÔMITOS PERSISTENTES, SANGRAMENTOS, RECUSA DE LÍQUIDOS, POUCA URINA, SONOLÊNCIA OU IRRITABILIDADE, EXTREMIDADES FRIAS, DESMAIO OU PIORA QUANDO A FEBRE BAIXA",
-     "REPOUSO, USO DE REPELENTE E ELIMINAÇÃO DE CRIADOUROS; ANOTAR O VOLUME INGERIDO NO CARTÃO DE ACOMPANHAMENTO DA DENGUE"
+     "CONFERIR NA BULA DO FRASCO O NÚMERO DE GOTAS POR ML (PARACETAMOL 200 MG/ML ≈ 15 GOTAS/ML)"
     ]
    },
    {
@@ -4108,30 +4688,6 @@ const DATA = [
     ]
    },
    {
-    "label": "Antitérmico alternativo (alergia à dipirona)",
-    "mode": "ped",
-    "sec": "offlabel",
-    "draft": true,
-    "items": [
-     [
-      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
-      "01 FRASCO",
-      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (10 MG/KG/DOSE — MS 2024; DOSES MAIORES SÃO HEPATOTÓXICAS)",
-      "USO ORAL",
-      {
-       "kg": 10,
-       "conc": 200,
-       "gotas": 15,
-       "un": "GOTAS",
-       "max": 750
-      }
-     ]
-    ],
-    "orient": [
-     "CONFERIR NA BULA DO FRASCO O NÚMERO DE GOTAS POR ML (PARACETAMOL 200 MG/ML ≈ 15 GOTAS/ML)"
-    ]
-   },
-   {
     "label": "Grupo D com choque persistente e hematócrito em ascensão (albumina)",
     "mode": "ped_internacao",
     "sec": "offlabel",
@@ -4160,10 +4716,79 @@ const DATA = [
   "id": "diarreia",
   "ic": "💩",
   "nm": "Diarreia aguda",
-  "sub": "soro de reidratação oral · loperamida · ondansetrona",
+  "sub": "soro de reidratação oral · loperamida · saccharomyces · ondansetrona",
   "blocks": [
    {
-    "label": "Padrão — reidratação oral + sintomáticos",
+    "label": "Padrão — Reidratação oral",
+    "draft": true,
+    "items": [
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA E GUARDAR NA GELADEIRA. TOMAR 01 COPO APÓS CADA EVACUAÇÃO DIARREICA"
+     ]
+    ],
+    "orient": [
+     "MANTER A ALIMENTAÇÃO HABITUAL EM PEQUENAS PORÇÕES E AUMENTAR A INGESTÃO DE LÍQUIDOS; EVITAR REFRIGERANTES, SUCOS ADOÇADOS E BEBIDAS ALCOÓLICAS",
+     "NÃO USAR LOPERAMIDA SE HOUVER SANGUE NAS FEZES OU FEBRE; SUSPENDER SE HOUVER DISTENSÃO ABDOMINAL OU SE NÃO MELHORAR EM 48 HORAS",
+     "LAVAR AS MÃOS APÓS USAR O BANHEIRO E ANTES DE PREPARAR OU INGERIR ALIMENTOS",
+     "RETORNAR IMEDIATAMENTE SE: SINAIS DE DESIDRATAÇÃO (MUITA SEDE, BOCA SECA, POUCA URINA, TONTURA AO LEVANTAR), VÔMITOS QUE IMPEDEM A HIDRATAÇÃO, SANGUE NAS FEZES, FEBRE PERSISTENTE, DOR ABDOMINAL INTENSA OU DIARREIA POR MAIS DE 07 DIAS"
+    ]
+   },
+   {
+    "label": "Padrão — Antidiarreico (loperamida só sem sangue nas fezes e sem febre alta) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "LOPERAMIDA 2MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS, PODENDO TOMAR 01 A CADA EVACUAÇÃO DIARREICA, ATÉ O MÁXIMO DE 08 COMPRIMIDOS/DIA"
+     ],
+     [
+      "SACCHAROMYCES BOULARDII 200 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético se náuseas — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "ONDANSETRONA 8 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — disenteria ou febre com toxemia (antibiótico) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "03 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 03 DIAS HORÁRIO SUGERIDO: 08:00"
+     ],
+     [
+      "CIPROFLOXACINO 500 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — reidratação oral + sintomáticos",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -4185,29 +4810,6 @@ const DATA = [
       "DIPIRONA 500 MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
-     ]
-    ],
-    "orient": [
-     "MANTER A ALIMENTAÇÃO HABITUAL EM PEQUENAS PORÇÕES E AUMENTAR A INGESTÃO DE LÍQUIDOS; EVITAR REFRIGERANTES, SUCOS ADOÇADOS E BEBIDAS ALCOÓLICAS",
-     "NÃO USAR LOPERAMIDA SE HOUVER SANGUE NAS FEZES OU FEBRE; SUSPENDER SE HOUVER DISTENSÃO ABDOMINAL OU SE NÃO MELHORAR EM 48 HORAS",
-     "LAVAR AS MÃOS APÓS USAR O BANHEIRO E ANTES DE PREPARAR OU INGERIR ALIMENTOS",
-     "RETORNAR IMEDIATAMENTE SE: SINAIS DE DESIDRATAÇÃO (MUITA SEDE, BOCA SECA, POUCA URINA, TONTURA AO LEVANTAR), VÔMITOS QUE IMPEDEM A HIDRATAÇÃO, SANGUE NAS FEZES, FEBRE PERSISTENTE, DOR ABDOMINAL INTENSA OU DIARREIA POR MAIS DE 07 DIAS"
-    ]
-   },
-   {
-    "label": "Padrão — disenteria ou febre com toxemia (antibiótico) — escolha 1",
-    "draft": true,
-    "menu": true,
-    "items": [
-     [
-      "AZITROMICINA 500 MG",
-      "03 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO AO DIA POR 03 DIAS HORÁRIO SUGERIDO: 08:00"
-     ],
-     [
-      "CIPROFLOXACINO 500 MG",
-      "06 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS"
      ]
     ]
    },
@@ -4802,8 +5404,141 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — Planos A e B: SRO + zinco + sintomáticos",
+    "label": "Padrão — Planos A e B: SRO + zinco",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "SORO DE REIDRATAÇÃO ORAL",
+      "01 CAIXA",
+      "DILUIR 01 SACHÊ EM 1 LITRO DE ÁGUA FILTRADA OU FERVIDA. PLANO B (NA UNIDADE): OFERECER {DOSE} EM 4 A 6 HORAS, EM PEQUENOS VOLUMES FREQUENTES, CONFORME A SEDE (75 ML/KG; FAIXA DE 50 A 100 ML/KG). PLANO A (HIDRATADA): APÓS CADA EVACUAÇÃO, MENOR DE 1 ANO 50-100 ML; 1 A 10 ANOS 100-200 ML; ACIMA DE 10 ANOS O VOLUME TOLERADO",
+      "USO ORAL",
+      {
+       "kg": 75,
+       "un": "ML",
+       "max": 3750
+      }
+     ],
+     [
+      "SULFATO DE ZINCO SOLUÇÃO ORAL (4 MG/ML DE ZINCO ELEMENTAR)",
+      "01 FRASCO",
+      "MENORES DE 5 ANOS, 01 VEZ AO DIA POR 10 A 14 DIAS: ATÉ 6 MESES DAR 2,5 ML (10 MG); DE 6 MESES A 5 ANOS DAR 5 ML (20 MG)",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "PLANO B: PERMANECER NA UNIDADE ATÉ A REIDRATAÇÃO COMPLETA, REAVALIANDO A CADA HORA; SEM MELHORA EM 4-6 HORAS OU PIORA: SONDA NASOGÁSTRICA (GASTRÓCLISE) OU PLANO C (SORO PELA VEIA)",
+     "MANTER O ALEITAMENTO MATERNO E A ALIMENTAÇÃO HABITUAL; NÃO OFERECER REFRIGERANTES, SUCOS INDUSTRIALIZADOS OU CHÁS ADOÇADOS",
+     "NÃO USAR LOPERAMIDA NEM METOCLOPRAMIDA EM CRIANÇAS; ANTIBIÓTICO SOMENTE NA DISENTERIA COM COMPROMETIMENTO DO ESTADO GERAL OU CÓLERA GRAVE",
+     "RETORNAR IMEDIATAMENTE SE: NÃO MELHORAR EM 2 DIAS, VÔMITOS REPETIDOS, MUITA SEDE, RECUSA ALIMENTAR, SANGUE NAS FEZES, POUCA URINA, SONOLÊNCIA OU IRRITABILIDADE"
+    ]
+   },
+   {
+    "label": "Padrão — Se vômitos persistentes",
+    "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "ONDANSETRONA 4 MG/5 ML SOLUÇÃO ORAL",
+      "01 FRASCO",
+      "SE VÔMITOS PERSISTENTES, DAR DOSE ÚNICA 15 MINUTOS ANTES DE REINICIAR A SRO: {FAIXA}",
+      "USO ORAL",
+      {
+       "sem_peso": "6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 A 10 ANOS (ATÉ 30 KG) 5 ML (4 MG); ACIMA DE 10 ANOS (MAIS DE 30 KG) 10 ML (8 MG)",
+       "faixas": [
+        {
+         "ate": 30,
+         "txt": "6 MESES A 2 ANOS 2,5 ML (2 MG); MAIS DE 2 ANOS 5 ML (4 MG)"
+        },
+        {
+         "acima": 30,
+         "txt": "10 ML (8 MG)"
+        }
+       ]
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antitérmico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE). ACIMA DE 3 MESES OU 5 KG",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — disenteria com comprometimento do estado geral (antibiótico) — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AZITROMICINA 200 MG/5 ML PÓ PARA SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL 01 VEZ AO DIA NO 1º DIA (10 MG/KG) E METADE DESSA DOSE (5 MG/KG) 01 VEZ AO DIA DO 2º AO 5º DIA",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 40,
+       "un": "ML",
+       "max": 500
+      }
+     ],
+     [
+      "CEFTRIAXONA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "ADMINISTRAR {DOSE} IM 01 VEZ AO DIA POR 03 A 05 DIAS (50 MG/KG/DIA; ATÉ 100 MG/KG/DIA NOS CASOS GRAVES). VIA EV SE INTERNADA COM ACESSO VENOSO, MENOR DE 3 MESES OU IMUNODEFICIÊNCIA",
+      "USO INTRAMUSCULAR",
+      {
+       "kg": 50,
+       "un": "MG",
+       "max": 2000
+      }
+     ],
+     [
+      "CIPROFLOXACINO 500 MG",
+      "06 COMPRIMIDOS",
+      "ACIMA DE 10 ANOS OU MAIS DE 30 KG: TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS",
+      "USO ORAL"
+     ]
+    ],
+    "orient": [
+     "INDICADO NA DISENTERIA (SANGUE NAS FEZES) COM COMPROMETIMENTO DO ESTADO GERAL, CÓLERA GRAVE, DESNUTRIÇÃO GRAVE OU IMUNOSSUPRESSÃO",
+     "CEFTRIAXONA CONTRAINDICADA EM RECÉM-NASCIDO ICTÉRICO OU QUE RECEBE SOLUÇÃO COM CÁLCIO (RINGER) — USAR CEFOTAXIMA 100 MG/KG/DIA EV EM 4 DOSES; NAS DEMAIS IDADES NÃO INFUNDIR NA MESMA VIA DO RINGER",
+     "REAVALIAR EM 48 HORAS; SEM MELHORA, COLHER COPROCULTURA E CONSIDERAR AMEBÍASE (METRONIDAZOL)"
+    ]
+   },
+   {
+    "label": "Combinação pronta — Planos A e B: SRO + zinco + sintomáticos",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -4855,12 +5590,31 @@ const DATA = [
        "max": 1000
       }
      ]
+    ]
+   },
+   {
+    "label": "Antitérmico alternativo (alergia à dipirona ou menor de 3 meses)",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
     ],
     "orient": [
-     "PLANO B: PERMANECER NA UNIDADE ATÉ A REIDRATAÇÃO COMPLETA, REAVALIANDO A CADA HORA; SEM MELHORA EM 4-6 HORAS OU PIORA: SONDA NASOGÁSTRICA (GASTRÓCLISE) OU PLANO C (SORO PELA VEIA)",
-     "MANTER O ALEITAMENTO MATERNO E A ALIMENTAÇÃO HABITUAL; NÃO OFERECER REFRIGERANTES, SUCOS INDUSTRIALIZADOS OU CHÁS ADOÇADOS",
-     "NÃO USAR LOPERAMIDA NEM METOCLOPRAMIDA EM CRIANÇAS; ANTIBIÓTICO SOMENTE NA DISENTERIA COM COMPROMETIMENTO DO ESTADO GERAL OU CÓLERA GRAVE",
-     "RETORNAR IMEDIATAMENTE SE: NÃO MELHORAR EM 2 DIAS, VÔMITOS REPETIDOS, MUITA SEDE, RECUSA ALIMENTAR, SANGUE NAS FEZES, POUCA URINA, SONOLÊNCIA OU IRRITABILIDADE"
+     "CONFERIR NA BULA DO FRASCO O NÚMERO DE GOTAS POR ML (PARACETAMOL 200 MG/ML ≈ 15 GOTAS/ML)",
+     "FEBRE EM MENOR DE 3 MESES EXIGE AVALIAÇÃO MÉDICA ANTES DO ANTITÉRMICO"
     ]
    },
    {
@@ -4931,73 +5685,6 @@ const DATA = [
      "OFERECER SRO ASSIM QUE A CRIANÇA CONSEGUIR BEBER; SUSPENDER A HIDRATAÇÃO EV QUANDO HIDRATADA, ACEITANDO SRO E SEM VÔMITOS, E OBSERVAR POR PELO MENOS 6 HORAS",
      "DOSAR GLICEMIA, NA, K, UREIA, CREATININA E GASOMETRIA; DESNUTRIDO GRAVE: NÃO USAR ESTE ESQUEMA — SF 0,9% 10 ML/KG COM REAVALIAÇÃO A CADA HORA",
      "UTI SE CHOQUE REFRATÁRIO À EXPANSÃO, ACIDOSE GRAVE, DISTÚRBIO ELETROLÍTICO GRAVE OU REBAIXAMENTO PERSISTENTE"
-    ]
-   },
-   {
-    "label": "Padrão — disenteria com comprometimento do estado geral (antibiótico) — escolha 1",
-    "mode": "ped",
-    "draft": true,
-    "menu": true,
-    "items": [
-     [
-      "AZITROMICINA 200 MG/5 ML PÓ PARA SUSPENSÃO ORAL",
-      "01 FRASCO",
-      "DAR {DOSE} VIA ORAL 01 VEZ AO DIA NO 1º DIA (10 MG/KG) E METADE DESSA DOSE (5 MG/KG) 01 VEZ AO DIA DO 2º AO 5º DIA",
-      "USO ORAL",
-      {
-       "kg": 10,
-       "conc": 40,
-       "un": "ML",
-       "max": 500
-      }
-     ],
-     [
-      "CEFTRIAXONA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
-      "01 FRASCO-AMPOLA",
-      "ADMINISTRAR {DOSE} IM 01 VEZ AO DIA POR 03 A 05 DIAS (50 MG/KG/DIA; ATÉ 100 MG/KG/DIA NOS CASOS GRAVES). VIA EV SE INTERNADA COM ACESSO VENOSO, MENOR DE 3 MESES OU IMUNODEFICIÊNCIA",
-      "USO INTRAMUSCULAR",
-      {
-       "kg": 50,
-       "un": "MG",
-       "max": 2000
-      }
-     ],
-     [
-      "CIPROFLOXACINO 500 MG",
-      "06 COMPRIMIDOS",
-      "ACIMA DE 10 ANOS OU MAIS DE 30 KG: TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS",
-      "USO ORAL"
-     ]
-    ],
-    "orient": [
-     "INDICADO NA DISENTERIA (SANGUE NAS FEZES) COM COMPROMETIMENTO DO ESTADO GERAL, CÓLERA GRAVE, DESNUTRIÇÃO GRAVE OU IMUNOSSUPRESSÃO",
-     "CEFTRIAXONA CONTRAINDICADA EM RECÉM-NASCIDO ICTÉRICO OU QUE RECEBE SOLUÇÃO COM CÁLCIO (RINGER) — USAR CEFOTAXIMA 100 MG/KG/DIA EV EM 4 DOSES; NAS DEMAIS IDADES NÃO INFUNDIR NA MESMA VIA DO RINGER",
-     "REAVALIAR EM 48 HORAS; SEM MELHORA, COLHER COPROCULTURA E CONSIDERAR AMEBÍASE (METRONIDAZOL)"
-    ]
-   },
-   {
-    "label": "Antitérmico alternativo (alergia à dipirona ou menor de 3 meses)",
-    "mode": "ped",
-    "sec": "offlabel",
-    "draft": true,
-    "items": [
-     [
-      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
-      "01 FRASCO",
-      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
-      "USO ORAL",
-      {
-       "kg": 15,
-       "conc": 200,
-       "gotas": 15,
-       "un": "GOTAS",
-       "max": 750
-      }
-     ]
-    ],
-    "orient": [
-     "CONFERIR NA BULA DO FRASCO O NÚMERO DE GOTAS POR ML (PARACETAMOL 200 MG/ML ≈ 15 GOTAS/ML)",
-     "FEBRE EM MENOR DE 3 MESES EXIGE AVALIAÇÃO MÉDICA ANTES DO ANTITÉRMICO"
     ]
    }
   ]
@@ -5119,16 +5806,27 @@ const DATA = [
   "id": "dismenorreia",
   "ic": "🩸",
   "nm": "Dismenorreia",
-  "sub": "ibuprofeno · paracetamol",
+  "sub": "ibuprofeno · naproxeno · paracetamol · escopolamina",
   "blocks": [
    {
-    "label": "Padrão — AINE no período menstrual",
+    "label": "Padrão — AINE no período menstrual — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "IBUPROFENO 600 MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, INICIANDO 01 DIA ANTES OU NO PRIMEIRO DIA DA MENSTRUAÇÃO, POR 02 A 03 DIAS A CADA CICLO"
+     ],
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
      ]
     ],
     "orient": [
@@ -5146,6 +5844,29 @@ const DATA = [
       "PARACETAMOL 750 MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO SE CÓLICA MENSTRUAL, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiespasmódico se cólica",
+    "draft": true,
+    "items": [
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR ABDOMINAL, PODENDO REPETIR DE 8/8H"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — AINE no período menstrual",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "IBUPROFENO 600 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, INICIANDO 01 DIA ANTES OU NO PRIMEIRO DIA DA MENSTRUAÇÃO, POR 02 A 03 DIAS A CADA CICLO"
      ]
     ]
    },
@@ -5247,10 +5968,56 @@ const DATA = [
   "id": "dpoc",
   "ic": "🫁",
   "nm": "DPOC descompensada",
-  "sub": "prednisona · salbutamol · amoxicilina-clavulanato",
+  "sub": "prednisona · salbutamol · amoxicilina-clavulanato · doxiciclina",
   "blocks": [
    {
-    "label": "Padrão — prednisona 40 mg + SABA + amoxicilina-clavulanato",
+    "label": "Padrão — Corticoide oral por 05 dias",
+    "draft": true,
+    "items": [
+     [
+      "PREDNISONA 20 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS PELA MANHÃ, APÓS O CAFÉ, POR 05 DIAS"
+     ]
+    ],
+    "orient": [
+     "CONSULTA NA UBS EM ATÉ 02 SEMANAS PARA REVISAR A TÉCNICA INALATÓRIA E INICIAR/AJUSTAR O BRONCODILATADOR DE MANUTENÇÃO (LAMA/LABA)",
+     "PARAR DE FUMAR (O SUS OFERECE TRATAMENTO GRATUITO) E MANTER AS VACINAS EM DIA: INFLUENZA, PNEUMOCÓCICA E COVID-19",
+     "RETORNAR IMEDIATAMENTE SE PIORA DA FALTA DE AR, DIFICULDADE PARA FALAR, LÁBIOS ROXOS, SONOLÊNCIA OU CONFUSÃO, DOR NO PEITO OU FEBRE PERSISTENTE"
+    ]
+   },
+   {
+    "label": "Padrão — Broncodilatador de resgate",
+    "draft": true,
+    "items": [
+     [
+      "SALBUTAMOL SPRAY AEROSSOL 100 MCG",
+      "01 FRASCO",
+      "INALAR 02 A 04 JATOS COM ESPAÇADOR SE FALTA DE AR OU CHIADO, PODENDO REPETIR DE 4/4H. SE PRECISAR EM INTERVALO MENOR OU NÃO MELHORAR, RETORNAR À EMERGÊNCIA",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antibiótico se escarro purulento (doxiciclina se alergia à penicilina) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG + CLAVULANATO 125 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR 05 DIAS"
+     ],
+     [
+      "DOXICICLINA 100 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS, COM UM COPO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — prednisona 40 mg + SABA + amoxicilina-clavulanato",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -5269,15 +6036,11 @@ const DATA = [
       "INALAR 02 A 04 JATOS COM ESPAÇADOR SE FALTA DE AR OU CHIADO, PODENDO REPETIR DE 4/4H. SE PRECISAR EM INTERVALO MENOR OU NÃO MELHORAR, RETORNAR À EMERGÊNCIA",
       "USO INALATÓRIO"
      ]
-    ],
-    "orient": [
-     "CONSULTA NA UBS EM ATÉ 02 SEMANAS PARA REVISAR A TÉCNICA INALATÓRIA E INICIAR/AJUSTAR O BRONCODILATADOR DE MANUTENÇÃO (LAMA/LABA)",
-     "PARAR DE FUMAR (O SUS OFERECE TRATAMENTO GRATUITO) E MANTER AS VACINAS EM DIA: INFLUENZA, PNEUMOCÓCICA E COVID-19",
-     "RETORNAR IMEDIATAMENTE SE PIORA DA FALTA DE AR, DIFICULDADE PARA FALAR, LÁBIOS ROXOS, SONOLÊNCIA OU CONFUSÃO, DOR NO PEITO OU FEBRE PERSISTENTE"
     ]
    },
    {
-    "label": "Padrão — alergia à penicilina",
+    "label": "Combinação pronta — alergia à penicilina",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -5503,7 +6266,61 @@ const DATA = [
   "sub": "betametasona · hidrocortisona · loratadina",
   "blocks": [
    {
-    "label": "Padrão — corticoide tópico de média/alta potência (corpo) + anti-histamínico",
+    "label": "Padrão — Corticoide tópico (hidrocortisona no rosto, pálpebras e dobras) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "VALERATO DE BETAMETASONA 1 MG/G CREME",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A ÁREA AFETADA DE 12/12H POR 07 A 14 DIAS. NÃO APLICAR NO ROSTO, AXILAS OU VIRILHAS",
+      "USO TÓPICO"
+     ],
+     [
+      "ACETATO DE HIDROCORTISONA 10 MG/G CREME",
+      "01 BISNAGA",
+      "APLICAR UMA FINA CAMADA SOBRE A ÁREA AFETADA DE 12/12H POR ATÉ 07 DIAS",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "IDENTIFICAR E EVITAR O CONTATO COM A SUBSTÂNCIA SUSPEITA (BIJUTERIAS/NÍQUEL, COSMÉTICOS, PERFUMES, TINTURAS DE CABELO, PRODUTOS DE LIMPEZA, LUVAS DE BORRACHA, PLANTAS)",
+     "LAVAR A PELE APENAS COM ÁGUA E SABONETE NEUTRO E HIDRATAR VÁRIAS VEZES AO DIA COM CREME OU VASELINA SEM PERFUME",
+     "RETORNAR SE FEBRE, PUS, CROSTAS AMARELADAS, BOLHAS EXTENSAS, LESÕES EM OLHOS, BOCA OU GENITAIS, OU SE NÃO HOUVER MELHORA EM 14 DIAS",
+     "SE CASOS REPETIDOS OU RELACIONADOS AO TRABALHO: ENCAMINHAR À DERMATOLOGIA PARA TESTE DE CONTATO (PATCH TEST)"
+    ]
+   },
+   {
+    "label": "Padrão — Anti-histamínico se coceira — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "CETIRIZINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — extensa (>20% da pele) ou grave: corticoide oral com desmame",
+    "draft": true,
+    "items": [
+     [
+      "PREDNISONA 20 MG",
+      "21 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS PELA MANHÃ, APÓS O CAFÉ, POR 07 DIAS. DEPOIS, 01 COMPRIMIDO PELA MANHÃ POR MAIS 07 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — corticoide tópico de média/alta potência (corpo) + anti-histamínico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -5517,16 +6334,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
      ]
-    ],
-    "orient": [
-     "IDENTIFICAR E EVITAR O CONTATO COM A SUBSTÂNCIA SUSPEITA (BIJUTERIAS/NÍQUEL, COSMÉTICOS, PERFUMES, TINTURAS DE CABELO, PRODUTOS DE LIMPEZA, LUVAS DE BORRACHA, PLANTAS)",
-     "LAVAR A PELE APENAS COM ÁGUA E SABONETE NEUTRO E HIDRATAR VÁRIAS VEZES AO DIA COM CREME OU VASELINA SEM PERFUME",
-     "RETORNAR SE FEBRE, PUS, CROSTAS AMARELADAS, BOLHAS EXTENSAS, LESÕES EM OLHOS, BOCA OU GENITAIS, OU SE NÃO HOUVER MELHORA EM 14 DIAS",
-     "SE CASOS REPETIDOS OU RELACIONADOS AO TRABALHO: ENCAMINHAR À DERMATOLOGIA PARA TESTE DE CONTATO (PATCH TEST)"
     ]
    },
    {
-    "label": "Padrão — rosto, pálpebras ou dobras: trocar por corticoide de baixa potência",
+    "label": "Combinação pronta — rosto, pálpebras ou dobras: trocar por corticoide de baixa potência",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -5534,17 +6346,6 @@ const DATA = [
       "01 BISNAGA",
       "APLICAR UMA FINA CAMADA SOBRE A ÁREA AFETADA DE 12/12H POR ATÉ 07 DIAS",
       "USO TÓPICO"
-     ]
-    ]
-   },
-   {
-    "label": "Padrão — extensa (>20% da pele) ou grave: corticoide oral com desmame",
-    "draft": true,
-    "items": [
-     [
-      "PREDNISONA 20 MG",
-      "21 COMPRIMIDOS",
-      "TOMAR 02 COMPRIMIDOS PELA MANHÃ, APÓS O CAFÉ, POR 07 DIAS. DEPOIS, 01 COMPRIMIDO PELA MANHÃ POR MAIS 07 DIAS"
      ]
     ]
    },
@@ -5747,10 +6548,96 @@ const DATA = [
   "id": "enxaqueca",
   "ic": "🧠",
   "nm": "Enxaqueca",
-  "sub": "sumatriptano · naproxeno · metoclopramida",
+  "sub": "sumatriptano · naproxeno · dipirona · metoclopramida",
   "blocks": [
    {
-    "label": "Padrão — crise moderada/intensa: sumatriptano + naproxeno + metoclopramida",
+    "label": "Padrão — Triptano no início da crise (moderada/intensa) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "SUMATRIPTANO 50 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 02 HORAS. MÁXIMO DE 04 COMPRIMIDOS EM 24 HORAS"
+     ],
+     [
+      "NARATRIPTANO 2,5 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 04 HORAS. MÁXIMO DE 02 COMPRIMIDOS EM 24 HORAS"
+     ]
+    ],
+    "orient": [
+     "TOMAR A MEDICAÇÃO LOGO NO INÍCIO DA DOR E REPOUSAR EM AMBIENTE CALMO E ESCURO",
+     "NÃO USAR REMÉDIOS PARA DOR DE CABEÇA POR MAIS DE 10 DIAS NO MÊS (O EXCESSO TORNA A DOR CRÔNICA); NÃO ASSOCIAR SUMATRIPTANO A ERGOTAMINA (CEFALIV®, CEFALIUM)",
+     "MANTER DIÁRIO DA DOR E AGENDAR CONSULTA NA UBS PARA AVALIAR TRATAMENTO PREVENTIVO SE 04 OU MAIS CRISES POR MÊS OU CRISES INCAPACITANTES",
+     "EVITAR GATILHOS: JEJUM PROLONGADO, PRIVAÇÃO DE SONO, ÁLCOOL E EXCESSO DE CAFEÍNA",
+     "RETORNAR IMEDIATAMENTE SE DOR SÚBITA E MUITO FORTE (A PIOR DA VIDA), FEBRE COM RIGIDEZ NA NUCA, FRAQUEZA OU DORMÊNCIA EM UM LADO DO CORPO, ALTERAÇÃO DA FALA OU DA VISÃO, CONFUSÃO OU CONVULSÃO"
+    ]
+   },
+   {
+    "label": "Padrão — AINE (anti-inflamatório) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico (crise leve ou contraindicação a triptano) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Antiemético — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "ONDANSETRONA 8 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
+     ],
+     [
+      "DIMENIDRINATO 50 MG + PIRIDOXINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — crise moderada/intensa: sumatriptano + naproxeno + metoclopramida",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -5768,17 +6655,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
      ]
-    ],
-    "orient": [
-     "TOMAR A MEDICAÇÃO LOGO NO INÍCIO DA DOR E REPOUSAR EM AMBIENTE CALMO E ESCURO",
-     "NÃO USAR REMÉDIOS PARA DOR DE CABEÇA POR MAIS DE 10 DIAS NO MÊS (O EXCESSO TORNA A DOR CRÔNICA); NÃO ASSOCIAR SUMATRIPTANO A ERGOTAMINA (CEFALIV®, CEFALIUM)",
-     "MANTER DIÁRIO DA DOR E AGENDAR CONSULTA NA UBS PARA AVALIAR TRATAMENTO PREVENTIVO SE 04 OU MAIS CRISES POR MÊS OU CRISES INCAPACITANTES",
-     "EVITAR GATILHOS: JEJUM PROLONGADO, PRIVAÇÃO DE SONO, ÁLCOOL E EXCESSO DE CAFEÍNA",
-     "RETORNAR IMEDIATAMENTE SE DOR SÚBITA E MUITO FORTE (A PIOR DA VIDA), FEBRE COM RIGIDEZ NA NUCA, FRAQUEZA OU DORMÊNCIA EM UM LADO DO CORPO, ALTERAÇÃO DA FALA OU DA VISÃO, CONFUSÃO OU CONVULSÃO"
     ]
    },
    {
-    "label": "Padrão — crise leve ou contraindicação a triptano: dipirona + metoclopramida",
+    "label": "Combinação pronta — crise leve ou contraindicação a triptano: dipirona + metoclopramida",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -5798,9 +6679,9 @@ const DATA = [
     "sec": "offlabel",
     "items": [
      [
-      "NARATRIPANO 2,5 MG",
+      "NARATRIPTANO 2,5 MG",
       "01 CAIXA",
-      "TOMAR 01 COMPRIMIDO AO PRIMEIRO SINAL DE ENXAQUECA. SE NÃO HOUVER MELHORA, PODE REPETIR 01 COMPRIMIDO APÓS 6H HORAS."
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE DE ENXAQUECA. SE A DOR MELHORAR E DEPOIS VOLTAR, PODE REPETIR 01 COMPRIMIDO APÓS NO MÍNIMO 04 HORAS. MÁXIMO DE 02 COMPRIMIDOS EM 24 HORAS"
      ],
      [
       "DIPIRONA 500 MG",
@@ -6245,10 +7126,51 @@ const DATA = [
   "id": "erisipela",
   "ic": "🦠",
   "nm": "Erisipela e celulite",
-  "sub": "cefalexina · dipirona",
+  "sub": "cefalexina · clindamicina · dipirona",
   "blocks": [
    {
-    "label": "Padrão — cefalexina 07 dias",
+    "label": "Padrão — Antibiótico por 07 dias (clindamicina se alergia grave à penicilina) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CEFALEXINA 500MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00"
+     ],
+     [
+      "CLINDAMICINA 300MG",
+      "42 CÁPSULAS",
+      "TOMAR 02 CÁPSULAS DE 8/8 HORAS POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ]
+    ],
+    "orient": [
+     "MANTER O MEMBRO ELEVADO NA MAIOR PARTE DO TEMPO E APLICAR COMPRESSAS MORNAS",
+     "MARCAR COM CANETA O LIMITE DA VERMELHIDÃO PARA ACOMPANHAR A EVOLUÇÃO. MELHORA ESPERADA EM 48 A 72H (A VERMELHIDÃO PODE AUMENTAR UM POUCO NAS PRIMEIRAS 24H)",
+     "TRATAR A PORTA DE ENTRADA: MICOSE ENTRE OS DEDOS DOS PÉS, RACHADURAS E FERIDAS. CONTROLAR O INCHAÇO DAS PERNAS",
+     "RETORNAR IMEDIATAMENTE SE FEBRE ALTA PERSISTENTE, AUMENTO RÁPIDO DA VERMELHIDÃO, BOLHAS COM SANGUE, MANCHAS ROXAS OU PRETAS NA PELE, DOR DESPROPORCIONAL, CONFUSÃO MENTAL OU SE NÃO HOUVER MELHORA EM 48 A 72H"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — cefalexina 07 dias",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -6261,16 +7183,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
      ]
-    ],
-    "orient": [
-     "MANTER O MEMBRO ELEVADO NA MAIOR PARTE DO TEMPO E APLICAR COMPRESSAS MORNAS",
-     "MARCAR COM CANETA O LIMITE DA VERMELHIDÃO PARA ACOMPANHAR A EVOLUÇÃO. MELHORA ESPERADA EM 48 A 72H (A VERMELHIDÃO PODE AUMENTAR UM POUCO NAS PRIMEIRAS 24H)",
-     "TRATAR A PORTA DE ENTRADA: MICOSE ENTRE OS DEDOS DOS PÉS, RACHADURAS E FERIDAS. CONTROLAR O INCHAÇO DAS PERNAS",
-     "RETORNAR IMEDIATAMENTE SE FEBRE ALTA PERSISTENTE, AUMENTO RÁPIDO DA VERMELHIDÃO, BOLHAS COM SANGUE, MANCHAS ROXAS OU PRETAS NA PELE, DOR DESPROPORCIONAL, CONFUSÃO MENTAL OU SE NÃO HOUVER MELHORA EM 48 A 72H"
     ]
    },
    {
-    "label": "Padrão — alergia grave à penicilina (clindamicina)",
+    "label": "Combinação pronta — alergia grave à penicilina (clindamicina)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -6436,8 +7353,82 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — ambulatorial (cefalexina oral)",
+    "label": "Padrão — Cefalexina oral por 07 dias",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "CEFALEXINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H POR 07 DIAS (50 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 4,
+       "conc": 50,
+       "un": "ML",
+       "max": 500
+      }
+     ]
+    ],
+    "orient": [
+     "MANTER O MEMBRO ELEVADO E APLICAR COMPRESSAS MORNAS. MARCAR COM CANETA O LIMITE DA VERMELHIDÃO; MELHORA ESPERADA EM 48 A 72H",
+     "TRATAR A PORTA DE ENTRADA: FERIDAS, PICADAS, IMPETIGO, MICOSE ENTRE OS DEDOS",
+     "INTERNAR SE TOXEMIA, FEBRE ALTA PERSISTENTE, MENOR DE 3 MESES, ACOMETIMENTO DE FACE/ÓRBITA OU MÃOS, FALHA APÓS 48–72H DE ANTIBIÓTICO ORAL OU INCAPACIDADE DE ACEITAR VIA ORAL",
+     "RETORNAR IMEDIATAMENTE SE AUMENTO RÁPIDO DA VERMELHIDÃO, BOLHAS COM SANGUE, MANCHAS ROXAS OU PRETAS NA PELE, DOR MUITO FORTE, SONOLÊNCIA OU SE NÃO HOUVER MELHORA EM 48 A 72H"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ],
+     [
+      "IBUPROFENO 100 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 8/8H SE DOR OU FEBRE, APÓS ALIMENTAÇÃO (10 MG/KG/DOSE; SOMENTE A PARTIR DE 6 MESES; NÃO USAR SE SUSPEITA DE DENGUE, DESIDRATAÇÃO OU VÔMITOS)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 100,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 400
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — ambulatorial (cefalexina oral)",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -6466,12 +7457,6 @@ const DATA = [
        "max": 1000
       }
      ]
-    ],
-    "orient": [
-     "MANTER O MEMBRO ELEVADO E APLICAR COMPRESSAS MORNAS. MARCAR COM CANETA O LIMITE DA VERMELHIDÃO; MELHORA ESPERADA EM 48 A 72H",
-     "TRATAR A PORTA DE ENTRADA: FERIDAS, PICADAS, IMPETIGO, MICOSE ENTRE OS DEDOS",
-     "INTERNAR SE TOXEMIA, FEBRE ALTA PERSISTENTE, MENOR DE 3 MESES, ACOMETIMENTO DE FACE/ÓRBITA OU MÃOS, FALHA APÓS 48–72H DE ANTIBIÓTICO ORAL OU INCAPACIDADE DE ACEITAR VIA ORAL",
-     "RETORNAR IMEDIATAMENTE SE AUMENTO RÁPIDO DA VERMELHIDÃO, BOLHAS COM SANGUE, MANCHAS ROXAS OU PRETAS NA PELE, DOR MUITO FORTE, SONOLÊNCIA OU SE NÃO HOUVER MELHORA EM 48 A 72H"
     ]
    },
    {
@@ -6587,7 +7572,43 @@ const DATA = [
   "sub": "permetrina · ivermectina · hidroxizina",
   "blocks": [
    {
-    "label": "Padrão — permetrina 5% + anti-histamínico",
+    "label": "Padrão — Escabicida (ivermectina = alternativa oral) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "PERMETRINA 5% LOÇÃO",
+      "01 FRASCO",
+      "APLICAR À NOITE EM TODO O CORPO, DO PESCOÇO AOS PÉS (INCLUSIVE ENTRE OS DEDOS, SOB AS UNHAS, AXILAS, UMBIGO E GENITAIS), COM A PELE SECA. RETIRAR NO BANHO APÓS 08 A 14 HORAS. REPETIR APÓS 07 DIAS",
+      "USO TÓPICO"
+     ],
+     [
+      "IVERMECTINA 6 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS EM DOSE ÚNICA E REPETIR A MESMA DOSE APÓS 07 DIAS"
+     ]
+    ],
+    "orient": [
+     "TRATAR AO MESMO TEMPO TODOS OS CONTATOS DOMICILIARES E PARCEIROS SEXUAIS, MESMO SEM COCEIRA",
+     "LAVAR ROUPAS, TOALHAS E ROUPAS DE CAMA USADAS NOS ÚLTIMOS 03 DIAS EM ÁGUA QUENTE (ACIMA DE 60 °C) OU GUARDÁ-LAS EM SACO PLÁSTICO FECHADO POR 72 HORAS",
+     "A COCEIRA PODE PERSISTIR POR 02 A 04 SEMANAS APÓS O TRATAMENTO SEM SIGNIFICAR FALHA",
+     "RETORNAR SE SURGIREM NOVAS LESÕES APÓS 04 SEMANAS OU SINAIS DE INFECÇÃO (PUS, CROSTAS AMARELADAS, DOR, FEBRE)"
+    ]
+   },
+   {
+    "label": "Padrão — Antipruriginoso",
+    "draft": true,
+    "items": [
+     [
+      "HIDROXIZINA 25 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 8/8 HORAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — permetrina 5% + anti-histamínico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -6601,16 +7622,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO DE 8/8 HORAS"
      ]
-    ],
-    "orient": [
-     "TRATAR AO MESMO TEMPO TODOS OS CONTATOS DOMICILIARES E PARCEIROS SEXUAIS, MESMO SEM COCEIRA",
-     "LAVAR ROUPAS, TOALHAS E ROUPAS DE CAMA USADAS NOS ÚLTIMOS 03 DIAS EM ÁGUA QUENTE (ACIMA DE 60 °C) OU GUARDÁ-LAS EM SACO PLÁSTICO FECHADO POR 72 HORAS",
-     "A COCEIRA PODE PERSISTIR POR 02 A 04 SEMANAS APÓS O TRATAMENTO SEM SIGNIFICAR FALHA",
-     "RETORNAR SE SURGIREM NOVAS LESÕES APÓS 04 SEMANAS OU SINAIS DE INFECÇÃO (PUS, CROSTAS AMARELADAS, DOR, FEBRE)"
     ]
    },
    {
-    "label": "Padrão — ivermectina oral (alternativa à permetrina)",
+    "label": "Combinação pronta — ivermectina oral (alternativa à permetrina)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -6741,10 +7757,50 @@ const DATA = [
   "id": "faringo_inesp",
   "ic": "😷",
   "nm": "Faringoamigdalite inespecífica",
-  "sub": "dipirona · flurbiprofeno",
+  "sub": "dipirona · paracetamol · flurbiprofeno",
   "blocks": [
    {
-    "label": "Padrão — sintomáticos, sem antibiótico",
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ],
+    "orient": [
+     "QUADRO PROVAVELMENTE VIRAL: ANTIBIÓTICO NÃO É NECESSÁRIO (CENTOR/MCISAAC ≤ 2 OU TESTE RÁPIDO PARA ESTREPTOCOCO NEGATIVO). A DOR DE GARGANTA COSTUMA MELHORAR EM ATÉ 07 DIAS",
+     "MANTER BOA HIDRATAÇÃO E PREFERIR ALIMENTOS PASTOSOS, FRIOS OU MORNOS ENQUANTO HOUVER DOR",
+     "RETORNAR IMEDIATAMENTE SE DIFICULDADE PARA ENGOLIR A PRÓPRIA SALIVA, PARA ABRIR A BOCA OU PARA RESPIRAR, VOZ ABAFADA, BABAR, INCHAÇO NO PESCOÇO, FEBRE POR MAIS DE 03 DIAS OU PIORA APÓS MELHORA INICIAL"
+    ]
+   },
+   {
+    "label": "Padrão — Pastilha para dor de garganta — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "FLURBIPROFENO 8,75 MG PASTILHA",
+      "01 CAIXA",
+      "DISSOLVER LENTAMENTE 01 PASTILHA NA BOCA SE DOR DE GARGANTA, PODENDO REPETIR A CADA 03 A 06H (MÁXIMO 05 PASTILHAS AO DIA), POR ATÉ 03 DIAS"
+     ],
+     [
+      "BENALET®",
+      "01 CAIXA",
+      "DISSOLVER LENTAMENTE UMA PASTILHA NA BOCA, PODENDO REPETIR DE 2/2H CONFORME NECESSIDADE"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — sintomáticos, sem antibiótico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -6757,11 +7813,6 @@ const DATA = [
       "01 CAIXA",
       "DISSOLVER LENTAMENTE 01 PASTILHA NA BOCA SE DOR DE GARGANTA, PODENDO REPETIR A CADA 03 A 06H (MÁXIMO 05 PASTILHAS AO DIA), POR ATÉ 03 DIAS"
      ]
-    ],
-    "orient": [
-     "QUADRO PROVAVELMENTE VIRAL: ANTIBIÓTICO NÃO É NECESSÁRIO (CENTOR/MCISAAC ≤ 2 OU TESTE RÁPIDO PARA ESTREPTOCOCO NEGATIVO). A DOR DE GARGANTA COSTUMA MELHORAR EM ATÉ 07 DIAS",
-     "MANTER BOA HIDRATAÇÃO E PREFERIR ALIMENTOS PASTOSOS, FRIOS OU MORNOS ENQUANTO HOUVER DOR",
-     "RETORNAR IMEDIATAMENTE SE DIFICULDADE PARA ENGOLIR A PRÓPRIA SALIVA, PARA ABRIR A BOCA OU PARA RESPIRAR, VOZ ABAFADA, BABAR, INCHAÇO NO PESCOÇO, FEBRE POR MAIS DE 03 DIAS OU PIORA APÓS MELHORA INICIAL"
     ]
    },
    {
@@ -7004,11 +8055,12 @@ const DATA = [
   "id": "faringo_estrep",
   "ic": "😷",
   "nm": "Faringoamigdalite estreptocócica",
-  "sub": "amoxicilina · penicilina benzatina",
+  "sub": "amoxicilina · penicilina benzatina · cefalexina · azitromicina",
   "blocks": [
    {
-    "label": "Padrão — amoxicilina VO por 10 dias",
+    "label": "Padrão — Antibiótico (penicilina benzatina IM = dose única na unidade) — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "AMOXICILINA 500MG",
@@ -7016,9 +8068,10 @@ const DATA = [
       "TOMAR 01 COMPRIMIDO DE 08/08H POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
      ],
      [
-      "DIPIRONA 500 MG",
-      "01 CAIXA",
-      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+      "BENZILPENICILINA BENZATINA 1.200.000 UI",
+      "01 FRASCO-AMPOLA",
+      "APLICAR 01 FRASCO-AMPOLA (1.200.000 UI) EM DOSE ÚNICA, NO GLÚTEO, NA UNIDADE DE SAÚDE",
+      "USO INTRAMUSCULAR"
      ]
     ],
     "orient": [
@@ -7026,23 +8079,6 @@ const DATA = [
      "PODE RETORNAR AO TRABALHO OU À ESCOLA APÓS PELO MENOS 12 HORAS DE ANTIBIÓTICO E SEM FEBRE",
      "PREFERIR ALIMENTOS PASTOSOS E FRIOS E MANTER BOA HIDRATAÇÃO",
      "RETORNAR SE A FEBRE PERSISTIR APÓS 72 HORAS DE ANTIBIÓTICO, OU IMEDIATAMENTE SE DIFICULDADE PARA ENGOLIR A SALIVA OU ABRIR A BOCA, VOZ ABAFADA, INCHAÇO NO PESCOÇO OU FALTA DE AR"
-    ]
-   },
-   {
-    "label": "Padrão — alternativa à amoxicilina: penicilina benzatina IM dose única",
-    "draft": true,
-    "items": [
-     [
-      "BENZILPENICILINA BENZATINA 1.200.000 UI",
-      "01 FRASCO-AMPOLA",
-      "APLICAR 01 FRASCO-AMPOLA (1.200.000 UI) EM DOSE ÚNICA, NO GLÚTEO, NA UNIDADE DE SAÚDE",
-      "USO INTRAMUSCULAR"
-     ],
-     [
-      "DIPIRONA 500 MG",
-      "01 CAIXA",
-      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
-     ]
     ]
    },
    {
@@ -7059,6 +8095,58 @@ const DATA = [
       "AZITROMICINA 500MG",
       "05 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS HORÁRIO SUGERIDO: 08:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — amoxicilina VO por 10 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 500MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 08/08H POR 10 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — alternativa à amoxicilina: penicilina benzatina IM dose única",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "BENZILPENICILINA BENZATINA 1.200.000 UI",
+      "01 FRASCO-AMPOLA",
+      "APLICAR 01 FRASCO-AMPOLA (1.200.000 UI) EM DOSE ÚNICA, NO GLÚTEO, NA UNIDADE DE SAÚDE",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
      ]
     ]
    },
@@ -7220,7 +8308,7 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — amoxicilina VO por 10 dias + antitérmico",
+    "label": "Padrão — Amoxicilina VO por 10 dias",
     "mode": "ped",
     "draft": true,
     "items": [
@@ -7235,19 +8323,6 @@ const DATA = [
        "conc": 50,
        "un": "ML",
        "max": 500
-      }
-     ],
-     [
-      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
-      "01 FRASCO",
-      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
-      "USO ORAL",
-      {
-       "kg": 15,
-       "conc": 500,
-       "gotas": 20,
-       "un": "GOTAS",
-       "max": 1000
       }
      ]
     ],
@@ -7321,6 +8396,87 @@ const DATA = [
     ]
    },
    {
+    "label": "Padrão — Antitérmico / analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ],
+     [
+      "IBUPROFENO 50 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 8/8H SE DOR OU FEBRE, APÓS ALIMENTAÇÃO (10 MG/KG/DOSE). SOMENTE ACIMA DE 6 MESES; NÃO USAR SE SUSPEITA DE DENGUE OU DESIDRATAÇÃO",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 50,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 200
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — amoxicilina VO por 10 dias + antitérmico",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 12/12H POR 10 DIAS (50 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 2,
+       "conc": 50,
+       "un": "ML",
+       "max": 500
+      }
+     ],
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ]
+    ]
+   },
+   {
     "label": "Antitérmico/analgésico alternativo à dipirona — escolha 1",
     "mode": "ped",
     "sec": "offlabel",
@@ -7361,10 +8517,46 @@ const DATA = [
   "id": "gastrite",
   "ic": "🔥",
   "nm": "Gastrite / DRGE",
-  "sub": "omeprazol · hidróxido de alumínio",
+  "sub": "omeprazol · pantoprazol · hidróxido de alumínio",
   "blocks": [
    {
-    "label": "Padrão — IBP dose padrão por 08 semanas",
+    "label": "Padrão — Inibidor de bomba de prótons por 08 semanas — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "OMEPRAZOL 20 MG",
+      "56 CÁPSULAS",
+      "TOMAR 01 CÁPSULA PELA MANHÃ, EM JEJUM, 30 MINUTOS ANTES DO CAFÉ DA MANHÃ, POR 08 SEMANAS"
+     ],
+     [
+      "PANTOPRAZOL 40 MG",
+      "56 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ, EM JEJUM, 30 MINUTOS ANTES DO CAFÉ DA MANHÃ, POR 08 SEMANAS"
+     ]
+    ],
+    "orient": [
+     "EVITAR DEITAR-SE NAS DUAS HORAS APÓS AS REFEIÇÕES; SE SINTOMAS À NOITE, ELEVAR A CABECEIRA DA CAMA EM 15 A 20 CM (CALÇOS SOB OS PÉS DA CAMA)",
+     "PERDER PESO SE SOBREPESO, PARAR DE FUMAR, REDUZIR ÁLCOOL E EVITAR ALIMENTOS QUE PIORAM OS SINTOMAS",
+     "EVITAR ANTI-INFLAMATÓRIOS E AAS SEM ORIENTAÇÃO MÉDICA",
+     "PESQUISAR E TRATAR H. PYLORI; ENCAMINHAR PARA ENDOSCOPIA DIGESTIVA ALTA SE IDADE ≥ 40 ANOS, SINAIS DE ALARME OU FALHA DO TRATAMENTO",
+     "RETORNAR IMEDIATAMENTE SE VÔMITOS COM SANGUE, FEZES PRETAS, DIFICULDADE OU DOR PARA ENGOLIR, VÔMITOS PERSISTENTES OU PERDA DE PESO SEM CAUSA"
+    ]
+   },
+   {
+    "label": "Padrão — Antiácido se azia (sintomático)",
+    "draft": true,
+    "items": [
+     [
+      "HIDRÓXIDO DE ALUMÍNIO 61,5 MG/ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "TOMAR 10 ML SE AZIA OU QUEIMAÇÃO, 01 HORA APÓS AS REFEIÇÕES E AO DEITAR, ATÉ 04 VEZES AO DIA. TOMAR COM INTERVALO DE 02 HORAS DE OUTROS MEDICAMENTOS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — IBP dose padrão por 08 semanas",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -7377,13 +8569,6 @@ const DATA = [
       "01 FRASCO",
       "TOMAR 10 ML SE AZIA OU QUEIMAÇÃO, 01 HORA APÓS AS REFEIÇÕES E AO DEITAR, ATÉ 04 VEZES AO DIA. TOMAR COM INTERVALO DE 02 HORAS DE OUTROS MEDICAMENTOS"
      ]
-    ],
-    "orient": [
-     "EVITAR DEITAR-SE NAS DUAS HORAS APÓS AS REFEIÇÕES; SE SINTOMAS À NOITE, ELEVAR A CABECEIRA DA CAMA EM 15 A 20 CM (CALÇOS SOB OS PÉS DA CAMA)",
-     "PERDER PESO SE SOBREPESO, PARAR DE FUMAR, REDUZIR ÁLCOOL E EVITAR ALIMENTOS QUE PIORAM OS SINTOMAS",
-     "EVITAR ANTI-INFLAMATÓRIOS E AAS SEM ORIENTAÇÃO MÉDICA",
-     "PESQUISAR E TRATAR H. PYLORI; ENCAMINHAR PARA ENDOSCOPIA DIGESTIVA ALTA SE IDADE ≥ 40 ANOS, SINAIS DE ALARME OU FALHA DO TRATAMENTO",
-     "RETORNAR IMEDIATAMENTE SE VÔMITOS COM SANGUE, FEZES PRETAS, DIFICULDADE OU DOR PARA ENGOLIR, VÔMITOS PERSISTENTES OU PERDA DE PESO SEM CAUSA"
     ]
    },
    {
@@ -7850,10 +9035,51 @@ const DATA = [
   "id": "herpes_zoster",
   "ic": "🔴",
   "nm": "Herpes zóster",
-  "sub": "aciclovir · dipirona",
+  "sub": "aciclovir · valaciclovir · dipirona",
   "blocks": [
    {
-    "label": "Padrão — aciclovir 07 dias + analgesia",
+    "label": "Padrão — Antiviral por 07 dias (iniciar até 72 h das lesões) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "ACICLOVIR 400 MG",
+      "70 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 4/4H, EXCETUANDO-SE UMA DOSE NOTURNA, POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 – 10:00 – 14:00 – 18:00 – 22:00"
+     ],
+     [
+      "VALACICLOVIR 500 MG",
+      "42 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 8/8H POR 07 DIAS SEGUIDOS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ]
+    ],
+    "orient": [
+     "INICIAR O ANTIVIRAL O QUANTO ANTES (IDEALMENTE NAS PRIMEIRAS 72H DO SURGIMENTO DAS LESÕES) E BEBER BASTANTE ÁGUA DURANTE O TRATAMENTO",
+     "MANTER AS LESÕES LIMPAS E SECAS (LAVAR COM ÁGUA E SABÃO), USAR COMPRESSAS FRIAS PARA ALÍVIO E NÃO FURAR AS BOLHAS. NÃO APLICAR POMADAS COM CORTICOIDE OU ANTIBIÓTICO",
+     "MANTER AS LESÕES COBERTAS E EVITAR CONTATO COM GESTANTES, RECÉM-NASCIDOS E IMUNOSSUPRIMIDOS ATÉ TODAS AS LESÕES VIRAREM CROSTA",
+     "RETORNAR IMEDIATAMENTE SE LESÕES PRÓXIMAS AO OLHO OU NA PONTA DO NARIZ, ALTERAÇÃO DA VISÃO, LESÕES ESPALHADAS PELO CORPO, FEBRE ALTA, CONFUSÃO MENTAL, FRAQUEZA NA FACE OU NOS MEMBROS, OU PUS E VERMELHIDÃO CRESCENTE NAS LESÕES"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — aciclovir 07 dias + analgesia",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -7866,16 +9092,11 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
      ]
-    ],
-    "orient": [
-     "INICIAR O ANTIVIRAL O QUANTO ANTES (IDEALMENTE NAS PRIMEIRAS 72H DO SURGIMENTO DAS LESÕES) E BEBER BASTANTE ÁGUA DURANTE O TRATAMENTO",
-     "MANTER AS LESÕES LIMPAS E SECAS (LAVAR COM ÁGUA E SABÃO), USAR COMPRESSAS FRIAS PARA ALÍVIO E NÃO FURAR AS BOLHAS. NÃO APLICAR POMADAS COM CORTICOIDE OU ANTIBIÓTICO",
-     "MANTER AS LESÕES COBERTAS E EVITAR CONTATO COM GESTANTES, RECÉM-NASCIDOS E IMUNOSSUPRIMIDOS ATÉ TODAS AS LESÕES VIRAREM CROSTA",
-     "RETORNAR IMEDIATAMENTE SE LESÕES PRÓXIMAS AO OLHO OU NA PONTA DO NARIZ, ALTERAÇÃO DA VISÃO, LESÕES ESPALHADAS PELO CORPO, FEBRE ALTA, CONFUSÃO MENTAL, FRAQUEZA NA FACE OU NOS MEMBROS, OU PUS E VERMELHIDÃO CRESCENTE NAS LESÕES"
     ]
    },
    {
-    "label": "Padrão — valaciclovir 07 dias (posologia 8/8h)",
+    "label": "Combinação pronta — valaciclovir 07 dias (posologia 8/8h)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -8160,7 +9381,7 @@ const DATA = [
   "id": "itu",
   "ic": "🚽",
   "nm": "ITU / Cistite",
-  "sub": "nitrofurantoína · fosfomicina",
+  "sub": "nitrofurantoína · fosfomicina · dipirona · fenazopiridina",
   "blocks": [
    {
     "label": "Padrão — cistite não complicada (mulher): antibiótico — escolha 1",
@@ -8193,6 +9414,17 @@ const DATA = [
       "DIPIRONA 500 MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU ARDÊNCIA PARA URINAR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico urinário (opcional, até 02 dias; colher a urina antes; evitar se doença renal ou hepática grave ou deficiência de G6PD)",
+    "draft": true,
+    "items": [
+     [
+      "FENAZOPIRIDINA 200 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, POR ATÉ 02 DIAS. A URINA FICA ALARANJADA (EFEITO ESPERADO) E PODE MANCHAR ROUPAS E LENTES DE CONTATO"
      ]
     ]
    },
@@ -8581,16 +9813,27 @@ const DATA = [
   "id": "lombalgia",
   "ic": "🦴",
   "nm": "Lombalgia mecânica",
-  "sub": "ibuprofeno · ciclobenzaprina",
+  "sub": "ibuprofeno · diclofenaco · dipirona · ciclobenzaprina",
   "blocks": [
    {
-    "label": "Padrão — AINE + manter-se ativo",
+    "label": "Padrão — AINE (anti-inflamatório) por curto prazo — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "IBUPROFENO 300 MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
      ]
     ],
     "orient": [
@@ -8602,7 +9845,51 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — AINE contraindicado: relaxante muscular + analgésico",
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Relaxante muscular à noite (se espasmo)",
+    "draft": true,
+    "items": [
+     [
+      "CICLOBENZAPRINA 5 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE ANTES DE DORMIR, POR 05 DIAS SEGUIDOS"
+     ]
+    ],
+    "orient": [
+     "A CICLOBENZAPRINA PODE CAUSAR SONOLÊNCIA: NÃO DIRIGIR E NÃO INGERIR BEBIDAS ALCOÓLICAS DURANTE O USO"
+    ]
+   },
+   {
+    "label": "Combinação pronta — AINE + manter-se ativo",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — AINE contraindicado: relaxante muscular + analgésico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -8615,9 +9902,6 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H"
      ]
-    ],
-    "orient": [
-     "A CICLOBENZAPRINA PODE CAUSAR SONOLÊNCIA: NÃO DIRIGIR E NÃO INGERIR BEBIDAS ALCOÓLICAS DURANTE O USO"
     ]
    },
    {
@@ -8882,17 +10166,12 @@ const DATA = [
   "id": "nasofaringite",
   "ic": "🤧",
   "nm": "Nasofaringite / Resfriado",
-  "sub": "dipirona · soro fisiológico nasal",
+  "sub": "soro fisiológico nasal · dipirona · paracetamol",
   "blocks": [
    {
-    "label": "Padrão — Sintomáticos + lavagem nasal com soro fisiológico",
+    "label": "Padrão — Lavagem nasal com soro fisiológico",
     "draft": true,
     "items": [
-     [
-      "DIPIRONA 500MG",
-      "01 CAIXA",
-      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
-     ],
      [
       "SERINGA DE 10 ML",
       "01 UNIDADE",
@@ -8912,6 +10191,47 @@ const DATA = [
      "SÍNDROME GRIPAL (FEBRE DE INÍCIO SÚBITO + TOSSE OU DOR DE GARGANTA) EM PACIENTE COM FATOR DE RISCO PARA COMPLICAÇÃO: TESTAR COVID-19/INFLUENZA E AVALIAR OSELTAMIVIR CONFORME PROTOCOLO DO MS",
      "RETORNAR SE FEBRE POR MAIS DE 3 DIAS, SINTOMAS POR MAIS DE 10 DIAS, PIORA APÓS MELHORA INICIAL, DOR DE OUVIDO OU DOR NA FACE",
      "RETORNAR IMEDIATAMENTE SE FALTA DE AR, DOR NO PEITO, LÁBIOS ROXOS, CONFUSÃO OU PROSTRAÇÃO INTENSA"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — Sintomáticos + lavagem nasal com soro fisiológico",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ]
     ]
    },
    {
@@ -8992,8 +10312,82 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — lavagem nasal com soro fisiológico + antitérmico se febre ou dor",
+    "label": "Padrão — Lavagem nasal com soro fisiológico",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "INSTILAR EM CADA NARINA COM A SERINGA (SEM AGULHA), 3 A 4 VEZES AO DIA, ANTES DAS MAMADAS/REFEIÇÕES E DO SONO (LACTENTES: 2 A 5 ML; CRIANÇAS MAIORES: 5 A 10 ML POR NARINA)",
+      "USO INTRANASAL"
+     ],
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "INFECÇÃO VIRAL QUE MELHORA EM 7 A 10 DIAS (A TOSSE PODE DURAR ATÉ 3 SEMANAS): ANTIBIÓTICO NÃO É NECESSÁRIO. OFERECER LÍQUIDOS COM FREQUÊNCIA E ELEVAR A CABECEIRA",
+     "NÃO USAR DESCONGESTIONANTES, ANTI-HISTAMÍNICOS OU XAROPES PARA TOSSE EM MENORES DE 6 ANOS, NEM AAS. MAIORES DE 1 ANO: 01 COLHER (CHÁ) DE MEL ANTES DE DORMIR ALIVIA A TOSSE (NUNCA DAR MEL A MENORES DE 1 ANO)",
+     "SÍNDROME GRIPAL EM MENOR DE 5 ANOS OU COM COMORBIDADE: AVALIAR OSELTAMIVIR CONFORME PROTOCOLO DO MS, SEM AGUARDAR O RESULTADO DO TESTE",
+     "RETORNAR SE FEBRE POR MAIS DE 3 DIAS (OU QUALQUER FEBRE EM MENORES DE 3 MESES), DOR DE OUVIDO, SINTOMAS POR MAIS DE 10 DIAS OU PIORA APÓS MELHORA INICIAL",
+     "RETORNAR IMEDIATAMENTE SE RESPIRAÇÃO RÁPIDA OU COM ESFORÇO, GEMÊNCIA, LÁBIOS ROXOS, RECUSA DE LÍQUIDOS OU MAMADAS, SONOLÊNCIA EXCESSIVA OU CONVULSÃO"
+    ]
+   },
+   {
+    "label": "Padrão — Antitérmico / analgésico se febre ou dor — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE). NÃO USAR EM MENORES DE 3 MESES",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ],
+     [
+      "IBUPROFENO 50 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 8/8H SE DOR OU FEBRE, APÓS ALIMENTAÇÃO (10 MG/KG/DOSE). SOMENTE ACIMA DE 6 MESES; NÃO USAR SE SUSPEITA DE DENGUE OU DESIDRATAÇÃO",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 50,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 200
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — lavagem nasal com soro fisiológico + antitérmico se febre ou dor",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -9021,13 +10415,6 @@ const DATA = [
        "max": 1000
       }
      ]
-    ],
-    "orient": [
-     "INFECÇÃO VIRAL QUE MELHORA EM 7 A 10 DIAS (A TOSSE PODE DURAR ATÉ 3 SEMANAS): ANTIBIÓTICO NÃO É NECESSÁRIO. OFERECER LÍQUIDOS COM FREQUÊNCIA E ELEVAR A CABECEIRA",
-     "NÃO USAR DESCONGESTIONANTES, ANTI-HISTAMÍNICOS OU XAROPES PARA TOSSE EM MENORES DE 6 ANOS, NEM AAS. MAIORES DE 1 ANO: 01 COLHER (CHÁ) DE MEL ANTES DE DORMIR ALIVIA A TOSSE (NUNCA DAR MEL A MENORES DE 1 ANO)",
-     "SÍNDROME GRIPAL EM MENOR DE 5 ANOS OU COM COMORBIDADE: AVALIAR OSELTAMIVIR CONFORME PROTOCOLO DO MS, SEM AGUARDAR O RESULTADO DO TESTE",
-     "RETORNAR SE FEBRE POR MAIS DE 3 DIAS (OU QUALQUER FEBRE EM MENORES DE 3 MESES), DOR DE OUVIDO, SINTOMAS POR MAIS DE 10 DIAS OU PIORA APÓS MELHORA INICIAL",
-     "RETORNAR IMEDIATAMENTE SE RESPIRAÇÃO RÁPIDA OU COM ESFORÇO, GEMÊNCIA, LÁBIOS ROXOS, RECUSA DE LÍQUIDOS OU MAMADAS, SONOLÊNCIA EXCESSIVA OU CONVULSÃO"
     ]
    },
    {
@@ -9074,7 +10461,73 @@ const DATA = [
   "sub": "ciprofloxacino-hidrocortisona · dipirona · diclofenaco",
   "blocks": [
    {
-    "label": "Padrão — gota otológica quinolona + corticoide + analgesia",
+    "label": "Padrão — Gota otológica antibiótico + corticoide — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CIPROFLOXACINO 2 MG/ML + HIDROCORTISONA 10 MG/ML SUSPENSÃO OTOLÓGICA (OTOCIRIAX®)",
+      "01 FRASCO",
+      "AGITAR ANTES DE USAR. PINGAR 03 GOTAS NO OUVIDO ACOMETIDO DE 12/12H POR 07 DIAS",
+      "USO TÓPICO AUDITIVO"
+     ],
+     [
+      "CIPROFLOXACINO-DEXAMETASONA SOLUÇÃO TÓPICA",
+      "01 FRASCO",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 12/12H POR 07 DIAS",
+      "USO TÓPICO AUDITIVO"
+     ],
+     [
+      "SULFATO DE NEOMICINA + SULFATO DE POLIMIXINA B + HIDROCORTISONA 11% SOLUÇÃO TÓPICA",
+      "01 FRASCO",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS (NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO) HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "USO TÓPICO AUDITIVO"
+     ]
+    ],
+    "orient": [
+     "MANTER O OUVIDO SECO: NO BANHO, PROTEGER COM ALGODÃO UNTADO EM VASELINA. NÃO NADAR ATÉ A MELHORA",
+     "NÃO USAR HASTES FLEXÍVEIS (COTONETES) NEM INTRODUZIR OBJETOS NO OUVIDO",
+     "PARA PINGAR: AQUECER O FRASCO NA MÃO, DEITAR DE LADO COM O OUVIDO AFETADO PARA CIMA E PERMANECER NESSA POSIÇÃO POR 3 A 5 MINUTOS",
+     "RETORNAR SE NÃO HOUVER MELHORA EM 48 A 72H, OU IMEDIATAMENTE SE FEBRE, INCHAÇO OU VERMELHIDÃO AO REDOR OU ATRÁS DA ORELHA, DOR MUITO INTENSA OU PARALISIA DA FACE (ATENÇÃO ESPECIAL EM DIABÉTICOS E IMUNOSSUPRIMIDOS)"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — AINE (anti-inflamatório) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — gota otológica quinolona + corticoide + analgesia",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -9093,12 +10546,6 @@ const DATA = [
       "15 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
      ]
-    ],
-    "orient": [
-     "MANTER O OUVIDO SECO: NO BANHO, PROTEGER COM ALGODÃO UNTADO EM VASELINA. NÃO NADAR ATÉ A MELHORA",
-     "NÃO USAR HASTES FLEXÍVEIS (COTONETES) NEM INTRODUZIR OBJETOS NO OUVIDO",
-     "PARA PINGAR: AQUECER O FRASCO NA MÃO, DEITAR DE LADO COM O OUVIDO AFETADO PARA CIMA E PERMANECER NESSA POSIÇÃO POR 3 A 5 MINUTOS",
-     "RETORNAR SE NÃO HOUVER MELHORA EM 48 A 72H, OU IMEDIATAMENTE SE FEBRE, INCHAÇO OU VERMELHIDÃO AO REDOR OU ATRÁS DA ORELHA, DOR MUITO INTENSA OU PARALISIA DA FACE (ATENÇÃO ESPECIAL EM DIABÉTICOS E IMUNOSSUPRIMIDOS)"
     ]
    },
    {
@@ -9130,7 +10577,7 @@ const DATA = [
      [
       "SULFATO DE NEOMICINA + SULFATO DE POLIMIXINA B + HIDROCORTISONA 11% SOLUÇÃO TÓPICA",
       "01 FRASCO",
-      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS (NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO) HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
       "USO TÓPICO AUDITIVO"
      ],
      [
@@ -9152,7 +10599,7 @@ const DATA = [
      [
       "OTOSPORIN",
       "01 FRASCO",
-      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
+      "PINGAR 04 GOTAS NO OUVIDO ACOMETIDO DE 06/06H POR 10 DIAS (NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO) HORÁRIO SUGERIDO: 05:00 - 11:00 - 17:00 - 23:00",
       "USO TÓPICO AUDITIVO"
      ],
      [
@@ -9287,8 +10734,75 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — gota otológica (quinolona + corticoide) + analgésico",
+    "label": "Padrão — Gota otológica (quinolona + corticoide)",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "CIPROFLOXACINO 2 MG/ML + HIDROCORTISONA 10 MG/ML SUSPENSÃO OTOLÓGICA (OTOCIRIAX®)",
+      "01 FRASCO",
+      "AGITAR ANTES DE USAR. PINGAR 03 GOTAS NO OUVIDO ACOMETIDO DE 12/12H POR 07 DIAS (A PARTIR DE 1 ANO; NÃO USAR SE PERFURAÇÃO DO TÍMPANO OU TUBO DE VENTILAÇÃO)",
+      "USO TÓPICO AUDITIVO"
+     ]
+    ],
+    "orient": [
+     "MANTER O OUVIDO SECO: NO BANHO, PROTEGER COM ALGODÃO UNTADO EM VASELINA. NÃO NADAR ATÉ A MELHORA",
+     "NÃO USAR COTONETES NEM INTRODUZIR OBJETOS NO OUVIDO",
+     "PARA PINGAR: AQUECER O FRASCO NA MÃO, DEITAR A CRIANÇA DE LADO COM O OUVIDO AFETADO PARA CIMA E MANTER A POSIÇÃO POR 3 A 5 MINUTOS",
+     "RETORNAR SE NÃO HOUVER MELHORA EM 48 A 72H, OU IMEDIATAMENTE SE FEBRE, INCHAÇO OU VERMELHIDÃO AO REDOR OU ATRÁS DA ORELHA, OU DOR MUITO INTENSA"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ],
+     [
+      "IBUPROFENO 100 MG/ML SUSPENSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL ATÉ DE 8/8H SE DOR OU FEBRE, APÓS ALIMENTAÇÃO (10 MG/KG/DOSE; SOMENTE A PARTIR DE 6 MESES; NÃO USAR SE SUSPEITA DE DENGUE, DESIDRATAÇÃO OU VÔMITOS)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 100,
+       "gotas": 10,
+       "un": "GOTAS",
+       "max": 400
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — gota otológica (quinolona + corticoide) + analgésico",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -9310,12 +10824,6 @@ const DATA = [
        "max": 1000
       }
      ]
-    ],
-    "orient": [
-     "MANTER O OUVIDO SECO: NO BANHO, PROTEGER COM ALGODÃO UNTADO EM VASELINA. NÃO NADAR ATÉ A MELHORA",
-     "NÃO USAR COTONETES NEM INTRODUZIR OBJETOS NO OUVIDO",
-     "PARA PINGAR: AQUECER O FRASCO NA MÃO, DEITAR A CRIANÇA DE LADO COM O OUVIDO AFETADO PARA CIMA E MANTER A POSIÇÃO POR 3 A 5 MINUTOS",
-     "RETORNAR SE NÃO HOUVER MELHORA EM 48 A 72H, OU IMEDIATAMENTE SE FEBRE, INCHAÇO OU VERMELHIDÃO AO REDOR OU ATRÁS DA ORELHA, OU DOR MUITO INTENSA"
     ]
    },
    {
@@ -9373,11 +10881,12 @@ const DATA = [
   "id": "otite_media",
   "ic": "👂",
   "nm": "Otite média aguda",
-  "sub": "amoxicilina · dipirona",
+  "sub": "amoxicilina · amoxicilina-clavulanato · dipirona",
   "blocks": [
    {
-    "label": "Padrão — amoxicilina + analgésico",
+    "label": "Padrão — Antibiótico (amoxicilina-clavulanato se falha em 48–72 h ou antibiótico nos últimos 30 dias) — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "AMOXICILINA 500 MG",
@@ -9385,9 +10894,9 @@ const DATA = [
       "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS"
      ],
      [
-      "DIPIRONA 500 MG",
-      "01 CAIXA",
-      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+      "AMOXICILINA 875 MG + CLAVULANATO 125 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS, NO INÍCIO DAS REFEIÇÕES"
      ]
     ],
     "orient": [
@@ -9395,17 +10904,6 @@ const DATA = [
      "SE NÃO HOUVER MELHORA DA DOR OU DA FEBRE EM 48 A 72 HORAS, RETORNAR PARA REAVALIAÇÃO",
      "SE PERSISTIR SENSAÇÃO DE OUVIDO TAMPADO OU PERDA AUDITIVA APÓS O TRATAMENTO, PROCURAR A UBS PARA AVALIAÇÃO COM OTORRINOLARINGOLOGISTA",
      "RETORNAR IMEDIATAMENTE SE: DOR, INCHAÇO OU VERMELHIDÃO ATRÁS DA ORELHA, DOR DE CABEÇA INTENSA, RIGIDEZ DE NUCA, CONFUSÃO, PARALISIA DO ROSTO OU TONTURA INTENSA"
-    ]
-   },
-   {
-    "label": "Padrão — falha em 48–72 h ou antibiótico nos últimos 30 dias",
-    "draft": true,
-    "items": [
-     [
-      "AMOXICILINA 875 MG + CLAVULANATO 125 MG",
-      "14 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS, NO INÍCIO DAS REFEIÇÕES"
-     ]
     ]
    },
    {
@@ -9422,6 +10920,52 @@ const DATA = [
       "CLARITROMICINA 500 MG",
       "14 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — amoxicilina + analgésico",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "21 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS"
+     ],
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — falha em 48–72 h ou antibiótico nos últimos 30 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 875 MG + CLAVULANATO 125 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS, NO INÍCIO DAS REFEIÇÕES"
      ]
     ]
    },
@@ -11147,8 +12691,70 @@ const DATA = [
     ]
    },
    {
-    "label": "Padrão — PAC sem sinais de gravidade (tratamento domiciliar): amoxicilina VO",
+    "label": "Padrão — Amoxicilina VO (PAC sem sinais de gravidade)",
     "mode": "ped",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 8/8H POR 05 DIAS (50 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kgdia": 50,
+       "vezes": 3,
+       "conc": 50,
+       "un": "ML",
+       "max": 1000
+      }
+     ]
+    ],
+    "orient": [
+     "INTERNAR SE: SATO2 < 92%, TIRAGEM SUBCOSTAL, GEMÊNCIA, APNEIA, INCAPACIDADE DE BEBER OU VÔMITOS, DESIDRATAÇÃO, LETARGIA, IDADE < 03 MESES, DERRAME PLEURAL OU FALHA DO TRATAMENTO ORAL",
+     "REAVALIAR EM 48 A 72H; FEBRE PERSISTENTE OU PIORA APÓS 72H DE ANTIBIÓTICO: REAVALIAR (RX DE TÓRAX, DERRAME PLEURAL, ADESÃO)",
+     "OFERECER LÍQUIDOS COM FREQUÊNCIA E MANTER A ALIMENTAÇÃO; LAVAGEM NASAL COM SORO FISIOLÓGICO; NÃO USAR XAROPES PARA TOSSE",
+     "SUSPEITA DE INFLUENZA COM FATOR DE RISCO (< 05 ANOS, DOENÇA CRÔNICA) OU SRAG: OSELTAMIVIR CONFORME PESO (PROTOCOLO MS), SEM AGUARDAR EXAME",
+     "DIPIRONA CONTRAINDICADA EM < 03 MESES OU < 05 KG; CONFIRMAR O PESO E MANTER VACINAÇÃO EM DIA (PNEUMOCÓCICA, HIB, INFLUENZA, COVID-19)"
+    ]
+   },
+   {
+    "label": "Padrão — Antitérmico pelo peso — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — PAC sem sinais de gravidade (tratamento domiciliar): amoxicilina VO",
+    "mode": "ped",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -11177,13 +12783,29 @@ const DATA = [
        "max": 1000
       }
      ]
+    ]
+   },
+   {
+    "label": "Suspeita de pneumonia atípica (≥ 05 anos) ou alergia grave à penicilina: azitromicina VO",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AZITROMICINA 200 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL 01 VEZ AO DIA POR 03 DIAS (10 MG/KG/DIA)",
+      "USO ORAL",
+      {
+       "kg": 10,
+       "conc": 40,
+       "un": "ML",
+       "max": 500
+      }
+     ]
     ],
     "orient": [
-     "INTERNAR SE: SATO2 < 92%, TIRAGEM SUBCOSTAL, GEMÊNCIA, APNEIA, INCAPACIDADE DE BEBER OU VÔMITOS, DESIDRATAÇÃO, LETARGIA, IDADE < 03 MESES, DERRAME PLEURAL OU FALHA DO TRATAMENTO ORAL",
-     "REAVALIAR EM 48 A 72H; FEBRE PERSISTENTE OU PIORA APÓS 72H DE ANTIBIÓTICO: REAVALIAR (RX DE TÓRAX, DERRAME PLEURAL, ADESÃO)",
-     "OFERECER LÍQUIDOS COM FREQUÊNCIA E MANTER A ALIMENTAÇÃO; LAVAGEM NASAL COM SORO FISIOLÓGICO; NÃO USAR XAROPES PARA TOSSE",
-     "SUSPEITA DE INFLUENZA COM FATOR DE RISCO (< 05 ANOS, DOENÇA CRÔNICA) OU SRAG: OSELTAMIVIR CONFORME PESO (PROTOCOLO MS), SEM AGUARDAR EXAME",
-     "DIPIRONA CONTRAINDICADA EM < 03 MESES OU < 05 KG; CONFIRMAR O PESO E MANTER VACINAÇÃO EM DIA (PNEUMOCÓCICA, HIB, INFLUENZA, COVID-19)"
+     "EM ESCOLARES COM QUADRO SUGESTIVO DE MICOPLASMA PODE SER ASSOCIADA À AMOXICILINA; MACROLÍDEO ISOLADO NÃO COBRE BEM O PNEUMOCOCO"
     ]
    },
    {
@@ -11294,29 +12916,6 @@ const DATA = [
      "DERRAME PLEURAL: ULTRASSOM E AVALIAÇÃO DA CIRURGIA PEDIÁTRICA PARA DRENAGEM SE EMPIEMA OU DERRAME MODERADO/GRANDE",
      "SEM RESPOSTA EM 48 A 72H OU SUSPEITA DE MRSA COMUNITÁRIO: TROCAR OXACILINA POR VANCOMICINA OU CLINDAMICINA CONFORME PROTOCOLO"
     ]
-   },
-   {
-    "label": "Suspeita de pneumonia atípica (≥ 05 anos) ou alergia grave à penicilina: azitromicina VO",
-    "mode": "ped",
-    "sec": "offlabel",
-    "draft": true,
-    "items": [
-     [
-      "AZITROMICINA 200 MG/5 ML SUSPENSÃO ORAL",
-      "01 FRASCO",
-      "DAR {DOSE} VIA ORAL 01 VEZ AO DIA POR 03 DIAS (10 MG/KG/DIA)",
-      "USO ORAL",
-      {
-       "kg": 10,
-       "conc": 40,
-       "un": "ML",
-       "max": 500
-      }
-     ]
-    ],
-    "orient": [
-     "EM ESCOLARES COM QUADRO SUGESTIVO DE MICOPLASMA PODE SER ASSOCIADA À AMOXICILINA; MACROLÍDEO ISOLADO NÃO COBRE BEM O PNEUMOCOCO"
-    ]
    }
   ]
  },
@@ -11355,10 +12954,47 @@ const DATA = [
   "id": "queimaduras",
   "ic": "🔥",
   "nm": "Queimaduras",
-  "sub": "sulfadiazina de prata · dipirona",
+  "sub": "sulfadiazina de prata · dipirona · paracetamol",
   "blocks": [
    {
-    "label": "Padrão — 2º grau superficial pequena (curativo + analgesia)",
+    "label": "Padrão — Curativo",
+    "draft": true,
+    "items": [
+     [
+      "SULFADIAZINA DE PRATA 10MG/G",
+      "01 BISNAGA",
+      "APLICAR UMA CAMADA NA LESÃO E COBRIR COM CURATIVO COM GAZE, DUAS VEZES AO DIA, ATÉ MELHORA",
+      "USO TÓPICO"
+     ]
+    ],
+    "orient": [
+     "LAVAR A QUEIMADURA COM ÁGUA CORRENTE E SABÃO NEUTRO (OU SORO FISIOLÓGICO) ANTES DE CADA TROCA DE CURATIVO. NÃO FURAR BOLHAS ÍNTEGRAS. NÃO APLICAR PASTA DE DENTE, MANTEIGA, PÓ DE CAFÉ OU OUTRAS RECEITAS CASEIRAS",
+     "QUEIMADURA SÓ DE 1º GRAU (APENAS VERMELHIDÃO, SEM BOLHAS): NÃO PRECISA DA POMADA — USAR HIDRATANTE E PROTEGER DO SOL",
+     "AVALIAR PROFILAXIA DO TÉTANO (QUEIMADURA É FERIMENTO DE ALTO RISCO): REFORÇO DA VACINA DUPLA ADULTO (DT) SE A ÚLTIMA DOSE FOI HÁ MAIS DE 5 ANOS; ESQUEMA INCOMPLETO OU DESCONHECIDO: VACINAR E AVALIAR SORO/IMUNOGLOBULINA ANTITETÂNICA",
+     "RETORNAR EM 48 A 72H PARA REAVALIAÇÃO DO CURATIVO, OU IMEDIATAMENTE SE FEBRE, PUS, MAU CHEIRO, VERMELHIDÃO QUE SE ESPALHA AO REDOR OU PIORA DA DOR",
+     "QUEIMADURA DE 2º GRAU PROFUNDO OU 3º GRAU, EM FACE, MÃOS, PÉS, GENITAIS OU ARTICULAÇÕES, OU EXTENSA (>10% DA SUPERFÍCIE CORPORAL NO ADULTO): ENCAMINHAR AO CENTRO DE QUEIMADOS"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — 2º grau superficial pequena (curativo + analgesia)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -11372,13 +13008,6 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
      ]
-    ],
-    "orient": [
-     "LAVAR A QUEIMADURA COM ÁGUA CORRENTE E SABÃO NEUTRO (OU SORO FISIOLÓGICO) ANTES DE CADA TROCA DE CURATIVO. NÃO FURAR BOLHAS ÍNTEGRAS. NÃO APLICAR PASTA DE DENTE, MANTEIGA, PÓ DE CAFÉ OU OUTRAS RECEITAS CASEIRAS",
-     "QUEIMADURA SÓ DE 1º GRAU (APENAS VERMELHIDÃO, SEM BOLHAS): NÃO PRECISA DA POMADA — USAR HIDRATANTE E PROTEGER DO SOL",
-     "AVALIAR PROFILAXIA DO TÉTANO (QUEIMADURA É FERIMENTO DE ALTO RISCO): REFORÇO DA VACINA DUPLA ADULTO (DT) SE A ÚLTIMA DOSE FOI HÁ MAIS DE 5 ANOS; ESQUEMA INCOMPLETO OU DESCONHECIDO: VACINAR E AVALIAR SORO/IMUNOGLOBULINA ANTITETÂNICA",
-     "RETORNAR EM 48 A 72H PARA REAVALIAÇÃO DO CURATIVO, OU IMEDIATAMENTE SE FEBRE, PUS, MAU CHEIRO, VERMELHIDÃO QUE SE ESPALHA AO REDOR OU PIORA DA DOR",
-     "QUEIMADURA DE 2º GRAU PROFUNDO OU 3º GRAU, EM FACE, MÃOS, PÉS, GENITAIS OU ARTICULAÇÕES, OU EXTENSA (>10% DA SUPERFÍCIE CORPORAL NO ADULTO): ENCAMINHAR AO CENTRO DE QUEIMADOS"
     ]
    },
    {
@@ -11637,6 +13266,40 @@ const DATA = [
     ]
    },
    {
+    "label": "Padrão — Analgesia via oral pelo peso (queimadura menor) — escolha 1",
+    "mode": "ped",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE). NÃO USAR EM < 3 MESES OU < 5 KG",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 500,
+       "gotas": 20,
+       "un": "GOTAS",
+       "max": 1000
+      }
+     ],
+     [
+      "PARACETAMOL 200 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR {DOSE} VIA ORAL DE 6/6H SE DOR OU FEBRE (15 MG/KG/DOSE; CALCULADO PARA 15 GOTAS/ML — CONFERIR NA BULA DO FABRICANTE)",
+      "USO ORAL",
+      {
+       "kg": 15,
+       "conc": 200,
+       "gotas": 15,
+       "un": "GOTAS",
+       "max": 750
+      }
+     ]
+    ]
+   },
+   {
     "label": "Analgesia via oral por peso (queimadura menor ou após estabilização) — escolha 1",
     "mode": "ped",
     "sec": "offlabel",
@@ -11712,10 +13375,46 @@ const DATA = [
   "id": "resfriado",
   "ic": "🤧",
   "nm": "Resfriado comum",
-  "sub": "dipirona · soro fisiológico nasal",
+  "sub": "soro fisiológico nasal · dipirona · paracetamol",
   "blocks": [
    {
-    "label": "Padrão — sintomáticos + lavagem nasal",
+    "label": "Padrão — Soro fisiológico nasal",
+    "draft": true,
+    "items": [
+     [
+      "CLORETO DE SÓDIO 0,9% SOLUÇÃO NASAL",
+      "01 FRASCO",
+      "APLICAR 02 JATOS EM CADA NARINA ATÉ 06 VEZES AO DIA, PARA LIMPEZA E DESOBSTRUÇÃO NASAL",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "REPOUSO, BOA HIDRATAÇÃO E ALIMENTAÇÃO LEVE; OS SINTOMAS DURAM EM MÉDIA 07 A 10 DIAS E A TOSSE PODE PERSISTIR POR ATÉ 03 SEMANAS",
+     "ANTIBIÓTICO NÃO É NECESSÁRIO (INFECÇÃO VIRAL); PARA A TOSSE, PODE USAR MEL (01 COLHER DE CHÁ ATÉ 03 VEZES AO DIA) E BEBIDAS MORNAS",
+     "LAVAR AS MÃOS COM FREQUÊNCIA, COBRIR BOCA E NARIZ AO TOSSIR E USAR MÁSCARA PERTO DE IDOSOS, GESTANTES OU IMUNOSSUPRIMIDOS",
+     "RETORNAR SE: FALTA DE AR, DOR NO PEITO, FEBRE POR MAIS DE 03 DIAS, PIORA APÓS MELHORA INICIAL, DOR FORTE NA FACE OU NO OUVIDO, OU SINTOMAS POR MAIS DE 10 DIAS"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — sintomáticos + lavagem nasal",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -11729,12 +13428,6 @@ const DATA = [
       "APLICAR 02 JATOS EM CADA NARINA ATÉ 06 VEZES AO DIA, PARA LIMPEZA E DESOBSTRUÇÃO NASAL",
       "USO INTRANASAL"
      ]
-    ],
-    "orient": [
-     "REPOUSO, BOA HIDRATAÇÃO E ALIMENTAÇÃO LEVE; OS SINTOMAS DURAM EM MÉDIA 07 A 10 DIAS E A TOSSE PODE PERSISTIR POR ATÉ 03 SEMANAS",
-     "ANTIBIÓTICO NÃO É NECESSÁRIO (INFECÇÃO VIRAL); PARA A TOSSE, PODE USAR MEL (01 COLHER DE CHÁ ATÉ 03 VEZES AO DIA) E BEBIDAS MORNAS",
-     "LAVAR AS MÃOS COM FREQUÊNCIA, COBRIR BOCA E NARIZ AO TOSSIR E USAR MÁSCARA PERTO DE IDOSOS, GESTANTES OU IMUNOSSUPRIMIDOS",
-     "RETORNAR SE: FALTA DE AR, DOR NO PEITO, FEBRE POR MAIS DE 03 DIAS, PIORA APÓS MELHORA INICIAL, DOR FORTE NA FACE OU NO OUVIDO, OU SINTOMAS POR MAIS DE 10 DIAS"
     ]
    },
    {
@@ -11894,10 +13587,58 @@ const DATA = [
   "id": "rinite",
   "ic": "👃",
   "nm": "Rinite alérgica",
-  "sub": "fluticasona · loratadina",
+  "sub": "fluticasona · soro fisiológico · loratadina · cetirizina",
   "blocks": [
    {
-    "label": "Padrão — corticoide nasal + lavagem nasal + anti-histamínico",
+    "label": "Padrão — Corticoide nasal",
+    "draft": true,
+    "items": [
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS. APÓS ESTE PERÍODO, APLICAR UM JATO EM CADA NARINA PELA MANHÃ ATÉ COMPLETAR 90 DIAS",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "USAR O CORTICOIDE NASAL TODOS OS DIAS, MESMO SEM SINTOMAS (EFEITO PLENO EM 01 A 02 SEMANAS), DIRECIONANDO O JATO PARA A LATERAL DA NARINA (EM DIREÇÃO À ORELHA), LONGE DO SEPTO",
+     "CONTROLE AMBIENTAL: EVITAR POEIRA, MOFO, FUMAÇA DE CIGARRO, PERFUMES E PELOS DE ANIMAIS; LAVAR ROUPAS DE CAMA SEMANALMENTE E MANTER O QUARTO AREJADO, SEM TAPETES OU CORTINAS",
+     "NÃO USAR DESCONGESTIONANTE NASAL (NAFAZOLINA, OXIMETAZOLINA) POR CONTA PRÓPRIA — CAUSA EFEITO REBOTE E DEPENDÊNCIA",
+     "ACOMPANHAR NA UBS. PROCURAR ATENDIMENTO SE CHIADO NO PEITO OU FALTA DE AR, FEBRE COM DOR NA FACE E SECREÇÃO PURULENTA POR MAIS DE 10 DIAS OU SANGRAMENTO NASAL FREQUENTE"
+    ]
+   },
+   {
+    "label": "Padrão — Lavagem nasal",
+    "draft": true,
+    "items": [
+     [
+      "CLORETO DE SÓDIO 0,9% SOLUÇÃO NASAL (SORO FISIOLÓGICO)",
+      "01 FRASCO",
+      "LAVAR CADA NARINA COM 10 A 20 ML (COM SERINGA SEM AGULHA OU FRASCO LAVADOR) 02 A 03 VEZES AO DIA, ANTES DE APLICAR O CORTICOIDE NASAL",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Anti-histamínico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ],
+     [
+      "CETIRIZINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — corticoide nasal + lavagem nasal + anti-histamínico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -11917,12 +13658,6 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS APÓS ESTE PERÍODO, TOMAR 01 COMPRIMIDO SE COCEIRA OU ESPIRROS, PODENDO REPETIR A DOSE 24/24H SE NECESSÁRIO"
      ]
-    ],
-    "orient": [
-     "USAR O CORTICOIDE NASAL TODOS OS DIAS, MESMO SEM SINTOMAS (EFEITO PLENO EM 01 A 02 SEMANAS), DIRECIONANDO O JATO PARA A LATERAL DA NARINA (EM DIREÇÃO À ORELHA), LONGE DO SEPTO",
-     "CONTROLE AMBIENTAL: EVITAR POEIRA, MOFO, FUMAÇA DE CIGARRO, PERFUMES E PELOS DE ANIMAIS; LAVAR ROUPAS DE CAMA SEMANALMENTE E MANTER O QUARTO AREJADO, SEM TAPETES OU CORTINAS",
-     "NÃO USAR DESCONGESTIONANTE NASAL (NAFAZOLINA, OXIMETAZOLINA) POR CONTA PRÓPRIA — CAUSA EFEITO REBOTE E DEPENDÊNCIA",
-     "ACOMPANHAR NA UBS. PROCURAR ATENDIMENTO SE CHIADO NO PEITO OU FALTA DE AR, FEBRE COM DOR NA FACE E SECREÇÃO PURULENTA POR MAIS DE 10 DIAS OU SANGRAMENTO NASAL FREQUENTE"
     ]
    },
    {
@@ -12070,10 +13805,81 @@ const DATA = [
   "id": "rinossinusite",
   "ic": "👃",
   "nm": "Rinossinusite",
-  "sub": "soro fisiológico · fluticasona · amoxicilina",
+  "sub": "soro fisiológico · fluticasona · dipirona · amoxicilina",
   "blocks": [
    {
-    "label": "Padrão — viral/pós-viral: lavagem nasal + corticoide nasal + analgésico (sem antibiótico)",
+    "label": "Padrão — Lavagem nasal + corticoide nasal",
+    "draft": true,
+    "items": [
+     [
+      "SERINGA DE 10 ML",
+      "01 UNIDADE",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "SOLUÇÃO FISIOLÓGICA 0,9%",
+      "01 FRASCO",
+      "",
+      "USO INTRANASAL"
+     ],
+     [
+      "FLUTICASONA SPRAY 50MCG/JATO",
+      "01 FRASCO",
+      "APLICAR 1 JATO EM CADA NARINA DE 12/12H POR 15 DIAS",
+      "USO INTRANASAL"
+     ]
+    ],
+    "orient": [
+     "ASPIRAR O SORO COM A SERINGA, RETIRAR A AGULHA E INJETAR EM CADA NARINA (SEM TAPAR A OUTRA), ESTANDO COM A BOCA ABERTA, TRÊS VEZES AO DIA",
+     "É NORMAL ENGOLIR OU A SECREÇÃO SAIR PELO OUTRO LADO",
+     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO",
+     "RETORNAR PARA REAVALIAÇÃO EM CASO DE PIORA APÓS O QUINTO DIA OU SE PERSISTIR POR MAIS DE 10 DIAS, OU ANTES EM CASO DE DÚVIDA",
+     "RETORNAR IMEDIATAMENTE SE INCHAÇO OU VERMELHIDÃO AO REDOR DOS OLHOS, VISÃO DUPLA OU EMBAÇADA, DOR DE CABEÇA MUITO FORTE, RIGIDEZ NA NUCA, CONFUSÃO MENTAL OU FEBRE ALTA PERSISTENTE"
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE FEBRE OU DOR, PODENDO REPETIR DE 06/06H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — se bacteriana (> 10 dias, piora bifásica ou quadro grave): antibiótico 07 dias — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "21 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS. HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
+     ],
+     [
+      "AMOXICILINA 875 MG + CLAVULANATO DE POTÁSSIO 125 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H, NO INÍCIO DAS REFEIÇÕES, POR 07 DIAS. HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ],
+     [
+      "DOXICICLINA 100 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS, COM 01 COPO CHEIO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES. HORÁRIO SUGERIDO: 08:00 / 20:00"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — viral/pós-viral: lavagem nasal + corticoide nasal + analgésico (sem antibiótico)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -12098,35 +13904,6 @@ const DATA = [
       "01 FRASCO",
       "",
       "USO INTRANASAL"
-     ]
-    ],
-    "orient": [
-     "ASPIRAR O SORO COM A SERINGA, RETIRAR A AGULHA E INJETAR EM CADA NARINA (SEM TAPAR A OUTRA), ESTANDO COM A BOCA ABERTA, TRÊS VEZES AO DIA",
-     "É NORMAL ENGOLIR OU A SECREÇÃO SAIR PELO OUTRO LADO",
-     "GUARDAR O SORO NA GELADEIRA E LAVAR O MATERIAL COM ÁGUA E SABÃO",
-     "RETORNAR PARA REAVALIAÇÃO EM CASO DE PIORA APÓS O QUINTO DIA OU SE PERSISTIR POR MAIS DE 10 DIAS, OU ANTES EM CASO DE DÚVIDA",
-     "RETORNAR IMEDIATAMENTE SE INCHAÇO OU VERMELHIDÃO AO REDOR DOS OLHOS, VISÃO DUPLA OU EMBAÇADA, DOR DE CABEÇA MUITO FORTE, RIGIDEZ NA NUCA, CONFUSÃO MENTAL OU FEBRE ALTA PERSISTENTE"
-    ]
-   },
-   {
-    "label": "Padrão — se bacteriana (> 10 dias, piora bifásica ou quadro grave): antibiótico 07 dias — escolha 1",
-    "draft": true,
-    "menu": true,
-    "items": [
-     [
-      "AMOXICILINA 500 MG",
-      "21 CÁPSULAS",
-      "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS. HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00"
-     ],
-     [
-      "AMOXICILINA 875 MG + CLAVULANATO DE POTÁSSIO 125 MG",
-      "14 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO DE 12/12H, NO INÍCIO DAS REFEIÇÕES, POR 07 DIAS. HORÁRIO SUGERIDO: 08:00 / 20:00"
-     ],
-     [
-      "DOXICICLINA 100 MG",
-      "14 COMPRIMIDOS",
-      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS, COM 01 COPO CHEIO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES. HORÁRIO SUGERIDO: 08:00 / 20:00"
      ]
     ]
    },
@@ -13230,7 +15007,65 @@ const DATA = [
   "sub": "naproxeno · ciclobenzaprina · dipirona",
   "blocks": [
    {
-    "label": "Padrão — AINE curto + relaxante muscular à noite",
+    "label": "Padrão — AINE (anti-inflamatório) por curto prazo — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NAPROXENO SÓDICO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ]
+    ],
+    "orient": [
+     "APLICAR CALOR LOCAL (COMPRESSA MORNA OU BOLSA DE ÁGUA QUENTE) POR 15 A 20 MINUTOS, 3 A 4 VEZES AO DIA",
+     "MANTER-SE ATIVO E MOVIMENTAR O PESCOÇO SUAVEMENTE DENTRO DO LIMITE DA DOR. NÃO USAR COLAR CERVICAL. MELHORA ESPERADA EM POUCOS DIAS, COM RESOLUÇÃO EM ATÉ 01 SEMANA",
+     "CICLOBENZAPRINA CAUSA SONOLÊNCIA: NÃO DIRIGIR, NÃO OPERAR MÁQUINAS E NÃO INGERIR BEBIDA ALCOÓLICA. TOMAR O ANTI-INFLAMATÓRIO APÓS AS REFEIÇÕES",
+     "RETORNAR IMEDIATAMENTE SE FEBRE, DOR DE CABEÇA INTENSA COM RIGIDEZ DE NUCA, FRAQUEZA, FORMIGAMENTO OU DOR IRRADIADA PARA OS BRAÇOS, DIFICULDADE PARA ENGOLIR OU RESPIRAR, OU SE NÃO MELHORAR EM 07 DIAS",
+     "MOVIMENTOS INVOLUNTÁRIOS DO PESCOÇO APÓS USO DE METOCLOPRAMIDA OU ANTIPSICÓTICOS (REAÇÃO DISTÔNICA AGUDA) OU TORCICOLO QUE PERSISTE OU VOLTA COM FREQUÊNCIA NÃO MELHORAM COM ESTE TRATAMENTO: PROCURAR REAVALIAÇÃO MÉDICA/NEUROLOGIA"
+    ]
+   },
+   {
+    "label": "Padrão — Relaxante muscular à noite",
+    "draft": true,
+    "items": [
+     [
+      "CICLOBENZAPRINA 5 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO À NOITE, ANTES DE DORMIR, POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Analgésico — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — AINE curto + relaxante muscular à noite",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -13248,13 +15083,6 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR, PODENDO REPETIR DE 6/6H SE NECESSÁRIO"
      ]
-    ],
-    "orient": [
-     "APLICAR CALOR LOCAL (COMPRESSA MORNA OU BOLSA DE ÁGUA QUENTE) POR 15 A 20 MINUTOS, 3 A 4 VEZES AO DIA",
-     "MANTER-SE ATIVO E MOVIMENTAR O PESCOÇO SUAVEMENTE DENTRO DO LIMITE DA DOR. NÃO USAR COLAR CERVICAL. MELHORA ESPERADA EM POUCOS DIAS, COM RESOLUÇÃO EM ATÉ 01 SEMANA",
-     "CICLOBENZAPRINA CAUSA SONOLÊNCIA: NÃO DIRIGIR, NÃO OPERAR MÁQUINAS E NÃO INGERIR BEBIDA ALCOÓLICA. TOMAR O ANTI-INFLAMATÓRIO APÓS AS REFEIÇÕES",
-     "RETORNAR IMEDIATAMENTE SE FEBRE, DOR DE CABEÇA INTENSA COM RIGIDEZ DE NUCA, FRAQUEZA, FORMIGAMENTO OU DOR IRRADIADA PARA OS BRAÇOS, DIFICULDADE PARA ENGOLIR OU RESPIRAR, OU SE NÃO MELHORAR EM 07 DIAS",
-     "MOVIMENTOS INVOLUNTÁRIOS DO PESCOÇO APÓS USO DE METOCLOPRAMIDA OU ANTIPSICÓTICOS (REAÇÃO DISTÔNICA AGUDA) OU TORCICOLO QUE PERSISTE OU VOLTA COM FREQUÊNCIA NÃO MELHORAM COM ESTE TRATAMENTO: PROCURAR REAVALIAÇÃO MÉDICA/NEUROLOGIA"
     ]
    },
    {
@@ -13382,16 +15210,22 @@ const DATA = [
   "id": "tce",
   "ic": "🤕",
   "nm": "TCE — analgesia e orientações",
-  "sub": "dipirona",
+  "sub": "dipirona · paracetamol",
   "blocks": [
    {
-    "label": "Padrão — TCE leve: analgesia simples + vigilância domiciliar",
+    "label": "Padrão — Analgésico / antitérmico — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "DIPIRONA 500 MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
      ]
     ],
     "orient": [
@@ -13400,6 +15234,18 @@ const DATA = [
      "DOR DE CABEÇA LEVE, TONTURA, CANSAÇO E DIFICULDADE DE CONCENTRAÇÃO PODEM DURAR ALGUMAS SEMANAS; PROCURAR A UBS SE PERSISTIREM POR MAIS DE 02 SEMANAS",
      "SE FERIMENTO NO COURO CABELUDO: LAVAR DELICADAMENTE COM ÁGUA E SABÃO NEUTRO DURANTE O BANHO E RETIRAR OS PONTOS EM 07 A 10 DIAS NA UBS",
      "RETORNAR IMEDIATAMENTE SE: SONOLÊNCIA EXCESSIVA OU DIFICULDADE PARA ACORDAR, CONFUSÃO, DOR DE CABEÇA QUE PIORA, VÔMITOS REPETIDOS, CONVULSÃO, FRAQUEZA OU FORMIGAMENTO, ALTERAÇÃO DA FALA OU DA VISÃO, SAÍDA DE LÍQUIDO OU SANGUE PELO NARIZ OU OUVIDO"
+    ]
+   },
+   {
+    "label": "Combinação pronta — TCE leve: analgesia simples + vigilância domiciliar",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
     ]
    },
    {
@@ -13621,7 +15467,59 @@ const DATA = [
   "sub": "dipirona · naproxeno · codeína",
   "blocks": [
    {
-    "label": "Padrão — analgesia multimodal (trauma torácico leve)",
+    "label": "Padrão — Dipirona em horários fixos",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H, EM HORÁRIOS FIXOS, POR 05 DIAS; DEPOIS, APENAS SE DOR"
+     ]
+    ],
+    "orient": [
+     "FAZER 10 RESPIRAÇÕES PROFUNDAS A CADA HORA ENQUANTO ACORDADO E TOSSIR QUANDO NECESSÁRIO, ABRAÇANDO UM TRAVESSEIRO CONTRA O PEITO. NÃO ENFAIXAR NEM APERTAR O TÓRAX",
+     "MANTER-SE ATIVO E CAMINHAR, EVITANDO FICAR DEITADO O DIA TODO; EVITAR ESFORÇO FÍSICO INTENSO E ESPORTES DE CONTATO POR 04 A 06 SEMANAS. NÃO FUMAR",
+     "CODEÍNA PODE CAUSAR SONOLÊNCIA E PRISÃO DE VENTRE: NÃO DIRIGIR NEM INGERIR BEBIDA ALCOÓLICA DURANTE O USO",
+     "RETORNAR IMEDIATAMENTE SE FALTA DE AR, PIORA DA DOR, TOSSE COM SANGUE, FEBRE, TONTURA OU DESMAIO, PALPITAÇÕES OU DOR NA BARRIGA",
+     "IDOSOS (≥ 65 ANOS), ≥ 03 ARCOS COSTAIS FRATURADOS, DOENÇA PULMONAR, USO DE ANTICOAGULANTE OU DOR NÃO CONTROLADA COM ANALGESIA ORAL: CONSIDERAR OBSERVAÇÃO OU INTERNAÇÃO"
+    ]
+   },
+   {
+    "label": "Padrão — AINE (anti-inflamatório) — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NAPROXENO 500MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO: 08:00 – 20:00"
+     ],
+     [
+      "IBUPROFENO 300 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ],
+     [
+      "DICLOFENACO 50 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, POR 05 DIAS SEGUIDOS HORÁRIO SUGERIDO (8/8h): 06:00 / 14:00 / 22:00"
+     ]
+    ]
+   },
+   {
+    "label": "Padrão — Dor intensa que não melhora",
+    "draft": true,
+    "items": [
+     [
+      "CODEÍNA 30 MG",
+      "12 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA QUE NÃO MELHORA COM OS DEMAIS REMÉDIOS, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — analgesia multimodal (trauma torácico leve)",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -13639,13 +15537,6 @@ const DATA = [
       "12 COMPRIMIDOS",
       "TOMAR 01 COMPRIMIDO SE DOR INTENSA QUE NÃO MELHORA COM OS DEMAIS REMÉDIOS, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS"
      ]
-    ],
-    "orient": [
-     "FAZER 10 RESPIRAÇÕES PROFUNDAS A CADA HORA ENQUANTO ACORDADO E TOSSIR QUANDO NECESSÁRIO, ABRAÇANDO UM TRAVESSEIRO CONTRA O PEITO. NÃO ENFAIXAR NEM APERTAR O TÓRAX",
-     "MANTER-SE ATIVO E CAMINHAR, EVITANDO FICAR DEITADO O DIA TODO; EVITAR ESFORÇO FÍSICO INTENSO E ESPORTES DE CONTATO POR 04 A 06 SEMANAS. NÃO FUMAR",
-     "CODEÍNA PODE CAUSAR SONOLÊNCIA E PRISÃO DE VENTRE: NÃO DIRIGIR NEM INGERIR BEBIDA ALCOÓLICA DURANTE O USO",
-     "RETORNAR IMEDIATAMENTE SE FALTA DE AR, PIORA DA DOR, TOSSE COM SANGUE, FEBRE, TONTURA OU DESMAIO, PALPITAÇÕES OU DOR NA BARRIGA",
-     "IDOSOS (≥ 65 ANOS), ≥ 03 ARCOS COSTAIS FRATURADOS, DOENÇA PULMONAR, USO DE ANTICOAGULANTE OU DOR NÃO CONTROLADA COM ANALGESIA ORAL: CONSIDERAR OBSERVAÇÃO OU INTERNAÇÃO"
     ]
    },
    {
@@ -14424,16 +16315,27 @@ const DATA = [
   "id": "vertigem",
   "ic": "💫",
   "nm": "Vertigem e tontura",
-  "sub": "dimenidrinato",
+  "sub": "dimenidrinato · meclizina · metoclopramida",
   "blocks": [
    {
-    "label": "Padrão — supressor vestibular por curto prazo (até 03 dias)",
+    "label": "Padrão — Supressor vestibular / antiemético por até 03 dias — escolha 1",
     "draft": true,
+    "menu": true,
     "items": [
      [
       "DIMENIDRINATO 50 MG + PIRIDOXINA 10MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 6/6H"
+     ],
+     [
+      "MECLIZINA 50MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, TONTURA OU VÔMITOS, PODENDO REPETIR DE 12/12h"
+     ],
+     [
+      "METOCLOPRAMIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
      ]
     ],
     "orient": [
@@ -14442,6 +16344,18 @@ const DATA = [
      "VERTIGEM POSICIONAL (VPPB): O TRATAMENTO É A MANOBRA DE REPOSICIONAMENTO (EPLEY), SEM NECESSIDADE DE MEDICAÇÃO CONTÍNUA",
      "RETORNAR IMEDIATAMENTE SE FRAQUEZA OU DORMÊNCIA NO ROSTO, BRAÇO OU PERNA, FALA ENROLADA, VISÃO DUPLA, DIFICULDADE PARA ANDAR OU FICAR EM PÉ, DOR DE CABEÇA SÚBITA E FORTE, DESMAIO OU DOR NO PEITO",
      "PROCURAR ATENDIMENTO NO MESMO DIA SE PERDA SÚBITA DA AUDIÇÃO; AGENDAR UBS/OTORRINO SE CRISES REPETIDAS, ZUMBIDO OU TONTURA QUE PERSISTE APÓS 02 SEMANAS (REABILITAÇÃO VESTIBULAR)"
+    ]
+   },
+   {
+    "label": "Combinação pronta — supressor vestibular por curto prazo (até 03 dias)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIMENIDRINATO 50 MG + PIRIDOXINA 10MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 6/6H"
+     ]
     ]
    },
    {
@@ -14544,10 +16458,51 @@ const DATA = [
   "id": "zika",
   "ic": "🦟",
   "nm": "Zika vírus",
-  "sub": "dipirona · paracetamol · loratadina",
+  "sub": "dipirona · paracetamol · loratadina · hidroxizina",
   "blocks": [
    {
-    "label": "Padrão — sintomático: dipirona/paracetamol + anti-histamínico",
+    "label": "Padrão — Analgésico / antitérmico (podem ser intercalados)",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG",
+      "01 CAIXA",
+      "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM PARACETAMOL, SE NECESSÁRIO"
+     ],
+     [
+      "PARACETAMOL 750 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ],
+    "orient": [
+     "TOMAR 01 COPO D’ÁGUA 10 VEZES AO DIA OU MAIS, CONFORME ACEITAÇÃO.",
+     "NÃO TOMAR ASPIRINA, IBUPROFENO, DICLOFENACO NEM QUALQUER OUTRA MEDICAÇÃO SEM ORIENTAÇÃO MÉDICA.",
+     "RETORNAR IMEDIATAMENTE SE DOR ABDOMINAL INTENSA, VÔMITOS PERSISTENTES, SANGRAMENTOS, TONTURA AO LEVANTAR, SONOLÊNCIA OU FRAQUEZA/FORMIGAMENTO NAS PERNAS QUE SOBE PELO CORPO",
+     "USAR PRESERVATIVO OU EVITAR RELAÇÕES SEXUAIS POR 03 MESES (HOMENS) E 02 MESES (MULHERES) APÓS OS SINTOMAS; GESTANTES DEVEM AVISAR O PRÉ-NATAL PARA SEGUIMENTO COM ULTRASSONOGRAFIA",
+     "USAR REPELENTE, ROUPAS COMPRIDAS E TELAS/MOSQUITEIRO PARA NÃO TRANSMITIR O VÍRUS AO MOSQUITO E A OUTRAS PESSOAS"
+    ]
+   },
+   {
+    "label": "Padrão — Anti-histamínico se coceira — escolha 1",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO AO DIA SE COCEIRA OU MANCHAS VERMELHAS NA PELE"
+     ],
+     [
+      "HIDROXIZINA 25 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO SE COCEIRA OU VERMELHIDÃO NA PELE, PODENDO REPETIR DE 08/08H"
+     ]
+    ]
+   },
+   {
+    "label": "Combinação pronta — sintomático: dipirona/paracetamol + anti-histamínico",
+    "sec": "offlabel",
     "draft": true,
     "items": [
      [
@@ -14565,13 +16520,6 @@ const DATA = [
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO AO DIA SE COCEIRA OU MANCHAS VERMELHAS NA PELE"
      ]
-    ],
-    "orient": [
-     "TOMAR 01 COPO D’ÁGUA 10 VEZES AO DIA OU MAIS, CONFORME ACEITAÇÃO.",
-     "NÃO TOMAR ASPIRINA, IBUPROFENO, DICLOFENACO NEM QUALQUER OUTRA MEDICAÇÃO SEM ORIENTAÇÃO MÉDICA.",
-     "RETORNAR IMEDIATAMENTE SE DOR ABDOMINAL INTENSA, VÔMITOS PERSISTENTES, SANGRAMENTOS, TONTURA AO LEVANTAR, SONOLÊNCIA OU FRAQUEZA/FORMIGAMENTO NAS PERNAS QUE SOBE PELO CORPO",
-     "USAR PRESERVATIVO OU EVITAR RELAÇÕES SEXUAIS POR 03 MESES (HOMENS) E 02 MESES (MULHERES) APÓS OS SINTOMAS; GESTANTES DEVEM AVISAR O PRÉ-NATAL PARA SEGUIMENTO COM ULTRASSONOGRAFIA",
-     "USAR REPELENTE, ROUPAS COMPRIDAS E TELAS/MOSQUITEIRO PARA NÃO TRANSMITIR O VÍRUS AO MOSQUITO E A OUTRAS PESSOAS"
     ]
    },
    {
@@ -14773,26 +16721,26 @@ const KW = {
  "colica_nefretica": "cólica nefrética cetoprofeno · cetorolaco · algicod rim renal calculo pedra litiase algicod cetoprofeno cetorolaco diclofenaco metoclopramida tansulosina ibuprofeno dipirona colica renal nefrolitiase urolitiase",
  "conjuntivite": "conjuntivite tobramicina colírio fisiológica solução tobramicina ceftriaxona azitromicina dipirona gonococica gonococo clamidia tracoma hiperaguda perfuracao oftalmologica ist secrecao purulenta irrigacao carmelose sódica olopatadina doxiciclina olho vermelho",
  "corpo_estranho": "corpo estranho ocular tobramicina colírio dexametasona fisiológica ofloxacino solução tobramicina olho colirio fisiologica solucao soro dipirona paracetamol ibuprofeno analgesia pediatrico oftálmica cisco no olho",
- "constipacao": "constipação benefiber · muvinlax intestino preso fezes benefiber muvinlax simeticona polietilenoglicol peg macrogol lactulose desimpactacao pediatrico constipacao intestino preso laxante laxativo prisao de ventre eletrólitos bisacodil manipulado",
+ "constipacao": "constipação benefiber · muvinlax intestino preso fezes benefiber muvinlax simeticona polietilenoglicol peg macrogol lactulose desimpactacao pediatrico constipacao intestino preso laxante laxativo prisao de ventre eletrólitos bisacodil manipulado fibra",
  "dengue": "dengue dipirona arbovirose dipirona metoclopramida oral reidratação soro fisiologico expansao volemica internacao endovenoso choque paracetamol ondansetrona gotas peso pediatrico hematocrito cloreto sódio albumina humana",
  "diarreia": "diarreia aguda loperamida · saccharomyces · ciprofloxacino gastroenterite disenteria fezes albendazol azitromicina boulardii buscoduo buscopan butilbrometo ciprofloxacino composto dipirona escopolamina loperamida metoclopramida metronidazol nitazoxanida oral reidratação saccharomyces secnidazol soro sulfametoxazol trimetoprima diarreia aguda desidratacao reidratacao plano c internacao pediatrico ringer lactato ringer com lactato soro fisiologico sro soro de reidratacao oral ceftriaxona ondansetrona butilbrometo de escopolamina cloreto de potassio potassio kcl sulfato de zinco zinco paracetamol sódio glicosado manutenção reposição vancomicina potássio",
  "hemorroida": "doença hemorroidária trombosada diclofenaco hemorroidas anal benefiber diclofenaco diosmina hesperidina proctyl psyllium envelope lidocaína dipirona ibuprofeno naproxeno sódico trombose hemorroidaria",
- "dismenorreia": "dismenorreia butilbrometo · piroxicam · meloxicam colica menstrual menstruacao tpm butilbrometo escopolamina meloxicam metoclopramida piroxicam ibuprofeno paracetamol",
+ "dismenorreia": "dismenorreia butilbrometo · piroxicam · meloxicam colica menstrual menstruacao tpm butilbrometo escopolamina meloxicam metoclopramida piroxicam ibuprofeno paracetamol naproxeno",
  "dpoc": "dpoc descompensada amoxicilina pulmao respiratoria bronquite aerossol amoxicilina azitromicina dipirona omeprazol prednisona salbutamol spray exacerbacao hidrocortisona fenoterol ipratropio brometo nebulizacao oxigenio clavulanato ceftriaxona ventilacao vni gasometria endovenoso internacao broncodilatador corticoide pseudomonas escarro doxiciclina amoxicilina-clavulanato oxigênio suplementar bromidrato inalação ipratrópio enoxaparina sódica potássio cefepima piperacilina tazobactam levofloxacino metilprednisolona doenca pulmonar obstrutiva cronica enfisema bronquite cronica",
  "eczema": "eczema de contato betametasona · clobetazol betametasona clobetazol creme loratadina hidrocortisona dexclorfeniramina cefazolina prednisolona dipirona valerato acetato prednisona hidroxizina clindamicina dermatite de contato",
- "enxaqueca": "enxaqueca naproxeno · naratripano · sumatriptano migranea migrânea aura triptano cefalium cefaliv codeína dipirona metoclopramida naproxeno naratripano paracetamol sumatriptano sódico cetoprofeno dexametasona cloreto clatonal status cocktail sumax imigran liófilo sódio clorpromazina sulfato magnésio ibuprofeno rizatriptano",
+ "enxaqueca": "enxaqueca naproxeno · naratripano · sumatriptano migranea migrânea aura triptano cefalium cefaliv codeína dipirona metoclopramida naproxeno naratripano paracetamol sumatriptano sódico cetoprofeno dexametasona cloreto clatonal status cocktail sumax imigran liófilo sódio clorpromazina sulfato magnésio ibuprofeno rizatriptano naratriptano naramig",
  "epididimite": "epididimite / orquite ciprofloxacino ciprofloxacino ceftriaxona doxiciclina ibuprofeno dipirona levofloxacino orquiepididimite",
  "erisipela": "erisipela e celulite cefalexina · clindamicina cefalexina clindamicina ssti infeccao de pele cefazolina vancomicina ceftriaxona dipirona mrsa forma purulenta abscesso estreptococo internacao pediatrico enoxaparina sódica benzilpenicilina potássica piperacilina tazobactam",
  "escabiose": "escabiose ivermectina sarna hidroxizina ivermectina permetrina dexclorfeniramina prurido coceira lesoes escabicida loção enxofre precipitado vaselina sólida",
  "faringo_inesp": "faringoamigdalite inespecífica dipirona garganta amigdalite faringite respiratoria benalet dipirona penicilina cristalina benzatina ampicilina sulbactam dexametasona amoxicilina cefalexina ibuprofeno paracetamol estreptococica odinofagia internacao pediatrico flurbiprofeno pastilha cetoprofeno liófilo cloreto sódio clindamicina azitromicina dor de garganta faringite viral",
  "faringo_estrep": "faringoamigdalite estreptocócica amoxicilina · azitromicina garganta amigdalite estreptococo respiratoria amoxicilina azitromicina dipirona omeprazol penicilina cristalina benzatina ampicilina ceftriaxona clindamicina dexametasona ibuprofeno paracetamol estreptococica internacao pediatrico benzilpenicilina cefalexina cloreto sódio sulbactam dor de garganta amigdalite bacteriana",
- "gastrite": "gastrite / drge omeprazol refluxo azia drge epigastralgia domperidona omeprazol simeticona hidróxido alumínio refluxo gastroesofagico dispepsia",
+ "gastrite": "gastrite / drge omeprazol refluxo azia drge epigastralgia domperidona omeprazol simeticona hidróxido alumínio refluxo gastroesofagico dispepsia pantoprazol",
  "gota": "gota — crise naproxeno · colchicina · prednisona colchicina dipirona naproxeno omeprazol prednisona sódico artrite gotosa podagra",
  "h1n1": "h1n1 — profilaxia oseltamivir oseltamivir tamiflu influenza gripe gripe a srag sindrome respiratoria aguda grave virose ceftriaxona azitromicina dipirona paracetamol antiviral oxigenio pneumonia coinfeccao bacteriana febre internacao pediatrico cápsula oxigênio cateter nasal máscara cloreto sódio",
  "hordeolo": "hordéolo / blefarite ciprofloxacino ciprofloxacino dexametasona estéril oftálmica pomada tobramicina compressas mornas tercol",
  "herpes_zoster": "herpes zóster aciclovir cobreiro aciclovir diclofenaco dipirona diprogenta prednisona valaciclovir",
  "impetigo": "impetigo crostoso mupirocina · cefalexina cefalexina mupirocina pomada bolhoso ectima celulite piodermite cefazolina amoxicilina clavulanato clavulin dipirona clindamicina vancomicina mrsa estafilococo estreptococo glomerulonefrite crostas suspensao gotas pediatrico crianca internacao endovenoso potássio sulfametoxazol trimetoprima",
- "itu": "itu / cistite sulfametoxazol · fosfomicina · nitrofurantoína cistite urina urinaria bexiga disuria ciprofloxacino fosfomicina granulado nitrofurantoína norfloxacino sulfametoxazol trimetoprima cefalexina suspensão pediátrico criança infantil dipirona cefuroxima ceftriaxona amoxicilina clavulanato potássio infeccao urinaria infeccao do trato urinario",
+ "itu": "itu / cistite sulfametoxazol · fosfomicina · nitrofurantoína cistite urina urinaria bexiga disuria ciprofloxacino fosfomicina granulado nitrofurantoína norfloxacino sulfametoxazol trimetoprima cefalexina suspensão pediátrico criança infantil dipirona cefuroxima ceftriaxona amoxicilina clavulanato potássio infeccao urinaria infeccao do trato urinario fenazopiridina",
  "intertrigo": "intertrigo / candidíase fluconazol · itraconazol fluconazol itraconazol trok miconazol nistatina hidrocortisona candidiase candida dobras fralda assadura micose nitrato dermatológico óxido zinco clotrimazol acetato",
  "lombalgia": "lombalgia mecânica dorilax® · diclofenaco · alginac lombar coluna costas alginac cafeína carisoprodol celecoxibe ciclobenzaprina diclofenaco dipirona dorilax paracetamol ibuprofeno dor lombar dor nas costas lumbago",
  "meteorismo": "meteorismo (gases) simeticona gases flatulencia dipirona metoclopramida simeticona butilbrometo escopolamina",
@@ -14819,6 +16767,6 @@ const KW = {
  "trauma_toracico": "trauma torácico naproxeno · levodropropizina cafeína carisoprodol ciclobenzaprina codeína levodropropizina naproxeno paracetamol xarope internação endovenoso tramadol ondansetrona omeprazol ringer lactato enoxaparina oxigênio cefazolina toracostomia dreno morfina profilaxia pediátrico dipirona analgesia fratura costela arco costal pneumotórax hemotórax contusão pulmonar trombose tvp antibiótico intercostal sf cetoprofeno liófilo clindamicina ibuprofeno cateter nasal trauma de torax contusao toracica",
  "ulceras": "úlceras de causas variadas clorafenicol · iruxol cefalexina clorafenicol colagenase diosmina hesperidina iruxol pomada fisiológica dipirona soro fisiológico ferida cronica ulcera venosa ulcera de pressao escara",
  "vaginites": "vaginites / vaginoses / ists metronidazol · nistatina · fluconazol corrimento candidiase ist dst aciclovir azitromicina benzatina ceftriaxona ciprofloxacino creme dipirona doxiciclina doxicilina fluconazol geleia metoclopramida metronidazol nistatina penicilina vaginal miconazol vaginose bacteriana candidiase vaginal tricomoniase",
- "vertigem": "vertigem e tontura dimenidrinato · flunarizina tontura labirintite betaistina cinarizina dimenidrinato dipirona flunarizina meclizina piridoxina prednisona",
+ "vertigem": "vertigem e tontura dimenidrinato · flunarizina tontura labirintite betaistina cinarizina dimenidrinato dipirona flunarizina meclizina piridoxina prednisona metoclopramida",
  "zika": "zika vírus dipirona arbovirose dipirona hidroxizina paracetamol ondansetrona imunoglobulina imunoglobulina humana enoxaparina dexclorfeniramina guillain barre guillain-barre soro fisiologico hidratacao internacao exantema prurido loratadina cloreto sódio metoclopramida intravenosa desloratadina"
 };
