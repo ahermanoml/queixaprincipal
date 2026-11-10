@@ -46,6 +46,7 @@ function scrollIntoPlace(el, gap=12){
      label    texto da aba; icon: emoji antes do texto
      cols     ids das colunas de .grid que a aba mostra (a receita, #col-rx, aparece sempre)
      layout   "lista" (coluna estreita + coluna larga + receita) | "texto" (coluna larga + receita)
+     rx       opcional: false = a aba não mostra a coluna da receita (#col-rx fica escondida, sem perder o conteúdo)
      itemId() opcional: id do item aberto agora (vai no endereço #/key/<id>), ou null
      open(id, how) opcional: abre o item id; devolve false se ele não existe.
               how = "route" (endereço / voltar-avançar) | "load" (endereço ao abrir a página) | "search" (busca)

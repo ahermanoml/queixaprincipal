@@ -56,7 +56,7 @@ topTabs.addEventListener("wheel", e=>{
 }, {passive:false});
 window.addEventListener("resize", tabsOverflow);
 
-/* troca a aba do topo: body[data-view] / body[data-layout] para o CSS e `hidden` nas colunas das outras abas.
+/* troca a aba do topo: body[data-view] / body[data-layout] / body[data-rx] para o CSS e `hidden` nas colunas das outras abas.
    A receita (#col-rx) é a mesma em todas as abas, e o estado de cada aba (condição aberta, modo, peso) fica. */
 function showView(key){
   const v = viewOf(key) || VIEWS[0];
@@ -68,6 +68,9 @@ function showView(key){
     const col = document.getElementById(id);
     if(col) col.hidden = !mine.includes(id);
   }));
+  // rx: false = a aba não mostra a receita; ela só fica escondida (conteúdo, peso e condição continuam)
+  document.body.dataset.rx = v.rx===false ? "off" : "on";
+  $("#col-rx").hidden = v.rx===false;
   markTabs();
   window.scrollTo(0, 0);   // no celular a página rola inteira: começa a aba nova do topo
 }
@@ -75,6 +78,7 @@ function showView(key){
 /* ---- init ---- */
 renderTabs();
 renderConds();
+renderEscList();
 renderRascunho();
 syncRx();
 onRoute("load");   // abre a aba / condição do endereço (#/prescricoes/itu); sem hash = Prescrições sem condição

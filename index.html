@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prescritor — Queixa Principal</title>
-<link rel="stylesheet" href="css/app.css?v=20261110a">
+<link rel="stylesheet" href="css/app.css?v=20261110b">
+<link rel="stylesheet" href="css/escores.css?v=20261110b">
 </head>
 <body data-view="prescricoes" data-layout="lista">
 <header class="top">
@@ -68,6 +69,24 @@
     <div class="scroll"><div class="rasc-doc" id="rasc-doc"></div></div>
   </section>
 
+  <!-- aba "Escores": lista de escores e a calculadora (js/views/escores.js); esta aba não mostra a receita -->
+  <section class="col" id="col-esc-lista" hidden>
+    <h2>Escores <span class="count" id="esc-count">0</span></h2>
+    <div class="search">
+      <label for="esc-search" class="sr-only">Filtrar escores</label>
+      <input id="esc-search" type="search" placeholder="🔎  Filtrar escores..." autocomplete="off">
+    </div>
+    <div class="scroll" id="esc-list"></div>
+  </section>
+  <section class="col" id="col-esc" hidden>
+    <h2 id="esc-title">Calculadora</h2>
+    <div class="scroll" id="esc-body">
+      <div class="empty"><div class="big" aria-hidden="true">👈</div><div class="ttl">Selecione um escore</div><div class="sub">Escolha à esquerda. O resultado sai na hora e vai pronto para o prontuário.</div></div>
+    </div>
+    <!-- celular: resultado e "Copiar" sempre à vista -->
+    <div class="esc-bar" id="esc-bar" hidden><span class="esc-bar-v" id="esc-bar-v"></span><span class="esc-band" id="esc-bar-b"></span><button type="button" class="btn primary" id="esc-bar-copy" tabindex="-1">Copiar</button></div>
+  </section>
+
   <!-- COL 3: receita -->
   <section class="col" id="col-rx">
     <h2>Receita <span class="count" id="rx-count">0</span></h2>
@@ -85,17 +104,76 @@
   </section>
 </div>
 
+<!-- ficha em branco para imprimir (Escores): preenchida na hora de imprimir; só aparece na impressão -->
+<section id="ficha" aria-hidden="true"></section>
+<template id="tpl-ficha-nihss">
+<div class="f-head">
+<div>
+<div class="f-brand">Queixa Principal</div>
+<h1>NIHSS — Ficha de avaliação</h1>
+<p>Aplicar os itens na ordem · escrever o escore na coluna do momento avaliado</p>
+</div>
+<div class="f-score" id="fScore"><span id="fScoreLbl"></span><strong id="fScoreVal"></strong></div>
+</div>
+<div class="f-fields"><div>PACIENTE</div><div>IDADE</div><div>PRONTUÁRIO</div><div>ÚLTIMO VISTO BEM</div><div>CHEGADA</div></div>
+<table class="f-table">
+<thead><tr id="fHead"><th>Item</th><th>Achado e pontuação</th><th>Admissão</th><th>Pós-trombólise</th><th>24 h</th><th>Alta</th></tr></thead>
+<tbody id="fBody"></tbody>
+</table>
+<div class="f-sev" id="fSev">
+<div style="background:#E3E8EA">0</div>
+<div style="background:#F6D58B">1–4 leve</div>
+<div style="background:#F2A65A">5–15 moderado</div>
+<div style="background:#E07A4F">16–20 mod. a grave</div>
+<div style="background:#C2413A;color:#fff">21–42 grave</div>
+</div>
+<div class="f-sign"><div>MÉDICO(A)</div><div>CRM</div><div>ASSINATURA</div></div>
+<div class="f-foot"><span id="fFoot"></span><span>1/4</span></div>
+
+<div class="f-pg">
+<div class="tag">ITEM 9 · MELHOR LINGUAGEM · DESCRIÇÃO</div>
+<h2>Conte o que está acontecendo nesta figura.</h2>
+<img class="f-fig" data-src="img/nihss/figura.jpg" alt="Figura oficial da NIHSS para descrição" width="1600" height="1236">
+<div class="f-cred">Figura oficial da NIH Stroke Scale, atualizada em 2024 (NINDS/NIH) · © Apex Innovations</div>
+<div class="f-pfoot"><span>NIHSS — material para o paciente</span><span>2/4</span></div>
+</div>
+
+<div class="f-pg">
+<div class="tag">ITEM 9 · MELHOR LINGUAGEM · NOMEAÇÃO</div>
+<h2>Diga o nome de cada figura.</h2>
+<img class="f-fig" data-src="img/nihss/nomeacao.jpg" alt="Folha de nomeação oficial da NIHSS" width="1000" height="1340">
+<div class="f-cred">Folha de nomeação oficial da NIH Stroke Scale, atualizada em 2024 (NINDS/NIH) · © Apex Innovations 2023</div>
+<div class="f-pfoot"><span>NIHSS — material para o paciente</span><span>3/4</span></div>
+</div>
+
+<div class="f-page2">
+<div class="tag0">ITEM 9 · MELHOR LINGUAGEM · LEITURA</div>
+<h2>Leia em voz alta.</h2>
+<div class="big" style="margin-top:6mm">Você sabe como fazer.<br>De volta pra casa.<br>Eu cheguei em casa do trabalho.<br>Próximo da mesa, na sala de jantar.<br>Eles ouviram o Pelé falar no rádio.</div>
+<div class="tag">ITEM 10 · DISARTRIA</div>
+<div class="ask">Leia ou repita estas palavras.</div>
+<div class="words">MAMÃE<br>TIC-TAC<br>PARALELO<br>OBRIGADO<br>ESTRADA DE FERRO<br>JOGADOR DE FUTEBOL</div>
+<div class="cred">Frases e palavras da versão brasileira da NIHSS — tradução e adaptação: Octávio Marques Pontes-Neto (Neurologia, HCFMRP-USP).</div>
+<div class="f-pfoot"><span>NIHSS — material para o paciente</span><span>4/4</span></div>
+</div>
+</template>
+
 <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<script src="data/prescricoes.js?v=20261110a"></script>
-<script src="data/rascunho.js?v=20261110a"></script>
-<script src="js/core.js?v=20261110a"></script>
-<script src="js/peso.js?v=20261110a"></script>
-<script src="js/receita.js?v=20261110a"></script>
-<script src="js/views/prescricoes.js?v=20261110a"></script>
-<script src="js/views/rascunho.js?v=20261110a"></script>
-<script src="js/router.js?v=20261110a"></script>
-<script src="js/busca.js?v=20261110a"></script>
-<script src="js/app.js?v=20261110a"></script>
+<script src="data/prescricoes.js?v=20261110b"></script>
+<script src="data/escores.js?v=20261110b"></script>
+<script src="data/nihss.js?v=20261110b"></script>
+<script src="data/rascunho.js?v=20261110b"></script>
+<script src="js/core.js?v=20261110b"></script>
+<script src="js/peso.js?v=20261110b"></script>
+<script src="js/receita.js?v=20261110b"></script>
+<script src="js/escores-motor.js?v=20261110b"></script>
+<script src="js/escores-nihss.js?v=20261110b"></script>
+<script src="js/views/prescricoes.js?v=20261110b"></script>
+<script src="js/views/escores.js?v=20261110b"></script>
+<script src="js/views/rascunho.js?v=20261110b"></script>
+<script src="js/router.js?v=20261110b"></script>
+<script src="js/busca.js?v=20261110b"></script>
+<script src="js/app.js?v=20261110b"></script>
 </body>
 </html>
