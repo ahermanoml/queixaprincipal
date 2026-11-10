@@ -149,6 +149,10 @@ def run(browser, old_url, new_url, old_root, new_root, full=True):
                                          for a, b in zip(ol, nl)), "KW source lines changed other than by appending")
 
     # 2. receita for every condition × mode × weight
+    # Meu rascunho is the first tab (and the home screen) since phase 5: on pages with a Prescrições tab, open it first so
+    # the driver works on the visible condition list / middle column, as a person would (the old single-file site has none)
+    to_rx = "() => { const t = document.querySelector('#tab-prescricoes'); if (t && !t.classList.contains('active')) t.click(); return !!t; }"
+    po.page.evaluate(to_rx); pn.page.evaluate(to_rx)
     n_cond = po.page.evaluate("() => document.querySelectorAll('#cond-list .cond').length")
     rep.check(n_cond == pn.page.evaluate("() => document.querySelectorAll('#cond-list .cond').length"), "condition count differs")
     conds = range(n_cond) if full else [0, n_cond // 2, n_cond - 1]
@@ -188,6 +192,7 @@ def run(browser, old_url, new_url, old_root, new_root, full=True):
     queries = sorted(words)
     queries += [w.upper() for w in queries[:200]] + ["dor de", "ITU / Cis", "  febre ", "infeccao", "INFECÇÃO", "xyz", "pneumonia ad", "é"]
     po.page.reload(); pn.page.reload()
+    po.page.evaluate(to_rx); pn.page.evaluate(to_rx)
     fa, fb = po.page.evaluate(FILTER, {"queries": queries}), pn.page.evaluate(FILTER, {"queries": queries})
     same = lost = 0
     for q, x, y in zip(queries, fa, fb):

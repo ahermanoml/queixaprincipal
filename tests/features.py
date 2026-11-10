@@ -30,8 +30,9 @@ def routing(browser, url, rep):
         pg.wait_for_timeout(30)
 
     s = st()
-    rep.check(s["hash"] == "" and s["view"] == "prescricoes" and s["tab"] == "prescricoes" and s["cond"] is None
-              and s["colsHidden"] == [False, False, True, False], f"no hash -> default: {s}")
+    first_tab = pg.evaluate("() => document.querySelector('.top-tab').dataset.view")
+    rep.check(s["hash"] == "" and s["view"] == "rascunho" and s["tab"] == "rascunho" and s["cond"] is None and first_tab == "rascunho"
+              and s["colsHidden"] == [True, True, False, False], f"no hash -> default (Meu rascunho, first tab): {s} first={first_tab}")
     n = 1
 
     def load(h):
@@ -48,10 +49,14 @@ def routing(browser, url, rep):
     s = load("#/rascunho")
     rep.check(s["view"] == "rascunho" and s["tab"] == "rascunho" and s["colsHidden"] == [True, True, False, False], f"#/rascunho: {s}")
     n += 3
-    for bad in ["#/foo", "#/prescricoes/naoexiste", "#garbage", "#/prescricoes/%E0%A4%A", "#/rascunho/x/y", "#//",
+    # an unknown item under a valid tab opens that tab with nothing open (router behaviour unchanged since phase 1)
+    s = load("#/prescricoes/naoexiste")
+    rep.check(s["view"] == "prescricoes" and s["cond"] is None and s["hash"] == "#/prescricoes", f"unknown condition -> #/prescricoes: {s}")
+    n += 1
+    for bad in ["#/foo", "#garbage", "#/prescricoes/%E0%A4%A", "#/rascunho/x/y", "#//",
                 "#/PRESCRICOES", "#/prescricoes/" + a + "/extra", "#/__proto__", "#/constructor/x"]:
         s = load(bad)
-        rep.check(s["view"] == "prescricoes" and s["cond"] is None and s["hash"] == "#/prescricoes", f"invalid {bad!r} -> default: {s}")
+        rep.check(s["view"] == "rascunho" and s["cond"] is None and s["hash"] == "#/rascunho", f"invalid {bad!r} -> default: {s}")
         n += 1
     s = load(f"#/prescricoes/{a}/")   # trailing slash tolerated
     rep.check(s["cond"] == a and s["hash"] == f"#/prescricoes/{a}", f"trailing slash: {s}")
@@ -59,6 +64,9 @@ def routing(browser, url, rep):
 
     # clicks + back/forward
     load("")
+    pg.click("#tab-prescricoes"); wait_hash("#/prescricoes")
+    rep.check(pg.evaluate("() => document.querySelectorAll('#cond-list .cond').length") == len(ids), "first click on Prescrições: condition list ready")
+    n += 1
     pg.click(f'#cond-list .cond[data-id="{a}"]'); wait_hash(f"#/prescricoes/{a}")
     pg.click(f'#cond-list .cond[data-id="{b}"]'); wait_hash(f"#/prescricoes/{b}")
     pg.click("#tab-rascunho"); wait_hash("#/rascunho")
@@ -67,13 +75,13 @@ def routing(browser, url, rep):
     pg.click("#tab-prescricoes"); wait_hash(f"#/prescricoes/{b}")
     rep.check(st()["cond"] == b, "tab back to Prescrições shows the same condition")
     expect = [("#/rascunho", "rascunho", b), (f"#/prescricoes/{b}", "prescricoes", b), (f"#/prescricoes/{a}", "prescricoes", a),
-              ("", "prescricoes", None)]
+              ("#/prescricoes", "prescricoes", None), ("", "rascunho", None)]
     for h, view, cond in expect:
         pg.evaluate("history.back()"); wait_hash(h)
         s = st()
         rep.check(s["view"] == view and s["cond"] == cond and s["listActive"] == ([cond] if cond else []), f"back -> {h!r}: {s}")
         n += 1
-    rep.check(st()["midTitle"] == "Medicações", "back to no hash restores the empty middle panel")
+    rep.check(st()["midTitle"] == "Medicações" and st()["tab"] == "rascunho", "back to the no-hash entry returns to Meu rascunho (empty middle panel kept)")
     for h, view, cond in reversed(expect[:-1]):
         pg.evaluate("history.forward()"); wait_hash(h)
         s = st()
@@ -124,7 +132,7 @@ SEARCH_STATE = """() => ({
 
 def search(browser, url, rep):
     base = url.split("#")[0]
-    p = Page(browser, base)
+    p = Page(browser, base + "#/prescricoes")   # Meu rascunho is the home screen; this flow starts on Prescrições
     pg = p.page
     n = 0
     data = pg.evaluate("() => ({DATA: DATA.map(c => ({id: c.id, nm: c.nm, sub: c.sub || '', kw: KW[c.id] || ''})), MINHA, "
@@ -184,7 +192,7 @@ def search(browser, url, rep):
             names = [re.sub(r"\s+\d+$", "", g[0]) for g in s["groups"]]
             calc = [x for x in s["ids"] if x.startswith("calculadoras:")]   # counted by calc_features.py; here only the group order
             proc = [x for x in s["ids"] if x.startswith("procedimentos:")]   # counted by proc_features.py
-            rep.check(names == [x for x, ok in (("💊 Prescrições", conds), ("📊 Escores", scores), ("🧮 Calculadoras", calc), ("🩺 Procedimentos", proc), ("⭐ Meu rascunho", cards)) if ok]
+            rep.check(names == [x for x, ok in (("⭐ Meu rascunho", cards), ("💊 Prescrições", conds), ("📊 Escores", scores), ("🧮 Calculadoras", calc), ("🩺 Procedimentos", proc)) if ok]
                       and s["active"] == "bo-0", f"search {q!r}: groups/active {s['groups']} {s['active']}")
         else:
             rep.check(s["empty"] and "Nada encontrado" in s["empty"] and s["status"] == "Nenhum resultado" and s["open"],
@@ -270,6 +278,8 @@ def search(browser, url, rep):
     s = st()
     rep.check(s["inputVisible"] and s["focused"] == "busca-input", f"phone: icon opens and focuses the field: {s}")
     pg.keyboard.type("asma")
+    for _ in range(next(i for i, x in enumerate(st()["ids"]) if x.startswith("prescricoes:"))):   # Meu rascunho's group comes first now
+        pg.keyboard.press("ArrowDown")
     pg.keyboard.press("Enter")
     pg.wait_for_timeout(120)
     vis = pg.evaluate("() => { const r = document.querySelector('#col-mid').getBoundingClientRect(); return [curCond && curCond.id, r.top > 0 && r.top < 300]; }")
@@ -292,12 +302,13 @@ def escores(browser, url, rep):
     pg = p.page
     slugs = pg.evaluate("() => ESC_ALL.map(s => s.slug)")
     rep.check(len(slugs) == 26 and slugs[0] == "nihss", f"26 entries, NIHSS first: {slugs[:3]}")
-    rep.check(pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view).join()") == "prescricoes,escores,calculadoras,procedimentos,rascunho",
-              "tab order Prescrições, Escores, Calculadoras, Procedimentos, Meu rascunho")
+    rep.check(pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view).join()") == "rascunho,prescricoes,escores,calculadoras,procedimentos",
+              "tab order Meu rascunho, Prescrições, Escores, Calculadoras, Procedimentos")
     order = pg.evaluate("() => [...document.querySelectorAll('#esc-list .esc-lgrp')].map(e => e.textContent)")
     rep.check(order[0] == "Mais usados" and order[1:] == sorted(order[1:], key=lambda s: jsnorm(s)), f"list groups: {order}")
     n += 3
     # receita: fill it, go to Escores (hidden), come back (same content)
+    pg.click("#tab-prescricoes")
     pg.click('#cond-list .cond >> nth=0')
     pg.locator(".addall:visible").first.click()
     rx = pg.input_value("#rx")

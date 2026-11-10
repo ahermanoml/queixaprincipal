@@ -52,7 +52,7 @@ def run(browser, url):
     # busca única: groups in tab order, lands on a score and on a drug row
     groups = pg.evaluate("""() => { const i = document.querySelector('#busca-input'); i.value = 'dor'; i.dispatchEvent(new Event('input'));
         return [...document.querySelectorAll('#busca-list [role=group]')].map(g => document.getElementById(g.getAttribute('aria-labelledby')).textContent.replace(/\\s*\\d+$/, '').trim()); }""")
-    order = ["💊 Prescrições", "📊 Escores", "🧮 Calculadoras", "🩺 Procedimentos", "⭐ Meu rascunho"]
+    order = ["⭐ Meu rascunho", "💊 Prescrições", "📊 Escores", "🧮 Calculadoras", "🩺 Procedimentos"]
     rep.check(len(groups) >= 3 and groups == [g for g in order if g in groups], f"search groups in tab order: {groups}")
     pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
     pg.keyboard.press("Control+k"); pg.keyboard.type("heart"); pg.keyboard.press("Enter"); pg.wait_for_timeout(80)
@@ -137,6 +137,14 @@ def run(browser, url):
     for w, h in ((1366, 768), (1024, 768), (390, 844), (320, 640)):
         p = Page(browser, base, w, h)
         pg = p.page
+        # home screen (no hash): Meu rascunho is active, it is the first tab and sits at the left edge of the bar
+        home = pg.evaluate("""() => { const n = document.querySelector('#top-tabs'), f = n.children[0], a = n.querySelector('.active');
+            return {hash: location.hash, view: document.body.dataset.view, first: f.dataset.view, active: a.dataset.view, scrollLeft: n.scrollLeft,
+                    leftEdge: Math.round(f.getBoundingClientRect().left - n.getBoundingClientRect().left) <= 24, pageX: document.documentElement.scrollWidth > innerWidth,
+                    rows: new Set([...n.children].map(x => x.offsetTop)).size}; }""")
+        rep.check(home == {"hash": "", "view": "rascunho", "first": "rascunho", "active": "rascunho", "scrollLeft": 0, "leftEdge": True, "pageX": False, "rows": 1},
+                  f"{w}px home: {home}")
+        n += 1
         for key in ("procedimentos", "rascunho", "calculadoras", "escores", "prescricoes"):
             pg.click(f"#tab-{key}")
             pg.wait_for_timeout(60)

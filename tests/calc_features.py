@@ -70,7 +70,7 @@ def run(browser, url):
     s = st()
     rep.check(s["view"] == "calculadoras" and s["aberta"] is None and s["hash"] == "#/calculadoras", f"#/calculadoras: {s}")
     tabs = pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view)")
-    rep.check(tabs.index("prescricoes") < tabs.index("calculadoras") < tabs.index("rascunho"), f"ordem das abas: {tabs}")
+    rep.check(tabs.index("rascunho") < tabs.index("prescricoes") < tabs.index("calculadoras"), f"ordem das abas: {tabs}")
     ids = pg.evaluate("() => CX_PAGS.map(p => p.id)")
     rep.check(len(ids) == len(set(ids)) == pg.evaluate("() => document.querySelectorAll('#cx-lista .cx-item').length"), f"lista: {len(ids)} páginas")
     for pid in ids:
