@@ -182,7 +182,8 @@ def search(browser, url, rep):
                   f"search {q!r}: got {len(got_c)}+{len(got_e)}+{len(got_r)}, expected {len(conds)}+{len(scores)}+{len(cards)}")
         if conds or cards or scores:
             names = [re.sub(r"\s+\d+$", "", g[0]) for g in s["groups"]]
-            rep.check(names == [x for x, ok in (("💊 Prescrições", conds), ("📊 Escores", scores), ("⭐ Meu rascunho", cards)) if ok]
+            calc = [x for x in s["ids"] if x.startswith("calculadoras:")]   # counted by calc_features.py; here only the group order
+            rep.check(names == [x for x, ok in (("💊 Prescrições", conds), ("📊 Escores", scores), ("🧮 Calculadoras", calc), ("⭐ Meu rascunho", cards)) if ok]
                       and s["active"] == "bo-0", f"search {q!r}: groups/active {s['groups']} {s['active']}")
         else:
             rep.check(s["empty"] and "Nada encontrado" in s["empty"] and s["status"] == "Nenhum resultado" and s["open"],
@@ -290,8 +291,8 @@ def escores(browser, url, rep):
     pg = p.page
     slugs = pg.evaluate("() => ESC_ALL.map(s => s.slug)")
     rep.check(len(slugs) == 26 and slugs[0] == "nihss", f"26 entries, NIHSS first: {slugs[:3]}")
-    rep.check(pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view).join()") == "prescricoes,escores,rascunho",
-              "tab order Prescrições, Escores, Meu rascunho")
+    rep.check(pg.evaluate("() => [...document.querySelectorAll('.top-tab')].map(t => t.dataset.view).join()") == "prescricoes,escores,calculadoras,rascunho",
+              "tab order Prescrições, Escores, Calculadoras, Meu rascunho")
     order = pg.evaluate("() => [...document.querySelectorAll('#esc-list .esc-lgrp')].map(e => e.textContent)")
     rep.check(order[0] == "Mais usados" and order[1:] == sorted(order[1:], key=lambda s: jsnorm(s)), f"list groups: {order}")
     n += 3
@@ -362,13 +363,13 @@ def escores(browser, url, rep):
         n += 1
     rep.check(not p.problems, "escores problems: " + "; ".join(p.problems[:5]))
     p.close()
-    # phones: 3 tabs at 320 px, result bar visible while answering
+    # phones: all tabs at 320 px, result bar visible while answering
     p = Page(browser, base + "#/escores/heart", 320, 640)
     pg = p.page
     bar = pg.evaluate("""() => { const n = document.querySelector('#top-tabs'), t = [...n.children];
         return {n: t.length, rows: new Set(t.map(x => x.offsetTop)).size, clipped: t.filter(x => x.scrollWidth > x.clientWidth).length,
                 pageX: document.documentElement.scrollWidth > innerWidth}; }""")
-    rep.check(bar == {"n": 3, "rows": 1, "clipped": 0, "pageX": False}, f"320 px: 3 tabs in one row, no clipping: {bar}")
+    rep.check(bar == {"n": 4, "rows": 1, "clipped": 0, "pageX": False}, f"320 px: 4 tabs in one row, no clipping: {bar}")
     pg.click('[data-item="t"] button[data-val="2"]')
     s = pg.evaluate("""() => { const b = document.querySelector('#esc-bar'), r = b.getBoundingClientRect();
         return [getComputedStyle(b).position, r.bottom <= innerHeight + 1 && r.top < innerHeight, document.querySelector('#esc-bar-v').textContent]; }""")

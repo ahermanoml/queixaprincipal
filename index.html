@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prescritor — Queixa Principal</title>
-<link rel="stylesheet" href="css/app.css?v=20261110d">
-<link rel="stylesheet" href="css/escores.css?v=20261110d">
+<link rel="stylesheet" href="css/app.css?v=20261110e">
+<link rel="stylesheet" href="css/escores.css?v=20261110e">
+<link rel="stylesheet" href="css/calculadoras.css?v=20261110e">
 </head>
 <body data-view="prescricoes" data-layout="lista">
 <header class="top">
@@ -22,7 +23,7 @@
       <button type="button" class="busca-abrir" id="busca-abrir" aria-label="Buscar" aria-expanded="false" aria-controls="busca-box" title="Buscar (atalho: / ou Ctrl+K)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
       <div class="busca-box" id="busca-box">
         <span class="busca-ic"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
-        <input id="busca-input" type="text" role="combobox" aria-label="Buscar em todo o site" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-list" aria-describedby="busca-dica" placeholder="Buscar condição, remédio, modelo…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <input id="busca-input" type="text" role="combobox" aria-label="Buscar em todo o site" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-list" aria-describedby="busca-dica" placeholder="Buscar condição, escore, remédio…" autocomplete="off" spellcheck="false" enterkeyhint="search">
         <kbd class="busca-kbd" aria-hidden="true" title="Atalho: / ou Ctrl+K">/</kbd>
         <button type="button" class="busca-fechar" id="busca-fechar" aria-label="Fechar busca"><span aria-hidden="true">✕</span></button>
         <div class="busca-pop" id="busca-pop" hidden>
@@ -58,17 +59,6 @@
     </div>
   </section>
 
-  <!-- aba "Meu rascunho": todos os modelos do médico num texto só (no lugar das colunas 1 e 2) -->
-  <section class="col" id="col-rascunho" hidden>
-    <h2>Meu rascunho</h2>
-    <div class="rasc-tools">
-      <button type="button" class="btn primary" id="rasc-copy"><span aria-hidden="true">📋</span> Copiar tudo</button>
-      <button type="button" class="btn" id="rasc-send">＋ Receita</button>
-      <span class="rasc-hint">Seus modelos, do jeito que você escreve. Selecione um trecho e clique em <b>＋ Receita</b> para levar só ele à receita.</span>
-    </div>
-    <div class="scroll"><div class="rasc-doc" id="rasc-doc"></div></div>
-  </section>
-
   <!-- aba "Escores": lista de escores e a calculadora (js/views/escores.js); esta aba não mostra a receita -->
   <section class="col" id="col-esc-lista" hidden>
     <h2>Escores <span class="count" id="esc-count">0</span></h2>
@@ -85,6 +75,31 @@
     </div>
     <!-- celular: resultado e "Copiar" sempre à vista -->
     <div class="esc-bar" id="esc-bar" hidden><span class="esc-bar-v" id="esc-bar-v"></span><span class="esc-band" id="esc-bar-b"></span><button type="button" class="btn primary" id="esc-bar-copy" tabindex="-1">Copiar</button></div>
+  </section>
+
+  <!-- aba "Calculadoras" (js/views/calculadoras.js): lista filtrável + calculadora aberta -->
+  <section class="col" id="col-calc-lista" hidden>
+    <h2>Calculadoras <span class="count" id="cx-count">0</span></h2>
+    <div class="search">
+      <label for="cx-filtro" class="sr-only">Filtrar calculadoras</label>
+      <input id="cx-filtro" type="search" placeholder="🔎  Remédio ou situação..." autocomplete="off">
+    </div>
+    <div class="scroll" id="cx-lista"></div>
+  </section>
+  <section class="col" id="col-calc" hidden>
+    <h2 id="cx-titulo">Calculadora</h2>
+    <div class="scroll" id="cx-body"></div>
+  </section>
+
+  <!-- aba "Meu rascunho": todos os modelos do médico num texto só (no lugar das colunas 1 e 2) -->
+  <section class="col" id="col-rascunho" hidden>
+    <h2>Meu rascunho</h2>
+    <div class="rasc-tools">
+      <button type="button" class="btn primary" id="rasc-copy"><span aria-hidden="true">📋</span> Copiar tudo</button>
+      <button type="button" class="btn" id="rasc-send">＋ Receita</button>
+      <span class="rasc-hint">Seus modelos, do jeito que você escreve. Selecione um trecho e clique em <b>＋ Receita</b> para levar só ele à receita.</span>
+    </div>
+    <div class="scroll"><div class="rasc-doc" id="rasc-doc"></div></div>
   </section>
 
   <!-- COL 3: receita -->
@@ -160,20 +175,23 @@
 
 <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<script src="data/prescricoes.js?v=20261110d"></script>
-<script src="data/escores.js?v=20261110d"></script>
-<script src="data/nihss.js?v=20261110d"></script>
-<script src="data/rascunho.js?v=20261110d"></script>
-<script src="js/core.js?v=20261110d"></script>
-<script src="js/peso.js?v=20261110d"></script>
-<script src="js/receita.js?v=20261110d"></script>
-<script src="js/escores-motor.js?v=20261110d"></script>
-<script src="js/escores-nihss.js?v=20261110d"></script>
-<script src="js/views/prescricoes.js?v=20261110d"></script>
-<script src="js/views/escores.js?v=20261110d"></script>
-<script src="js/views/rascunho.js?v=20261110d"></script>
-<script src="js/router.js?v=20261110d"></script>
-<script src="js/busca.js?v=20261110d"></script>
-<script src="js/app.js?v=20261110d"></script>
+<script src="data/prescricoes.js?v=20261110e"></script>
+<script src="data/escores.js?v=20261110e"></script>
+<script src="data/nihss.js?v=20261110e"></script>
+<script src="data/calculadoras.js?v=20261110e"></script>
+<script src="data/rascunho.js?v=20261110e"></script>
+<script src="js/core.js?v=20261110e"></script>
+<script src="js/peso.js?v=20261110e"></script>
+<script src="js/receita.js?v=20261110e"></script>
+<script src="js/escores-motor.js?v=20261110e"></script>
+<script src="js/escores-nihss.js?v=20261110e"></script>
+<script src="js/calc-motor.js?v=20261110e"></script>
+<script src="js/views/prescricoes.js?v=20261110e"></script>
+<script src="js/views/escores.js?v=20261110e"></script>
+<script src="js/views/calculadoras.js?v=20261110e"></script>
+<script src="js/views/rascunho.js?v=20261110e"></script>
+<script src="js/router.js?v=20261110e"></script>
+<script src="js/busca.js?v=20261110e"></script>
+<script src="js/app.js?v=20261110e"></script>
 </body>
 </html>

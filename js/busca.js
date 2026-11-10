@@ -66,7 +66,10 @@ function buscaRender(){
   buscaInput.removeAttribute("aria-activedescendant");
   if(!toks.length){
     buscaList.innerHTML = "";
-    buscaVazio.innerHTML = `Busca em ${VIEWS.filter(v=> v.search).map(v=> `<b>${v.icon} ${esc(v.label)}</b>`).join(" e ")}: nome da condição, sintoma, remédio ou trecho de um modelo.`;
+    // lista natural: "A", "A e B", "A, B, C e D"
+    const nomes = VIEWS.filter(v=> v.search).map(v=> `<b>${v.icon} ${esc(v.label)}</b>`);
+    const lista = nomes.length > 1 ? nomes.slice(0, -1).join(", ") + " e " + nomes[nomes.length - 1] : nomes.join("");
+    buscaVazio.innerHTML = `Busca em ${lista}: nome da condição, sintoma, escore, remédio, dose ou trecho de um modelo.`;
     buscaVazio.hidden = false;
     buscaStatus.textContent = "";
     return;
