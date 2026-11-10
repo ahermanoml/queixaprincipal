@@ -18,7 +18,7 @@ const PROC_AREAS = [
 /* campos repetidos em vários registros (referidos pelo id) */
 const PROC_CAMPOS = {
  "lado": {"rotulo": "Lado", "tipo": "opcoes", "opcoes": ["DIREITO", "ESQUERDO"]},
- "consentimento": {"rotulo": "Consentimento", "tipo": "opcoes", "padrao": "CONSENTIMENTO OBTIDO COM O PACIENTE", "opcoes": [
+ "consentimento": {"rotulo": "Consentimento", "tipo": "opcoes", "opcional": true, "opcoes": [
   "CONSENTIMENTO OBTIDO COM O PACIENTE",
   "CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL",
   "PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"
@@ -51,7 +51,8 @@ const PROCS = [
    "Profundidade do tubo (~21 cm mulher / ~23 cm homem na rima): valor de memória, não conferido na fonte nesta revisão.",
    "Máximo de 3 tentativas: DAS permite uma 4ª por operador mais experiente — manter 3?",
    "Lista de contraindicações à succinilcolina ampliada pelo revisor: conferir.",
-   "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane."
+   "Padrão do registro (o do dono, adulto de 70 kg): etomidato 0,3 mg/kg + succinilcolina 1,5 mg/kg, calculados pela tabela da aba Calculadoras e arredondados ao volume aspirado (70 kg → 20 mg/10 mL + 100 mg/10 mL); laringoscopia direta, sem bougie, 1 tentativa, tubo 7,5 fixado em 22 cm na rima, capnografia em onda, sem intercorrências. Ficam em branco: indicação e Cormack-Lehane.",
+   "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "Difficult Airway Society — Guidelines for tracheal intubation in critically ill adults (Higgs et al., BJA 2018)",
@@ -180,7 +181,8 @@ const PROCS = [
    "Idade de corte para não fazer a cirúrgica: ATLS < 12 anos; algumas diretrizes pediátricas usam ~8–10.",
    "Tubo 6,0 (ou 5,0): confirmar o que existe no kit do serviço.",
    "Técnica por punção na criança: sistema de O₂ e tempo máximo de ponte conforme o material disponível.",
-   "Padrão do registro: técnica cirúrgica bisturi–bougie–tubo, tubo 6,0 com cuff, 1 tentativa, capnografia em onda, sem intercorrências. Fica em branco: indicação."
+   "Padrão do registro: técnica cirúrgica bisturi–bougie–tubo, tubo 6,0 com cuff, 1 tentativa, capnografia em onda, sem intercorrências. Fica em branco: indicação.",
+   "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "Difficult Airway Society — Unanticipated difficult intubation in adults (Frerk et al., BJA 2015): técnica bisturi–bougie–tubo",
@@ -288,7 +290,8 @@ const PROCS = [
   "pendencias": [
    "Local adulto (4º–5º EIC anterior à LAM) e cateter de 8 cm: ATLS 10 conferido só por fontes secundárias; ATLS 11 (2025) não consultado.",
    "Cateter de 8 cm raramente disponível: orientar toracostomia digital quando só houver o de ~5 cm — confirmar como conduta do serviço.",
-   "Padrão do registro: descompressão por agulha no 4º–5º EIC anterior à linha axilar média, cateter 14G de 8 cm, drenagem de tórax em seguida, sem intercorrências. Ficam em branco: lado, achado e resposta."
+   "Padrão do registro: descompressão por agulha no 4º–5º EIC anterior à linha axilar média, cateter 14G de 8 cm, drenagem de tórax em seguida, sem intercorrências. Ficam em branco: lado, achado e resposta.",
+   "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "ATLS — Advanced Trauma Life Support, 10ª ed. (ACS, 2018): local adulto 4º–5º EIC anterior à linha axilar média; 2º EIC na criança",
@@ -381,7 +384,8 @@ const PROCS = [
    "Local: BTS 2023 prefere o triângulo de segurança (linha axilar média) e evita a via posterior; a via posterior sentado é comum no Brasil — escolher qual fica como padrão.",
    "Intervalos de suspensão de anticoagulantes (BTS 2023) transcritos pelo revisor: conferir.",
    "Limite de 1,5 L por punção: consenso, não evidência forte.",
-   "Padrão do registro: diagnóstica, guiada por ultrassom, 6º EIC na linha axilar média (triângulo de segurança, BTS 2023), consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras enviadas, sem intercorrências. Ficam em branco: lado, volume e aspecto."
+   "Padrão do registro: diagnóstica, guiada por ultrassom, 6º EIC na linha axilar média (triângulo de segurança, BTS 2023), clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras enviadas, sem intercorrências. Ficam em branco: lado, volume e aspecto.",
+   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
@@ -464,7 +468,7 @@ const PROCS = [
    ],
    "modelo": [
     "# PROCEDIMENTO: TORACOCENTESE {finalidade} — {lado}",
-    "{consentimento}.",
+    "{consentimento?}.",
     "{guia}. LOCAL: {local}, PELA BORDA SUPERIOR DA COSTELA.",
     "ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}.",
     "DISPOSITIVO: {dispositivo}. RETIRADOS {volume} ML DE LÍQUIDO {aspecto}.",
@@ -486,7 +490,8 @@ const PROCS = [
    "Calibre no hemotórax: 28–32 Fr (ATLS/trauma) vs 14 Fr Seldinger no estável (ensaios de não inferioridade) — decidir.",
    "Antibiótico profilático no trauma (algumas diretrizes usam amoxicilina-clavulanato) não foi incluído — decidir.",
    "Critérios para cirurgia (≥ 1.500 mL inicial ou > 200 mL/h por 2–4 h): ATLS 10; conferir se mudou no ATLS 11.",
-   "Padrão do registro: 5º EIC na linha axilar média (triângulo de segurança), dissecção romba, dreno 28 Fr, consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação, saída, débito, selo e fixação na pele."
+   "Padrão do registro: 5º EIC na linha axilar média (triângulo de segurança), dissecção romba, dreno 28 Fr, clorexidina alcoólica, lidocaína 2% 10 mL, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação, saída, débito, selo e fixação na pele.",
+   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "British Thoracic Society — Clinical Statement on pleural procedures (Asciak et al., Thorax 2023)",
@@ -585,7 +590,8 @@ const PROCS = [
    ],
    "modelo": [
     "# PROCEDIMENTO: DRENAGEM TORÁCICA FECHADA — {lado}",
-    "INDICAÇÃO: {indicacao}. {consentimento}.",
+    "INDICAÇÃO: {indicacao}.",
+    "{consentimento?}.",
     "ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}.",
     "INCISÃO NO {local}; {tecnica} PELA BORDA SUPERIOR DA COSTELA.",
     "DRENO {calibre} FR, FIXADO EM {fixacao} CM NA PELE, CONECTADO A SELO D'ÁGUA.",
@@ -608,7 +614,8 @@ const PROCS = [
    "Profundidades por sítio são aproximações (variam com altura e lado): conferir.",
    "Confirmação de posição por RX vs US: depende do serviço.",
    "Conduta se o fio-guia não sair inteiro (não usar o cateter; RX; vascular/hemodinâmica) foi escrita por mim — conferir.",
-   "Padrão do registro: jugular interna guiada por US em tempo real, paramentação completa, clorexidina alcoólica, lidocaína 2% 10 mL, cateter duplo lúmen 7 Fr 20 cm, 1 tentativa, fio-guia conferido, refluxo em todas as vias, RX de controle solicitado, consentimento do paciente, sem intercorrências. Ficam em branco: lado, indicação e fixação na pele (cm)."
+   "Padrão do registro: jugular interna guiada por US em tempo real, paramentação completa, clorexidina alcoólica, lidocaína 2% 10 mL, cateter duplo lúmen 7 Fr 20 cm, 1 tentativa, fio-guia conferido, refluxo em todas as vias, RX de controle solicitado, sem intercorrências. Ficam em branco: lado, indicação e fixação na pele (cm).",
+   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "ASA — Practice Guidelines for Central Venous Access (Anesthesiology, 2020)",
@@ -714,7 +721,8 @@ const PROCS = [
    ],
    "modelo": [
     "# PROCEDIMENTO: ACESSO VENOSO CENTRAL — VEIA {sitio} {lado}",
-    "INDICAÇÃO: {indicacao}. {consentimento}.",
+    "INDICAÇÃO: {indicacao}.",
+    "{consentimento?}.",
     "{barreira}. ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}.",
     "PUNÇÃO {guia}, TÉCNICA DE SELDINGER. TENTATIVAS: {tentativas}.",
     "CATETER {cateter}, FIXADO EM {fixacao} CM NA PELE.",
@@ -739,7 +747,8 @@ const PROCS = [
    "Tempo de permanência: idealmente < 24 h; máximo EZ-IO internacional 72 h — confirmar o dispositivo usado no serviço.",
    "Lidocaína intraóssea: dose pelo protocolo do serviço (não há página na Calculadoras); \"aguardar ~1 min\" não está na bula.",
    "Ângulo no úmero deixado ao fabricante.",
-   "Padrão do registro: tíbia proximal, perfurador elétrico, agulha 15G 25 mm, clorexidina alcoólica, 1 tentativa, aspirado e flush sem extravasamento, sem intercorrências. Ficam em branco: lado, indicação, analgesia (depende de o paciente estar consciente) e hora."
+   "Padrão do registro: tíbia proximal, perfurador elétrico, agulha 15G 25 mm, clorexidina alcoólica, 1 tentativa, aspirado e flush sem extravasamento, sem intercorrências. Ficam em branco: lado, indicação, analgesia (depende de o paciente estar consciente) e hora.",
+   "Consentimento: este registro não tem frase de consentimento (procedimento de emergência). Decidir se o padrão deve ter uma e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "AHA — Diretrizes de RCP e ACE 2020/2025 (SAVC e PALS): via IO quando a IV não é obtida",
@@ -849,7 +858,8 @@ const PROCS = [
   "pendencias": [
    "Albumina > 5 L: AASLD 'considerar' 6–8 g/L; EASL recomenda 8 g/L — escolher o padrão.",
    "Não corrigir INR/plaquetas de rotina (AASLD): confirmar que é a conduta do serviço.",
-   "Padrão do registro: diagnóstica, guiada por ultrassom, fossa ilíaca esquerda, consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras colhidas, sem intercorrências. Ficam em branco: volume, aspecto e albumina (depende do volume)."
+   "Padrão do registro: diagnóstica, guiada por ultrassom, fossa ilíaca esquerda, clorexidina alcoólica, lidocaína 2% 10 mL, cateter 18G, amostras colhidas, sem intercorrências. Ficam em branco: volume, aspecto e albumina (depende do volume).",
+   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "AASLD — Practice Guidance: Diagnosis, evaluation and management of ascites, SBP and HRS (Biggins et al., Hepatology 2021)",
@@ -933,7 +943,7 @@ const PROCS = [
    ],
    "modelo": [
     "# PROCEDIMENTO: PARACENTESE {finalidade}",
-    "{consentimento}.",
+    "{consentimento?}.",
     "{guia}. PUNÇÃO EM {local}.",
     "ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}. DISPOSITIVO: {dispositivo}.",
     "RETIRADOS {volume} ML DE LÍQUIDO {aspecto}.",
@@ -957,7 +967,8 @@ const PROCS = [
    "Cortes de plaquetas < 50 mil e INR > 1,5: valores usuais, não vêm da ASRA — confirmar.",
    "Critérios de TC antes da PL: IDSA 2004; ESCMID considera rebaixamento = Glasgow < 10.",
    "Antibiótico + dexametasona antes da TC: corrigido nesta revisão (IDSA/ESCMID).",
-   "Padrão do registro: decúbito lateral, espaço L3–L4, agulha espinal 22G, consentimento do paciente, clorexidina alcoólica, lidocaína 2% 10 mL, 1 tentativa, sem intercorrências. Ficam em branco: indicação, TC prévia, pressão de abertura, aspecto e volume."
+   "Padrão do registro: decúbito lateral, espaço L3–L4, agulha espinal 22G, clorexidina alcoólica, lidocaína 2% 10 mL, 1 tentativa, sem intercorrências. Ficam em branco: indicação, TC prévia, pressão de abertura, aspecto e volume.",
+   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "IDSA — Practice Guidelines for the Management of Bacterial Meningitis (Tunkel et al., CID 2004): critérios de TC antes da PL",
@@ -1043,7 +1054,7 @@ const PROCS = [
    "modelo": [
     "# PROCEDIMENTO: PUNÇÃO LOMBAR",
     "INDICAÇÃO: {indicacao}. {tc}.",
-    "{consentimento}.",
+    "{consentimento?}.",
     "{posicao}. ANTISSEPSIA: {antissepsia}. ANESTESIA: {anestesia}.",
     "PUNÇÃO NO ESPAÇO {espaco} COM AGULHA {agulha}. TENTATIVAS: {tentativas}.",
     "PRESSÃO DE ABERTURA: {pressao}. LCR {aspecto}, {volume} ML EM 4 TUBOS.",
@@ -1064,7 +1075,8 @@ const PROCS = [
    "Cargas iniciais AHA 2025 (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J) conferidas no algoritmo oficial.",
    "Anticoagulação após cardioversão de FA (≥ 4 semanas): ajustar ao risco e ao protocolo do serviço.",
    "Escolha da sedação: ver Calculadoras; definir o padrão do serviço.",
-   "Padrão do registro: pás anterolaterais, modo sincronizado, consentimento do paciente, sem intercorrências. Ficam em branco: ritmo, indicação, sedação (sem padrão do serviço; ver pendência acima), choques (a carga depende do ritmo) e resultado."
+   "Padrão do registro: pás anterolaterais, modo sincronizado, sem intercorrências. Ficam em branco: ritmo, indicação, sedação (sem padrão do serviço; ver pendência acima), choques (a carga depende do ritmo) e resultado.",
+   "Consentimento: fora do padrão (frase opcional, só entra se escolhida em Ajustar) — preencher como fato assumido seria atestar algo muitas vezes falso na emergência. Decidir se o padrão deste procedimento leva frase de consentimento e qual (paciente / familiar ou responsável / emergência sem condições)."
   ],
   "fontes": [
    "AHA — 2025 ACLS Electrical Cardioversion Algorithm (FA 200 J, flutter 200 J, outras TSV 100 J, TV monomórfica 100 J)",
@@ -1144,7 +1156,8 @@ const PROCS = [
    ],
    "modelo": [
     "# PROCEDIMENTO: CARDIOVERSÃO ELÉTRICA",
-    "RITMO: {ritmo}. INDICAÇÃO: {indicacao}. {consentimento}.",
+    "RITMO: {ritmo}. INDICAÇÃO: {indicacao}.",
+    "{consentimento?}.",
     "SEDAÇÃO: {sedacao}.",
     "PÁS EM POSIÇÃO {pas}, MODO {modo}. CHOQUES: {choques}.",
     "RESULTADO: {resultado}.",

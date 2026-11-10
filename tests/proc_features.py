@@ -64,7 +64,10 @@ ESTRUTURA_JS = r"""() => {
     const todos = {...prPadraoVals(p)}; rap.forEach(c => { todos[c.id] = c.tipo === 'opcoes' ? c.opcoes[0] : '77'; });
     if (prTexto(p, todos).includes('____')) e('padrão + linha rápida preenchida ainda tem lacuna');
     if (pad.split('\n').length !== p.registro.modelo.length - opc.size) e('linha opcional aparece no padrão');
-    if (rap.some(c => /^(lado)$/.test(c.id) && prTemPadrao(c))) e('lado com padrão');
+    if (/CONSENTIMENTO/.test(pad)) e('consentimento no padrão (nunca é atestado por padrão)');
+    const cons = campos.find(c => c.id === 'consentimento');
+    if (cons && (!cons.opcional || prTemPadrao(cons) || !opc.has('consentimento'))) e('consentimento deve ser opcional, sem padrão, {consentimento?}');
+    if (!(p.pendencias || []).some(x => x.startsWith('Consentimento:'))) e('pendências sem a linha sobre consentimento');
     if (campos.some(c => c.id === 'lado' && prTemPadrao(c))) e('lado nunca tem padrão');
     // texto vazio (sem valor nenhum): lacunas = variáveis obrigatórias
     const vazio = prTexto(p, {});
@@ -245,11 +248,19 @@ def run(browser, url):
               and pg.evaluate("() => document.querySelector('#pr-faltam').textContent") == "Sem brancos.", f"linha rápida completa: {t!r}")
     rep.check(estado()["estado"] == "padrão", "a linha rápida não conta como ajuste")
     pg.click("#pr-cx-ajustar > summary")
+    # consentimento: fora do padrão; escolher acrescenta a frase (ajustado); clicar de novo tira
+    rep.check("CONSENTIMENTO" not in pad, "dreno: padrão sem frase de consentimento")
+    pg.click('.pr-op[data-c="consentimento"][data-v="PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"]')
+    rep.check("PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO." in txt().splitlines() and estado()["estado"] == "ajustado",
+              f"consentimento escolhido entra como linha própria e conta como ajuste: {estado()}")
+    pg.click('.pr-op[data-c="consentimento"][data-v="PROCEDIMENTO DE EMERGÊNCIA, SEM CONDIÇÕES DE OBTER CONSENTIMENTO"]')
+    rep.check("CONSENTIMENTO" not in txt() and estado()["estado"] == "padrão", "clicar de novo tira o consentimento")
+    pg.click('.pr-op[data-c="consentimento"][data-v="CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL"]')
     pg.fill("#pr-c-calibre", "32"); pg.click('.pr-op[data-c="tecnica"][data-v="SELDINGER"]')
     pg.fill("#pr-c-obs", "sangramento discreto, compressão")
     t2 = txt()
     rep.check("DRENO 32 FR" in t2 and "SELDINGER PELA BORDA" in t2 and t2.splitlines()[-1] == "SANGRAMENTO DISCRETO, COMPRESSÃO"
-              and estado()["resumo"] == "ajustado · 3 mudanças", f"ajustes no dreno: {estado()}")
+              and "CONSENTIMENTO OBTIDO COM FAMILIAR/RESPONSÁVEL." in t2 and estado()["resumo"] == "ajustado · 4 mudanças", f"ajustes no dreno: {estado()}")
     rep.check(pg.evaluate("document.querySelector('#pr-cx-ajustar').classList.contains('aj')"), "cabeçalho do Ajustar marcado como ajustado")
     # estado mantido ao trocar de aba (texto, caixas abertas, checklist)
     pg.click("#pr-cx-material > summary"); pg.click('.pr-check input[data-m="0"]'); pg.click('.pr-check input[data-m="3"]')
@@ -261,7 +272,7 @@ def run(browser, url):
     rep.check(s["t"] == t2 and s["aj"] and s["mat"] and s["ticks"] == 2 and not s["passos"], f"estado mantido ao trocar de aba: {s}")
     pg.click("#pr-voltar")
     t3 = txt()
-    rep.check("DRENO 28 FR" in t3 and "DISSECÇÃO ROMBA" in t3 and "— DIREITO" in t3 and "DÉBITO INICIAL 300 ML" in t3 and "SANGRAMENTO" not in t3
+    rep.check("DRENO 28 FR" in t3 and "DISSECÇÃO ROMBA" in t3 and "— DIREITO" in t3 and "DÉBITO INICIAL 300 ML" in t3 and "SANGRAMENTO" not in t3 and "CONSENTIMENTO" not in t3
               and pg.evaluate("document.querySelector('#pr-c-calibre').value") == "28" and pg.evaluate("document.querySelector('#pr-c-obs').value") == "",
               "Voltar ao padrão desfaz os ajustes e mantém a linha rápida")
     pg.click("#pr-copiar"); pg.wait_for_timeout(30)

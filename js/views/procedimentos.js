@@ -146,7 +146,7 @@ function prRotulo(o){
 function prCampoHTML(p, c, cls){
   const v = prEst(p).vals[c.id] || "", lid = `pr-c-${c.id}`;
   if(c.tipo==="opcoes"){
-    return `<div class="${cls}" data-campo="${c.id}"><span class="lbl" id="${lid}">${esc(c.rotulo)}</span>
+    return `<div class="${cls}" data-campo="${c.id}"><span class="lbl" id="${lid}">${esc(c.rotulo)}${c.opcional ? " <small>(opcional)</small>" : ""}</span>
       <div class="pr-opcoes" role="group" aria-labelledby="${lid}">${c.opcoes.map(o=>
         `<button type="button" class="pr-op" data-c="${c.id}" data-v="${esc(o)}" aria-pressed="${o===v}">${esc(prRotulo(o))}</button>`).join("")}</div></div>`;
   }
@@ -250,10 +250,12 @@ function prBind(){
   };
   $("#pr-mat-limpar").onclick = ()=>{ st.mat.clear(); prBody.querySelectorAll(".pr-check input").forEach(i=> i.checked = false); prMatContador(); };
   prMatContador();
-  // opções: na linha rápida, clicar de novo desmarca; nos ajustes, a escolha fica (o caminho de volta é "Voltar ao padrão")
+  // opções: na linha rápida e nos campos opcionais (ex.: consentimento), clicar de novo desmarca; num ajuste com padrão,
+  // a escolha fica (o caminho de volta é "Voltar ao padrão")
   prBody.querySelectorAll(".pr-op").forEach(b=> b.onclick = ()=>{
-    const id = b.dataset.c, rapida = !!b.closest(".pr-q"), on = st.vals[id]===b.dataset.v;
-    if(on && !rapida) return;
+    const id = b.dataset.c, on = st.vals[id]===b.dataset.v;
+    const livre = !!b.closest(".pr-q") || !!(prCampos(p).find(c=> c.id===id) || {}).opcional;
+    if(on && !livre) return;
     st.vals[id] = on ? "" : b.dataset.v;
     prSincCampo(id);
     prAtualizaNota();
