@@ -295,6 +295,7 @@ function closeCond(){
 /* ---- registro da aba ---- */
 registerView({
   key: "prescricoes", label: "Prescrições", icon: "💊",
+  desc: "Escolha a queixa e monte a receita pronta para colar",
   cols: ["col-cond", "col-mid"], layout: "lista",
   itemId: () => curCond ? curCond.id : null,
   open: openCond,

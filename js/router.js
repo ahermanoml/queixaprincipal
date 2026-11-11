@@ -1,13 +1,15 @@
 /* router.js — endereços por hash, gerados pelo registro VIEWS:
      #/<aba>            ex.: #/prescricoes, #/rascunho
      #/<aba>/<item>     ex.: #/prescricoes/itu   (só para abas com itemId/open)
-   Sem hash = aba padrão (a primeira registrada, sem item aberto). Hash inválido (aba ou item desconhecido,
+     #/inicio           a tela inicial com um quadrado por aba
+   Sem hash = página de oferta (raiz, sem conta) ou a tela inicial (no link pessoal, já dentro). Hash inválido (aba ou item desconhecido,
    formato estranho) = aba padrão, e o endereço é corrigido sem criar entrada no histórico.
    Cada ação do usuário (trocar de aba, abrir uma condição, escolher na busca) cria uma entrada no histórico,
    então voltar/avançar do navegador refaz o caminho. Funciona em file:// (não usa pushState). */
 
 function parseHash(h){
-  if(!h || h==="#") return {view: VIEWS[0].key, item: null, empty: true};
+  if(!h || h==="#") return {inicio: true, empty: true};
+  if(h==="#/inicio" || h==="#/inicio/") return {inicio: true};
   const m = /^#\/([a-z0-9_-]+)(?:\/([^/?#]+))?\/?$/.exec(h);
   if(!m || !viewOf(m[1])) return null;
   let item = null;
@@ -17,6 +19,7 @@ function parseHash(h){
 const hashOf = (key, item) => "#/" + key + (item!=null ? "/" + encodeURIComponent(item) : "");
 // endereço que descreve o estado atual (aba aberta + item aberto nela, se a aba tiver itens)
 function stateHash(){
+  if(naInicio) return "#/inicio";
   const v = viewOf(currentView);
   return hashOf(v.key, v.itemId ? v.itemId() : null);
 }
@@ -24,8 +27,9 @@ function stateHash(){
 /* leva a página ao estado {view, item}. Devolve false se o item não existe.
    force: abre o item mesmo que já esteja aberto (a busca usa: escolher de novo = rolar até ele). */
 function applyRoute(r, how, force){
+  if(r.inicio){ showInicio(); return true; }
   const v = viewOf(r.view);
-  if(currentView!==v.key) showView(v.key);
+  if(currentView!==v.key || naInicio) showView(v.key);
   if(r.item!=null){
     if(!v.open) return false;
     if(force || !v.itemId || v.itemId()!==r.item) return v.open(r.item, how)!==false;
@@ -39,6 +43,8 @@ function replaceHash(h){ if(location.hash!==h) location.replace(h); }
 
 function onRoute(how){
   const r = parseHash(location.hash);
+  // tela da conta (js/conta.js): link pessoal sem sessão = senha; raiz sem hash e sem conta = página de oferta
+  if(!contaTelaRota(r)) return;
   if(!r){ applyRoute({view: VIEWS[0].key, item: null}, how); replaceHash(stateHash()); return; }
   const ok = applyRoute(r, how);
   if(!ok) applyRoute({view: r.view, item: null}, how);

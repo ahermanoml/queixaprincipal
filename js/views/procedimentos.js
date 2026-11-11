@@ -554,6 +554,7 @@ prRenderLista();
 prFechar();
 registerView({
   key: "procedimentos", label: "Procedimentos", icon: "🩺",
+  desc: "Passo a passo e a descrição do procedimento",
   cols: ["col-proc-lista", "col-proc"], layout: "lista", rx: false,
   itemId: () => prAberto ? prAberto.id : null,
   open: prAbrir,
