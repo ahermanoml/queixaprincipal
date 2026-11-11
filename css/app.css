@@ -20,6 +20,15 @@
   --mark:#fbe39b; --mark-ink:#3a2c00; --hl:#fdf1c7;
   --toast-bg:#1c2228; --toast-fg:#ffffff;
   --shadow-pop:0 1px 3px rgba(16,24,40,.08),0 12px 32px rgba(16,24,40,.16);
+  /* cabeçalho colorido e uma cor por aba (abas do topo, quadrados do início, oferta). --t-<aba> = fundo (texto branco por cima,
+     ≥ 4,5:1); --t-<aba>-d = texto na cor da aba sobre o fundo da página; --t-<aba>-soft = tom claro */
+  --hdr-bg:linear-gradient(110deg,#0c2f73 0%,#1a5fd0 55%,#0e7c86 100%); --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.86);
+  --hdr-field:rgba(255,255,255,.15); --hdr-field-h:rgba(255,255,255,.22); --hdr-line:rgba(255,255,255,.28);
+  --t-rascunho:#c2410c; --t-rascunho-d:#9a3412; --t-rascunho-soft:#ffedd5;
+  --t-prescricoes:#1a5fd0; --t-prescricoes-d:#154ca7; --t-prescricoes-soft:#e7effd;
+  --t-escores:#6d28d9; --t-escores-d:#5b21b6; --t-escores-soft:#ede9fe;
+  --t-calculadoras:#047857; --t-calculadoras-d:#065f46; --t-calculadoras-soft:#d1fae5;
+  --t-procedimentos:#a21caf; --t-procedimentos-d:#86198f; --t-procedimentos-soft:#fae8ff;
   --r-lg:18px; --r-md:12px; --r-sm:8px;
   --shadow:none;   /* nome antigo: o site não usa mais sombra nas superfícies */
 }
@@ -34,6 +43,13 @@
     --ok:#6fd3a0; --ok-soft:#173326; --warn:#f2b45a; --warn-soft:#3a2b14; --danger:#ff9b90; --danger-soft:#3d1f1d;
     --mark:#6b5410; --mark-ink:#fff4cc; --hl:#4a3d12;
     --toast-bg:#e6e8eb; --toast-fg:#1c2228;
+    --hdr-bg:linear-gradient(110deg,#0a1836 0%,#123274 55%,#0b4f57 100%); --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.84);
+    --hdr-field:rgba(255,255,255,.10); --hdr-field-h:rgba(255,255,255,.16); --hdr-line:rgba(255,255,255,.22);
+    --t-rascunho:#c2410c; --t-rascunho-d:#fdba74; --t-rascunho-soft:#3b2214;
+    --t-prescricoes:#1a5fd0; --t-prescricoes-d:#8ab4f8; --t-prescricoes-soft:#213552;
+    --t-escores:#6d28d9; --t-escores-d:#c4b5fd; --t-escores-soft:#2e2350;
+    --t-calculadoras:#047857; --t-calculadoras-d:#6ee7b7; --t-calculadoras-soft:#12352b;
+    --t-procedimentos:#a21caf; --t-procedimentos-d:#f0abfc; --t-procedimentos-soft:#3a1c3d;
     --shadow-pop:0 1px 3px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.5);
   }
 }
@@ -47,6 +63,13 @@
   --ok:#6fd3a0; --ok-soft:#173326; --warn:#f2b45a; --warn-soft:#3a2b14; --danger:#ff9b90; --danger-soft:#3d1f1d;
   --mark:#6b5410; --mark-ink:#fff4cc; --hl:#4a3d12;
   --toast-bg:#e6e8eb; --toast-fg:#1c2228;
+  --hdr-bg:linear-gradient(110deg,#0a1836 0%,#123274 55%,#0b4f57 100%); --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.84);
+  --hdr-field:rgba(255,255,255,.10); --hdr-field-h:rgba(255,255,255,.16); --hdr-line:rgba(255,255,255,.22);
+  --t-rascunho:#c2410c; --t-rascunho-d:#fdba74; --t-rascunho-soft:#3b2214;
+  --t-prescricoes:#1a5fd0; --t-prescricoes-d:#8ab4f8; --t-prescricoes-soft:#213552;
+  --t-escores:#6d28d9; --t-escores-d:#c4b5fd; --t-escores-soft:#2e2350;
+  --t-calculadoras:#047857; --t-calculadoras-d:#6ee7b7; --t-calculadoras-soft:#12352b;
+  --t-procedimentos:#a21caf; --t-procedimentos-d:#f0abfc; --t-procedimentos-soft:#3a1c3d;
   --shadow-pop:0 1px 3px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box}
@@ -62,60 +85,75 @@ body{
 button,input,textarea,select{color:inherit}
 ::selection{background:var(--accent-soft)}
 
-/* ---- cabeçalho: claro e baixo. Marca | busca em pílula | tema; embaixo, as abas de texto com indicador ---- */
+/* ---- cabeçalho: faixa colorida (gradiente --hdr-bg, texto branco). Marca | busca em pílula | conta | tema;
+   embaixo, as abas: cada uma com a sua cor (--t-<aba>); a ativa vira uma "lingueta" da cor da página, presa ao conteúdo. ---- */
 header.top{
-  flex:none; background:var(--panel); color:var(--ink); padding:0 20px; border-bottom:1px solid var(--line);
+  flex:none; background:var(--hdr-bg); color:var(--hdr-ink); padding:0 22px;
   position:sticky; top:0; z-index:20;
 }
-header.top .top-row{display:flex;align-items:center;gap:16px;height:64px;position:relative}
-header.top .logo{width:36px;height:36px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:11px;
-  background:var(--accent);color:var(--on-accent);font-size:20px;font-weight:700;line-height:1}
+header.top .top-row{display:flex;align-items:center;gap:16px;height:66px;position:relative}
+header.top .marca{display:flex;align-items:center;gap:12px;flex:none;min-width:0;color:inherit;text-decoration:none;border-radius:12px}
+header.top .logo{width:42px;height:42px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:13px;
+  background:#ffffff;color:#1a5fd0;font-size:23px;font-weight:800;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 header.top .titulo{flex:none;min-width:0}
-header.top h1{font-size:17px;margin:0;font-weight:650;letter-spacing:-.01em;line-height:1.2}
-header.top p{margin:1px 0 0;font-size:12px;color:var(--muted-aa)}
+header.top h1{font-size:19px;margin:0;font-weight:750;letter-spacing:-.015em;line-height:1.2}
+header.top p{margin:2px 0 0;font-size:12.5px;color:var(--hdr-ink-2)}
 header.top .spacer{display:none}
 header.top .hint{display:none}   /* o aviso fica na receita, no escore e em cada calculadora; o cabeçalho é só navegação */
 /* botão de tema: mostra o ícone do tema que um clique vai pôr */
 .tema{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:50%;
-  background:none;color:var(--ink-2);cursor:pointer}
-.tema:hover{background:var(--hover)}
+  background:none;color:var(--hdr-ink);cursor:pointer}
+.tema:hover{background:var(--hdr-field-h)}
 .tema .i{--isz:20px}
 .tema .i-sun{display:none}
 :root[data-tema-efetivo="dark"] .tema .i-sun{display:inline-block}
 :root[data-tema-efetivo="dark"] .tema .i-moon{display:none}
+header.top :focus-visible{outline-color:#ffffff}
 
-/* abas do topo: uma por view registrada (VIEWS). Texto + ícone; a ativa ganha a cor primária e um traço embaixo. */
-.top-tabs{display:flex;gap:2px;margin:0 -8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}
+/* abas do topo: uma por view registrada (VIEWS). Ícone num quadradinho da cor da aba + texto branco; a ativa ganha o fundo
+   da página e o texto na cor da aba, com um traço colorido em cima. */
+.top-tabs{display:flex;gap:4px;margin:0 -8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}
 .top-tabs::-webkit-scrollbar{display:none}
 /* muitas abas / tela estreita: a barra rola na horizontal (nunca quebra em duas linhas); a borda esmaece do lado
    em que há abas escondidas (classes more-l / more-r postas pelo app.js) */
 .top-tabs.more-r{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent)}
 .top-tabs.more-l{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 48px),transparent)}
 .top-tabs.more-l.more-r{-webkit-mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent)}
-.top-tab{position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;
-  padding:0 14px;border:0;border-radius:10px 10px 0 0;background:none;color:var(--muted-aa);
-  font:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:color .12s,background .12s}
-.top-tab .i{--isz:18px}
-.top-tab:hover{color:var(--ink);background:var(--hover)}
-.top-tab::after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:transparent}
-.top-tab.active{color:var(--accent-d)}
-.top-tab.active::after{background:var(--accent)}
-.top-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:10px}
+.top-tab{--tc:var(--t-prescricoes);--tcd:var(--t-prescricoes-d);
+  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;
+  padding:0 16px 0 10px;border:0;border-radius:14px 14px 0 0;background:none;color:var(--hdr-ink);
+  font:inherit;font-size:14.5px;font-weight:650;cursor:pointer;white-space:nowrap;transition:color .12s,background .12s}
+.top-tab[data-view="rascunho"]{--tc:var(--t-rascunho);--tcd:var(--t-rascunho-d)}
+.top-tab[data-view="escores"]{--tc:var(--t-escores);--tcd:var(--t-escores-d)}
+.top-tab[data-view="calculadoras"]{--tc:var(--t-calculadoras);--tcd:var(--t-calculadoras-d)}
+.top-tab[data-view="procedimentos"]{--tc:var(--t-procedimentos);--tcd:var(--t-procedimentos-d)}
+.top-tab > .i{--isz:16px;box-sizing:content-box;padding:5px;border-radius:8px;background-color:#fff;color:var(--tc);
+  -webkit-mask:none;mask:none;position:relative}
+.top-tab > .i::before{content:"";position:absolute;inset:5px;background:var(--tc);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.top-tab:hover{background:var(--hdr-field)}
+.top-tab::after{content:"";position:absolute;left:14px;right:14px;top:0;height:3px;border-radius:0 0 3px 3px;background:transparent}
+.top-tab.active{color:var(--tcd);background:var(--bg)}
+.top-tab.active > .i{background-color:var(--tc)}
+.top-tab.active > .i::before{background:#fff}
+.top-tab.active::after{background:var(--tc)}
+.top-tab:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:12px}
 
 /* busca única (js/busca.js): pílula larga no meio do cabeçalho; resultados num painel agrupado por aba.
    Até 820px o campo vira uma lupa; aberta, a busca cobre a linha do título (.top-row). */
 .busca{position:relative;flex:1 1 auto;max-width:620px;min-width:220px;margin:0 auto}
 .busca-abrir,.busca-fechar{display:none}
 .busca-box{position:relative;display:flex;align-items:center}
-.busca-ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;color:var(--muted-aa);pointer-events:none}
-#busca-input{width:100%;height:44px;padding:0 44px 0 46px;border:1px solid transparent;border-radius:999px;
-  background:var(--sunken);color:var(--ink);font:inherit;font-size:14.5px;transition:background .12s,box-shadow .12s}
-#busca-input::placeholder{color:var(--muted-aa);opacity:1}
-#busca-input:hover{background:var(--hover)}
-#busca-input:focus{outline:none;background:var(--panel);border-color:var(--line);box-shadow:var(--shadow-pop)}
+.busca-ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;color:var(--hdr-ink);pointer-events:none;z-index:1}
+#busca-input{width:100%;height:46px;padding:0 44px 0 46px;border:1px solid var(--hdr-line);border-radius:999px;
+  background:var(--hdr-field);color:var(--hdr-ink);font:inherit;font-size:14.5px;transition:background .12s,box-shadow .12s}
+#busca-input::placeholder{color:var(--hdr-ink-2);opacity:1}
+#busca-input:hover{background:var(--hdr-field-h)}
+#busca-input:focus{outline:none;background:var(--panel);color:var(--ink);border-color:var(--line);box-shadow:var(--shadow-pop)}
+#busca-input:focus::placeholder{color:var(--muted-aa)}
+.busca-box:focus-within .busca-ic{color:var(--muted-aa)}
 .busca-kbd,.busca-rodape kbd{font-family:inherit;font-size:11px;font-weight:600;line-height:1.5;color:var(--muted-aa);background:var(--panel);
   border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:0 5px}
-.busca-kbd{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none}
+.busca-kbd{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;background:transparent;color:var(--hdr-ink);border-color:var(--hdr-line)}
 #busca-input:focus ~ .busca-kbd{display:none}
 .busca-pop{position:absolute;top:calc(100% + 8px);left:0;right:0;min-width:min(520px,calc(100vw - 24px));display:flex;flex-direction:column;
   background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-pop);
@@ -143,9 +181,6 @@ header.top .hint{display:none}   /* o aviso fica na receita, no escore e em cada
 .busca-vazio .i{--isz:15px;margin-right:3px}
 .busca-rodape{padding:8px 18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted-aa)}
 .busca-rodape kbd{margin-right:2px}
-/* modelo do Meu rascunho escolhido na busca: destaque que some sozinho */
-.rasc-doc [data-card]{border-radius:4px;transition:background-color .6s,box-shadow .6s}
-.rasc-doc .hl{background:var(--hl);box-shadow:0 0 0 6px var(--hl)}
 
 /* ---- colunas: painéis brancos sobre o fundo, sem borda nem sombra ---- */
 .grid{
@@ -328,20 +363,34 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 380px}
   .block-head .addall{margin-left:auto}
 }
 
-/* meu rascunho: todos os modelos do próprio médico num texto só, copiado como está */
-.rasc-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:2px 18px 12px;border-bottom:1px solid var(--line)}
-.rasc-tools .rasc-hint{flex:1 1 240px;font-size:12.5px;color:var(--muted-aa)}
-.rasc-tools .rasc-hint b{font-weight:600;color:var(--ink-2)}
-.rasc-doc{max-width:900px;padding:6px 28px 36px}
-/* o grupo fica em maiúsculas de propósito: o texto selecionado (＋ Receita) sai como aparece, e sempre saiu assim */
-.rasc-doc .rg{margin:30px 0 4px;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:12px;font-weight:650;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--accent-d)}
-/* margens < metade da fonte embaixo do título: o Chrome põe uma linha em branco a mais no texto selecionado (＋ Receita)
-   quando a margem passa disso — o trecho levado à receita tem de sair igual ao de antes */
-.rasc-doc .rt{margin:20px 0 6px;font-size:15px;font-weight:650;color:var(--ink)}
-.rasc-doc .rn{margin:-4px 0 8px;font-size:12px;font-style:italic;color:var(--muted-aa)}
-.rasc-doc .rl{font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--ink);white-space:pre-wrap;word-break:break-word;
-  background:var(--sunken);border-radius:var(--r-md);padding:12px 14px}
+/* meu rascunho: um texto só, grande (#rasc-ta). Faixa laranja no topo (cor da aba) com título, estado do salvamento e botões. */
+#col-rascunho > .rasc-top{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:16px 20px;
+  background:linear-gradient(110deg,var(--t-rascunho-d) 0%,var(--t-rascunho) 100%);color:#fff}
+:root[data-tema-efetivo="dark"] #col-rascunho > .rasc-top{background:linear-gradient(110deg,#7c2d12 0%,var(--t-rascunho) 100%)}
+#col-rascunho > .rasc-top h2{padding:0;color:#fff;font-size:20px;font-weight:750;letter-spacing:-.01em}
+#col-rascunho > .rasc-top h2::before{content:"";width:22px;height:22px;flex:none;background:#fff;
+  -webkit-mask:var(--i-notebook) center/contain no-repeat;mask:var(--i-notebook) center/contain no-repeat}
+.rasc-status{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 11px;white-space:nowrap}
+.rasc-status:empty{display:none}
+.rasc-status[data-tipo="erro"]{background:#fff;color:#9a3412}
+.rasc-tools{display:flex;align-items:center;gap:8px;margin-left:auto}
+.rasc-top .btn{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.12);color:#fff}
+.rasc-top .btn:hover{background:rgba(255,255,255,.24)}
+.rasc-top .btn.rasc-btn-copy{background:#fff;color:#9a3412;border-color:#fff}
+.rasc-top .btn.rasc-btn-copy:hover{background:#ffedd5}
+.rasc-top .btn:focus-visible{outline-color:#fff}
+.rasc-aviso{display:flex;align-items:center;gap:10px;margin:12px 20px 0;padding:10px 14px;border-radius:var(--r-md);
+  background:var(--t-rascunho-soft);color:var(--ink);font-size:13px;line-height:1.45}
+.rasc-aviso > .i{--isz:18px;color:var(--t-rascunho-d)}
+.rasc-aviso a{color:var(--t-rascunho-d);font-weight:650}
+#rasc-scroll{padding:14px 20px 24px}
+.rasc-ta{display:block;width:100%;max-width:980px;min-height:240px;resize:none;overflow:hidden;border:1px solid transparent;
+  border-radius:var(--r-md);padding:16px 18px;background:var(--sunken);color:var(--ink);font-family:var(--mono);font-size:13px;
+  line-height:1.65;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;tab-size:4}
+.rasc-ta::placeholder{color:var(--muted-aa);opacity:1}
+.rasc-ta:focus{outline:none;border-color:var(--t-rascunho);background:var(--panel)}
+.rasc-ta::selection{background:var(--mark);color:var(--mark-ink)}
+body[data-rasc="exemplo"] .rasc-ta,body[data-rasc="carregando"] .rasc-ta{cursor:text}
 
 /* ---- botões ---- */
 /* cantos de 10px (não pílula): o teste de "nada cobrindo o botão" clica 3px para dentro dos cantos, e o clique num canto
@@ -424,19 +473,24 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
   .cond{padding:10px}
   .btn{height:42px}
   .addall,.orient-box .ohd button{height:38px}
-  .rasc-doc{padding:2px 14px 22px}
-  .rasc-doc .rl{font-size:12px;padding:10px 12px}
+  #rasc-scroll{padding:10px 10px 16px}
+  .rasc-ta{font-size:12.5px;padding:12px}
+  #col-rascunho > .rasc-top{padding:14px}
+  .rasc-aviso{margin:10px 10px 0}
 }
 @media(max-width:820px){
   header.top{padding:0 12px}
-  header.top .top-row{height:56px;gap:10px}
-  header.top .titulo{flex:0 1 auto;min-width:0;margin-right:auto}
+  header.top .top-row{height:60px;gap:10px}
+  header.top .marca{flex:0 1 auto;margin-right:auto}
+  header.top .logo{width:36px;height:36px;font-size:20px;border-radius:11px}
+  header.top h1{font-size:17px}
+  header.top .titulo{flex:0 1 auto;min-width:0}
   header.top p{display:none}
   /* busca: lupa no lugar do campo; aberta, cobre a linha do título */
   .busca{position:static;flex:none;min-width:0;max-width:none;margin:0}
   .busca-abrir{display:flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;border:0;border-radius:50%;
-    background:none;color:var(--ink-2);cursor:pointer}
-  .busca-abrir:hover{background:var(--hover)}
+    background:none;color:var(--hdr-ink);cursor:pointer}
+  .busca-abrir:hover{background:var(--hdr-field-h)}
   .busca-box{display:none}
   .busca.aberta .busca-box{display:flex;position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);z-index:5;
     background:var(--panel);box-shadow:0 0 0 8px var(--panel)}
@@ -454,16 +508,18 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 @media(max-width:600px){
   header.top h1{font-size:16px}
   .top-tabs{margin:0 -4px}
-  .top-tab{flex:1 0 auto;min-width:0;padding:0 12px;font-size:14px}
+  .top-tab{flex:1 0 auto;min-width:0;padding:0 12px 0 8px;font-size:14px;height:46px}
 }
 @media(max-width:360px){
   /* 320px: logo, título, lupa e tema cabem numa linha */
   header.top .top-row{gap:6px}
   header.top .logo{width:30px;height:30px;font-size:17px;border-radius:9px}
+  header.top .marca{gap:8px}
   header.top h1{font-size:14.5px}
   .busca-abrir,.tema{width:36px;height:36px}
   .top-tab{gap:6px;padding:0 9px;font-size:13.5px}
-  .top-tab .i{--isz:16px}
+  .top-tab > .i{--isz:14px;padding:4px}
+  .top-tab > .i::before{inset:4px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}

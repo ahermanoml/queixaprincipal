@@ -92,10 +92,12 @@ def abas(browser, url, out_dir, sizes=((1366, 768), (1440, 900), (390, 844))):
         tag = f"{w}x{h}"
         p = Page(browser, base, w, h)
         pg = p.page
-        pg.goto("about:blank"); pg.goto(base); pg.wait_for_timeout(100)
+        pg.goto("about:blank"); pg.goto(base + "#/rascunho"); pg.wait_for_timeout(100)
         pg.screenshot(path=f"{out_dir}/0-header-{tag}.png", clip={"x": 0, "y": 0, "width": w, "height": 140 if w > 820 else 120})
-        pg.goto("about:blank"); pg.goto(base); pg.wait_for_timeout(120)   # home screen: Meu rascunho, first tab
+        pg.goto("about:blank"); pg.goto(base + "#/inicio"); pg.wait_for_timeout(600)   # home screen: one tile per tab
         pg.screenshot(path=f"{out_dir}/0-inicio-{tag}.png")
+        pg.goto("about:blank"); pg.goto(base); pg.wait_for_timeout(120)                # offer page (site root, no account)
+        pg.screenshot(path=f"{out_dir}/0-oferta-{tag}.png")
         pg.goto("about:blank"); pg.goto(base + "#/prescricoes/pneumonia"); pg.wait_for_timeout(120)
         pg.locator(".addall:visible").first.click()
         pg.screenshot(path=f"{out_dir}/1-prescricoes-{tag}.png")

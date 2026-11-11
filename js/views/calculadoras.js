@@ -662,6 +662,7 @@ cxRenderLista();
 cxFechar();
 registerView({
   key: "calculadoras", label: "Calculadoras", icon: "🧮",
+  desc: "Bombas de infusão, kit de intubação e doses de emergência",
   cols: ["col-calc-lista", "col-calc"], layout: "lista",
   itemId: () => cxAberta ? cxAberta.id : null,
   open: cxAbrir,

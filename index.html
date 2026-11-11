@@ -10,20 +10,109 @@
 <script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("qp-tema")}catch(e){}
 if(t==="dark"||t==="light")d.setAttribute("data-theme",t);
 var e=t||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-tema-efetivo",e)})();</script>
-<link rel="stylesheet" href="css/icones.css?v=20261110v">
-<link rel="stylesheet" href="css/app.css?v=20261110v">
-<link rel="stylesheet" href="css/escores.css?v=20261110v">
-<link rel="stylesheet" href="css/calculadoras.css?v=20261110v">
-<link rel="stylesheet" href="css/procedimentos.css?v=20261110v">
+<!-- conta: qual tela abre antes da primeira pintura (js/conta.js). qprincipal.com.br/<nome> (o 404.html manda para /?u=<nome>
+     e aqui o endereço volta a ser /<nome>) = link pessoal: senha, ou o site direto se a sessão deste navegador já entrou.
+     Raiz sem hash = página de oferta; com hash (#/prescricoes…) = as ferramentas sem conta. -->
+<script>(function(){var d=document.documentElement,u=null,l=location,q=/[?&]u=([a-z0-9-]{1,30})(?:&|$)/i.exec(l.search);
+if(q)u=q[1].toLowerCase();else{var p=/^\/([a-z0-9][a-z0-9-]{0,29})\/?$/i.exec(l.pathname);if(p)u=p[1].toLowerCase()}
+if(q&&/(^|\.)qprincipal\.com\.br$/.test(l.hostname)){try{history.replaceState(null,"","/"+u+l.hash)}catch(e){}}
+var s=null;try{s=JSON.parse(sessionStorage.getItem("qp-sessao")||localStorage.getItem("qp-sessao")||"null")}catch(e){}
+window.QP_NOME=u;window.QP_SESSAO=s&&u&&s.nome===u?s:null;
+d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!=="#"?"app":"oferta"))})();</script>
+<link rel="stylesheet" href="css/icones.css?v=20261111a">
+<link rel="stylesheet" href="css/app.css?v=20261111a">
+<link rel="stylesheet" href="css/escores.css?v=20261111a">
+<link rel="stylesheet" href="css/calculadoras.css?v=20261111a">
+<link rel="stylesheet" href="css/procedimentos.css?v=20261111a">
+<link rel="stylesheet" href="css/conta.css?v=20261111a">
 </head>
-<body data-view="rascunho" data-layout="texto">
+<body data-view="rascunho" data-layout="texto" data-inicio="">
+<!-- página de oferta (js/conta.js): qprincipal.com.br sem hash e sem link pessoal -->
+<main class="oferta" id="oferta">
+  <section class="of-hero">
+    <div class="of-in">
+      <div class="of-marca"><span class="logo" aria-hidden="true">℞</span> Queixa Principal</div>
+      <h1>O plantão inteiro, pronto para copiar e colar.</h1>
+      <p class="of-lead">Prescrições, escores, calculadoras de infusão, procedimentos e o <b>seu próprio rascunho</b> — tudo num lugar só, em texto puro, do jeito que o sistema do hospital aceita.</p>
+      <form class="of-link" id="of-form" novalidate>
+        <label for="of-nome" class="of-link-rot">Seu link pessoal</label>
+        <div class="of-link-campo">
+          <span class="of-dom" aria-hidden="true">qprincipal.com.br/</span>
+          <input id="of-nome" type="text" inputmode="url" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="30" placeholder="seunome" aria-describedby="of-dica">
+          <button type="submit" class="of-cta">Criar ou entrar <span class="i i-arrow-right" aria-hidden="true"></span></button>
+        </div>
+        <p class="of-dica" id="of-dica">Letras minúsculas, números e hífen. Se o link já for seu, é só a senha.</p>
+      </form>
+      <a class="of-sem" href="#/inicio">Usar as ferramentas sem conta <span class="i i-arrow-right" aria-hidden="true"></span></a>
+    </div>
+  </section>
+
+  <section class="of-sec">
+    <div class="of-in">
+      <h2>Cinco ferramentas, um clique de distância</h2>
+      <div class="of-cards">
+        <div class="of-card" data-v="rascunho"><span class="of-ic"><span class="i" data-v="rascunho" aria-hidden="true"></span></span><h3>Meu rascunho</h3><p>O seu texto de plantão — evolução, exame físico, modelos — salvo no seu link. Abre em qualquer computador do hospital.</p></div>
+        <div class="of-card" data-v="prescricoes"><span class="of-ic"><span class="i" data-v="prescricoes" aria-hidden="true"></span></span><h3>Prescrições</h3><p>Escolha a queixa, monte a receita com blocos prontos, adulto ou pediátrico, com dose calculada pelo peso.</p></div>
+        <div class="of-card" data-v="escores"><span class="of-ic"><span class="i" data-v="escores" aria-hidden="true"></span></span><h3>Escores</h3><p>HEART, Wells, CURB-65, NIHSS e mais: resultado na hora e o texto pronto para o prontuário.</p></div>
+        <div class="of-card" data-v="calculadoras"><span class="of-ic"><span class="i" data-v="calculadoras" aria-hidden="true"></span></span><h3>Calculadoras</h3><p>Bombas de infusão (dose ⇄ mL/h), kit de intubação e doses de emergência adulto e pediátrica.</p></div>
+        <div class="of-card" data-v="procedimentos"><span class="of-ic"><span class="i" data-v="procedimentos" aria-hidden="true"></span></span><h3>Procedimentos</h3><p>Passo a passo, material e a descrição do procedimento pronta para colar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="of-sec of-alt">
+    <div class="of-in">
+      <h2>Como funciona o seu link</h2>
+      <ol class="of-passos">
+        <li><b>Escolha seu endereço.</b> qprincipal.com.br/seunome é só seu — fácil de lembrar, fácil de digitar no plantão.</li>
+        <li><b>Crie uma senha.</b> Para entrar, digite o endereço e a senha. Não tem e-mail nem cadastro.</li>
+        <li><b>Escreva o seu rascunho.</b> Ele salva sozinho e aparece igual em qualquer computador ou celular.</li>
+      </ol>
+      <div class="of-priv">
+        <span class="i i-shield" aria-hidden="true"></span>
+        <p><b>Privado de verdade.</b> O rascunho é criptografado no seu navegador com a sua senha antes de sair do computador: nem nós conseguimos ler. Por isso, <b>esqueceu a senha, perdeu o rascunho</b> — guarde-a bem. Não escreva dados que identifiquem pacientes.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="of-rodape"><div class="of-in">Queixa Principal · ferramenta de apoio à decisão: confira doses e condutas. Não substitui o julgamento clínico.</div></footer>
+</main>
+
+<!-- tela de senha do link pessoal (js/conta.js): qprincipal.com.br/<nome> sem sessão neste navegador -->
+<main class="senha" id="senha">
+  <div class="sn-cartao">
+    <div class="of-marca"><span class="logo" aria-hidden="true">℞</span> Queixa Principal</div>
+    <div class="sn-link"><span class="i i-link" aria-hidden="true"></span><span>qprincipal.com.br/<b id="sn-nome"></b></span></div>
+    <form id="sn-form" novalidate>
+      <h1 id="sn-titulo">Entrar</h1>
+      <p class="sn-txt" id="sn-txt"></p>
+      <div class="sn-campos" id="sn-campos">
+        <label class="sn-rot" for="sn-senha">Senha</label>
+        <input type="text" id="sn-usuario" class="sr-only" autocomplete="username" tabindex="-1" aria-hidden="true" readonly>
+        <input id="sn-senha" type="password" autocomplete="current-password" required>
+        <div id="sn-conf-box" hidden>
+          <label class="sn-rot" for="sn-conf">Repita a senha</label>
+          <input id="sn-conf" type="password" autocomplete="new-password">
+          <label class="sn-chk"><input type="checkbox" id="sn-exemplo"> Começar com o rascunho de exemplo</label>
+        </div>
+        <label class="sn-chk"><input type="checkbox" id="sn-lembrar"> Manter conectado neste aparelho <small>(não use em computador compartilhado)</small></label>
+        <p class="sn-erro" id="sn-erro" role="alert"></p>
+        <button type="submit" class="of-cta sn-ok" id="sn-ok">Entrar</button>
+      </div>
+    </form>
+    <div class="sn-rodape"><a href="#/inicio" id="sn-sem">Usar sem entrar</a> · <a href="./" id="sn-outro">Outro link</a></div>
+  </div>
+</main>
+
 <header class="top">
   <div class="top-row">
-    <div class="logo" aria-hidden="true">℞</div>
-    <div class="titulo">
-      <h1>Queixa Principal</h1>
-      <p>Tudo pronto para copiar e colar no seu sistema</p>
-    </div>
+    <a class="marca" href="#/inicio" id="marca" title="Início">
+      <div class="logo" aria-hidden="true">℞</div>
+      <div class="titulo">
+        <h1>Queixa Principal</h1>
+        <p>Tudo pronto para copiar e colar no seu sistema</p>
+      </div>
+    </a>
     <div class="hint">Apoio à decisão: confira doses e condutas.</div>
     <!-- busca única (js/busca.js): procura em todas as abas registradas. Até 820px vira a lupa que abre o campo. -->
     <div class="busca" id="busca">
@@ -42,23 +131,35 @@ var e=t||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?
       <span class="sr-only" id="busca-dica">Atalhos: tecla barra ou Ctrl+K. Use as setas para escolher, Enter para abrir e Esc para fechar.</span>
       <span class="sr-only" id="busca-status" role="status" aria-live="polite"></span>
     </div>
+    <!-- conta (js/conta.js): com link pessoal, o nome e "Sair"; sem conta, "Criar meu link" -->
+    <div class="conta" id="conta"></div>
     <!-- tema claro/escuro (js/app.js): o ícone mostra o tema que o clique vai pôr -->
     <button type="button" class="tema" id="tema" aria-pressed="false" aria-label="Tema escuro" title="Tema escuro"><span class="i i-moon" aria-hidden="true"></span><span class="i i-sun" aria-hidden="true"></span></button>
   </div>
   <!-- abas do topo: geradas a partir do registro VIEWS (js/core.js + cada js/views/*.js) -->
   <nav class="top-tabs" id="top-tabs" role="tablist" aria-label="Seção do prescritor"></nav>
+  <!-- só na tela inicial: o cabeçalho cresce com a saudação, e os quadrados sobem por cima dele -->
+  <div class="inicio-ola" id="inicio-ola"></div>
 </header>
 
+<!-- tela inicial (js/app.js): um quadrado grande por aba; ao escolher um, eles sobem e viram as abas do topo -->
+<section class="inicio" id="inicio" aria-label="Início">
+  <div class="inicio-grade" id="inicio-grade"></div>
+</section>
+
 <div class="grid">
-  <!-- aba "Meu rascunho": todos os modelos do médico num texto só — a primeira aba e a tela inicial -->
+  <!-- aba "Meu rascunho": um texto só, grande. Com link pessoal é editável e salvo (criptografado); sem conta, um exemplo para ler -->
   <section class="col" id="col-rascunho">
-    <h2>Meu rascunho</h2>
-    <div class="rasc-tools">
-      <button type="button" class="btn primary" id="rasc-copy"><span class="i i-copy" aria-hidden="true"></span> Copiar tudo</button>
-      <button type="button" class="btn" id="rasc-send"><span class="i i-plus" aria-hidden="true"></span>Receita</button>
-      <span class="rasc-hint">Seus modelos, do jeito que você escreve. Selecione um trecho e clique em <b>＋ Receita</b> para levar só ele à receita.</span>
+    <div class="rasc-top">
+      <h2>Meu rascunho</h2>
+      <span class="rasc-status" id="rasc-status" role="status" aria-live="polite"></span>
+      <div class="rasc-tools">
+        <button type="button" class="btn rasc-btn-copy" id="rasc-copy"><span class="i i-copy" aria-hidden="true"></span> Copiar tudo</button>
+        <button type="button" class="btn rasc-btn" id="rasc-send" title="Leva o trecho selecionado para a receita"><span class="i i-plus" aria-hidden="true"></span>Receita</button>
+      </div>
     </div>
-    <div class="scroll"><div class="rasc-doc" id="rasc-doc"></div></div>
+    <div class="rasc-aviso" id="rasc-aviso" hidden></div>
+    <div class="scroll" id="rasc-scroll"><textarea class="rasc-ta" id="rasc-ta" spellcheck="false" aria-label="Meu rascunho"></textarea></div>
   </section>
 
   <!-- COL 1: conditions -->
@@ -204,26 +305,27 @@ var e=t||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?
 
 <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<script src="data/prescricoes.js?v=20261110v"></script>
-<script src="data/escores.js?v=20261110v"></script>
-<script src="data/nihss.js?v=20261110v"></script>
-<script src="data/calculadoras.js?v=20261110v"></script>
-<script src="data/calc-revisao.js?v=20261110v"></script>
-<script src="data/procedimentos.js?v=20261110v"></script>
-<script src="data/rascunho.js?v=20261110v"></script>
-<script src="js/core.js?v=20261110v"></script>
-<script src="js/peso.js?v=20261110v"></script>
-<script src="js/receita.js?v=20261110v"></script>
-<script src="js/escores-motor.js?v=20261110v"></script>
-<script src="js/escores-nihss.js?v=20261110v"></script>
-<script src="js/calc-motor.js?v=20261110v"></script>
-<script src="js/views/rascunho.js?v=20261110v"></script>
-<script src="js/views/prescricoes.js?v=20261110v"></script>
-<script src="js/views/escores.js?v=20261110v"></script>
-<script src="js/views/calculadoras.js?v=20261110v"></script>
-<script src="js/views/procedimentos.js?v=20261110v"></script>
-<script src="js/router.js?v=20261110v"></script>
-<script src="js/busca.js?v=20261110v"></script>
-<script src="js/app.js?v=20261110v"></script>
+<script src="data/prescricoes.js?v=20261111a"></script>
+<script src="data/escores.js?v=20261111a"></script>
+<script src="data/nihss.js?v=20261111a"></script>
+<script src="data/calculadoras.js?v=20261111a"></script>
+<script src="data/calc-revisao.js?v=20261111a"></script>
+<script src="data/procedimentos.js?v=20261111a"></script>
+<script src="data/rascunho.js?v=20261111a"></script>
+<script src="js/core.js?v=20261111a"></script>
+<script src="js/peso.js?v=20261111a"></script>
+<script src="js/receita.js?v=20261111a"></script>
+<script src="js/escores-motor.js?v=20261111a"></script>
+<script src="js/escores-nihss.js?v=20261111a"></script>
+<script src="js/calc-motor.js?v=20261111a"></script>
+<script src="js/views/rascunho.js?v=20261111a"></script>
+<script src="js/views/prescricoes.js?v=20261111a"></script>
+<script src="js/views/escores.js?v=20261111a"></script>
+<script src="js/views/calculadoras.js?v=20261111a"></script>
+<script src="js/views/procedimentos.js?v=20261111a"></script>
+<script src="js/router.js?v=20261111a"></script>
+<script src="js/busca.js?v=20261111a"></script>
+<script src="js/conta.js?v=20261111a"></script>
+<script src="js/app.js?v=20261111a"></script>
 </body>
 </html>

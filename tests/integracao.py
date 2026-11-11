@@ -136,14 +136,24 @@ def run(browser, url):
     p.close()
     # 5 tabs: one row, nothing clipped, active tab in view, no page-level horizontal scroll
     for w, h in ((1366, 768), (1024, 768), (390, 844), (320, 640)):
+        # 2026-11: the root is the offer page and #/inicio the home tiles; neither may scroll sideways
         p = Page(browser, base, w, h)
         pg = p.page
-        # home screen (no hash): Meu rascunho is active, it is the first tab and sits at the left edge of the bar
+        for h0 in ("", "#/inicio"):
+            if h0:
+                pg.evaluate(f"location.hash = '{h0}'"); pg.wait_for_timeout(80)
+            px = pg.evaluate("() => document.documentElement.scrollWidth > innerWidth")
+            rep.check(not px, f"{w}px {h0 or 'offer page'}: no page-level horizontal scroll")
+            n += 1
+        p.close()
+        p = Page(browser, base + "#/rascunho", w, h)
+        pg = p.page
+        # Meu rascunho open: it is active, it is the first tab and sits at the left edge of the bar
         home = pg.evaluate("""() => { const n = document.querySelector('#top-tabs'), f = n.children[0], a = n.querySelector('.active');
             return {hash: location.hash, view: document.body.dataset.view, first: f.dataset.view, active: a.dataset.view, scrollLeft: n.scrollLeft,
                     leftEdge: Math.round(f.getBoundingClientRect().left - n.getBoundingClientRect().left) <= 24, pageX: document.documentElement.scrollWidth > innerWidth,
                     rows: new Set([...n.children].map(x => x.offsetTop)).size}; }""")
-        rep.check(home == {"hash": "", "view": "rascunho", "first": "rascunho", "active": "rascunho", "scrollLeft": 0, "leftEdge": True, "pageX": False, "rows": 1},
+        rep.check(home == {"hash": "#/rascunho", "view": "rascunho", "first": "rascunho", "active": "rascunho", "scrollLeft": 0, "leftEdge": True, "pageX": False, "rows": 1},
                   f"{w}px home: {home}")
         n += 1
         for key in ("procedimentos", "rascunho", "calculadoras", "escores", "prescricoes"):

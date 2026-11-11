@@ -14,6 +14,8 @@ function buscaIndex(){
     nt: norm(e.title), ns: norm(e.sub||""), nx: norm((e.kw||"") + "\n" + (e.text||""))}))}));
   return buscaIdx;
 }
+// o índice é montado uma vez; quem muda o próprio conteúdo (o Meu rascunho, editável no link pessoal) pede para remontar
+function buscaInvalidar(){ buscaIdx = null; }
 const buscaToks = q => norm(q).trim().split(/\s+/).filter(Boolean);
 // todas as palavras digitadas precisam aparecer (título, subtítulo, palavras-chave ou texto); o título pesa mais na ordem
 function buscaFind(q){

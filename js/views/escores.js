@@ -371,6 +371,7 @@ $("#esc-bar-copy").onclick = ()=>{ const b = $("#esc-copy"); if(b) b.click(); };
 /* ---- registro da aba ---- */
 registerView({
   key: "escores", label: "Escores", icon: "📊",
+  desc: "HEART, Wells, NIHSS e mais, com o texto para o prontuário",
   cols: ["col-esc-lista", "col-esc"], layout: "lista", rx: false,
   itemId: () => curEsc ? curEsc.slug : null,
   open: openEsc,

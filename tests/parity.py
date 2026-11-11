@@ -53,44 +53,28 @@ async ({ci, pacs, sets, weights}) => {
 }
 """
 
+# Meu rascunho changed on purpose (2026-11): one big text (#rasc-ta) instead of the cards rendered by group/title, so the old
+# page cannot be compared. Only the new page is driven; the example must be exactly MINHA's lines, card after card.
 RASC = r"""
 async () => {
   const $ = s => document.querySelector(s);
   const out = {};
   const clear = $('#btn-clear'); if (!clear.disabled) clear.click();
-  [...document.querySelectorAll('.top-tab')].find(t => t.dataset.view === 'rascunho').click();
-  out.docText = $('#rasc-doc').textContent;
+  location.hash = '#/rascunho';
+  await new Promise(r => setTimeout(r, 60));
+  const ta = $('#rasc-ta');
+  out.text = ta.value;
+  out.expected = MINHA.map(m => m.linhas.join('\n')).join('\n\n');
+  out.readOnly = ta.readOnly;
   window.__clip = null;
   $('#rasc-copy').click();
   await new Promise(r => setTimeout(r, 50));
   out.copyAll = window.__clip;
-  const rl = [...document.querySelectorAll('#rasc-doc .rl')];
-  const sel = window.getSelection();
   const steps = [];
-  const send = () => {
-    const b = $('#rasc-send');
-    b.dispatchEvent(new PointerEvent('pointerdown', {bubbles: true}));
-    b.click();
-    steps.push($('#rx').value + '\n--free=' + $('#free-edit').checked);
-  };
-  const pick = (a, ao, b, bo) => {
-    const r = document.createRange();
-    const ta = rl[a].firstChild, tb = rl[b].firstChild;
-    r.setStart(ta, Math.min(ao, ta.length)); r.setEnd(tb, Math.min(bo, tb.length));
-    sel.removeAllRanges(); sel.addRange(r);
-  };
-  pick(0, 0, 0, 60); send();                                   // inside one card
-  pick(2, 10, 3, 40); send();                                  // across two cards (crosses a title)
-  pick(rl.length - 1, 0, rl.length - 1, 99999); send();        // whole last card
-  const r = document.createRange(); r.selectNodeContents($('#rasc-doc')); sel.removeAllRanges(); sel.addRange(r); send();  // everything
-  sel.removeAllRanges(); send();                               // nothing selected: unchanged
-  // selection outside the doc (the hint text) must not be taken
-  const h = document.createRange(); h.selectNodeContents(document.querySelector('.rasc-hint')); sel.removeAllRanges(); sel.addRange(h); send();
+  const send = (a, b) => { ta.setSelectionRange(a, b); $('#rasc-send').click(); steps.push($('#rx').value + '\n--free=' + $('#free-edit').checked); };
+  send(0, 60); send(200, 520); send(ta.value.length - 80, ta.value.length); send(5, 5);
   out.steps = steps;
-  window.__clip = null;
-  $('#btn-copy').click();
-  await new Promise(r => setTimeout(r, 50));
-  out.copyRx = window.__clip;
+  out.slices = [ta.value.slice(0, 60), ta.value.slice(200, 520), ta.value.slice(ta.value.length - 80)].map(t => t.replace(/^\s*\n/, '').replace(/\s+$/, ''));
   return out;
 }
 """
@@ -190,12 +174,18 @@ def run(browser, old_url, new_url, old_root, new_root, full=True):
              f"{snaps} snapshots compared, {diffs} combinations differ")
 
     # 3. Meu rascunho
-    a, b = po.page.evaluate(RASC), pn.page.evaluate(RASC)
-    for k in ("docText", "copyAll", "steps", "copyRx"):
-        rep.check(a[k] == b[k], f"Meu rascunho: {k} differs")
-    rep.check(bool(b["copyAll"]) and len(b["steps"]) == 6, "Meu rascunho flow did not run")
-    rep.note(f"Meu rascunho: Copiar tudo {len(b['copyAll'] or '')} chars equal={a['copyAll'] == b['copyAll']}; "
-             f"+ Receita {len(b['steps'])} selection steps equal={a['steps'] == b['steps']}; Copiar receita equal={a['copyRx'] == b['copyRx']}")
+    b = pn.page.evaluate(RASC)
+    rep.check(b["text"] == b["expected"], "Meu rascunho: the example is not MINHA's lines")
+    rep.check(b["readOnly"], "Meu rascunho: the example (no account) should be read-only")
+    rep.check(b["copyAll"] == b["expected"], "Meu rascunho: Copiar tudo did not copy the whole text")
+    acc, ok = "", True
+    for i, sl in enumerate(b["slices"]):
+        acc = sl if not acc else acc + "\n\n" + sl
+        ok &= b["steps"][i] == acc + "\n--free=true"
+    ok &= b["steps"][3] == b["steps"][2]   # nothing selected: receita unchanged
+    rep.check(ok, "Meu rascunho: + Receita did not append exactly the selected passages")
+    rep.note(f"Meu rascunho (new page only): example {len(b['text'])} chars = MINHA lines: {b['text'] == b['expected']}; "
+             f"Copiar tudo ok: {b['copyAll'] == b['expected']}; + Receita {len(b['steps'])} steps ok: {ok}")
 
     # 4. left-column filter: every query that matched before still matches (new may match more: accents)
     words = set()

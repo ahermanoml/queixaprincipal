@@ -8,6 +8,7 @@ STATE = """() => ({
   cond: curCond ? curCond.id : null,
   listActive: [...document.querySelectorAll('#cond-list .cond.active')].map(b => b.dataset.id),
   midTitle: document.querySelector('#mid-title').textContent,
+  tela: document.documentElement.dataset.tela, inicio: document.body.dataset.inicio,
   colsHidden: ['col-cond', 'col-mid', 'col-rascunho', 'col-rx'].map(id => document.getElementById(id).hidden),
   pac: (document.querySelector('.pac-tab.active') || {}).dataset?.pac || null,
   set: (document.querySelector('.set-btn.active') || {}).dataset?.set || null,
@@ -29,10 +30,12 @@ def routing(browser, url, rep):
         pg.wait_for_function("h => location.hash === h", arg=h, timeout=3000)
         pg.wait_for_timeout(30)
 
+    # 2026-11: no hash (site root, no personal link) = the offer page; #/inicio = the home screen with one tile per tab
     s = st()
     first_tab = pg.evaluate("() => document.querySelector('.top-tab').dataset.view")
-    rep.check(s["hash"] == "" and s["view"] == "rascunho" and s["tab"] == "rascunho" and s["cond"] is None and first_tab == "rascunho"
-              and s["colsHidden"] == [True, True, False, False], f"no hash -> default (Meu rascunho, first tab): {s} first={first_tab}")
+    vis = pg.evaluate("() => ({oferta: !!document.querySelector('#oferta').offsetParent || getComputedStyle(document.querySelector('#oferta')).display !== 'none', header: getComputedStyle(document.querySelector('header.top')).display})")
+    rep.check(s["hash"] == "" and s["tela"] == "oferta" and vis["oferta"] and vis["header"] == "none" and first_tab == "rascunho",
+              f"no hash -> offer page: {s} {vis} first={first_tab}")
     n = 1
 
     def load(h):
@@ -41,8 +44,18 @@ def routing(browser, url, rep):
         pg.wait_for_timeout(60)
         return st()
 
+    s = load("#/inicio")
+    tiles = pg.evaluate("() => [...document.querySelectorAll('#inicio-grade .tile')].filter(t => t.offsetParent).map(t => t.dataset.v).join()")
+    rep.check(s["tela"] == "app" and s["inicio"] == "1" and s["tab"] is None and s["colsHidden"] == [True, True, True, True]
+              and tiles == "rascunho,prescricoes,escores,calculadoras,procedimentos", f"#/inicio -> home tiles: {s} {tiles}")
+    pg.click('#inicio-grade .tile[data-v="escores"]'); wait_hash("#/escores")
+    s = st()
+    rep.check(s["view"] == "escores" and s["inicio"] == "" and s["tab"] == "escores", f"tile click opens the tab: {s}")
+    pg.evaluate("history.back()"); wait_hash("#/inicio")
+    rep.check(st()["inicio"] == "1", "back from a tab returns to the home tiles")
+    n += 3
     s = load("#/prescricoes")
-    rep.check(s["view"] == "prescricoes" and s["cond"] is None and s["hash"] == "#/prescricoes", f"#/prescricoes: {s}")
+    rep.check(s["view"] == "prescricoes" and s["cond"] is None and s["hash"] == "#/prescricoes" and s["tela"] == "app", f"#/prescricoes: {s}")
     s = load(f"#/prescricoes/{a}")
     rep.check(s["cond"] == a and s["listActive"] == [a] and s["midTitle"] == nm[a] and s["pac"] == "adulto" and s["set"] == "amb"
               and s["hash"] == f"#/prescricoes/{a}", f"#/prescricoes/<id>: {s}")
@@ -62,9 +75,9 @@ def routing(browser, url, rep):
     rep.check(s["cond"] == a and s["hash"] == f"#/prescricoes/{a}", f"trailing slash: {s}")
     n += 1
 
-    # clicks + back/forward
-    load("")
-    pg.click("#tab-prescricoes"); wait_hash("#/prescricoes")
+    # clicks + back/forward (from the home tiles: the tab bar shows once a tile is chosen)
+    load("#/inicio")
+    pg.click('#inicio-grade .tile[data-v="prescricoes"]'); wait_hash("#/prescricoes")
     rep.check(pg.evaluate("() => document.querySelectorAll('#cond-list .cond').length") == len(ids), "first click on Prescrições: condition list ready")
     n += 1
     pg.click(f'#cond-list .cond[data-id="{a}"]'); wait_hash(f"#/prescricoes/{a}")
@@ -75,13 +88,13 @@ def routing(browser, url, rep):
     pg.click("#tab-prescricoes"); wait_hash(f"#/prescricoes/{b}")
     rep.check(st()["cond"] == b, "tab back to Prescrições shows the same condition")
     expect = [("#/rascunho", "rascunho", b), (f"#/prescricoes/{b}", "prescricoes", b), (f"#/prescricoes/{a}", "prescricoes", a),
-              ("#/prescricoes", "prescricoes", None), ("", "rascunho", None)]
+              ("#/prescricoes", "prescricoes", None), ("#/inicio", "prescricoes", None)]
     for h, view, cond in expect:
         pg.evaluate("history.back()"); wait_hash(h)
         s = st()
         rep.check(s["view"] == view and s["cond"] == cond and s["listActive"] == ([cond] if cond else []), f"back -> {h!r}: {s}")
         n += 1
-    rep.check(st()["midTitle"] == "Medicações" and st()["tab"] == "rascunho", "back to the no-hash entry returns to Meu rascunho (empty middle panel kept)")
+    rep.check(st()["midTitle"] == "Medicações" and st()["inicio"] == "1", "back to the first entry returns to the home tiles (empty middle panel kept)")
     for h, view, cond in reversed(expect[:-1]):
         pg.evaluate("history.forward()"); wait_hash(h)
         s = st()
@@ -138,10 +151,22 @@ def search(browser, url, rep):
     data = pg.evaluate("() => ({DATA: DATA.map(c => ({id: c.id, nm: c.nm, sub: c.sub || '', kw: KW[c.id] || ''})), MINHA, "
                        "ESC: ESC_ALL.map(s => ({id: s.slug, hay: s.name + ' ' + s.kicker + ' ' + escKw(s)}))})")
 
+    # Meu rascunho (no account) = the example, one big text: each passage between blank lines is a search result "<start>-<end>"
+    exemplo = "\n\n".join("\n".join(m["linhas"]) for m in data["MINHA"])
+    trechos, ini = [], 0
+    for m in list(re.finditer(r"\n[ \t]*\n", exemplo)) + [None]:
+        fim = m.start() if m else len(exemplo)
+        t = exemplo[ini:fim]
+        a0 = ini + (len(t) - len(t.lstrip())); e0 = ini + len(t.rstrip())
+        if e0 > a0:
+            trechos.append((f"{a0}-{e0}", exemplo[a0:e0]))
+        if m:
+            ini = m.end()
+
     def expected(q):
         toks = jsnorm(q).split()
         conds = [c["id"] for c in data["DATA"] if all(t in jsnorm(c["nm"] + " " + c["sub"] + " " + c["kw"]) for t in toks)]
-        cards = [str(i) for i, m in enumerate(data["MINHA"]) if all(t in jsnorm(m["titulo"] + " " + m["grupo"] + " " + "\n".join(m["linhas"])) for t in toks)]
+        cards = [cid for cid, txt in trechos if all(t in jsnorm(txt + " Meu rascunho") for t in toks)]
         scores = [s["id"] for s in data["ESC"] if all(t in jsnorm(s["hay"]) for t in toks)]
         return conds, cards, scores
 
@@ -228,27 +253,24 @@ def search(browser, url, rep):
               and rs["listActive"] == [rs["cond"]] and not s["open"] and s["value"] == "", f"Enter opens the condition: {target} {rs} {s}")
     n += 2
 
-    # choosing a rascunho card: switches tab, scrolls to the card, highlights it
-    k = 7
-    title = data["MINHA"][k]["titulo"]
+    # choosing a passage of Meu rascunho: switches tab, scrolls to it and selects it in the text
+    far = [x for x in trechos if len(x[1].strip().split("\n")[0].strip()) > 12]
+    cid, txt = far[len(far) * 2 // 3]
+    title = txt.strip().split("\n")[0].strip()[:40]
     pg.keyboard.press("Control+k")
     pg.keyboard.type(title)
     ids = st()["ids"]
-    want = f"rascunho:{k}"
-    rep.check(want in ids, f"rascunho card {title!r} found: {ids}")
+    want = f"rascunho:{cid}"
+    rep.check(want in ids, f"rascunho passage {title!r} found: {ids}")
     if want in ids:
         for _ in range(ids.index(want)):
             pg.keyboard.press("ArrowDown")
         pg.keyboard.press("Enter")
         pg.wait_for_timeout(80)
-        r = pg.evaluate(f"""() => {{ const el = document.querySelector('#rasc-doc .rt[data-card="{k}"]'), sc = el.closest('.scroll');
-            const a = el.getBoundingClientRect(), b = sc.getBoundingClientRect();
-            return {{view: document.body.dataset.view, hash: location.hash, hl: el.classList.contains('hl'),
-                     inView: a.top >= b.top - 1 && a.top < b.top + 80, cond: curCond && curCond.id}}; }}""")
-        rep.check(r["view"] == "rascunho" and r["hash"] == "#/rascunho" and r["hl"] and r["inView"] and r["cond"] == rs["cond"],
-                  f"rascunho card opened, scrolled and highlighted (condition kept): {r}")
-        pg.wait_for_timeout(2600)
-        rep.check(not pg.evaluate(f"() => document.querySelector('#rasc-doc .rt[data-card=\"{k}\"]').classList.contains('hl')"), "highlight fades")
+        r = pg.evaluate("""() => ({view: document.body.dataset.view, hash: location.hash, sel: rascSelection(), cond: curCond && curCond.id,
+            scrolled: document.querySelector('#rasc-scroll').scrollTop > 0 || window.scrollY > 0})""")
+        rep.check(r["view"] == "rascunho" and r["hash"] == "#/rascunho" and r["sel"] == txt.rstrip() and r["scrolled"] and r["cond"] == rs["cond"],
+                  f"rascunho passage opened, scrolled and selected (condition kept): {r}")
     n += 2
 
     # mouse click on an option
@@ -272,7 +294,7 @@ def search(browser, url, rep):
     p.close()
 
     # phone: the field is a button that expands
-    p = Page(browser, base, 390, 844)
+    p = Page(browser, base + "#/inicio", 390, 844)
     pg = p.page
     s = st()
     rep.check(not s["inputVisible"], "phone: search field collapsed to an icon")
@@ -300,7 +322,7 @@ def search(browser, url, rep):
 def escores(browser, url, rep):
     base = url.split("#")[0]
     n = 0
-    p = Page(browser, base)
+    p = Page(browser, base + "#/rascunho")
     pg = p.page
     slugs = pg.evaluate("() => ESC_ALL.map(s => s.slug)")
     rep.check(len(slugs) == 26 and slugs[0] == "nihss", f"26 entries, NIHSS first: {slugs[:3]}")
