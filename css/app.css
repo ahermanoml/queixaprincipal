@@ -3,74 +3,65 @@
    ou quando o médico escolhe no botão do cabeçalho (html[data-theme="dark"|"light"], guardado no navegador — ver o
    <script> no <head> do index.html e temaAplicar() em js/app.js). Nomes antigos (--accent, --ink, --muted, --muted-aa,
    --line, --panel, --bg, --chip…) continuam valendo: o CSS das outras abas acompanha o tema sozinho.
+   Identidade: laranja + preto (cabeçalho preto com brasa laranja; papel creme no claro, quase preto no escuro).
    Contraste conferido por cálculo (≥ 4,5:1 para texto) nos dois temas. */
 :root{
   color-scheme:light;
   --font:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:"Cascadia Mono","Cascadia Code",Consolas,"SF Mono",ui-monospace,"Roboto Mono",Menlo,monospace;
-  /* superfícies: fundo → painel (uma hierarquia só); "sunken" = campo/área de texto dentro do painel */
-  --bg:#eef1f5; --panel:#ffffff; --sunken:#f4f6f9; --hover:#eef1f5; --chip:#eef1f5;
-  --ink:#1c2228; --ink-2:#3c4651; --muted:#5b6570; --muted-aa:#535d68;
-  --line:#e2e6eb; --line-2:#c9d0d8; --scroll:#c9d0d8;
-  /* primária (azul) — também a cor do Adulto */
-  --accent:#1a5fd0; --accent-d:#154ca7; --accent-soft:#e7effd; --on-accent:#ffffff; --accent-track:#dce7fb;
+  /* superfícies: fundo → painel (uma hierarquia só); "sunken" = campo/área de texto dentro do painel.
+     Tema claro = papel quente (creme) com painéis brancos e tinta quase preta. */
+  --bg:#f2f0e9; --panel:#ffffff; --sunken:#f6f4ee; --hover:#efece4; --chip:#efece4;
+  --ink:#1a1816; --ink-2:#3d3935; --muted:#625d56; --muted-aa:#5a554e;
+  --line:#e7e3da; --line-2:#cfc9bd; --scroll:#cfc9bd;
+  /* primária (laranja) — também a cor do Adulto. --accent é PREENCHIMENTO/contorno: o texto por cima dele é escuro
+     (--on-accent), nunca branco; --accent-h = o preenchimento no hover; texto laranja sobre a página = --accent-d. */
+  --accent:#eb5a10; --accent-h:#f6722f; --accent-d:#ad3f0b; --accent-soft:#fdeadd; --on-accent:#1c0a00; --accent-track:#fbdcc7;
   /* pediátrico (rosa): distingue o paciente — função, não enfeite */
-  --ped:#c2255c; --ped-d:#a01d4b; --ped-soft:#fcebf2; --on-ped:#ffffff; --ped-track:#f8dbe6;
-  --ok:#17794c; --ok-soft:#e5f3eb; --warn:#955600; --warn-soft:#fbf0e1; --danger:#b3261e; --danger-soft:#fbeceb;
+  --ped:#b81d64; --ped-d:#971651; --ped-soft:#fcebf3; --on-ped:#ffffff; --ped-track:#f8dbe8;
+  /* estados: verde, amarelo-ouro (longe do laranja da marca) e vermelho */
+  --ok:#17794c; --ok-soft:#e4f2ea; --warn:#775600; --warn-soft:#faf1d0; --danger:#b91c2c; --danger-soft:#fbe9ea;
   --mark:#fbe39b; --mark-ink:#3a2c00; --hl:#fdf1c7;
-  --toast-bg:#1c2228; --toast-fg:#ffffff;
-  --shadow-pop:0 1px 3px rgba(16,24,40,.08),0 12px 32px rgba(16,24,40,.16);
-  /* cabeçalho colorido e uma cor por aba (abas do topo, quadrados do início, oferta). --t-<aba> = fundo (texto branco por cima,
-     ≥ 4,5:1); --t-<aba>-d = texto na cor da aba sobre o fundo da página; --t-<aba>-soft = tom claro */
-  --hdr-bg:linear-gradient(110deg,#0c2f73 0%,#1a5fd0 55%,#0e7c86 100%); --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.86);
-  --hdr-field:rgba(255,255,255,.15); --hdr-field-h:rgba(255,255,255,.22); --hdr-line:rgba(255,255,255,.28);
-  --t-rascunho:#c2410c; --t-rascunho-d:#9a3412; --t-rascunho-soft:#ffedd5;
-  --t-prescricoes:#1a5fd0; --t-prescricoes-d:#154ca7; --t-prescricoes-soft:#e7effd;
-  --t-escores:#6d28d9; --t-escores-d:#5b21b6; --t-escores-soft:#ede9fe;
-  --t-calculadoras:#047857; --t-calculadoras-d:#065f46; --t-calculadoras-soft:#d1fae5;
-  --t-procedimentos:#a21caf; --t-procedimentos-d:#86198f; --t-procedimentos-soft:#fae8ff;
+  --toast-bg:#1a1816; --toast-fg:#ffffff;
+  --shadow-pop:0 1px 3px rgba(26,20,14,.08),0 12px 32px rgba(26,20,14,.18);
+  /* cabeçalho PRETO com uma brasa laranja no canto (a transição preto → laranja), igual nos dois temas; o mesmo fundo
+     na oferta e na tela de senha. Sobre o preto: --brasa = texto/ícone laranja; --brasa-bg = preenchimento laranja
+     (logo, botões, ícone da aba ativa), com texto escuro (--on-brasa) por cima. Uma cor só para todas as abas. */
+  --preto:#0b0a09;
+  --hdr-bg:radial-gradient(70% 240% at 100% 0%,rgba(242,92,18,.46) 0%,rgba(242,92,18,.12) 42%,rgba(242,92,18,0) 68%),linear-gradient(100deg,#0b0a09 0%,#14100d 100%);
+  --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.82);
+  --hdr-field:rgba(255,255,255,.09); --hdr-field-h:rgba(255,255,255,.15); --hdr-line:rgba(255,255,255,.2);
+  --brasa:#ff8548; --brasa-bg:linear-gradient(135deg,#ff9255 0%,#f25a14 100%); --on-brasa:#190900;
   --r-lg:18px; --r-md:12px; --r-sm:8px;
   --shadow:none;   /* nome antigo: o site não usa mais sombra nas superfícies */
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#15171b; --panel:#1d2025; --sunken:#24282e; --hover:#2a2e35; --chip:#2a2e35;
-    --ink:#e6e8eb; --ink-2:#c5cad1; --muted:#9ea6b0; --muted-aa:#a4acb6;
-    --line:#2e333a; --line-2:#444a53; --scroll:#444a53;
-    --accent:#8ab4f8; --accent-d:#aac8fa; --accent-soft:#213552; --on-accent:#0b2149; --accent-track:#1b2a40;
-    --ped:#f48fb6; --ped-d:#f7aecb; --ped-soft:#3e2130; --on-ped:#3a0b1f; --ped-track:#2f1a24;
-    --ok:#6fd3a0; --ok-soft:#173326; --warn:#f2b45a; --warn-soft:#3a2b14; --danger:#ff9b90; --danger-soft:#3d1f1d;
+    --bg:#0d0c0b; --panel:#171615; --sunken:#201e1c; --hover:#272422; --chip:#272422;
+    --ink:#f1eee9; --ink-2:#d0cbc3; --muted:#a59f96; --muted-aa:#aba59c;
+    --line:#2b2826; --line-2:#48433e; --scroll:#48433e;
+    --accent:#ff7a3d; --accent-h:#ff9562; --accent-d:#ff9c6b; --accent-soft:#3b1f10; --on-accent:#1a0900; --accent-track:#2b170c;
+    --ped:#f58fbd; --ped-d:#f8afcf; --ped-soft:#3e2030; --on-ped:#3a0b1f; --ped-track:#2f1924;
+    --ok:#6fd3a0; --ok-soft:#15301f; --warn:#f3c64f; --warn-soft:#342a0e; --danger:#ff939b; --danger-soft:#3d1c20;
     --mark:#6b5410; --mark-ink:#fff4cc; --hl:#4a3d12;
-    --toast-bg:#e6e8eb; --toast-fg:#1c2228;
-    --hdr-bg:linear-gradient(110deg,#0a1836 0%,#123274 55%,#0b4f57 100%); --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.84);
-    --hdr-field:rgba(255,255,255,.10); --hdr-field-h:rgba(255,255,255,.16); --hdr-line:rgba(255,255,255,.22);
-    --t-rascunho:#c2410c; --t-rascunho-d:#fdba74; --t-rascunho-soft:#3b2214;
-    --t-prescricoes:#1a5fd0; --t-prescricoes-d:#8ab4f8; --t-prescricoes-soft:#213552;
-    --t-escores:#6d28d9; --t-escores-d:#c4b5fd; --t-escores-soft:#2e2350;
-    --t-calculadoras:#047857; --t-calculadoras-d:#6ee7b7; --t-calculadoras-soft:#12352b;
-    --t-procedimentos:#a21caf; --t-procedimentos-d:#f0abfc; --t-procedimentos-soft:#3a1c3d;
-    --shadow-pop:0 1px 3px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.5);
+    --toast-bg:#f1eee9; --toast-fg:#1a1816;
+    --hdr-bg:radial-gradient(70% 240% at 100% 0%,rgba(242,92,18,.36) 0%,rgba(242,92,18,.10) 42%,rgba(242,92,18,0) 68%),#000000;
+    --shadow-pop:0 1px 3px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#15171b; --panel:#1d2025; --sunken:#24282e; --hover:#2a2e35; --chip:#2a2e35;
-  --ink:#e6e8eb; --ink-2:#c5cad1; --muted:#9ea6b0; --muted-aa:#a4acb6;
-  --line:#2e333a; --line-2:#444a53; --scroll:#444a53;
-  --accent:#8ab4f8; --accent-d:#aac8fa; --accent-soft:#213552; --on-accent:#0b2149; --accent-track:#1b2a40;
-  --ped:#f48fb6; --ped-d:#f7aecb; --ped-soft:#3e2130; --on-ped:#3a0b1f; --ped-track:#2f1a24;
-  --ok:#6fd3a0; --ok-soft:#173326; --warn:#f2b45a; --warn-soft:#3a2b14; --danger:#ff9b90; --danger-soft:#3d1f1d;
+  --bg:#0d0c0b; --panel:#171615; --sunken:#201e1c; --hover:#272422; --chip:#272422;
+  --ink:#f1eee9; --ink-2:#d0cbc3; --muted:#a59f96; --muted-aa:#aba59c;
+  --line:#2b2826; --line-2:#48433e; --scroll:#48433e;
+  --accent:#ff7a3d; --accent-h:#ff9562; --accent-d:#ff9c6b; --accent-soft:#3b1f10; --on-accent:#1a0900; --accent-track:#2b170c;
+  --ped:#f58fbd; --ped-d:#f8afcf; --ped-soft:#3e2030; --on-ped:#3a0b1f; --ped-track:#2f1924;
+  --ok:#6fd3a0; --ok-soft:#15301f; --warn:#f3c64f; --warn-soft:#342a0e; --danger:#ff939b; --danger-soft:#3d1c20;
   --mark:#6b5410; --mark-ink:#fff4cc; --hl:#4a3d12;
-  --toast-bg:#e6e8eb; --toast-fg:#1c2228;
-  --hdr-bg:linear-gradient(110deg,#0a1836 0%,#123274 55%,#0b4f57 100%); --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.84);
-  --hdr-field:rgba(255,255,255,.10); --hdr-field-h:rgba(255,255,255,.16); --hdr-line:rgba(255,255,255,.22);
-  --t-rascunho:#c2410c; --t-rascunho-d:#fdba74; --t-rascunho-soft:#3b2214;
-  --t-prescricoes:#1a5fd0; --t-prescricoes-d:#8ab4f8; --t-prescricoes-soft:#213552;
-  --t-escores:#6d28d9; --t-escores-d:#c4b5fd; --t-escores-soft:#2e2350;
-  --t-calculadoras:#047857; --t-calculadoras-d:#6ee7b7; --t-calculadoras-soft:#12352b;
-  --t-procedimentos:#a21caf; --t-procedimentos-d:#f0abfc; --t-procedimentos-soft:#3a1c3d;
-  --shadow-pop:0 1px 3px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.5);
+  --toast-bg:#f1eee9; --toast-fg:#1a1816;
+  --hdr-bg:radial-gradient(70% 240% at 100% 0%,rgba(242,92,18,.36) 0%,rgba(242,92,18,.10) 42%,rgba(242,92,18,0) 68%),#000000;
+  --shadow-pop:0 1px 3px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
 :where(a,button,input,textarea,select,summary,[tabindex]):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
@@ -85,8 +76,8 @@ body{
 button,input,textarea,select{color:inherit}
 ::selection{background:var(--accent-soft)}
 
-/* ---- cabeçalho: faixa colorida (gradiente --hdr-bg, texto branco). Marca | busca em pílula | conta | tema;
-   embaixo, as abas: cada uma com a sua cor (--t-<aba>); a ativa vira uma "lingueta" da cor da página, presa ao conteúdo. ---- */
+/* ---- cabeçalho: faixa preta com a brasa laranja no canto (--hdr-bg, texto branco). Marca | busca em pílula | conta | tema;
+   embaixo, as abas: a ativa vira uma "lingueta" da cor da página, presa ao conteúdo, com o ícone e o traço em laranja. ---- */
 header.top{
   flex:none; background:var(--hdr-bg); color:var(--hdr-ink); padding:0 22px;
   position:sticky; top:0; z-index:20;
@@ -94,7 +85,7 @@ header.top{
 header.top .top-row{display:flex;align-items:center;gap:16px;height:66px;position:relative}
 header.top .marca{display:flex;align-items:center;gap:12px;flex:none;min-width:0;color:inherit;text-decoration:none;border-radius:12px}
 header.top .logo{width:42px;height:42px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:13px;
-  background:#ffffff;color:#1a5fd0;font-size:23px;font-weight:800;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+  background:var(--brasa-bg);color:var(--on-brasa);font-size:23px;font-weight:800;line-height:1}
 header.top .titulo{flex:none;min-width:0}
 header.top h1{font-size:19px;margin:0;font-weight:750;letter-spacing:-.015em;line-height:1.2}
 header.top p{margin:2px 0 0;font-size:12.5px;color:var(--hdr-ink-2)}
@@ -110,8 +101,8 @@ header.top .hint{display:none}   /* o aviso fica na receita, no escore e em cada
 :root[data-tema-efetivo="dark"] .tema .i-moon{display:none}
 header.top :focus-visible{outline-color:#ffffff}
 
-/* abas do topo: uma por view registrada (VIEWS). Ícone num quadradinho da cor da aba + texto branco; a ativa ganha o fundo
-   da página e o texto na cor da aba, com um traço colorido em cima. */
+/* abas do topo: uma por view registrada (VIEWS). Sobre o preto: ícone laranja num quadradinho translúcido + texto branco;
+   a ativa ganha o fundo da página, texto na cor da tinta, o quadradinho cheio de laranja e um traço laranja em cima. */
 .top-tabs{display:flex;gap:4px;margin:0 -8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}
 .top-tabs::-webkit-scrollbar{display:none}
 /* muitas abas / tela estreita: a barra rola na horizontal (nunca quebra em duas linhas); a borda esmaece do lado
@@ -119,23 +110,18 @@ header.top :focus-visible{outline-color:#ffffff}
 .top-tabs.more-r{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent)}
 .top-tabs.more-l{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 48px),transparent)}
 .top-tabs.more-l.more-r{-webkit-mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent)}
-.top-tab{--tc:var(--t-prescricoes);--tcd:var(--t-prescricoes-d);
-  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;
+.top-tab{position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;
   padding:0 16px 0 10px;border:0;border-radius:14px 14px 0 0;background:none;color:var(--hdr-ink);
   font:inherit;font-size:14.5px;font-weight:650;cursor:pointer;white-space:nowrap;transition:color .12s,background .12s}
-.top-tab[data-view="rascunho"]{--tc:var(--t-rascunho);--tcd:var(--t-rascunho-d)}
-.top-tab[data-view="escores"]{--tc:var(--t-escores);--tcd:var(--t-escores-d)}
-.top-tab[data-view="calculadoras"]{--tc:var(--t-calculadoras);--tcd:var(--t-calculadoras-d)}
-.top-tab[data-view="procedimentos"]{--tc:var(--t-procedimentos);--tcd:var(--t-procedimentos-d)}
-.top-tab > .i{--isz:16px;box-sizing:content-box;padding:5px;border-radius:8px;background-color:#fff;color:var(--tc);
+.top-tab > .i{--isz:16px;box-sizing:content-box;padding:5px;border-radius:8px;background:var(--hdr-field-h);color:var(--brasa);
   -webkit-mask:none;mask:none;position:relative}
-.top-tab > .i::before{content:"";position:absolute;inset:5px;background:var(--tc);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.top-tab > .i::before{content:"";position:absolute;inset:5px;background:var(--brasa);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
 .top-tab:hover{background:var(--hdr-field)}
 .top-tab::after{content:"";position:absolute;left:14px;right:14px;top:0;height:3px;border-radius:0 0 3px 3px;background:transparent}
-.top-tab.active{color:var(--tcd);background:var(--bg)}
-.top-tab.active > .i{background-color:var(--tc)}
-.top-tab.active > .i::before{background:#fff}
-.top-tab.active::after{background:var(--tc)}
+.top-tab.active{color:var(--ink);background:var(--bg)}
+.top-tab.active > .i{background:var(--brasa-bg)}
+.top-tab.active > .i::before{background:var(--on-brasa)}
+.top-tab.active::after{background:var(--accent)}
 .top-tab:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:12px}
 
 /* busca única (js/busca.js): pílula larga no meio do cabeçalho; resultados num painel agrupado por aba.
@@ -243,7 +229,7 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 380px}
 .empty .sub{font-size:13px;max-width:250px;margin:0 auto;line-height:1.5}
 
 /* tipo de prescrição: paciente (Adulto | Pediátrico) e ambiente (Ambulatorial | Internação) numa linha só, compacta.
-   A cor diz quem é o paciente: Adulto = azul (primária), Pediátrico = rosa. No paciente o segmento escolhido fica
+   A cor diz quem é o paciente: Adulto = laranja (primária), Pediátrico = rosa. No paciente o segmento escolhido fica
    cheio na cor dele; no ambiente, tonal na mesma cor. Tamanhos seguem a largura da coluna (container query em #col-mid). */
 #col-mid{container:mid / inline-size}
 .mid-head,.pac-tab[data-pac="adulto"]{--pc:var(--accent);--pc-d:var(--accent-d);--pc-soft:var(--accent-soft);--pc-on:var(--on-accent);--pc-track:var(--accent-track)}
@@ -363,32 +349,31 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 380px}
   .block-head .addall{margin-left:auto}
 }
 
-/* meu rascunho: um texto só, grande (#rasc-ta). Faixa laranja no topo (cor da aba) com título, estado do salvamento e botões. */
+/* meu rascunho: um texto só, grande (#rasc-ta). Faixa preta que termina em brasa laranja, com título, estado do salvamento e botões. */
 #col-rascunho > .rasc-top{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:16px 20px;
-  background:linear-gradient(110deg,var(--t-rascunho-d) 0%,var(--t-rascunho) 100%);color:#fff}
-:root[data-tema-efetivo="dark"] #col-rascunho > .rasc-top{background:linear-gradient(110deg,#7c2d12 0%,var(--t-rascunho) 100%)}
+  background:radial-gradient(60% 320% at 100% 50%,rgba(242,92,18,.5) 0%,rgba(242,92,18,.14) 45%,rgba(242,92,18,0) 72%),var(--preto);color:#fff}
 #col-rascunho > .rasc-top h2{padding:0;color:#fff;font-size:20px;font-weight:750;letter-spacing:-.01em}
-#col-rascunho > .rasc-top h2::before{content:"";width:22px;height:22px;flex:none;background:#fff;
+#col-rascunho > .rasc-top h2::before{content:"";width:22px;height:22px;flex:none;background:var(--brasa);
   -webkit-mask:var(--i-notebook) center/contain no-repeat;mask:var(--i-notebook) center/contain no-repeat}
-.rasc-status{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 11px;white-space:nowrap}
+.rasc-status{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.14);border-radius:999px;padding:3px 11px;white-space:nowrap}
 .rasc-status:empty{display:none}
-.rasc-status[data-tipo="erro"]{background:#fff;color:#9a3412}
+.rasc-status[data-tipo="erro"]{background:#fff;color:#9f1420}
 .rasc-tools{display:flex;align-items:center;gap:8px;margin-left:auto}
-.rasc-top .btn{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.12);color:#fff}
-.rasc-top .btn:hover{background:rgba(255,255,255,.24)}
-.rasc-top .btn.rasc-btn-copy{background:#fff;color:#9a3412;border-color:#fff}
-.rasc-top .btn.rasc-btn-copy:hover{background:#ffedd5}
+.rasc-top .btn{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff}
+.rasc-top .btn:hover{background:rgba(255,255,255,.22)}
+.rasc-top .btn.rasc-btn-copy{background:var(--brasa-bg);color:var(--on-brasa);border-color:transparent}
+.rasc-top .btn.rasc-btn-copy:hover{filter:brightness(1.08)}
 .rasc-top .btn:focus-visible{outline-color:#fff}
 .rasc-aviso{display:flex;align-items:center;gap:10px;margin:12px 20px 0;padding:10px 14px;border-radius:var(--r-md);
-  background:var(--t-rascunho-soft);color:var(--ink);font-size:13px;line-height:1.45}
-.rasc-aviso > .i{--isz:18px;color:var(--t-rascunho-d)}
-.rasc-aviso a{color:var(--t-rascunho-d);font-weight:650}
+  background:var(--accent-soft);color:var(--ink);font-size:13px;line-height:1.45}
+.rasc-aviso > .i{--isz:18px;color:var(--accent-d)}
+.rasc-aviso a{color:var(--accent-d);font-weight:650}
 #rasc-scroll{padding:14px 20px 24px}
 .rasc-ta{display:block;width:100%;max-width:980px;min-height:240px;resize:none;overflow:hidden;border:1px solid transparent;
   border-radius:var(--r-md);padding:16px 18px;background:var(--sunken);color:var(--ink);font-family:var(--mono);font-size:13px;
   line-height:1.65;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;tab-size:4}
 .rasc-ta::placeholder{color:var(--muted-aa);opacity:1}
-.rasc-ta:focus{outline:none;border-color:var(--t-rascunho);background:var(--panel)}
+.rasc-ta:focus{outline:none;border-color:var(--accent);background:var(--panel)}
 .rasc-ta::selection{background:var(--mark);color:var(--mark-ink)}
 body[data-rasc="exemplo"] .rasc-ta,body[data-rasc="carregando"] .rasc-ta{cursor:text}
 
@@ -400,11 +385,11 @@ body[data-rasc="exemplo"] .rasc-ta,body[data-rasc="carregando"] .rasc-ta{cursor:
 .btn .i{--isz:17px}
 .btn:hover{background:var(--hover)}
 .btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.btn.primary:hover{background:var(--accent-d);border-color:var(--accent-d)}
+.btn.primary:hover{background:var(--accent-h);border-color:var(--accent-h)}
 .btn.ghost{color:var(--danger);border-color:transparent;background:none}
 .btn.ghost:hover{background:var(--danger-soft)}
 .btn:active{transform:translateY(1px)}
-.btn.primary:active{background:var(--accent-d)}
+.btn.primary:active{background:var(--accent-h)}
 .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
 .btn:disabled:hover{background:var(--panel)}
 .btn.primary:disabled:hover{background:var(--accent)}

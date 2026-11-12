@@ -1,7 +1,7 @@
 /* calculadoras.css — aba Calculadoras (js/views/calculadoras.js). Classes com prefixo cx- para não colidir com o app.css.
    Usa as variáveis do :root do app.css. Tamanhos seguem a largura da coluna da calculadora (container query "calc"). */
 #col-calc{container:calc / inline-size}
-/* cores próprias da aba, derivadas do tema (css/app.css): âmbar = aviso, azul = peso/paciente */
+/* cores próprias da aba, derivadas do tema (css/app.css): âmbar = aviso; "blue" (nome antigo) = peso/paciente, na cor primária */
 :root{--cx-amber:var(--warn);--cx-amber-soft:var(--warn-soft);--cx-amber-line:color-mix(in srgb,var(--warn) 35%,transparent);--cx-red-soft:var(--danger-soft);
   --cx-blue:var(--accent-d);--cx-blue-soft:var(--sunken);--cx-blue-line:var(--line)}
 
@@ -136,7 +136,7 @@
 .cx-escala .trk{flex:1 1 160px}
 .cx-escala b{color:var(--ink)}
 .cx-escala .trk{position:relative;height:10px;border-radius:6px;background:var(--chip)}
-.cx-escala .faixa{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--accent) 45%,transparent);border-radius:6px}
+.cx-escala .faixa{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--ok) 45%,transparent);border-radius:6px}   /* faixa usual = verde (a primária é laranja: perto demais do aviso) */
 .cx-escala .acima{position:absolute;top:0;bottom:0;right:0;background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--danger) 45%,transparent) 0 4px,color-mix(in srgb,var(--danger) 18%,transparent) 4px 8px);border-radius:0 6px 6px 0}
 .cx-escala .mk{position:absolute;top:-5px;width:6px;height:20px;margin-left:-3px;border-radius:3px;background:var(--ink);box-shadow:0 0 0 2px var(--panel)}
 .cx-escala .mk.amber{background:var(--warn)}
