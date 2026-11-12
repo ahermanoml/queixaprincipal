@@ -55,9 +55,17 @@ const escComCaixa = t => escCaixa==="maiusculas" ? t.toLocaleUpperCase("pt-BR") 
 const ESC_DISCLAIMER = "Ferramenta de apoio à decisão. Não substitui o julgamento clínico.";
 
 /* ---- lista ---- */
+// desenho de cada escore no quadradinho da lista (o dado dos escores é cópia do Ficha Vermelha: o desenho mora aqui).
+// Só emoji até a versão 12 (Windows 10 dos hospitais); escore novo sem desenho cai no 📊.
+const ESC_IC = {
+  "nihss": "🧠", "abcd2": "⏳", "wells-tep": "💨", "wells-tvp": "🦵", "heart": "❤️", "glasgow-blatchford": "🤮", "oakland": "🚽",
+  "regra-canadense": "🤕", "alvarado": "🤢", "ciwa-ar": "🍺", "sao-francisco": "😵", "hints": "🌀", "glasgow": "👁️", "perc": "✅",
+  "curb-65": "🤒", "ottawa": "🦶", "nexus": "🦴", "canadense-cervical": "🍁", "pecarn": "👶", "cha2ds2-va": "💓", "news2": "📈",
+  "centor": "🦠", "child-pugh": "🟡", "add-rs": "💥", "parkland": "🔥", "ottawa-hsa": "🌩️"
+};
 function escRow(s){
   return `<button type="button" class="cond esc-row${curEsc && curEsc.slug===s.slug ? " active" : ""}" data-slug="${esc(s.slug)}" aria-pressed="${curEsc && curEsc.slug===s.slug}">
-    <span><span class="nm">${esc(s.name)}</span><br><span class="sub">${esc(s.what)}</span></span></button>`;
+    <span class="tic" aria-hidden="true">${ESC_IC[s.slug] || "📊"}</span><span class="eb">${esc(s.cat)}</span><span><span class="nm">${esc(s.name)}</span><br><span class="sub">${esc(s.what)}</span></span></button>`;
 }
 function renderEscList(filter=""){
   const words = norm(filter).trim().split(/\s+/).filter(Boolean);
