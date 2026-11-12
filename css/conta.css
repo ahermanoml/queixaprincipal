@@ -1,6 +1,7 @@
 /* conta.css — telas da conta (página de oferta, senha do link pessoal), tela inicial com os quadrados das abas e o
-   nome/Sair no cabeçalho. Identidade preto + laranja: superfícies pretas (--preto) com a brasa laranja no canto e
-   preenchimentos laranja com texto escuro (--brasa-bg / --on-brasa), iguais nos dois temas — tokens de css/app.css. */
+   nome/Sair no cabeçalho. Identidade inspirada na MedCof: oferta e senha claras (fundo da página, brilho vermelho suave),
+   quadrados do início em grafite (--preto) com brilho vermelho, preenchimentos vermelhos com texto branco
+   (--brasa-bg / --on-brasa) — tokens de css/app.css. */
 
 /* ---- qual tela aparece: html[data-tela] = "oferta" | "senha" | "app" (posto pelo <script> do <head> e por js/conta.js) ---- */
 .oferta,.senha{display:none}
@@ -15,26 +16,26 @@
 .inicio{display:none}
 body[data-inicio="1"] .inicio{display:block;flex:1 1 auto;overflow-y:auto}
 body[data-inicio="1"] .grid,body[data-inicio="1"] .top-tabs{display:none}
-/* na tela inicial o cabeçalho cresce: saudação grande, e os quadrados sobem por cima da faixa preta */
+/* na tela inicial o cabeçalho cresce: saudação grande, e os quadrados sobem por cima da faixa do cabeçalho */
 .inicio-ola{display:none}
 body[data-inicio="1"] header.top{position:relative;z-index:auto;padding-bottom:96px}   /* sem z-index: os quadrados (z 2) sobem por cima da faixa e a busca (z 30) por cima deles */
 body[data-inicio="1"] .inicio-ola{display:block;max-width:1240px;margin:0 auto;padding:26px 6px 0}
-.inicio-ola h2{margin:0;font-size:clamp(28px,4vw,42px);font-weight:850;letter-spacing:-.025em;color:#fff;line-height:1.1}
-.inicio-ola h2 span{color:var(--brasa)}
+.inicio-ola h2{margin:0;font-size:clamp(28px,4vw,42px);font-weight:850;letter-spacing:-.025em;color:var(--hdr-ink);line-height:1.1}
+.inicio-ola h2 span{color:var(--hdr-acc)}
 header.top .inicio-ola p{margin:8px 0 0;font-size:17px;color:var(--hdr-ink-2)}
 .inicio{padding:0 28px 48px;margin-top:-72px;position:relative;z-index:2}
 .inicio-grade{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
-/* quadrado = cartão preto com a brasa laranja no canto de cima; ícone num quadrado laranja; contorno fino claro
-   (separa o cartão da faixa preta do cabeçalho e do fundo escuro) */
+/* quadrado = cartão grafite com brilho vermelho no canto de cima; ícone num quadrado vermelho; contorno fino claro
+   (separa o cartão do fundo escuro no tema escuro) */
 .tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:clamp(240px,40vh,340px);padding:24px 24px 22px;
   border:0;border-radius:22px;cursor:pointer;text-align:left;font:inherit;color:#fff;overflow:hidden;
-  background:radial-gradient(130% 85% at 100% 0%,rgba(242,92,18,.58) 0%,rgba(242,92,18,.16) 42%,rgba(242,92,18,0) 70%),linear-gradient(165deg,#211b17 0%,var(--preto) 100%);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 14px 28px -16px rgba(0,0,0,.6);
+  background:radial-gradient(130% 85% at 100% 0%,rgba(226,38,60,.58) 0%,rgba(226,38,60,.16) 42%,rgba(226,38,60,0) 70%),linear-gradient(165deg,#2b2c33 0%,var(--preto) 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 14px 28px -16px rgba(16,17,22,.55);
   transition:transform .15s,box-shadow .15s;animation:tile-entra .42s cubic-bezier(.3,.7,.2,1) both;animation-delay:calc(var(--n,0) * 45ms)}
 /* anéis finos no canto: textura leve, sem imagem */
 .tile::before{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,.14)}
 .tile::after{content:"";position:absolute;right:-110px;top:-110px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
-.tile:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(255,133,72,.75),0 18px 34px -14px rgba(242,92,18,.55)}
+.tile:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(255,118,133,.75),0 18px 34px -14px rgba(226,38,60,.55)}
 .tile:active{transform:translateY(0)}
 .tile:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:22px}
 .tile-ic{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:var(--brasa-bg);color:var(--on-brasa);margin-bottom:auto;position:relative;z-index:1}
@@ -47,7 +48,7 @@ header.top .inicio-ola p{margin:8px 0 0;font-size:17px;color:var(--hdr-ink-2)}
 .tile-seta .i{--isz:18px}
 @keyframes tile-entra{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 /* cópias que voam do quadrado até a aba (js/app.js inicioAbrir) */
-.tile-voo{position:fixed;z-index:60;pointer-events:none;border-radius:22px;background:var(--preto);box-shadow:inset 0 0 0 1px rgba(255,133,72,.6);
+.tile-voo{position:fixed;z-index:60;pointer-events:none;border-radius:22px;background:var(--preto);box-shadow:inset 0 0 0 1px rgba(255,118,133,.6);
   display:flex;align-items:center;justify-content:center;overflow:hidden}
 .tile-voo .tile-ic{margin:0;width:34px;height:34px;border-radius:10px}
 .tile-voo .tile-ic .i{--isz:18px}
@@ -93,46 +94,46 @@ body.voando .grid{animation:grade-entra .45s ease both}
 /* ---- página de oferta ---- */
 .oferta{background:var(--bg);color:var(--ink);min-height:100vh}
 .of-in{max-width:1080px;margin:0 auto;padding:0 24px}
-/* herói preto: a brasa laranja acende no canto de cima à direita e some no preto; anéis finos como textura */
-.of-hero{color:#fff;padding:36px 0 72px;position:relative;overflow:hidden;
-  background:radial-gradient(58% 95% at 92% 4%,rgba(242,92,18,.62) 0%,rgba(242,92,18,.2) 40%,rgba(242,92,18,0) 72%),
-    radial-gradient(40% 55% at 0% 100%,rgba(242,92,18,.16) 0%,rgba(242,92,18,0) 70%),var(--preto)}
-.of-hero::before{content:"";position:absolute;right:-120px;top:-140px;width:460px;height:460px;border-radius:50%;border:1px solid rgba(255,255,255,.14)}
-.of-hero::after{content:"";position:absolute;right:-300px;top:-320px;width:820px;height:820px;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
+/* herói claro, como a MedCof: painel branco, título escuro com as palavras de destaque em vermelho, um brilho vermelho
+   suave no canto e anéis finos como textura */
+.of-hero{color:var(--ink);padding:36px 0 72px;position:relative;overflow:hidden;box-shadow:inset 0 -1px 0 var(--line);
+  background:radial-gradient(58% 95% at 92% 4%,rgba(226,38,60,.16) 0%,rgba(226,38,60,.05) 40%,rgba(226,38,60,0) 72%),var(--panel)}
+.of-hero::before{content:"";position:absolute;right:-120px;top:-140px;width:460px;height:460px;border-radius:50%;border:1px solid var(--line)}
+.of-hero::after{content:"";position:absolute;right:-300px;top:-320px;width:820px;height:820px;border-radius:50%;border:1px solid var(--line)}
 .of-hero .of-in{position:relative;z-index:1}
 .of-marca{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.01em}
 .of-marca .logo{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--brasa-bg);color:var(--on-brasa);font-size:21px;font-weight:800}
 .of-hero h1{font-size:clamp(32px,5.2vw,56px);line-height:1.05;letter-spacing:-.03em;font-weight:850;margin:56px 0 18px;max-width:15ch}
-.of-hero h1 em{font-style:normal;color:var(--brasa)}
-.of-lead{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:0 0 32px;color:rgba(255,255,255,.86)}
-.of-lead b{color:#fff}
+.of-hero h1 em{font-style:normal;color:var(--accent)}
+.of-lead{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:0 0 32px;color:var(--ink-2)}
+.of-lead b{color:var(--ink)}
 .of-link{max-width:640px}
-.of-link-rot{display:block;font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:8px;color:var(--brasa)}
-/* campo do link: preto fosco com contorno claro (o fundo é opaco: o texto não depende do brilho da brasa atrás) */
-.of-link-campo{display:flex;align-items:center;background:#1a1614;border-radius:18px;padding:6px 6px 6px 18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 10px 30px rgba(0,0,0,.35)}
-.of-dom{color:#c9c2ba;font-size:17px;font-weight:600;white-space:nowrap}
-#of-nome{flex:1;min-width:0;height:50px;border:0;outline:none;background:none;color:#fff;font:inherit;font-size:17px;font-weight:700;padding:0 4px}
-#of-nome::placeholder{color:#9d958c;font-weight:600}
+.of-link-rot{display:block;font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:8px;color:var(--accent-d)}
+/* campo do link: branco com contorno e sombra suave (o fundo é opaco: o texto não depende do brilho atrás) */
+.of-link-campo{display:flex;align-items:center;background:var(--panel);border-radius:18px;padding:6px 6px 6px 18px;box-shadow:inset 0 0 0 1px var(--line-2),var(--shadow-pop)}
+.of-dom{color:var(--muted-aa);font-size:17px;font-weight:600;white-space:nowrap}
+#of-nome{flex:1;min-width:0;height:50px;border:0;outline:none;background:none;color:var(--ink);font:inherit;font-size:17px;font-weight:700;padding:0 4px}
+#of-nome::placeholder{color:var(--muted);font-weight:600}
 .of-cta{flex:none;display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 22px;border:0;border-radius:13px;cursor:pointer;
   background:var(--brasa-bg);color:var(--on-brasa);font:inherit;font-size:15.5px;font-weight:750;white-space:nowrap}
 .of-cta:hover{filter:brightness(1.07)}
 .of-cta:disabled{opacity:.6;cursor:wait}
 .of-cta .i{--isz:18px}
-.of-link-campo:focus-within{box-shadow:inset 0 0 0 1px var(--brasa),0 0 0 4px rgba(255,133,72,.35),0 10px 30px rgba(0,0,0,.35)}
-.of-dica{margin:10px 2px 0;font-size:13.5px;color:rgba(255,255,255,.8)}
-.of-dica.erro{color:#fff;font-weight:700}
+.of-link-campo:focus-within{box-shadow:inset 0 0 0 1px var(--accent),0 0 0 4px var(--accent-soft),var(--shadow-pop)}
+.of-dica{margin:10px 2px 0;font-size:13.5px;color:var(--muted-aa)}
+.of-dica.erro{color:var(--danger);font-weight:700}
 .of-dica.erro::before{content:"⚠ "}
-.of-sem{display:inline-flex;align-items:center;gap:6px;margin-top:26px;color:#fff;font-weight:650;font-size:15px;text-decoration:none;
-  border-bottom:2px solid var(--brasa);padding-bottom:2px}
-.of-sem:hover{color:var(--brasa)}
+.of-sem{display:inline-flex;align-items:center;gap:6px;margin-top:26px;color:var(--ink);font-weight:650;font-size:15px;text-decoration:none;
+  border-bottom:2px solid var(--accent);padding-bottom:2px}
+.of-sem:hover{color:var(--accent-d)}
 .of-sem .i{--isz:16px}
-.of-hero :focus-visible{outline:3px solid #fff;outline-offset:3px}
+.of-hero :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .oferta :focus-visible{outline-offset:3px}
 .of-sec{padding:64px 0}
 .of-sec h2{font-size:clamp(24px,3.2vw,32px);letter-spacing:-.02em;font-weight:800;margin:0 0 28px}
 .of-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
 .of-card{background:var(--panel);border-radius:20px;padding:22px;box-shadow:inset 0 0 0 1px var(--line)}
-.of-ic{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--preto);color:var(--brasa)}
+.of-ic{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--accent-soft);color:var(--accent-d)}
 .of-ic .i{--isz:24px}
 .of-card h3{margin:16px 0 6px;font-size:18px;font-weight:750;color:var(--ink)}
 .of-card p{margin:0;font-size:14px;line-height:1.5;color:var(--ink-2)}
@@ -141,7 +142,7 @@ body.voando .grid{animation:grade-entra .45s ease both}
 .of-passos li{counter-increment:p;position:relative;padding:20px 20px 20px 72px;border-radius:18px;background:var(--bg);font-size:15px;line-height:1.5;color:var(--ink-2)}
 .of-passos li b{display:block;color:var(--ink);font-size:16.5px;margin-bottom:2px}
 .of-passos li::before{content:counter(p);position:absolute;left:20px;top:20px;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  background:var(--preto);color:var(--brasa);font-weight:800;font-size:18px}
+  background:var(--accent);color:var(--on-accent);font-weight:800;font-size:18px}
 .of-priv{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:18px;background:var(--ok-soft);color:var(--ink)}
 .of-priv > .i{--isz:28px;color:var(--ok);margin-top:2px}
 .of-priv p{margin:0;font-size:15px;line-height:1.55}
@@ -159,8 +160,8 @@ body.voando .grid{animation:grade-entra .45s ease both}
 
 /* ---- tela de senha ---- */
 .senha{min-height:100vh;align-items:center;justify-content:center;padding:24px 16px;
-  background:radial-gradient(60% 70% at 90% 0%,rgba(242,92,18,.55) 0%,rgba(242,92,18,.16) 42%,rgba(242,92,18,0) 72%),var(--preto)}
-.sn-cartao{width:100%;max-width:420px;background:var(--panel);color:var(--ink);border-radius:24px;padding:28px 28px 22px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+  background:radial-gradient(60% 70% at 90% 0%,rgba(226,38,60,.16) 0%,rgba(226,38,60,.05) 42%,rgba(226,38,60,0) 72%),var(--bg)}
+.sn-cartao{width:100%;max-width:420px;background:var(--panel);color:var(--ink);border-radius:24px;padding:28px 28px 22px;box-shadow:inset 0 0 0 1px var(--line),var(--shadow-pop)}
 .sn-cartao .of-marca{color:var(--ink);font-size:16px}
 .sn-link{display:flex;align-items:center;gap:7px;margin:22px 0 4px;padding:9px 12px;border-radius:12px;background:var(--sunken);font-size:14.5px;color:var(--ink-2);overflow-wrap:anywhere}
 .sn-link b{color:var(--accent-d)}

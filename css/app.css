@@ -3,64 +3,67 @@
    ou quando o médico escolhe no botão do cabeçalho (html[data-theme="dark"|"light"], guardado no navegador — ver o
    <script> no <head> do index.html e temaAplicar() em js/app.js). Nomes antigos (--accent, --ink, --muted, --muted-aa,
    --line, --panel, --bg, --chip…) continuam valendo: o CSS das outras abas acompanha o tema sozinho.
-   Identidade: laranja + preto (cabeçalho preto com brasa laranja; papel creme no claro, quase preto no escuro).
+   Identidade (inspirada na MedCof): cabeçalho branco, fundo cinza claro, vermelho como cor principal e grafite com brilho
+   vermelho nos quadradinhos; no escuro, quase preto.
    Contraste conferido por cálculo (≥ 4,5:1 para texto) nos dois temas. */
 :root{
   color-scheme:light;
   --font:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:"Cascadia Mono","Cascadia Code",Consolas,"SF Mono",ui-monospace,"Roboto Mono",Menlo,monospace;
   /* superfícies: fundo → painel (uma hierarquia só); "sunken" = campo/área de texto dentro do painel.
-     Tema claro = papel quente (creme) com painéis brancos e tinta quase preta. */
-  --bg:#f2f0e9; --panel:#ffffff; --sunken:#f6f4ee; --hover:#efece4; --chip:#efece4;
-  --ink:#1a1816; --ink-2:#3d3935; --muted:#625d56; --muted-aa:#5a554e;
-  --line:#e7e3da; --line-2:#cfc9bd; --scroll:#cfc9bd;
-  /* primária (laranja) — também a cor do Adulto. --accent é PREENCHIMENTO/contorno: o texto por cima dele é escuro
-     (--on-accent), nunca branco; --accent-h = o preenchimento no hover; texto laranja sobre a página = --accent-d. */
-  --accent:#eb5a10; --accent-h:#f6722f; --accent-d:#ad3f0b; --accent-soft:#fdeadd; --on-accent:#1c0a00; --accent-track:#fbdcc7;
-  /* pediátrico (rosa): distingue o paciente — função, não enfeite */
-  --ped:#b81d64; --ped-d:#971651; --ped-soft:#fcebf3; --on-ped:#ffffff; --ped-track:#f8dbe8;
-  /* estados: verde, amarelo-ouro (longe do laranja da marca) e vermelho */
-  --ok:#17794c; --ok-soft:#e4f2ea; --warn:#775600; --warn-soft:#faf1d0; --danger:#b91c2c; --danger-soft:#fbe9ea;
+     Tema claro = fundo cinza bem claro, painéis brancos, tinta quase preta (inspirado na MedCof). */
+  --bg:#f4f4f6; --panel:#ffffff; --sunken:#f6f6f8; --hover:#efeff2; --chip:#efeff2;
+  --ink:#202125; --ink-2:#3f4048; --muted:#62646d; --muted-aa:#5c5e67;
+  --line:#e5e7eb; --line-2:#d1d3da; --scroll:#d1d3da;
+  /* primária (vermelho) — também a cor do Adulto. --accent é PREENCHIMENTO/contorno (texto por cima: --on-accent, branco
+     no claro, escuro no tema escuro); --accent-h = o preenchimento no hover; texto vermelho sobre a página = --accent-d. */
+  --accent:#dc2238; --accent-h:#c81e33; --accent-d:#aa1930; --accent-soft:#fdeaec; --on-accent:#ffffff; --accent-track:#fadadf;
+  /* pediátrico (azul): distingue o paciente do adulto (vermelho) — função, não enfeite */
+  --ped:#2158d6; --ped-d:#1d4ed8; --ped-soft:#e8efff; --on-ped:#ffffff; --ped-track:#dbe6ff;
+  /* estados: verde, âmbar e vermelho-tijolo (o perigo sempre vem com fundo tonal e texto, não só pela cor) */
+  --ok:#17794c; --ok-soft:#e4f2ea; --warn:#775600; --warn-soft:#faf1d0; --danger:#b3261e; --danger-soft:#fbeceb;
   --mark:#fbe39b; --mark-ink:#3a2c00; --hl:#fdf1c7;
-  --toast-bg:#1a1816; --toast-fg:#ffffff;
-  --shadow-pop:0 1px 3px rgba(26,20,14,.08),0 12px 32px rgba(26,20,14,.18);
-  /* cabeçalho PRETO com uma brasa laranja no canto (a transição preto → laranja), igual nos dois temas; o mesmo fundo
-     na oferta e na tela de senha. Sobre o preto: --brasa = texto/ícone laranja; --brasa-bg = preenchimento laranja
-     (logo, botões, ícone da aba ativa), com texto escuro (--on-brasa) por cima. Uma cor só para todas as abas. */
-  --preto:#0b0a09;
-  --hdr-bg:radial-gradient(70% 240% at 100% 0%,rgba(242,92,18,.46) 0%,rgba(242,92,18,.12) 42%,rgba(242,92,18,0) 68%),linear-gradient(100deg,#0b0a09 0%,#14100d 100%);
-  --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.82);
-  --hdr-field:rgba(255,255,255,.09); --hdr-field-h:rgba(255,255,255,.15); --hdr-line:rgba(255,255,255,.2);
-  --brasa:#ff8548; --brasa-bg:linear-gradient(135deg,#ff9255 0%,#f25a14 100%); --on-brasa:#190900;
+  --toast-bg:#202125; --toast-fg:#ffffff;
+  --shadow-pop:0 1px 3px rgba(16,17,22,.08),0 12px 32px rgba(16,17,22,.16);
+  /* cabeçalho: branco no claro (grafite no escuro), texto escuro; --hdr-acc = ícone/palavra de destaque no cabeçalho */
+  --hdr-bg:#ffffff; --hdr-ink:#202125; --hdr-ink-2:#62646d; --hdr-acc:#dc2238;
+  --hdr-field:#f4f4f6; --hdr-field-h:#ececf0; --hdr-line:#e5e7eb;
+  /* superfícies grafite (iguais nos dois temas): quadrados do início, quadradinhos das listas, faixa do Meu rascunho.
+     Sobre o grafite: --brasa = texto/ícone vermelho claro; --brasa-bg = preenchimento vermelho com texto branco (--on-brasa)
+     — também o logo e os botões de chamada ("Criar meu link", "Criar ou entrar"). --brilho = o tom do brilho vermelho. */
+  --preto:#18181c;
+  --brasa:#ff7685; --brasa-bg:linear-gradient(135deg,#dc2238 0%,#b91a2e 100%); --on-brasa:#ffffff;
   --r-lg:18px; --r-md:12px; --r-sm:8px;
   --shadow:none;   /* nome antigo: o site não usa mais sombra nas superfícies */
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#0d0c0b; --panel:#171615; --sunken:#201e1c; --hover:#272422; --chip:#272422;
-    --ink:#f1eee9; --ink-2:#d0cbc3; --muted:#a59f96; --muted-aa:#aba59c;
-    --line:#2b2826; --line-2:#48433e; --scroll:#48433e;
-    --accent:#ff7a3d; --accent-h:#ff9562; --accent-d:#ff9c6b; --accent-soft:#3b1f10; --on-accent:#1a0900; --accent-track:#2b170c;
-    --ped:#f58fbd; --ped-d:#f8afcf; --ped-soft:#3e2030; --on-ped:#3a0b1f; --ped-track:#2f1924;
-    --ok:#6fd3a0; --ok-soft:#15301f; --warn:#f3c64f; --warn-soft:#342a0e; --danger:#ff939b; --danger-soft:#3d1c20;
+    --bg:#111114; --panel:#1b1b20; --sunken:#232329; --hover:#2a2a31; --chip:#2a2a31;
+    --ink:#ececf0; --ink-2:#cfd0d6; --muted:#a2a4ae; --muted-aa:#a7a9b3;
+    --line:#2c2c33; --line-2:#45454e; --scroll:#45454e;
+    --accent:#ff5368; --accent-h:#ff6f80; --accent-d:#ff7b88; --accent-soft:#3a161c; --on-accent:#1a0006; --accent-track:#2b1216;
+    --ped:#8fb2ff; --ped-d:#a9c4ff; --ped-soft:#1c2a48; --on-ped:#0a1a3a; --ped-track:#172238;
+    --ok:#6fd3a0; --ok-soft:#15301f; --warn:#f0c053; --warn-soft:#342a0e; --danger:#ff9a92; --danger-soft:#3d1c20;
     --mark:#6b5410; --mark-ink:#fff4cc; --hl:#4a3d12;
-    --toast-bg:#f1eee9; --toast-fg:#1a1816;
-    --hdr-bg:radial-gradient(70% 240% at 100% 0%,rgba(242,92,18,.36) 0%,rgba(242,92,18,.10) 42%,rgba(242,92,18,0) 68%),#000000;
+    --toast-bg:#ececf0; --toast-fg:#202125;
+    --hdr-bg:#17171b; --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.78); --hdr-acc:#ff7685;
+    --hdr-field:rgba(255,255,255,.08); --hdr-field-h:rgba(255,255,255,.14); --hdr-line:rgba(255,255,255,.16);
     --shadow-pop:0 1px 3px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0d0c0b; --panel:#171615; --sunken:#201e1c; --hover:#272422; --chip:#272422;
-  --ink:#f1eee9; --ink-2:#d0cbc3; --muted:#a59f96; --muted-aa:#aba59c;
-  --line:#2b2826; --line-2:#48433e; --scroll:#48433e;
-  --accent:#ff7a3d; --accent-h:#ff9562; --accent-d:#ff9c6b; --accent-soft:#3b1f10; --on-accent:#1a0900; --accent-track:#2b170c;
-  --ped:#f58fbd; --ped-d:#f8afcf; --ped-soft:#3e2030; --on-ped:#3a0b1f; --ped-track:#2f1924;
-  --ok:#6fd3a0; --ok-soft:#15301f; --warn:#f3c64f; --warn-soft:#342a0e; --danger:#ff939b; --danger-soft:#3d1c20;
+  --bg:#111114; --panel:#1b1b20; --sunken:#232329; --hover:#2a2a31; --chip:#2a2a31;
+  --ink:#ececf0; --ink-2:#cfd0d6; --muted:#a2a4ae; --muted-aa:#a7a9b3;
+  --line:#2c2c33; --line-2:#45454e; --scroll:#45454e;
+  --accent:#ff5368; --accent-h:#ff6f80; --accent-d:#ff7b88; --accent-soft:#3a161c; --on-accent:#1a0006; --accent-track:#2b1216;
+  --ped:#8fb2ff; --ped-d:#a9c4ff; --ped-soft:#1c2a48; --on-ped:#0a1a3a; --ped-track:#172238;
+  --ok:#6fd3a0; --ok-soft:#15301f; --warn:#f0c053; --warn-soft:#342a0e; --danger:#ff9a92; --danger-soft:#3d1c20;
   --mark:#6b5410; --mark-ink:#fff4cc; --hl:#4a3d12;
-  --toast-bg:#f1eee9; --toast-fg:#1a1816;
-  --hdr-bg:radial-gradient(70% 240% at 100% 0%,rgba(242,92,18,.36) 0%,rgba(242,92,18,.10) 42%,rgba(242,92,18,0) 68%),#000000;
+  --toast-bg:#ececf0; --toast-fg:#202125;
+  --hdr-bg:#17171b; --hdr-ink:#ffffff; --hdr-ink-2:rgba(255,255,255,.78); --hdr-acc:#ff7685;
+  --hdr-field:rgba(255,255,255,.08); --hdr-field-h:rgba(255,255,255,.14); --hdr-line:rgba(255,255,255,.16);
   --shadow-pop:0 1px 3px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
@@ -76,10 +79,10 @@ body{
 button,input,textarea,select{color:inherit}
 ::selection{background:var(--accent-soft)}
 
-/* ---- cabeçalho: faixa preta com a brasa laranja no canto (--hdr-bg, texto branco). Marca | busca em pílula | conta | tema;
-   embaixo, as abas: a ativa vira uma "lingueta" da cor da página, presa ao conteúdo, com o ícone e o traço em laranja. ---- */
+/* ---- cabeçalho: faixa branca (grafite no escuro), texto escuro, linha fina embaixo. Marca | busca em pílula | conta | tema;
+   embaixo, as abas: a ativa vira uma "lingueta" da cor da página, presa ao conteúdo, com o ícone e o traço em vermelho. ---- */
 header.top{
-  flex:none; background:var(--hdr-bg); color:var(--hdr-ink); padding:0 22px;
+  flex:none; background:var(--hdr-bg); color:var(--hdr-ink); padding:0 22px; box-shadow:inset 0 -1px 0 var(--hdr-line);
   position:sticky; top:0; z-index:20;
 }
 header.top .top-row{display:flex;align-items:center;gap:16px;height:66px;position:relative}
@@ -99,10 +102,10 @@ header.top .hint{display:none}   /* o aviso fica na receita, no escore e em cada
 .tema .i-sun{display:none}
 :root[data-tema-efetivo="dark"] .tema .i-sun{display:inline-block}
 :root[data-tema-efetivo="dark"] .tema .i-moon{display:none}
-header.top :focus-visible{outline-color:#ffffff}
+header.top :focus-visible{outline-color:var(--accent)}
 
-/* abas do topo: uma por view registrada (VIEWS). Sobre o preto: ícone laranja num quadradinho translúcido + texto branco;
-   a ativa ganha o fundo da página, texto na cor da tinta, o quadradinho cheio de laranja e um traço laranja em cima. */
+/* abas do topo: uma por view registrada (VIEWS). Ícone vermelho num quadradinho cinza + texto escuro; a ativa ganha o
+   fundo da página, o quadradinho cheio de vermelho (ícone branco) e um traço vermelho em cima. */
 .top-tabs{display:flex;gap:4px;margin:0 -8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}
 .top-tabs::-webkit-scrollbar{display:none}
 /* muitas abas / tela estreita: a barra rola na horizontal (nunca quebra em duas linhas); a borda esmaece do lado
@@ -113,16 +116,16 @@ header.top :focus-visible{outline-color:#ffffff}
 .top-tab{position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;
   padding:0 16px 0 10px;border:0;border-radius:14px 14px 0 0;background:none;color:var(--hdr-ink);
   font:inherit;font-size:14.5px;font-weight:650;cursor:pointer;white-space:nowrap;transition:color .12s,background .12s}
-.top-tab > .i{--isz:16px;box-sizing:content-box;padding:5px;border-radius:8px;background:var(--hdr-field-h);color:var(--brasa);
+.top-tab > .i{--isz:16px;box-sizing:content-box;padding:5px;border-radius:8px;background:var(--hdr-field-h);color:var(--hdr-acc);
   -webkit-mask:none;mask:none;position:relative}
-.top-tab > .i::before{content:"";position:absolute;inset:5px;background:var(--brasa);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.top-tab > .i::before{content:"";position:absolute;inset:5px;background:var(--hdr-acc);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
 .top-tab:hover{background:var(--hdr-field)}
 .top-tab::after{content:"";position:absolute;left:14px;right:14px;top:0;height:3px;border-radius:0 0 3px 3px;background:transparent}
 .top-tab.active{color:var(--ink);background:var(--bg)}
 .top-tab.active > .i{background:var(--brasa-bg)}
 .top-tab.active > .i::before{background:var(--on-brasa)}
 .top-tab.active::after{background:var(--accent)}
-.top-tab:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:12px}
+.top-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:12px}
 
 /* busca única (js/busca.js): pílula larga no meio do cabeçalho; resultados num painel agrupado por aba.
    Até 820px o campo vira uma lupa; aberta, a busca cobre a linha do título (.top-row). */
@@ -229,7 +232,7 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 380px}
 .empty .sub{font-size:13px;max-width:250px;margin:0 auto;line-height:1.5}
 
 /* tipo de prescrição: paciente (Adulto | Pediátrico) e ambiente (Ambulatorial | Internação) numa linha só, compacta.
-   A cor diz quem é o paciente: Adulto = laranja (primária), Pediátrico = rosa. No paciente o segmento escolhido fica
+   A cor diz quem é o paciente: Adulto = vermelho (primária), Pediátrico = azul. No paciente o segmento escolhido fica
    cheio na cor dele; no ambiente, tonal na mesma cor. Tamanhos seguem a largura da coluna (container query em #col-mid). */
 #col-mid{container:mid / inline-size}
 .mid-head,.pac-tab[data-pac="adulto"]{--pc:var(--accent);--pc-d:var(--accent-d);--pc-soft:var(--accent-soft);--pc-on:var(--on-accent);--pc-track:var(--accent-track)}
@@ -349,9 +352,9 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 380px}
   .block-head .addall{margin-left:auto}
 }
 
-/* meu rascunho: um texto só, grande (#rasc-ta). Faixa preta que termina em brasa laranja, com título, estado do salvamento e botões. */
+/* meu rascunho: um texto só, grande (#rasc-ta). Faixa grafite que termina num brilho vermelho, com título, estado do salvamento e botões. */
 #col-rascunho > .rasc-top{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:16px 20px;
-  background:radial-gradient(60% 320% at 100% 50%,rgba(242,92,18,.5) 0%,rgba(242,92,18,.14) 45%,rgba(242,92,18,0) 72%),var(--preto);color:#fff}
+  background:radial-gradient(60% 320% at 100% 50%,rgba(226,38,60,.5) 0%,rgba(226,38,60,.14) 45%,rgba(226,38,60,0) 72%),var(--preto);color:#fff}
 #col-rascunho > .rasc-top h2{padding:0;color:#fff;font-size:20px;font-weight:750;letter-spacing:-.01em}
 #col-rascunho > .rasc-top h2::before{content:"";width:22px;height:22px;flex:none;background:var(--brasa);
   -webkit-mask:var(--i-notebook) center/contain no-repeat;mask:var(--i-notebook) center/contain no-repeat}
@@ -365,7 +368,7 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 380px}
 .rasc-top .btn.rasc-btn-copy:hover{filter:brightness(1.08)}
 .rasc-top .btn:focus-visible{outline-color:#fff}
 .rasc-aviso{display:flex;align-items:center;gap:10px;margin:12px 20px 0;padding:10px 14px;border-radius:var(--r-md);
-  background:var(--accent-soft);color:var(--ink);font-size:13px;line-height:1.45}
+  background:var(--hover);color:var(--ink);font-size:13px;line-height:1.45}   /* neutro: com a primária vermelha, um fundo rosado leria como erro */
 .rasc-aviso > .i{--isz:18px;color:var(--accent-d)}
 .rasc-aviso a{color:var(--accent-d);font-weight:650}
 #rasc-scroll{padding:14px 20px 24px}
@@ -513,14 +516,14 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 @media(max-width:820px){ .empty .big::before{transform:rotate(90deg)} }   /* no celular a lista fica em cima */
 
 /* ---- listas em quadradinhos (Escores, Calculadoras, Procedimentos) ----
-   Cada item da lista é um quadradinho com a cara dos quadrados do início: cartão preto com a brasa laranja num canto
+   Cada item da lista é um quadradinho com a cara dos quadrados do início: cartão grafite com um brilho vermelho num canto
    (o canto muda de um quadradinho para o outro) e um anel fino; só o nome, em branco, embaixo. O aberto fica cheio de
-   laranja, com texto escuro. Sem desenho e sem rótulo (o dono achou exagerado). O subtítulo (.sub) continua na
+   vermelho, com texto branco. Sem desenho e sem rótulo (o dono achou exagerado). O subtítulo (.sub) continua na
    marcação — busca e testes —, só não aparece.
    A lista é: título de grupo + botões irmãos dentro da área que rola; a grade é só CSS, e o que não é botão (títulos de
    grupo, "Nada encontrado") ocupa a linha inteira. Colunas pela largura da COLUNA da lista (container): 2 na coluna
    estreita do computador e em celular de 320px; 3 no celular (quadrados); mais na coluna larga do tablet.
-   Cores: iguais nos dois temas (superfície preta, como o cabeçalho). A brasa é fraca de propósito (máx. 34%): o nome
+   Cores: iguais nos dois temas (superfície grafite). A brasa é fraca de propósito (máx. 34%): o nome
    branco passa de 4,5:1 em qualquer ponto do cartão. */
 #col-esc-lista,#col-calc-lista,#col-proc-lista{container-type:inline-size}
 /* grid-auto-rows:max-content: as linhas nunca encolhem para caber numa área de altura limitada (ela rola) */
@@ -529,7 +532,7 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 :is(.esc-row,.cx-item,.pr-item){--gx:100%;--gy:0%;
   position:relative;overflow:hidden;overflow:clip;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;margin:0;width:auto;min-width:0;
   min-height:72px;padding:10px 10px 11px;border:0;border-radius:14px;color:#fff;
-  background:radial-gradient(120% 95% at var(--gx) var(--gy),rgba(242,92,18,.34) 0%,rgba(242,92,18,.11) 45%,rgba(242,92,18,0) 72%),linear-gradient(165deg,#221c18 0%,var(--preto) 100%);
+  background:radial-gradient(120% 95% at var(--gx) var(--gy),rgba(226,38,60,.34) 0%,rgba(226,38,60,.11) 45%,rgba(226,38,60,0) 72%),linear-gradient(165deg,#2b2c33 0%,var(--preto) 100%);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);
   font:inherit;text-align:left;cursor:pointer;transition:transform .12s,box-shadow .12s}
 /* a brasa muda de canto de um quadradinho para o outro: a grade não fica toda igual */
@@ -537,7 +540,7 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 :is(.esc-row,.cx-item,.pr-item):nth-of-type(3n){--gx:0%;--gy:100%}
 :is(.esc-row,.cx-item,.pr-item)::before{content:"";position:absolute;right:-34px;top:-34px;width:86px;height:86px;border-radius:50%;
   border:1px solid rgba(255,255,255,.1);pointer-events:none}
-:is(.esc-row,.cx-item,.pr-item):hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--brasa),0 10px 18px -12px rgba(242,92,18,.7)}
+:is(.esc-row,.cx-item,.pr-item):hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--brasa),0 10px 18px -12px rgba(226,38,60,.7)}
 :is(.esc-row,.cx-item,.pr-item):active{transform:none}
 :is(.esc-row,.cx-item,.pr-item):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:14px}
 .esc-row > span:last-child{flex:0 1 auto;max-width:100%;min-width:0}   /* .esc-row também é .cond, que estica esse span (flex:1): o nome iria para o alto */
@@ -545,10 +548,10 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 :is(.esc-row,.cx-item,.pr-item) .nm{position:relative;display:block;max-width:100%;font-size:12.5px;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:#fff;
   overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:12 4 4}
 :is(.esc-row,.cx-item,.pr-item) .sub,.esc-row br{display:none}
-/* aberto: cheio de laranja, texto escuro */
+/* aberto: cheio de vermelho, texto branco */
 :is(.esc-row,.cx-item,.pr-item).active{background:var(--brasa-bg);box-shadow:none;color:var(--on-brasa)}
 :is(.esc-row,.cx-item,.pr-item).active .nm{color:var(--on-brasa)}
-:is(.esc-row,.cx-item,.pr-item).active::before{border-color:rgba(25,9,0,.22)}
+:is(.esc-row,.cx-item,.pr-item).active::before{border-color:rgba(255,255,255,.25)}
 /* celular: 3 por linha, quadrados. A altura mínima do quadradinho é a largura dele (100cqw = largura da coluna, menos
    as margens e os dois vãos); nome comprido demais faz os quadradinhos daquela linha crescerem por igual, sem cortar o texto. */
 @container (min-width:320px){
