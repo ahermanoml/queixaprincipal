@@ -9,7 +9,7 @@ body[data-rx="off"][data-layout="texto"] .grid{grid-template-columns:1fr}
 
 /* lista de escores */
 .esc-lgrp{font-size:12.5px;color:var(--muted-aa);font-weight:650;padding:14px 18px 4px}
-.esc-row .sub{color:var(--muted-aa)}
+/* os itens (.esc-row) são quadradinhos: regras comuns às três listas no fim de css/app.css */
 
 /* calculadora */
 #col-esc{container:esc / inline-size}
