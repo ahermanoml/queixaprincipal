@@ -138,9 +138,6 @@ function prFaltam(p){ const all = prValores(p), usa = prUsados(p); return prCamp
 function prMudancas(p){ const st = prEst(p); return prAjustes(p).filter(c=> String(st.vals[c.id] || "").trim() !== String(c.padrao || "").trim()); }
 
 /* ---- lista ---- */
-// desenho de cada procedimento no quadradinho da lista (só emoji até a versão 12 — Windows 10 dos hospitais); sem desenho = o da área
-const PR_IC = {"iot": "😮", "crico": "🔪", "descompressao": "🎈", "toracocentese": "💧", "dreno": "🌊", "cvc": "💉", "io": "🦴",
-  "paracentese": "🟡", "pl": "🧠", "cardioversao": "⚡"};
 function prBuscaTexto(p){ return [p.nm, p.sub, p.kw, prArea(p.area).nm].join(" "); }
 function prRenderLista(filtro=""){
   const f = norm(filtro.trim());
@@ -152,7 +149,7 @@ function prRenderLista(filtro=""){
     ps.forEach(p=>{
       n++;
       h += `<button type="button" class="pr-item${prAberto===p ? " active" : ""}" data-id="${esc(p.id)}" aria-pressed="${prAberto===p}">
-        <span class="tic" aria-hidden="true">${PR_IC[p.id] || a.ic || "🩺"}</span><span class="eb">${esc(a.nm)}</span><span class="nm">${esc(p.nm)}</span><span class="sub">${esc(p.sub)}</span></button>`;
+        <span class="nm">${esc(p.nm)}</span><span class="sub">${esc(p.sub)}</span></button>`;
     });
   });
   prLista.innerHTML = h || `<div class="rx-empty">Nada encontrado.</div>`;

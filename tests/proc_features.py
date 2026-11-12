@@ -415,6 +415,9 @@ def run(browser, url):
     rep.check(clip() == pg.evaluate("prTexto(prAberto)") and "RETIRADOS 800 ML" in clip(), "Ctrl+Enter copia o registro")
     pg.focus("#pr-guia-registro"); pg.keyboard.press("ArrowRight")
     rep.check(pg.evaluate("() => [document.activeElement.id, document.querySelector('#pr-g-como').hidden]") == ["pr-guia-como", False], "→ nas guias abre Como fazer")
+    # as figuras (loading="lazy") que já começaram a baixar terminam antes de voltar ao Registro: escondê-las no meio
+    # cancela o download e o Chrome registra "requestfailed" (inofensivo para o usuário, mas deixava o teste instável)
+    pg.wait_for_function("() => [...document.querySelectorAll('#pr-g-como img')].every(i => i.complete || !i.currentSrc)", timeout=5000)
     pg.keyboard.press("ArrowLeft")
 
     # ida e volta pela Calculadora (Doses, na guia Como fazer): valores, guia e caixa aberta continuam

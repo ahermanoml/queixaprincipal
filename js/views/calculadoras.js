@@ -80,7 +80,7 @@ function cxRenderLista(filtro=""){
       if(p.grupo==="bomba" && p.sub!==sub){ sub = p.sub; h += `<div class="cx-gsh">${esc(sub)}</div>`; }
       n++;
       h += `<button type="button" class="cx-item${cxAberta===p ? " active" : ""}" data-id="${esc(p.id)}" aria-pressed="${cxAberta===p}">
-        <span class="tic" aria-hidden="true">${cxIcLista(p)}</span><span class="eb">${esc(cxRotuloLista(p)).replace(/\//g, "/<wbr>")}</span><span class="nm">${esc(p.nm)}</span><span class="sub">${esc(cxSubLista(p))}</span></button>`;
+        <span class="nm">${esc(p.nm)}</span><span class="sub">${esc(cxSubLista(p))}</span></button>`;
     });
   });
   cxLista.innerHTML = h || `<div class="rx-empty">Nada encontrado.</div>`;
@@ -90,19 +90,6 @@ function cxRenderLista(filtro=""){
     routeChanged();
   });
 }
-// desenho de cada página no quadradinho da lista (só emoji até a versão 12 — Windows 10 dos hospitais); sem desenho = o do grupo
-const CX_IC = {
-  "nora": "🎯", "adre": "🚀", "vaso": "💧", "dobu": "💪", "dopa": "💗", "milri": "🌊", "tridil": "🧨", "nipride": "📉",
-  "mida": "😴", "fenta": "🕊️", "propo": "🥛", "dex": "🌙", "keta": "🌀",
-  "amio": "📈", "insu": "🍬", "hnf": "🩸", "mgso4": "🧲", "octreo": "🧬",
-  "iot": "😮",
-  "emg-parada": "💔", "emg-arritmias": "💓", "emg-anafilaxia": "🐝", "emg-convulsao": "⚡", "emg-trombolise": "⏱️", "emg-anticoagulacao": "💉",
-  "emg-hemorragia": "🩹", "emg-hipercalemia": "🍌", "emg-antidotos": "🧪", "emg-obstetricia": "🤰", "emg-analgesia": "💊",
-  "ped-parada": "❤️", "ped-volume": "🍼", "ped-convulsao": "🌩️", "ped-respiratorio": "💨", "ped-analgesia": "🧸"
-};
-function cxIcLista(p){ return CX_IC[p.id] || (CX_GRUPOS.find(g=> g.key===p.grupo) || {}).ic || "🧮"; }
-// rótulo pequeno no alto do quadradinho da lista: a unidade da bomba (pode quebrar depois de cada "/"), ou de quem é a página
-function cxRotuloLista(p){ return p.tipo==="inf" ? p.D.un : p.tipo==="iot" ? "Kit SRI" : p.ped ? "Pediátrico" : "Adulto"; }
 function cxSubLista(p){
   if(p.tipo==="inf") return p.D.un;
   if(p.tipo==="iot") return "indução · bloqueio · kit para copiar";
