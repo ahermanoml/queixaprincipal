@@ -9,13 +9,7 @@
 .cx-gh{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:7px;padding:12px 18px 6px;background:var(--panel);
   font-size:13px;font-weight:650;color:var(--ink)}
 .cx-gsh{padding:8px 18px 3px;font-size:12px;font-weight:600;color:var(--muted-aa)}
-.cx-item{display:flex;flex-direction:column;align-items:flex-start;gap:1px;margin:1px 8px;width:calc(100% - 16px);padding:7px 10px;border:0;border-radius:var(--r-md);
-  background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;transition:background .12s}
-.cx-item:hover{background:var(--hover)}
-.cx-item.active{background:var(--accent-soft)}
-.cx-item.active .nm{color:var(--accent-d)}
-.cx-item .nm{font-weight:600;font-size:13.5px}
-.cx-item .sub{font-size:12px;color:var(--muted-aa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+/* os itens (.cx-item) são quadradinhos: regras comuns às três listas no fim de css/app.css */
 
 /* ---- cabeçalho da calculadora ---- */
 .cx-head{padding:12px 18px 2px}
@@ -258,8 +252,7 @@
 }
 @media(max-width:820px){
   #col-calc-lista .scroll,#col-calc .scroll{max-height:none;overflow:visible}
-  #col-calc-lista .scroll{max-height:46vh;overflow-y:auto}
-  .cx-item{padding:11px 14px}
+  #col-calc-lista .scroll{max-height:60vh;overflow-y:auto}
   .cx-pchip{padding:7px 12px}
   .cx-chip{padding:8px 13px}
   .cx-acts .btn,.cx-row .acts .btn{height:42px}
