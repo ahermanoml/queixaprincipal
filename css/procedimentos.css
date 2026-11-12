@@ -115,7 +115,7 @@
 .pr-call{display:block;margin-top:3px;padding:3px 9px;border-radius:7px;font-size:12.5px}
 .pr-call b{font-weight:650;margin-right:4px}
 .pr-call.cuidado{background:var(--danger-soft);color:var(--danger)}
-.pr-call.dica{background:var(--accent-soft);color:var(--accent-d)}
+.pr-call.dica{background:var(--ok-soft);color:var(--ok)}   /* dica = verde: o laranja da marca ficaria perto demais do vermelho do "cuidado" */
 .pr-fig{margin:8px 0 4px;max-width:560px}
 .pr-fig img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-md)}
 .pr-fig figcaption{margin-top:4px;font-size:12.5px;color:var(--muted-aa)}
