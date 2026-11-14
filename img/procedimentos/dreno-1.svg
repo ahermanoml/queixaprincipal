@@ -1,56 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-1" viewBox="0 0 560 420" role="img" aria-labelledby="dreno-1-t dreno-1-d">
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-1" viewBox="0 0 560 440" width="560" height="440" role="img" aria-labelledby="dreno-1-t dreno-1-d">
 <title id="dreno-1-t">Triângulo de segurança</title>
-<desc id="dreno-1-d">Lateral do tórax esquerdo com o braço levantado atrás da cabeça. O triângulo de segurança é limitado à frente pela borda lateral do peitoral maior, atrás pela borda anterior do grande dorsal e embaixo pela linha do 5º espaço intercostal, na altura do mamilo; o ápice fica abaixo da axila. O ponto de inserção está no 5º espaço intercostal, na linha axilar média.</desc>
-<style>
-.qpf-dreno-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
-.qpf-dreno-1 .b{font-weight:700}
-.qpf-dreno-1 .a{fill:#0b63c9}
-.qpf-dreno-1 .r{fill:#c62828}
-.qpf-dreno-1 .ln{stroke:#1f2a33;stroke-width:2}
-</style>
-<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
-<!-- cabeça e pescoço (olhando para a direita) -->
-<path d="M318 120 L330 70 L366 76 L362 122 Z" fill="#ecd9cc" class="ln" stroke-linejoin="round"/>
-<circle cx="356" cy="50" r="38" fill="#ecd9cc" class="ln"/>
-<!-- braço levantado, antebraço atrás da cabeça -->
-<path d="M246 150 L222 40 L330 14" fill="none" stroke="#1f2a33" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M246 150 L222 40 L330 14" fill="none" stroke="#ecd9cc" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="356" cy="50" r="38" fill="#ecd9cc" class="ln"/>
-<!-- tronco -->
-<clipPath id="dreno-1-corpo"><path d="M156 404 Q146 300 160 220 Q170 160 206 128 L262 172 Q290 118 332 112 Q384 120 410 170 Q428 214 418 260 Q404 320 416 404 Z"/></clipPath>
-<path d="M156 404 Q146 300 160 220 Q170 160 206 128 L262 172 Q290 118 332 112 Q384 120 410 170 Q428 214 418 260 Q404 320 416 404 Z" fill="#ecd9cc" class="ln" stroke-linejoin="round"/>
-<g clip-path="url(#dreno-1-corpo)">
-<path d="M290 150 Q318 206 352 262 Q380 300 440 300 V90 H300 Z" fill="#dfc3b4"/>
-<path d="M232 150 Q216 200 214 262 Q212 330 218 410 H120 V110 Z" fill="#dfc3b4"/>
-</g>
-<path d="M290 150 Q318 206 352 262 Q380 300 440 300" class="ln" fill="none" clip-path="url(#dreno-1-corpo)"/>
-<path d="M232 150 Q216 200 214 262 Q212 330 218 410" class="ln" fill="none" clip-path="url(#dreno-1-corpo)"/>
-<!-- triângulo de segurança -->
-<path d="M262 176 L350 260 L214 260 Z" fill="#0b63c9" fill-opacity=".16" stroke="#0b63c9" stroke-width="3" stroke-linejoin="round"/>
-<line x1="350" y1="260" x2="414" y2="260" stroke="#0b63c9" stroke-width="2" stroke-dasharray="6 5"/>
-<!-- mamilo -->
-<circle cx="416" cy="260" r="7" fill="#c9a08e" class="ln"/>
-<!-- linha axilar média -->
-<line x1="268" y1="186" x2="268" y2="256" stroke="#1f2a33" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
-<!-- ponto de inserção -->
-<circle cx="268" cy="252" r="12" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
-<circle cx="268" cy="252" r="4.5" fill="#0b63c9"/>
-<!-- abaixo da base = risco -->
-<path d="M240 286 V318" stroke="#c62828" stroke-width="3" stroke-linecap="round"/>
-<path d="M230 306 L240 320 L250 306" stroke="#c62828" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="256" y="300" class="b r" style="font-size:18px">Abaixo: risco</text>
-<text x="256" y="322" class="b r" style="font-size:18px">de diafragma</text>
-<text x="256" y="344" class="b r" style="font-size:18px">e abdome</text>
-<!-- rótulos -->
-<text x="440" y="150" class="b">Peitoral</text>
-<text x="440" y="174" class="b">maior</text>
-<line x1="438" y1="180" x2="330" y2="222" class="ln"/>
-<text x="20" y="214" class="b">Grande</text>
-<text x="20" y="238" class="b">dorsal</text>
-<line x1="94" y1="230" x2="214" y2="236" class="ln"/>
-<text x="428" y="252" class="a b" style="font-size:18px">5º EIC</text>
-<text x="428" y="282" style="font-size:18px">mamilo</text>
-<text x="20" y="372" class="b a">Linha axilar média,</text>
-<text x="20" y="396" class="b a">5º EIC</text>
-<line x1="120" y1="354" x2="260" y2="262" stroke="#0b63c9" stroke-width="2"/>
-</svg>
+<desc id="dreno-1-d">Tórax visto pelo lado direito, braço levantado com a mão atrás da cabeça. O triângulo de segurança fica entre a borda lateral do peitoral maior, a borda anterior do grande dorsal e a linha horizontal do mamilo, que marca o 5º espaço intercostal, com o ápice abaixo da axila. A inserção é no 4º ou 5º espaço intercostal, logo à frente da linha axilar média. Abaixo da linha do mamilo ficam o diafragma, o fígado e o baço: não entrar.</desc>
+<style>.qpf-dreno-1 text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.qpf-dreno-1 .t{paint-order:stroke;stroke:#f6f1e6;stroke-width:5px;stroke-linejoin:round}.qpf-dreno-1 .nh{stroke:none}</style>
+<defs><linearGradient id="dreno-1-pele" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e3d4"/><stop offset="0.6" stop-color="#efcdb7"/><stop offset="1" stop-color="#e2b296"/></linearGradient><linearGradient id="dreno-1-pele-h" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2b296"/><stop offset="0.5" stop-color="#f6dccb"/><stop offset="1" stop-color="#e6b99e"/></linearGradient><radialGradient id="dreno-1-pele-r" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#f9e6d8"/><stop offset="0.6" stop-color="#efcbb4"/><stop offset="1" stop-color="#dfab8e"/></radialGradient><clipPath id="dreno-1-cx"><rect width="560" height="440" rx="16"/></clipPath></defs>
+<rect width="560" height="440" rx="16" fill="#f6f1e6"/>
+<g clip-path="url(#dreno-1-cx)">
+<ellipse cx="300" cy="18" rx="44" ry="40" fill="url(#dreno-1-pele-r)" stroke="#2b2724" stroke-width="2.2"/>
+<path d="M226 132 C206 100 184 64 170 34 C164 20 182 10 192 22 C212 52 236 88 262 120 Z" fill="url(#dreno-1-pele-h)" stroke="#202125" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M180 30 C206 14 240 8 266 14 C276 18 274 32 262 32 C238 30 214 34 196 44 Z" fill="url(#dreno-1-pele-h)" stroke="#202125" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M196 128 C214 120 232 118 248 124 C280 112 316 100 340 104 C370 112 396 168 402 214 C406 252 396 300 388 340 L384 452 L184 452 C178 380 176 300 178 230 C180 180 186 146 196 128 Z" fill="url(#dreno-1-pele)" stroke="#202125" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M182 150 C240 156 320 172 398 190" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 186 C240 192 320 208 398 226" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 222 C240 228 320 244 398 262" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 258 C240 264 320 280 398 298" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 294 C240 300 320 316 398 334" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 330 C240 336 320 352 398 370" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 366 C240 372 320 388 398 406" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M182 402 C240 408 320 424 398 442" fill="none" stroke="#c99f86" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+<path d="M262 136 C300 120 336 110 350 112 C376 124 396 170 400 214 C380 236 360 248 350 252 C326 214 296 170 262 136 Z" fill="#e8b9a0" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M234 140 C214 190 204 260 202 336 C192 338 186 336 182 334 C180 270 184 190 196 136 Z" fill="#e8b9a0" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M262 136 C296 170 326 214 352 252" fill="none" stroke="#2b2724" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M234 140 C216 190 206 260 204 336" fill="none" stroke="#2b2724" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="396" cy="246" r="6.5" fill="#c98a74" stroke="#2b2724" stroke-width="1.6"/>
+<path d="M248 142 L352 252 L206 252 Z" fill="#dc2238" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".14"/>
+<path d="M248 142 L352 252 L206 252 Z" fill="none" stroke="#dc2238" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<path d="M352 252 H392" fill="none" stroke="#5c5e67" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 5"/>
+<path d="M248 142 V440" fill="none" stroke="#2b2724" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3 6"/>
+<path d="M214 318 C260 296 340 290 386 306 C392 340 380 380 352 396 C300 404 240 390 214 360 Z" fill="#a8574b" stroke="#7d3a31" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity=".22" stroke-dasharray="6 5"/>
+<circle cx="300" cy="352" r="13.8" fill="#b3261e"/>
+<path d="M294.5 346.5 l11 11 M305.5 346.5 l-11 11" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+<g><circle cx="268" cy="230" r="12" fill="rgba(255,255,255,.55)" stroke="#dc2238" stroke-width="3"/><circle cx="268" cy="230" r="3.6" fill="#dc2238"/></g>
+<text x="408" y="152" class="t" font-size="17" font-weight="500" fill="#2b2724" font-style="italic">peitoral maior</text>
+<path d="M406 158 L366 176" fill="none" stroke="#202125" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="366" cy="176" r="3.2" fill="#202125" stroke="#fff" stroke-width="1.2"/>
+<text x="14" y="214" class="t" font-size="17" font-weight="500" fill="#2b2724" font-style="italic">grande dorsal</text>
+<path d="M122 220 L206 240" fill="none" stroke="#202125" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="206" cy="240" r="3.2" fill="#202125" stroke="#fff" stroke-width="1.2"/>
+<text x="408" y="252" class="t" font-size="17" font-weight="500" fill="#2b2724" font-style="italic">mamilo · 5º EIC</text>
+<text x="258" y="432" class="t" font-size="16" font-weight="500" fill="#2b2724" font-style="italic">linha axilar média</text>
+<text x="26" y="290" class="t" font-size="20" font-weight="800" fill="#aa1930">4º–5º EIC</text>
+<text x="26" y="312" class="t" font-size="16" font-weight="500" fill="#2b2724" font-style="italic">logo à frente da</text>
+<text x="26" y="332" class="t" font-size="16" font-weight="500" fill="#2b2724" font-style="italic">axilar média</text>
+<path d="M112 286 L256 234" fill="none" stroke="#dc2238" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="256" cy="234" r="3.2" fill="#dc2238" stroke="#fff" stroke-width="1.2"/>
+<text x="408" y="344" class="t" font-size="16" font-weight="700" fill="#b3261e" font-style="italic">fígado / baço:</text>
+<text x="408" y="364" class="t" font-size="16" font-weight="700" fill="#b3261e" font-style="italic">não descer</text>
+</g></svg>

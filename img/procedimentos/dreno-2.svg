@@ -1,64 +1,119 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-2" viewBox="0 0 560 420" role="img" aria-labelledby="dreno-2-t dreno-2-d">
-<title id="dreno-2-t">Trajeto do dreno pela borda superior da costela</title>
-<desc id="dreno-2-d">Corte da parede torácica. A incisão na pele fica sobre a costela de baixo; o trajeto sobe pelo subcutâneo e passa rente à borda superior dessa costela até a pleura, longe do feixe vásculo-nervoso que corre sob a borda inferior da costela de cima. O dreno entra na cavidade pleural com todos os orifícios dentro do tórax.</desc>
-<style>
-.qpf-dreno-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
-.qpf-dreno-2 .b{font-weight:700}
-.qpf-dreno-2 .r{fill:#c62828}
-.qpf-dreno-2 .a{fill:#0b63c9}
-.qpf-dreno-2 .ln{stroke:#1f2a33;stroke-width:2}
-</style>
-<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
-<!-- camadas -->
-<rect x="60" y="16" width="52" height="388" fill="#f1e4da"/>
-<rect x="112" y="16" width="146" height="388" fill="#ead7d0"/>
-<rect x="258" y="16" width="196" height="388" fill="#eef2f6"/>
-<path d="M454 16 H544 V404 H454 Q440 210 454 16 Z" fill="#f1dcdc"/>
-<line x1="60" y1="16" x2="60" y2="404" class="ln"/>
-<line x1="258" y1="16" x2="258" y2="404" class="ln"/>
-<path d="M454 16 Q440 210 454 404" class="ln" fill="none"/>
-<!-- costelas -->
-<path d="M150 32 Q150 22 160 22 H232 Q242 22 242 32 V98 Q232 98 222 104 Q212 112 210 128 H160 Q150 128 150 118 Z" fill="#fff" class="ln"/>
-<path d="M150 266 Q150 256 160 256 H232 Q242 256 242 266 V332 Q232 332 222 338 Q212 346 210 362 H160 Q150 362 150 352 Z" fill="#fff" class="ln"/>
-<text x="164" y="70" style="font-size:17px">costela</text>
-<text x="164" y="90" style="font-size:17px">de cima</text>
-<text x="164" y="304" style="font-size:17px">costela</text>
-<text x="164" y="324" style="font-size:17px">de baixo</text>
-<!-- feixes -->
-<g stroke="#c62828" stroke-width="2">
-<circle cx="226" cy="112" r="8" fill="#fbd5d5"/>
-<circle cx="226" cy="130" r="8" fill="#e57373"/>
-<circle cx="226" cy="148" r="8" fill="#fff"/>
-</g>
-<g stroke="#c62828" stroke-width="2" opacity=".5">
-<circle cx="226" cy="346" r="7" fill="#fbd5d5"/>
-<circle cx="226" cy="362" r="7" fill="#e57373"/>
-<circle cx="226" cy="378" r="7" fill="#fff"/>
-</g>
-<!-- dreno: entra pela incisão sobre a costela de baixo, sobe no subcutâneo,
-     passa rente à borda superior e segue para cima (ápice) na cavidade -->
-<path d="M8 330 L60 318 Q100 308 126 262 Q136 244 160 242 H300 Q340 242 348 200 L354 104" fill="none" stroke="#0b63c9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 330 L60 318 Q100 308 126 262 Q136 244 160 242 H300 Q340 242 348 200 L354 104" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" opacity=".55"/>
-<!-- orifícios laterais (dentro do tórax) -->
-<g fill="#fff" stroke="#0b63c9" stroke-width="2">
-<rect x="344" y="128" width="10" height="16" rx="5"/>
-<rect x="346" y="172" width="10" height="16" rx="5"/>
-<rect x="306" y="235" width="16" height="10" rx="5"/>
-</g>
-<!-- incisão -->
-<g stroke="#1f2a33" stroke-width="3" stroke-linecap="round">
-<line x1="52" y1="306" x2="68" y2="306"/><line x1="52" y1="330" x2="68" y2="330"/>
-</g>
-<!-- rótulos -->
-<text x="272" y="56" class="b r">Feixe vásculo-</text>
-<text x="272" y="80" class="b r">-nervoso</text>
-<line x1="270" y1="74" x2="236" y2="122" stroke="#c62828" stroke-width="2"/>
-<text x="376" y="164" class="b a">Dreno</text>
-<text x="272" y="286" class="b a" style="font-size:18px">Rente à borda</text>
-<text x="272" y="308" class="b a" style="font-size:18px">superior da</text>
-<text x="272" y="330" class="b a" style="font-size:18px">costela de baixo</text>
-<text x="300" y="384" style="font-size:18px">Cavidade pleural</text>
-<text x="463" y="230">Pulmão</text>
-<text x="10" y="372" class="b" style="font-size:18px">Incisão sobre a</text>
-<text x="10" y="394" class="b" style="font-size:18px">costela de baixo</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-2" viewBox="0 0 560 440" width="560" height="440" role="img" aria-labelledby="dreno-2-t dreno-2-d">
+<title id="dreno-2-t">Corte da parede: por cima da costela de baixo</title>
+<desc id="dreno-2-d">Corte da parede do tórax entre duas costelas, de fora (em cima) para dentro (embaixo): pele, subcutâneo, músculo, costelas com os músculos intercostais, pleura parietal e pulmão. O feixe vasculonervoso (veia, artéria e nervo) corre na borda inferior da costela de cima. A pinça Kelly faz a dissecção romba por cima da borda superior da costela de baixo, longe do feixe.</desc>
+<style>.qpf-dreno-2 text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.qpf-dreno-2 .t{paint-order:stroke;stroke:#f6f1e6;stroke-width:5px;stroke-linejoin:round}.qpf-dreno-2 .nh{stroke:none}</style>
+<defs><linearGradient id="dreno-2-aco-v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949e"/><stop offset="0.3" stop-color="#e9ecf0"/><stop offset="0.6" stop-color="#b9bfc8"/><stop offset="1" stop-color="#7d848e"/></linearGradient><linearGradient id="dreno-2-gordura" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbeec4"/><stop offset="1" stop-color="#f1dc9c"/></linearGradient><linearGradient id="dreno-2-musculo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d99a90"/><stop offset="1" stop-color="#bf776d"/></linearGradient><linearGradient id="dreno-2-osso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf7ee"/><stop offset="0.6" stop-color="#efe6d2"/><stop offset="1" stop-color="#dccfb3"/></linearGradient><linearGradient id="dreno-2-pele" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e3d4"/><stop offset="0.6" stop-color="#efcdb7"/><stop offset="1" stop-color="#e2b296"/></linearGradient><radialGradient id="dreno-2-pulmao" cx="0.5" cy="0.4" r="0.7"><stop offset="0" stop-color="#f6d4d6"/><stop offset="1" stop-color="#e3a9ad"/></radialGradient><clipPath id="dreno-2-cx"><rect width="560" height="440" rx="16"/></clipPath></defs>
+<rect width="560" height="440" rx="16" fill="#f6f1e6"/>
+<g clip-path="url(#dreno-2-cx)">
+<rect x="0" y="66" width="560" height="16" fill="url(#dreno-2-pele)"/>
+<rect x="0" y="82" width="560" height="46" fill="url(#dreno-2-gordura)"/>
+<ellipse cx="40" cy="104" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="96" cy="98" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="150" cy="110" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="214" cy="100" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="282" cy="108" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="350" cy="98" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="470" cy="106" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="520" cy="100" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<rect x="0" y="128" width="560" height="44" fill="url(#dreno-2-musculo)"/>
+<path d="M0 136 C140 133 420 139 560 136" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 144 C140 141 420 147 560 144" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 152 C140 149 420 155 560 152" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 160 C140 157 420 163 560 160" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 168 C140 165 420 171 560 168" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<rect x="0" y="172" width="560" height="96" fill="#cf8d84"/>
+<path d="M-40 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M-24 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M-8 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M8 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M24 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M40 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M56 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M72 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M88 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M104 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M120 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M136 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M152 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M168 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M184 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M200 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M216 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M232 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M248 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M264 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M280 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M296 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M312 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M328 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M344 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M360 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M376 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M392 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M408 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M424 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M440 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M456 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M472 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M488 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M504 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M520 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M536 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M552 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M568 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M584 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<rect x="0" y="268" width="560" height="8" fill="#bcd9ea"/>
+<rect x="0" y="276" width="560" height="26" fill="#f4f0ea"/>
+<rect x="0" y="302" width="560" height="140" fill="url(#dreno-2-pulmao)"/>
+<circle cx="30" cy="330" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="70" cy="360" r="16" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="120" cy="326" r="10" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="170" cy="372" r="14" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="230" cy="336" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="290" cy="380" r="18" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="350" cy="332" r="11" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="410" cy="368" r="15" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="470" cy="334" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="520" cy="380" r="17" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="90" cy="410" r="13" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="250" cy="420" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="440" cy="420" r="14" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<path d="M0 302 H560" fill="none" stroke="#d48c93" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M0 66 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 82 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 128 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 172 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 268 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 276 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<ellipse cx="130" cy="220" rx="62" ry="40" fill="url(#dreno-2-osso)" stroke="#2b2724" stroke-width="2.2"/>
+<ellipse cx="130" cy="220" rx="48" ry="27" fill="#f3e6c8" stroke="#b9a98d" stroke-width="1" opacity=".9"/>
+<ellipse cx="430" cy="220" rx="62" ry="40" fill="url(#dreno-2-osso)" stroke="#2b2724" stroke-width="2.2"/>
+<ellipse cx="430" cy="220" rx="48" ry="27" fill="#f3e6c8" stroke="#b9a98d" stroke-width="1" opacity=".9"/>
+<circle cx="188" cy="238" r="7.5" fill="#5677b8" stroke="#2b2724" stroke-width="1.6"/>
+<circle cx="200" cy="248" r="6.5" fill="#c8423c" stroke="#2b2724" stroke-width="1.6"/>
+<circle cx="210" cy="258" r="6" fill="#e6c24a" stroke="#2b2724" stroke-width="1.6"/>
+<rect x="430" y="62" width="30" height="24" fill="#f6f1e6"/>
+<path d="M470 -4 C452 60 410 120 378 166 C362 190 352 226 350 262 L348 290" fill="none" stroke="#2b2724" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M470 -4 C452 60 410 120 378 166 C362 190 352 226 350 262 L348 290" fill="none" stroke="url(#dreno-2-aco-v)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M478 -4 C460 60 418 122 386 168 C370 192 360 226 358 262 L356 290" fill="none" stroke="#2b2724" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="318" cy="238" r="12.5" fill="#17794c"/><path d="M312.5 238.5 l4 4.2 l7.5 -8.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="214" cy="214" r="12.5" fill="#b3261e"/>
+<path d="M209 209 l10 10 M219 209 l-10 10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+<text x="10" y="60" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">pele</text>
+<text x="10" y="112" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">subcutâneo</text>
+<text x="10" y="158" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">músculo</text>
+<text x="44" y="296" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">pleura parietal</text>
+<text x="10" y="432" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">pulmão</text>
+<text x="70" y="206" class="t" font-size="15" font-weight="700" text-anchor="middle" fill="#2b2724" font-style="italic">costela</text>
+<text x="130" y="224" class="t" font-size="15" font-weight="700" text-anchor="middle" fill="#2b2724" font-style="italic">de cima</text>
+<text x="430" y="214" class="t" font-size="15" font-weight="700" text-anchor="middle" fill="#2b2724" font-style="italic">costela</text>
+<text x="430" y="232" class="t" font-size="15" font-weight="700" text-anchor="middle" fill="#2b2724" font-style="italic">de baixo</text>
+<text x="70" y="352" class="t" font-size="18" font-weight="800" fill="#b3261e">feixe V-A-N</text>
+<text x="70" y="372" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">embaixo da costela de cima</text>
+<path d="M150 336 L202 264" fill="none" stroke="#b3261e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="202" cy="264" r="3.2" fill="#b3261e" stroke="#fff" stroke-width="1.2"/>
+<text x="372" y="352" class="t" font-size="18" font-weight="800" fill="#17794c">Kelly por cima</text>
+<text x="372" y="372" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">da costela de baixo</text>
+<path d="M392 336 L354 280" fill="none" stroke="#17794c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="354" cy="280" r="3.2" fill="#17794c" stroke="#fff" stroke-width="1.2"/>
+</g></svg>

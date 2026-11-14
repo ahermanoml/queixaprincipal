@@ -51,9 +51,15 @@ const PROC_FIGURAS = {
   {"arquivo": "toracocentese-2.svg", "passo": "tecnica.2", "titulo": "Rente à borda superior da costela", "legenda": "O feixe vásculo-nervoso corre sob a borda inferior de cada costela: a agulha entra logo acima da costela de baixo."}
  ],
  "dreno": [
-  {"arquivo": "dreno-1.svg", "passo": "preparo.2", "titulo": "Triângulo de segurança", "legenda": "Entre a borda do peitoral maior, a borda do grande dorsal e a linha do 5º EIC (mamilo), com o braço atrás da cabeça; inserção no 5º EIC, linha axilar média."},
-  {"arquivo": "dreno-2.svg", "passo": "tecnica.2", "titulo": "Trajeto sobre a costela de baixo", "legenda": "Incisão sobre a costela de baixo, dissecção romba pela borda superior dela; todos os orifícios do dreno dentro do tórax."},
-  {"arquivo": "dreno-3.svg", "passo": "tecnica.7", "titulo": "Selo d'água", "legenda": "Haste ~2 cm sob a água, respiro aberto, frasco sempre abaixo do tórax; oscila com a respiração, borbulha quando sai ar."}
+  {"arquivo": "dreno-4.svg", "passo": "preparo.1", "titulo": "Posição", "legenda": "Decúbito dorsal, cabeceira a 30–45° e o braço do lado atrás da cabeça: axila e lateral do tórax livres."},
+  {"arquivo": "dreno-1.svg", "passo": "preparo.2", "titulo": "Triângulo de segurança", "legenda": "Entre a borda lateral do peitoral maior, a borda anterior do grande dorsal e a linha do mamilo (5º EIC), ápice abaixo da axila; inserção no 4º–5º EIC, logo à frente da linha axilar média. Abaixo do mamilo: diafragma, fígado e baço."},
+  {"arquivo": "dreno-5.svg", "passo": "tecnica.1", "titulo": "Anestesia por planos e incisão", "legenda": "Anestesia generosa: pele, trajeto, periósteo e pleura. Incisão de 2–3 cm sobre a costela de baixo, paralela a ela."},
+  {"arquivo": "dreno-2.svg", "passo": "tecnica.2", "titulo": "Por cima da costela de baixo", "legenda": "Dissecção romba com a Kelly pela borda superior da costela de baixo; o feixe vasculonervoso (V-A-N) corre na borda inferior da costela de cima."},
+  {"arquivo": "dreno-6.svg", "passo": "tecnica.4", "titulo": "Pleura aberta e dedo no trajeto", "legenda": "A Kelly fechada perfura a pleura e abre; o dedo confirma a cavidade e solta aderências. Trocarte para introduzir o dreno: nunca."},
+  {"arquivo": "dreno-7.svg", "passo": "tecnica.5", "titulo": "Direção do dreno", "legenda": "Ar: apical-anterior (para cima e para a frente). Líquido: posterobasal (para trás e para baixo). Todos os orifícios dentro do tórax."},
+  {"arquivo": "dreno-3.svg", "passo": "tecnica.7", "titulo": "Selo d'água", "legenda": "Haste ~2 cm sob a água, respiro aberto, frasco sempre abaixo do tórax; oscila com a respiração, borbulha quando sai ar."},
+  {"arquivo": "dreno-8.svg", "passo": "tecnica.8", "titulo": "Fixação e raio-x de controle", "legenda": "Sutura no dreno e curativo; depois, RX de tórax para ver a posição do dreno e a reexpansão."},
+  {"arquivo": "dreno-9.svg", "passo": "depois.4", "titulo": "Borbulha e sangramento", "legenda": "Dreno que borbulha não se clampeia. Hemotórax: ≥ 1.500 mL na drenagem inicial ou > 200 mL/h por 2–4 h → cirurgia."}
  ],
  "crico": [
   {"arquivo": "crico-1.svg", "passo": "preparo.4", "titulo": "Membrana cricotireóidea", "legenda": "Entre a tireoide e a cricoide; a mão não dominante fixa a laringe. Incisão transversa — ou vertical na linha média se não palpável."},
@@ -86,6 +92,12 @@ const PROC_FIGURAS = {
   {"arquivo": "cardioversao-1.svg", "passo": "preparo.1", "titulo": "Posição das pás", "legenda": "Anterolateral: infraclavicular direita + ápice. Anteroposterior: precórdio à esquerda + costas, entre a escápula esquerda e a coluna."},
   {"arquivo": "cardioversao-2.svg", "passo": "tecnica.2", "titulo": "Marca de sincronização", "legenda": "Com o SINC ligado, cada QRS precisa da marca; se faltar, trocar de derivação ou ajustar o ganho."}
  ]
+};
+
+/* vídeo no topo da guia "Como fazer" (manual de montagem narrado e legendado), por procedimento. Arquivos em video/:
+   MP4 H.264 + AAC comprimido (< 8 MB) e um quadro .jpg para a capa. Carrega só quando a pessoa aperta o play. */
+const PROC_VIDEOS = {
+ "dreno": {"arquivo": "manual-dreno.mp4", "capa": "manual-dreno.jpg", "titulo": "Manual de montagem em vídeo", "legenda": "1 min 15 s · narrado e legendado · rascunho, ainda não revisado pelo médico"}
 };
 
 const PROCS = [

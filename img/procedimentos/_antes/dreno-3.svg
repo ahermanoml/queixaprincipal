@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-3" viewBox="0 0 560 420" role="img" aria-labelledby="dreno-3-t dreno-3-d">
+<title id="dreno-3-t">Selo d'água</title>
+<desc id="dreno-3-d">Paciente deitado com o dreno ligado por uma extensão a um frasco no chão, abaixo do nível do tórax. Dentro do frasco, a haste ligada ao paciente fica cerca de 2 cm abaixo da água; um respiro curto fica aberto para o ar. A coluna de água oscila com a respiração e borbulha quando há ar saindo.</desc>
+<style>
+.qpf-dreno-3 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-dreno-3 .b{font-weight:700}
+.qpf-dreno-3 .a{fill:#0b63c9}
+.qpf-dreno-3 .r{fill:#c62828}
+.qpf-dreno-3 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- maca -->
+<rect x="20" y="150" width="230" height="16" rx="4" fill="#e3e7ec" class="ln"/>
+<line x1="40" y1="166" x2="40" y2="404" class="ln"/>
+<line x1="230" y1="166" x2="230" y2="404" class="ln"/>
+<!-- paciente deitado (cabeça à esquerda) -->
+<circle cx="54" cy="122" r="28" fill="#ecd9cc" class="ln"/>
+<rect x="84" y="98" width="160" height="52" rx="24" fill="#ecd9cc" class="ln"/>
+<!-- nível do tórax -->
+<line x1="150" y1="124" x2="544" y2="124" stroke="#1f2a33" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="300" y="112" style="font-size:18px">nível do tórax</text>
+<!-- frasco abaixo do tórax -->
+<path d="M526 132 V216" stroke="#1f2a33" stroke-width="2"/>
+<path d="M518 204 L526 218 L534 204" fill="none" stroke="#1f2a33" stroke-width="2" stroke-linejoin="round"/>
+<text x="514" y="160" class="b" style="font-size:18px" text-anchor="end">Frasco abaixo</text>
+<text x="514" y="182" class="b" style="font-size:18px" text-anchor="end">do tórax</text>
+<!-- dreno saindo do tórax e extensão até o frasco -->
+<path d="M170 132 Q172 186 230 190 Q320 194 380 182 Q440 170 440 214 V334" fill="none" stroke="#0b63c9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="170" cy="132" r="6" fill="#0b63c9"/>
+<!-- frasco -->
+<path d="M346 236 H500 V392 Q500 400 492 400 H354 Q346 400 346 392 Z" fill="#fff" class="ln"/>
+<!-- água -->
+<path d="M348 300 H498 V392 Q498 398 492 398 H354 Q348 398 348 392 Z" fill="#dbe9f6"/>
+<line x1="348" y1="300" x2="498" y2="300" class="ln"/>
+<!-- respiro aberto -->
+<line x1="376" y1="210" x2="376" y2="262" stroke="#1f2a33" stroke-width="6"/>
+<rect x="340" y="226" width="166" height="14" rx="3" fill="#e3e7ec" class="ln"/>
+<text x="332" y="270" style="font-size:18px" text-anchor="end">respiro</text>
+<text x="332" y="292" style="font-size:18px" text-anchor="end">aberto</text>
+<line x1="336" y1="266" x2="370" y2="252" class="ln"/>
+<!-- haste -->
+<line x1="440" y1="240" x2="440" y2="334" stroke="#0b63c9" stroke-width="8"/>
+<!-- bolhas -->
+<g fill="#fff" stroke="#0b63c9" stroke-width="2">
+<circle cx="452" cy="320" r="5"/><circle cx="460" cy="308" r="4"/>
+</g>
+<!-- 2 cm -->
+<line x1="420" y1="302" x2="420" y2="334" stroke="#1f2a33" stroke-width="2"/>
+<line x1="413" y1="302" x2="427" y2="302" stroke="#1f2a33" stroke-width="2"/>
+<line x1="413" y1="334" x2="427" y2="334" stroke="#1f2a33" stroke-width="2"/>
+<text x="404" y="324" class="b" style="font-size:18px" text-anchor="end">~2 cm</text>
+<text x="358" y="364" style="font-size:18px">haste sob</text>
+<text x="358" y="386" style="font-size:18px">a água</text>
+<!-- rótulos -->
+<text x="20" y="40" class="b a">Oscila com a respiração;</text>
+<text x="20" y="64" class="b a">borbulha = ar saindo</text>
+<text x="56" y="316" class="b r" style="font-size:18px">Não clampear</text>
+<text x="56" y="338" class="b r" style="font-size:18px">dreno que</text>
+<text x="56" y="360" class="b r" style="font-size:18px">borbulha</text>
+</svg>

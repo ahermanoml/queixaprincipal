@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+  PRÉVIA — SÓ NA BRANCH figuras-v2. NÃO VAI PARA A MAIN.
+  Antes do merge, apagar este arquivo (previa-figuras.html) e a pasta img/procedimentos/_antes/.
+  Página de comparação das figuras do Procedimentos: antes (cópia das antigas em img/procedimentos/_antes/) × depois.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Prévia — Drenagem de tórax: vídeo e figuras (antes × depois)</title>
+<style>
+  :root{--bg:#f4f4f6;--panel:#fff;--ink:#202125;--ink-2:#3f4048;--muted:#5c5e67;--line:#e5e7eb;--accent:#dc2238;--accent-d:#aa1930;--accent-soft:#fdeaec}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{background:#fff;border-bottom:1px solid var(--line);padding:18px 20px 14px}
+  header h1{margin:0;font-size:22px;letter-spacing:-.01em}
+  header p{margin:6px 0 0;color:var(--ink-2);max-width:860px}
+  .aviso{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-d);font-size:13.5px;font-weight:600}
+  main{max-width:1240px;margin:0 auto;padding:18px 16px 60px}
+  nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+  nav a{padding:5px 12px;border-radius:999px;background:#fff;color:var(--ink);text-decoration:none;font-size:14px;border:1px solid var(--line)}
+  nav a:hover{border-color:var(--accent)}
+  h2{margin:28px 0 10px;font-size:19px}
+  h2 a{font-size:13.5px;font-weight:500;color:var(--accent-d);margin-left:8px}
+  .fig{background:var(--panel);border-radius:18px;padding:14px 16px 16px;margin:0 0 14px}
+  .passo{font-size:13px;font-weight:700;color:var(--accent-d);text-transform:none;margin:0 0 2px}
+  .txt{margin:0 0 4px;color:var(--ink)}
+  .tit{margin:0 0 10px;color:var(--ink-2);font-size:14.5px}
+  .tit b{color:var(--ink)}
+  .lado{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  .lado figure{margin:0}
+  .lado figcaption{font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--muted);margin:0 0 4px}
+  .lado .dep figcaption{color:var(--accent-d)}
+  .lado img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+  .falta{color:var(--muted);font-size:14px}
+  @media (max-width:760px){.lado{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Drenagem de tórax — manual de montagem</h1>
+  <p>Piloto do estilo "manual de montagem": o vídeo fica no topo da guia <b>Como fazer</b> e as mesmas ilustrações aparecem embaixo de cada passo. À esquerda a figura que está no ar hoje (quando havia), à direita a nova. O texto clínico dos passos não mudou. <a href="index.html#/procedimentos/dreno">Abrir o dreno no site da prévia</a> → guia Como fazer.</p>
+  <span class="aviso">Prévia — esta página não vai para o site oficial</span>
+</header>
+<main>
+  <section class="fig" style="max-width:420px"><p class="passo">Vídeo</p><p class="tit"><b>Manual de montagem em vídeo</b> — 1 min 15 s, narrado e legendado</p>
+    <video controls playsinline preload="none" poster="video/manual-dreno.jpg" style="width:100%;border-radius:12px;aspect-ratio:9/16;background:#18181c"><source src="video/manual-dreno.mp4" type="video/mp4"></video></section>
+  <nav id="nav"></nav>
+  <div id="lista"></div>
+  <p class="falta" id="falta"></p>
+</main>
+<script src="data/procedimentos.js?v=previa"></script>
+<script>
+  // figuras já redesenhadas nesta rodada (as outras aparecem só como "próxima rodada")
+  const FEITAS = ["dreno-4.svg", "dreno-1.svg", "dreno-5.svg", "dreno-2.svg", "dreno-6.svg", "dreno-7.svg", "dreno-3.svg", "dreno-8.svg", "dreno-9.svg"];
+  const ANTES = ["dreno-1.svg", "dreno-2.svg", "dreno-3.svg"];   // as outras são novas (não havia figura nesse passo)
+  const V = "?t=" + Date.now();
+  const SEC = {preparo: "Preparo", tecnica: "Técnica", depois: "Depois"};
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+  const passoTxt = s => typeof s === "string" ? s : s.t;
+  let html = "", nav = "", faltam = [];
+  PROCS.forEach(p => {
+    const figs = (PROC_FIGURAS[p.id] || []).filter(f => FEITAS.includes(f.arquivo));
+    (PROC_FIGURAS[p.id] || []).forEach(f => { if (!FEITAS.includes(f.arquivo)) faltam.push(f.arquivo); });
+    if (!figs.length) return;
+    nav += `<a href="#p-${p.id}">${esc(p.nm.split(" — ")[0])}</a>`;
+    html += `<h2 id="p-${p.id}">${esc(p.nm)} <a href="index.html#/procedimentos/${p.id}">abrir no site</a></h2>`;
+    figs.forEach(f => {
+      const [sec, n] = f.passo.split(".");
+      const antes = ["preparo", "tecnica", "depois"].slice(0, ["preparo", "tecnica", "depois"].indexOf(sec)).reduce((a, s) => a + (p[s] || []).length, 0);
+      const passo = (p[sec] || [])[+n - 1];
+      html += `<section class="fig">
+        <p class="passo">Passo ${antes + +n} · ${SEC[sec]}</p>
+        <p class="txt">${esc(passo ? passoTxt(passo) : "")}</p>
+        <p class="tit"><b>${esc(f.titulo)}</b> — ${esc(f.legenda)}</p>
+        <div class="lado">
+          ${ANTES.includes(f.arquivo) ? `<figure><figcaption>ANTES</figcaption><img src="img/procedimentos/_antes/${f.arquivo}${V}" alt="Antes: ${esc(f.titulo)}" loading="lazy"></figure>` : `<figure><figcaption>ANTES</figcaption><p class="falta">Não havia figura neste passo.</p></figure>`}
+          <figure class="dep"><figcaption>DEPOIS</figcaption><img src="img/procedimentos/${f.arquivo}${V}" alt="Depois: ${esc(f.titulo)}" loading="lazy"></figure>
+        </div></section>`;
+    });
+  });
+  document.getElementById("nav").innerHTML = nav;
+  document.getElementById("lista").innerHTML = html;
+  document.getElementById("falta").textContent = faltam.length ? `Próxima rodada: mais ${faltam.length} figuras (${faltam.join(", ")}).` : "";
+</script>
+</body>
+</html>

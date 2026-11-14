@@ -8,6 +8,7 @@
    prTexto(p, vals) troca {id} pelo valor (vazio → ____) e apaga as linhas cujo {id?} ficou vazio. */
 const prLista = $("#pr-lista"), prBody = $("#pr-body"), prTitulo = $("#pr-titulo"), prBarra = $("#pr-barra");
 const PR_LACUNA = "____";
+let PR_VID_DIR = "video/";               // vídeos do "Como fazer" (lista em PROC_VIDEOS, data/procedimentos.js)
 let PR_FIG_DIR = "img/procedimentos/";     // figuras do "Como fazer" (lista em PROC_FIGURAS, data/procedimentos.js); let: os testes trocam
 const prFiguras = p => (typeof PROC_FIGURAS!=="undefined" && PROC_FIGURAS[p.id]) || [];
 let prAberto = null;          // procedimento aberto
@@ -217,6 +218,14 @@ function prFiguraHTML(f){
   return `<figure class="pr-fig"><img src="${esc(PR_FIG_DIR + f.arquivo)}" alt="${esc(f.alt || f.titulo || "")}" loading="lazy" decoding="async">
     <figcaption>${f.titulo ? `<b>${esc(f.titulo)}</b> ` : ""}${esc(f.legenda || "")}</figcaption></figure>`;
 }
+// vídeo (manual de montagem) no topo da guia, se houver: carrega só no play
+function prVideoHTML(p){
+  const v = typeof PROC_VIDEOS !== "undefined" && PROC_VIDEOS[p.id];
+  if (!v) return "";
+  return `<figure class="pr-video"><video controls playsinline preload="none"${v.capa ? ` poster="${esc(PR_VID_DIR + v.capa)}"` : ""} aria-label="${esc(v.titulo)}: ${esc(p.nm)}">
+      <source src="${esc(PR_VID_DIR + v.arquivo)}" type="video/mp4"></video>
+    <figcaption><b>${esc(v.titulo)}</b> ${esc(v.legenda || "")}</figcaption></figure>`;
+}
 function prPassos(p, secao){
   const figs = prFiguras(p);
   return p[secao].map((s, i)=>{
@@ -257,7 +266,7 @@ function prComoHTML(p){
        <p class="pr-rev">${p.revisado ? `Revisado em ${esc(p.revisado)}` : "Ainda não revisado pelo médico responsável."}</p>`)
   ].join("");
   // material numa caixa (fechada até a pessoa abrir; lembra o estado), para o passo a passo ser a leitura principal
-  return `<div class="pr-caixas pr-caixa-mat">${prCaixa(p, "material", "Material", "", prMaterial(p))}</div>
+  return `${prVideoHTML(p)}<div class="pr-caixas pr-caixa-mat">${prCaixa(p, "material", "Material", "", prMaterial(p))}</div>
     <section class="pr-sec pr-passos-sec" aria-labelledby="pr-h-passos"><h4 id="pr-h-passos">Passo a passo</h4>
       <div class="pr-passos-wrap">${secoes.map(([s, t])=> `<h5>${t}</h5><ol class="pr-passos">${prPassos(p, s)}</ol>`).join("")}</div>
       ${soltas.length ? `<div class="pr-figs">${soltas.map(prFiguraHTML).join("")}</div>` : ""}</section>

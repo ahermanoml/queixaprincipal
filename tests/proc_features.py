@@ -359,7 +359,14 @@ def run(browser, url):
         call: document.querySelectorAll('.pr-passos .pr-call').length, figs: [...document.querySelectorAll('.pr-passos li .pr-fig img')].map(i => i.getAttribute('src')),
         ok: [...document.querySelectorAll('.pr-passos li .pr-fig img')].every(i => i.complete && i.naturalWidth > 0),
         lista: prFiguras(prAberto).map(f => 'img/procedimentos/' + f.arquivo)})""")
-    rep.check(pz["n"] == pz["esp"] and pz["call"] > 0 and pz["figs"] == pz["lista"] and len(pz["figs"]) == 3, f"Passo a passo do dreno: {pz}")
+    rep.check(pz["n"] == pz["esp"] and pz["call"] > 0 and pz["figs"] == pz["lista"] and len(pz["figs"]) >= 3, f"Passo a passo do dreno: {pz}")
+    # vídeo do manual de montagem no topo do Como fazer (só carrega no play); arquivo e capa existem
+    vd = pg.evaluate("""() => { const v = document.querySelector('#pr-g-como .pr-video video'); return v && {pre: v.preload, src: v.querySelector('source').getAttribute('src'),
+        capa: v.getAttribute('poster'), primeiro: document.querySelector('#pr-g-como').firstElementChild.classList.contains('pr-video')}; }""")
+    rep.check(bool(vd) and vd["pre"] == "none" and vd["primeiro"] and os.path.isfile(os.path.join(REPO, vd["src"])) and os.path.isfile(os.path.join(REPO, vd["capa"])),
+              f"vídeo do dreno no topo do Como fazer: {vd}")
+    # as figuras são loading="lazy": as de baixo da dobra só baixam perto da tela — aqui força o carregamento para conferir todas
+    pg.evaluate("() => document.querySelectorAll('.pr-fig img').forEach(i => { i.loading = 'eager'; })")
     pg.wait_for_function("() => [...document.querySelectorAll('.pr-fig img')].every(i => i.complete && i.naturalWidth > 0)", timeout=5000)
     # figura sob o passo certo; procedimento sem figura não mostra nenhuma
     onde = pg.evaluate("""() => { const li = [...document.querySelectorAll('.pr-passos')][1].children[6]; return !!li.querySelector('img[src$="dreno-3.svg"]'); }""")
@@ -368,6 +375,7 @@ def run(browser, url):
     for pid in pg.evaluate("() => PROCS.map(p => p.id)"):
         ir(pg, base, "#/procedimentos/" + pid)
         pg.click("#pr-guia-como")
+        pg.evaluate("() => document.querySelectorAll('.pr-fig img').forEach(i => { i.loading = 'eager'; })")
         pg.wait_for_function("() => [...document.querySelectorAll('.pr-fig img')].every(i => i.complete)", timeout=5000)
         fz = pg.evaluate("""() => { const secs = ['preparo', 'tecnica', 'depois'], ols = [...document.querySelectorAll('.pr-passos')];
             return prFiguras(prAberto).filter(f => { const [s, n] = f.passo.split('.'); const li = ols[secs.indexOf(s)].children[+n - 1];

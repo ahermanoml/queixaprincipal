@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-5" viewBox="0 0 560 440" width="560" height="440" role="img" aria-labelledby="dreno-5-t dreno-5-d">
+<title id="dreno-5-t">Anestesia por planos e incisão</title>
+<desc id="dreno-5-d">À esquerda, corte da parede com a agulha de anestesia entrando sobre a costela de baixo: anestesiar pele, trajeto, periósteo da borda superior da costela e pleura. À direita, a pele vista de fora com as duas costelas por baixo: a incisão de 2 a 3 cm é feita sobre a costela de baixo, paralela a ela, abaixo do espaço escolhido.</desc>
+<style>.qpf-dreno-5 text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.qpf-dreno-5 .t{paint-order:stroke;stroke:#f6f1e6;stroke-width:5px;stroke-linejoin:round}.qpf-dreno-5 .nh{stroke:none}</style>
+<defs><linearGradient id="dreno-5-gordura" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbeec4"/><stop offset="1" stop-color="#f1dc9c"/></linearGradient><linearGradient id="dreno-5-musculo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d99a90"/><stop offset="1" stop-color="#bf776d"/></linearGradient><linearGradient id="dreno-5-osso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf7ee"/><stop offset="0.6" stop-color="#efe6d2"/><stop offset="1" stop-color="#dccfb3"/></linearGradient><linearGradient id="dreno-5-pele" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e3d4"/><stop offset="0.6" stop-color="#efcdb7"/><stop offset="1" stop-color="#e2b296"/></linearGradient><radialGradient id="dreno-5-pulmao" cx="0.5" cy="0.4" r="0.7"><stop offset="0" stop-color="#f6d4d6"/><stop offset="1" stop-color="#e3a9ad"/></radialGradient><clipPath id="dreno-5-cx"><rect width="560" height="440" rx="16"/></clipPath></defs>
+<rect width="560" height="440" rx="16" fill="#f6f1e6"/>
+<g clip-path="url(#dreno-5-cx)">
+<g transform="translate(12 64) scale(.47)">
+<rect x="0" y="66" width="560" height="16" fill="url(#dreno-5-pele)"/>
+<rect x="0" y="82" width="560" height="46" fill="url(#dreno-5-gordura)"/>
+<ellipse cx="40" cy="104" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="96" cy="98" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="150" cy="110" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="214" cy="100" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="282" cy="108" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="350" cy="98" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="470" cy="106" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<ellipse cx="520" cy="100" rx="20" ry="9" fill="none" stroke="#d8bf74" stroke-width="1.2"/>
+<rect x="0" y="128" width="560" height="44" fill="url(#dreno-5-musculo)"/>
+<path d="M0 136 C140 133 420 139 560 136" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 144 C140 141 420 147 560 144" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 152 C140 149 420 155 560 152" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 160 C140 157 420 163 560 160" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<path d="M0 168 C140 165 420 171 560 168" fill="none" stroke="#a9645b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+<rect x="0" y="172" width="560" height="96" fill="#cf8d84"/>
+<path d="M-40 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M-24 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M-8 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M8 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M24 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M40 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M56 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M72 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M88 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M104 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M120 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M136 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M152 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M168 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M184 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M200 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M216 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M232 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M248 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M264 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M280 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M296 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M312 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M328 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M344 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M360 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M376 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M392 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M408 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M424 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M440 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M456 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M472 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M488 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M504 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M520 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M536 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M552 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M568 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<path d="M584 172 l40 96" fill="none" stroke="#b06a61" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/>
+<rect x="0" y="268" width="560" height="8" fill="#bcd9ea"/>
+<rect x="0" y="276" width="560" height="26" fill="#f4f0ea"/>
+<rect x="0" y="302" width="560" height="140" fill="url(#dreno-5-pulmao)"/>
+<circle cx="30" cy="330" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="70" cy="360" r="16" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="120" cy="326" r="10" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="170" cy="372" r="14" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="230" cy="336" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="290" cy="380" r="18" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="350" cy="332" r="11" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="410" cy="368" r="15" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="470" cy="334" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="520" cy="380" r="17" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="90" cy="410" r="13" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="250" cy="420" r="12" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<circle cx="440" cy="420" r="14" fill="none" stroke="#d48c93" stroke-width="1.4"/>
+<path d="M0 302 H560" fill="none" stroke="#d48c93" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M0 66 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 82 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 128 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 172 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 268 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M0 276 H560" fill="none" stroke="#2b2724" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<ellipse cx="130" cy="220" rx="62" ry="40" fill="url(#dreno-5-osso)" stroke="#2b2724" stroke-width="2.2"/>
+<ellipse cx="130" cy="220" rx="48" ry="27" fill="#f3e6c8" stroke="#b9a98d" stroke-width="1" opacity=".9"/>
+<ellipse cx="430" cy="220" rx="62" ry="40" fill="url(#dreno-5-osso)" stroke="#2b2724" stroke-width="2.2"/>
+<ellipse cx="430" cy="220" rx="48" ry="27" fill="#f3e6c8" stroke="#b9a98d" stroke-width="1" opacity=".9"/>
+<circle cx="188" cy="238" r="7.5" fill="#5677b8" stroke="#2b2724" stroke-width="1.6"/>
+<circle cx="200" cy="248" r="6.5" fill="#c8423c" stroke="#2b2724" stroke-width="1.6"/>
+<circle cx="210" cy="258" r="6" fill="#e6c24a" stroke="#2b2724" stroke-width="1.6"/>
+</g>
+<rect x="12" y="64" width="263" height="207" fill="none" stroke="#2b2724" stroke-width="2" rx="6"/>
+<g transform="translate(180 192) rotate(-66.6)">
+<path d="M0 0 H46" fill="none" stroke="#7d848e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M46 -9 H128 V9 H46 Z" fill="#eef3f7" stroke="#2b2724" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M52 -9 V9 M62 -9 V9 M72 -9 V9" fill="none" stroke="#9aa6b2" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M128 -13 V13" fill="none" stroke="#2b2724" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M128 0 H173 M173 -10 V10" fill="none" stroke="#2b2724" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g class="bd"><circle cx="244" cy="98" r="10" fill="#dc2238" stroke="#fff" stroke-width="2.5"/><text x="244" y="101.8" text-anchor="middle" class="nh" font-size="11.2" font-weight="800" fill="#fff">1</text></g>
+<g class="bd"><circle cx="235" cy="120" r="10" fill="#dc2238" stroke="#fff" stroke-width="2.5"/><text x="235" y="123.8" text-anchor="middle" class="nh" font-size="11.2" font-weight="800" fill="#fff">2</text></g>
+<g class="bd"><circle cx="224" cy="146" r="10" fill="#dc2238" stroke="#fff" stroke-width="2.5"/><text x="224" y="149.8" text-anchor="middle" class="nh" font-size="11.2" font-weight="800" fill="#fff">3</text></g>
+<g class="bd"><circle cx="205" cy="190" r="10" fill="#dc2238" stroke="#fff" stroke-width="2.5"/><text x="205" y="193.8" text-anchor="middle" class="nh" font-size="11.2" font-weight="800" fill="#fff">4</text></g>
+<text x="14" y="50" class="t" font-size="18" font-weight="700" fill="#2b2724" font-style="italic">anestesia por planos</text>
+<text x="18" y="300" class="t" font-size="16" font-weight="600" fill="#202125">1  pele</text>
+<text x="18" y="322" class="t" font-size="16" font-weight="600" fill="#202125">2  trajeto</text>
+<text x="18" y="344" class="t" font-size="16" font-weight="600" fill="#202125">3  periósteo</text>
+<text x="18" y="366" class="t" font-size="16" font-weight="600" fill="#202125">4  pleura</text>
+<circle cx="160" cy="30" r="13" fill="#fff" stroke="#2b2724" stroke-width="2"/>
+<text x="160" y="35.2" class="t nh" font-size="14.3" font-weight="800" text-anchor="middle" fill="#2b2724">D</text>
+<text x="179" y="34.9" class="t nh" font-size="13.7" font-weight="700" fill="#2b2724">×1</text>
+<text x="292" y="50" class="t" font-size="18" font-weight="700" fill="#2b2724" font-style="italic">incisão</text>
+<rect x="290" y="64" width="258" height="207" rx="6" fill="url(#dreno-5-pele)" stroke="#2b2724" stroke-width="2"/>
+<clipPath id="dreno-5-cp"><rect x="290" y="64" width="258" height="207" rx="6"/></clipPath><g clip-path="url(#dreno-5-cp)">
+<path d="M280 100 C360 104 460 110 560 118" fill="none" stroke="#d2a48a" stroke-width="34" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+<path d="M280 214 C360 218 460 224 560 232" fill="none" stroke="#d2a48a" stroke-width="34" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
+</g>
+<g><circle cx="420" cy="162" r="11" fill="rgba(255,255,255,.55)" stroke="#dc2238" stroke-width="3"/><circle cx="420" cy="162" r="3.6" fill="#dc2238"/></g>
+<text x="436" y="150" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">espaço</text>
+<text x="436" y="168" class="t" font-size="15" font-weight="500" fill="#2b2724" font-style="italic">escolhido</text>
+<path d="M372 222 C396 223 430 225 462 228" fill="none" stroke="#dc2238" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M372 240 L462 246 M372.5 233 l-0.9 14 M462.5 239 l-0.9 14" stroke="#2b2724" stroke-width="1.8" stroke-linecap="round"/>
+<text x="417" y="262" class="t" font-size="18" font-weight="800" text-anchor="middle" fill="#202125">2–3 cm</text>
+<g transform="translate(462 228) rotate(-18)">
+<path d="M0 0 C8 -10 26 -12 40 -8 L40 4 C26 6 10 6 0 0 Z" fill="#d9dee4" stroke="#2b2724" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M40 -5 H130 C136 -5 138 3 132 4 H40 Z" fill="#7d848e" stroke="#2b2724" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="300" y="92" class="t" font-size="15" font-weight="500" fill="#3f4048" font-style="italic">costela de cima</text>
+<text x="300" y="206" class="t" font-size="15" font-weight="500" fill="#3f4048" font-style="italic">costela de baixo</text>
+<circle cx="500" cy="30" r="13" fill="#fff" stroke="#2b2724" stroke-width="2"/>
+<text x="500" y="35.2" class="t nh" font-size="14.3" font-weight="800" text-anchor="middle" fill="#2b2724">C</text>
+<text x="519" y="34.9" class="t nh" font-size="13.7" font-weight="700" fill="#2b2724">×1</text>
+<text x="292" y="300" class="t" font-size="16" font-weight="600" fill="#202125">sobre a costela de baixo,</text>
+<text x="292" y="322" class="t" font-size="16" font-weight="600" fill="#202125">paralela a ela</text>
+</g></svg>

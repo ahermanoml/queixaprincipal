@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-2" viewBox="0 0 560 420" role="img" aria-labelledby="dreno-2-t dreno-2-d">
+<title id="dreno-2-t">Trajeto do dreno pela borda superior da costela</title>
+<desc id="dreno-2-d">Corte da parede torácica. A incisão na pele fica sobre a costela de baixo; o trajeto sobe pelo subcutâneo e passa rente à borda superior dessa costela até a pleura, longe do feixe vásculo-nervoso que corre sob a borda inferior da costela de cima. O dreno entra na cavidade pleural com todos os orifícios dentro do tórax.</desc>
+<style>
+.qpf-dreno-2 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-dreno-2 .b{font-weight:700}
+.qpf-dreno-2 .r{fill:#c62828}
+.qpf-dreno-2 .a{fill:#0b63c9}
+.qpf-dreno-2 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- camadas -->
+<rect x="60" y="16" width="52" height="388" fill="#f1e4da"/>
+<rect x="112" y="16" width="146" height="388" fill="#ead7d0"/>
+<rect x="258" y="16" width="196" height="388" fill="#eef2f6"/>
+<path d="M454 16 H544 V404 H454 Q440 210 454 16 Z" fill="#f1dcdc"/>
+<line x1="60" y1="16" x2="60" y2="404" class="ln"/>
+<line x1="258" y1="16" x2="258" y2="404" class="ln"/>
+<path d="M454 16 Q440 210 454 404" class="ln" fill="none"/>
+<!-- costelas -->
+<path d="M150 32 Q150 22 160 22 H232 Q242 22 242 32 V98 Q232 98 222 104 Q212 112 210 128 H160 Q150 128 150 118 Z" fill="#fff" class="ln"/>
+<path d="M150 266 Q150 256 160 256 H232 Q242 256 242 266 V332 Q232 332 222 338 Q212 346 210 362 H160 Q150 362 150 352 Z" fill="#fff" class="ln"/>
+<text x="164" y="70" style="font-size:17px">costela</text>
+<text x="164" y="90" style="font-size:17px">de cima</text>
+<text x="164" y="304" style="font-size:17px">costela</text>
+<text x="164" y="324" style="font-size:17px">de baixo</text>
+<!-- feixes -->
+<g stroke="#c62828" stroke-width="2">
+<circle cx="226" cy="112" r="8" fill="#fbd5d5"/>
+<circle cx="226" cy="130" r="8" fill="#e57373"/>
+<circle cx="226" cy="148" r="8" fill="#fff"/>
+</g>
+<g stroke="#c62828" stroke-width="2" opacity=".5">
+<circle cx="226" cy="346" r="7" fill="#fbd5d5"/>
+<circle cx="226" cy="362" r="7" fill="#e57373"/>
+<circle cx="226" cy="378" r="7" fill="#fff"/>
+</g>
+<!-- dreno: entra pela incisão sobre a costela de baixo, sobe no subcutâneo,
+     passa rente à borda superior e segue para cima (ápice) na cavidade -->
+<path d="M8 330 L60 318 Q100 308 126 262 Q136 244 160 242 H300 Q340 242 348 200 L354 104" fill="none" stroke="#0b63c9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8 330 L60 318 Q100 308 126 262 Q136 244 160 242 H300 Q340 242 348 200 L354 104" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" opacity=".55"/>
+<!-- orifícios laterais (dentro do tórax) -->
+<g fill="#fff" stroke="#0b63c9" stroke-width="2">
+<rect x="344" y="128" width="10" height="16" rx="5"/>
+<rect x="346" y="172" width="10" height="16" rx="5"/>
+<rect x="306" y="235" width="16" height="10" rx="5"/>
+</g>
+<!-- incisão -->
+<g stroke="#1f2a33" stroke-width="3" stroke-linecap="round">
+<line x1="52" y1="306" x2="68" y2="306"/><line x1="52" y1="330" x2="68" y2="330"/>
+</g>
+<!-- rótulos -->
+<text x="272" y="56" class="b r">Feixe vásculo-</text>
+<text x="272" y="80" class="b r">-nervoso</text>
+<line x1="270" y1="74" x2="236" y2="122" stroke="#c62828" stroke-width="2"/>
+<text x="376" y="164" class="b a">Dreno</text>
+<text x="272" y="286" class="b a" style="font-size:18px">Rente à borda</text>
+<text x="272" y="308" class="b a" style="font-size:18px">superior da</text>
+<text x="272" y="330" class="b a" style="font-size:18px">costela de baixo</text>
+<text x="300" y="384" style="font-size:18px">Cavidade pleural</text>
+<text x="463" y="230">Pulmão</text>
+<text x="10" y="372" class="b" style="font-size:18px">Incisão sobre a</text>
+<text x="10" y="394" class="b" style="font-size:18px">costela de baixo</text>
+</svg>

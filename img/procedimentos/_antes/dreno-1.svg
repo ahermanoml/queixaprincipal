@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-1" viewBox="0 0 560 420" role="img" aria-labelledby="dreno-1-t dreno-1-d">
+<title id="dreno-1-t">Triângulo de segurança</title>
+<desc id="dreno-1-d">Lateral do tórax esquerdo com o braço levantado atrás da cabeça. O triângulo de segurança é limitado à frente pela borda lateral do peitoral maior, atrás pela borda anterior do grande dorsal e embaixo pela linha do 5º espaço intercostal, na altura do mamilo; o ápice fica abaixo da axila. O ponto de inserção está no 5º espaço intercostal, na linha axilar média.</desc>
+<style>
+.qpf-dreno-1 text{font-family:system-ui,"Segoe UI",Roboto,sans-serif;font-size:20px;fill:#1f2a33;paint-order:stroke;stroke:#f7f8fa;stroke-width:4px;stroke-linejoin:round}
+.qpf-dreno-1 .b{font-weight:700}
+.qpf-dreno-1 .a{fill:#0b63c9}
+.qpf-dreno-1 .r{fill:#c62828}
+.qpf-dreno-1 .ln{stroke:#1f2a33;stroke-width:2}
+</style>
+<rect width="560" height="420" rx="18" fill="#f7f8fa"/>
+<!-- cabeça e pescoço (olhando para a direita) -->
+<path d="M318 120 L330 70 L366 76 L362 122 Z" fill="#ecd9cc" class="ln" stroke-linejoin="round"/>
+<circle cx="356" cy="50" r="38" fill="#ecd9cc" class="ln"/>
+<!-- braço levantado, antebraço atrás da cabeça -->
+<path d="M246 150 L222 40 L330 14" fill="none" stroke="#1f2a33" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M246 150 L222 40 L330 14" fill="none" stroke="#ecd9cc" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="356" cy="50" r="38" fill="#ecd9cc" class="ln"/>
+<!-- tronco -->
+<clipPath id="dreno-1-corpo"><path d="M156 404 Q146 300 160 220 Q170 160 206 128 L262 172 Q290 118 332 112 Q384 120 410 170 Q428 214 418 260 Q404 320 416 404 Z"/></clipPath>
+<path d="M156 404 Q146 300 160 220 Q170 160 206 128 L262 172 Q290 118 332 112 Q384 120 410 170 Q428 214 418 260 Q404 320 416 404 Z" fill="#ecd9cc" class="ln" stroke-linejoin="round"/>
+<g clip-path="url(#dreno-1-corpo)">
+<path d="M290 150 Q318 206 352 262 Q380 300 440 300 V90 H300 Z" fill="#dfc3b4"/>
+<path d="M232 150 Q216 200 214 262 Q212 330 218 410 H120 V110 Z" fill="#dfc3b4"/>
+</g>
+<path d="M290 150 Q318 206 352 262 Q380 300 440 300" class="ln" fill="none" clip-path="url(#dreno-1-corpo)"/>
+<path d="M232 150 Q216 200 214 262 Q212 330 218 410" class="ln" fill="none" clip-path="url(#dreno-1-corpo)"/>
+<!-- triângulo de segurança -->
+<path d="M262 176 L350 260 L214 260 Z" fill="#0b63c9" fill-opacity=".16" stroke="#0b63c9" stroke-width="3" stroke-linejoin="round"/>
+<line x1="350" y1="260" x2="414" y2="260" stroke="#0b63c9" stroke-width="2" stroke-dasharray="6 5"/>
+<!-- mamilo -->
+<circle cx="416" cy="260" r="7" fill="#c9a08e" class="ln"/>
+<!-- linha axilar média -->
+<line x1="268" y1="186" x2="268" y2="256" stroke="#1f2a33" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+<!-- ponto de inserção -->
+<circle cx="268" cy="252" r="12" fill="#fff" stroke="#0b63c9" stroke-width="4"/>
+<circle cx="268" cy="252" r="4.5" fill="#0b63c9"/>
+<!-- abaixo da base = risco -->
+<path d="M240 286 V318" stroke="#c62828" stroke-width="3" stroke-linecap="round"/>
+<path d="M230 306 L240 320 L250 306" stroke="#c62828" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="256" y="300" class="b r" style="font-size:18px">Abaixo: risco</text>
+<text x="256" y="322" class="b r" style="font-size:18px">de diafragma</text>
+<text x="256" y="344" class="b r" style="font-size:18px">e abdome</text>
+<!-- rótulos -->
+<text x="440" y="150" class="b">Peitoral</text>
+<text x="440" y="174" class="b">maior</text>
+<line x1="438" y1="180" x2="330" y2="222" class="ln"/>
+<text x="20" y="214" class="b">Grande</text>
+<text x="20" y="238" class="b">dorsal</text>
+<line x1="94" y1="230" x2="214" y2="236" class="ln"/>
+<text x="428" y="252" class="a b" style="font-size:18px">5º EIC</text>
+<text x="428" y="282" style="font-size:18px">mamilo</text>
+<text x="20" y="372" class="b a">Linha axilar média,</text>
+<text x="20" y="396" class="b a">5º EIC</text>
+<line x1="120" y1="354" x2="260" y2="262" stroke="#0b63c9" stroke-width="2"/>
+</svg>

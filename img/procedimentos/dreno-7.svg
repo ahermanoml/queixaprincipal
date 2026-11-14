@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="qpf-dreno-7" viewBox="0 0 560 440" width="560" height="440" role="img" aria-labelledby="dreno-7-t dreno-7-d">
+<title id="dreno-7-t">Direção do dreno</title>
+<desc id="dreno-7-d">Tórax visto de frente, com o dreno entrando pela lateral direita no 4º ou 5º espaço intercostal. Para ar, o dreno vai para cima e para a frente, rumo ao ápice; para líquido, para trás e para baixo, rumo à base. No detalhe, todos os orifícios do dreno ficam dentro do tórax.</desc>
+<style>.qpf-dreno-7 text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.qpf-dreno-7 .t{paint-order:stroke;stroke:#f6f1e6;stroke-width:5px;stroke-linejoin:round}.qpf-dreno-7 .nh{stroke:none}</style>
+<defs><linearGradient id="dreno-7-musculo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d99a90"/><stop offset="1" stop-color="#bf776d"/></linearGradient><linearGradient id="dreno-7-pele" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e3d4"/><stop offset="0.6" stop-color="#efcdb7"/><stop offset="1" stop-color="#e2b296"/></linearGradient><radialGradient id="dreno-7-pulmao" cx="0.5" cy="0.4" r="0.7"><stop offset="0" stop-color="#f6d4d6"/><stop offset="1" stop-color="#e3a9ad"/></radialGradient><marker id="dreno-7-ah-2b2724" viewBox="0 0 10 10" refX="5.2" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto-start-reverse"><path d="M0.6 0.8 L9.6 5 L0.6 9.2 Z" fill="#2b2724" stroke="#2b2724" stroke-width="1" stroke-linejoin="round"/></marker><clipPath id="dreno-7-cx"><rect width="560" height="440" rx="16"/></clipPath></defs>
+<rect width="560" height="440" rx="16" fill="#f6f1e6"/>
+<g clip-path="url(#dreno-7-cx)">
+<path d="M110 70 C150 52 210 46 280 46 C350 46 410 52 450 70 C470 120 470 220 452 300 C444 350 430 400 424 440 L136 440 C130 400 116 350 108 300 C90 220 90 120 110 70 Z" fill="url(#dreno-7-pele)" stroke="#202125" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M270 92 C220 88 150 106 124 138 M290 92 C340 88 410 106 436 138" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M270 128 C220 124 150 142 124 174 M290 128 C340 124 410 142 436 174" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M270 164 C220 160 150 178 124 210 M290 164 C340 160 410 178 436 210" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M270 200 C220 196 150 214 124 246 M290 200 C340 196 410 214 436 246" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M270 236 C220 232 150 250 124 282 M290 236 C340 232 410 250 436 282" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M270 272 C220 268 150 286 124 318 M290 272 C340 268 410 286 436 318" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M270 308 C220 304 150 322 124 354 M290 308 C340 304 410 322 436 354" fill="none" stroke="#c99f86" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>
+<path d="M198 84 C172 86 150 120 142 170 C134 230 134 300 140 348 C170 330 214 322 252 336 C258 290 260 230 256 170 C252 130 238 92 214 84 Z" fill="url(#dreno-7-pulmao)" stroke="#c27c84" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".92"/>
+<path d="M362 84 C388 86 410 120 418 170 C426 230 426 300 420 352 C392 336 352 328 320 340 C330 312 328 290 314 272 C304 240 302 200 304 170 C308 130 322 92 346 84 Z" fill="url(#dreno-7-pulmao)" stroke="#c27c84" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".92"/>
+<path d="M262 206 C300 200 330 232 332 280 C334 320 302 344 272 340 C252 330 246 292 250 252 C252 230 254 214 262 206 Z" fill="#d98a86" stroke="#a95b57" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".75"/>
+<path d="M138 352 C184 318 232 320 262 340 M300 342 C340 322 392 324 424 356" fill="none" stroke="#9c6b5c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M100 238 C122 240 150 236 164 214 C176 190 178 150 186 112" fill="none" stroke="#2b2724" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M100 238 C122 240 150 236 164 214 C176 190 178 150 186 112" fill="none" stroke="#f5f7f9" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="168" cy="196" r="3" fill="#2b2724"/>
+<circle cx="176" cy="166" r="3" fill="#2b2724"/>
+<circle cx="182" cy="136" r="3" fill="#2b2724"/>
+<path d="M164 240 C170 270 166 302 170 330" fill="none" stroke="#2b2724" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7"/>
+<path d="M170 316 L170 334" fill="none" stroke="#2b2724" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#dreno-7-ah-2b2724)"/>
+<g><circle cx="112" cy="238" r="10" fill="rgba(255,255,255,.55)" stroke="#dc2238" stroke-width="3"/><circle cx="112" cy="238" r="3.6" fill="#dc2238"/></g>
+<text x="196" y="104" class="t" font-size="20" font-weight="800" fill="#aa1930">ar</text>
+<text x="196" y="124" class="t" font-size="16" font-weight="500" fill="#2b2724" font-style="italic">para cima e</text>
+<text x="196" y="142" class="t" font-size="16" font-weight="500" fill="#2b2724" font-style="italic">para a frente</text>
+<text x="186" y="372" class="t" font-size="20" font-weight="800" fill="#202125">líquido</text>
+<text x="186" y="392" class="t" font-size="16" font-weight="500" fill="#2b2724" font-style="italic">para trás e para baixo</text>
+<path d="M184 360 L172 336" fill="none" stroke="#202125" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="172" cy="336" r="3.2" fill="#202125" stroke="#fff" stroke-width="1.2"/>
+<circle cx="476" cy="330" r="62" fill="#ffffff" stroke="#2b2724" stroke-width="2"/>
+<clipPath id="dreno-7-z"><circle cx="476" cy="330" r="60"/></clipPath><g clip-path="url(#dreno-7-z)">
+<rect x="410" y="260" width="36" height="140" fill="url(#dreno-7-musculo)"/>
+<rect x="446" y="260" width="6" height="140" fill="#bcd9ea"/>
+<path d="M400 330 H546" fill="none" stroke="#2b2724" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M400 330 H546" fill="none" stroke="#f5f7f9" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="468" cy="330" rx="5" ry="4" fill="#2b2724"/>
+<ellipse cx="492" cy="330" rx="5" ry="4" fill="#2b2724"/>
+<ellipse cx="516" cy="330" rx="5" ry="4" fill="#2b2724"/>
+</g>
+<circle cx="520" cy="290" r="11.2" fill="#17794c"/><path d="M515 290.4 l3.6 3.8 l6.8 -7.6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="476" y="418" class="t" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2724" font-style="italic">todos os furos</text>
+<text x="476" y="436" class="t" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2724" font-style="italic">dentro do tórax</text>
+</g></svg>
