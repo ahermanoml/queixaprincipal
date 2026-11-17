@@ -146,7 +146,7 @@ function renderMid(c){
         <input id="peso" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${peso>0?num(peso,1):""}"><span class="un">kg</span>
         <span class="peso-hint">${pesoHint()}</span></div>` : "";
   // ordem: título → abas Adulto | Pediátrico → subopção Ambulatorial | Internação → (peso) → seções
-  let h = `<div class="mid-head pac-${currentPac}"><h3><span class="ic" aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>
+  let h = `<div class="mid-head pac-${currentPac}"><h3><span class="ic" aria-hidden="true">${c.ic}</span> ${esc(c.nm)}</h3><div class="desc">${esc(c.sub||"")} · clique num item, ou em <b>Adicionar receita</b> num bloco inteiro.</div>${typeof guiaDaCond==="function" && guiaDaCond(c.id) ? `<a class="guia-link" href="#/guias/${esc(guiaDaCond(c.id).id)}"><span class="i i-book" aria-hidden="true"></span>Resumo da condição</a>` : ""}
     <div class="modo"><div class="pac-tabs" role="tablist" aria-label="Paciente">${pacTabs}</div>
     <div class="set-box" role="tablist" aria-label="Ambulatorial ou internação">${setBtns}</div></div>${pesoBox}</div>`;
   // recomendações e instruções: orientações de todos os blocos do modo, sem repetir — primeiro as do padrão,

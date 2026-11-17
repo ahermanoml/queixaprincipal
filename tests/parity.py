@@ -30,7 +30,8 @@ async ({ci, pacs, sets, weights}) => {
     // (sem espaços), e cada elemento clicável/ocultável com seus data-* e o estado hidden/aria-*.
     const sig = (() => {
       const c = mid.cloneNode(true);
-      c.querySelectorAll('[aria-hidden="true"], svg').forEach(e => e.remove());
+      // .guia-link: atalho "Resumo da condição" (aba Guias, 2026-11) — navegação nova, fora da comparação com a versão antiga
+      c.querySelectorAll('[aria-hidden="true"], svg, .guia-link').forEach(e => e.remove());
       const txt = c.textContent.replace(/＋/g, '').replace(/\s+/g, '');
       const ctl = [...mid.querySelectorAll('button, input, [data-b], [data-pb], [data-pf], [data-o], [hidden]')].map(e =>
         e.tagName + [...e.attributes].filter(a => /^(data-|aria-(selected|expanded|pressed|label|controls)$|hidden$|role$|id$)/.test(a.name))
