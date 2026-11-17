@@ -25,6 +25,9 @@ body[data-inicio="1"] .inicio-ola{display:block;max-width:1240px;margin:0 auto;p
 header.top .inicio-ola p{margin:8px 0 0;font-size:17px;color:var(--hdr-ink-2)}
 .inicio{padding:0 28px 48px;margin-top:-72px;position:relative;z-index:2}
 .inicio-grade{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+/* seis abas: duas linhas de três no computador (auto-fit deixaria uma sozinha na segunda linha) */
+@media(min-width:821px){ .inicio-grade:has(> .tile:nth-child(6):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
+  .inicio-grade:has(> .tile:nth-child(6):last-child) .tile{min-height:clamp(170px,26vh,240px)} }
 /* quadrado = cartão grafite com brilho vermelho no canto de cima; ícone num quadrado vermelho; contorno fino claro
    (separa o cartão do fundo escuro no tema escuro) */
 .tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:clamp(240px,40vh,340px);padding:24px 24px 22px;
@@ -67,7 +70,8 @@ body.voando .grid{animation:grade-entra .45s ease both}
   .tile-t{font-size:17px;margin-top:12px}
   .tile-d{font-size:12.5px}
   .tile-seta{display:none}
-  .tile[data-v="rascunho"]{grid-column:1 / -1;min-height:120px}
+  /* número ímpar de abas: o Meu rascunho ocupa a linha inteira; com seis, ficam três linhas de dois */
+  .inicio-grade:not(:has(> .tile:nth-child(6):last-child)) .tile[data-v="rascunho"]{grid-column:1 / -1;min-height:120px}
 }
 
 /* ---- conta no cabeçalho ---- */

@@ -1,4 +1,4 @@
-"""Cross-tab checks of the five tabs: receita column per tab, the shared weight, Limpar, busca única landing on a
+"""Cross-tab checks of the six tabs: receita column per tab, the shared weight, Limpar, busca única landing on a
 score, a drug row and a procedure, the procedures' "Doses:" links to Calculadoras (and Back), and the tab bar."""
 import json
 from lib import Page, Report
@@ -53,7 +53,7 @@ def run(browser, url):
     # busca única: groups in tab order, lands on a score and on a drug row
     groups = pg.evaluate("""() => { const i = document.querySelector('#busca-input'); i.value = 'dor'; i.dispatchEvent(new Event('input'));
         return [...document.querySelectorAll('#busca-list [role=group]')].map(g => document.getElementById(g.getAttribute('aria-labelledby')).textContent.replace(/\\s*\\d+$/, '').trim()); }""")
-    order = ["⭐ Meu rascunho", "💊 Prescrições", "📊 Escores", "🧮 Calculadoras", "🩺 Procedimentos"]
+    order = ["⭐ Meu rascunho", "💊 Prescrições", "📊 Escores", "🧮 Calculadoras", "🩺 Procedimentos", "📖 Guias"]
     rep.check(len(groups) >= 3 and groups == [g for g in order if g in groups], f"search groups in tab order: {groups}")
     pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
     pg.keyboard.press("Control+k"); pg.keyboard.type("heart"); pg.keyboard.press("Enter"); pg.wait_for_timeout(80)
@@ -156,13 +156,13 @@ def run(browser, url):
         rep.check(home == {"hash": "#/rascunho", "view": "rascunho", "first": "rascunho", "active": "rascunho", "scrollLeft": 0, "leftEdge": True, "pageX": False, "rows": 1},
                   f"{w}px home: {home}")
         n += 1
-        for key in ("procedimentos", "rascunho", "calculadoras", "escores", "prescricoes"):
+        for key in ("procedimentos", "rascunho", "guias", "calculadoras", "escores", "prescricoes"):
             pg.click(f"#tab-{key}")
             pg.wait_for_timeout(60)
             b = pg.evaluate("""() => { const n = document.querySelector('#top-tabs'), t = [...n.children], a = n.querySelector('.active').getBoundingClientRect(), r = n.getBoundingClientRect();
                 return {n: t.length, rows: new Set(t.map(x => x.offsetTop)).size, clipped: t.filter(x => x.scrollWidth > x.clientWidth).length,
                         pageX: document.documentElement.scrollWidth > innerWidth, activeInView: a.left >= r.left - 1 && a.right <= r.right + 1}; }""")
-            rep.check(b == {"n": 5, "rows": 1, "clipped": 0, "pageX": False, "activeInView": True}, f"{w}px, {key} active: {b}")
+            rep.check(b == {"n": 6, "rows": 1, "clipped": 0, "pageX": False, "activeInView": True}, f"{w}px, {key} active: {b}")
             n += 1
         rep.check(not p.problems, f"{w}px problems: " + "; ".join(p.problems[:3]))
         p.close()

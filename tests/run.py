@@ -17,6 +17,7 @@ import parity, escores_golden, escores_parity, escores_layout
 import integracao
 import calc_paridade, calc_features   # aba Calculadoras: contas iguais ao gabarito (site corrigido; diff vs dilui) + comportamento
 import proc_features                  # aba Procedimentos: estrutura, comportamento, layout
+import guias_features                 # aba Guias: estrutura do conteúdo, comportamento, layout
 
 try:
     import features
@@ -61,7 +62,8 @@ def main():
                     ok &= features.run(b, url)
                     ok &= calc_paridade.run(b, url) & calc_features.run(b, url)
                     ok &= proc_features.run(b, url)
-                    ok &= integracao.run(b, url)   # the five tabs together: receita, peso, Limpar, busca, links, tab bar
+                    ok &= guias_features.run(b, url)
+                    ok &= integracao.run(b, url)   # the six tabs together: receita, peso, Limpar, busca, links, tab bar
             if shots and a.shots:
                 ok &= shots.run(b, file_url(REPO), a.shots)
                 ok &= calc_features.shots(b, file_url(REPO), a.shots)

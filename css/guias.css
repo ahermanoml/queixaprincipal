@@ -1,0 +1,71 @@
+/* guias.css — aba Guias (js/views/guias.js). Prefixo gu-. A lista reaproveita as linhas .cond de Prescrições (emoji num
+   quadradinho tonal); a página é uma coluna de leitura: cabeçalho, resumo, "texto pronto" (roteiros de exame) e as seções,
+   cada uma com o seu Copiar. Só tokens de cor (:root de css/app.css, claro e escuro), ícones de linha (css/icones.css). */
+#col-guia{container:guia / inline-size}
+
+/* ---- lista ---- */
+#gu-lista{padding:2px 0 12px}
+.gu-lgrp{display:flex;align-items:center;gap:8px;margin:12px 18px 4px;font-size:12.5px;font-weight:650;color:var(--muted-aa)}
+.gu-lgrp .count{margin-left:auto;font-variant-numeric:tabular-nums}
+.gu-lgrp:first-child{margin-top:4px}
+.gu-row{border:0;background:none;font:inherit;color:inherit;text-align:left}
+.gu-nada{padding:18px;font-size:13px;color:var(--muted-aa)}
+
+/* ---- página ---- */
+.gu{max-width:880px;padding:10px 22px 30px}
+.gu-head h3{margin:2px 0 4px;font-size:21px;font-weight:700;line-height:1.25;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.gu-head h3 .ic{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:var(--chip);font-size:18px}
+.gu-head .tag{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--warn);cursor:help}
+.gu-head .tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.gu-sub{font-size:13px;color:var(--muted-aa);margin-bottom:10px}
+.gu-acoes{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:8px 0 14px}
+.gu-acoes .btn{text-decoration:none}
+.gu-acoes #gu-tudo{height:40px;padding:0 20px;font-size:14px}
+.gu-rx .i{--isz:16px}
+.gu-rev{margin-left:auto;font-size:12px;color:var(--muted-aa)}
+.gu-resumo{margin:0 0 14px;font-size:14.5px;line-height:1.6;color:var(--ink)}
+
+/* seções: título + Copiar; itens em lista curta */
+.gu-sec{margin:0 0 10px;padding:12px 14px 10px;border-radius:var(--r-lg);background:var(--sunken)}
+.gu-sh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.gu-sh h4{flex:1;min-width:0;margin:0;font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.gu-sh h4 .i{--isz:17px}
+.gu-cp{height:30px;padding:0 10px;font-size:12.5px;gap:5px;flex:none}
+.gu-cp .i{--isz:15px}
+.gu-sec ul{margin:2px 0 0;padding-left:20px}
+.gu-sec li{margin:3px 0;font-size:13.5px;line-height:1.55;color:var(--ink)}
+.gu-sec li::marker{color:var(--muted-aa)}
+/* sinais de alarme: tom de perigo, sempre com o ícone e a palavra (nunca só a cor) */
+.gu-alerta{background:var(--danger-soft)}
+.gu-alerta h4{color:var(--danger)}
+/* opções fora da diretriz principal (off-label / alternativas do material do médico) */
+.gu-off{background:var(--warn-soft)}
+.gu-off h4{color:var(--warn)}
+/* texto pronto (achados normais para colar na evolução) */
+.gu-pronto{background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.gu-pre{margin:4px 0 2px;padding:10px 12px;border-radius:var(--r-md);background:var(--sunken);font-family:var(--mono);font-size:12.5px;line-height:1.7;
+  white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+
+/* caixas fechadas: para o revisor, fontes */
+.gu-caixa{margin:10px 0 0;border-radius:var(--r-md);background:var(--sunken);padding:0 14px}
+.gu-caixa summary{display:flex;align-items:center;gap:8px;min-height:40px;font-size:13.5px;font-weight:650;color:var(--ink-2);cursor:pointer}
+.gu-caixa summary .i{--isz:16px}
+.gu-caixa summary .count{margin-left:auto;font-size:12px;color:var(--muted-aa)}
+.gu-caixa ul{margin:0 0 12px;padding-left:20px}
+.gu-caixa li{font-size:12.5px;line-height:1.5;margin:3px 0;color:var(--ink-2)}
+.gu-aviso{display:flex;align-items:flex-start;gap:7px;margin:16px 0 0;font-size:12px;color:var(--muted-aa);line-height:1.5}
+.gu-aviso .i{--isz:14px;margin-top:2px;color:var(--warn)}
+
+/* coluna estreita: o Copiar de cada seção vira só o ícone */
+@container guia (max-width:520px){
+  .gu{padding:8px 14px 24px}
+  .gu-cpt{display:none}
+  .gu-cp{width:36px;padding:0;justify-content:center}
+  .gu-rev{margin-left:0;flex-basis:100%}
+}
+
+/* atalho no painel de Prescrições: "Resumo da condição" (abre o guia da condição) */
+.guia-link{display:inline-flex;align-items:center;gap:6px;margin:2px 0 8px;font-size:13px;font-weight:650;color:var(--accent-d);text-decoration:none;
+  border-radius:999px;padding:3px 12px 3px 9px;background:var(--accent-soft)}
+.guia-link:hover{text-decoration:underline}
+.guia-link .i{--isz:15px}
