@@ -87,10 +87,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Confirmar o ponto de corte de febre usado no serviço (37,5 °C ou 37,8 °C axilar).",
-   "Ajustar o texto pronto às abreviações que o senhor usa na evolução."
-  ],
+  "pendencias": [],
   "fontes": [
    "Porto CC, Porto AL. Semiologia Médica. 8ª ed. Guanabara Koogan; 2019.",
    "Bickley LS. Bates' Guide to Physical Examination and History Taking. 13ª ed. Wolters Kluwer; 2021.",
@@ -537,9 +534,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Confirmar se o serviço usa as faixas do PALS 2020 ou outra tabela de sinais vitais pediátricos."
-  ],
+  "pendencias": [],
   "fontes": [
    "American Heart Association. Pediatric Advanced Life Support (PALS) Provider Manual. 2020.",
    "Dieckmann RA, Brownstein D, Gausche-Hill M. The pediatric assessment triangle. Pediatr Emerg Care. 2010;26(4):312-5.",
@@ -553,7 +548,7 @@ const GUIA_ITENS = [
   "cond": "faringo_inesp",
   "nm": "Faringoamigdalite inespecífica (viral)",
   "sub": "dor de garganta · viral · Centor · sintomáticos · sem antibiótico",
-  "kw": "faringoamigdalite inespecifica faringite viral amigdalite viral dor de garganta odinofagia garganta inflamada centor mcisaac feverpain teste rapido estreptococo mononucleose herpangina abscesso periamigdaliano dipirona paracetamol ibuprofeno flurbiprofeno pastilha dexametasona",
+  "kw": "faringoamigdalite inespecifica faringite viral amigdalite viral dor de garganta odinofagia garganta inflamada centor mcisaac feverpain teste rapido estreptococo mononucleose herpangina abscesso periamigdaliano dipirona paracetamol ibuprofeno flurbiprofeno pastilha dexametasona difenidramina",
   "draft": true,
   "revisado": null,
   "resumo": "Dor de garganta aguda, na maioria das vezes viral: coriza, tosse, rouquidão, aftas ou conjuntivite falam a favor de vírus. A decisão no PS/UBS é separar quem tem baixa probabilidade de estreptococo (só sintomáticos) de quem precisa de teste ou antibiótico, e reconhecer as complicações supurativas.",
@@ -562,7 +557,7 @@ const GUIA_ITENS = [
     "t": "Quando pensar / diagnóstico",
     "itens": [
      "Dor de garganta com coriza, tosse, rouquidão, aftas ou conjuntivite: quadro viral provável, mesmo com exsudato.",
-     "Aplicar Centor/McIsaac (ver Escores) antes de pedir teste: escore baixo dispensa teste e antibiótico (IDSA 2025).",
+     "Aplicar Centor/McIsaac (ver Escores) antes de pedir teste: 0–1 dispensa teste e antibiótico; 2–3 pede teste; ≥ 4 testar ou, sem teste, tratar (IDSA 2025).",
      "Menores de 3 anos: estreptococo é raro; não testar de rotina, salvo contato domiciliar com caso confirmado.",
      "Mononucleose: adolescente ou adulto jovem com exsudato exuberante, linfonodos cervicais posteriores, esplenomegalia e fadiga.",
      "Pensar também em síndrome gripal ou COVID-19 (febre súbita, mialgia), herpangina e gengivoestomatite herpética na criança."
@@ -589,9 +584,10 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Sintomáticos: dipirona ou paracetamol; ibuprofeno é alternativa para dor intensa (evitar se dengue, desidratação, doença renal ou úlcera).",
-     "Pastilhas com anestésico ou anti-inflamatório aliviam a dor por algumas horas, sem encurtar a doença.",
-     "Antibiótico não está indicado com teste negativo ou baixa probabilidade de estreptococo.",
+     "Sintomáticos: dipirona, paracetamol ou ibuprofeno para dor intensa (evitar se dengue, desidratação, doença renal ou úlcera). Nimesulida não é recomendada (risco hepático).",
+     "Pastilha de flurbiprofeno (ou de difenidramina, só a partir de 12 anos) alivia a dor por algumas horas, sem encurtar a doença.",
+     "Antibiótico: não indicado com escore ≤ 1 ou teste negativo; com 2–3 pontos, só se o teste for positivo; com ≥ 4 e sem teste disponível, tratar como estreptocócica.",
+     "Se tratar estreptococo na criança: penicilina benzatina 600.000 UI abaixo de 20 kg e 1.200.000 UI a partir de 20 kg (diretriz brasileira); volta à escola após 12 h de antibiótico e sem febre.",
      "Dexametasona em dose única reduz a dor em quem não consegue engolir: reservar para odinofagia intensa (bloco de internação).",
      "Sem aceitação oral ou desidratado: hidratação venosa, analgesia EV e reavaliação da deglutição antes da alta."
     ]
@@ -618,19 +614,13 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "O adulto ambulatorial não tem AINE no Padrão (o KW cita ibuprofeno e cetoprofeno) — decidir se acrescenta ibuprofeno.",
-   "Material do Drive cita nimesulida, diclofenaco e meloxicam como AINE na amigdalite; preferi ibuprofeno no texto — decidir se algum entra em Outras opções.",
-   "Centor do site (Ficha Vermelha) usa cortes ≤ 1 / 2–3 / ≥ 4; o guia HC-FMUSP 2024 usa 0–2 não tratar, 3 considerar, ≥ 4 tratar — o escore fica como está; decidir qual corte citar nas orientações.",
-   "Bloco pediátrico de antibiótico usa corte de 27 kg para a penicilina benzatina (IDSA/AHA); o guia HC-FMUSP 2024 usa 30 kg — decidir.",
-   "Orientação pediátrica diz volta à escola após 24 h de antibiótico; Faringoamigdalite estreptocócica diz 12 h — uniformizar.",
-   "Spray de hexamidina com anestésico e pastilha anestésica dos PDFs não foram propostos (o Padrão já tem pastilhas)."
-  ],
+  "pendencias": [],
   "fontes": [
    "Barshak MB, Watson ME Jr, Wessels MR et al. Clinical Practice Guideline Update by the Infectious Diseases Society of America on Group A Streptococcal Pharyngitis (parte 1: avaliação de risco e testes). IDSA; 2025.",
    "Shulman ST et al. Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA. Clin Infect Dis. 2012;55(10):e86-102.",
    "National Institute for Health and Care Excellence (NICE). Sore throat (acute): antimicrobial prescribing (NG84). 2018.",
-   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024."
+   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024.",
+   "Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras para o Diagnóstico, Tratamento e Prevenção da Febre Reumática. Arq Bras Cardiol. 2009;93(3 Supl 4)."
   ]
  },
  {
@@ -675,10 +665,11 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "1ª escolha: amoxicilina por 10 dias ou penicilina benzatina IM em dose única (garante a adesão; observar 30 min após aplicar).",
-     "Benzatina na criança: 600.000 UI se < 27 kg; 1.200.000 UI a partir de 27 kg.",
+     "1ª escolha: amoxicilina por 10 dias ou penicilina benzatina IM em dose única (garante a adesão; observar 30 min após aplicar). Penicilina V oral por 10 dias é equivalente, onde houver.",
+     "Benzatina na criança: 600.000 UI abaixo de 20 kg; 1.200.000 UI a partir de 20 kg (diretriz brasileira de febre reumática).",
      "Alergia não grave à penicilina: cefalexina por 10 dias. Anafilaxia: azitromicina por 5 dias ou clindamicina.",
      "Amoxicilina-clavulanato não é necessária na faringite não complicada.",
+     "Omeprazol não faz parte do tratamento; azitromicina só na alergia grave, por 5 dias.",
      "Dor: dipirona ou paracetamol; ibuprofeno se não houver contraindicação.",
      "Sem via oral, desidratado ou toxêmico: benzatina IM ou ampicilina EV, hidratação e analgesia EV (bloco de internação).",
      "Febre sem melhora em 72 h: reavaliar adesão, abscesso ou outro diagnóstico (mononucleose)."
@@ -714,19 +705,13 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Corte de peso da benzatina: DATA e IDSA/AHA usam 27 kg; o guia HC-FMUSP 2024 usa 30 kg — decidir.",
-   "Afastamento escolar: aqui o DATA diz 12 h de antibiótico; no bloco de antibiótico de Faringoamigdalite inespecífica diz 24 h — uniformizar.",
-   "Penicilina V oral (1ª linha na IDSA 2012 e no guia HC-FMUSP 2024) não está no DATA; a apresentação nacional é em UI e a disponibilidade é irregular — decidir se entra.",
-   "Outras opções antigas ('Opção 1' e 'Opção 2') associam omeprazol ao antibiótico sem indicação — considerar retirar.",
-   "PDFs do Drive usam amoxicilina por 7 dias e azitromicina por 3 dias; diretrizes mantêm 10 dias e azitromicina por 5 dias — não aproveitados.",
-   "A IDSA publicou em 2025 só a parte 1 (avaliação de risco e testes); a parte de tratamento ainda segue a diretriz de 2012 — revisar quando sair."
-  ],
+  "pendencias": [],
   "fontes": [
    "Shulman ST et al. Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA. Clin Infect Dis. 2012;55(10):e86-102.",
    "Barshak MB, Watson ME Jr, Wessels MR et al. Clinical Practice Guideline Update by the Infectious Diseases Society of America on Group A Streptococcal Pharyngitis (parte 1: avaliação de risco e testes). IDSA; 2025.",
    "Gerber MA et al. Prevention of rheumatic fever and diagnosis and treatment of acute Streptococcal pharyngitis (AHA). Circulation. 2009;119(11):1541-51.",
-   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024."
+   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024.",
+   "Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras para o Diagnóstico, Tratamento e Prevenção da Febre Reumática. Arq Bras Cardiol. 2009;93(3 Supl 4)."
   ]
  },
  {
@@ -735,7 +720,7 @@ const GUIA_ITENS = [
   "cond": "nasofaringite",
   "nm": "Nasofaringite / Resfriado",
   "sub": "IVAS · coriza · lavagem nasal · sintomáticos · criança",
-  "kw": "nasofaringite rinofaringite resfriado ivas infeccao de vias aereas superiores virose coriza nariz entupido obstrucao nasal espirro tosse febre crianca lactente bebe soro fisiologico lavagem nasal mel dipirona paracetamol ibuprofeno sindrome gripal",
+  "kw": "nasofaringite rinofaringite resfriado ivas infeccao de vias aereas superiores virose coriza nariz entupido obstrucao nasal espirro tosse febre crianca lactente bebe soro fisiologico lavagem nasal mel dipirona paracetamol ibuprofeno sindrome gripal ambroxol mucolitico",
   "draft": true,
   "revisado": null,
   "resumo": "Infecção viral das vias aéreas superiores, autolimitada (7 a 10 dias; a tosse pode durar 3 semanas), muito frequente na criança. O trabalho no PS/UBS é aliviar sintomas sem antibiótico, reconhecer síndrome gripal em quem tem fator de risco e identificar complicações: otite, sinusite, pneumonia e, no lactente, desconforto respiratório.",
@@ -747,7 +732,8 @@ const GUIA_ITENS = [
      "Secreção nasal amarelada ou esverdeada é comum no curso viral e não indica antibiótico.",
      "Febre súbita com tosse ou dor de garganta e cefaleia, mialgia ou artralgia: síndrome gripal (ver H1N1).",
      "Criança pequena tem 6 a 8 resfriados por ano, mais quando frequenta creche.",
-     "Diferenciar de rinite alérgica (prurido, espirros em salva, sem febre) e de corpo estranho nasal (secreção fétida unilateral)."
+     "Diferenciar de rinite alérgica (prurido, espirros em salva, sem febre) e de corpo estranho nasal (secreção fétida unilateral).",
+     "É a mesma doença do Resfriado comum (ver também essa condição, com o soro nasal em spray e as opções do adulto)."
     ]
    },
    {
@@ -775,6 +761,7 @@ const GUIA_ITENS = [
      "Antitérmico pelo peso se febre com desconforto: dipirona (a partir de 3 meses e 5 kg), paracetamol ou ibuprofeno (a partir de 6 meses).",
      "Mel para a tosse só acima de 1 ano.",
      "Não usar descongestionante, anti-histamínico, antitussígeno ou mucolítico em menores de 6 anos; nunca AAS.",
+     "Mucolítico (ambroxol, acetilcisteína) não tem benefício no resfriado em nenhuma idade; a acetilcisteína é contraindicada abaixo de 2 anos (bula).",
      "Antibiótico não está indicado; reavaliar se surgir otite, sinusite ou pneumonia.",
      "Síndrome gripal em criança menor de 5 anos ou com comorbidade: oseltamivir sem esperar o teste (MS 2023)."
     ]
@@ -802,12 +789,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Nasofaringite e Resfriado comum são a mesma doença no DATA, com blocos quase iguais — considerar unificar ou ligar as duas.",
-   "Ambroxol xarope em Outras opções ('Opção 2'): mucolítico sem benefício comprovado; o material do Drive cita contraindicação de mucolíticos abaixo de 2 anos pela Anvisa — confirmar e decidir se mantém.",
-   "Card 'Gripe' do senhor tem loratadina, ibuprofeno 600 mg e prednisona 40 mg: anti-histamínico isolado quase não ajuda no resfriado (Cochrane 2015) e corticoide não tem respaldo — prednisona e loratadina não propostas (ibuprofeno proposto em Resfriado comum).",
-   "PDFs do Drive citam xaropes antitussígenos combinados e descongestionantes em criança — contraindicados abaixo de 6 anos; não aproveitados."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Secretaria de Vigilância em Saúde e Ambiente. Guia de manejo e tratamento de influenza 2023. Brasília; 2023.",
    "National Institute for Health and Care Excellence (NICE). Cough (acute): antimicrobial prescribing (NG120). 2019.",
@@ -833,7 +815,8 @@ const GUIA_ITENS = [
      "Gripe: febre alta súbita, mialgia, cefaleia e prostração — com fator de risco, oseltamivir (ver H1N1).",
      "COVID-19 não se distingue pela clínica: testar quando o resultado mudar a conduta (grupo de risco, isolamento).",
      "Sinusite bacteriana só após 10 dias sem melhora, piora depois de melhorar ou febre alta com secreção purulenta por 3 dias.",
-     "Rinite alérgica: prurido, espirros em salva, sem febre, sintomas recorrentes ou sazonais."
+     "Rinite alérgica: prurido, espirros em salva, sem febre, sintomas recorrentes ou sazonais.",
+     "É a mesma doença da Nasofaringite (ver também essa condição, com mais detalhes da criança)."
     ]
    },
    {
@@ -854,7 +837,7 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Soro fisiológico nasal (spray ou lavagem com seringa) e hidratação.",
+     "Soro fisiológico nasal (cloreto de sódio 0,9% em spray, jato contínuo ou lavagem com seringa) e hidratação.",
      "Dipirona ou paracetamol para dor e febre; ibuprofeno alivia dor e mal-estar, sem efeito na coriza.",
      "Descongestionante nasal tópico por no máximo 3 dias no adulto (rebote se prolongado); evitar em hipertenso não controlado.",
      "Antibiótico, anti-histamínico isolado, corticoide nasal ou oral e mucolítico não mudam a evolução.",
@@ -892,12 +875,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Outras opções 'Opção 1' a 'Opção 3' usam nomes comerciais de spray de soro — trocar pelo nome genérico.",
-   "PDFs do Drive: antigripais combinados, nafazolina, budesonida nasal e 'cromoglicato' (na verdade soro fisiológico) — não propostos: sem benefício no resfriado ou risco em hipertenso e cardiopata.",
-   "Card 'Tosse pós-IVAS' do senhor: loratadina de 12/12h (a bula é 1x/dia) e budesonida nasal — anti-histamínico isolado e corticoide nasal não ajudam no resfriado agudo; decidir se o card continua assim.",
-   "Nasofaringite e Resfriado comum duplicam a mesma doença — considerar unificar."
-  ],
+  "pendencias": [],
   "fontes": [
    "National Institute for Health and Care Excellence (NICE). Cough (acute): antimicrobial prescribing (NG120). 2019.",
    "Kenealy T, Arroll B. Antibiotics for the common cold and acute purulent rhinitis. Cochrane Database Syst Rev. 2013;(6):CD000247.",
@@ -953,7 +931,9 @@ const GUIA_ITENS = [
      "Quimioprofilaxia (75 mg 1x/dia por 10 dias) só até 48 h do último contato: imunossupressão grave, ou surto em instituição de longa permanência com comorbidade.",
      "Ajustar a dose pela função renal (tratamento com ClCr 30–60: 30 mg de 12/12h) e, na criança, pelo peso.",
      "Corticoide não é recomendado para influenza, salvo outra indicação (choque séptico, asma, DPOC).",
-     "Pneumonia secundária (piora após melhora, novo infiltrado): ceftriaxona + macrolídeo; se necrotizante, pensar em S. aureus."
+     "Zanamivir não é mais recomendado (MS 2023).",
+     "Pneumonia secundária (piora após melhora, novo infiltrado): ceftriaxona + macrolídeo; se necrotizante, pensar em S. aureus.",
+     "COVID-19 confirmada em grupo de risco: antiviral próprio pelo protocolo do MS (nirmatrelvir/ritonavir em ≥ 65 anos ou imunossuprimidos, até 5 dias de sintomas; checar interações)."
     ]
    },
    {
@@ -971,21 +951,14 @@ const GUIA_ITENS = [
     "t": "Orientações ao paciente",
     "itens": [
      "Tome o antiviral de 12 em 12 horas, depois de uma refeição, por 5 dias completos.",
-     "Fique afastado do trabalho ou da escola até 24 horas sem febre.",
+     "Fique afastado do trabalho ou da escola até 24 horas sem febre, sem usar antitérmico.",
      "Lave as mãos, use máscara e cubra boca e nariz ao tossir.",
      "Volte se tiver falta de ar, lábios roxos, febre por mais de 3 dias, confusão ou piora depois de melhorar.",
      "Vacine-se todo ano contra a gripe."
     ]
    }
   ],
-  "pendencias": [
-   "DATA indica quimioprofilaxia para grupo de risco não vacinado (ou vacinado há menos de 2 semanas) e profissional de saúde sem EPI; o Guia MS 2023 restringiu a imunossupressão grave após contato e a surto em instituição de longa permanência — atualizar.",
-   "Tratamento ambulatorial da síndrome gripal com fator de risco (75 mg de 12/12h por 5 dias) está só em Outras opções ('Receita'); pelo MS 2023 é conduta-padrão — considerar um Padrão próprio ou uma condição nova 'Síndrome gripal'.",
-   "Bloco 'Receita' diz '10 COMPRIMIDOS': oseltamivir é cápsula — corrigir.",
-   "Material do Drive cita zanamivir; o Guia MS 2023 deixou de recomendá-lo — não proposto.",
-   "Guia HC-FMUSP 2024 traz nirmatrelvir/ritonavir para COVID-19 em grupo de risco — fora desta condição; decidir se cria 'Síndrome gripal / COVID-19'.",
-   "O nome da condição ('H1N1 — profilaxia') não cobre o tratamento de SRAG que ela já contém — considerar renomear sem mudar o id."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Secretaria de Vigilância em Saúde e Ambiente. Guia de manejo e tratamento de influenza 2023. Brasília; 2023.",
    "Uyeki TM et al. Clinical Practice Guidelines by the IDSA: 2018 Update on Diagnosis, Treatment, Chemoprophylaxis, and Institutional Outbreak Management of Seasonal Influenza. Clin Infect Dis. 2019;68(6):e1-e47.",
@@ -998,7 +971,7 @@ const GUIA_ITENS = [
   "cond": "rinite",
   "nm": "Rinite alérgica",
   "sub": "espirros · prurido nasal · corticoide nasal · anti-histamínico · controle ambiental",
-  "kw": "rinite alergica alergia nasal espirro espirros em salva coceira no nariz prurido nasal coriza nariz entupido obstrucao nasal fluticasona mometasona budesonida corticoide nasal spray nasal loratadina desloratadina cetirizina fexofenadina dexclorfeniramina antialergico soro fisiologico lavagem nasal acaro poeira",
+  "kw": "rinite alergica alergia nasal espirro espirros em salva coceira no nariz prurido nasal coriza nariz entupido obstrucao nasal fluticasona mometasona budesonida corticoide nasal spray nasal loratadina desloratadina cetirizina fexofenadina dexclorfeniramina antialergico soro fisiologico lavagem nasal acaro poeira azelastina pseudoefedrina",
   "draft": true,
   "revisado": null,
   "resumo": "Inflamação nasal mediada por IgE, com espirros, prurido, coriza e obstrução, muitas vezes junto com asma e conjuntivite. O tratamento de base é o corticoide nasal diário com lavagem nasal; o anti-histamínico oral de 2ª geração complementa. Corticoide sistêmico e descongestionante não são rotina.",
@@ -1035,9 +1008,9 @@ const GUIA_ITENS = [
      "Corticoide nasal diário (fluticasona, mometasona, budesonida) é o tratamento mais eficaz; efeito pleno em 1 a 2 semanas.",
      "Lavagem nasal com soro fisiológico antes do corticoide.",
      "Anti-histamínico oral de 2ª geração (loratadina, desloratadina, cetirizina, fexofenadina) para prurido, espirros e sintomas oculares.",
-     "Sem controle com o corticoide nasal: associar anti-histamínico nasal ou usar a combinação nasal (ARIA-EAACI 2024–2025).",
-     "Descongestionante oral só por poucos dias em adulto sem hipertensão; tópico no máximo 3 a 5 dias.",
-     "Evitar corticoide injetável ou oral de rotina e anti-histamínico de 1ª geração (sedação).",
+     "Sem controle após 2 a 4 semanas de corticoide nasal bem usado: trocar pela combinação nasal azelastina + fluticasona, a partir de 12 anos (ARIA-EAACI 2024–2025).",
+     "Descongestionante oral (pseudoefedrina) só por até 7 dias em adulto sem hipertensão ou doença cardíaca; tópico no máximo 3 a 5 dias; fenilefrina oral não funciona.",
+     "Evitar corticoide injetável ou oral de rotina e anti-histamínico de 1ª geração, como dexclorfeniramina (sedação, pior desempenho).",
      "Controle ambiental; encaminhar ao especialista se não controlar ou se candidato a imunoterapia."
     ]
    },
@@ -1069,13 +1042,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "ARIA-EAACI 2024–2025 sugere a combinação nasal anti-histamínico + corticoide (ex.: azelastina + fluticasona) acima do corticoide nasal isolado; não há no DATA nem no Drive — decidir se acrescenta.",
-   "PDFs do Drive: dexametasona IM, betametasona + dexclorfeniramina e prednisolona oral — corticoide sistêmico não é rotina na rinite; não propostos.",
-   "Fenilefrina + bromofeniramina (PDFs): fenilefrina oral tem eficácia questionada como descongestionante; não proposta.",
-   "Loratadina + pseudoefedrina (PDFs) não proposta: o DATA já tem fexofenadina + pseudoefedrina em Outras opções.",
-   "Outras opções 'Opção 1' usa dexclorfeniramina de 8/8h por 7 dias (1ª geração, sedativa) e spray de soro com nome comercial — considerar sinalizar ou trocar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Sakano E et al. IV Brazilian Consensus on Rhinitis — an update on allergic rhinitis (ASBAI, ABORL-CCF, SBP). Braz J Otorhinolaryngol. 2018;84(1):3-14.",
    "Sousa-Pinto B et al. Allergic Rhinitis and its Impact on Asthma (ARIA)-EAACI Guidelines — 2024–2025 Revision, Part I: intranasal treatments. Allergy. 2025.",
@@ -1125,10 +1092,10 @@ const GUIA_ITENS = [
     "itens": [
      "Para todos: lavagem nasal com soro fisiológico e analgésico; corticoide nasal alivia sintomas, sobretudo no quadro pós-viral.",
      "Adulto com bacteriana não complicada: observar sem antibiótico é opção se o retorno for garantido (AAO-HNS 2025).",
-     "Se antibiótico: amoxicilina (com ou sem clavulanato) por 5 a 7 dias no adulto; na criança, 10 dias.",
-     "Amoxicilina-clavulanato se antibiótico recente, quadro moderado ou grave, menor de 2 anos, creche ou falha em 72 h.",
-     "Alergia à penicilina: doxiciclina no adulto; cefuroxima se a alergia não for grave.",
-     "Evitar macrolídeo e sulfametoxazol-trimetoprima: alta resistência do pneumococo no Brasil.",
+     "Se antibiótico: amoxicilina (com ou sem clavulanato) por 5 a 7 dias no adulto; na criança, 10 dias, amoxicilina 45 mg/kg/dia (AAP 2013).",
+     "Amoxicilina-clavulanato (na criança, 90 mg/kg/dia de amoxicilina) se antibiótico recente, quadro moderado ou grave, menor de 2 anos, creche ou falha em 72 h.",
+     "Alergia à penicilina: adulto, doxiciclina (ou cefuroxima se a alergia não for grave); criança, cefuroxima, que costuma ser tolerada mesmo após reação grave (avaliar caso a caso).",
+     "Evitar macrolídeo e sulfametoxazol-trimetoprima (alta resistência do pneumococo) e codeína para a tosse (sem benefício; proibida abaixo de 12 anos).",
      "Sem melhora em 72 h de antibiótico: reavaliar e trocar."
     ]
    },
@@ -1160,14 +1127,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "AAO-HNS 2025 recomenda oferecer observação sem antibiótico na bacteriana não complicada do adulto com retorno garantido; o Padrão do DATA vai direto ao antibiótico — decidir se acrescenta essa orientação.",
-   "Outras opções antigas: 'RSBA' com amoxicilina por 14 dias e 'Opção 2' com azitromicina por 10 dias + omeprazol — contra as diretrizes atuais (5–7 dias; macrolídeo não recomendado); considerar retirar.",
-   "'Opção 1' traz codeína 30 mg e levodropropizina para tosse: codeína não é recomendada para tosse e é contraindicada abaixo de 12 anos — revisar.",
-   "Duração na criança: o guia HC-FMUSP 2024 usa 5–7 dias; DATA e AAP 2013 usam 10 dias — decidir.",
-   "PDFs do Drive (Tigers) sugerem claritromicina ou azitromicina pediátrica e 14–21 dias de tratamento — desatualizado; não proposto.",
-   "Guia HC-FMUSP 2024 cita doxiciclina 2–4 mg/kg/dia na criança alérgica; o DATA usa cefuroxima — decidir se entra."
-  ],
+  "pendencias": [],
   "fontes": [
    "Payne SC et al. Clinical Practice Guideline: Adult Sinusitis Update (AAO-HNSF). Otolaryngol Head Neck Surg. 2025;173(S1).",
    "Fokkens WJ et al. European Position Paper on Rhinosinusitis and Nasal Polyps 2020 (EPOS 2020). Rhinology. 2020;58(Suppl S29):1-464.",
@@ -1218,10 +1178,11 @@ const GUIA_ITENS = [
      "Analgesia em todos: dipirona, paracetamol ou ibuprofeno nos horários nas primeiras 48–72 h.",
      "Antibiótico logo: menores de 6 meses, OMA grave, otorreia, e 6 a 23 meses com OMA bilateral.",
      "Observar 48–72 h com analgesia é opção: 6–23 meses unilateral não grave e a partir de 2 anos não grave, com retorno garantido.",
-     "1ª escolha: amoxicilina. Amoxicilina-clavulanato se antibiótico nos últimos 30 dias, otite com conjuntivite ou falha em 48–72 h.",
+     "1ª escolha: amoxicilina — criança, dose alta de 90 mg/kg/dia de 12/12h para todos (máximo 2 g por dose); adulto, 500 mg de 8/8h.",
+     "Amoxicilina-clavulanato se antibiótico nos últimos 30 dias, otite com conjuntivite purulenta ou falha em 48–72 h.",
      "Duração: 10 dias se menor de 2 anos ou grave; 7 dias de 2 a 5 anos; 5 a 7 dias depois dos 6 anos e no adulto.",
-     "Alergia: cefuroxima se reação não grave; claritromicina se anafilaxia. Vômitos ou falha: ceftriaxona IM 50 mg/kg por 1 a 3 dias.",
-     "Gotas otológicas e descongestionantes não tratam OMA."
+     "Alergia: cefuroxima se reação não grave; claritromicina se anafilaxia (mesma duração por idade). Vômitos ou falha: ceftriaxona IM 50 mg/kg por 1 a 3 dias.",
+     "Gotas otológicas, descongestionantes e sulfametoxazol-trimetoprima (alta resistência) não tratam OMA; azitromicina só sem outra opção (bula: 10 mg/kg/dia por 3 dias)."
     ]
    },
    {
@@ -1253,14 +1214,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Criança: o DATA usa amoxicilina 50 mg/kg/dia como padrão e 90 mg/kg/dia só em creche ou OMA grave; a AAP 2013 recomenda 80–90 mg/kg/dia para todos — decidir.",
-   "O guia HC-FMUSP 2024 limita a amoxicilina a 500 mg por dose na criança; a dose alta do DATA não tem esse teto — decidir.",
-   "Claritromicina pediátrica: DATA 10 dias; guia HC-FMUSP 2024 5 dias — decidir.",
-   "PDFs do Drive citam sulfametoxazol-trimetoprima na OMA: alta resistência no Brasil — não proposto.",
-   "Azitromicina pediátrica: o guia HC-FMUSP 2024 usa 12 mg/kg/dia por 5 dias, diferente da bula (10 mg/kg no 1º dia e 5 mg/kg do 2º ao 5º) — não proposta; decidir.",
-   "Outras opções antigas ('Opção 1' e 'Opção 2') usam 10 dias no adulto; o atual é 5–7 dias — considerar ajustar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Lieberthal AS et al. The diagnosis and management of acute otitis media (AAP). Pediatrics. 2013;131(3):e964-99.",
    "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024."
@@ -1272,7 +1226,7 @@ const GUIA_ITENS = [
   "cond": "otite_externa",
   "nm": "Otite externa aguda",
   "sub": "ouvido de nadador · dor ao tracionar · gota otológica · ouvido seco · necrotizante",
-  "kw": "otite externa aguda ouvido de nadador dor de ouvido otalgia coceira no ouvido conduto auditivo inchado secrecao no ouvido otorreia tracao do pavilhao tragus piscina cotonete gota otologica ciprofloxacino hidrocortisona dexametasona neomicina polimixina otite externa necrotizante maligna diabetico pseudomonas otomicose",
+  "kw": "otite externa aguda ouvido de nadador dor de ouvido otalgia coceira no ouvido conduto auditivo inchado secrecao no ouvido otorreia tracao do pavilhao tragus piscina cotonete gota otologica ciprofloxacino hidrocortisona dexametasona neomicina polimixina otite externa necrotizante maligna diabetico pseudomonas otomicose clotrimazol fungo",
   "draft": true,
   "revisado": null,
   "resumo": "Inflamação ou infecção difusa do conduto auditivo externo (Pseudomonas e S. aureus), ligada a umidade, cotonete e trauma. O tratamento é tópico: gota com antibiótico com ou sem corticoide, analgesia e ouvido seco; antibiótico oral só se a infecção passar do conduto ou em hospedeiro de risco. Em diabético ou idoso com dor desproporcional, pensar em otite externa necrotizante.",
@@ -1305,11 +1259,12 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Gota otológica com antibiótico (quinolona, ou aminoglicosídeo + polimixina) com ou sem corticoide, por 7 dias.",
-     "Membrana perfurada ou tubo de ventilação: só gota não ototóxica (quinolona); nunca neomicina.",
+     "1ª opção: gota de quinolona com corticoide (ciprofloxacino + hidrocortisona ou + dexametasona) por 7 dias.",
+     "Neomicina + polimixina B + hidrocortisona só com membrana íntegra (ototóxica; causa alergia de contato). Perfuração ou tubo de ventilação: só quinolona.",
      "Conduto muito edemaciado: limpeza (aspiração) e, se disponível, mecha para a gota chegar ao fundo.",
      "Analgesia proporcional à dor: dipirona ou paracetamol; AINE por poucos dias.",
-     "Antibiótico oral só se celulite além do conduto, diabetes mal controlado, imunossupressão ou falha do tópico.",
+     "Antibiótico oral só se celulite além do conduto, diabetes mal controlado, imunossupressão ou falha do tópico (cefalexina não cobre Pseudomonas).",
+     "Otomicose (prurido, detritos brancos ou pretos): limpeza do conduto e antifúngico tópico (clotrimazol 1% solução), sem gota antibacteriana; sem melhora, otorrino.",
      "Sem melhora em 48–72 h: rever a aplicação da gota, procurar fungo, corpo estranho ou outro diagnóstico."
     ]
    },
@@ -1334,13 +1289,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "PDFs do Drive prescrevem antibiótico oral (cefalexina, amoxicilina, claritromicina) na otite externa: não indicado no caso não complicado e a cefalexina não cobre Pseudomonas — não proposto.",
-   "PDFs do Drive citam uma gota otológica de betametasona com composição a confirmar — não proposta.",
-   "Padrão tem 'CIPROFLOXACINO-DEXAMETASONA SOLUÇÃO TÓPICA' sem concentração, e há itens com nome comercial (gotas otológicas e colírio) — padronizar pelo nome genérico.",
-   "Gota neomicina + polimixina + hidrocortisona no Padrão: neomicina é ototóxica e sensibilizante; manter a ressalva da membrana íntegra e considerar a quinolona como 1ª escolha.",
-   "Otomicose não tem bloco no DATA — decidir se acrescenta."
-  ],
+  "pendencias": [],
   "fontes": [
    "Rosenfeld RM et al. Clinical practice guideline: acute otitis externa (AAO-HNSF). Otolaryngol Head Neck Surg. 2014;150(1 Suppl):S1-S24.",
    "Kaushik V, Malik T, Saeed SR. Interventions for acute otitis externa. Cochrane Database Syst Rev. 2010;(1):CD004740."
@@ -1390,12 +1339,13 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "CURB-65 (ver Escores): 0–1 em casa; 2 considerar internação; ≥ 3 internar e avaliar UTI. SpO2 < 92% também interna.",
-     "Adulto sem comorbidade: amoxicilina 1 g de 8/8h; alérgico: doxiciclina.",
+     "Adulto sem comorbidade: amoxicilina 1 g de 8/8h; alérgico: doxiciclina; macrolídeo isolado é alternativa aceita pela SBPT 2018. Omeprazol não faz parte do tratamento.",
      "Com comorbidade ou antibiótico nos últimos 3 meses: amoxicilina-clavulanato + macrolídeo, ou quinolona respiratória isolada.",
-     "Duração: 5 dias se estável; a ATS 2025 aceita 3–4 dias no ambulatorial estável sem doença pulmonar.",
+     "Duração: 5 dias com estabilidade clínica (ATS/IDSA 2019; SBPT 2018); a ATS 2025 aceita 3–4 dias no ambulatorial já estável. Não usar 10 dias de rotina.",
      "Enfermaria: ceftriaxona + azitromicina; passar para via oral quando afebril, estável e aceitando dieta.",
-     "PAC grave não causada por influenza: hidrocortisona EV nas primeiras 24 h (ATS 2025, recomendação condicional).",
-     "Criança: amoxicilina VO por 5 dias; internada, ampicilina ou penicilina cristalina EV; grave ou complicada, ceftriaxona ± oxacilina.",
+     "PAC grave não causada por influenza: hidrocortisona 200 mg/dia EV nas primeiras 24 h, com redução gradual (ATS 2025, condicional; ensaios divergentes).",
+     "Criança: amoxicilina em dose alta, 90 mg/kg/dia de 12/12h (máximo 2 g por dose), por 5 dias; internada, ampicilina ou penicilina cristalina EV; grave, ceftriaxona ± oxacilina.",
+     "Menor de 2 meses: internar; ampicilina (ou penicilina cristalina) + gentamicina EV (OMS), com dose e intervalo pela idade gestacional e pós-natal (tabela neonatal).",
      "Período de influenza ou SRAG: associar oseltamivir sem esperar o resultado."
     ]
    },
@@ -1424,27 +1374,19 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Cefepima 2 g EV de 8/8h (manter azitromicina) — alternativa à piperacilina-tazobactam no risco de Pseudomonas, citada nos PDFs; descalonar pelas culturas.",
-     "Ampicilina + gentamicina EV no lactente menor de 2 meses internado — esquema dos PDFs de pediatria; doses pela idade, com a neonatologia."
+     "Ampicilina + gentamicina EV no lactente menor de 2 meses internado — esquema da OMS, também nos PDFs de pediatria; dose e intervalo pela idade gestacional e pós-natal."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Criança: o DATA usa amoxicilina 50 mg/kg/dia de 8/8h; a OMS 2024 usa 80 mg/kg/dia de 12/12h e a IDSA/PIDS 2011, 90 mg/kg/dia — decidir.",
-   "O guia HC-FMUSP 2024 usa amoxicilina 500 mg de 8/8h no adulto; o DATA (ATS/IDSA 2019) usa 1 g — confirmar 1 g.",
-   "ATS 2025: curso ambulatorial de 3–4 dias no estável de baixo risco e possibilidade de não dar antibiótico na pneumonia viral de baixo risco (a IDSA não endossou essa diretriz) — decidir a duração do Padrão.",
-   "Hidrocortisona na PAC grave: a ATS 2025 sugere (condicional), mas dois de três ensaios recentes foram negativos — manter com a ressalva atual?",
-   "Outras opções antigas ('Baixo risco' e 'Opção 1' a 'Opção 7'): 7–10 dias, azitromicina por 7–10 dias e omeprazol sem indicação — considerar retirar ou ajustar para 5 dias.",
-   "PDFs do Drive: levofloxacino 500 mg de 12/12h, ceftriaxona 1 g de 12/12h e ciprofloxacino EV associado ao betalactâmico — doses ou esquemas fora do padrão; não aproveitados.",
-   "Ampicilina + gentamicina no menor de 2 meses: confirmar as doses por idade gestacional e pós-natal com a neonatologia antes de publicar.",
-   "A cronologia de melhora nas orientações vem de um informativo do Drive (slide de terceiros, baseado no NICE) — confirmar se entra nas Recomendações."
-  ],
+  "pendencias": [],
   "fontes": [
    "Jones BE, Ramirez JA, Oren E et al. Diagnosis and Management of Community-acquired Pneumonia: An Official American Thoracic Society Clinical Practice Guideline. Am J Respir Crit Care Med. 2026;212(1):24-44 (online 2025).",
    "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia: An Official Clinical Practice Guideline of the ATS and IDSA. Am J Respir Crit Care Med. 2019;200(7):e45-e67.",
    "Corrêa RA et al. Recomendações para o manejo da pneumonia adquirida na comunidade 2018 (SBPT). J Bras Pneumol. 2018;44(5):405-423.",
    "World Health Organization. Guideline on management of pneumonia and diarrhoea in children up to 10 years of age. Genebra: WHO; 2024.",
-   "Bradley JS et al. The management of community-acquired pneumonia in infants and children older than 3 months of age (PIDS/IDSA). Clin Infect Dis. 2011;53(7):e25-76."
+   "Bradley JS et al. The management of community-acquired pneumonia in infants and children older than 3 months of age (PIDS/IDSA). Clin Infect Dis. 2011;53(7):e25-76.",
+   "National Institute for Health and Care Excellence (NICE). Pneumonia (community-acquired): antimicrobial prescribing (NG138). 2019."
   ]
  },
  {
@@ -1491,13 +1433,14 @@ const GUIA_ITENS = [
     "itens": [
      "Salbutamol spray com espaçador, 1 jato por vez: leve 4 jatos; moderada 4–6 jatos até 3 vezes a cada 20–30 min; grave 6–10 jatos ou nebulização.",
      "Budesonida-formoterol em dose alta é tão eficaz quanto o salbutamol na crise leve a moderada.",
-     "Ipratrópio junto com o salbutamol na crise moderada sem resposta e na grave, só na 1ª hora.",
+     "Ipratrópio junto com o salbutamol na crise moderada e na grave, só na 1ª–2ª hora (GINA 2026).",
      "Oxigênio se SpO2 < 92%, com alvo de 92–95% (GINA 2026).",
      "Corticoide oral na 1ª hora em toda crise que não seja leve: prednisona/prednisolona 40–50 mg por 5–7 dias; criança 1–2 mg/kg/dia (máx 40 mg) por 3–5 dias.",
      "Via EV só se não puder engolir; não somar dois corticoides sistêmicos.",
      "Crise grave sem resposta na 1ª hora: sulfato de magnésio EV e UTI. Aminofilina, sedativos e antibiótico de rotina, não.",
-     "Alta: sintomas leves por 1–2 h após o último salbutamol, SpO2 ≥ 92% em ar ambiente e PFE > 70% (GINA 2026).",
-     "Na alta: corticoide inalatório (de preferência budesonida-formoterol como manutenção e resgate a partir de 12 anos), técnica revisada, retorno em 2–7 dias (criança 2–5 dias)."
+     "Alta: sintomas leves por 1–2 h após o último salbutamol, SpO2 ≥ 92% em ar ambiente e PFE > 70% (GINA 2026); PFE pós-tratamento < 40%: internar.",
+     "Na alta (a partir de 12 anos): budesonida-formoterol em manutenção e resgate, 1 dose de 12/12h (2 se já usava corticoide inalatório ou asma não controlada); nunca só salbutamol.",
+     "Criança na alta: prednisolona até completar 3–5 dias, beclometasona inalatória diária em dose baixa e salbutamol com espaçador; retorno em 1–2 dias (até 5 anos) ou 2–5 dias."
     ]
    },
    {
@@ -1524,27 +1467,17 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Ipratrópio spray 20 mcg/jato, 4 jatos com espaçador junto de cada dose de salbutamol (até 3 vezes) na crise moderada — Plantãozinho e GINA 2026.",
+     "Ipratrópio spray 20 mcg/jato, 4–8 jatos com espaçador junto de cada dose de salbutamol (até 3 vezes) na crise moderada — do Plantãozinho; hoje faz parte do Padrão (GINA 2026).",
      "Nebulização com fenoterol 10 gotas + ipratrópio 40 gotas de 20/20 min (até 3 vezes) — onde não houver salbutamol em solução (PDFs); causa mais taquicardia e tremor."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Alvo de SpO2: o DATA usa 93–95% no adulto e 94–98% na criança; a GINA 2026 baixou para 92–95% (a partir de 6 anos), com O2 só se SpO2 < 92% — atualizar.",
-   "Critérios de alta: o DATA usa PFE ≥ 60% e SpO2 ≥ 94%; a GINA 2026 usa PFE > 70%, SpO2 ≥ 92% e sintomas leves por 1–2 h — decidir.",
-   "A GINA 2026 acrescenta ipratrópio já na crise moderada; o DATA só o usa na grave — decidir.",
-   "Após a crise, a GINA 2026 prefere budesonida-formoterol em manutenção e resgate no step 4 (2 inalações de 12/12h); o Padrão de alta usa 1 inalação de 12/12h (step 3) — decidir.",
-   "Card 'Asma' do senhor: salbutamol 4 jatos de 6/6h fixo por 5 dias e prednisona 60 mg — a GINA orienta resgate só se necessário e prednisolona 40–50 mg; decidir.",
-   "Outras opções antigas: 'Prescrição para a alta' com salbutamol isolado e 'Step 2' com beclometasona 50 mcg — resgate isolado não é mais aceito e a dose é baixa para pós-crise; revisar.",
-   "PDFs do Drive: terbutalina SC, adrenalina IM sem anafilaxia, nebulização domiciliar e prednisona 40 mg por 14 dias — não aproveitados.",
-   "Não há bloco pediátrico ambulatorial (alta pós-crise da criança) — decidir se cria.",
-   "PCDT da asma (Portaria Conjunta nº 32/2023) pode ter sido atualizado em 2026 — conferir a versão vigente."
-  ],
+  "pendencias": [],
   "fontes": [
    "Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, 2026 update (e Summary Guide 2026).",
    "Pizzichini MMM et al. Recomendações para o manejo da asma da Sociedade Brasileira de Pneumologia e Tisiologia — 2020. J Bras Pneumol. 2020;46(1):e20190307.",
-   "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Asma (Portaria Conjunta nº 32, de 20/12/2023). Brasília; 2023."
+   "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Asma (Portaria Conjunta SAES/SCTIE nº 43, de 24/03/2026). Brasília; 2026."
   ]
  },
  {
@@ -1591,11 +1524,11 @@ const GUIA_ITENS = [
      "Broncodilatador de curta ação (salbutamol ou fenoterol) ± ipratrópio, por spray com espaçador ou nebulização com ar comprimido se hipercapnia.",
      "Prednisona 40 mg por 5 dias; EV só se não puder via oral.",
      "Antibiótico por 5 dias se escarro purulento com piora da dispneia ou do volume, ou se precisar de VNI ou IOT.",
-     "Ambulatorial: amoxicilina-clavulanato ou doxiciclina. Internado: amoxicilina-clavulanato EV ou ceftriaxona; anti-Pseudomonas se fator de risco.",
+     "Ambulatorial: amoxicilina-clavulanato ou doxiciclina, um antibiótico só (sem macrolídeo associado de rotina). Internado: amoxicilina-clavulanato EV ou ceftriaxona; anti-Pseudomonas se fator de risco.",
      "Oxigênio por Venturi 24–28% ou cateter 1–2 L/min, alvo de SpO2 88–92%.",
      "VNI se pH ≤ 7,35 com PaCO2 ≥ 45 mmHg, dispneia grave com fadiga ou hipoxemia persistente.",
      "No internado: profilaxia de TEV e controle da glicemia durante o corticoide.",
-     "Na alta: broncodilatador de longa ação (LAMA/LABA), técnica inalatória, cessar tabagismo, vacinas, reabilitação; reavaliar em até 2 semanas."
+     "Na alta: LAMA/LABA (no SUS, tiotrópio + olodaterol ou umeclidínio + vilanterol pelo PCDT 2025), técnica inalatória, cessar tabagismo, vacinas, reabilitação; reavaliar em até 2 semanas."
     ]
    },
    {
@@ -1628,13 +1561,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "O guia HC-FMUSP 2024 associa sempre macrolídeo à amoxicilina-clavulanato na exacerbação; o DATA e o GOLD usam monoterapia — decidir.",
-   "Outras opções 'Receita': amoxicilina 10 dias + azitromicina 7 dias + prednisona 20 mg + omeprazol — fora do GOLD (prednisona 40 mg; antibiótico 5 dias); considerar retirar.",
-   "PDFs do Drive usam prednisona 20 mg por 5 dias (subdose) e nebulização domiciliar — não aproveitados.",
-   "O relatório GOLD 2027 sai em 18/11/2026 — conferir se muda algo na exacerbação.",
-   "O PCDT de DPOC foi atualizado (Portaria Conjunta SAES/SCTIE nº 29, de 27/11/2025) — conferir os inaladores disponíveis no SUS para a orientação de alta."
-  ],
+  "pendencias": [],
   "fontes": [
    "Global Initiative for Chronic Obstructive Lung Disease (GOLD). Global Strategy for the Diagnosis, Management, and Prevention of COPD — 2026 Report.",
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Doença Pulmonar Obstrutiva Crônica (Portaria Conjunta SAES/SCTIE nº 29, de 27/11/2025). Brasília; 2025.",
@@ -1647,7 +1574,7 @@ const GUIA_ITENS = [
   "cond": "edema_agudo_pulmao",
   "nm": "Edema agudo de pulmão / IC descompensada",
   "sub": "congestão · furosemida EV · nitrato · VNI · perfil hemodinâmico",
-  "kw": "edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao falta de ar ortopneia dispneia paroxistica noturna escarro rosado espumoso estertores inchaco nas pernas edema b3 bnp furosemida lasix diuretico nitroglicerina isossorbida nitroprussiato vni cpap bipap dobutamina noradrenalina acetazolamida isglt2 dapagliflozina empagliflozina",
+  "kw": "edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao falta de ar ortopneia dispneia paroxistica noturna escarro rosado espumoso estertores inchaco nas pernas edema b3 bnp furosemida lasix diuretico nitroglicerina isossorbida nitroprussiato vni cpap bipap dobutamina noradrenalina acetazolamida isglt2 dapagliflozina empagliflozina hidroclorotiazida tiazidico natriurese",
   "draft": true,
   "revisado": null,
   "resumo": "Congestão pulmonar aguda por insuficiência cardíaca nova ou crônica descompensada, muitas vezes hipertensiva. Conduta imediata: sentar o paciente, O2 ou VNI se desconforto ou hipoxemia, furosemida EV com meta de diurese e natriurese, vasodilatador se PA alta e tratar o fator precipitante. Hipoperfusão (perfil frio) é outro cenário: inotrópico ou vasopressor.",
@@ -1687,11 +1614,11 @@ const GUIA_ITENS = [
      "O2 se SpO2 < 90%; VNI (CPAP ou BiPAP) precoce se FR > 25, SpO2 < 90% ou esforço respiratório.",
      "Furosemida EV em bolus: sem uso prévio 20–40 mg; se já usa, 1 a 2 vezes a dose oral diária.",
      "Resposta insuficiente (sódio urinário < 50–70 mEq/L em 2 h ou diurese < 100–150 mL/h em 6 h): dobrar a dose.",
-     "PAS > 110 mmHg: nitrato sublingual enquanto prepara a nitroglicerina EV; EAP hipertensivo grave pode exigir nitroprussiato.",
-     "Congestão refratária: associar acetazolamida EV ou tiazídico (bloqueio sequencial do néfron), conforme diretrizes de 2026.",
+     "PAS > 110 mmHg: nitrato sublingual enquanto prepara a nitroglicerina EV; nitroprussiato no EAP hipertensivo grave, só com PA monitorizada continuamente (sala de emergência ou UTI).",
+     "Congestão persistente apesar da dose dobrada: bloqueio sequencial do néfron — hidroclorotiazida 25–50 mg VO ou acetazolamida 500 mg EV, onde houver — com eletrólitos diários.",
      "Perfil frio com PAS < 90 e hipoperfusão: noradrenalina; baixo débito com PAS ≥ 90: dobutamina (ver Calculadoras).",
      "Morfina não é rotina: associada a pior desfecho.",
-     "Após estabilizar: iniciar ou manter os remédios da IC (iSGLT2, betabloqueador, IECA/BRA ou sacubitril-valsartana, espironolactona) antes da alta; retorno em 7–14 dias."
+     "Após estabilizar: iniciar antes da alta os remédios da IC (iSGLT2 como dapagliflozina 10 mg, betabloqueador, IECA/BRA ou sacubitril-valsartana, espironolactona); retorno em 7–14 dias."
     ]
    },
    {
@@ -1723,16 +1650,10 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "A Diretriz Brasileira de IC 2026 e a ESC 2026 incluem acetazolamida EV (ou tiazídico) na congestão refratária e diurese guiada pelo sódio urinário — não há no DATA; decidir se acrescenta.",
-   "PDFs do Drive citam morfina 1–3 mg no EAP: associada a pior desfecho — não proposta (o DATA acerta ao não incluir).",
-   "Bloco ambulatorial: furosemida 40 mg, 30 comprimidos — conferir o esquema e se cabe orientar iSGLT2 e demais remédios da IC na alta.",
-   "Nitroprussiato exige monitorização contínua da PA (idealmente invasiva) e UTI — confirmar se o serviço tem essa condição antes de publicar.",
-   "Referência completa da Diretriz Brasileira de IC 2026 (Arq Bras Cardiol) a confirmar."
-  ],
+  "pendencias": [],
   "fontes": [
-   "Sociedade Brasileira de Cardiologia (Departamento de Insuficiência Cardíaca). Diretriz Brasileira de Insuficiência Cardíaca 2026. Arq Bras Cardiol. 2026.",
-   "European Society of Cardiology. 2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026 (doi:10.1093/eurheartj/ehag100).",
+   "Sociedade Brasileira de Cardiologia — Departamento de Insuficiência Cardíaca (DEIC). Diretriz Brasileira de Insuficiência Cardíaca 2026. Arq Bras Cardiol. 2026.",
+   "European Society of Cardiology. 2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.",
    "McDonagh TA et al. 2021 ESC Guidelines for the diagnosis and treatment of acute and chronic heart failure. Eur Heart J. 2021;42(36):3599-3726.",
    "Mullens W et al. The use of diuretics in heart failure with congestion — a position statement from the Heart Failure Association of the ESC. Eur J Heart Fail. 2019;21(2):137-155."
   ]
@@ -1771,7 +1692,7 @@ const GUIA_ITENS = [
    {
     "t": "Exames complementares",
     "itens": [
-     "Troponina na chegada e repetida: ultrassensível em 0/1 h ou 0/2 h; convencional em 0 e 3–6 h.",
+     "Troponina na chegada e repetida conforme o ensaio do serviço: ultrassensível no algoritmo 0/1 h ou 0/2 h; convencional em 0 e 3–6 h.",
      "Escore HEART (em Escores) na dor com ECG não diagnóstico: 0–3 baixo risco, 4–6 intermediário, 7–10 alto.",
      "RX de tórax (pneumotórax, mediastino alargado, congestão), hemograma, eletrólitos, creatinina e coagulograma.",
      "Suspeita de TEP: Wells/PERC e D-dímero; suspeita de dissecção: angio-TC antes de antiagregar e anticoagular."
@@ -1781,8 +1702,10 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Monitor e acesso venoso; oxigênio só se SpO2 < 90%; AAS 150–300 mg mastigado se não houver alergia ou sangramento ativo.",
-     "IAM com supra: angioplastia primária se possível em até 120 min do diagnóstico; senão, trombólise em até 30 min (Calculadoras › Trombólise).",
-     "Segundo antiagregante: clopidogrel com trombólise e em idosos; as diretrizes preferem ticagrelor quando a estratégia é angioplastia.",
+     "IAM com supra e sintomas < 12 h: angioplastia primária se possível em até 120 min do diagnóstico; senão, trombólise em até 10 min do diagnóstico (Calculadoras › Trombólise).",
+     "Após a trombólise: transferir para hemodinâmica — cateterismo em 2–24 h, ou imediato se não reperfundiu em 60–90 min ou se choque.",
+     "Segundo antiagregante: ticagrelor de preferência quando a estratégia é angioplastia; clopidogrel após trombólise, com anticoagulante oral ou AVC hemorrágico prévio.",
+     "SCA sem supra: com cateterismo em até 24 h, dar o 2º antiagregante após a anatomia; se demorar mais, fazer o ataque, salvo alto risco de sangramento.",
      "Anticoagular toda SCA confirmada (enoxaparina; esquema da trombólise em Calculadoras › Anticoagulação).",
      "Nitrato SL ou EV para dor, hipertensão ou congestão; não usar se PAS < 90, IAM de VD ou inibidor de PDE5 recente.",
      "Morfina só se dor refratária ao nitrato; estatina de alta potência desde a admissão; betabloqueador oral em 24 h se sem IC, choque ou BAV.",
@@ -1810,20 +1733,12 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Ticagrelor 180 mg de ataque — no lugar do clopidogrel quando houver angioplastia; não usar após trombólise nem com AVC hemorrágico prévio.",
      "Metoprolol oral em dose baixa nas primeiras 24 h — se sem IC, baixo débito, BAV ou broncoespasmo; o EV precoce de rotina aumenta choque."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Material do Drive (Tigers, Principais condutas) dá O2 se SpO2 < 94% ou de rotina; diretrizes atuais: só se SpO2 < 90% — não aproveitar o corte antigo.",
-   "DATA só tem clopidogrel; ACC/AHA 2025 e ESC 2023 preferem ticagrelor ou prasugrel na angioplastia — decidir se entra (proposta enviada).",
-   "ESC 2023 não recomenda pré-tratamento rotineiro com inibidor de P2Y12 na SCA sem supra com cateterismo precoce; com transferência demorada pela regulação, decidir a regra do site.",
-   "Principais condutas: alteplase incompleto (falta 0,5 mg/kg em 60 min), 'angina instável = só sintomáticos' e metoprolol 25 mg EV em bolus — não aproveitar.",
-   "Tigers/Principais condutas usam sinvastatina 40 mg; DATA usa atorvastatina 80 mg (alta potência, correto) — manter.",
-   "Confirmar se o serviço tem troponina ultrassensível (protocolo 0/1 h) ou só convencional (0 e 3–6 h)."
-  ],
+  "pendencias": [],
   "fontes": [
    "Rao SV et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. J Am Coll Cardiol. 2025;85(22):2135-2237.",
    "Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J. 2023;44(38):3720-3826.",
@@ -1837,7 +1752,7 @@ const GUIA_ITENS = [
   "cond": "crise_hipertensiva",
   "nm": "Crise hipertensiva (urgência e emergência)",
   "sub": "emergência hipertensiva · lesão de órgão-alvo · nitroprussiato · captopril",
-  "kw": "crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva pseudocrise has pa elevada pressao 18 por 11 encefalopatia hipertensiva disseccao de aorta edema agudo de pulmao eclampsia avc lesao de orgao alvo captopril clonidina nitroprussiato nitroglicerina metoprolol hidralazina losartana anlodipino hidroclorotiazida",
+  "kw": "crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva pseudocrise has pa elevada pressao 18 por 11 encefalopatia hipertensiva disseccao de aorta edema agudo de pulmao eclampsia avc lesao de orgao alvo captopril clonidina nitroprussiato nitroglicerina metoprolol hidralazina losartana anlodipino hidroclorotiazida nifedipino sulfato de magnesio pre eclampsia gestante gravida puerpera esmolol",
   "draft": true,
   "revisado": null,
   "resumo": "O número da PA não define a gravidade: emergência é PA muito elevada com lesão aguda e progressiva de órgão-alvo (droga EV e UTI). Sem lesão, a conduta é repouso, tratar dor ou ansiedade, ajuste oral e retorno em até 7 dias — a decisão depende da procura ativa de lesão de órgão-alvo.",
@@ -1873,11 +1788,12 @@ const GUIA_ITENS = [
     "itens": [
      "Sem lesão de órgão-alvo: repouso por 30 min em ambiente calmo e tratar dor; se não baixar, captopril VO (ou clonidina VO) e reavaliar.",
      "Meta sem lesão: reduzir aos poucos (PAS < 160 e PAD < 100 em horas a dias) e retorno em 1 a 7 dias; não internar nem usar droga EV.",
-     "Nunca nifedipina de liberação rápida (sublingual ou oral): a queda brusca pode causar AVC e infarto.",
+     "Fora da gestação, nunca nifedipina de liberação rápida (sublingual ou oral): a queda brusca pode causar AVC e infarto.",
      "Emergência: monitorização, droga EV em bomba e UTI; reduzir a PA média até 25% na 1ª hora, ~160/100–110 em 2–6 h e normalizar em 24–48 h.",
      "Nitroprussiato na maioria; nitroglicerina na SCA e no edema agudo de pulmão (diluição e vazão em Calculadoras).",
-     "Dissecção de aorta: betabloqueador EV primeiro (FC < 60 e PAS ≤ 120 em até 20 min), depois o vasodilatador.",
-     "AVC isquêmico: só tratar se PA > 220/120 (ou > 185/110 se trombólise); hemorragia intracraniana e eclâmpsia têm metas e drogas próprias."
+     "Dissecção de aorta: betabloqueador EV primeiro (metoprolol ou esmolol; FC < 60 e PAS ≤ 120 em até 20 min), depois o vasodilatador.",
+     "AVC isquêmico: só tratar se PA > 220/120 (ou > 185/110 se trombólise); hemorragia intracraniana e eclâmpsia têm metas e drogas próprias.",
+     "Gestante ≥ 20 semanas ou puérpera com PA ≥ 160/110 por 15 min: hidralazina EV ou nifedipino VO (meta 140–150/90–100) e sulfato de magnésio se pré-eclâmpsia."
     ]
    },
    {
@@ -1886,7 +1802,7 @@ const GUIA_ITENS = [
      "Cefaleia intensa com confusão, convulsão ou alteração visual: encefalopatia hipertensiva.",
      "Dor torácica ou dorsal súbita e intensa: dissecção de aorta ou SCA.",
      "Dispneia com estertores e hipoxemia: edema agudo de pulmão.",
-     "Gestante ≥ 20 semanas ou puérpera com PA ≥ 160/110: pré-eclâmpsia grave — sulfato de magnésio e obstetrícia."
+     "Gestante ≥ 20 semanas ou puérpera com PA ≥ 160/110, cefaleia, escotomas ou epigastralgia: pré-eclâmpsia grave — sulfato de magnésio, anti-hipertensivo e obstetrícia."
     ],
     "alerta": true
    },
@@ -1906,17 +1822,12 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Bloco do DATA diz que crise hipertensiva 'não tem indicação de clonidina'; a Diretriz Brasileira 2025 cita clonidina ou captopril VO na elevação sem lesão que persiste após repouso — decidir.",
-   "Informativo do Drive (Urgência e Emergência Hipertensiva) usa PAD ≥ 120 (JNC V, 1993); a Diretriz 2025 usa ≥ 180/110 com ou sem lesão — não aproveitar o corte antigo.",
-   "Tigers e 'prescrição - pronto atendimento' trazem nifedipino 10–20 mg e doses de nitroprussiato/nitroglicerina em mg (erro: mcg) — não aproveitar.",
-   "Hidralazina EV (Drive, 10–20 mg) é droga da eclâmpsia, e as doses máximas divergem entre protocolos (20 a 45 mg) — confirmar no protocolo da FEBRASGO antes de incluir.",
-   "DATA não tem betabloqueador EV para dissecção/SCA (proposta de metoprolol enviada); esmolol não aparece no material do Drive."
-  ],
+  "pendencias": [],
   "fontes": [
    "Sociedade Brasileira de Cardiologia, Sociedade Brasileira de Hipertensão e Sociedade Brasileira de Nefrologia. Diretriz Brasileira de Hipertensão Arterial – 2025. Arq Bras Cardiol. 2025;122(9):e20250624.",
    "McEvoy JW et al. 2024 ESC Guidelines for the management of elevated blood pressure and hypertension. Eur Heart J. 2024;45(38):3912-4018.",
-   "van den Born BJH et al. ESC Council on hypertension position document on the management of hypertensive emergencies. Eur Heart J Cardiovasc Pharmacother. 2019;5(1):37-46."
+   "van den Born BJH et al. ESC Council on hypertension position document on the management of hypertensive emergencies. Eur Heart J Cardiovasc Pharmacother. 2019;5(1):37-46.",
+   "Rede Brasileira de Estudos sobre Hipertensão na Gravidez (RBEHG). Pré-eclâmpsia – Protocolo 03 – 2023."
   ]
  },
  {
@@ -1961,12 +1872,12 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Ambiente escuro e silencioso; 1ª etapa no PS: dipirona EV + metoclopramida EV em infusão lenta.",
-     "Sem melhora em 1 h: AINE EV (cetoprofeno), clorpromazina EV com hidratação prévia ou sumatriptana SC (sem contraindicação vascular).",
+     "Sem melhora em 1 h: AINE EV (cetoprofeno), clorpromazina EV com hidratação prévia ou sumatriptana SC (sem contraindicação vascular nem ergotamina em 24 h).",
      "Dexametasona 10 mg EV reduz a recorrência da enxaqueca nas 72 h seguintes.",
      "Evitar opioides (tramadol, morfina): menos eficazes, mais retorno ao PS e mais cronificação.",
      "Salvas: O2 a 100% 12–15 L/min por 15–20 min e/ou sumatriptana 6 mg SC; o primeiro episódio pede neuroimagem.",
      "Gestante: paracetamol e metoclopramida; evitar AINE após 20 semanas e dipirona no 3º trimestre; afastar pré-eclâmpsia.",
-     "Criança: ibuprofeno VO é a 1ª escolha; no PS, dipirona EV, ondansetrona e hidratação se vômitos."
+     "Criança: ibuprofeno VO é a 1ª escolha; no PS, dipirona EV, ondansetrona e hidratação se vômitos — metoclopramida não é recomendada abaixo de 18 anos (bula)."
     ]
    },
    {
@@ -1995,13 +1906,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "DATA é incoerente: Cefaleia pediátrica diz 'não usar metoclopramida em menores de 18 anos', mas Enxaqueca pediátrica usa metoclopramida acima de 1 ano — unificar a regra.",
-   "Tigers e Principais condutas põem dimenidrinato EV e tramadol EV no 'coquetel'; dimenidrinato não trata cefaleia e opioide não é recomendado — não aproveitar.",
-   "Principais condutas usam dexametasona 4 mg; a dose com evidência é 10 mg (DATA correto); 'prescrição - pronto atendimento' cita 10–25 mg.",
-   "Informativo próprio do médico (Cefaleia) acrescenta exercício regular e redução do estresse — incluído nas orientações; confirmar.",
-   "Dipirona + isometepteno + cafeína (Principais condutas) tem pouca evidência — não proposta."
-  ],
+  "pendencias": [],
   "fontes": [
    "Godwin SA et al. Clinical Policy: Critical Issues in the Evaluation and Management of Adult Patients Presenting to the Emergency Department With Acute Headache. Ann Emerg Med. 2019;74(4):e41-e74.",
    "Orr SL et al. Management of Adults With Acute Migraine in the Emergency Department: The American Headache Society Evidence Assessment of Parenteral Pharmacotherapies. Headache. 2016;56(6):911-940.",
@@ -2047,14 +1952,15 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Leve a moderada: AINE (naproxeno, ibuprofeno) ou dipirona/paracetamol no início da dor, com metoclopramida se náusea.",
+     "Leve a moderada: AINE (naproxeno, ibuprofeno 600 mg) ou dipirona/paracetamol no início da dor, repetindo só se preciso; metoclopramida se náusea.",
      "Moderada a forte ou sem resposta ao AINE: triptano no início da dor; pode associar ao naproxeno.",
      "Triptano é contraindicado em doença coronariana, AVC/AIT, doença vascular periférica, HAS não controlada e enxaqueca hemiplégica ou de tronco.",
      "PS: dipirona 1 g EV + metoclopramida 10 mg EV lenta; cetoprofeno EV se sem contraindicação; dexametasona 10 mg EV contra a recorrência.",
      "Sem melhora em 1 h: sumatriptana 6 mg SC (se não usou triptano ou ergotamina em 24 h) ou clorpromazina EV após 500 mL de SF.",
      "Sulfato de magnésio EV: evidência modesta, mais útil na enxaqueca com aura; não usar opioides.",
-     "Criança: ibuprofeno 10 mg/kg é a 1ª escolha; rizatriptano para ≥ 12 anos e ≥ 40 kg sem resposta (fora da bula brasileira).",
-     "Gestante: paracetamol ± metoclopramida; evitar AINE após 20 semanas, ergotamina e valproato."
+     "Criança: ibuprofeno 10 mg/kg é a 1ª escolha; ondansetrona se vômitos (metoclopramida não é recomendada abaixo de 18 anos); rizatriptano para ≥ 12 anos e ≥ 40 kg.",
+     "Gestante: paracetamol ± metoclopramida; evitar AINE após 20 semanas, ergotamínico, valproato e opioide.",
+     "Triptano: repetir só se a dor voltar após melhorar (sumatriptano após 2 h, naratriptano após 4 h); sem resposta à 1ª dose, não repetir na mesma crise."
     ]
    },
    {
@@ -2078,19 +1984,14 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Ibuprofeno 600 mg na crise, até de 8/8 h por no máximo 7 dias (receita do próprio médico) — alternativa ao naproxeno; cuidado com estômago e rins.",
-     "Combinações com di-hidroergotamina — já em Outras opções; menos eficazes que o triptano e não podem ser usadas em até 24 h do triptano."
+     "Naratriptano + dipirona + metoclopramida — crises longas ou que voltam; naratriptano até 5 mg/dia, repetindo só após 4 h.",
+     "Di-hidroergotamina oral com analgésico e cafeína — sem triptano disponível; menos eficaz, nunca em até 24 h do triptano, na gestação, com doença vascular ou com macrolídeo.",
+     "Versão com metoclopramida no comprimido — no máximo 3 comprimidos por dia (30 mg de metoclopramida) e sem outra metoclopramida junto."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Material do Drive: naratriptano '1 cp/dia por 3 dias' (não é uso de crise) e repetição após 6 h; bula: repetir após ≥ 4 h, máximo 5 mg/dia (DATA correto).",
-   "DATA Ambulatorial: ibuprofeno 300 mg 2 cp de 6/6 h por 5 dias (2,4 g/dia fixo); a receita do médico usa 600 mg de 8/8 h só na crise — decidir qual fica no Padrão (proposta enviada).",
-   "DATA Outras opções 'Opção 2' a 'Opção 5' não dizem quando usar — rotular (ex.: 'sem triptano disponível', 'ergotamínico').",
-   "Metoclopramida em criança: Enxaqueca pediátrica usa acima de 1 ano e Cefaleia pediátrica proíbe abaixo de 18 — unificar.",
-   "'Migrânea na gestação' (Outras opções) usa paracetamol + codeína; opioide favorece cefaleia por uso excessivo — confirmar se mantém."
-  ],
+  "pendencias": [],
   "fontes": [
    "Ailani J et al. The American Headache Society Consensus Statement: Update on integrating new migraine treatments into clinical practice. Headache. 2021;61(7):1021-1039.",
    "Orr SL et al. Management of Adults With Acute Migraine in the Emergency Department: The American Headache Society Evidence Assessment of Parenteral Pharmacotherapies. Headache. 2016;56(6):911-940.",
@@ -2138,13 +2039,14 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Proteger de trauma, decúbito lateral, O2 e aspiração; não colocar nada na boca.",
-     "Glicemia < 70: tiamina 100 mg EV (etilista ou desnutrido) e glicose 50% sem atrasar.",
+     "Glicemia < 70: tiamina 100 mg EV (etilista ou desnutrido) e glicose 50% 25 g (50 mL) EV, sem atrasar.",
      "Crise ≥ 5 min: diazepam 10 mg EV (0,2 mg/kg na criança) ou, sem acesso, midazolam IM; pode repetir 1 vez após 5 min.",
-     "Persistiu: 2ª droga EV — levetiracetam 60 mg/kg ou fenitoína 20 mg/kg (máx. 1.500 mg); eficácia semelhante no estudo ESETT.",
+     "Persistiu: 2ª droga EV — levetiracetam 60 mg/kg (máx. 4.500 mg) ou fenitoína 20 mg/kg (máx. 1.500 mg); eficácia semelhante no ESETT.",
+     "Valproato EV 40 mg/kg (máx. 3.000 mg) é alternativa equivalente onde houver; evitar em gestante, hepatopatia e criança < 2 anos.",
      "Fenitoína só em SF, com monitor cardíaco, até 50 mg/min (idoso ou cardiopata 25 mg/min); evitar em bradicardia e BAV.",
      "Refratária à 2ª droga: fenobarbital EV ou intubação com midazolam ou propofol contínuo em UTI.",
      "Primeira crise única, recuperada, exames normais e sem causa aguda: alta com acompanhante e neurologia, sem anticonvulsivante de rotina.",
-     "Convulsão febril simples (6 meses a 5 anos): tratar a febre e a causa; não precisa de exames de rotina nem de anticonvulsivante."
+     "Convulsão febril simples (6 meses a 5 anos): tratar a febre e a causa; sem exames de rotina nem anticonvulsivante; antitérmico só para conforto."
     ]
    },
    {
@@ -2169,22 +2071,14 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Fenitoína 1 g (4 ampolas em 80 mL de SF a 300 mL/h) — prescrição própria do médico; equivale a 15–20 mg/kg só entre 50 e 65 kg.",
+     "Fenitoína 1 g (4 ampolas em 80 mL de SF a 300 mL/h) — prescrição própria do médico; dá 18–22 mg/kg só entre 45 e 55 kg; fora disso, 20 mg/kg.",
      "Fenobarbital EV 15–20 mg/kg (criança 20 mg/kg, máx. 1.000 mg) — 3ª droga ou alternativa sem levetiracetam; depressão respiratória e hipotensão.",
-     "Diazepam por via retal 0,5 mg/kg — criança sem acesso venoso e sem midazolam; usa a ampola injetável e é fora da bula abaixo de 2 anos."
+     "Diazepam por via retal — criança sem acesso venoso e sem midazolam; dose em Calculadoras › Pediatria › Convulsão; fora da bula abaixo de 2 anos."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Principais condutas: 'diazepam 20 mg/kg' (erro grosseiro; é 0,2 mg/kg), diazepam IM, fenobarbital 10 mg/kg e bloqueador neuromuscular 'para convulsão' — não aproveitar.",
-   "Tigers e Medicações Pediatria: ataque de fenitoína pediátrica de 5–10 mg/kg; o atual é 20 mg/kg — não aproveitar.",
-   "Tigers propõe diazepam intermitente durante a febre na convulsão febril; a AAP não recomenda de rotina — não aproveitar.",
-   "Valproato EV (opção da ACEP 2024) é pouco disponível no Brasil e não está no site — confirmar disponibilidade local.",
-   "Diazepam retal: não há constante 'USO RETAL' entre as vias do site — decidir como prescrever antes de incluir.",
-   "TCE do DATA usa fenitoína com teto de 2.000 mg; Crise convulsiva e Calculadoras usam 1.500 mg — unificar.",
-   "DATA não tem modo Ambulatorial (alta após primeira crise ou convulsão febril) — decidir se cria orientações."
-  ],
+  "pendencias": [],
   "fontes": [
    "Glauser T et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults: Report of the Guideline Committee of the American Epilepsy Society. Epilepsy Curr. 2016;16(1):48-61.",
    "American College of Emergency Physicians. Clinical Policy: Critical Issues in the Evaluation and Management of Adult Patients Presenting to the Emergency Department With Seizures. Ann Emerg Med. 2024;84(1).",
@@ -2236,9 +2130,10 @@ const GUIA_ITENS = [
      "VPPB de canal posterior: manobra de Epley (pode ensinar o paciente a repetir); remédio não trata VPPB.",
      "Supressor vestibular ou antiemético (dimenidrinato, meclizina) só nas crises e por no máximo 3 dias.",
      "No PS, se vômitos ou crise intensa: dimenidrinato EV e/ou ondansetrona EV; hidratar se desidratado.",
-     "Neurite vestibular: corticoide curto pode ser oferecido nos 3 primeiros dias (evidência muito baixa); decidir junto com o paciente.",
-     "Ménière: antiemético na crise; betaistina e restrição de sal ficam para o seguimento com otorrino.",
-     "Reabilitação vestibular se a tontura persistir após 2 semanas."
+     "Neurite vestibular: prednisona curta (60 mg/dia por 5 dias, com redução) pode ser oferecida nos 3 primeiros dias; benefício incerto.",
+     "Ménière: antiemético na crise; betaistina e menos sal, cafeína e álcool até o seguimento com otorrino.",
+     "Reabilitação vestibular se a tontura persistir após 2 semanas.",
+     "Sem RM no serviço e HINTS central ou duvidoso: discutir com a neurologia ou a regulação para RM com difusão; não liberar com TC normal."
     ]
    },
    {
@@ -2262,20 +2157,13 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Dimenidrinato EV (ampola de 30 mg) ± ondansetrona EV — crise com vômitos no PS; dá sonolência; dimenidrinato é contraindicado na intolerância à frutose.",
+     "Betaistina 16 mg de 8/8 h — manutenção na doença de Ménière até o otorrino; não é tratamento da vertigem aguda inespecífica.",
      "Prometazina 25–50 mg IM — crise intensa que não melhora; muito sedativa, evitar em idoso."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Plantão Rápido diz que a neurite vestibular é a causa mais comum de vertigem; a mais comum é a VPPB — não aproveitar a frase.",
-   "Tigers e Principais condutas usam cinarizina e flunarizina por 30 dias e betaistina 8 mg; as diretrizes limitam o supressor a poucos dias — não aproveitar.",
-   "DATA Outras opções 'Opção 1' (esquema de Ménière) e 'Opção 2' (neurite, com prednisona 40 mg/dia) não dizem a indicação — rotular.",
-   "Prednisona 20 mg 12/12 h por 5 dias (Plantão Rápido, neurite) é dose menor que a dos estudos — decidir dose ou retirar.",
-   "Vertigem não tem modo Internação no DATA — propostas de dimenidrinato EV, ondansetrona EV e prometazina IM enviadas.",
-   "HINTS só é confiável com treinamento (GRACE-3); confirmar se o serviço tem RM para os casos duvidosos."
-  ],
+  "pendencias": [],
   "fontes": [
    "Edlow JA et al. Guidelines for reasonable and appropriate care in the emergency department 3 (GRACE-3): Acute dizziness and vertigo in the emergency department. Acad Emerg Med. 2023;30(5):442-486.",
    "Bhattacharyya N et al. Clinical Practice Guideline: Benign Paroxysmal Positional Vertigo (Update). Otolaryngol Head Neck Surg. 2017;156(3_suppl):S1-S47.",
@@ -2324,10 +2212,10 @@ const GUIA_ITENS = [
     "itens": [
      "Prednisona 60 mg/dia por 5 dias com redução em 5 dias (ou prednisolona 50 mg/dia por 10 dias), iniciada em até 72 h.",
      "Antiviral sozinho não; associar valaciclovir ao corticoide é opção na paralisia grave ou completa.",
-     "Ramsay Hunt: aciclovir ou valaciclovir em dose de zoster junto com o corticoide.",
-     "Proteger o olho sempre que não fecha: lágrima artificial de dia, gel ou pomada e oclusão à noite, óculos.",
+     "Ramsay Hunt: aciclovir 800 mg 5 vezes ao dia ou valaciclovir 1 g de 8/8 h por 7 dias, junto com o corticoide.",
+     "Proteger o olho que não fecha: lágrima artificial de 2/2 h de dia (mais se arder), gel ou pomada lubrificante sem antibiótico e oclusão à noite.",
      "Diabético: monitorizar a glicemia; gestante: o corticoide pode ser usado, decidir com o obstetra.",
-     "Criança: a recuperação espontânea é a regra; o estudo controlado não mostrou benefício significativo da prednisolona.",
+     "Criança (< 16 anos): a recuperação espontânea é a regra e o estudo controlado não mostrou benefício da prednisolona — proteção ocular e reavaliação.",
      "Reavaliar em 1–2 semanas; sem recuperação completa em 3 meses, encaminhar à neurologia ou otorrino."
     ]
    },
@@ -2351,12 +2239,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Plantãozinho e Plantão Rápido usam prednisona 40 mg/dia (20 mg 12/12 h por 5 dias); a diretriz usa 60 mg/dia por 5 dias + redução (Padrão do DATA correto); as Outras opções do DATA ainda têm a dose menor — revisar.",
-   "DATA Outras opções 'Opção 2' (aciclovir 800 mg 5x/dia) é o esquema da Ramsay Hunt — renomear para deixar a indicação clara.",
-   "Lágrima artificial 'de 30/30 min' (Plantão Rápido) × 'de 2/2 h' (Padrão) — escolher uma.",
-   "DATA não tem bloco pediátrico; a diretriz da AAO-HNS vale a partir de 16 anos e o ensaio pediátrico (Babl 2022) não mostrou benefício significativo — decidir se cria orientação pediátrica."
-  ],
+  "pendencias": [],
   "fontes": [
    "Baugh RF et al. Clinical Practice Guideline: Bell's Palsy. Otolaryngol Head Neck Surg. 2013;149(3 Suppl):S1-S27.",
    "Gronseth GS, Paduga R. Evidence-based guideline update: steroids and antivirals for Bell palsy. Neurology. 2012;79(22):2209-2213.",
@@ -2410,7 +2293,7 @@ const GUIA_ITENS = [
      "Anticoagulado com sangramento intracraniano: reverter a anticoagulação e acionar a neurocirurgia.",
      "Grave: intubar se Glasgow ≤ 8; manter SpO2 ≥ 94%, PAS ≥ 100–110 e normocapnia — hipóxia e hipotensão dobram a mortalidade.",
      "Sinais de herniação: cabeceira a 30°, salina hipertônica ou manitol até a neurocirurgia; hiperventilação só como ponte breve.",
-     "Profilaxia de crise por 7 dias no TCE moderado ou grave com lesão na TC (fenitoína ou levetiracetam).",
+     "Profilaxia de crise por 7 dias no TCE moderado ou grave com lesão na TC: fenitoína 20 mg/kg (máx. 1.500 mg) ou levetiracetam.",
      "Ferimento: limpeza, sutura e vacina antitetânica conforme o histórico vacinal."
     ]
    },
@@ -2433,13 +2316,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "DATA diz 'em uso de anticoagulante: TC em até 8 h mesmo sem outros fatores'; o NICE 2023 passou a 'considerar' TC em 8 h e incluiu antiagregantes (exceto AAS isolado) — decidir a regra.",
-   "TCE do DATA usa fenitoína com teto de 2.000 mg; Crise convulsiva e Calculadoras usam 1.500 mg — unificar.",
-   "Folha de orientações pós-TCE do Plantão Rápido (17 sinais) cita um hospital de outro estado e manda acordar o paciente 2–3 vezes à noite — adaptar ao serviço e decidir se mantém o despertar.",
-   "Tigers (protocolo do trauma) usa o ABCDE do ATLS antigo; o ATLS 11 (2025) usa xABCDE.",
-   "DATA Outras opções 'Receita' (clorexidina spray) tem orientação cortada ('RETORNAR À EMERGÊNCIA EM CASO DE:') — completar ou retirar."
-  ],
+  "pendencias": [],
   "fontes": [
    "National Institute for Health and Care Excellence (NICE). Head injury: assessment and early management (NG232). 2023.",
    "Stiell IG et al. The Canadian CT Head Rule for patients with minor head injury. Lancet. 2001;357(9266):1391-1396.",
@@ -2488,11 +2365,12 @@ const GUIA_ITENS = [
     "itens": [
      "Desescalada verbal: ambiente calmo, uma só pessoa falando, tom baixo, oferecer escolhas, água e comida; equipe suficiente por perto.",
      "Colaborativo: haloperidol 5 mg VO ou risperidona 2 mg VO.",
-     "Sem colaboração: haloperidol 5 mg + prometazina 50 mg IM (idoso: haloperidol 2,5 mg); midazolam IM se estimulante ou abstinência.",
+     "Sem colaboração: haloperidol 5 mg + prometazina 50 mg IM (idoso: haloperidol 2,5 mg); midazolam IM 7,5–15 mg (idoso 2,5–5 mg) se estimulante ou abstinência.",
      "Evitar benzodiazepínico se intoxicação por álcool ou outro depressor (soma depressão respiratória).",
+     "Cetamina IM não faz parte do protocolo: evidência fraca e mais intubação; só como exceção, na sala de emergência, com equipe de via aérea.",
      "Contenção mecânica só como último recurso, por equipe treinada, com registro, revisão frequente e monitorização.",
      "Monitorizar SpO2, FR, PA e nível de consciência após cada dose; ECG se cardiopatia ou várias doses de antipsicótico.",
-     "Intoxicação alcoólica: decúbito lateral, glicemia e tiamina antes da glicose; soro EV não acelera a eliminação do álcool."
+     "Intoxicação alcoólica: decúbito lateral, glicemia e tiamina antes da glicose (glicose 50% 25 g se < 70); soro EV não acelera a eliminação do álcool."
     ]
    },
    {
@@ -2514,13 +2392,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Principais condutas: haloperidol 5 mg IM 'a cada 5 minutos até 80 mg' e haloperidol 5 mg EV dobrando no idoso — inseguros, não aproveitar.",
-   "Plantão Rápido traz cetamina 4–5 mg/kg IM; a política da ACEP 2024 não faz recomendação formal (evidência fraca) — decidir se entra só para sala de emergência.",
-   "Faixa de midazolam IM: DATA 7,5–15 mg; Plantão Rápido 2,5–5 mg — definir dose por idade e por intoxicação associada.",
-   "Plantãozinho: glicose 50% '6–10 ampolas' e soro glicosado antes da tiamina na intoxicação alcoólica — não aproveitar.",
-   "Complexo B IM e SG 5% + metoclopramida EV de rotina (Drive) não têm benefício demonstrado — não propostos."
-  ],
+  "pendencias": [],
   "fontes": [
    "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 1. Non-pharmacological approach. Braz J Psychiatry. 2019;41(2):153-167.",
    "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 2. Pharmacological approach. Braz J Psychiatry. 2019;41(4):324-335.",
@@ -2570,10 +2442,11 @@ const GUIA_ITENS = [
      "Benzodiazepínico é o tratamento: diazepam guiado pela CIWA-Ar (≥ 10), reavaliando de hora em hora.",
      "Hepatopatia grave, idoso ou DPOC grave: lorazepam VO (não há forma injetável no Brasil).",
      "Ambulatorial se CIWA-Ar < 10 (ou 10–18 sem fatores de risco), com acompanhante e retorno em 24–48 h; diazepam em doses decrescentes por poucos dias.",
+     "Sem poder usar benzodiazepínico (leve a moderada, sem convulsão prévia): carbamazepina VO em 5 dias decrescentes.",
      "Internar se CIWA-Ar ≥ 19, convulsão ou delirium tremens prévios, comorbidade grave, sem acompanhante ou sem via oral.",
      "Delirium tremens refratário: fenobarbital EV em UTI; haloperidol só como adjuvante, nunca no lugar do benzodiazepínico.",
      "Fenitoína não trata convulsão de abstinência; corrigir magnésio e potássio.",
-     "Encaminhar ao CAPS AD; o tratamento do uso de álcool (naltrexona, acamprosato) é feito no seguimento."
+     "Encaminhar ao CAPS AD; naltrexona ou acamprosato no seguimento — benzodiazepínico por semanas e antidepressivo sem depressão não tratam o uso de álcool."
     ]
    },
    {
@@ -2599,18 +2472,12 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Ácido fólico 5 mg/dia por 30 dias — etilista desnutrido (o Plantão Rápido associa tiamina, complexo B e ácido fólico).",
-     "Carbamazepina VO — alternativa na abstinência leve a moderada ambulatorial (já em Outras opções); a dose do material é menor que a dos estudos."
+     "Carbamazepina em 5 dias decrescentes (800 mg no 1º dia até 200 mg) — alternativa ao benzodiazepínico sem convulsão prévia; evitar em hepatopatia e gestação."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Plantão Rápido usa CIWA-Ar < 15 em casa e > 15 internar; ASAM 2020 usa < 10 leve, 10–18 moderada e fatores de risco — decidir o corte.",
-   "DATA Outras opções 'Conduta ideal', 'Opção 1' e 'Opção 2' mantêm diazepam por 20 dias + antidepressivo; benzodiazepínico prolongado não é recomendado e antidepressivo não trata o uso de álcool — revisar.",
-   "Plantão Rápido diz 'não fazer haloperidol'; o DATA o usa só como adjuvante no delirium tremens (compatível com a ASAM) — confirmar.",
-   "Principais condutas: diazepam '1/1 h' fixo sem guia de sintomas — o DATA já usa a CIWA-Ar (manter).",
-   "Carbamazepina 200 mg 12/12 h (Plantão Rápido) é dose baixa; a ASAM usa doses maiores em esquema decrescente — decidir."
-  ],
+  "pendencias": [],
   "fontes": [
    "American Society of Addiction Medicine. The ASAM Clinical Practice Guideline on Alcohol Withdrawal Management. J Addict Med. 2020;14(3S Suppl 1):1-72.",
    "Sullivan JT et al. Assessment of alcohol withdrawal: the revised Clinical Institute Withdrawal Assessment for Alcohol scale (CIWA-Ar). Br J Addict. 1989;84(11):1353-1357.",
@@ -2624,7 +2491,7 @@ const GUIA_ITENS = [
   "cond": "hiperglicemia",
   "nm": "Hiperglicemia e hipoglicemia",
   "sub": "hipoglicemia · cetoacidose · estado hiperosmolar · potássio · insulina",
-  "kw": "hiperglicemia hipoglicemia glicose alta glicose baixa acucar alto acucar baixo diabetes descompensado cetoacidose diabetica cad estado hiperosmolar ehh cetonas kussmaul poliuria polidipsia glicose 50 glucagon insulina regular insulina nph potassio soro fisiologico bicarbonato metformina sulfonilureia isglt2",
+  "kw": "hiperglicemia hipoglicemia glicose alta glicose baixa acucar alto acucar baixo diabetes descompensado cetoacidose diabetica cad estado hiperosmolar ehh cetonas kussmaul poliuria polidipsia glicose 50 glucagon insulina regular insulina nph potassio soro fisiologico bicarbonato metformina sulfonilureia isglt2 bicarbonato cetoacidose pediatrica ispad",
   "draft": true,
   "revisado": null,
   "resumo": "Hipoglicemia (< 70 mg/dL) trata-se na hora: VO se acordado, glicose EV ou glucagon se não. Na hiperglicemia, a pergunta é se há crise (cetoacidose ou estado hiperosmolar): hidratação, potássio antes da insulina e insulina EV em bomba; hiperglicemia assintomática não se trata com insulina no PS.",
@@ -2658,11 +2525,12 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Hipoglicemia acordado: 15–20 g de açúcar VO, medir de novo em 15 min e repetir se preciso; depois um lanche.",
-     "Sem via oral: glicose 50% 20–25 g EV (tiamina antes ou junto no etilista) ou glucagon 1 mg IM se sem acesso.",
+     "Sem via oral: glicose 50% 25 g (50 mL) EV (tiamina antes ou junto no etilista) ou glucagon 1 mg IM se sem acesso.",
      "Hipoglicemia por sulfonilureia ou insulina de ação longa: observar 12–24 h com soro glicosado e glicemias seriadas.",
      "Crise hiperglicêmica: SF 0,9% 1.000 mL (15–20 mL/kg) na 1ª hora; depois conforme sódio corrigido, diurese e volemia.",
      "Potássio antes da insulina: < 3,5 repor e segurar a insulina; 3,5–5,0 repor no soro; > 5,0 não repor.",
      "Insulina regular EV em bomba (Calculadoras); acrescentar soro glicosado quando a glicemia chegar a 250 e manter até fechar o ânion gap.",
+     "Bicarbonato só se pH < 7,0 (100 mEq em 2 h), repondo o potássio, que cai.",
      "Transição: insulina SC basal 1–2 h antes de desligar a bomba, com a crise resolvida e o paciente comendo.",
      "Hiperglicemia sem crise: ajustar o remédio oral, metformina no DM2 recente e retorno à UBS em até 7 dias; não fazer insulina 'avulsa'."
     ]
@@ -2672,7 +2540,7 @@ const GUIA_ITENS = [
     "itens": [
      "Cetoacidose moderada ou grave (pH < 7,25), estado hiperosmolar, rebaixamento ou potássio < 3,5 ou > 6: sala de emergência ou UTI.",
      "Hipoglicemia que não corrige ou volta, ou causada por sulfonilureia: não dar alta.",
-     "Criança com cetoacidose: protocolo pediátrico próprio (volume mais lento, sem bolus de insulina); cefaleia, bradicardia ou queda da consciência = edema cerebral."
+     "Criança com cetoacidose: protocolo ISPAD — expansão de 10 mL/kg, insulina 0,05–0,1 UI/kg/h sem bolus 1 h após o soro; cefaleia ou bradicardia = edema cerebral."
     ],
     "alerta": true
    },
@@ -2686,13 +2554,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Plantãozinho e Principais condutas trazem escala de insulina SC (Repick) e insulina regular 10 U 'avulsa' SC ou IM; escala isolada é desaconselhada — não aproveitar.",
-   "Guia de Bolso Trabiju segura a insulina com K < 3,3 (ADA 2009); o DATA usa 3,5 (consenso ADA 2024) — manter 3,5.",
-   "Bicarbonato: Guia de Bolso e Plantão Rápido usam pH < 6,9; confirmar o corte do consenso ADA 2024 (6,9 ou 7,0) antes de incluir.",
-   "Glicose 50% na hipoglicemia: DATA 20 g (40 mL), Calculadoras 25 g (50 mL), Drive 3–4 ampolas — unificar.",
-   "DATA não tem bloco pediátrico de cetoacidose (ISPAD 2022) nem a transição para insulina SC (NPH no Plantãozinho) — decidir se cria."
-  ],
+  "pendencias": [],
   "fontes": [
    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care. 2024;47(8):1257-1275.",
    "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2025. Diabetes Care. 2025;48(Suppl 1).",
@@ -2737,13 +2599,14 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Adrenalina 1 mg/mL IM no vasto lateral da coxa: 0,01 mg/kg, máximo 0,5 mg no adulto; repetir a cada 5–15 min se não melhorar.",
+     "Adrenalina 1 mg/mL IM no vasto lateral: 0,01 mg/kg, máximo 0,5 mg no adulto e 0,3 mg na criança (0,5 mg a partir de 12 anos); repetir a cada 5–15 min.",
      "Deitar com pernas elevadas (sentado se só dispneia; decúbito lateral esquerdo na gestante); nunca colocar de pé.",
      "O2 em alto fluxo, 2 acessos calibrosos e cristaloide em bolus se hipotensão (adulto 0,5–1 L; criança 20 mL/kg).",
      "Broncoespasmo que persiste após a adrenalina: salbutamol inalatório.",
      "Refratária (2 doses IM + volume sem resposta): adrenalina EV contínua em bomba e UTI; bolus EV só na parada cardíaca.",
      "Em uso de betabloqueador com hipotensão refratária: glucagon EV.",
      "Anti-H1 (loratadina VO) só para sintomas de pele após estabilizar; corticoide só se broncoespasmo persistente, asma ou reação refratária.",
+     "Na alta, não prescrever corticoide de rotina: não previne reação bifásica; kit de adrenalina (adulto 0,5 mg da ampola ou autoinjetor de 0,3 mg; criança pelo peso).",
      "Observar por no mínimo 6 h após a resolução; mais tempo se reação grave, mais de 1 dose de adrenalina ou asma."
     ]
    },
@@ -2759,18 +2622,13 @@ const GUIA_ITENS = [
    {
     "t": "Orientações ao paciente",
     "itens": [
-     "Ande sempre com a adrenalina (ampolas e seringas, ou autoinjetor) e ensine a família a aplicar na coxa.",
+     "Ande sempre com a adrenalina (ampolas e seringas, ou autoinjetor) e ensine a família a aplicar na coxa; na criança, atualize a dose conforme o peso.",
      "Se falta de ar, chiado, rouquidão, inchaço na boca ou garganta, tontura ou desmaio: aplique a adrenalina e ligue 192.",
      "Evite o que causou a reação até a consulta com o alergista; use pulseira ou cartão de alergia."
     ]
    }
   ],
-  "pendencias": [
-   "Anafilaxia pediátrica do DATA usa adrenalina com máximo de 0,5 mg; Calculadoras (divergência 6) usa 0,3 mg e 0,5 mg só a partir de 12 anos — unificar.",
-   "DATA Outras opções 'Receita' (prednisona 5 dias + hidroxizina + ranitidina): a ranitidina saiu do mercado e o corticoide não previne reação bifásica — revisar ou retirar.",
-   "Principais condutas: hidrocortisona 500 mg EV e prometazina IM; Plantãozinho: hidrocortisona 300 mg 6/6 h — não aproveitar como resgate.",
-   "Kit de alta do adulto usa 0,5 mg da ampola; autoinjetores de adulto costumam ser de 0,3 mg — confirmar a dose do kit e o tempo de observação usado no serviço."
-  ],
+  "pendencias": [],
   "fontes": [
    "Golden DBK et al. Anaphylaxis: A 2023 practice parameter update. Ann Allergy Asthma Immunol. 2024;132(2):124-176.",
    "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020. World Allergy Organ J. 2020;13(10):100472.",
@@ -2821,6 +2679,7 @@ const GUIA_ITENS = [
      "Hemotórax ou pneumotórax relevante: dreno de tórax; antibiótico só em dose única na inserção.",
      "Analgesia multimodal em horário fixo: dipirona ± AINE (se sem sangramento, lesão renal ou TCE) e opioide para dor forte.",
      "Fisioterapia respiratória: inspirar fundo e tossir abraçando um travesseiro; não enfaixar o tórax.",
+     "Não usar xarope para tosse nem relaxante muscular: a tosse eficaz é o objetivo e eles somam sedação, sobretudo no idoso.",
      "Dor refratária, idoso com ≥ 3 costelas fraturadas, tórax instável ou queda da SpO2: analgesia regional (serrátil, paravertebral, peridural) e UTI.",
      "Profilaxia de TEV quando internado, adiada se sangramento ativo ou TCE com hemorragia.",
      "Criança: lesão intratorácica pode ocorrer sem fratura; fratura de costela antes dos 3 anos sem mecanismo compatível sugere maus-tratos."
@@ -2846,12 +2705,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "DATA Outras opções 'Opção 2' (levodropropizina + codeína para tosse) contraria o objetivo de tosse eficaz na fratura de costela — avaliar retirar.",
-   "DATA 'Opção 1' (ciclobenzaprina + carisoprodol/paracetamol/cafeína + codeína) soma sedativos sem evidência na fratura de costela, com risco no idoso — avaliar.",
-   "Nimesulida (Outras opções) tem risco hepático e foi retirada em vários países — decidir se mantém.",
-   "Tigers (protocolo do trauma) usa o ABCDE do ATLS antigo; o ATLS 11 (2025) usa xABCDE."
-  ],
+  "pendencias": [],
   "fontes": [
    "American College of Surgeons. Advanced Trauma Life Support (ATLS) Student Course Manual. 11ª ed. Chicago: ACS; 2025.",
    "Galvagno SM Jr et al. Pain management for blunt thoracic trauma: A joint practice management guideline from the Eastern Association for the Surgery of Trauma and Trauma Anesthesiology Society. J Trauma Acute Care Surg. 2016;81(5):936-951.",
@@ -2901,7 +2755,7 @@ const GUIA_ITENS = [
      "Baixo risco (pródromo típico de reflexa, exame e ECG normais): alta sem exames adicionais.",
      "Canadian Syncope Risk Score (predisposição vasovagal, cardiopatia, PAS < 90 ou > 180, troponina, QRS, QTc, impressão diagnóstica) ajuda a decidir a observação.",
      "Regra de São Francisco (em Escores) e o escore canadense apoiam, mas não substituem o julgamento clínico.",
-     "Risco intermediário: monitorização no PS e reavaliação; alto risco: internar com monitor cardíaco.",
+     "Risco intermediário: monitor no PS ou observação por algumas horas; depois Holter ou monitor prolongado ambulatorial, ou encaminhamento à cardiologia.",
      "Reflexa: explicar que é benigna, ensinar manobras de contrapressão e hidratação; rever o anti-hipertensivo se a PA permitir.",
      "Ortostática: hidratar, suspender ou reduzir o remédio causador e orientar a levantar devagar."
     ]
@@ -2924,16 +2778,12 @@ const GUIA_ITENS = [
      "Beba bastante água e não reduza o sal por conta própria (se tiver pressão alta, combine com seu médico).",
      "Ao sentir que vai desmaiar: deite ou sente; cruze as pernas apertando com força, contraia a barriga ou agache.",
      "Não mude os remédios de pressão sozinho; o médico pode precisar ajustá-los.",
-     "Volte se desmaiar durante esforço ou deitado, se tiver dor no peito, palpitação, falta de ar ou se se machucar ao cair."
+     "Volte se desmaiar durante esforço ou deitado, se tiver dor no peito, palpitação, falta de ar ou se se machucar ao cair.",
+     "Pode dirigir após um desmaio reflexo isolado; se os desmaios forem repetidos e sem aviso, não dirija até o controle. Motorista profissional segue regras mais rígidas."
     ]
    }
   ],
-  "pendencias": [
-   "Condição nova: não há id nem palavra-chave 'síncope' no DATA; as orientações vêm de 2 documentos próprios do médico ('Síncope Reflexa').",
-   "O texto do médico manda 'restringir condução de veículos'; a ESC 2018 só restringe o motorista particular na síncope reflexa recorrente e grave (regras mais estritas para profissionais) — decidir a redação.",
-   "Canadian Syncope Risk Score não está em Escores (entraria primeiro na Ficha Vermelha) — conferir os pontos de cada item na publicação original antes.",
-   "Confirmar se o serviço tem monitorização prolongada/Holter para o risco intermediário ou se o fluxo é encaminhar à cardiologia."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brignole M et al. 2018 ESC Guidelines for the diagnosis and management of syncope. Eur Heart J. 2018;39(21):1883-1948.",
    "Shen WK et al. 2017 ACC/AHA/HRS Guideline for the Evaluation and Management of Patients With Syncope. Circulation. 2017;136(5):e60-e122.",
@@ -2958,7 +2808,7 @@ const GUIA_ITENS = [
      "Disfunções (ILAS): PAS < 90 ou PAM < 65, oligúria ou creatinina > 2, SpO2 < 90% ou necessidade de O2.",
      "Também são disfunção: plaquetas < 100 mil, lactato > 2 mmol/L, confusão ou agitação e bilirrubina > 2× o normal.",
      "SIRS serve para triar, não para definir sepse: 2 de Tax > 37,8 ou < 35, FC > 90, FR > 20, leucócitos > 12 mil ou < 4 mil.",
-     "qSOFA não deve ser usado sozinho na triagem (pouco sensível); NEWS2 (em Escores) ou SIRS são melhores.",
+     "qSOFA (FR ≥ 22, PAS ≤ 100, confusão; 2 ou mais) não serve para triar sozinho: use NEWS2 (em Escores) ou SIRS.",
      "Idoso, imunossuprimido e quem usa betabloqueador podem ter sepse sem febre ou sem taquicardia."
     ]
    },
@@ -2982,10 +2832,11 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Antibiótico EV de amplo espectro na 1ª hora no choque ou na sepse provável; sepse só possível, sem choque: investigar e decidir em até 3 h.",
-     "Escolher pelo foco e pelo guia da CCIH; 1ª dose cheia, sem ajuste renal (ver Pneumonia, Pielonefrite e Erisipela em Prescrições).",
-     "Hipotensão ou hipoperfusão (lactato alto, TEC > 3 s): cristaloide até 30 mL/kg nas primeiras 3 h, em alíquotas, reavaliando após cada uma.",
+     "Escolher pelo foco e pelo guia da CCIH (sem guia local, o guia de antimicrobianos do ILAS); 1ª dose cheia, sem ajuste renal.",
+     "Sem suspeita de anaeróbio, evitar cobertura anaerobicida; antifúngico empírico não é de rotina (SSC 2026).",
+     "PAS < 90, PAM < 65 ou lactato ≥ 2× o normal: cristaloide até 30 mL/kg em 3 h, em alíquotas; TEC > 3 s, livedo ou oligúria também pedem volume.",
      "Preferir Ringer lactato a SF 0,9% (exceto no TCE); não usar amido nem gelatina.",
-     "PAM < 65 apesar do volume: noradrenalina, que pode começar em veia periférica sem esperar o fim do volume.",
+     "PAM < 65 apesar do volume: noradrenalina, que pode começar em veia periférica; alvo PAM 65 (60–65 no idoso ≥ 65 anos).",
      "Dose de noradrenalina subindo: associar vasopressina; no choque, considerar hidrocortisona 200 mg/dia (50 mg de 6/6 h).",
      "Controle do foco (drenar, desbridar, retirar cateter) idealmente em até 6 h; reavaliar volemia e perfusão em 6 h.",
      "Criança: antibiótico em 1 h no choque; bolus de 10–20 mL/kg reavaliando, até 40–60 mL/kg na 1ª hora onde houver UTI."
@@ -3010,18 +2861,13 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Plantão Rápido orienta triar por qSOFA, com cortes errados ('PAS < 100', 'FR > 22', '> 2'; o certo é ≤ 100, ≥ 22 e ≥ 2) e SOFA '> 2' (o certo é aumento ≥ 2) — SSC 2026 e ILAS não recomendam qSOFA isolado.",
-   "Guia HC-FMUSP de antimicrobianos (APS) chama de sepse ≥ 2 critérios de SIRS mesmo sem disfunção (definição antiga) e dá 30 mL/kg com lactato > 20 mg/dL; o ILAS usa hipotensão ou lactato > 2× o normal e TEC > 3 s — decidir o gatilho do site.",
-   "Documento 'ESCORE NEWS SEPSE' do Drive é o NEWS original; o site tem NEWS2 (faixas diferentes) — usar NEWS2.",
-   "Não há condição Sepse no DATA nem prescrição pronta (cristaloide, noradrenalina, hidrocortisona) — decidir se cria uma condição com Padrão de internação.",
-   "Antibiótico empírico sem foco depende do guia local da CCIH; o ILAS tem guia prático de antimicrobianos (2024) — escolher a referência."
-  ],
+  "pendencias": [],
   "fontes": [
    "Prescott HC et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026. Crit Care Med. 2026. doi:10.1097/CCM.0000000000007075.",
    "Instituto Latino Americano de Sepse (ILAS). Implementação de protocolo gerenciado de sepse – protocolo clínico: atendimento ao paciente adulto com sepse/choque séptico. Revisado em julho de 2026.",
    "Singer M et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA. 2016;315(8):801-810.",
-   "Weiss SL et al. Surviving Sepsis Campaign International Guidelines for the Management of Septic Shock and Sepsis-Associated Organ Dysfunction in Children. Pediatr Crit Care Med. 2020;21(2):e52-e106."
+   "Weiss SL et al. Surviving Sepsis Campaign International Guidelines for the Management of Septic Shock and Sepsis-Associated Organ Dysfunction in Children. Pediatr Crit Care Med. 2020;21(2):e52-e106.",
+   "Instituto Latino Americano de Sepse (ILAS). Guia prático de terapia antimicrobiana na sepse. 2024."
   ]
  },
  {
@@ -3062,8 +2908,9 @@ const GUIA_ITENS = [
      "Dispepsia típica em jovem, sem alarme: não precisa de exame no PS.",
      "Dor importante ou dúvida: hemograma, PCR, lipase, função hepática com bilirrubinas, função renal, eletrólitos, urina tipo I e beta-hCG.",
      "Ultrassom é o exame inicial na dor em HCD (colelitíase, colecistite) e na gestante e na criança.",
-     "TC de abdome com contraste é o exame de escolha na dor aguda indefinida do adulto; RX simples só para pneumoperitônio ou obstrução sem TC.",
-     "ECG na dor epigástrica de quem tem fatores de risco cardiovascular."
+     "TC de abdome com contraste é o exame de escolha na dor aguda indefinida do adulto; RX simples só para pneumoperitônio ou obstrução quando não houver TC.",
+     "ECG na dor epigástrica de quem tem fatores de risco cardiovascular.",
+     "Sem TC no serviço: USG e avaliação do cirurgião; se a suspeita de abdome cirúrgico continuar sem diagnóstico, transferir."
     ]
    },
    {
@@ -3071,8 +2918,8 @@ const GUIA_ITENS = [
     "itens": [
      "Trate a dor logo: analgesia, inclusive opioide, não mascara o diagnóstico nem atrasa a decisão cirúrgica.",
      "Cólica biliar: AINE (diclofenaco ou cetoprofeno) é a primeira escolha; alivia mais que o antiespasmódico e pode reduzir complicações.",
-     "Opioide na cólica biliar se AINE contraindicado ou insuficiente; escopolamina é coadjuvante, não primeira escolha.",
-     "Dor intensa no PS: dipirona EV e, se preciso, tramadol ou morfina titulada; antiemético se náuseas.",
+     "Opioide na cólica biliar se AINE contraindicado ou insuficiente; escopolamina, isolada ou com dipirona, serve à cólica inespecífica, não à biliar.",
+     "Dor intensa no PS: dipirona EV e, se preciso, tramadol diluído em 100 mL em 30 minutos (menos náusea) ou morfina titulada; antiemético se náuseas.",
      "Dispepsia sem alarme: IBP por 4 a 8 semanas e pesquisa de H. pylori na UBS.",
      "Colelitíase sintomática confirmada: encaminhar para colecistectomia eletiva.",
      "Alta só com dor controlada, sem peritonite, tolerando líquidos e com reavaliação em 12 a 24 h se a dor persistir."
@@ -3100,17 +2947,13 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "DATA (ambulatorial) tem comprimido combinado de escopolamina + dipirona citado pelo nome comercial; Cochrane 2016 mostra AINE superior ao antiespasmódico na cólica biliar — manter como opção?",
-   "Material do Drive (Principais condutas e Tigers) pede RX de tórax e de abdome no abdome agudo; hoje USG e TC são preferidos, RX só se não houver TC — decidir o texto.",
-   "Drive faz tramadol 100 mg + metoclopramida EV em 20 min; DATA dilui o tramadol em 30 min (menos náusea) — manter o DATA.",
-   "Confirmar se o PS tem TC disponível; se não tiver, ajustar a seção de exames para USG e critérios de transferência."
-  ],
+  "pendencias": [],
   "fontes": [
    "Manterola C, Vial M, Moraga J, Astudillo P. Analgesia in patients with acute abdominal pain. Cochrane Database Syst Rev. 2011;(1):CD005660.",
    "Fraquelli M, Casazza G, Conte D, Colli A. Non-steroid anti-inflammatory drugs for biliary colic. Cochrane Database Syst Rev. 2016;(9):CD006390.",
    "Pisano M et al. 2020 World Society of Emergency Surgery updated guidelines for the diagnosis and treatment of acute calculus cholecystitis. World J Emerg Surg. 2020;15:61.",
    "Di Saverio S et al. Diagnosis and treatment of acute appendicitis: 2020 update of the WSES Jerusalem guidelines. World J Emerg Surg. 2020;15:27.",
+   "Scheirey CD et al. ACR Appropriateness Criteria: Acute Nonlocalized Abdominal Pain. J Am Coll Radiol. 2018;15(11S):S217-S231.",
    "Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia. Am J Gastroenterol. 2017;112(7):988-1013."
   ]
  },
@@ -3123,7 +2966,7 @@ const GUIA_ITENS = [
   "kw": "gastrite drge refluxo refluxo gastroesofagico azia queimacao pirose regurgitacao dispepsia epigastralgia ma digestao empachamento h pylori helicobacter ulcera omeprazol pantoprazol esomeprazol lansoprazol inibidor de bomba ibp hidroxido de aluminio antiacido domperidona endoscopia eda",
   "draft": true,
   "revisado": null,
-  "resumo": "Azia e regurgitação típicas, sem sinais de alarme, permitem tratar sem exame: IBP uma vez ao dia antes do café por 8 semanas e mudanças de hábito. Dor epigástrica (dispepsia) pede pesquisa de H. pylori; sinais de alarme, falha do IBP ou idade indicam endoscopia.",
+  "resumo": "Azia e regurgitação típicas, sem sinais de alarme, permitem tratar sem exame: IBP uma vez ao dia antes do café por 8 semanas e mudanças de hábito. Dispepsia até 45 anos sem alarme pede testar e tratar H. pylori; sinais de alarme, falha do IBP ou idade acima de 45 anos indicam endoscopia.",
   "secoes": [
    {
     "t": "Quando pensar / diagnóstico",
@@ -3147,8 +2990,9 @@ const GUIA_ITENS = [
     "t": "Exames complementares",
     "itens": [
      "Sintomas típicos sem alarme: não precisa de exame para começar o IBP.",
-     "Dispepsia: pesquisar e tratar H. pylori (teste respiratório, antígeno fecal ou biópsia na endoscopia).",
-     "Endoscopia se sinais de alarme, falha após 8 semanas de IBP ou idade acima do limiar adotado pelo serviço.",
+     "Dispepsia até 45 anos sem alarme: testar e tratar H. pylori (teste respiratório, antígeno fecal ou biópsia na endoscopia).",
+     "Refluxo com uso repetido de IBP também é indicação de pesquisar H. pylori (V Consenso, 2026).",
+     "Endoscopia se sinais de alarme, falha após 8 semanas de IBP ou dispepsia acima de 45 anos (V Consenso Brasileiro de H. pylori, 2026).",
      "Hemograma se suspeita de anemia; ECG se dor torácica."
     ]
    },
@@ -3156,12 +3000,14 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "IBP em dose padrão, uma vez ao dia, 30 a 60 min antes do café, por 8 semanas (omeprazol 20 mg ou pantoprazol 40 mg).",
-     "Resposta parcial: dobrar a dose (antes do café e do jantar) ou trocar de IBP; sem resposta, endoscopia.",
+     "Resposta parcial: IBP 2 vezes ao dia (antes do café e do jantar) por mais 8 semanas ou trocar de IBP; sem resposta, endoscopia.",
      "Respondeu: tentar suspender ao fim do tratamento ou manter a menor dose eficaz, sob demanda.",
      "Antiácido (hidróxido de alumínio) só para alívio pontual, 2 horas longe de outros remédios.",
      "Suspender AINE sempre que possível; se indispensável, associar IBP.",
-     "Procinético não trata refluxo; domperidona só para náusea, por até 7 dias.",
-     "H. pylori positivo: erradicar com esquema do consenso brasileiro e confirmar a cura depois."
+     "Procinético não trata refluxo: domperidona só para náusea, por até 7 dias, e bromoprida por 30 dias não tem indicação.",
+     "H. pylori positivo: erradicar na UBS pelo V Consenso Brasileiro (2026), de preferência quádrupla com bismuto por 10 a 14 dias.",
+     "Confirmar a cura 4 semanas ou mais após o fim, com teste respiratório ou antígeno fecal e 2 semanas sem IBP.",
+     "Ranitidina não existe mais no mercado (retirada em 2020 por impureza); não substitui o IBP."
     ]
    },
    {
@@ -3170,7 +3016,7 @@ const GUIA_ITENS = [
      "Hematêmese, melena ou anemia: hemorragia digestiva — avaliação imediata.",
      "Disfagia, dor ao engolir, vômitos persistentes ou perda de peso sem causa.",
      "Massa abdominal, icterícia ou linfonodo supraclavicular.",
-     "Sintomas novos em idade mais avançada ou história familiar de câncer gástrico: endoscopia.",
+     "Dispepsia nova acima de 45 anos ou parente de primeiro grau com câncer gástrico: endoscopia.",
      "Dor súbita e intensa com abdome em tábua: perfuração."
     ],
     "alerta": true
@@ -3194,17 +3040,11 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "DATA (Outras opções, 'Receita') começa com omeprazol 40 mg (2 cápsulas) por 8 semanas; ACG 2022 recomenda dose padrão 1x/dia e dobrar só se resposta parcial — decidir.",
-   "DATA ('Receita') tem domperidona sem prazo, antes do almoço; EMA 2014 restringe a náusea/vômito, máx. 30 mg/dia por até 1 semana (risco de arritmia) — rotular ou retirar.",
-   "DATA manda endoscopia a partir de 40 anos; ACG/CAG 2017 usa 60 anos; no Brasil, com mais câncer gástrico, é comum usar 40–45 — decidir o limiar.",
-   "Material do Drive traz ranitidina (retirada do mercado em 2020) e bromoprida por 30 dias como procinético na DRGE — não propostos.",
-   "Esquema de erradicação do H. pylori não está no DATA; incluir bloco (consenso brasileiro) ou só encaminhar à UBS?"
-  ],
+  "pendencias": [],
   "fontes": [
    "Katz PO et al. ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease. Am J Gastroenterol. 2022;117(1):27-56.",
+   "Coelho LGV et al. V Consenso Brasileiro sobre infecção por Helicobacter pylori. Arq Gastroenterol. 2026;63:e26043.",
    "Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia. Am J Gastroenterol. 2017;112(7):988-1013.",
-   "Coelho LGV et al. IVth Brazilian Consensus Conference on Helicobacter pylori infection. Arq Gastroenterol. 2018;55(2):97-121.",
    "European Medicines Agency (CMDh). Restrictions on the use of domperidone-containing medicines. 2014."
   ]
  },
@@ -3253,10 +3093,13 @@ const GUIA_ITENS = [
     "itens": [
      "Hidratação oral em pequenos goles frequentes é a base; SRO se houver diarreia.",
      "Adulto: ondansetrona, metoclopramida ou dimenidrinato por curto prazo; a ondansetrona causa menos reação extrapiramidal.",
-     "Metoclopramida: no máximo 30 mg/dia por até 5 dias; risco de acatisia e distonia, maior em jovens.",
-     "Criança a partir de 6 meses com vômitos persistentes: ondansetrona oral, dose única, antes de reiniciar a SRO; evitar metoclopramida e bromoprida.",
+     "Metoclopramida: até 10 mg 3 vezes ao dia por no máximo 5 dias; acatisia e distonia são mais comuns em jovens, em quem a ondansetrona é preferível.",
+     "Criança a partir de 6 meses com vômitos persistentes: ondansetrona oral, dose única, antes de reiniciar a SRO (MS 2023).",
+     "Na criança não usar metoclopramida, bromoprida nem dimenidrinato: reação extrapiramidal e sedação, sem ganho na gastroenterite.",
      "Intolerância oral ou desidratação: SF 0,9% EV em alíquotas e antiemético EV; reavaliar e voltar à via oral.",
-     "Gestante: piridoxina com ou sem doxilamina é a primeira linha; dimenidrinato e, se preciso, ondansetrona depois.",
+     "Gestante, forma leve (PUQE até 6): medidas alimentares e piridoxina; se não bastar, dimenidrinato com piridoxina (FEBRASGO 2018, ACOG 2018).",
+     "Gestante com PUQE acima de 6, perda de peso ou desidratação: hiperêmese — maternidade, hidratação EV e tiamina antes de glicose.",
+     "Ondansetrona na gestante: o MS (cartaz de diarreia, 2023) orienta não usar; reservar para hiperêmese refratária, decidida com a obstetrícia.",
      "Ondansetrona prolonga o QT: cuidado com hipocalemia, cardiopatia e outros remédios que prolongam o QT."
     ]
    },
@@ -3285,21 +3128,18 @@ const GUIA_ITENS = [
     "itens": [
      "Domperidona 10 mg — alternativa à metoclopramida, até 3x/dia por no máximo 7 dias; evitar em cardiopatas e com remédios que prolongam o QT.",
      "Bromoprida 10 mg oral — alternativa nacional à metoclopramida, com o mesmo risco extrapiramidal; não usar em criança.",
-     "Dimenidrinato + piridoxina EV (ampola de 30 mg) — antiemético no PS sem efeito antidopaminérgico; contraindicado na intolerância à frutose e abaixo de 2 anos."
+     "Dimenidrinato + piridoxina EV (ampola de 30 mg) — antiemético no PS sem efeito antidopaminérgico; contraindicado na intolerância à frutose e abaixo de 2 anos.",
+     "Piridoxina e dimenidrinato com piridoxina na gestante — bloco próprio em Outras opções, conforme FEBRASGO e ACOG."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Não há bloco para gestante no DATA; ACOG 2018 coloca piridoxina com ou sem doxilamina como 1ª linha — criar bloco ou remeter à obstetrícia?",
-   "Material do Drive diz 'metoclopramida: evitar em jovens' e traz dimenidrinato 100 mg 6/6h e ondansetrona 8 mg 12/12h por 5 dias; DATA usa dimenidrinato 50 mg + piridoxina e ondansetrona SN — manter o DATA.",
-   "Drive pediátrico (Medicações Pediatria 2) usa metoclopramida e bromoprida em criança; EMA 2013 contraindica metoclopramida abaixo de 1 ano e restringe em crianças — não proposto.",
-   "Dimenidrinato em gotas para criança aparece no material do médico (dengue criança); evidência fraca na gastroenterite e risco de sedação — não proposto; decidir."
-  ],
+  "pendencias": [],
   "fontes": [
    "European Medicines Agency. European Medicines Agency recommends changes to the use of metoclopramide. 2013.",
+   "Vaz JO. Náuseas e vômitos na gravidez. Protocolo Febrasgo – Obstetrícia nº 3. São Paulo: Febrasgo; 2018 (Femina. 2019;47(2):52-4).",
    "American College of Obstetricians and Gynecologists. Practice Bulletin No. 189: Nausea and Vomiting of Pregnancy. Obstet Gynecol. 2018;131(1):e15-e30.",
-   "Guarino A et al. ESPGHAN/ESPID evidence-based guidelines for the management of acute gastroenteritis in children in Europe: update 2014. J Pediatr Gastroenterol Nutr. 2014;59(1):132-152.",
+   "Brasil. Ministério da Saúde. Manejo do paciente com diarreia (cartaz). Brasília; 2023.",
    "European Medicines Agency (CMDh). Restrictions on the use of domperidone-containing medicines. 2014."
   ]
  },
@@ -3312,7 +3152,7 @@ const GUIA_ITENS = [
   "kw": "diarreia aguda gastroenterite geca virose intestinal disenteria sangue nas fezes fezes liquidas desidratacao reidratacao soro de reidratacao oral sro soro caseiro plano a plano b plano c zinco loperamida saccharomyces probiotico racecadotrila ondansetrona azitromicina ciprofloxacino ceftriaxona c difficile coprocultura escopolamina",
   "draft": true,
   "revisado": null,
-  "resumo": "Quase sempre viral e autolimitada: o tratamento é reidratar e manter a alimentação. A decisão do plantão é o grau de desidratação (planos A, B ou C) e quem precisa de antibiótico — disenteria com comprometimento do estado geral, febre alta, sepse ou imunossupressão.",
+  "resumo": "Quase sempre viral e autolimitada: o tratamento é reidratar e manter a alimentação, sem antidiarreico. A decisão do plantão é o grau de desidratação (planos A, B ou C) e quem precisa de antibiótico — disenteria com estado geral comprometido, sepse ou imunossupressão.",
   "secoes": [
    {
     "t": "Quando pensar / diagnóstico",
@@ -3349,10 +3189,16 @@ const GUIA_ITENS = [
      "Plano A (hidratado): SRO após cada evacuação, alimentação habitual e, abaixo de 5 anos, zinco por 10 a 14 dias.",
      "Plano B (desidratado): SRO na unidade, 50 a 100 mL/kg em 4 a 6 h, reavaliando a cada hora.",
      "Plano C (desidratação grave): SF 0,9% ou Ringer lactato EV em fase rápida e reavaliação; SRO assim que conseguir beber.",
-     "Antibiótico só na disenteria com estado geral comprometido, febre alta, sepse ou imunossupressão; azitromicina é a primeira escolha.",
+     "Antibiótico só na disenteria com estado geral comprometido ou febre alta persistente, sepse, imunossupressão ou cólera grave (MS 2023).",
+     "Adulto e criança acima de 30 kg: ciprofloxacino 500 mg de 12/12h por 3 dias (ou azitromicina 3 dias); alternativa ceftriaxona IM.",
+     "Criança até 30 kg, a partir de 3 meses: azitromicina 10 mg/kg no 1º dia e 5 mg/kg do 2º ao 5º; alternativa ceftriaxona 50 mg/kg IM.",
+     "Disenteria em tratamento: reavaliar em 2 dias; sangue persistente com estado geral ruim pede ceftriaxona ou internação.",
      "Nunca dar antibiótico se suspeita de E. coli produtora de toxina Shiga (sangue sem febre, surto): risco de síndrome hemolítico-urêmica.",
-     "Loperamida só no adulto com diarreia aquosa, sem febre e sem sangue; nunca em criança.",
-     "Antiemético se os vômitos atrapalham a reidratação: ondansetrona (criança a partir de 6 meses)."
+     "Antidiarreicos (loperamida, racecadotrila) não devem ser usados, em nenhuma idade (MS 2023); probiótico não tem evidência suficiente no adulto.",
+     "Antiemético só se vômitos persistentes atrapalham a SRO: ondansetrona (criança a partir de 6 meses); não usar em gestante.",
+     "Antiparasitário só com indicação: amebíase com trofozoítos com hemácias ou falha da shigelose; giárdia identificada em diarreia de 14 dias ou mais.",
+     "C. difficile: vancomicina oral (fidaxomicina, se houver); metronidazol oral só se nenhuma estiver disponível e o quadro não for grave.",
+     "SMX-TMP e ácido nalidíxico na disenteria estão abandonados pela resistência."
     ]
    },
    {
@@ -3373,33 +3219,25 @@ const GUIA_ITENS = [
      "Prepare 1 sachê de soro em 1 litro de água filtrada ou fervida, use em até 24 horas e tome um copo após cada evacuação.",
      "Continue comendo normalmente, em porções menores; evite refrigerantes, sucos adoçados e bebidas alcoólicas.",
      "Lave as mãos depois de usar o banheiro e antes de preparar ou comer alimentos.",
-     "Volte se tiver muita sede, boca seca, pouca urina, tontura ao levantar, sangue nas fezes, febre persistente ou se não melhorar no prazo combinado."
+     "Volte se tiver muita sede, boca seca, pouca urina, tontura ao levantar, sangue nas fezes, febre que não passa ou diarreia por mais de 7 dias.",
+     "Se estiver tomando antibiótico para diarreia com sangue, volte para reavaliação em 2 dias."
     ]
    },
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Escopolamina + dipirona EV (ampola combinada) — cólica intensa na observação, junto com ondansetrona e soro, como no modelo do médico; não somar outra dipirona.",
-     "Racecadotrila (criança a partir de 3 meses) — antissecretor adjuvante à SRO, aceito pela ESPGHAN 2014; nunca substitui a reidratação."
+     "Escopolamina + dipirona EV (ampola combinada) — cólica intensa na observação, junto com ondansetrona e soro, como no modelo do médico; não somar outra dipirona."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Loperamida está no Padrão do DATA; o guia HC-FMUSP 2024 (material do médico) manda evitar; ACG 2016 aceita no adulto sem febre e sem sangue — decidir se fica no Padrão.",
-   "Prazo de retorno diverge nos textos do médico: 5 dias (Meu rascunho), 7 dias (Meu modelo padrão) e 10 dias (orientações) — escolher um.",
-   "Azitromicina pediátrica: DATA 5 dias (10 mg/kg e depois 5 mg/kg); guia HC-FMUSP 3 dias no total — padronizar.",
-   "Saccharomyces está no Padrão adulto; ACG 2016 considera a evidência insuficiente para probiótico na diarreia aguda do adulto — decidir.",
-   "Outras opções do DATA têm blocos 'Opção N' sem rótulo, inclusive SMX-TMP por 14 dias, metronidazol 10 dias, secnidazol e albendazol — rotular por indicação ou retirar.",
-   "Material do Drive usa SMX-TMP 800/160 e ácido nalidíxico na disenteria — desatualizados pela resistência; não propostos.",
-   "C. difficile: metronidazol oral (guia HC) só se não houver vancomicina oral (IDSA/SHEA 2021) — conferir o rótulo do bloco de vancomicina."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Manejo do paciente com diarreia (cartaz). Brasília; 2023.",
    "Riddle MS, DuPont HL, Connor BA. ACG Clinical Guideline: Diagnosis, Treatment, and Prevention of Acute Diarrheal Infections in Adults. Am J Gastroenterol. 2016;111(5):602-622.",
    "Shane AL et al. 2017 Infectious Diseases Society of America Clinical Practice Guidelines for the Diagnosis and Management of Infectious Diarrhea. Clin Infect Dis. 2017;65(12):e45-e80.",
-   "Guarino A et al. ESPGHAN/ESPID evidence-based guidelines for the management of acute gastroenteritis in children in Europe: update 2014. J Pediatr Gastroenterol Nutr. 2014;59(1):132-152.",
-   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo; 2024."
+   "Johnson S et al. Clinical Practice Guideline by IDSA and SHEA: 2021 Focused Update Guidelines on Management of Clostridioides difficile Infection in Adults. Clin Infect Dis. 2021;73(5):e1029-e1044.",
+   "Guarino A et al. ESPGHAN/ESPID evidence-based guidelines for the management of acute gastroenteritis in children in Europe: update 2014. J Pediatr Gastroenterol Nutr. 2014;59(1):132-152."
   ]
  },
  {
@@ -3444,12 +3282,14 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Medidas gerais: fibra, 1,5 a 2 litros de água por dia, atividade física e ir ao banheiro após o café, com os pés apoiados.",
-     "Adulto: polietilenoglicol (macrogol) é a primeira escolha; lactulose é a alternativa do SUS, com mais gases.",
+     "Adulto: polietilenoglicol (macrogol) é a primeira escolha, de uso diário na constipação crônica (14 dias e reavaliar); lactulose é a alternativa do SUS.",
+     "Lactulose no adulto: 15 a 30 mL por dia (bula); 60 mL por dia é dose de encefalopatia, não de constipação.",
      "Fibra solúvel (psyllium) ajuda na constipação leve; aumentar aos poucos e com água.",
      "Bisacodil ou senna como resgate ou por curto prazo (até cerca de 4 semanas).",
-     "Fecaloma: desimpactar primeiro (enema ou PEG em dose alta) e depois manter laxante diário.",
+     "Fecaloma: toque retal, desimpactação digital se baixo e endurecido, enema glicerinado de 500 mL (repetir após 6 a 8 h se preciso) e depois laxante diário.",
      "Criança: PEG é o único laxante com recomendação forte; desimpactação com dose alta por 3 a 6 dias e manutenção por pelo menos 2 meses.",
-     "Lactulose fica para lactentes pequenos ou quando não houver PEG."
+     "Lactulose fica para lactentes pequenos ou quando não houver PEG, que é mais eficaz (ESPGHAN/NASPGHAN e AGA/NASPGHAN 2026).",
+     "Simeticona trata gases, não constipação; docusato e probiótico não têm benefício comprovado."
     ]
    },
    {
@@ -3475,20 +3315,13 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Óleo mineral — lubrificante por curto prazo no adulto (modelo do médico); risco de pneumonia lipoídica: não usar ao deitar, em acamado, idoso frágil, gestante ou disfagia.",
-     "Supositório de glicerina — resgate retal quando passa de 3 dias sem evacuar.",
-     "Enema glicerinado (clister) — desimpactação do fecaloma no PS após toque retal; não usar se suspeita de obstrução ou perfuração."
+     "Supositório de glicerina — resgate retal quando passa de 3 dias sem evacuar; prescrito como uso tópico, com via retal na posologia.",
+     "Enema glicerinado (clister) 500 mL — virou o Padrão de Internação para o fecaloma; não usar se suspeita de obstrução ou perfuração."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Material do médico (Meu rascunho) usa lactulose 20 mL 3x/dia, óleo mineral e supositório de glicerina; DATA usa lactulose 15 mL 1x/dia e não tem os outros dois — decidir doses.",
-   "DATA ('Opção 2' e 'Opção 3') usa macrogol por só 3 dias com simeticona; constipação crônica pede uso contínuo e simeticona não trata constipação — revisar.",
-   "Constipação não tem modo Internação no DATA; o Drive faz enema glicerinado de 500 mL 6/6h ou 1.000 mL 8/8h — proposto 500 mL com reavaliação; decidir.",
-   "Não existe rota 'USO RETAL' no site; supositório e enema foram propostos como USO TÓPICO com 'via retal' na posologia — decidir se cria a rota.",
-   "Drive cita docusato + bisacodil e Saccharomyces na constipação — sem ganho comprovado; não propostos.",
-   "ESPGHAN/NASPGHAN 2026 não faz recomendação formal para lactulose; o DATA pediátrico a mantém como alternativa — ok?"
-  ],
+  "pendencias": [],
   "fontes": [
    "Chang L et al. American Gastroenterological Association–American College of Gastroenterology Clinical Practice Guideline: Pharmacological Management of Chronic Idiopathic Constipation. Am J Gastroenterol. 2023;118(6):936-954.",
    "Gordon M et al. ESPGHAN/NASPGHAN guidelines for treatment of functional constipation in children aged 0–18 years. J Pediatr Gastroenterol Nutr. 2026;83:335-366."
@@ -3534,7 +3367,8 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Simeticona alivia sintomas pontuais; associar escopolamina se houver cólica.",
+     "Simeticona alivia sintomas pontuais, com evidência fraca: comprimido de 40 mg ou gotas, após as refeições e ao deitar, até 4 vezes ao dia.",
+     "Escopolamina se houver cólica; analgésico simples se dor.",
      "Ajustar a dieta: menos alimentos fermentáveis; testar 2 semanas sem leite se suspeita de intolerância à lactose.",
      "Tratar a constipação quando presente.",
      "Dieta pobre em FODMAP por tempo limitado, com orientação, ajuda no intestino irritável.",
@@ -3569,11 +3403,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "DATA ('Receita' em Outras opções) associa metoclopramida e dipirona à simeticona; metoclopramida não tem indicação nos gases (EMA 2013 restringe a náusea, até 5 dias) — retirar ou rotular.",
-   "Material do Drive usa simeticona em gotas 16 gotas 8/8h por 3 dias; o médico usa 16 gotas 6/6h — escolher a frequência.",
-   "A evidência da simeticona é fraca; manter como sintomático, sem promessa de grande efeito."
-  ],
+  "pendencias": [],
   "fontes": [
    "Moshiree B, Drossman D, Shaukat A. AGA Clinical Practice Update on Evaluation and Management of Belching, Abdominal Bloating, and Distention: Expert Review. Gastroenterology. 2023;165(3):791-800.",
    "Lacy BE et al. ACG Clinical Guideline: Management of Irritable Bowel Syndrome. Am J Gastroenterol. 2021;116(1):17-44.",
@@ -3584,12 +3414,12 @@ const GUIA_ITENS = [
   "id": "hemorroida",
   "tipo": "condicao",
   "cond": "hemorroida",
-  "nm": "Doença hemorroidária trombosada",
+  "nm": "Doença hemorroidária (crise e trombose)",
   "sub": "hemorroida · trombose hemorroidária · banho de assento · fibras",
   "kw": "hemorroida hemorroidas doenca hemorroidaria crise hemorroidaria trombose hemorroidaria hemorroida externa trombosada mamilo hemorroidario dor anal sangramento anal sangue vivo fissura anal prolapso abscesso perianal banho de assento psyllium fibra diosmina hesperidina flavonoide lidocaina pomada anestesica excisao",
   "draft": true,
   "revisado": null,
-  "resumo": "Hemorroida externa trombosada causa dor anal súbita com nódulo arroxeado e endurecido. Nas primeiras 72 horas, com dor forte, a retirada do trombo sob anestesia local alivia mais rápido; depois disso, o tratamento clínico (fibras, banho de assento, analgesia) resolve em 1 a 2 semanas.",
+  "resumo": "A crise hemorroidária dá dor, sangramento e prolapso; a trombose externa, dor anal súbita com nódulo arroxeado. Nas primeiras 72 horas, com dor forte, retirar o trombo sob anestesia local alivia mais rápido; depois disso, fibras, banho de assento e analgesia resolvem em 1 a 2 semanas.",
   "secoes": [
    {
     "t": "Quando pensar / diagnóstico",
@@ -3621,13 +3451,14 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Trombose com até cerca de 72 horas e dor intensa: retirada do trombo sob anestesia local (excisão, pela ASCRS), com cirurgia ou coloproctologia.",
+     "Trombose com até cerca de 72 horas e dor intensa: retirada do trombo sob anestesia local pela cirurgia ou coloproctologia.",
+     "Técnica: incisão e drenagem (AGA 2026, mais recente); a excisão (ASCRS 2024) é alternativa do cirurgião, com menos recidiva.",
      "Depois de 72 horas ou dor tolerável: tratamento clínico; regride em 7 a 14 dias.",
-     "Fibra (psyllium) e água para fezes macias; nada de esforço nem tempo longo no vaso.",
+     "Fibra (psyllium) de uso contínuo e água para fezes macias; o efeito aparece em semanas. Nada de esforço nem tempo longo no vaso.",
      "Banho de assento morno várias vezes ao dia e após evacuar.",
      "Analgesia com dipirona e AINE por poucos dias; anestésico tópico alivia por curto prazo.",
-     "Flavonoides (diosmina + hesperidina) podem reduzir dor e sangramento na crise.",
-     "Pomada com corticoide só por poucos dias (afina a pele)."
+     "Flavonoides (diosmina 450 mg + hesperidina 50 mg) na crise, pelo esquema da bula: 6 comprimidos/dia por 4 dias e 4/dia por 3 dias.",
+     "Pomadas anestésicas ou com corticoide só por poucos dias (até 7): o corticoide afina a pele e o anestésico pode sensibilizar."
     ]
    },
    {
@@ -3651,16 +3482,11 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "ASCRS 2024 sugere excisão precoce do trombo (até cerca de 72 h); a atualização da AGA de 2026 prefere incisão e drenagem — decidir qual técnica o site recomenda (e se vira procedimento).",
-   "O nome da condição diz 'trombosada', mas o Padrão serve para toda crise hemorroidária — renomear para 'Doença hemorroidária / crise hemorroidária'?",
-   "Diosmina + hesperidina no DATA: 6 cp/dia por 4 dias e 4 cp/dia por 3 dias (esquema de crise) — conferir com a bula da apresentação disponível.",
-   "Outras opções ('Receita') tem pomada de policresuleno + cinchocaína pelo nome comercial e 'até melhora' — limitar a 7 dias? O material do Drive não traz opção nova."
-  ],
+  "pendencias": [],
   "fontes": [
    "Hawkins AT et al. The American Society of Colon and Rectal Surgeons Clinical Practice Guidelines for the Management of Hemorrhoids. Dis Colon Rectum. 2024;67(5):614-623.",
-   "van Tol RR et al. European Society of ColoProctology: guideline for haemorrhoidal disease. Colorectal Dis. 2020;22(6):650-662.",
-   "American Gastroenterological Association (Qureshi W et al.). Clinical Practice Update sobre diagnóstico e tratamento da doença hemorroidária (revisão de especialistas). Clin Gastroenterol Hepatol. 2026."
+   "Qureshi W, Hoang S, Frye J, Rao S. AGA Clinical Practice Update on Diagnosis and Treatment of Hemorrhoids: Expert Review. Clin Gastroenterol Hepatol. 2026.",
+   "van Tol RR et al. European Society of ColoProctology: guideline for haemorrhoidal disease. Colorectal Dis. 2020;22(6):650-662."
   ]
  },
  {
@@ -3709,11 +3535,13 @@ const GUIA_ITENS = [
     "itens": [
      "Helmintíases (empírico): albendazol 400 mg por 3 dias; dose única basta para áscaris, mas cobre menos ancilóstomo e tricuríase.",
      "Oxiúros: albendazol dose única, repetida em 2 semanas, tratando todos da casa.",
-     "Estrongiloidíase, ou risco antes de corticoide e imunossupressão: ivermectina 200 mcg/kg (não usar abaixo de 15 kg).",
+     "Estrongiloidíase, ou risco antes de corticoide e imunossupressão: ivermectina 200 mcg/kg em dose única, pelo peso (bula, WGO 2020); não usar abaixo de 15 kg.",
      "Giardíase e amebíase intestinal: secnidazol 2 g dose única (criança 30 mg/kg); alternativas tinidazol, metronidazol ou nitazoxanida.",
-     "Amebíase invasiva (colite grave, abscesso hepático): metronidazol EV seguido de agente luminal, internado.",
+     "Amebíase invasiva (colite grave, abscesso hepático): metronidazol EV seguido de agente luminal (teclozana, o registrado no Brasil), internado.",
      "Criança de 1 a 2 anos: albendazol 200 mg; abaixo de 1 ano, só com orientação especializada.",
-     "Neurocisticercose não se trata no PS: neuroimagem, fundoscopia e neurologia antes do antiparasitário; corticoide antes do albendazol."
+     "Neurocisticercose não se trata no PS nem às cegas: TC ou RM, fundoscopia e neurologia antes; albendazol com corticoide, internado (IDSA/ASTMH 2017).",
+     "Esquistossomose: praziquantel 50 mg/kg em dose única (criança 60 mg/kg); teníase: praziquantel 5 a 10 mg/kg dose única ou albendazol 3 dias.",
+     "Hiperinfecção por estrongiloides: ivermectina diária, internado, até 2 semanas de pesquisa de larvas negativa."
     ]
    },
    {
@@ -3742,22 +3570,18 @@ const GUIA_ITENS = [
     "itens": [
      "Tinidazol 2 g dose única — alternativa ao secnidazol na giardíase, de primeira linha em diretrizes internacionais; mesmo cuidado com álcool.",
      "Metronidazol 250 mg de 8/8h por 5 a 7 dias — giardíase no adulto (guia HC-FMUSP 2024); mais dias e mais efeitos gastrointestinais.",
-     "Mebendazol 100 mg de 12/12h por 3 dias — alternativa ao albendazol em comprimido para o adulto; oxiúros: dose única repetida em 2 semanas."
+     "Mebendazol 100 mg de 12/12h por 3 dias — alternativa ao albendazol em comprimido para o adulto; oxiúros: dose única repetida em 2 semanas.",
+     "Pirvínio para oxiúros não é necessário: albendazol e mebendazol já cobrem."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Ivermectina no DATA (adulto): dose fixa de 12 mg repetida após 7 dias; CDC usa 200 mcg/kg por 1 a 2 dias, sem repetir em 7 dias — ajustar pelo peso e definir o esquema.",
-   "Outras opções do DATA têm 'Cisticercose' e 'Neurocisticercose' ambulatoriais com praziquantel + prednisona; IDSA/ASTMH 2017 exige neuroimagem e prefere albendazol com corticoide — retirar do ambulatorial ou rotular 'só com neurologia'.",
-   "Albendazol nas 'Opção 2/3' do DATA repete após 10 dias; para oxiúros o intervalo usual é 2 semanas — rotular por indicação.",
-   "Teclozana (agente luminal no bloco de amebíase invasiva) tem disponibilidade irregular no Brasil — confirmar ou trocar.",
-   "Material do Drive (Medicações Pediatria) cita pirvínio para oxiúros — não proposto (albendazol e mebendazol já cobrem)."
-  ],
+  "pendencias": [],
   "fontes": [
    "World Health Organization. Guideline: preventive chemotherapy to control soil-transmitted helminth infections in at-risk population groups. Geneva: WHO; 2017.",
-   "Centers for Disease Control and Prevention. Clinical Care of Strongyloides (página para profissionais de saúde). Consultado em 2026.",
+   "Farthing M et al. World Gastroenterology Organisation Global Guidelines: Management of Strongyloidiasis. J Clin Gastroenterol. 2020;54(9):747-757.",
    "White AC Jr et al. Diagnosis and Treatment of Neurocysticercosis: 2017 Clinical Practice Guidelines by the IDSA and the ASTMH. Clin Infect Dis. 2018;66(8):e49-e75.",
+   "Brasil. Ministério da Saúde. Vigilância da esquistossomose mansoni: diretrizes técnicas. 4ª ed. Brasília; 2014.",
    "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo; 2024."
   ]
  },
@@ -3802,12 +3626,15 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "AINE é a primeira escolha (diclofenaco, cetoprofeno, ibuprofeno, tenoxicam), salvo doença renal, úlcera, gestação ou risco cardiovascular alto.",
+     "AINE é a primeira escolha, em horário fixo por 3 a 5 dias (diclofenaco, ibuprofeno ou cetoprofeno), salvo doença renal, úlcera, gestação ou risco cardiovascular alto.",
      "Dipirona associada ou como alternativa ao AINE; opioide (tramadol, morfina) só para dor refratária.",
-     "Antiespasmódico não acrescenta analgesia ao AINE; não há evidência de que hidratação EV forçada acelere a saída do cálculo.",
-     "Tansulosina 0,4 mg por até 4 semanas no cálculo ureteral distal maior que 5 mm (off-label, recomendado pela EAU).",
+     "No PS (Padrão de Internação): AINE parenteral, dipirona EV com antiemético e, se refratária, tramadol ou morfina titulada.",
+     "Cetoprofeno EV: no máximo 48 horas na cólica renal e até 300 mg/dia (bula).",
+     "Não associar escopolamina: não acrescenta analgesia ao AINE. Soro EV só se desidratado ou vomitando; hidratação forçada não acelera o cálculo.",
+     "Tansulosina 0,4 mg por até 4 semanas no cálculo ureteral distal maior que 5 mm e até 10 mm (off-label, recomendada pela EAU).",
      "Cálculo de até 10 mm sem complicação: conduta expectante com analgesia; maior que 10 mm ou que não progride: urologia.",
-     "Coar a urina e guardar o cálculo para análise; consulta com urologia em até 4 semanas."
+     "Coar a urina e guardar o cálculo para análise; consulta com urologia em até 4 semanas.",
+     "Carisoprodol + cafeína + paracetamol + diclofenaco: sem evidência na cólica renal; não usar."
     ]
    },
    {
@@ -3833,25 +3660,18 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Cetoprofeno 100 mg EV, diclofenaco 75 mg IM ou tenoxicam 20 mg EV/IM — AINE parenteral no PS (modelo do médico e PDFs); evitar em doença renal, úlcera e gestação.",
-     "Dipirona EV com metoclopramida — junto com o AINE, ou sozinha se o AINE for contraindicado.",
-     "Tramadol EV ou morfina titulada — dor refratária ao AINE e à dipirona; associar antiemético.",
-     "Tramadol 50 mg oral por até 3 dias — resgate em casa se o AINE não bastar; náusea, tontura e constipação são comuns."
+     "Tramadol 50 mg oral por até 3 dias — resgate em casa se o AINE não bastar; náusea, tontura e constipação são comuns.",
+     "Paracetamol com codeína junto com o diclofenaco — dor intensa em casa, pelo menor tempo possível."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Cólica nefrética não tem modo Internação no DATA; o médico usa cetoprofeno + escopolamina + dipirona EV na observação (Meu rascunho) e os PDFs trazem tenoxicam, diclofenaco IM, tramadol e morfina — propostos como Outras opções; decidir se viram Padrão de Internação.",
-   "Escopolamina no esquema EV do médico: Cochrane 2015 não mostra ganho de analgesia ao somar antiespasmódico ao AINE — manter só AINE + dipirona?",
-   "Drive (Tigers e Principais condutas) traz associação de carisoprodol + cafeína + paracetamol + diclofenaco — não proposta (sem evidência na cólica renal).",
-   "No DATA o cetoprofeno 150 mg do Padrão está 'se dor', e diclofenaco/ibuprofeno em horário fixo — padronizar a forma de uso.",
-   "Prescrição de pronto atendimento (Drive) faz SF 500 mL de rotina; hidratação EV só se desidratado ou vomitando — decidir."
-  ],
+  "pendencias": [],
   "fontes": [
    "Skolarikos A et al. European Association of Urology Guidelines on the Diagnosis and Treatment of Urolithiasis. Eur Urol. 2025;88(1):64-75.",
    "Pathan SA et al. Delivering safe and effective analgesia for management of renal colic in the emergency department: a double-blind, multigroup, randomised controlled trial. Lancet. 2016;387(10032):1999-2007.",
-   "Afshar K, Jafari S, Marks AJ, Eftekhari A, MacNeily AE. Nonsteroidal anti-inflammatory drugs (NSAIDs) and non-opioids for acute renal colic. Cochrane Database Syst Rev. 2015;(6):CD006027."
+   "Afshar K, Jafari S, Marks AJ, Eftekhari A, MacNeily AE. Nonsteroidal anti-inflammatory drugs (NSAIDs) and non-opioids for acute renal colic. Cochrane Database Syst Rev. 2015;(6):CD006027.",
+   "Sanofi. Profenid IV (cetoprofeno) — bula para o profissional de saúde. ANVISA; 2025."
   ]
  },
  {
@@ -3899,10 +3719,11 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Mulher não gestante: fosfomicina 3 g dose única ou nitrofurantoína 100 mg de 6/6h por 5 dias.",
-     "SMX-TMP e quinolonas não são primeira escolha empírica (resistência alta e alertas de segurança das quinolonas).",
-     "Nitrofurantoína: evitar se ClCr menor que 30 mL/min, no termo da gestação e se suspeita de pielonefrite.",
-     "Gestante: cefalexina, amoxicilina ou fosfomicina por 5 a 7 dias, ajustadas pela urocultura, com urocultura de controle.",
-     "Homem: tratar por 7 dias e pensar em prostatite se febre ou dor perineal.",
+     "SMX-TMP e quinolonas não são primeira escolha empírica (resistência acima de 20% no Brasil; quinolona na cistite só se nada mais servir — EMA 2018).",
+     "Nitrofurantoína: não usar se ClCr menor que 60 mL/min (bula brasileira), no termo da gestação ou se suspeita de pielonefrite; nesses casos, fosfomicina.",
+     "Gestante (MS 2022): cefalexina 500 mg 6/6h ou nitrofurantoína 100 mg 6/6h por 7 dias, ou fosfomicina dose única; amoxicilina só se sensível.",
+     "Gestante: urocultura de controle após o tratamento; evitar quinolona e aminoglicosídeo (ototoxicidade fetal).",
+     "Homem: 7 dias de SMX-TMP ou quinolona, guiados pela urocultura (EAU 2025); febre ou dor perineal sugerem prostatite.",
      "Criança com cistite sem febre: cefalexina ou nitrofurantoína por 5 dias; ITU febril é conduzida como pielonefrite.",
      "Fenazopiridina por até 2 dias alivia a ardência; colher a urina antes, porque altera a fita."
     ]
@@ -3930,26 +3751,20 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Cefalexina, amoxicilina ou fosfomicina na gestante — cistite ou bacteriúria na gravidez por 5 a 7 dias, ajustando pela urocultura (guia HC-FMUSP 2024).",
+     "Cefalexina, nitrofurantoína, amoxicilina ou fosfomicina na gestante — cistite ou bacteriúria na gravidez por 7 dias, ajustando pela urocultura (MS 2022, guia HC-FMUSP 2024).",
      "SMX-TMP ou nitrofurantoína por 7 dias no homem — cistite masculina sem sinais de prostatite, sempre com urocultura (guia HC-FMUSP 2024)."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Guia HC-FMUSP 2024 (material do médico) põe SMX-TMP 3 dias e norfloxacino 3 dias como 1ª linha, junto com fosfomicina e nitrofurantoína; DATA os deixa em Outras opções por resistência maior que 20% — confirmar com dados locais.",
-   "Ajuste renal da nitrofurantoína: guia HC diz evitar se ClCr menor que 60; DATA e Beers 2023 usam menor que 30 — decidir.",
-   "Duração da nitrofurantoína: guia HC 3 a 5 dias; DATA 5 dias — manter 5?",
-   "Material do Drive cita levofloxacino e ciprofloxacino 250 mg na cistite; quinolona deve ficar restrita (EMA 2018) e o DATA já tem cipro e norflox em Outras opções — não proposto.",
-   "Não há bloco de gestante nem de homem no DATA (só uma orientação) — propostos em Outras opções; decidir se entram no Padrão.",
-   "Tigers usa aminoglicosídeo IM na ITU grave da gestante; evitar (ototoxicidade fetal) — não proposto."
-  ],
+  "pendencias": [],
   "fontes": [
    "Gupta K et al. International clinical practice guidelines for the treatment of acute uncomplicated cystitis and pyelonephritis in women: a 2010 update by IDSA and ESCMID. Clin Infect Dis. 2011;52(5):e103-e120.",
-   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo; 2024.",
    "European Association of Urology. EAU Guidelines on Urological Infections. Edição 2025.",
+   "Brasil. Ministério da Saúde. Manual de gestação de alto risco. Brasília; 2022.",
+   "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo; 2024.",
    "Sociedade Brasileira de Pediatria, Departamento Científico de Nefrologia. Infecção do trato urinário em pediatria: existe consenso entre os consensos? Documento científico. 2021.",
-   "American Geriatrics Society Beers Criteria Update Expert Panel. American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inappropriate medication use in older adults. J Am Geriatr Soc. 2023;71(7):2052-2081."
+   "Nitrofurantoína (Macrodantina) — bula para o profissional de saúde. ANVISA; 2025."
   ]
  },
  {
@@ -3995,13 +3810,15 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Ambulatorial (estável, sem vômitos): ceftriaxona 1 g dose inicial e ciprofloxacino 500 mg de 12/12h por 7 dias, ou levofloxacino 750 mg por 5 dias.",
+     "Ambulatorial (estável, sem vômitos): ceftriaxona 1 g IM na unidade e ciprofloxacino 500 mg de 12/12h por 7 dias, ou levofloxacino 750 mg 1x/dia por 5 dias.",
      "Dose inicial parenteral é recomendada quando a resistência local à quinolona passa de 10% ou não se conhece.",
-     "Internação: ceftriaxona EV; sepse ou risco de ESBL: piperacilina-tazobactam ou carbapenêmico, ajustando pela cultura.",
+     "Internação: ceftriaxona 2 g EV 1x/dia (EAU 2025); sepse ou risco de ESBL: piperacilina-tazobactam ou carbapenêmico, ajustando pela cultura.",
      "Passar para via oral quando afebril, estável e aceitando dieta, guiado pelo antibiograma.",
-     "Duração (IDSA 2025): quinolona 5 a 7 dias; outros antibióticos 7 dias; homem com suspeita de prostatite, 10 a 14 dias.",
+     "Duração (IDSA 2025): quinolona 5 a 7 dias, outros antibióticos 7 dias; homem com ITU febril: 14 dias (EAU 2025: 7 dias são inferiores).",
+     "Internar pela gravidade — sepse, vômitos, gestação, obstrução, imunossupressão, comorbidade descompensada ou falta de suporte —, não pela idade isolada.",
+     "Ciprofloxacino ou ceftriaxona por 14 dias, como no material antigo, não é mais necessário na mulher que melhora.",
      "Gestante: sempre internar; ceftriaxona EV; evitar quinolona e aminoglicosídeo.",
-     "Criança de 3 meses ou mais em bom estado: cefuroxima oral por 7 a 10 dias; abaixo de 3 meses ou toxemiada: ceftriaxona EV internada."
+     "Criança de 3 meses ou mais em bom estado: cefuroxima oral por 7 a 10 dias (Pediátrico › Ambulatorial); abaixo de 3 meses ou toxemiada: ceftriaxona EV internada."
     ]
    },
    {
@@ -4032,16 +3849,10 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Material do Drive usa ciprofloxacino por 14 dias e ceftriaxona por 14 dias; IDSA 2025 recomenda 5 a 7 dias de quinolona e 7 dias dos demais — manter o DATA (7 dias).",
-   "Guia HC-FMUSP 2024: ceftriaxona 1 g de 12/12h ou 2 g/dia; DATA usa 1 g/dia (2 g se grave ou acima de 100 kg) — decidir.",
-   "Drive ('prescrição pronto atendimento') manda internar todo paciente acima de 60 anos; as diretrizes decidem pela gravidade, não só pela idade — decidir.",
-   "No DATA ambulatorial, 'Opção 1' e 'Opção 2' são idênticas (levofloxacino 750 mg por 7 dias); para levofloxacino 750 mg bastam 5 dias — corrigir e remover a duplicata.",
-   "Não existe Pediátrico › Ambulatorial em Pielonefrite; a ITU febril ambulatorial da criança está em ITU / Cistite — conferir se as duas condições se apontam."
-  ],
+  "pendencias": [],
   "fontes": [
    "Trautner BW et al. 2025 Clinical Practice Guideline by the Infectious Diseases Society of America (IDSA): Management and Treatment of Complicated Urinary Tract Infections. Clin Infect Dis. 2025.",
-   "Gupta K et al. International clinical practice guidelines for the treatment of acute uncomplicated cystitis and pyelonephritis in women: a 2010 update by IDSA and ESCMID. Clin Infect Dis. 2011;52(5):e103-e120.",
+   "European Association of Urology. EAU Guidelines on Urological Infections. Edição 2025.",
    "Hospital das Clínicas da FMUSP (Levin AS, Costa SF, coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo; 2024.",
    "Subcommittee on Urinary Tract Infection (AAP); Roberts KB. Urinary tract infection: clinical practice guideline for the diagnosis and management of the initial UTI in febrile infants and children 2 to 24 months. Pediatrics. 2011;128(3):595-610.",
    "Sociedade Brasileira de Pediatria, Departamento Científico de Nefrologia. Infecção do trato urinário em pediatria: existe consenso entre os consensos? Documento científico. 2021."
@@ -4056,7 +3867,7 @@ const GUIA_ITENS = [
   "kw": "prostatite prostatite aguda prostatite bacteriana infeccao da prostata dor perineal dor no perineo febre calafrios disuria retencao urinaria jato fraco abscesso prostatico homem itu masculina itu febril no homem ciprofloxacino levofloxacino sulfametoxazol trimetoprima ceftriaxona doxiciclina dipirona",
   "draft": true,
   "revisado": null,
-  "resumo": "Homem com febre, sintomas urinários e dor perineal, ou próstata muito dolorosa ao toque: prostatite bacteriana aguda. Colha urocultura, não massageie a próstata e trate por tempo prolongado (cerca de 2 semanas ou mais); sepse, retenção urinária ou abscesso indicam internação.",
+  "resumo": "Homem com febre, sintomas urinários e dor perineal, ou próstata muito dolorosa ao toque: prostatite bacteriana aguda. Colha urocultura, não massageie a próstata e trate por 14 dias, reavaliando no fim; sepse, retenção urinária ou abscesso indicam internação.",
   "secoes": [
    {
     "t": "Quando pensar / diagnóstico",
@@ -4089,10 +3900,10 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Ambulatorial se estável: ciprofloxacino 500 mg de 12/12h ou levofloxacino 500 mg/dia, por pelo menos 14 dias, reavaliando a duração.",
-     "Alternativa, se sensível no antibiograma: SMX-TMP 800/160 mg de 12/12h.",
-     "Abaixo de 35 anos com risco de IST: ceftriaxona 500 mg IM dose única + doxiciclina 100 mg de 12/12h por 10 dias.",
-     "Internação: ceftriaxona EV; se sepse ou risco de multirresistência, piperacilina-tazobactam; ajustar pela cultura.",
+     "Ambulatorial se estável: ciprofloxacino 500 mg de 12/12h por 14 dias (NICE NG110; EAU 2025); reavaliar e estender até 4 semanas se ainda houver sintomas.",
+     "Alternativa se quinolona contraindicada e urocultura sensível: SMX-TMP 800/160 mg de 12/12h por 14 dias.",
+     "Abaixo de 35 anos com risco de IST: tratar gonococo e clamídia como na epididimite (CDC 2021) — ceftriaxona 500 mg IM + doxiciclina 10 dias.",
+     "Internação: ceftriaxona 2 g EV 1x/dia; sepse ou risco de multirresistência: piperacilina-tazobactam ou meropeném; via oral pelo antibiograma, 14 dias no total.",
      "Retenção urinária: drenar a bexiga (sonda fina por pouco tempo ou cistostomia, conforme a urologia).",
      "Analgesia com dipirona ou AINE e boa hidratação."
     ]
@@ -4117,12 +3928,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "DATA usa ciprofloxacino por 21 dias; NICE NG110 recomenda 14 dias com reavaliação e IDSA 2025 cita 10 a 14 dias no homem com suspeita de prostatite — decidir a duração padrão.",
-   "Prostatite não tem modo Internação no DATA; criar com ceftriaxona EV e esquema de sepse, como em Pielonefrite?",
-   "A orientação do DATA para risco de IST usa doxiciclina por 10 dias, que é o esquema da epididimite (CDC 2021) — confirmar que o médico quer o mesmo na prostatite.",
-   "O material do Drive não traz conteúdo de prostatite (o guia HC-FMUSP não cobre) — sem propostas."
-  ],
+  "pendencias": [],
   "fontes": [
    "National Institute for Health and Care Excellence. Prostatitis (acute): antimicrobial prescribing (NG110). 2018.",
    "European Association of Urology. EAU Guidelines on Urological Infections. Edição 2025.",
@@ -4173,11 +3979,14 @@ const GUIA_ITENS = [
     "itens": [
      "Risco de IST: ceftriaxona 500 mg IM dose única + doxiciclina 100 mg de 12/12h por 10 dias.",
      "Sexo anal insertivo: ceftriaxona 500 mg IM + levofloxacino 500 mg/dia por 10 dias.",
-     "Só germes entéricos (sem risco de IST): levofloxacino 500 mg/dia por 10 dias.",
+     "Só germes entéricos (sem risco de IST): levofloxacino 500 mg/dia por 10 dias; ciprofloxacino 500 mg 12/12h por 10 dias é alternativa.",
+     "Quinolona sozinha nunca cobre IST: se houver risco, usar ceftriaxona + doxiciclina.",
      "Peso de 150 kg ou mais: ceftriaxona 1 g.",
      "Sintomáticos: AINE, repouso, elevação da bolsa e gelo nos primeiros dias.",
      "IST: tratar as parcerias dos últimos 60 dias e evitar relações até terminar o tratamento.",
-     "Sem melhora em 72 horas: reavaliar (abscesso, infarto testicular, tumor, tuberculose)."
+     "Sem melhora em 72 horas: reavaliar (abscesso, infarto testicular, tumor, tuberculose).",
+     "O PCDT-IST 2022 do Ministério da Saúde não traz esquema próprio para orquiepididimite; o site segue o CDC 2021.",
+     "Criança antes da puberdade, torção excluída: repouso e analgesia; antibiótico só se urina tipo I e urocultura mostrarem infecção."
     ]
    },
    {
@@ -4200,16 +4009,12 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "DATA ('Receita' em Outras opções) usa ciprofloxacino 500 mg de 12/12h por 10 dias; CDC 2021 usa levofloxacino para germes entéricos — rotular como 'baixo risco de IST' ou retirar.",
-   "Confirmar se o PCDT-IST 2022 do Ministério da Saúde traz esquema próprio de orquiepididimite; o DATA segue o CDC 2021.",
-   "Não há bloco pediátrico; criança com dor escrotal vai para avaliação cirúrgica — incluir só uma orientação?",
-   "O material do Drive não traz esquema próprio para epididimite — sem propostas."
-  ],
+  "pendencias": [],
   "fontes": [
    "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep. 2021;70(4):1-187.",
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST). Brasília; 2022.",
-   "European Association of Urology. EAU Guidelines on Urological Infections. Edição 2025."
+   "European Association of Urology. EAU Guidelines on Urological Infections. Edição 2025.",
+   "European Association of Urology / ESPU. EAU Guidelines on Paediatric Urology. Edição 2026."
   ]
  },
  {
@@ -4254,10 +4059,11 @@ const GUIA_ITENS = [
     "itens": [
      "Drenar toda área flutuante: anestesia local, incisão no maior eixo, romper as loculações e irrigar com SF.",
      "Tamponamento com gaze não é obrigatório no abscesso pequeno; reservar para cavidades grandes.",
-     "Antibiótico após drenar se celulite ao redor, febre, lesões múltiplas, imunossupressão, extremos de idade, face ou mão, ou drenagem incompleta.",
-     "Escolha oral: cefalexina se baixo risco de MRSA; SMX-TMP se suspeita de MRSA comunitário ou falha; 5 a 7 dias.",
-     "Ensaios grandes mostraram pequeno ganho de cura com antibiótico mesmo no abscesso simples drenado; individualizar.",
+     "Antibiótico após drenar se celulite ao redor, febre, lesões múltiplas, imunossupressão, extremos de idade, face, mão ou genitais, ou drenagem incompleta (IDSA 2014).",
+     "Escolha oral: cefalexina 500 mg 6/6h se baixo risco de MRSA; SMX-TMP se suspeita de MRSA comunitário ou falha; 7 dias (a IDSA aceita 5 a 10).",
+     "Abscesso simples bem drenado, sem esses critérios: IDSA e WSES dispensam antibiótico; os ensaios de 2016 e 2017 mostraram ganho pequeno — decidir com o paciente.",
      "Lesão ainda endurecida, sem flutuação: compressa morna e reavaliar em 24 a 48 h.",
+     "Furunculose de repetição: descolonização por 5 dias — mupirocina nasal 12/12h, banho diário com clorexidina 2% e lavar toalhas e roupas de cama (IDSA 2014).",
      "Criança: mesma lógica, drenagem com boa analgesia e antibiótico pelo peso quando indicado (ver Prescrições)."
     ]
    },
@@ -4283,18 +4089,13 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Cefadroxila 500 mg 12/12h por 7 dias — alternativa à cefalexina com 2 tomadas ao dia; mesma cobertura, não cobre MRSA."
+     "Cefadroxila 500 mg 12/12h por 7 dias — alternativa à cefalexina com 2 tomadas ao dia (bula: pele e partes moles); não cobre MRSA.",
+     "Descolonização por 5 dias (mupirocina nasal e clorexidina 2% no banho) — furunculose de repetição; tratar ao mesmo tempo quem tem lesões na casa."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Plantãozinho traz cefadroxila 500 mg 12/12h; proposta em Outras opções (equivale à cefalexina) — decidir.",
-   "Tigers e Principais condutas usam neomicina tópica 4x/dia na furunculose: sem papel no abscesso e sensibiliza — não importar.",
-   "Talan 2016 e Daum 2017 mostram benefício modesto do antibiótico após drenar abscesso simples; o DATA restringe a celulite, febre, múltiplas lesões e imunossupressão — decidir se amplia.",
-   "DATA não tem descolonização para furunculose de repetição (mupirocina nasal + banho com clorexidina, sugerida pela IDSA 2014) — avaliar bloco.",
-   "Duração: DATA usa 7 dias; as diretrizes aceitam 5 a 7 — manter ou encurtar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Stevens DL et al. Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update by the IDSA. Clin Infect Dis. 2014;59(2):e10-52.",
    "Sartelli M et al. WSES/GAIS/WSIS/SIS-E/AAST global clinical pathways for patients with skin and soft tissue infections. World J Emerg Surg. 2022;17:3.",
@@ -4342,13 +4143,14 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Ambulatorial: cefalexina por 5 a 7 dias (estender se melhora lenta); clindamicina se alergia grave a betalactâmico.",
+     "Ambulatorial: cefalexina 1 g (2 comprimidos de 500 mg) de 6/6h por 7 dias (guia HC-FMUSP 2024: 5 a 7 dias); clindamicina se alergia grave a betalactâmico.",
      "Sem resposta em 48 a 72 h: rever diagnóstico, abscesso oculto, adesão e cobertura de S. aureus resistente.",
+     "Estender para 10 dias só se a melhora for lenta na reavaliação; 10 a 14 dias de rotina não têm apoio nas diretrizes.",
      "Elevar o membro, tratar a porta de entrada e o edema crônico; analgesia simples.",
      "Internação: cefazolina EV, passando para oral após 24 a 48 h afebril e melhorando (ver Prescrições).",
      "Suspeita de fasciíte necrotizante ou choque: vancomicina + piperacilina-tazobactam + clindamicina e cirurgia de urgência, sem esperar imagem.",
-     "Erisipela recorrente (3 a 4 episódios por ano apesar de tratar os fatores): discutir profilaxia com penicilina na UBS.",
-     "Criança: cefalexina oral pelo peso; internar se toxemia, menor de 3 meses, face, órbita ou mão, ou falha do oral."
+     "Erisipela de repetição (3 ou mais por ano, já tratados porta de entrada e edema): profilaxia com penicilina por 6 a 12 meses (IDSA 2014; ver Prescrições).",
+     "Criança: cefalexina 100 mg/kg/dia de 6/6h, máximo 500 mg por dose (HC-FMUSP 2024); internar se toxemia, menor de 3 meses, face, órbita ou mão, ou falha do oral."
     ]
    },
    {
@@ -4374,21 +4176,15 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Amoxicilina-clavulanato 500/125 mg 8/8h por 5 a 7 dias — opção oral do guia HC-FMUSP 2024; criança 50 mg/kg/dia de amoxicilina 8/8h.",
-     "Penicilina V 500.000 UI 6/6h — erisipela clássica estreptocócica leve; não cobre S. aureus, evitar na celulite purulenta.",
+     "Penicilina V 500.000 UI 6/6h por 7 dias — erisipela clássica estreptocócica leve; não cobre S. aureus, evitar na celulite purulenta.",
      "Ceftriaxona 1 g EV 1 vez ao dia — alternativa à cefazolina na observação ou internação, com dose única diária.",
-     "Oxacilina 2 g EV 4/4h — celulite grave com S. aureus sensível provável; 6 doses ao dia, preferir cefazolina se houver."
+     "Oxacilina 2 g EV 4/4h — celulite grave com S. aureus sensível provável; 6 doses ao dia, preferir cefazolina se houver.",
+     "Profilaxia da erisipela de repetição — benzatina IM a cada 21 dias ou penicilina V 500.000 UI 12/12h por 6 a 12 meses; alérgico: eritromicina 250 mg 12/12h."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Guia HC-FMUSP 2024 usa cefalexina 1 g 6/6h no adulto e 100 mg/kg/dia na criança; o DATA usa 500 mg 6/6h e 50 mg/kg/dia — decidir a dose.",
-   "Tigers e Principais condutas tratam por 10 a 14 dias; NICE 2019 e HC-FMUSP 2024 indicam 5 a 7 dias — DATA usa 7.",
-   "Apostilas escrevem penicilina procaína, penicilina V e eritromicina como EV (erro: IM e VO); procaína IM 12/12h não foi proposta (dolorosa e pouco disponível).",
-   "Eritromicina para alérgicos (apostilas) não foi proposta: a clindamicina já cobre a alergia, com melhor tolerância.",
-   "Penicilina V: a bula indica 500.000 UI 6/6 ou 8/8h por 10 dias na erisipela; proposta com 7 dias — confirmar.",
-   "DATA não tem profilaxia da erisipela recorrente (penicilina benzatina a cada 2 a 4 semanas ou penicilina V, IDSA 2014) — avaliar bloco."
-  ],
+  "pendencias": [],
   "fontes": [
    "Stevens DL et al. Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update by the IDSA. Clin Infect Dis. 2014;59(2):e10-52.",
    "National Institute for Health and Care Excellence (NICE). Cellulitis and erysipelas: antimicrobial prescribing (NG141). 2019.",
@@ -4437,9 +4233,9 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Remover as crostas com água e sabão (amolecer antes com óleo ou vaselina morna) antes do tópico.",
-     "Poucas lesões: mupirocina 3 vezes ao dia por 5 dias.",
+     "Poucas lesões: mupirocina 3 vezes ao dia por 5 dias (guia HC-FMUSP 2024).",
      "Oral por 7 dias se lesões numerosas, bolhoso extenso, ectima, surto familiar ou escolar, ou falha do tópico: cefalexina (criança pelo peso).",
-     "Alergia a betalactâmico ou suspeita de MRSA: SMX-TMP (adulto e criança) ou clindamicina (adulto).",
+     "Alergia a betalactâmico ou suspeita de MRSA: SMX-TMP (adulto e criança) ou clindamicina — adulto 300 mg 8/8h; criança 30 a 40 mg/kg/dia se houver apresentação adequada à idade.",
      "Internar se sinais sistêmicos, celulite extensa, imunossupressão ou lactente pequeno com lesões disseminadas.",
      "O antibiótico não previne a glomerulonefrite, mas encurta o contágio."
     ]
@@ -4459,7 +4255,7 @@ const GUIA_ITENS = [
     "itens": [
      "Lavar as feridas com água morna e sabão 2 a 3 vezes ao dia e tirar as crostas antes da pomada.",
      "Manter as unhas curtas, não coçar e não compartilhar toalhas e roupas.",
-     "Afastar da escola ou creche até 24 a 48 horas depois de começar o antibiótico ou até as feridas secarem.",
+     "Afastar da escola ou creche até 24 horas depois de começar o antibiótico ou até as feridas secarem.",
      "Voltar se febre, vermelhidão em volta das feridas, inchaço no rosto ou urina escura."
     ]
    },
@@ -4473,13 +4269,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Tigers e Principais condutas tratam por 10 dias; HC-FMUSP 2024 indica 7 dias e NICE 2020, 5 dias — DATA usa 7.",
-   "Guia pediátrico do Drive sugere penicilina benzatina 50.000 UI/kg + neomicina-bacitracina: penicilina não cobre S. aureus e a pomada é menos eficaz — não proposto.",
-   "NICE 2020 põe o creme de peróxido de hidrogênio 1% como 1ª linha tópica; pouco disponível no Brasil — manter mupirocina.",
-   "Volta à escola: DATA diz 48 h após o antibiótico; HC-FMUSP 2024 diz 24 h — uniformizar.",
-   "Clindamicina oral pediátrica (HC-FMUSP: 30 a 40 mg/kg/dia) não foi proposta: conferir se há apresentação líquida na rede."
-  ],
+  "pendencias": [],
   "fontes": [
    "Stevens DL et al. Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update by the IDSA. Clin Infect Dis. 2014;59(2):e10-52.",
    "National Institute for Health and Care Excellence (NICE). Impetigo: antimicrobial prescribing (NG153). 2020.",
@@ -4525,13 +4315,13 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Permetrina 5% do pescoço aos pés (couro cabeludo e face também abaixo de 2 anos), retirar após 8 a 14 h e repetir em 7 dias.",
-     "Ivermectina 200 mcg/kg em 2 doses, com 7 dias de intervalo; adulto até 64 kg: 2 comprimidos de 6 mg por dose.",
-     "Adulto mais pesado: 2 e meio comprimidos de 65 a 79 kg e 3 comprimidos a partir de 80 kg.",
-     "Ivermectina não na gestação nem abaixo de 15 kg; gestante, lactante e lactente a partir de 2 meses: permetrina.",
+     "Ivermectina 200 mcg/kg por dose, com água e junto com refeição, em 2 doses com 7 dias de intervalo; a receita calcula os comprimidos de 6 mg pelo peso (bula).",
+     "Comprimidos de 6 mg por dose (bula): 36 a 50 kg 1 e meio; 51 a 65 kg 2; 66 a 79 kg 2 e meio; 80 kg ou mais, 200 mcg/kg.",
+     "Ivermectina só a partir de 5 anos e 15 kg (bula); na gestação e no lactente a partir de 2 meses, permetrina.",
      "Menores de 2 meses: enxofre precipitado em vaselina e discutir com a dermatologia.",
      "Tratar contatos da casa e parceiros no mesmo dia, mesmo sem coceira.",
      "Coceira: anti-histamínico e emoliente; tratar o impetigo secundário junto.",
-     "Sarna crostosa: ivermectina nos dias 1, 2 e 8 (graves também 9 e 15) com escabicida tópico repetido; precaução de contato."
+     "Sarna crostosa: ivermectina repetida (dias 1, 2, 8, 9 e 15 nos graves) com permetrina repetida e emoliente; precaução de contato e discutir internação."
     ]
    },
    {
@@ -4555,25 +4345,17 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Benzoato de benzila 25% emulsão — 2 a 3 noites seguidas e repetir em 7 dias; alternativa à permetrina, irrita; na criança diluir conforme a bula.",
-     "Ivermectina pelo peso no adulto acima de 65 kg — 2 e meio a 3 comprimidos de 6 mg, repetindo em 7 dias (tabela do material).",
+     "Benzoato de benzila 25% emulsão — 3 noites seguidas e repetir o ciclo em 7 dias (bula e diretriz europeia 2026); irrita; na criança só em concentração menor.",
      "Enxofre precipitado 10% em vaselina — 3 noites seguidas; gestante ou intolerância à permetrina; cheiro forte, mancha a roupa.",
      "Dexclorfeniramina 2 mg à noite ou até 8/8h — antipruriginoso alternativo à hidroxizina; dá sonolência."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Tigers e Principais condutas usam permetrina 5% por 3 a 5 noites seguidas; o Plantãozinho, por 10 minutos: ambos errados (uma aplicação de 8 a 14 h, repetida em 7 dias).",
-   "Padrão adulto do DATA usa ivermectina 12 mg fixa: acima de 65 kg é subdose para 200 mcg/kg — decidir se a posologia passa a ser por faixa de peso.",
-   "Bloco 'Receita' do DATA repete a ivermectina após 21 dias; a diretriz europeia (2017) repete em 7 dias (até 14) — corrigir.",
-   "Deltametrina loção (Drive): registrada no Brasil, mas fora das diretrizes internacionais e com posologias divergentes nos materiais (4 a 10 dias) — não proposta.",
-   "Fórmula manipulada do Drive associa enxofre 10% a hidrocortisona, lactato de amônio e alantoína; o corticoide não tem papel no escabicida — proposto só enxofre em vaselina.",
-   "Benzoato de benzila: o Plantãozinho cita sabonete; proposta a emulsão 25% (diretriz: 2 noites; bula brasileira: 3 noites) — escolher o esquema.",
-   "Diretriz europeia orienta ivermectina com alimento; conferir a orientação da bula brasileira antes de escrever na receita."
-  ],
+  "pendencias": [],
   "fontes": [
    "Salavastru CM, Chosidow O, Boffa MJ, Janier M, Tiplica GS. European guideline for the management of scabies. J Eur Acad Dermatol Venereol. 2017;31(8):1248-1253.",
+   "Salavastru CM et al. 2026 European Guideline for the Management of Scabies (IUSTI/EADV). Versão final, 2026.",
    "Engelman D et al. The 2020 International Alliance for the Control of Scabies Consensus Criteria for the Diagnosis of Scabies. Br J Dermatol. 2020;183(5):808-820."
   ]
  },
@@ -4616,10 +4398,11 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Identificar e afastar o agente; limpeza suave e emoliente sem perfume várias vezes ao dia.",
-     "Corticoide tópico por 1 a 2 semanas: média potência (betametasona) no corpo; baixa potência (hidrocortisona) em face, pálpebras, dobras e fralda.",
-     "Mãos e plantas com lesão espessa podem precisar de alta potência (clobetasol) por curto período, nunca na face.",
+     "Corticoide tópico por 1 a 2 semanas: média potência (valerato de betametasona 0,1%) no corpo; baixa potência (hidrocortisona) em face, pálpebras, dobras e fralda.",
+     "Mãos e plantas com lesão espessa: propionato de clobetasol 0,05% por no máximo 2 semanas, nunca na face, dobras ou fralda.",
      "Lesão exsudativa: compressas frias com SF antes do creme.",
-     "Extensa (mais de 20% da pele) ou grave em face e genitais: prednisona 0,5 a 1 mg/kg/dia, desmame em 2 a 3 semanas (curso curto dá rebote).",
+     "Não usar cremes que juntam corticoide com antibiótico ou antifúngico: sensibilizam e não tratam melhor.",
+     "Extensa (mais de 20% da pele) ou grave em face e genitais: prednisona 0,5 a 1 mg/kg/dia com desmame em 2 a 3 semanas; curso curto dá rebote.",
      "Anti-histamínico ajuda na coceira e no sono, mas não trata o eczema.",
      "Criança: hidrocortisona em face e fralda; betametasona só no corpo e acima de 2 anos; prednisolona pelo peso se extensa."
     ]
@@ -4643,12 +4426,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Catálogo do Plantão Rápido traz betametasona + gentamicina creme e o guia pediátrico traz associações de corticoide com antibiótico e antifúngico: sensibilizam e geram resistência — não propostas.",
-   "O clobetasol do Drive já está no DATA (Outras opções, 'Opção 2'), escrito 'CLOBETAZOL' — corrigir a grafia e limitar a 2 semanas, fora da face.",
-   "'Opção 1' do DATA diz 'BETAMETASONA 0,1%' sem o sal (valerato e dipropionato têm potências diferentes) — especificar.",
-   "Prednisona ambulatorial do DATA dura 14 dias; o bloco de internação e a literatura falam em desmame de 2 a 3 semanas — uniformizar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Fonacier L et al. Contact dermatitis: a practice parameter-update 2015. J Allergy Clin Immunol Pract. 2015;3(3 Suppl):S1-39.",
    "Johansen JD et al. European Society of Contact Dermatitis guideline for diagnostic patch testing – recommendations on best practice. Contact Dermatitis. 2015;73(4):195-221.",
@@ -4697,9 +4475,10 @@ const GUIA_ITENS = [
      "Lavar, secar muito bem e manter a dobra arejada (tecido de algodão ou gaze entre as dobras).",
      "Antifúngico tópico 2 vezes ao dia (miconazol ou clotrimazol); na fralda, nistatina com óxido de zinco a cada troca.",
      "Manter até 1 semana depois da cura, em geral 2 a 4 semanas.",
-     "Muito inflamado: hidrocortisona 1% por no máximo 7 dias junto com o antifúngico; evitar corticoide potente nas dobras.",
-     "Extenso, refratário ou imunossupressão: associar fluconazol oral.",
-     "Eritrasma: eritromicina ou clindamicina; infecção estreptocócica (dobra vermelho-vivo e dolorosa): antibiótico."
+     "Muito inflamado: hidrocortisona 1% por no máximo 7 dias junto com o antifúngico; nada de corticoide potente nem neomicina na dobra (atrofia, estrias, alergia de contato).",
+     "Extenso, refratário ou imunossupressão: fluconazol 150 mg 1 vez por semana por 2 a 4 semanas (bula), mantendo o tópico.",
+     "Eritrasma: eritromicina ou clindamicina; infecção estreptocócica (dobra vermelho-vivo e dolorosa): antibiótico.",
+     "Balanopostite por Candida: clotrimazol 1% creme 2 vezes ao dia por 7 a 14 dias; fluconazol 150 mg dose única se intensa (diretriz europeia 2022)."
     ]
    },
    {
@@ -4719,18 +4498,21 @@ const GUIA_ITENS = [
      "Não usar talco, amido ou pomadas com corticoide por conta própria.",
      "Voltar se não melhorar em 2 semanas, se espalhar ou se surgir pus, dor forte ou febre."
     ]
+   },
+   {
+    "t": "Outras opções (material do médico)",
+    "itens": [
+     "Fluconazol 150 mg 1 vez por semana por 4 semanas com miconazol creme — candidíase cutânea extensa.",
+     "Itraconazol 200 mg/dia por 7 dias com miconazol creme — lesões extensas de dobra, por cândida ou tinha crural (bula: dermatofitoses)."
+    ],
+    "offlabel": true
    }
   ],
-  "pendencias": [
-   "'Opção 1' e 'Opção 2' do DATA usam creme de cetoconazol + betametasona + neomicina: corticoide potente na dobra causa atrofia e estrias, e a neomicina sensibiliza — decidir se mantém.",
-   "Esses blocos orientam evitar calçados fechados (frase da tinha dos pés), sem relação com o intertrigo — revisar.",
-   "Drive traz balanopostite (nistatina creme + fluconazol 150 mg dose única); imidazólico tópico é a 1ª linha — condição nova ou palavras-chave aqui.",
-   "Fluconazol 150 mg semanal por 4 semanas (DATA) para candidíase cutânea extensa não tem esquema padronizado nas diretrizes — confirmar.",
-   "Material do Drive não tem nada específico de intertrigo para Outras opções."
-  ],
+  "pendencias": [],
   "fontes": [
    "Kalra MG, Higgins KE, Kinney BS. Intertrigo and secondary skin infections. Am Fam Physician. 2014;89(7):569-573.",
-   "Azulay RD, Azulay DR, Azulay-Abulafia L. Dermatologia. 8ª ed. Guanabara Koogan; 2022."
+   "Azulay RD, Azulay DR, Azulay-Abulafia L. Dermatologia. 8ª ed. Guanabara Koogan; 2022.",
+   "IUSTI. 2022 European guideline for the management of balanoposthitis. J Eur Acad Dermatol Venereol. 2023;37(6):1104-1117."
   ]
  },
  {
@@ -4772,10 +4554,11 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Leve (até 50% da unha, sem matriz, até 3 a 4 unhas): tópico — amorolfina esmalte por 6 meses (mãos) a 12 meses (pés).",
-     "Moderada a grave, matriz acometida ou muitas unhas: terbinafina 250 mg/dia por 6 semanas (mãos) ou 12 semanas (pés).",
+     "Moderada a grave, matriz acometida ou muitas unhas: terbinafina 250 mg/dia por 6 semanas (mãos) ou 12 semanas (pés) — 1ª linha também na diretriz britânica de 2026.",
      "Alternativas orais: itraconazol contínuo ou em pulsos (muitas interações; não usar na insuficiência cardíaca) ou fluconazol semanal.",
      "Candida: itraconazol ou fluconazol (terbinafina é menos eficaz).",
      "Tratar a frieira junto, manter unhas curtas e lixar a superfície antes do esmalte.",
+     "Ureia 40% sob oclusão por até 2 semanas só amolece a unha espessa para lixar; não trata o fungo — usar junto com o esmalte.",
      "A unha nova leva 6 meses nas mãos e 12 a 18 meses nos pés; recidiva é comum.",
      "Criança: rara; confirmar e discutir com a dermatologia antes de oral."
     ]
@@ -4802,21 +4585,16 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Itraconazol 200 mg/dia por 6 a 12 semanas ou pulsos de 400 mg/dia 1 semana por mês — alternativa à terbinafina e na Candida.",
-     "Fluconazol 150 mg 1 vez por semana por 3 meses (mãos) a 6 meses ou mais (pés) — se intolerância a terbinafina e itraconazol.",
-     "Ciclopirox 8% esmalte ou tioconazol 28% solução — tópicos alternativos à amorolfina nas formas leves e distais."
+     "Fluconazol 150 mg por semana até a unha nova crescer (mãos 3 a 6 meses, pés 6 a 12; bula) — se intolerância a terbinafina e itraconazol.",
+     "Ciclopirox 8% esmalte no esquema decrescente da bula ou tioconazol 28% solução — tópicos alternativos à amorolfina nas formas leves e distais."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Tigers e Principais condutas mandam sempre associar tratamento sistêmico ao tópico: a BAD indica tópico isolado na forma leve e distal — não seguir.",
-   "Bloco 'Receita' do DATA usa ureia 40% + oxiconazol solução por 1 a 2 semanas: prazo incompatível com onicomicose (meses); a ureia 40% serve para amolecer a unha — rever.",
-   "Nova diretriz da BAD (2026) está em publicação no British Journal of Dermatology — conferir se muda doses ou durações.",
-   "Ciclopirox esmalte: a bula brasileira usa esquema decrescente (dias alternados no 1º mês, depois 2 e 1 vez por semana); a BAD 2014 cita uso diário — confirmar.",
-   "Fluconazol semanal na onicomicose: as bulas brasileiras listam tinea unguium, mas a posologia semanal não foi conferida — confirmar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Ameen M et al. British Association of Dermatologists' guidelines for the management of onychomycosis 2014. Br J Dermatol. 2014;171(5):937-958.",
+   "Ameen M et al. British Association of Dermatologists guideline for managing fungal nail infection (onychomycosis) 2026. Br J Dermatol. 2026 (no prelo).",
    "Caplan AS, Gold JAW, Smith DJ, Ely JW. Diagnosis and management of tinea infections. Am Fam Physician. 2025;112(4):382-392."
   ]
  },
@@ -4885,17 +4663,12 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Isoconazol 1% creme 1 vez ao dia por 2 a 3 semanas ou ciclopirox 1% creme 2 vezes ao dia — tópicos alternativos, bons para poucas lesões."
+     "Isoconazol 1% creme 1 vez ao dia por 2 a 3 semanas ou ciclopirox 1% creme 2 vezes ao dia por 2 semanas — tópicos alternativos, bons para poucas lesões."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Tigers e Principais condutas citam cetoconazol oral 200 mg/dia por 28 dias: contraindicado em micose de pele (alerta Anvisa 2013) — não importar.",
-   "O itraconazol do material (200 mg/dia por 5 dias) equivale ao do DATA (100 mg 12/12h por 5 dias) — nada a mudar.",
-   "Esfregar com bucha no banho (apostilas) não tem evidência e irrita — não incluir.",
-   "Ciclopirox creme: a posologia proposta (2 vezes ao dia por 2 semanas) não foi conferida na bula brasileira — confirmar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Hald M et al. Evidence-based Danish guidelines for the treatment of Malassezia-related skin diseases. Acta Derm Venereol. 2015;95(1):12-19.",
    "Gupta AK, Foley KA. Antifungal treatment for pityriasis versicolor. J Fungi (Basel). 2015;1(1):13-29."
@@ -4940,12 +4713,14 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Tratamento oral obrigatório; creme ou xampu sozinho não cura.",
-     "Microsporum ou fungo ainda desconhecido: griseofulvina 20 a 25 mg/kg/dia com alimento gorduroso por 6 a 8 semanas (máximo 1 g/dia).",
+     "Microsporum ou fungo ainda desconhecido: griseofulvina 20 a 25 mg/kg/dia com alimento gorduroso por 6 a 8 semanas (máximo 1 g/dia); cobre os dois gêneros.",
      "Trichophyton na cultura: terbinafina pelo peso por 4 semanas.",
+     "Microsporum de gato e cão é frequente no Brasil, por isso a griseofulvina é o padrão; Trichophyton confirmado responde melhor à terbinafina (BAD 2014).",
+     "Idade: griseofulvina e terbinafina oral a partir de 2 anos (bula); abaixo disso, discutir com a dermatologia.",
      "Xampu de cetoconazol 2 a 3 vezes por semana para a criança e os contatos, para reduzir a transmissão.",
      "Quérion: não drenar; antifúngico oral, analgesia e antibiótico só se infecção bacteriana evidente.",
      "Pápulas pelo corpo logo após iniciar o remédio (reação id) não são alergia ao antifúngico.",
-     "Adulto: raro; pensar em imunossupressão, mesma lógica de tratamento."
+     "Adulto (raro): griseofulvina 1 g/dia por 6 a 8 semanas ou terbinafina 250 mg/dia por 4 semanas; pensar em imunossupressão."
     ]
    },
    {
@@ -4967,12 +4742,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Material do Drive não traz tinha capitis; nada a importar.",
-   "AAFP 2025 prefere terbinafina (cursos mais curtos); a BAD 2014 escolhe pelo fungo (Microsporum responde melhor à griseofulvina). DATA usa griseofulvina como padrão — decidir pelo agente mais comum na região.",
-   "Bloco 'Receita' do DATA: griseofulvina 500 mg 1 vez ao dia com 50 comprimidos para 8 semanas (faltam 6) e 500 mg/dia no adulto, metade do Padrão — corrigir.",
-   "Conferir na bula brasileira a idade mínima de griseofulvina e terbinafina oral (o DATA usa 2 anos)."
-  ],
+  "pendencias": [],
   "fontes": [
    "Fuller LC et al. British Association of Dermatologists' guidelines for the management of tinea capitis 2014. Br J Dermatol. 2014;171(3):454-463.",
    "Kakourou T, Uksal U. Guidelines for the management of tinea capitis in children. Pediatr Dermatol. 2010;27(3):226-228.",
@@ -5021,6 +4791,7 @@ const GUIA_ITENS = [
      "Com azólico, manter 1 a 2 semanas depois de sumir; nunca associar corticoide.",
      "Oral se muitas placas, área extensa, folicular, imunossupressão ou falha: terbinafina 250 mg/dia por 2 a 4 semanas.",
      "Tratar junto a frieira e a micose de unha, que reinfectam.",
+     "Frieira e tinha crural: mesmo tratamento tópico, secar bem entre os dedos e na virilha e trocar as meias todo dia.",
      "Criança: miconazol ou clotrimazol; terbinafina creme só a partir de 12 anos (bula); oral pelo peso se extensa.",
      "Sem resposta à terbinafina bem usada: cultura; T. indotineae resistente já foi descrito no Brasil — discutir itraconazol com a dermatologia."
     ]
@@ -5046,18 +4817,12 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Fluconazol 150 mg 1 vez por semana por 2 a 4 semanas — alternativa oral quando a terbinafina não pode ser usada; esquema pouco padronizado."
+     "Fluconazol 150 mg 1 vez por semana por 2 a 4 semanas — alternativa oral quando a terbinafina não pode ser usada (esquema da bula para dermatomicoses)."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Tigers e Principais condutas usam cremes de antifúngico + corticoide (isoconazol + diflucortolona; cetoconazol + betametasona): a AAFP 2025 manda evitar — não importar.",
-   "Apostilas citam cetoconazol oral 200 mg/dia por 4 semanas: contraindicado em micose de pele (Anvisa 2013) — não importar.",
-   "Fluconazol semanal (apostilas) proposto em Outras opções; 150 mg/semana por 2 a 4 semanas consta em bula europeia, não conferida na brasileira — confirmar.",
-   "O KW da condição não tem frieira, pé de atleta e crural; o Drive sugere tinha dos pés e crural como condições novas — decidir.",
-   "T. indotineae resistente à terbinafina foi descrito no Brasil (2024–2025): avaliar uma linha de alerta no Padrão."
-  ],
+  "pendencias": [],
   "fontes": [
    "Caplan AS, Gold JAW, Smith DJ, Ely JW. Diagnosis and management of tinea infections. Am Fam Physician. 2025;112(4):382-392.",
    "Veasey JV et al. First case of Trichophyton indotineae in Brazil: clinical and mycological criteria and genetic identification of terbinafine resistance. An Bras Dermatol. 2025;100(3):557-560.",
@@ -5106,10 +4871,11 @@ const GUIA_ITENS = [
      "Antiviral por 7 dias, de preferência até 72 h das lesões: valaciclovir 1 g 8/8h ou aciclovir 800 mg 5 vezes ao dia.",
      "Depois de 72 h, tratar mesmo assim se ainda há vesículas novas, acima de 50 anos, cabeça e pescoço, dor intensa ou imunossupressão.",
      "Ajustar a dose à função renal e manter boa hidratação.",
-     "Dor em horário fixo com analgésico ou AINE; dor neuropática intensa: considerar gabapentina, pregabalina ou amitriptilina em dose baixa.",
-     "Corticoide oral não é recomendado de rotina (não previne a neuralgia pós-herpética).",
+     "Dor em horário fixo com analgésico ou AINE (escada da OMS); dor moderada a intensa: somar gabapentina ou amitriptilina em dose baixa (fora da bula para dor aguda).",
+     "Corticoide oral não é de rotina (não previne neuralgia); só como adjuvante do antiviral no zóster oftálmico grave ou na paralisia facial de Ramsay Hunt.",
      "Lesões: água e sabão e compressas frias; sem pomada de corticoide ou de antibiótico.",
-     "Criança saudável costuma ter quadro leve; tratar se oftálmico, extenso ou imunossuprimida (grave: aciclovir EV 10 mg/kg 8/8h)."
+     "Internação: aciclovir EV 10 mg/kg 8/8h (até 15 mg/kg se SNC ou víscera), com hidratação e creatinina; passar para oral quando parar de surgir lesão (ver Prescrições).",
+     "Criança saudável com zóster localizado: só analgesia (dipirona ou paracetamol; evitar ibuprofeno); antiviral se oftálmico, extenso ou imunossuprimida (grave: aciclovir EV 10 mg/kg 8/8h)."
     ]
    },
    {
@@ -5129,22 +4895,24 @@ const GUIA_ITENS = [
      "Manter as bolhas cobertas, não furar e lavar com água e sabão.",
      "Até tudo virar casca, evitar contato com gestantes, recém-nascidos e imunossuprimidos que nunca tiveram catapora.",
      "Voltar na hora se lesão perto do olho ou na ponta do nariz, alteração da visão, bolhas pelo corpo, febre alta, confusão ou fraqueza no rosto.",
-     "Depois de curar, conversar na UBS sobre a vacina contra herpes-zóster."
+     "Vacina recombinante contra zóster (2 doses): indicada a partir de 50 anos e em imunossuprimidos; não está no SUS (decisão de 2026), só na rede privada."
     ]
+   },
+   {
+    "t": "Outras opções (material do médico)",
+    "itens": [
+     "Aciclovir com diclofenaco e dipirona por 5 dias — dor moderada sem contraindicação a AINE; evitar AINE em idoso com doença renal.",
+     "Gabapentina 300 mg subindo até 8/8h ou amitriptilina 12,5 a 25 mg à noite — dor neuropática moderada a intensa; amitriptilina não em idoso ou cardiopata."
+    ],
+    "offlabel": true
    }
   ],
-  "pendencias": [
-   "'Opção 1' e 'Opção 2' do DATA trazem creme de betametasona + gentamicina, mas a orientação do Padrão proíbe pomada de corticoide ou antibiótico — retirar ou justificar.",
-   "'Opção 2' do DATA usa prednisona 20 mg 12/12h por 5 dias; a diretriz europeia (2017) não recomenda corticoide de rotina — decidir.",
-   "DATA não tem bloco de internação (aciclovir EV 10 mg/kg 8/8h no oftálmico grave, disseminado ou imunossuprimido) nem bloco pediátrico — avaliar.",
-   "DATA não tem opção para dor neuropática aguda (gabapentina, pregabalina, amitriptilina) — avaliar bloco em Outras opções.",
-   "Material do Drive não traz herpes-zóster (só herpes labial, condição nova); nada a importar.",
-   "Vacina recombinante contra zóster: a Conitec recomendou não incorporar ao SUS (relatório nº 1.073, 2026) — confirmar a situação antes de orientar onde vacinar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Werner RN et al. European consensus-based (S2k) Guideline on the Management of Herpes Zoster – guided by the EDF in cooperation with the EADV, Part 2: Treatment. J Eur Acad Dermatol Venereol. 2017;31(1).",
    "Cohen JI. Clinical practice: Herpes zoster. N Engl J Med. 2013;369(3):255-263.",
-   "Brasil. Conitec. Relatório de Recomendação nº 1.073: vacina recombinante adjuvada para a prevenção do herpes-zóster. 2026."
+   "Brasil. Conitec. Relatório de Recomendação nº 1.073: vacina recombinante adjuvada para a prevenção do herpes-zóster. 2026.",
+   "Sociedade Brasileira de Imunizações (SBIm). Calendário de vacinação SBIm adulto 2026/2027. 2026."
   ]
  },
  {
@@ -5191,9 +4959,10 @@ const GUIA_ITENS = [
      "Resfriar com água corrente fria (não gelada) por 20 min nas primeiras 3 h; tirar anéis e roupas não aderidas.",
      "Química: retirar o pó seco e irrigar com muita água por tempo prolongado antes de qualquer outra coisa.",
      "1º grau: hidratante, analgesia e proteção solar; não precisa de pomada.",
-     "2º grau pequeno: limpar, desbridar bolhas rotas, curativo (sulfadiazina de prata ou curativo não aderente) e reavaliar em 48 a 72 h.",
+     "2º grau pequeno: limpar, desbridar bolhas rotas, cobrir com sulfadiazina de prata 1% (cartilha do MS) ou gaze não aderente com petrolato e reavaliar em 48 a 72 h.",
+     "Sulfadiazina: não abaixo de 2 meses, na gestação a termo ou com alergia a sulfa; no 2º grau superficial limpo, a gaze com petrolato pode epitelizar mais rápido.",
      "Volume se 2º/3º grau acima de 20% SCQ no adulto ou 10% na criança: Ringer lactato 2 mL/kg/%SCQ (criança 3, elétrica 4), metade em 8 h.",
-     "Titular pela diurese: 0,5 mL/kg/h no adulto e 1 mL/kg/h na criança até 30 kg; evitar excesso de volume (ver Parkland em Escores).",
+     "Titular pela diurese: 0,5 mL/kg/h no adulto, 1 mL/kg/h na criança até 30 kg. A Parkland de Escores usa 4 mL/kg; a ABA começa com 2 no adulto.",
      "Analgesia potente (opioide EV no grande queimado e antes dos curativos) e profilaxia do tétano pelo cartão vacinal.",
      "Antibiótico profilático não é indicado; tratar só infecção evidente (celulite, pus, sinais sistêmicos)."
     ]
@@ -5202,7 +4971,7 @@ const GUIA_ITENS = [
     "t": "Sinais de alarme e quando internar/encaminhar",
     "itens": [
      "Sinais de lesão inalatória, estridor ou rebaixamento: intubação precoce por quem tem mais experiência.",
-     "2º grau extenso, qualquer 3º grau significativo, ou face, mãos, pés, genitais, períneo e grandes articulações: regular para centro de queimados.",
+     "Discutir com o centro de queimados (via regulação): 2º grau a partir de 10% da SCQ, qualquer 3º grau, face, mãos, pés, genitais, períneo ou grandes articulações (ABA 2022).",
      "Queimadura elétrica, química ou com trauma associado; comorbidade grave; extremos de idade.",
      "Incêndio fechado com lactato alto, hipotensão ou coma: suspeitar de cianeto."
     ],
@@ -5218,14 +4987,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Tigers e Principais condutas prescrevem cefalexina profilática por 10 dias: não indicada — corretamente fora do DATA.",
-   "Plantãozinho e a calculadora Parkland de Escores (Ficha Vermelha) abrem em 4 mL/kg/%SCQ; ABA 2023 e o DATA usam 2 mL/kg no adulto — só sinalizar, Escores não muda aqui.",
-   "Sulfadiazina de prata pode atrasar a epitelização da queimadura superficial; curativos não aderentes, hidrocoloide ou com prata são alternativas onde houver — decidir a redação do Padrão.",
-   "Limiares de transferência variam entre fontes (ABA 2022, cartilha do MS 2012) — confirmar com a regulação local e ajustar o texto.",
-   "Pediátrico ambulatorial do DATA só tem analgesia; falta bloco de curativo (sulfadiazina contraindicada abaixo de 2 meses) — avaliar.",
-   "Queimadura solar com calamina + difenidramina tópica (apostilas) seria condição nova; difenidramina tópica sensibiliza — não importar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Cartotto R et al. American Burn Association Clinical Practice Guidelines on Burn Shock Resuscitation. J Burn Care Res. 2024;45(3):565-589.",
    "ISBI Practice Guidelines Committee. ISBI Practice Guidelines for Burn Care. Burns. 2016;42(5):953-1021.",
@@ -5275,10 +5037,10 @@ const GUIA_ITENS = [
     "itens": [
      "Anti-histamínico H1 de 2ª geração 1 vez ao dia em horário fixo (loratadina, cetirizina, desloratadina, fexofenadina) até alguns dias depois de sumir.",
      "Sem controle: a diretriz internacional permite subir até 4 vezes a dose padrão (fora da bula).",
-     "Evitar anti-histamínico de 1ª geração de rotina (sedação, quedas, risco ao dirigir); se usar, à noite e por pouco tempo.",
+     "Anti-histamínico de 1ª geração (hidroxizina, dexclorfeniramina) não é de rotina: sedação, quedas e risco ao dirigir; se usar, à noite e por pouco tempo.",
      "Quadro intenso ou extenso: prednisona 40 mg/dia por 3 a 5 dias (no máximo 10).",
      "Suspender o provável desencadeante e evitar AINE e AAS durante o quadro.",
-     "Anafilaxia: adrenalina IM 0,01 mg/kg na coxa (máximo 0,5 mg no adulto e 0,3 mg na criança) — ver Anafilaxia em Prescrições.",
+     "Anafilaxia: adrenalina IM 0,01 mg/kg na coxa, máximo 0,5 mg a partir de 12 anos e 0,3 mg abaixo de 12 anos (WAO 2020) — ver Anafilaxia em Prescrições.",
      "Criança: desloratadina a partir de 6 meses, loratadina e cetirizina a partir de 2 anos; prednisolona 1 mg/kg/dia se intensa."
     ]
    },
@@ -5305,19 +5067,14 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Loratadina 10 mg 12/12h (dose dobrada) — urticária sem controle com a dose padrão; apoiada pela diretriz EAACI 2022, fora da bula.",
-     "Dexclorfeniramina 2 mg à noite ou até 8/8h — coceira que atrapalha o sono; 1ª geração, sedativa, evitar em idosos e motoristas."
+     "Dexclorfeniramina 2 mg à noite ou até 8/8h — coceira que atrapalha o sono; 1ª geração, sedativa, evitar em idosos e motoristas.",
+     "Hidroxizina 25 mg 12/12h com prednisona — opção de menor custo; 1ª geração, sedativa, fora do Padrão pela diretriz.",
+     "Fexofenadina com pseudoefedrina 12/12h por até 7 dias — rinite com nariz entupido no adulto; não usar se hipertensão grave, doença coronariana, glaucoma de ângulo fechado ou retenção urinária."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Pediátrico de internação do DATA usa adrenalina IM com máximo de 0,5 mg; as Calculadoras foram corrigidas para 0,3 mg abaixo de 12 anos (WAO 2020) — alinhar.",
-   "O Padrão do DATA põe hidroxizina (1ª geração) no mesmo menu dos de 2ª geração; a diretriz EAACI 2022 desaconselha 1ª geração de rotina — decidir se vai para Outras opções.",
-   "Tigers e Principais condutas: hidrocortisona 500 mg EV em bolus (dose excessiva, sem efeito imediato) e 'meia ampola' de adrenalina sem via — não importar; DATA já usa 200 mg e 0,5 mg IM.",
-   "Tigers traz loratadina 12/12h e o levantamento do Drive mandou não aproveitar, mas a EAACI 2022 permite até 4 vezes a dose — proposta em Outras opções, decidir.",
-   "Plantãozinho: prometazina 50 mg VO 8/8h (o comprimido é de 25 mg) e hidroxizina 10 mg — não importar.",
-   "Posologia do DATA (5 dias e depois se coceira) difere da diretriz (horário fixo até a remissão) — revisar a redação."
-  ],
+  "pendencias": [],
   "fontes": [
    "Zuberbier T et al. The international EAACI/GA²LEN/EuroGuiDerm/APAAACI guideline for the definition, classification, diagnosis, and management of urticaria. Allergy. 2022;77(3):734-766.",
    "Cardona V et al. World Allergy Organization anaphylaxis guidance 2020. World Allergy Organ J. 2020;13(10):100472."
@@ -5350,7 +5107,7 @@ const GUIA_ITENS = [
     "itens": [
      "PA deitado e em pé (hipotensão postural), FC, FR, enchimento capilar, diurese referida e peso.",
      "Abdome (dor intensa e contínua, hepatomegalia > 2 cm, ascite), derrame pleural, sangramento de mucosas, letargia ou irritabilidade.",
-     "Prova do laço sem sangramento espontâneo: manguito na PA média (PAS + PAD)/2 por 5 min no adulto e 3 min na criança.",
+     "Prova do laço sem sangramento espontâneo: manguito na PA média (PAS + PAD)/2 por 5 min no adulto e 3 min na criança (não a 100 mmHg fixos); valor preditivo baixo.",
      "Prova positiva: 20 ou mais petéquias (adulto) ou 10 ou mais (criança) num quadrado de 2,5 cm no antebraço.",
      "Choque: taquicardia, extremidades frias, enchimento capilar > 2 s, PA convergente (< 20 mmHg), taquipneia, oligúria; hipotensão é tardia."
     ]
@@ -5368,8 +5125,10 @@ const GUIA_ITENS = [
     "itens": [
      "Grupos A e B: hidratação oral de 60 mL/kg/dia no adulto, 1/3 em SRO e 2/3 em líquidos caseiros, até 24–48 h após o fim da febre.",
      "Criança: 130 mL/kg/dia até 10 kg; 100 mL/kg/dia de 10 a 20 kg; 80 mL/kg/dia acima de 20 kg; 1/3 nas primeiras 4–6 h; manter o aleitamento.",
-     "Dipirona ou paracetamol para dor e febre (criança 10 mg/kg/dose até 6/6 h); nunca AAS, AINE, corticoide ou injeção IM.",
-     "Grupo B com hematócrito normal: tratamento em casa com reavaliação clínica e hemograma diários até 48 h após o fim da febre.",
+     "Adulto: dipirona 500 mg ou paracetamol 500 mg a 1 g até 6/6 h; criança: 10 mg/kg/dose até 6/6 h (MS 2024). Nunca AAS, AINE, corticoide ou injeção IM.",
+     "Paracetamol gotas: o cálculo do site usa 15 gotas/mL (maioria dos genéricos); há frascos com 20 gotas/mL — conferir o gotejador.",
+     "Náusea: antiemético oral só se necessário (metoclopramida ou ondansetrona); prurido: anti-histamínico oral. O manual não os cita, mas também não os contraindica — nunca IM.",
+     "Grupo B com hematócrito normal: tratamento em casa, 60 mL/kg/dia de líquidos, com reavaliação clínica e hemograma diários até 48 h após o fim da febre.",
      "Grupo C: SF 0,9% 10 mL/kg/h por 2 h (fase de expansão), reavaliando a cada hora e com Ht ao fim; repetir até 3 fases.",
      "Melhorou: manutenção com SF 25 mL/kg em 6 h e depois 25 mL/kg em 8 h. Sem melhora após 3 fases: conduzir como grupo D.",
      "Grupo D: SF 20 mL/kg em até 20 min, até 3 vezes, e UTI; Ht subindo após 3 expansões: albumina; Ht caindo: procurar sangramento e transfundir.",
@@ -5406,15 +5165,7 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Blocos antigos 'Grupo A' e 'Grupo B' (Outras opções) orientam volume fixo (1 L de soro caseiro + 2 L de líquidos) e retorno em 48 h; o MS 2024 usa 60 mL/kg/dia e reavaliação diária no grupo B — remover ou atualizar?",
-   "Paracetamol gotas: o DATA calcula com 15 gotas/mL; o Apêndice H do MS 2024 diz 1 mL = 20 gotas. Varia por fabricante — conferir e padronizar o cálculo.",
-   "O MS 2024 cita dipirona 500 mg até 6/6 h no adulto; o DATA usa 1 g (dentro da bula) — confirmar.",
-   "Material do Drive (Tigers, Principais condutas) usa volumes antigos (grupo A 80 mL/kg/dia; grupo C 20 mL/kg/h) e o 'prescrição - pronto atendimento' manda Ht > 44% para observação com 1/3 SF + 2/3 SG — desatualizados, não usados.",
-   "Prova do laço: o PDF do Drive insufla o manguito a 100 mmHg; o MS manda insuflar na PA média — o resumo segue o MS (que também lembra o baixo valor preditivo da prova).",
-   "Dose pediátrica de dipirona/paracetamol difere entre arboviroses no DATA (dengue 10 mg/kg; chikungunya e zika 15 mg/kg). Padronizar enquanto dengue não estiver afastada?",
-   "Antieméticos (metoclopramida, ondansetrona) e antipruriginoso não constam do manual de dengue 2024 — são prática clínica; confirmar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Dengue: diagnóstico e manejo clínico – adulto e criança. 6ª ed. Brasília: MS; 2024.",
    "Organização Pan-Americana da Saúde (OPAS). Guidelines for the clinical diagnosis and treatment of dengue, chikungunya, and Zika. Washington, DC: OPAS; 2022.",
@@ -5462,13 +5213,16 @@ const GUIA_ITENS = [
     "itens": [
      "EVA 1–3: dipirona 1 g ou paracetamol 500–750 mg em horários fixos de 6/6 h — nunca só 'se dor'.",
      "EVA 4–6: dipirona e paracetamol juntos, intercalados (uma dose a cada 3 h).",
-     "EVA ≥ 7: associar opioide (codeína 30 mg 6/6 h ou tramadol 50–100 mg 6/6 h); dor refratária: analgesia EV no PS.",
+     "EVA ≥ 7: associar opioide (codeína 30 mg 6/6 h ou tramadol 50–100 mg 6/6 h).",
+     "Dor refratária no PS: dipirona 30 mg/kg EV e, se preciso, tramadol 100 mg EV com bromoprida ou metoclopramida 10 mg.",
      "Fase aguda: sem AINE, AAS ou corticoide (sangramento, lesão renal, possível dengue); compressas frias 20 min de 4/4 h e repouso articular.",
-     "Subaguda com dor moderada/intensa: AINE ou prednisona 0,5 mg/kg/dia pela manhã até a dor sumir, mais 3–5 dias, depois retirada lenta.",
+     "Subaguda (após 14 dias): dor moderada (EVA 4–6) = ibuprofeno 600 mg 8/8 h por até 7–10 dias; intensa ou sem resposta = prednisona 0,5 mg/kg/dia (máximo 40 mg) pela manhã.",
+     "Prednisona: manter até a dor sumir (no máximo 3 semanas), mais 3–5 dias, e retirar 5 mg a cada 7 dias; se a dor voltar no desmame, voltar à dose anterior.",
      "Evitar corticoide em diabetes, HAS de difícil controle, osteoporose com fratura, transtorno bipolar, diálise, obesidade grau III, arritmia e coronariopatia.",
-     "Crônica (> 3 meses): hidroxicloroquina 6 mg/kg/dia (máximo 600 mg) ou metotrexato, com reumatologia ou serviço de referência.",
+     "Crônica (> 3 meses): hidroxicloroquina 6 mg/kg/dia (máximo 600 mg) por 6 semanas, depois sulfassalazina ou metotrexato, com reumatologia ou serviço de referência.",
      "Componente neuropático: amitriptilina (evitar em idoso e arritmia) ou gabapentina.",
-     "Criança: dipirona e paracetamol pelo peso em horários fixos; codeína e tramadol contraindicados abaixo de 12 anos."
+     "Criança: dipirona ou paracetamol 10–15 mg/kg/dose em horários fixos (MS 2017); codeína e tramadol contraindicados abaixo de 12 anos (bula).",
+     "Dipirona e paracetamol 'se dor' não servem na fase aguda: o protocolo exige horários fixos (as receitas antigas assim foram retiradas)."
     ]
    },
    {
@@ -5492,13 +5246,7 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "O DATA não tem blocos para a fase subaguda (AINE, prednisona 0,5 mg/kg/dia) nem para a crônica (hidroxicloroquina) — criar ou deixar só no resumo?",
-   "O guia do MS (Chikungunya: manejo clínico) é de 2017 e há PCDT de chikungunya em elaboração na Conitec — revisar quando for publicado.",
-   "O guia do MS 2017 escreve dipirona '30 a 50 mg/kg/dose' (provável erro de texto); o DATA usa 15 mg/kg/dose na criança e 1 g no adulto — manter.",
-   "O MS 2017 associa bromoprida EV ao tramadol EV; o DATA usa metoclopramida — equivalente na prática; confirmar.",
-   "O material do Drive não traz conduta própria para chikungunya (só repelentes na gestação — ver zika)."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Chikungunya: manejo clínico. Brasília: MS; 2017.",
    "Organização Pan-Americana da Saúde (OPAS). Guidelines for the clinical diagnosis and treatment of dengue, chikungunya, and Zika. Washington, DC: OPAS; 2022.",
@@ -5536,17 +5284,19 @@ const GUIA_ITENS = [
     "t": "Exames complementares",
     "itens": [
      "Hemograma se dúvida com dengue, grupo de risco ou sinal de alarme.",
-     "Gestante: RT-PCR (sangue e urina) na fase aguda e sorologia conforme a vigilância local; USG obstétrica seriada no pré-natal.",
+     "Gestante: RT-PCR até o 5º dia de sintomas (sangue; urina conforme o Lacen) e sorologia IgM/IgG depois do 5º dia; USG obstétrica seriada no pré-natal.",
      "Suspeita de Guillain-Barré: líquor, eletroneuromiografia e CVF; colher sorologias antes da imunoglobulina."
     ]
    },
    {
     "t": "Conduta",
     "itens": [
-     "Sintomático: repouso, líquidos, dipirona ou paracetamol; anti-histamínico para o prurido (loratadina; hidroxizina se precisar de sedação).",
+     "Sintomático: repouso, líquidos, dipirona 500 mg ou paracetamol até 6/6 h; criança 10 mg/kg/dose, como no manual de dengue 2024, enquanto dengue não for afastada.",
+     "Prurido: loratadina (hidroxizina se precisar de sedação); paracetamol gotas calculado com 15 gotas/mL — conferir o frasco.",
      "Não usar AAS nem AINE até afastar dengue.",
      "Gestante: notificar de imediato (até 24 h) e encaminhar ao pré-natal de alto risco para seguimento ultrassonográfico.",
-     "Guillain-Barré: internar; imunoglobulina EV 0,4 g/kg/dia por 5 dias se não anda sem apoio e até 2 semanas do início (plasmaférese até 4 semanas), com neurologia.",
+     "Guillain-Barré: internar; imunoglobulina EV 0,4 g/kg/dia por 5 dias (2 g/kg em 2–5 dias) se Hughes ≥ 3 e menos de 8 semanas, maior benefício nas 2 primeiras; plasmaférese é alternativa.",
+     "No Guillain-Barré, corticoide é contraindicado; prevenir tromboembolismo enquanto não deambular (enoxaparina profilática, se sem contraindicação) e decidir a IGIV com a neurologia.",
      "Criança com prurido: desloratadina a partir de 6 meses; loratadina a partir de 2 anos.",
      "Recém-nascido com microcefalia ou sinais de síndrome congênita: notificar, investigar e encaminhar à estimulação precoce."
     ]
@@ -5574,23 +5324,19 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Repelente à base de icaridina, DEET ou IR3535, liberados na gestação (Plantão Rápido) — reaplicar conforme o rótulo, que muda com a concentração."
+     "Repelente à base de icaridina, DEET ou IR3535, liberados na gestação (Plantão Rápido) — reaplicar no intervalo do rótulo, que muda com a concentração (sem intervalo fixo)."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "O material do Drive traz intervalos fixos de repelente (icaridina 10 h, DEET 6 h, IR3535 2 h); dependem da concentração do produto — conferir o rótulo antes de padronizar.",
-   "Dose pediátrica de dipirona/paracetamol a 15 mg/kg no DATA × 10 mg/kg no manual de dengue — padronizar entre arboviroses?",
-   "Confirmar o fluxo local de coleta na gestante (RT-PCR em sangue/urina e janela da sorologia) — varia por estado/Lacen.",
-   "Bloco de Guillain-Barré: enoxaparina profilática e IGIV dependem de protocolo do serviço e da neurologia — confirmar.",
-   "O material do Drive não traz conduta própria para zika além dos repelentes."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Guia de Vigilância em Saúde. 6ª ed. rev. Brasília: MS; 2024.",
    "Organização Pan-Americana da Saúde (OPAS). Guidelines for the clinical diagnosis and treatment of dengue, chikungunya, and Zika. Washington, DC: OPAS; 2022.",
    "World Health Organization. WHO guidelines for the prevention of sexual transmission of Zika virus: executive summary. Geneva: WHO; 2019 (WHO/RHR/19.4).",
-   "Brasil. Ministério da Saúde. Orientações integradas de vigilância e atenção à saúde no âmbito da Emergência de Saúde Pública de Importância Nacional. Brasília: MS; 2017."
+   "Brasil. Ministério da Saúde. Orientações integradas de vigilância e atenção à saúde no âmbito da Emergência de Saúde Pública de Importância Nacional. Brasília: MS; 2017.",
+   "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Síndrome de Guillain-Barré (Portaria Conjunta SAES/SCTIE nº 15, de 13 de outubro de 2020).",
+   "Brasil. Ministério da Saúde. Dengue: diagnóstico e manejo clínico – adulto e criança. 6ª ed. Brasília: MS; 2024."
   ]
  },
  {
@@ -5635,13 +5381,15 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Vaginose: metronidazol 500 mg 12/12 h por 7 dias ou gel vaginal por 5 noites; alternativa clindamicina 300 mg 12/12 h por 7 dias. Parceria não trata.",
-     "Candidíase: miconazol creme 7 noites, nistatina 14 noites, fluconazol 150 mg dose única ou itraconazol 200 mg 12/12 h por 1 dia; gestante só via vaginal.",
-     "Tricomoníase: metronidazol 2 g dose única ou 500 mg 12/12 h por 7 dias; tratar a parceria com o mesmo esquema.",
-     "Cervicite: ceftriaxona 500 mg IM + azitromicina 1 g VO, doses únicas; tratar as parcerias.",
+     "Vaginose: metronidazol 250 mg, 2 comprimidos 12/12 h por 7 dias, ou gel vaginal por 5 noites (também na gestação); não associar os dois.",
+     "Vaginose, alternativa: clindamicina 300 mg 12/12 h por 7 dias. A parceria não precisa tratar.",
+     "Candidíase: miconazol creme 7 noites, nistatina 14 noites, fluconazol 150 mg dose única ou itraconazol 200 mg 12/12 h por 1 dia; gestante só via vaginal (sem fluconazol nem itraconazol).",
+     "Tricomoníase: metronidazol 250 mg, 2 comprimidos 12/12 h por 7 dias (Padrão; preferido na mulher pelo CDC) ou 2 g dose única (também aceito pelo PCDT); tratar a parceria.",
+     "Cervicite/uretrite: ceftriaxona 500 mg IM + azitromicina 1 g VO, doses únicas, e parcerias dos últimos 60 dias; ciprofloxacino e ceftriaxona isolada não servem mais.",
      "DIP leve/moderada: ceftriaxona 500 mg IM + doxiciclina 100 mg 12/12 h + metronidazol 500 mg 12/12 h por 14 dias; reavaliar em 72 h.",
-     "Sífilis recente: penicilina benzatina 2,4 milhões UI dose única; tardia ou de duração ignorada: 2,4 milhões UI por semana, 3 semanas.",
-     "Herpes genital: aciclovir 400 mg 8/8 h por 7–10 dias (1º episódio) ou 5 dias (recorrência). Cancroide: azitromicina 1 g dose única.",
+     "Sífilis recente: penicilina benzatina 2,4 milhões UI dose única; tardia ou de duração ignorada: 2,4 milhões UI por semana, 3 semanas. Alérgica não gestante: doxiciclina 15 dias (recente) ou 30 dias (tardia).",
+     "Herpes genital: aciclovir 400 mg 8/8 h por 7–10 dias (1º episódio) ou 5 dias (recorrência); supressão 400 mg 12/12 h se 6 ou mais recorrências por ano.",
+     "Cancroide: azitromicina 1 g dose única. Donovanose: azitromicina 1 g por semana até cicatrizar (mínimo 3 semanas). LGV: doxiciclina 100 mg 12/12 h por 21 dias.",
      "Sem álcool até 24 h após o metronidazol; sem relações até o fim do tratamento, inclusive da parceria."
     ]
    },
@@ -5660,7 +5408,7 @@ const GUIA_ITENS = [
     "itens": [
      "Use o remédio até o fim, mesmo melhorando; nas IST e na tricomoníase a parceria também trata, e o casal evita relações até terminar.",
      "Não beba álcool durante o metronidazol e até 1 dia depois.",
-     "Evite duchas vaginais e produtos perfumados na vulva.",
+     "Lave a vulva só por fora, com água e sabonete neutro sem perfume; evite duchas vaginais e produtos perfumados.",
      "Use preservativo e faça os testes de HIV, sífilis e hepatites que foram pedidos."
     ]
    },
@@ -5669,26 +5417,16 @@ const GUIA_ITENS = [
     "itens": [
      "Clindamicina 300 mg 12/12 h por 7 dias — alternativa na vaginose (guia HC-FMUSP 2024, PCDT).",
      "Itraconazol 200 mg 12/12 h por 1 dia — alternativa ao fluconazol na candidíase; não usar na gestação.",
-     "Aciclovir 400 mg (2 comprimidos de 200 mg) 8/8 h — dose do PCDT; supressão 400 mg 12/12 h se 6 ou mais recorrências/ano.",
-     "Doxiciclina 100 mg 12/12 h por 15 dias — sífilis recente em não gestante alérgica à penicilina.",
+     "Aciclovir 400 mg (2 comprimidos de 200 mg) 8/8 h por 7–10 dias (1º episódio) ou 5 dias (recorrência); supressão 400 mg 12/12 h se 6 ou mais recorrências/ano — PCDT.",
+     "Doxiciclina 100 mg 12/12 h por 15 dias (sífilis recente) ou 30 dias (tardia) — não gestante alérgica à penicilina.",
      "Ciprofloxacino 500 mg 12/12 h por 3 dias — alternativa no cancroide (CDC 2021); evitar na gestação.",
-     "DIP com azitromicina 1 g por semana, 2 semanas, no lugar da doxiciclina (guia HC-FMUSP) — evidência mais limitada."
+     "DIP com azitromicina 1 g por semana, 2 semanas, no lugar da doxiciclina (guia HC-FMUSP) — evidência mais limitada.",
+     "Metronidazol 2 g dose única na tricomoníase — opção do PCDT; na mulher o esquema de 7 dias cura mais."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Itens sem via no DATA saem como USO ORAL na receita: nistatina creme vaginal (Padrão) e metronidazol geleia vaginal (Outras opções) — acrescentar USO TÓPICO.",
-   "Metronidazol geleia por 14 noites (e 7 noites junto com o oral) em Outras opções; PCDT e guia HC-FMUSP usam 5 noites isolado — decidir.",
-   "'Opção 3' (azitromicina + ciprofloxacino dose única) e 'Opção 4' (ceftriaxona isolada): ciprofloxacino não serve mais para gonococo e ceftriaxona sozinha não cobre clamídia — trocar pelo esquema de cervicite (proposta enviada).",
-   "'Moléstia inflamatória pélvica aguda' (Outras opções) não tem ceftriaxona: esquema sem cobertura de gonococo — remover ou completar.",
-   "Aciclovir 200 mg 5x/dia por 10 dias e 200 mg 12/12 h (supressão, sem quantidade): o PCDT usa 400 mg 8/8 h e supressão de 400 mg 12/12 h.",
-   "Doxiciclina por 28 dias ('Opção 7'): PCDT e HC-FMUSP usam 15 dias (sífilis recente) ou 30 dias (tardia).",
-   "Tricomoníase: o PCDT põe a dose única de 2 g como 1ª opção ao lado dos 7 dias; o CDC 2021 prefere 7 dias na mulher; o Padrão usa 7 dias — confirmar.",
-   "Blocos 'Opção 1' a 'Opção 7' não dizem a indicação — renomear pela doença ('Opção 5', azitromicina semanal, serve para donovanose/LGV).",
-   "Orientações 'opte por sabonetes íntimos' e 'dormir sem calcinha para a vagina respirar' não têm base em diretriz — revisar.",
-   "Fluconazol no Padrão sem aviso: na gestante, candidíase só com tratamento vaginal."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST). Brasília: MS; 2022.",
    "Carvalho NS et al. Protocolo Brasileiro para Infecções Sexualmente Transmissíveis 2020: infecções que causam corrimento vaginal. Epidemiol Serv Saude. 2021;30(Esp1):e2020593.",
@@ -5721,7 +5459,7 @@ const GUIA_ITENS = [
     "t": "Exame físico: o que procurar",
     "itens": [
      "Exame completo com consentimento, procurando lesões genitais, anais e extragenitais; descrever em detalhe no prontuário.",
-     "Coletar vestígios quando possível, sem atrasar as profilaxias; encaminhar ao serviço de referência após o atendimento inicial.",
+     "Coletar vestígios no próprio atendimento do SUS quando possível (Decreto 7.958/2013), sem atrasar as profilaxias; depois, encaminhar ao serviço de referência.",
      "Gravidez prévia: atraso menstrual, sinais clínicos; sangramento ativo ou dor abdominal."
     ]
    },
@@ -5736,14 +5474,17 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "PEP-HIV: tenofovir/lamivudina 300/300 mg + dolutegravir 50 mg 1 vez ao dia por 28 dias, o quanto antes (até 72 h); entregar os 28 dias de uma vez.",
+     "PEP-HIV: tenofovir/lamivudina 300/300 mg + dolutegravir 50 mg 1 vez ao dia por 28 dias, o quanto antes (até 72 h).",
+     "Entregar os 28 dias de uma vez: o PCDT não recomenda dispensação fracionada.",
      "Sem tenofovir (doença renal): zidovudina/lamivudina; sem dolutegravir: darunavir + ritonavir.",
      "IST: penicilina benzatina 2,4 milhões UI IM + ceftriaxona 500 mg IM + azitromicina 1 g VO, doses únicas.",
-     "Tricomoníase: metronidazol 2 g dose única, adiado para depois da PEP e da contracepção de emergência; não usar no 1º trimestre.",
+     "Tricomoníase: metronidazol 2 g dose única, adiado para depois da PEP e da contracepção de emergência; não usar no 1º trimestre da gestação (PCDT PEP 2024).",
      "Hepatite B: vacinar se não vacinado ou esquema incompleto e IGHAHB 0,06 mL/kg (CRIE) até 14 dias; dispensável com esquema completo documentado.",
-     "HPV: vacinar vítimas de 9 a 45 anos ainda não vacinadas.",
+     "HPV: vacinar vítimas de 9 a 45 anos ainda não vacinadas (exceto gestantes).",
+     "Desde a Nota Técnica MS 96/2026, também crianças de 2 a 8 anos: 1 dose, que não substitui o esquema de rotina a partir dos 9 anos.",
      "Contracepção de emergência: levonorgestrel 1,5 mg dose única até 5 dias — quanto antes, melhor.",
-     "Criança/adolescente < 45 kg: benzatina 50.000 UI/kg, ceftriaxona 125 mg IM, azitromicina 20 mg/kg; PEP por idade e peso (ver Prescrições).",
+     "Criança/adolescente < 45 kg: benzatina 50.000 UI/kg, ceftriaxona 125 mg IM e azitromicina 20 mg/kg.",
+     "PEP na criança: zidovudina + lamivudina + dolutegravir 5 mg dispersível a partir de 4 semanas de vida (2º mês) e 3 kg (ver Prescrições).",
      "Notificar no Sinan (violência sexual: notificação imediata), comunicar o Conselho Tutelar se < 18 anos e acionar assistência social e rede."
     ]
    },
@@ -5774,19 +5515,14 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "No Padrão adulto, penicilina benzatina e ceftriaxona estão sem via no DATA — saem como USO ORAL na receita; acrescentar USO INTRAMUSCULAR.",
-   "Material do Drive (Principais condutas, Tigers) usa PEP com zidovudina + lamivudina + lopinavir/ritonavir e ceftriaxona 250 mg — desatualizado (PCDT 2024: TDF/3TC + DTG; ceftriaxona 500 mg); não importado.",
-   "O Padrão adulto não tem as linhas 'vacina HPV de 9 a 45 anos' e 'metronidazol não no 1º trimestre' — acrescentar às orientações?",
-   "A NT MS 222/2025 desaconselha dispensar a PEP de forma fracionada — confirmar se o serviço entrega os 28 dias de uma vez.",
-   "PCDT 2024: dolutegravir 5 mg 'acima de 4 semanas' na tabela e 'a partir do 2º mês' na nota; o DATA usa ≥ 4 semanas — confirmar com infectologia pediátrica.",
-   "Confirmar o fluxo local de coleta de vestígios e o serviço de referência para interrupção legal."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Profilaxia Pós-Exposição (PEP) de Risco à Infecção pelo HIV, IST e Hepatites Virais (Portaria SECTICS/MS nº 14, de 8 de abril de 2024).",
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST). Brasília: MS; 2022.",
    "Brasil. Lei nº 12.845, de 1º de agosto de 2013. Dispõe sobre o atendimento obrigatório e integral de pessoas em situação de violência sexual.",
-   "Brasil. Ministério da Saúde. Nota Técnica nº 222/2025-CGHA/DATHI/SVSA/MS: reforço das recomendações de PEP para sobreviventes de violência sexual. 2025."
+   "Brasil. Ministério da Saúde. Nota Técnica nº 222/2025-CGHA/DATHI/SVSA/MS: reforço das recomendações de PEP para sobreviventes de violência sexual. 2025.",
+   "Brasil. Ministério da Saúde. Nota Técnica nº 96/2026-CGICI/DPNI/SVSA/MS: ampliação da vacinação contra HPV para crianças vítimas de violência sexual a partir de 2 anos. 2026.",
+   "Brasil. Decreto nº 7.958, de 13 de março de 2013. Diretrizes para o atendimento às vítimas de violência sexual pelos profissionais de segurança pública e da rede de atendimento do SUS."
   ]
  },
  {
@@ -5795,7 +5531,7 @@ const GUIA_ITENS = [
   "cond": "anticoncepcao",
   "nm": "Anticoncepção de emergência",
   "sub": "pílula do dia seguinte · levonorgestrel · até 5 dias · DIU de cobre",
-  "kw": "anticoncepcao de emergencia contracepcao de emergencia pilula do dia seguinte levonorgestrel ulipristal yuzpe diu de cobre camisinha estourou preservativo rompeu esqueceu a pilula relacao desprotegida falha do metodo atraso da injecao adolescente gravidez indesejada",
+  "kw": "anticoncepcao de emergencia contracepcao de emergencia pilula do dia seguinte levonorgestrel ulipristal yuzpe diu de cobre camisinha estourou preservativo rompeu esqueceu a pilula relacao desprotegida falha do metodo atraso da injecao adolescente gravidez indesejada indutor enzimatico carbamazepina fenitoina rifampicina efavirenz obesidade",
   "draft": true,
   "revisado": null,
   "resumo": "Levonorgestrel 1,5 mg em dose única, o mais cedo possível, até 5 dias após relação desprotegida ou falha do método; não é abortivo e não exige teste de gravidez. Aproveitar para iniciar um método regular, oferecer testes de IST e, se houve violência, seguir o fluxo de violência sexual.",
@@ -5828,11 +5564,13 @@ const GUIA_ITENS = [
     "itens": [
      "Levonorgestrel 1,5 mg (ou 2 comprimidos de 0,75 mg juntos) em dose única; repetir se vomitar em até 3 h.",
      "DIU de cobre é o método mais eficaz (até 5 dias) e já fica como contracepção — encaminhar se houver no serviço.",
-     "Ulipristal 30 mg (fora do SUS) é mais eficaz entre 72 e 120 h; depois dele, esperar 5 dias para iniciar método hormonal.",
-     "Indutores enzimáticos (carbamazepina, fenitoína, rifampicina, efavirenz) e peso alto podem reduzir a eficácia do levonorgestrel — preferir DIU.",
-     "Iniciar ou retomar o método regular no mesmo dia e usar preservativo por 7 dias.",
+     "Ulipristal 30 mg (registrado na Anvisa, fora do SUS, disponibilidade variável) é mais eficaz entre 72 e 120 h; depois dele, esperar 5 dias para iniciar método hormonal.",
+     "Indutor enzimático nas últimas 4 semanas (carbamazepina, fenitoína, rifampicina, efavirenz…): DIU de cobre; sem DIU, levonorgestrel 3 mg (2 comprimidos de 1,5 mg juntos) — FSRH.",
+     "Obesidade ou peso alto: não dobrar a dose (EMA; sem benefício em ensaio clínico) — oferecer o DIU de cobre, mais eficaz, mas nunca negar o levonorgestrel.",
+     "Iniciar ou retomar o método regular no mesmo dia ou no seguinte e usar preservativo por 7 dias.",
      "Pode ser repetido no mesmo ciclo se houver nova exposição, mas não substitui método regular.",
-     "Adolescente pode receber orientação e o medicamento sem a presença dos pais, com sigilo."
+     "Adolescente pode receber orientação e o medicamento sem a presença dos pais, com sigilo.",
+     "Não prescrever antiemético nem antiespasmódico de rotina: vômito é raro e o antiespasmódico pode mascarar a dor de uma ectópica."
     ]
    },
    {
@@ -5856,22 +5594,20 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Método de Yuzpe: levonorgestrel 0,15 mg + etinilestradiol 0,03 mg, 4 comprimidos e mais 4 após 12 h — só se faltar levonorgestrel; menos eficaz e mais náusea."
+     "Método de Yuzpe: levonorgestrel 0,15 mg + etinilestradiol 0,03 mg, 4 comprimidos e mais 4 após 12 h — só se faltar levonorgestrel.",
+     "O Yuzpe é menos eficaz e dá mais náusea: aqui o antiemético se justifica.",
+     "Levonorgestrel 0,75 mg, 2 comprimidos juntos — equivale à dose única de 1,5 mg; a forma 0,75 mg de 12/12 h é a 2ª opção do PCDT."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Peso > 70 kg ou IMC > 26: a FSRH sugere levonorgestrel 3 mg (off-label) ou preferir ulipristal/DIU; MS e OMS não ajustam a dose — decidir se entra no texto.",
-   "Indutores enzimáticos: a FSRH recomenda dobrar o levonorgestrel (3 mg) ou usar DIU de cobre — decidir.",
-   "Ulipristal 30 mg tem registro no Brasil (fora do SUS) e não está no DATA — incluir como opção?",
-   "O material do Drive cita levonorgestrel 0,75 mg de 12/12 h: é a 2ª opção do PCDT; a dose única (já no Padrão) é preferida.",
-   "'Opção 1' (Outras opções) associa dimenidrinato e escopolamina de rotina: antiemético profilático não é necessário com levonorgestrel e o antiespasmódico pode mascarar dor de ectópica — revisar."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Profilaxia Pós-Exposição (PEP) de Risco à Infecção pelo HIV, IST e Hepatites Virais (Portaria SECTICS/MS nº 14, de 8 de abril de 2024).",
    "Faculty of Sexual and Reproductive Healthcare (FSRH). FSRH Clinical Guideline: Emergency Contraception. March 2017 (amended July 2023).",
-   "World Health Organization; Johns Hopkins CCP. Family Planning: A Global Handbook for Providers. 2022 update."
+   "World Health Organization; Johns Hopkins CCP. Family Planning: A Global Handbook for Providers. 2022 update.",
+   "European Medicines Agency (EMA). Levonorgestrel and ulipristal remain suitable emergency contraceptives for all women, regardless of bodyweight. EMA/440549/2014. 2014.",
+   "Medicines and Healthcare products Regulatory Agency (MHRA). Levonorgestrel-containing emergency hormonal contraception: advice on interactions with hepatic enzyme inducers. Drug Safety Update. 2016."
   ]
  },
  {
@@ -5880,7 +5616,7 @@ const GUIA_ITENS = [
   "cond": "dismenorreia",
   "nm": "Dismenorreia",
   "sub": "cólica menstrual · AINE · primária × secundária · endometriose",
-  "kw": "dismenorreia colica menstrual dor menstrual menstruacao dolorosa dor no pe da barriga tpm endometriose adenomiose mioma ibuprofeno naproxeno diclofenaco piroxicam meloxicam nimesulida paracetamol escopolamina butilbrometo anticoncepcional diu hormonal adolescente",
+  "kw": "dismenorreia colica menstrual dor menstrual menstruacao dolorosa dor no pe da barriga tpm endometriose adenomiose mioma ibuprofeno naproxeno diclofenaco piroxicam meloxicam nimesulida paracetamol escopolamina butilbrometo anticoncepcional diu hormonal adolescente acido mefenamico",
   "draft": true,
   "revisado": null,
   "resumo": "Cólica no baixo ventre que acompanha a menstruação. Na primária, a 1ª escolha é AINE em horário fixo desde o início do fluxo; no plantão, o papel é afastar gravidez, DIP e abdome agudo e reconhecer sinais de causa secundária (endometriose, adenomiose, mioma).",
@@ -5913,11 +5649,12 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "AINE é a 1ª escolha: iniciar 1–2 dias antes ou no 1º dia do fluxo e manter em horário fixo por 2–3 dias.",
-     "Opções: ibuprofeno 400–600 mg 8/8 h, naproxeno 500 mg 12/12 h ou diclofenaco 50 mg 8/8 h; se um falhar após 2–3 ciclos, trocar de AINE.",
-     "Contraindicação a AINE (úlcera, doença renal, asma induzida por AINE): paracetamol; antiespasmódico tem efeito pequeno.",
+     "Opções: ibuprofeno 400–600 mg 8/8 h, naproxeno 500 mg 12/12 h, diclofenaco 50 mg 8/8 h ou ácido mefenâmico 500 mg 8/8 h; se um falhar após 2–3 ciclos, trocar de AINE.",
+     "Contraindicação a AINE (úlcera, doença renal, asma induzida por AINE): paracetamol. Antiespasmódico tem efeito pequeno: só como adjuvante.",
      "Sem melhora em 3 ciclos ou desejo de contracepção: anticoncepcional hormonal (combinado contínuo, progestágeno ou DIU hormonal) pela UBS.",
      "Dor intensa no PS: AINE parenteral com analgésico; se não melhorar, reavaliar o diagnóstico.",
-     "Calor local e atividade física regular ajudam."
+     "Calor local e atividade física regular ajudam.",
+     "Evitar piroxicam (EMA: fora da dor aguda, mais risco gastrointestinal); nimesulida só como 2ª linha, por 2–3 dias (risco hepático)."
     ]
    },
    {
@@ -5940,17 +5677,12 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "O material do Drive não traz conduta própria para dismenorreia.",
-   "Butilescopolamina no Padrão: evidência fraca na dismenorreia (efeito pequeno) — manter no Padrão ou levar para Outras opções?",
-   "Nimesulida e piroxicam em Outras opções têm mais risco hepático/gastrointestinal que ibuprofeno e naproxeno — manter?",
-   "Naproxeno está 'se dor' e diclofenaco por 5 dias seguidos; as diretrizes favorecem horário fixo por 2–3 dias desde o início do fluxo — uniformizar.",
-   "Ácido mefenâmico (AINE clássico da dismenorreia, em bula) não está no DATA — incluir?"
-  ],
+  "pendencias": [],
   "fontes": [
    "Burnett M, Lemyre M. No. 345 – Primary Dysmenorrhea Consensus Guideline. J Obstet Gynaecol Can. 2017;39(7):585-595.",
    "American College of Obstetricians and Gynecologists. Committee Opinion No. 760: Dysmenorrhea and Endometriosis in the Adolescent. Obstet Gynecol. 2018;132(6):e249-e258.",
-   "Marjoribanks J et al. Nonsteroidal anti-inflammatory drugs for dysmenorrhoea. Cochrane Database Syst Rev. 2015;(7):CD001751."
+   "Marjoribanks J et al. Nonsteroidal anti-inflammatory drugs for dysmenorrhoea. Cochrane Database Syst Rev. 2015;(7):CD001751.",
+   "European Medicines Agency (EMA). Assessment report: nimesulide-containing medicinal products (Article 107i). 2012."
   ]
  },
  {
@@ -5959,7 +5691,7 @@ const GUIA_ITENS = [
   "cond": "sua",
   "nm": "Sangramento uterino anormal",
   "sub": "PALM-COEIN · beta-hCG · ácido tranexâmico · hormonal · anemia",
-  "kw": "sangramento uterino anormal sua menorragia metrorragia hipermenorragia sangramento vaginal menstruacao excessiva menstruacao prolongada hemorragia uterina anemia mioma polipo adenomiose anovulacao sop coagulopatia von willebrand pos-menopausa acido tranexamico ibuprofeno naproxeno acido mefenamico anticoncepcional levonorgestrel etinilestradiol medroxiprogesterona sulfato ferroso beta hcg",
+  "kw": "sangramento uterino anormal sua menorragia metrorragia hipermenorragia sangramento vaginal menstruacao excessiva menstruacao prolongada hemorragia uterina anemia mioma polipo adenomiose anovulacao sop coagulopatia von willebrand pos-menopausa acido tranexamico ibuprofeno naproxeno acido mefenamico anticoncepcional levonorgestrel etinilestradiol medroxiprogesterona sulfato ferroso beta hcg endovenoso",
   "draft": true,
   "revisado": null,
   "resumo": "Sangramento fora do padrão em volume, duração ou frequência. No PS: primeiro estabilidade hemodinâmica e beta-hCG; depois controlar o sangramento agudo (hormonal ou ácido tranexâmico), tratar a anemia e encaminhar para investigar a causa pelo PALM-COEIN.",
@@ -5995,8 +5727,10 @@ const GUIA_ITENS = [
     "itens": [
      "Instável ou Hb muito baixa: acesso calibroso, cristaloide, transfusão e ginecologia (curetagem/AMIU, balão intrauterino).",
      "Hormonal: anticoncepcional combinado 30–35 mcg de etinilestradiol 8/8 h por 7 dias e depois 1 vez ao dia; ou medroxiprogesterona 20 mg 8/8 h por 7 dias.",
-     "Contraindicação a estrogênio (fumante ≥ 35 anos, enxaqueca com aura, trombose, HAS descontrolada, câncer de mama, hepatopatia): usar progestágeno.",
-     "Não hormonal: ácido tranexâmico 1 g 8/8 h por até 5 dias e/ou AINE durante o fluxo; evitar tranexâmico se trombose prévia.",
+     "Sangramento agudo intenso no PS, estável: ácido tranexâmico 10 mg/kg EV (máximo 600 mg) 8/8 h, passando à via oral assim que possível (FEBRASGO/ACOG).",
+     "Contraindicação a estrogênio (fumante ≥ 35 anos, enxaqueca com aura, trombose, HAS descontrolada, hepatopatia grave): usar progestágeno. Câncer de mama: nenhum hormônio.",
+     "Não hormonal: ácido tranexâmico 1 g 8/8 h por até 5 dias e/ou AINE em horário fixo durante o fluxo; tranexâmico contraindicado se trombose ativa (evitar se trombose prévia).",
+     "Tranexâmico junto com anticoncepcional combinado: a bula pede cautela (trombose) — associar só com indicação clara do ginecologista.",
      "Ferro oral se anemia ou ferritina baixa.",
      "Encaminhar à UBS/ginecologia para investigar e manter o tratamento (DIU hormonal é 1ª linha no sangramento menstrual intenso)."
     ]
@@ -6024,23 +5758,17 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Ácido mefenâmico 500 mg 8/8 h durante o fluxo, até 5 dias (Principais condutas, Tigers) — AINE alternativo; mesmas contraindicações dos AINE.",
-     "Ácido tranexâmico EV no PS (10 mg/kg, máximo 600 mg 8/8 h — ACOG) no sangramento agudo intenso; SUA ainda não tem modo Internação."
+     "Ácido tranexâmico EV no PS: agora é o Padrão da Internação (10 mg/kg, máximo 600 mg, 8/8 h); vitamina K sem coagulopatia não tem indicação."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "SUA não tem modo Internação no DATA; o Drive traz ácido tranexâmico EV no PS (proposta enviada). Decidir a dose EV: 10 mg/kg, máximo 600 mg (ACOG) × 1 g usado em protocolos locais.",
-   "O material do Drive usa vitamina K IM no SUA — sem indicação sem coagulopatia; não importado.",
-   "O material do Drive não cita beta-hCG nem estabilidade hemodinâmica — o resumo inclui.",
-   "Bloco 'Receita' (Outras opções): anticoncepcional 6/6 h → 8/8 h → 12/12 h e depois 1 vez ao dia por 2 meses (4 caixas) é esquema antigo de alta dose; ACOG usa 8/8 h por 7 dias — manter?",
-   "Meloxicam (Drive) não proposto: pouca evidência específica no sangramento uterino.",
-   "Orientação 'não associar tranexâmico ao anticoncepcional combinado': a bula alerta para risco trombótico, mas o ACOG não proíbe — confirmar a redação."
-  ],
+  "pendencias": [],
   "fontes": [
    "Munro MG, Critchley HOD, Fraser IS; FIGO Menstrual Disorders Committee. The two FIGO systems for normal and abnormal uterine bleeding symptoms and classification of causes of abnormal uterine bleeding in the reproductive years: 2018 revisions. Int J Gynaecol Obstet. 2018;143(3):393-408.",
    "American College of Obstetricians and Gynecologists. Committee Opinion No. 557: Management of acute abnormal uterine bleeding in nonpregnant reproductive-aged women. Obstet Gynecol. 2013;121(4):891-896.",
-   "National Institute for Health and Care Excellence (NICE). Heavy menstrual bleeding: assessment and management (NG88). 2018."
+   "National Institute for Health and Care Excellence (NICE). Heavy menstrual bleeding: assessment and management (NG88). 2018.",
+   "Federação Brasileira das Associações de Ginecologia e Obstetrícia (FEBRASGO). Sangramento uterino anormal. Série Orientações e Recomendações FEBRASGO, nº 4. 2021."
   ]
  },
  {
@@ -6049,7 +5777,7 @@ const GUIA_ITENS = [
   "cond": "mordedura",
   "nm": "Mordedura de cão ou gato",
   "sub": "raiva · tétano · amoxicilina-clavulanato · ferida · observação do animal",
-  "kw": "mordedura mordida de cachorro mordida de cao mordida de gato arranhadura arranhao lambedura acidente com animal raiva profilaxia antirrabica vacina antirrabica soro antirrabico sar imunoglobulina antirrabica ighar morcego animal silvestre macaco tetano antitetanica dupla adulto dt dtp ighat amoxicilina clavulanato doxiciclina clindamicina pasteurella observacao do animal 10 dias notificacao",
+  "kw": "mordedura mordida de cachorro mordida de cao mordida de gato arranhadura arranhao lambedura acidente com animal raiva profilaxia antirrabica vacina antirrabica soro antirrabico sar imunoglobulina antirrabica ighar morcego animal silvestre macaco tetano antitetanica dupla adulto dt dtp ighat amoxicilina clavulanato doxiciclina clindamicina pasteurella observacao do animal 10 dias notificacao sulfametoxazol trimetoprima intradermica",
   "draft": true,
   "revisado": null,
   "resumo": "Três decisões em toda mordedura: cuidado da ferida (lavar muito, suturar só quando indicado), antibiótico profilático nas feridas de risco e profilaxia de raiva e tétano. A raiva depende do animal (observável por 10 dias ou não) e da gravidade da exposição.",
@@ -6083,11 +5811,15 @@ const GUIA_ITENS = [
     "itens": [
      "Lavar com água corrente e sabão em abundância e irrigar; desbridar tecido morto; evitar suturar mãos e pés; a face pode ser suturada.",
      "Se indicado soro ou imunoglobulina antirrábica, infiltrar antes de suturar.",
-     "Antibiótico profilático (ferida profunda, de gato, em mão, face ou genital, perto de articulação, imunossuprimido): amoxicilina-clavulanato por 3–5 dias.",
+     "Antibiótico profilático (ferida profunda, de gato, em mão, face ou genital, perto de articulação, imunossuprimido): amoxicilina-clavulanato por 3–5 dias (IDSA); o Padrão usa 5 dias.",
+     "Alergia à penicilina: adulto, doxiciclina (IDSA) ou clindamicina + ciprofloxacino ou SMX-TMP; criança, clindamicina + SMX-TMP (clindamicina só em cápsula — se não engolir, infectologia).",
+     "Criança: amoxicilina-clavulanato 45 mg/kg/dia de amoxicilina 12/12 h (dose máxima da suspensão 400/57).",
      "Ferida superficial de cão em pessoa saudável: sem antibiótico. Ferida já infectada: tratar por 5–7 dias ou mais.",
      "Raiva, cão ou gato observável: não vacinar, observar 10 dias; se adoecer, sumir ou morrer, iniciar o esquema.",
-     "Não observável ou suspeito: leve = vacina (dias 0, 3, 7, 14); grave = vacina + soro 40 UI/kg ou IGHAR 20 UI/kg. Morcego/silvestre: sempre vacina + soro.",
-     "Soro/IGHAR até 7 dias após a 1ª dose da vacina: infiltrar o máximo na lesão e o restante IM no grupo muscular mais próximo.",
+     "Não observável ou suspeito: leve = vacina (dias 0, 3, 7 e 14); grave = vacina + soro 40 UI/kg (máx. 3.000 UI) ou IGHAR 20 UI/kg (máx. 1.500 UI).",
+     "Vacina IM ou, onde o serviço adota, intradérmica: 0,2 mL em 2 aplicações de 0,1 mL (NT 8/2022).",
+     "Soro/IGHAR até 7 dias após a 1ª dose da vacina: infiltrar o máximo possível dentro e ao redor da lesão.",
+     "Mordedura de cão: só a infiltração; gato, morcego ou silvestre: o restante IM no músculo mais próximo, diferente do da vacina.",
      "Tétano (mordedura = alto risco): menos de 3 doses ou incerto = vacina + IGHAT 250 UI; 3 ou mais doses, última há > 5 anos = reforço.",
      "Notificar o atendimento antirrábico humano (Sinan)."
     ]
@@ -6114,37 +5846,32 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Amoxicilina-clavulanato 500/125 mg 8/8 h por 3 dias (profilaxia curta) ou 5–7 dias (ferida já infectada) — guia HC-FMUSP 2024.",
-     "Alergia à penicilina (adulto): clindamicina 300 mg 8/8 h + ciprofloxacino 500 mg 12/12 h ou + SMX-TMP 800/160 mg 12/12 h; quinolona não na gestação."
+     "Amoxicilina-clavulanato 500/125 mg 8/8 h por 3 dias (profilaxia curta) ou 7 dias (ferida já infectada, reavaliar em 48 h) — guia HC-FMUSP 2024.",
+     "Alergia à penicilina (adulto): clindamicina 300 mg 8/8 h + ciprofloxacino 500 mg 12/12 h ou + SMX-TMP 800/160 mg 12/12 h; quinolona não na gestação.",
+     "Criança alérgica à penicilina: clindamicina 30 mg/kg/dia 8/8 h + SMX-TMP 8 mg/kg/dia de trimetoprima 12/12 h por 3–5 dias (IDSA; HC-FMUSP)."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Duração da profilaxia: DATA 5 dias; guia HC-FMUSP 3 dias; IDSA 3–5 dias — decidir.",
-   "Alergia à penicilina: o DATA usa doxiciclina isolada; o HC-FMUSP prefere clindamicina + ciprofloxacino ou + SMX-TMP (melhor cobertura de anaeróbios) — decidir (propostas enviadas).",
-   "Criança alérgica: o DATA não tem alternativa; o HC-FMUSP sugere clindamicina 30–40 mg/kg/dia + SMX-TMP 8–12 mg/kg/dia de TMP, mas clindamicina líquida tem pouca disponibilidade — decidir.",
-   "O DATA não tem bloco para mordedura já infectada (5–7 dias ou mais) — proposta enviada.",
-   "Material do Drive (Principais condutas): SMX-TMP ou cefalexina isolados (cobrem mal Pasteurella/anaeróbios) e vacina em 5 doses (0, 3, 7, 14, 28) — desatualizado; não importado.",
-   "A NT 8/2022 permite vacina antirrábica intradérmica (dias 0, 3, 7 e 14); o DATA só tem IM — incluir se o serviço usar?"
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Nota Técnica nº 8/2022-CGZV/DEIDT/SVS/MS: atualização do protocolo de profilaxia pré, pós e reexposição da raiva humana no Brasil. 2022.",
    "Brasil. Ministério da Saúde. Guia de Vigilância em Saúde. 6ª ed. rev. Brasília: MS; 2024.",
    "Stevens DL et al. Practice guidelines for the diagnosis and management of skin and soft tissue infections: 2014 update by the Infectious Diseases Society of America. Clin Infect Dis. 2014;59(2):e10-e52.",
-   "Levin ASS, Costa SF (coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024."
+   "Levin ASS, Costa SF (coord.). Antimicrobianos na prática clínica: um guia para profissionais da atenção primária. 1ª ed. São Paulo: HC-FMUSP; 2024.",
+   "American Academy of Pediatrics. Bite wounds. In: Red Book: 2024–2027 Report of the Committee on Infectious Diseases. 33rd ed. Itasca, IL: AAP; 2024."
   ]
  },
  {
   "id": "peconhentos",
   "tipo": "condicao",
   "cond": "peconhentos",
-  "nm": "Acidentes por animais peçonhentos (escorpião e serpente)",
-  "sub": "escorpião · serpente · soro antiveneno · tempo de coagulação · observação",
-  "kw": "animal peconhento picada escorpiao escorpionismo tityus cobra picada de cobra serpente ofidismo jararaca bothrops cascavel crotalus surucucu lachesis coral micrurus aranha armadeira aranha marrom loxosceles phoneutria lagarta taturana lonomia soro antiescorpionico saesc soro antiaracnidico soro antibotropico soro anticrotalico soro antilaquetico soro antielapidico tempo de coagulacao lidocaina dipirona ciatox disque intoxicacao",
+  "nm": "Acidentes por animais peçonhentos (escorpião, serpente, aranha e lagarta)",
+  "sub": "escorpião · serpente · aranha · lagarta Lonomia · soro antiveneno · tempo de coagulação",
+  "kw": "animal peconhento picada escorpiao escorpionismo tityus cobra picada de cobra serpente ofidismo jararaca bothrops cascavel crotalus surucucu lachesis coral micrurus aranha armadeira aranha marrom loxosceles phoneutria lagarta taturana lonomia soro antiescorpionico saesc soro antiaracnidico soro antibotropico soro anticrotalico soro antilaquetico soro antielapidico tempo de coagulacao lidocaina dipirona ciatox disque intoxicacao viuva-negra latrodectus loxoscelismo foneutrismo salox saar antilonomico salon prednisona",
   "draft": true,
   "revisado": null,
-  "resumo": "Escorpião: a maioria é leve (só dor) e se resolve com analgesia, lidocaína local e observação; vômitos e outras manifestações sistêmicas indicam soro, sobretudo em crianças. Serpente: identificar o gênero pela clínica, colher tempo de coagulação e dar o soro específico em dose única conforme a gravidade, em hospital de referência.",
+  "resumo": "Escorpião: a maioria é leve (só dor) e se resolve com analgesia, lidocaína local e observação; vômitos e outras manifestações sistêmicas indicam soro, sobretudo em crianças. Serpente: identificar o gênero pela clínica, colher tempo de coagulação e dar o soro específico em dose única conforme a gravidade, em hospital de referência. Aranha e lagarta Lonomia: soro só nos casos moderados ou graves, com a mesma dose em qualquer idade.",
   "secoes": [
    {
     "t": "Quando pensar / diagnóstico",
@@ -6153,7 +5880,9 @@ const GUIA_ITENS = [
      "Escorpião moderado: sistêmico discreto (sudorese, alguns vômitos, taqui ou bradicardia, hipertensão, agitação). Grave: vômitos repetidos, sialorreia, sudorese profusa, sonolência, taquidispneia, EAP, choque.",
      "Crianças até 10 anos (sobretudo < 7) têm mais risco de forma grave; vômitos repetidos são o sinal mais sensível de gravidade.",
      "Botrópico (jararaca): dor, edema e equimose locais, sangramentos, coagulopatia. Laquético (surucucu): o mesmo + sintomas vagais (bradicardia, diarreia, hipotensão).",
-     "Crotálico (cascavel): pouca lesão local, ptose, visão turva, mialgia, urina escura, lesão renal. Elapídico (coral): ptose, fraqueza, disfagia, paralisia respiratória."
+     "Crotálico (cascavel): pouca lesão local, ptose, visão turva, mialgia, urina escura, lesão renal. Elapídico (coral): ptose, fraqueza, disfagia, paralisia respiratória.",
+     "Aranha armadeira: dor local intensa, como no escorpião. Aranha marrom: lesão que escurece e necrosa em 24–72 h, às vezes hemólise. Viúva-negra: dor, contraturas, sudorese.",
+     "Lagarta Lonomia (taturana): queimação local e, horas depois, sangramentos e coagulação alterada — risco de hemorragia e lesão renal."
     ]
    },
    {
@@ -6173,10 +5902,13 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Escorpião: dipirona VO (dor leve) ou EV (moderada); dor intensa: lidocaína 2% sem vasoconstritor no local, adulto 3–4 mL, criança 1–2 mL, até 3 vezes.",
+     "Escorpião: dipirona VO (dor leve) ou EV (moderada); dor intensa: lidocaína 2% sem vasoconstritor no local, adulto 3–4 mL, criança 1–2 mL, até 3 vezes; opioide fraco se a dor voltar.",
+     "Amazônia (Tityus obscurus): há incerteza sobre o bloqueio anestésico; benzodiazepínico para manifestações neuromusculares. Dexametasona e pré-medicação antes do soro: não.",
      "Observação do escorpionismo: sem sintomas 4 h; leve 6–12 h; após soro, no mínimo 24 h.",
      "Soro antiescorpiônico (ou antiaracnídico): moderado 3 ampolas, grave 6 (máximo 6), mesma dose na criança, EV diluído em 10–15 min.",
-     "Serpente: soro pelo gênero e gravidade (botrópico 3/6/12; crotálico 5/10/20; laquético 10/20; elapídico 5/10), tudo de uma vez, EV, sem pré-medicação.",
+     "Serpente: soro pelo gênero e gravidade, igual na criança (botrópico 3/6/12; crotálico 5/10/20; laquético 10/20; elapídico moderado 5, grave 10; leve só observação ≥ 24 h), tudo de uma vez, EV.",
+     "Aranha: armadeira moderada 2–4 e grave 5–10 ampolas de soro antiaracnídico; marrom moderada 5 e grave 10 (antiloxoscélico) + prednisona 40 mg/dia (criança 1 mg/kg/dia) por 5 dias.",
+     "Lonomia: leve só observação e tempo de coagulação nas primeiras 24 h; moderado 5 e grave 10 ampolas de soro antilonômico; sem injeção IM até normalizar a coagulação.",
      "Serpente: lavar, elevar o membro, hidratar e tirar anéis; sem torniquete, incisão, sucção, injeção IM ou bloqueio no local; sem AINE.",
      "Antibiótico só se infecção estabelecida; profilaxia antitetânica pela caderneta.",
      "Dúvida na identificação ou na conduta: Disque-Intoxicação 0800 722 6001 (CIATox). Notificar todo acidente."
@@ -6201,18 +5933,13 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "O DATA cobre escorpião e serpente; aranhas (armadeira, marrom) e lagarta (Lonomia) aparecem só nas palavras-chave — criar blocos ou um texto curto?",
-   "O PCDT dos acidentes ofídicos (relatório Conitec nº 1048, 2025) mantém as doses de soro do DATA; confirmar se já saiu a versão final publicada.",
-   "Escorpiões da Amazônia: o PCDT registra incerteza sobre a lidocaína (pode intensificar a sensação de choque) e cita diazepam — acrescentar ressalva regional?",
-   "O PCDT do escorpionismo não recomenda dexametasona — conferir se ainda é usada na rotina local.",
-   "O material do Drive não traz conduta para animais peçonhentos."
-  ],
+  "pendencias": [],
   "fontes": [
    "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas dos Acidentes Escorpiônicos. Brasília: MS; 2026 (aprovado pela Portaria SECTICS/MS nº 59, de 1º de agosto de 2025).",
-   "Brasil. Ministério da Saúde/Conitec. Protocolo Clínico e Diretrizes Terapêuticas: Acidentes Ofídicos. Relatório de Recomendação nº 1048. Brasília; 2025.",
+   "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas dos Acidentes Ofídicos (Portaria SECTICS/MS nº 83, de 7 de outubro de 2025).",
    "Brasil. Ministério da Saúde. Guia de Animais Peçonhentos do Brasil. Brasília: MS; 2024.",
-   "Brasil. Fundação Nacional de Saúde. Manual de Diagnóstico e Tratamento de Acidentes por Animais Peçonhentos. 2ª ed. Brasília: Funasa; 2001."
+   "Brasil. Fundação Nacional de Saúde. Manual de Diagnóstico e Tratamento de Acidentes por Animais Peçonhentos. 2ª ed. Brasília: Funasa; 2001.",
+   "Brasil. Ministério da Saúde. Guia de Vigilância em Saúde. 6ª ed. rev. Volume 3, capítulo 11 (Araneísmo; Acidente por Lonomia e outras lagartas). Brasília: MS; 2024."
   ]
  },
  {
@@ -6221,7 +5948,7 @@ const GUIA_ITENS = [
   "cond": "sutura",
   "nm": "Sutura — ferimentos e profilaxia",
   "sub": "laceração · tétano · antibiótico · retirada de pontos · curativo",
-  "kw": "sutura ponto pontos ferimento corte laceracao ferida corto-contusa ferida cortante cola cirurgica adesivo tecidual fita adesiva retirada de pontos tetano antitetanica dupla adulto dt dtp ighat soro antitetanico cefalexina amoxicilina clavulanato dipirona paracetamol vaselina lidocaina anestesia local irrigacao corpo estranho tendao curativo cicatriz",
+  "kw": "sutura ponto pontos ferimento corte laceracao ferida corto-contusa ferida cortante cola cirurgica adesivo tecidual fita adesiva retirada de pontos tetano antitetanica dupla adulto dt dtp ighat soro antitetanico cefalexina amoxicilina clavulanato dipirona paracetamol vaselina lidocaina anestesia local irrigacao corpo estranho tendao curativo cicatriz gel silicone",
   "draft": true,
   "revisado": null,
   "resumo": "A maioria das lacerações limpas fecha bem com boa irrigação, sutura sem tensão e sem antibiótico. O que o plantão não pode esquecer: explorar tendão, nervo e corpo estranho, decidir o tétano pelo tipo de ferimento e pela caderneta, e orientar curativo e retirada dos pontos.",
@@ -6249,12 +5976,15 @@ const GUIA_ITENS = [
      "Irrigar com bastante soro ou água potável sob pressão; desbridar tecido desvitalizado; remover corpo estranho.",
      "Anestesia com lidocaína; com vasoconstritor pode ser usada em dedos, nariz e orelha quando não há comprometimento vascular.",
      "Fechar sem tensão; em área de baixa tensão e bordas regulares, cola tecidual ou fita adesiva são alternativas (ótimas em criança).",
-     "Ferida limpa: sem antibiótico. Considerar se muito contaminada, esmagamento, mordedura, lesão profunda de mão, fratura exposta ou imunossupressão.",
+     "Ferida limpa: sem antibiótico, nem tópico (neomicina sensibiliza; vaselina basta). Considerar cefalexina por 3–5 dias se muito contaminada, esmagamento, lesão profunda de mão ou imunossupressão.",
+     "Mordedura: amoxicilina-clavulanato por 3–5 dias (criança 45 mg/kg/dia); fratura exposta: antibiótico EV e ortopedia.",
      "Tétano com menos de 3 doses ou esquema incerto: vacinar; se ferimento de alto risco, acrescentar IGHAT 250 UI.",
      "Com 3 ou mais doses: última há < 5 anos, nada; 5–10 anos, reforço só se alto risco; > 10 anos, reforço.",
      "Imunodeprimido, desnutrido grave ou idoso com ferimento de alto risco: reforço e também IGHAT.",
      "Criança menor de 7 anos: vacina com componente pertussis (DTP) conforme a caderneta; a partir de 7 anos: dT.",
-     "Retirada: face 5 dias; couro cabeludo e braços 7–10 dias; tronco, pernas, mãos, pés e sobre articulações 10–14 dias."
+     "Retirada: face 5 dias; couro cabeludo e braços 7–10 dias; tronco, pernas, mãos, pés e sobre articulações 10–14 dias.",
+     "Dor: dipirona ou paracetamol bastam na maioria; AINE só se dor maior, por poucos dias.",
+     "Cicatriz: gel de silicone depois da retirada dos pontos, 2 vezes ao dia por 2–3 meses, e proteção solar; extrato de cebola tem evidência fraca."
     ]
    },
    {
@@ -6278,17 +6008,12 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Outras opções 1–3 trazem neomicina tópica e cefalexina por 7 dias de rotina: antibiótico tópico sensibiliza (dermatite de contato) sem superar a vaselina, e o sistêmico não é indicado em ferida limpa — revisar.",
-   "Nomes comerciais no DATA ('Contractubex', 'Tetanogamma') — trocar por genéricos (extrato de cebola + heparina + alantoína; imunoglobulina humana antitetânica).",
-   "Para cicatriz, gel de silicone tem mais evidência que extrato de cebola — considerar trocar.",
-   "O material do Drive (Principais condutas) aplica dT se a última dose foi há mais de 5 anos em qualquer ferimento; o MS reserva o reforço de 5–10 anos ao ferimento de alto risco — o DATA já segue o MS.",
-   "Diclofenaco por 5 dias de rotina na 'Opção 3': AINE só se dor; dipirona ou paracetamol bastam na maioria."
-  ],
+  "pendencias": [],
   "fontes": [
    "Forsch RT, Little SH, Williams C. Laceration Repair: A Practical Approach. Am Fam Physician. 2017;95(10):628-636.",
    "Brasil. Ministério da Saúde. Guia de Vigilância em Saúde. 6ª ed. rev. Brasília: MS; 2024.",
-   "World Health Organization. Tetanus vaccines: WHO position paper – February 2017. Wkly Epidemiol Rec. 2017;92(6):53-76."
+   "World Health Organization. Tetanus vaccines: WHO position paper – February 2017. Wkly Epidemiol Rec. 2017;92(6):53-76.",
+   "Gold MH, Berman B, Clementoni MT, Gauglitz GG, Nahai F, Murcia C. Updated international clinical recommendations on scar management: part 1 — evaluating the evidence. Dermatol Surg. 2014;40(8):817-824."
   ]
  },
  {
@@ -6297,7 +6022,7 @@ const GUIA_ITENS = [
   "cond": "ulceras",
   "nm": "Úlceras de perna e pé (causas variadas)",
   "sub": "úlcera venosa · arterial · pé diabético · lesão por pressão · curativo · compressão",
-  "kw": "ulcera ulcera venosa ulcera varicosa ulcera de perna ferida cronica ferida que nao cicatriza ferida que nao sara escara lesao por pressao ulcera de decubito pe diabetico mal perfurante ulcera arterial isquemia itb indice tornozelo braco compressao bota de unna meia elastica curativo desbridamento colagenase soro fisiologico diosmina hesperidina cefalexina celulite osteomielite",
+  "kw": "ulcera ulcera venosa ulcera varicosa ulcera de perna ferida cronica ferida que nao cicatriza ferida que nao sara escara lesao por pressao ulcera de decubito pe diabetico mal perfurante ulcera arterial isquemia itb indice tornozelo braco compressao bota de unna meia elastica curativo desbridamento colagenase soro fisiologico diosmina hesperidina cefalexina celulite osteomielite amoxicilina clavulanato clindamicina infeccao",
   "draft": true,
   "revisado": null,
   "resumo": "Ferida que não cicatriza em 4–6 semanas. A causa define o tratamento: compressão na venosa, revascularização na arterial, descarga de peso no pé diabético e alívio de pressão na lesão por pressão. No plantão: tratar infecção quando houver, não comprimir sem afastar isquemia e encaminhar com plano de curativo.",
@@ -6333,9 +6058,10 @@ const GUIA_ITENS = [
     "itens": [
      "Limpeza com SF em jato a cada troca; desbridar esfacelo (colagenase ou instrumental na UBS); cobertura que mantenha a ferida úmida e proteja a pele ao redor.",
      "Venosa: compressão é o tratamento principal (bota de Unna ou ataduras, depois meia 30–40 mmHg) se ITB ≥ 0,8; pernas elevadas no repouso.",
-     "ITB 0,5–0,8: compressão reduzida com especialista; < 0,5 ou dor isquêmica: não comprimir e encaminhar à vascular.",
+     "ITB 0,6–0,8: só compressão reduzida, com a vascular; ITB < 0,6, pressão no tornozelo < 60 mmHg ou dor isquêmica: não comprimir e encaminhar (ESVS 2022).",
      "Diosmina + hesperidina (fração flavonoide micronizada) ajuda a cicatrizar a úlcera venosa como adjuvante da compressão.",
-     "Antibiótico sistêmico só com infecção clínica (celulite: cefalexina); não usar antibiótico tópico.",
+     "Antibiótico sistêmico só com infecção clínica: celulite ou pé diabético com infecção leve = cefalexina 7 dias (pé diabético 1–2 semanas); não usar antibiótico tópico.",
+     "Pé diabético com infecção leve e antibiótico recente ou isquemia: amoxicilina-clavulanato; alergia à penicilina: clindamicina (IWGDF/IDSA 2023).",
      "Pé diabético: descarga de peso, controle glicêmico e classificação da infecção; necrose seca em pé isquêmico não se desbrida no PS.",
      "Lesão por pressão: mudar de decúbito a cada 2 h, colchão de redistribuição, nutrição e controle de umidade."
     ]
@@ -6361,17 +6087,12 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Outras opções com cloranfenicol + colagenase e 'Iruxol' (nome comercial): antibiótico tópico não é recomendado (sensibilização, resistência) — retirar ou deixar só a colagenase.",
-   "O DATA não tem conduta para pé diabético infectado (amoxicilina-clavulanato na infecção leve, IWGDF) nem para lesão por pressão — criar blocos?",
-   "Cefalexina 500 mg 6/6 h por 7 dias: horário sugerido incompleto no DATA ('00' em vez de '00:00').",
-   "O material do Drive não traz conduta para úlceras (só varizes, com flebotônicos que não entram aqui).",
-   "Limite de ITB para compressão (0,8 no DATA; algumas diretrizes aceitam compressão modificada a partir de 0,6) — decidir com a vascular."
-  ],
+  "pendencias": [],
   "fontes": [
    "De Maeseneer MG et al. European Society for Vascular Surgery (ESVS) 2022 Clinical Practice Guidelines on the Management of Chronic Venous Disease of the Lower Limbs. Eur J Vasc Endovasc Surg. 2022;63(2):184-267.",
    "European Pressure Ulcer Advisory Panel, National Pressure Injury Advisory Panel, Pan Pacific Pressure Injury Alliance. Prevention and Treatment of Pressure Ulcers/Injuries: Clinical Practice Guideline. The International Guideline. 3rd ed. 2019.",
-   "Schaper NC et al. Practical guidelines on the prevention and management of diabetes-related foot disease (IWGDF 2023 update). Diabetes Metab Res Rev. 2024;40(3):e3657."
+   "Schaper NC et al. Practical guidelines on the prevention and management of diabetes-related foot disease (IWGDF 2023 update). Diabetes Metab Res Rev. 2024;40(3):e3657.",
+   "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA Guidelines on the Diagnosis and Treatment of Diabetes-related Foot Infections (IWGDF/IDSA 2023). Clin Infect Dis. 2023; ciad527."
   ]
  },
  {
@@ -6415,12 +6136,17 @@ const GUIA_ITENS = [
      "Leve a moderada: dipirona ou paracetamol em horário fixo nas primeiras 24–48 h, depois se dor.",
      "Componente inflamatório (trauma, musculoesquelético, cólica renal, dor de dente): AINE na menor dose eficaz por 3–5 dias, nunca dois AINEs juntos.",
      "Contraindicação a AINE (idoso frágil, ClCr < 60, úlcera, IC, anticoagulação, gestação): dipirona + paracetamol.",
-     "Dor intensa ambulatorial: paracetamol + codeína por até 3 dias, no lugar do paracetamol isolado.",
+     "Paracetamol: até 4 g/dia no adulto somando todos os produtos (bula); 2 g/dia se hepatopatia, etilismo ou desnutrição. O esquema de 750 mg 6/6 h dá 3 g/dia.",
+     "Dor intensa ambulatorial: paracetamol + codeína por até 3 dias (12 comprimidos), no lugar do paracetamol isolado; opioide causa dependência mesmo em uso curto — prescrever a menor quantidade (CDC 2022).",
+     "Codeína e tramadol: não usar na amamentação nem abaixo de 12 anos (EMA 2013; FDA 2017).",
      "Dor intensa no PS: morfina EV titulada em pequenas doses, com monitorização e naloxona à beira do leito.",
      "Tramadol: alternativa na dor moderada refratária; risco de síndrome serotoninérgica com ISRS/IRSN, convulsão, hiponatremia e hipoglicemia no idoso.",
      "Associar medidas não farmacológicas: imobilizar fratura, gelo, elevação, explicar o que está acontecendo.",
      "Criança: dose sempre pelo peso, um analgésico por vez (SBP desaconselha alternar de rotina); ibuprofeno só a partir de 6 meses.",
-     "Criança com dor intensa sem acesso venoso: fentanil intranasal 1,5 mcg/kg, com a mesma vigilância dos opioides EV."
+     "Criança com dor intensa sem acesso venoso: fentanil intranasal 1,5 mcg/kg com atomizador (via fora da bula no Brasil, recomendada pela EUSEM), com a mesma vigilância dos opioides EV; sem atomizador, obter acesso venoso.",
+     "Nimesulida é AINE de segunda linha (hepatotoxicidade): 100 mg 12/12 h por no máximo 5 dias no site; não usar em doença hepática ou etilismo (EMA 2012).",
+     "Cetoprofeno 150 mg é o comprimido de liberação prolongada: 1 de 12/12 h já é a dose máxima (300 mg/dia); no idoso, até 200 mg/dia.",
+     "Evitar associações de dipirona com sedativo ou antiespasmódico sem indicação (adifenina + prometazina): somam efeitos adversos sem ganho analgésico."
     ]
    },
    {
@@ -6447,27 +6173,20 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Tramadol 50 mg, 1–2 cápsulas até 6/6 h por até 3 dias (modelo do médico) — dor intensa sem resposta à codeína; náusea e tontura.",
+     "Tramadol 50 mg de liberação imediata, 1–2 cápsulas até 6/6 h por até 3 dias (modelo do médico) — se a codeína não basta; o de 100 mg é de liberação prolongada, de 12/12 h.",
      "Tenoxicam 20 mg EV ou IM 1 vez ao dia no PS (Plantão Rápido, PA pdf) — AINE de dose única diária; contraindicações dos AINEs."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Condutas e Tigers trazem a associação dipirona + adifenina + prometazina — sedativo sem ganho analgésico; não proposta.",
-   "Tabela 'Prescrevendo morfina' do material de terceiros afirma 'pouca adicção' — falso; não reproduzir.",
-   "Nimesulida (Outras opções): a EMA limitou o uso a 15 dias por hepatotoxicidade — manter só como alternativa por até 5 dias?",
-   "Cetoprofeno 150 mg 12/12h (Outras opções) já é a dose máxima diária (300 mg) — confirmar que é a apresentação de liberação prolongada.",
-   "Plantãozinho usa tramadol 100 mg 8/8h: o comprimido de 100 mg é de liberação prolongada (12/12h); a proposta usa 50 mg de liberação imediata.",
-   "Etoricoxibe 60 mg 12/12h do catálogo do Plantão Rápido não segue a bula (dose única diária) — não proposto.",
-   "Modo Internação limita paracetamol a 3 g/dia; a bula permite 4 g/dia no adulto sem fator de risco — decidir o padrão.",
-   "Fentanil intranasal: via off label no Brasil e exige atomizador — confirmar disponibilidade no serviço."
-  ],
+  "pendencias": [],
   "fontes": [
    "Hachimi-Idrissi S et al. Approaching acute pain in emergency settings: European Society for Emergency Medicine (EUSEM) guidelines — part 2: management and recommendations. Intern Emerg Med. 2020;15(7):1141-1155.",
    "Dowell D et al. CDC Clinical Practice Guideline for Prescribing Opioids for Pain — United States, 2022. MMWR Recomm Rep. 2022;71(3):1-95.",
    "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748.",
-   "Sociedade Brasileira de Pediatria. Manejo da febre aguda (Documento Científico). 2021."
+   "Sociedade Brasileira de Pediatria. Manejo da febre aguda (Documento Científico). 2021.",
+   "European Medicines Agency (PRAC/CMDh). Restrictions on use of codeine for pain relief in children — CMDh endorses PRAC recommendation. 2013.",
+   "European Medicines Agency. Questions and answers on the review of medicines containing nimesulide for systemic use. 2012."
   ]
  },
  {
@@ -6513,12 +6232,14 @@ const GUIA_ITENS = [
     "itens": [
      "Explicar o bom prognóstico e orientar manter-se ativo; repouso no leito atrasa a recuperação.",
      "Calor local superficial tem benefício na lombalgia aguda (ACP 2017).",
-     "AINE oral na menor dose e pelo menor tempo (3–5 dias), se sem contraindicação.",
-     "Paracetamol isolado não é recomendado (NICE NG59); dipirona e paracetamol entram como complemento do AINE.",
+     "AINE oral na menor dose eficaz e pelo menor tempo (até 5 dias), se sem contraindicação: ibuprofeno 600 mg 8/8 h, diclofenaco ou naproxeno.",
+     "Paracetamol isolado não trata lombalgia (NICE NG59; ACP 2017): dipirona ou paracetamol só como resgate junto do AINE; se AINE contraindicado, relaxante muscular ou opioide fraco por poucos dias.",
      "Relaxante muscular à noite (ciclobenzaprina 5 mg) por até 5–7 dias se espasmo; dá menos sonolência que 10 mg.",
+     "Carisoprodol (associações com paracetamol e cafeína) saiu do site: risco de abuso e dependência, suspenso na União Europeia (EMA 2007) e inapropriado no idoso (Beers 2023).",
      "Opioide fraco (codeína) só se AINE contraindicado, não tolerado ou ineficaz, por poucos dias (NICE NG59).",
      "Corticoide sistêmico, IM ou oral, não tem efeito na lombalgia aguda (ACP 2017) — não usar de rotina.",
-     "Ciática: mesma base; encaminhar se déficit motor ou dor intensa que persiste por mais de 6 semanas."
+     "Ciática: mesma base; encaminhar se déficit motor ou dor intensa que persiste por mais de 6 semanas.",
+     "Vitaminas do complexo B junto do AINE não trazem benefício na lombalgia."
     ]
    },
    {
@@ -6548,24 +6269,19 @@ const GUIA_ITENS = [
     "itens": [
      "Paracetamol + codeína 500/30 mg até 6/6 h, até 3 dias (modelo 'Dor muscular' do médico, Tigers) — se AINE contraindicado ou ineficaz.",
      "Meloxicam 15 mg 1 vez ao dia por 5 dias (Tigers, Condutas) — AINE de tomada única; mesmas contraindicações.",
-     "No PS, dor intensa: dipirona + diclofenaco IM ou tramadol SC (modelo de observação do médico) — proposto sem a dexametasona do modelo."
+     "No PS, dor intensa: dipirona + diclofenaco IM ou tramadol SC (modelo de observação do médico), no modo Internação (tratamento no PS) — sem a dexametasona do modelo, porque corticoide não tem efeito na lombalgia.",
+     "Celecoxibe 100 mg 12/12 h por 5 dias (modelo do médico) — AINE COX-2, menos efeito digestivo; evitar em doença cardiovascular."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "O modelo de observação do médico associa dexametasona IM a dipirona e diclofenaco; ACP 2017 e NICE NG59 não recomendam corticoide na lombalgia — decidir.",
-   "Lombalgia não tem modo Internação; o modelo do médico (dipirona + diclofenaco IM, tramadol SC) foi proposto nesse modo, sem corticoide.",
-   "Padrão traz menu dipirona/paracetamol; NICE NG59 é contra paracetamol isolado — deixar claro que é complemento do AINE?",
-   "Outras opções com carisoprodol (Opção 1, Opção 2 e Opção 5): a EMA recomendou suspender o carisoprodol em 2007 por abuso e dependência — manter?",
-   "Modelo 'Dor muscular' do médico usa ibuprofeno 600 mg 8/8h por 3 dias e ciclobenzaprina 10 mg; o Padrão usa ibuprofeno 300 mg 2 cp 6/6h e ciclobenzaprina 5 mg — escolher.",
-   "Etoricoxibe 60 mg 12/12h (Plantão Rápido) não segue a bula (dose diária única) — não proposto.",
-   "Diclofenaco + vitaminas do complexo B (Opção 4): as vitaminas não têm benefício demonstrado na lombalgia aguda."
-  ],
+  "pendencias": [],
   "fontes": [
    "Qaseem A et al. Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain: A Clinical Practice Guideline From the American College of Physicians. Ann Intern Med. 2017;166(7):514-530.",
    "National Institute for Health and Care Excellence (NICE). Low back pain and sciatica in over 16s: assessment and management (NG59). 2016, atualizada 2020.",
-   "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748."
+   "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748.",
+   "European Medicines Agency. EMEA recommends suspension of marketing authorisations for carisoprodol-containing medicinal products. 2007.",
+   "2023 American Geriatrics Society Beers Criteria Update Expert Panel. American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inappropriate medication use in older adults. J Am Geriatr Soc. 2023;71(7):2052-2081."
   ]
  },
  {
@@ -6574,7 +6290,7 @@ const GUIA_ITENS = [
   "cond": "torcicolo",
   "nm": "Torcicolo espasmódico",
   "sub": "cervicalgia aguda · espasmo · AINE · relaxante muscular · distonia",
-  "kw": "torcicolo torcicolo agudo pescoco travado pescoco duro dor no pescoco cervicalgia espasmo muscular contratura dormiu de mau jeito aine naproxeno ibuprofeno diclofenaco ciclobenzaprina relaxante muscular calor local distonia aguda metoclopramida biperideno grisel abscesso retrofaringeo",
+  "kw": "torcicolo torcicolo agudo pescoco travado pescoco duro dor no pescoco cervicalgia espasmo muscular contratura dormiu de mau jeito aine naproxeno ibuprofeno diclofenaco ciclobenzaprina relaxante muscular calor local distonia aguda metoclopramida biperideno grisel abscesso retrofaringeo difenidramina reacao distonica",
   "draft": true,
   "revisado": null,
   "resumo": "Dor cervical aguda com espasmo e rotação limitada, geralmente ao acordar, sem trauma nem febre: benigna, melhora em dias com calor, movimento suave e AINE curto. Antes, excluir infecção profunda, meningite, trauma, déficit neurológico e distonia por medicamento.",
@@ -6608,10 +6324,14 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Calor local e movimentação suave dentro do limite da dor; não usar colar cervical.",
-     "AINE por curto prazo (naproxeno, ibuprofeno ou diclofenaco), até 5 dias, após as refeições.",
-     "Relaxante muscular à noite (ciclobenzaprina 5 mg) por até 5 dias; analgésico simples se necessário.",
+     "AINE por curto prazo (naproxeno, ibuprofeno 600 mg 8/8 h ou diclofenaco), até 5 dias, após as refeições.",
+     "Relaxante muscular à noite: ciclobenzaprina 5 mg por até 5 dias (mesma eficácia de 10 mg, com menos sonolência); analgésico simples se necessário.",
+     "Carisoprodol saiu das opções (EMA 2007: risco de abuso maior que o benefício); orfenadrina + dipirona + cafeína fica como alternativa por até 5 dias, evitando idoso, glaucoma e retenção urinária.",
      "Opioide, inclusive tramadol, não é recomendado de rotina na dor musculoesquelética aguda (ACP/AAFP 2020).",
-     "Reação distônica aguda: suspender o fármaco causador e dar anticolinérgico parenteral (biperideno) ou difenidramina."
+     "Corticoide (dexametasona IM) não tem evidência no torcicolo e não entra na receita.",
+     "Reação distônica aguda: suspender o fármaco causador; biperideno 2,5–5 mg IM ou EV lento (repetir em 30 min; máx 10–20 mg/dia) ou difenidramina 25–50 mg; na alta, biperideno 2 mg VO 12/12 h por 3 dias.",
+     "Criança com distonia: biperideno conforme a idade (até 1 ano 1 mg; até 6 anos 2 mg; até 10 anos 3 mg) ou difenidramina 1 mg/kg (máx 50 mg); metoclopramida é contraindicada abaixo de 1 ano.",
+     "Nimesulida betaciclodextrina 400 mg equivale a 100 mg de nimesulida: 12/12 h por até 3 dias, sem doença hepática."
     ]
    },
    {
@@ -6638,22 +6358,18 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "No PS, dor intensa: dipirona + diclofenaco IM em dose única (modelo de observação do médico) — seguir com via oral; sem corticoide.",
-     "Tramadol SC no PS (mesmo modelo) — só se dor intensa refratária ou AINE contraindicado; ACP/AAFP 2020 sugere evitar opioide."
+     "No PS, dor intensa: dipirona + diclofenaco IM em dose única (modelo de observação do médico) — seguir com via oral; sem corticoide."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Outras opções com carisoprodol (Opções 1, 3 e 4) e orfenadrina (Opção 2): a EMA recomendou suspender o carisoprodol em 2007 por abuso — manter?",
-   "Ciclobenzaprina 10 mg nas Opções 5 a 7; o Padrão usa 5 mg (menos sonolência) — padronizar?",
-   "Modelo de observação do médico usa dexametasona IM com dipirona e diclofenaco — corticoide sem evidência; proposto sem ele.",
-   "DATA não tem conduta para reação distônica aguda (só manda procurar reavaliação) — criar bloco com biperideno parenteral? Conferir a dose na bula.",
-   "Nimesulida betaciclodextrina 400 mg 12/12h (Opção 7): conferir na bula a equivalência em nimesulida e o limite de dias."
-  ],
+  "pendencias": [],
   "fontes": [
    "Blanpied PR et al. Neck Pain: Revision 2017. Clinical Practice Guidelines Linked to the ICF From the Orthopaedic Section of the APTA. J Orthop Sports Phys Ther. 2017;47(7):A1-A83.",
-   "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748."
+   "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748.",
+   "Cristália. Lactato de biperideno solução injetável 5 mg/mL — bula para o profissional de saúde (ANVISA).",
+   "European Medicines Agency. EMEA recommends suspension of marketing authorisations for carisoprodol-containing medicinal products. 2007.",
+   "2023 American Geriatrics Society Beers Criteria Update Expert Panel. American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inappropriate medication use in older adults. J Am Geriatr Soc. 2023;71(7):2052-2081."
   ]
  },
  {
@@ -6662,7 +6378,7 @@ const GUIA_ITENS = [
   "cond": "bursites",
   "nm": "Bursites",
   "sub": "olécrano · pré-patelar · subacromial · trocantérica · bursite séptica",
-  "kw": "bursite bursite do cotovelo olecrano bursite do joelho pre patelar joelho de lavadeira subacromial ombro trocanterica quadril anserina inchaco no cotovelo bolsa no cotovelo bursite septica aine ibuprofeno diclofenaco gel topico gelo puncao infiltracao corticoide cefalexina",
+  "kw": "bursite bursite do cotovelo olecrano bursite do joelho pre patelar joelho de lavadeira subacromial ombro trocanterica quadril anserina inchaco no cotovelo bolsa no cotovelo bursite septica aine ibuprofeno diclofenaco gel topico gelo puncao infiltracao corticoide cefalexina clindamicina sulfametoxazol trimetoprima cefazolina vancomicina",
   "draft": true,
   "revisado": null,
   "resumo": "Inflamação da bursa por microtrauma repetido, trauma, gota ou infecção. A decisão principal no PS é separar a bursite séptica (superficial, quente, com ferida ou febre: puncionar e cobrir estafilococo) da asséptica (proteção, gelo e AINE tópico ou oral).",
@@ -6699,8 +6415,10 @@ const GUIA_ITENS = [
      "AINE tópico é primeira linha na dor musculoesquelética aguda e a melhor escolha no idoso (ACP/AAFP 2020); AINE oral por 7–10 dias se preciso.",
      "Não puncionar de rotina a bursite por microtrauma: risco de infecção iatrogênica e fístula.",
      "Infiltração com corticoide: só na asséptica profunda (subacromial, trocantérica) e após excluir infecção; evitar no olécrano.",
-     "Séptica leve em imunocompetente: punção, antibiótico oral antiestafilocócico (cefalexina; SMX-TMP se risco de MRSA) e reavaliação em 48 h.",
-     "Séptica com toxemia, celulite extensa, imunossupressão ou falha do antibiótico oral: internar para antibiótico EV e avaliação ortopédica."
+     "Séptica leve em imunocompetente: punção antes do antibiótico; cefalexina 500 mg 6/6 h (alergia: clindamicina ou SMX-TMP; SMX-TMP se risco de MRSA) por 10–14 dias, com reavaliação diária (AAFP 2017).",
+     "Séptica com toxemia, celulite extensa, imunossupressão ou falha do antibiótico oral: internar, cefazolina EV (vancomicina se risco de MRSA) e avaliação ortopédica para drenagem ou bursectomia.",
+     "Relaxante muscular (carisoprodol, orfenadrina, ciclobenzaprina) não tem papel na bursite e saiu das opções.",
+     "Outras opções de AINE: diclofenaco de liberação prolongada 1 vez ao dia, nimesulida (2ª linha, até 3 dias) ou cetorolaco sublingual (até 3 dias; evitar em doença renal, úlcera e gestação)."
     ]
    },
    {
@@ -6723,15 +6441,11 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Padrão não tem antibiótico para bursite séptica (só a orientação) — incluir cefalexina e SMX-TMP em Outras opções?",
-   "Outras opções com carisoprodol, orfenadrina e cafeína: sem evidência específica na bursite; carisoprodol teve suspensão recomendada pela EMA em 2007.",
-   "Opção 8: cetorolaco sublingual 10 mg 8/8h por 3 dias com ciclobenzaprina — cetorolaco tem maior risco digestivo; conferir dose e duração na bula.",
-   "Material do Drive (Plantão Rápido) não traz punção nem antibiótico; a parte de bursite séptica foi escrita a partir de revisão (AAFP 2017), não de diretriz formal."
-  ],
+  "pendencias": [],
   "fontes": [
    "Khodaee M. Common Superficial Bursitis. Am Fam Physician. 2017;95(4):224-231.",
-   "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748."
+   "Qaseem A et al. Nonpharmacologic and Pharmacologic Management of Acute Pain From Non-Low Back, Musculoskeletal Injuries in Adults: A Clinical Guideline From the ACP and AAFP. Ann Intern Med. 2020;173(9):739-748.",
+   "Stevens DL et al. Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update by the Infectious Diseases Society of America. Clin Infect Dis. 2014;59(2):e10-e52."
   ]
  },
  {
@@ -6776,11 +6490,15 @@ const GUIA_ITENS = [
      "Começar o mais cedo possível; colchicina, AINE e corticoide têm eficácia parecida — escolher pelas contraindicações.",
      "Colchicina em baixa dose (1 mg + 0,5 mg após 1 h, depois 0,5 mg 1–2 vezes ao dia), de preferência nas primeiras 12–36 h.",
      "Colchicina: reduzir ou evitar na doença renal e com claritromicina, azóis, ritonavir, ciclosporina, verapamil ou diltiazem.",
+     "Colchicina em alta dose (de hora em hora até a diarreia), tramadol e associações com prometazina não são tratamento da crise.",
      "AINE em dose plena por 5–7 dias, se sem doença renal, úlcera, insuficiência cardíaca ou anticoagulação.",
-     "Prednisona 30–35 mg/dia por 5 dias: boa opção no doente renal, no idoso e com contraindicação a AINE ou colchicina.",
+     "Prednisona 30–35 mg/dia por 5 dias, em dose única pela manhã: boa opção no doente renal, no idoso e com contraindicação a AINE ou colchicina.",
+     "Crise poliarticular ou que volta ao parar o corticoide: dose cheia por 2–5 dias e retirada em 7–10 dias (ACR 2020); nunca 60 mg/dia divididos em 3 tomadas.",
      "Gelo, repouso e membro elevado.",
      "Não suspender o alopurinol na crise; começar alopurinol durante a crise é aceitável quando indicado (ACR 2020).",
-     "Alopurinol se ≥ 2 crises/ano, tofo ou dano radiológico: iniciar até 100 mg/dia, meta de ácido úrico < 6 mg/dL e profilaxia por 3–6 meses."
+     "Alopurinol se ≥ 2 crises/ano, tofo ou dano radiológico: iniciar com 100 mg/dia (50 mg na doença renal crônica) e subir a cada 2–4 semanas até ácido úrico < 6 mg/dL (NICE NG219; ACR 2020).",
+     "Ao iniciar o alopurinol: colchicina 0,5 mg 1–2 vezes ao dia por 3–6 meses para prevenir crises; 0,5 mg 8/8 h por meses é dose alta demais e, sem hipouricemiante, não tem indicação.",
+     "Alopurinol: suspender se erupção na pele, febre ou feridas na boca (reação grave, mais comum nos primeiros meses)."
     ]
    },
    {
@@ -6806,22 +6524,16 @@ const GUIA_ITENS = [
     "t": "Outras opções (material do médico)",
     "itens": [
      "Indometacina 50 mg 8/8 h por 5 dias (Condutas, Tigers) — AINE alternativo; mais efeitos no sistema nervoso e digestivos, evitar em idosos.",
-     "Diclofenaco 75 mg IM em dose única no PS (Condutas, Tigers) — alívio inicial; depois tratamento oral, sem outro AINE nas 12 h seguintes."
+     "Diclofenaco 75 mg IM em dose única no PS (Condutas, Tigers), no modo Internação (tratamento no PS) — alívio inicial; depois tratamento oral, sem outro AINE nas 12 h seguintes."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Opção 1 (Outras opções): colchicina 0,5 mg 8/8h por 3 meses (1,5 mg/dia) — acima da profilaxia usual de 0,5–1 mg/dia e só faz sentido junto com alopurinol; revisar.",
-   "Opção 2 (Outras opções): prednisona 60 mg/dia por 7 dias com desmame até o 14º dia — mais que os 30–35 mg por 5 dias das diretrizes; revisar.",
-   "Condutas e Tigers usam colchicina 0,5 mg de 2/2h até 16 comprimidos — esquema de alta dose, tóxico e abandonado; não aproveitado.",
-   "Condutas e Tigers associam tramadol IM e dipirona + adifenina + prometazina na crise — não são primeira linha; não propostos.",
-   "Gota não tem modo Internação; o diclofenaco IM foi proposto como Internação (tratamento no PS) — confirmar o modo.",
-   "Não há bloco para iniciar alopurinol (só orientação de UBS) — decidir se entra, com profilaxia de colchicina 0,5 mg 1–2 vezes ao dia."
-  ],
+  "pendencias": [],
   "fontes": [
    "FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout. Arthritis Care Res (Hoboken). 2020;72(6):744-760.",
-   "Richette P et al. 2016 updated EULAR evidence-based recommendations for the management of gout. Ann Rheum Dis. 2017;76(1):29-42."
+   "Richette P et al. 2016 updated EULAR evidence-based recommendations for the management of gout. Ann Rheum Dis. 2017;76(1):29-42.",
+   "National Institute for Health and Care Excellence (NICE). Gout: diagnosis and management (NG219). 2022."
   ]
  },
  {
@@ -6864,10 +6576,11 @@ const GUIA_ITENS = [
     "itens": [
      "AINE é a primeira escolha (ibuprofeno ou naproxeno), com ou sem paracetamol ou dipirona; opioide só se insuficiente ou AINE contraindicado (ADA 2024).",
      "Pulpite e periodontite apical sem abscesso: sem antibiótico — analgesia e dentista.",
-     "Abscesso localizado sem sinais sistêmicos: o tratamento é no dente; sem dentista disponível logo, amoxicilina e encaminhamento urgente (ADA 2019).",
-     "Abscesso com sinais sistêmicos ou edema que se espalha: amoxicilina por 3–7 dias, reavaliar em 3 dias e parar 24 h após a resolução.",
-     "Alergia à penicilina sem anafilaxia: cefalexina; com anafilaxia: azitromicina ou clindamicina (mais risco de colite por C. difficile).",
-     "Criança: AINE, paracetamol ou dipirona pelo peso; codeína e tramadol são contraindicados abaixo de 12 anos.",
+     "Abscesso localizado sem sinais sistêmicos: o tratamento é no dente; sem dentista disponível logo, amoxicilina já e encaminhamento urgente (ADA 2019).",
+     "Periodontite apical sem abscesso e sem dentista disponível: receita de antibiótico para iniciar só se piorar ou não melhorar em 24–48 h (prescrição postergada, ADA 2019).",
+     "Abscesso com sinais sistêmicos ou edema que se espalha: amoxicilina 500 mg 8/8 h (ADA: 3–7 dias; no site, 5 dias), reavaliar em 3 dias e parar 24 h após a resolução.",
+     "Alergia à penicilina sem anafilaxia, angioedema ou urticária: cefalexina 500 mg 6/6 h; com essas reações: azitromicina (1,5 g no total) ou clindamicina 300 mg 6/6 h (mais risco de colite por C. difficile).",
+     "Criança: AINE, paracetamol ou dipirona pelo peso; abscesso com sinais sistêmicos: amoxicilina 50 mg/kg/dia (máx 500 mg por dose), alergia: cefalexina ou azitromicina pelo peso; codeína e tramadol são contraindicados abaixo de 12 anos.",
      "Profilaxia de endocardite é só para cardiopatia de alto risco antes de procedimento dentário invasivo — não trata a dor."
     ]
    },
@@ -6893,18 +6606,13 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Profilaxia de endocardite: amoxicilina 2 g VO 30–60 min antes de procedimento odontológico invasivo em cardiopatia de alto risco (guia HC-FMUSP 2024); alérgico: azitromicina."
+     "Profilaxia de endocardite (AHA 2021): amoxicilina 2 g VO (criança 50 mg/kg) 30–60 min antes de procedimento odontológico invasivo, só em cardiopatia de alto risco.",
+     "Profilaxia no alérgico: cefalexina 2 g se sem anafilaxia; azitromicina 500 mg (criança 15 mg/kg) se anafilaxia; sem via oral: cefazolina ou ceftriaxona 1 g IM/EV (não 2 g)."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "ADA 2019 indica antibiótico também no abscesso localizado sem sinais sistêmicos quando não há dentista disponível de imediato; o Padrão só cita edema facial, febre ou mal-estar — decidir.",
-   "Padrão: amoxicilina 500 mg 8/8h e clindamicina 300 mg 6/6h por 7 dias; ADA 2019 usa 3–7 dias com reavaliação em 3 dias — encurtar?",
-   "Clindamicina é a única alternativa do Padrão; ADA 2019 prefere cefalexina se a alergia não for anafilaxia e aceita azitromicina — acrescentar?",
-   "HC-FMUSP 2024 cita cefazolina 2 g EV e azitromicina 12 mg/kg na criança; AHA 2021 usa 1 g IM/EV e 15 mg/kg — conferir antes de usar.",
-   "Profilaxia de endocardite é rara no PS (o dentista costuma prescrever); proposta só como Outras opções."
-  ],
+  "pendencias": [],
   "fontes": [
    "Lockhart PB et al. Evidence-based clinical practice guideline on antibiotic use for the urgent management of pulpal- and periapical-related dental pain and intraoral swelling. J Am Dent Assoc. 2019;150(11):906-921.",
    "Carrasco-Labra A et al. Evidence-based clinical practice guideline for the pharmacologic management of acute dental pain in adolescents, adults, and older adults. J Am Dent Assoc. 2024;155(2):102-117.",
@@ -6918,7 +6626,7 @@ const GUIA_ITENS = [
   "cond": "aftas",
   "nm": "Aftas orais (estomatite)",
   "sub": "afta · úlcera oral · triancinolona orobase · clorexidina · benzidamina",
-  "kw": "afta aftas estomatite aftosa ulcera na boca ferida na boca machucado na lingua ferida na gengiva estomatite triancinolona orobase clorexidina benzidamina anestesico topico behcet doenca celiaca herpes labial gengivoestomatite herpetica herpangina mao pe boca",
+  "kw": "afta aftas estomatite aftosa ulcera na boca ferida na boca machucado na lingua ferida na gengiva estomatite triancinolona orobase clorexidina benzidamina anestesico topico behcet doenca celiaca herpes labial gengivoestomatite herpetica herpangina mao pe boca lidocaina",
   "draft": true,
   "revisado": null,
   "resumo": "Úlceras rasas, dolorosas, redondas, com halo vermelho, em mucosa não queratinizada, que cicatrizam sozinhas em 1–2 semanas. O tratamento é sintomático (corticoide tópico, bochecho antisséptico ou anestésico); o essencial é reconhecer o que não é afta: úlcera que não cicatriza, herpes e doença sistêmica.",
@@ -6952,11 +6660,12 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Corticoide tópico (triancinolona orobase) na lesão seca, até 4 vezes ao dia: reduz dor e duração.",
+     "Corticoide tópico (triancinolona orobase) na lesão seca, 2 a 3 vezes ao dia por até 7 dias: reduz dor e duração; bula de uso adulto e contraindicada se herpes ou outra infecção na boca.",
      "Clorexidina 0,12% em bochecho reduz a duração; usar longe da escovação, porque o creme dental a inativa.",
-     "Dor: benzidamina em bochecho ou anestésico tópico antes das refeições; analgésico oral se preciso.",
+     "Dor: benzidamina em bochecho ou lidocaína 5% pomada na lesão antes das refeições (não abaixo de 5 anos); analgésico oral se preciso.",
      "Herpes oral no início: antiviral (aciclovir); não usar corticoide tópico.",
-     "Nistatina não trata afta (é para candidíase).",
+     "Criança: a maioria das úlceras orais é viral; analgésico pelo peso antes das refeições e hidratação; triancinolona orobase é de uso adulto.",
+     "Nistatina não trata afta (é para candidíase), e antibiótico (azitromicina, pomadas com neomicina) não trata afta nem estomatite viral.",
      "Formas maiores ou recorrências graves: encaminhar a estomatologia ou dermatologia (pode exigir tratamento sistêmico)."
     ]
    },
@@ -6983,21 +6692,16 @@ const GUIA_ITENS = [
    {
     "t": "Outras opções (material do médico)",
     "itens": [
-     "Suspensão bucal de bismuto + procaína + neomicina, 1–2 gotas na lesão 3–6 vezes ao dia (Condutas, Tigers) — alívio pela procaína; antibiótico sem papel."
+     "Lidocaína 5% pomada na lesão antes das refeições — anestésico tópico sem antibiótico, no lugar da suspensão de bismuto + procaína + neomicina citada em Condutas e Tigers (a neomicina não tem papel na afta)."
     ],
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Condutas e Tigers indicam nistatina em bochecho para afta — sem indicação (só candidíase); não aproveitado.",
-   "Guia pediátrico do Drive (Medicações Pediatria 2) prescreve azitromicina na estomatite — sem indicação (causa viral); não aproveitado.",
-   "Opção 1 (triancinolona tópica sem concentração) e Opção 2 (nome comercial) duplicam o Padrão — padronizar ou remover?",
-   "A suspensão com bismuto/procaína/neomicina foi proposta só pelo anestésico; lidocaína gel seria alternativa sem antibiótico — decidir.",
-   "A condição não tem bloco pediátrico; doses de triancinolona e benzidamina em criança não estão no DATA."
-  ],
+  "pendencias": [],
   "fontes": [
    "Tarakji B et al. Guideline for the diagnosis and treatment of recurrent aphthous stomatitis for dental practitioners. J Int Oral Health. 2015;7(5):74-80.",
-   "National Institute for Health and Care Excellence (NICE). Suspected cancer: recognition and referral (NG12). 2015."
+   "National Institute for Health and Care Excellence (NICE). Suspected cancer: recognition and referral (NG12). 2015.",
+   "Brasil. ANVISA. Bulas de triancinolona acetonida 1 mg/g orobase e de lidocaína 50 mg/g pomada (anestesia tópica da mucosa oral)."
   ]
  },
  {
@@ -7037,12 +6741,14 @@ const GUIA_ITENS = [
    {
     "t": "Conduta",
     "itens": [
-     "Lágrima artificial frequente e pomada oftálmica lubrificante ou antibiótica, de 6/6 h ou à noite.",
+     "Lágrima artificial frequente e pomada oftálmica lubrificante ou antibiótica de 6/6 h, por cerca de 3 dias: a córnea cicatriza em 24–72 h.",
      "Antibiótico tópico previne infecção do epitélio lesado — prática corrente, com evidência fraca.",
      "Analgesia oral (dipirona, paracetamol ou AINE), compressas frias e óculos escuros.",
-     "Não prescrever colírio anestésico nem corticoide; não ocluir o olho.",
+     "Não prescrever colírio anestésico para casa: a bula restringe o uso ao exame pelo médico e a oftalmologia não endossa o uso domiciliar; sem corticoide e sem oclusão.",
      "Suspender lente de contato até a cura completa.",
-     "Melhora esperada em 24–48 h; sem melhora em 48 h ou com baixa visual: oftalmologista."
+     "Melhora esperada em 24–48 h; sem melhora em 48 h ou com baixa visual: oftalmologista.",
+     "O consenso do ACEP 2024 aceita anestésico tópico por até 24 h só na abrasão simples do adulto; o site mantém a proibição.",
+     "Prescrever pelo princípio ativo: pomada de retinol + aminoácidos + metionina + cloranfenicol e colírio de carmelose."
     ]
    },
    {
@@ -7074,18 +6780,13 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "ACEP 2024 (consenso) considera seguro colírio anestésico por até 24 h na abrasão simples (não em criança); oftalmologistas discordam e o DATA proíbe — manter a proibição?",
-   "Itens com nome comercial no Padrão e em Outras opções (pomada de retinol + aminoácidos + cloranfenicol; lubrificante) — padronizar pelo princípio ativo.",
-   "Outras opções 'Receita' repete o Padrão com outra posologia (pomada 2 vezes ao dia, colírio 6 vezes ao dia) — decidir qual fica.",
-   "Tigers e Condutas indicam colírio anestésico de 4/4h por 3 dias e tampão no trauma ocular — contraindicados; não aproveitados.",
-   "Duração da pomada (5 dias) e do lubrificante (7 dias) maior que a evolução usual (24–72 h) — encurtar?"
-  ],
+  "pendencias": [],
   "fontes": [
    "College of Optometrists (UK). Clinical Management Guidelines: Photokeratitis (UV burn, arc eye, snow blindness). Versão 15. 2025.",
    "Wipperman JL, Dorsch JN. Evaluation and Management of Corneal Abrasions. Am Fam Physician. 2013;87(2):114-120.",
    "American College of Emergency Physicians (Green et al.). Use of Topical Anesthetics in the Management of Patients With Simple Corneal Abrasions: consensus guideline. Ann Emerg Med. 2024;83(5):477-489.",
-   "Wakai A et al. Topical non-steroidal anti-inflammatory drugs for analgesia in traumatic corneal abrasions. Cochrane Database Syst Rev. 2017;(5):CD009781."
+   "Wakai A et al. Topical non-steroidal anti-inflammatory drugs for analgesia in traumatic corneal abrasions. Cochrane Database Syst Rev. 2017;(5):CD009781.",
+   "Novartis. Anestalcon (cloridrato de proximetacaína 0,5%) — bula para o profissional de saúde (ANVISA)."
   ]
  },
  {
@@ -7133,8 +6834,10 @@ const GUIA_ITENS = [
      "Usuário de lente de contato: suspender a lente e usar fluoroquinolona (cobre Pseudomonas); com dor ou baixa visual, oftalmologista.",
      "Alérgica: anti-histamínico/estabilizador de mastócito tópico (olopatadina), compressas frias, afastar o alérgeno.",
      "Não prescrever colírio com corticoide sem exame em lâmpada de fenda.",
-     "Gonocócica no adulto: ceftriaxona 1 g IM em dose única + cobertura para clamídia, irrigação e oftalmologia urgente; tratar parcerias.",
-     "Criança: conjuntivite com otite trata-se com antibiótico oral; recém-nascido com secreção purulenta precisa de avaliação urgente e tratamento sistêmico."
+     "Gonocócica no adulto: ceftriaxona 1 g IM em dose única + azitromicina 1 g VO para clamídia (PCDT IST 2022), irrigação, oftalmologia urgente e tratar parcerias; internar se a córnea estiver acometida.",
+     "Criança: conjuntivite com otite trata-se com antibiótico oral; recém-nascido com secreção purulenta precisa de avaliação urgente e tratamento sistêmico.",
+     "Clamídia: doxiciclina 100 mg 12/12 h por 7 dias é a alternativa à azitromicina fora da gestação (o CDC 2021 a prefere; no Brasil vale o PCDT IST 2022).",
+     "Criança: não é preciso afastar da creche ou escola se estiver bem e sem febre, e o colírio não é condição para voltar (AAP 2026); se a escola exigir afastamento por norma local, orientar a família."
     ]
    },
    {
@@ -7144,7 +6847,7 @@ const GUIA_ITENS = [
      "Secreção purulenta hiperaguda: gonococo, com risco de perfuração da córnea.",
      "Edema e vermelhidão ao redor do olho com febre, dor ao mover o olho ou olho saltado: celulite orbitária.",
      "Recém-nascido com secreção purulenta: avaliação no mesmo dia.",
-     "Sem melhora em 7–10 dias, ou em 48–72 h com antibiótico: reavaliar."
+     "Viral sem melhora em 7–10 dias, ou bacteriana sem melhora após 3–4 dias de colírio antibiótico: reavaliar e encaminhar ao oftalmologista (AAO 2024)."
     ],
     "alerta": true
    },
@@ -7167,19 +6870,13 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Condutas e Tigers citam ciprofloxacino + dexametasona, e o PA pdf tobramicina + dexametasona — corticoide sem lâmpada de fenda; não aproveitados.",
-   "DATA orienta volta à creche após 24 h de colírio; a AAP não exige afastamento na conjuntivite sem febre — seguir a regra local?",
-   "Cobertura de clamídia: o DATA usa azitromicina 1 g (PCDT-IST); o CDC 2021 prefere doxiciclina por 7 dias — decidir o padrão.",
-   "O bloco de ceftriaxona IM em dose única está no modo Internação; pela regra do site (dose IM única e alta) seria Ambulatorial — confirmar.",
-   "Condutas e Tigers mandam ao oftalmologista se a viral não melhorar em 4 dias; o DATA usa 7–10 dias — alinhar.",
-   "Azelastina colírio, citada no PA pdf, não teve disponibilidade no Brasil confirmada — não proposta."
-  ],
+  "pendencias": [],
   "fontes": [
    "American Academy of Ophthalmology (Cornea/External Disease Panel). Conjunctivitis Preferred Practice Pattern. Ophthalmology. 2024;131(4):P134-P204.",
    "Chen YY et al. Antibiotics versus placebo for acute bacterial conjunctivitis. Cochrane Database Syst Rev. 2023;(3):CD001211.",
    "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep. 2021;70(4):1-187.",
-   "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST). Brasília; 2022."
+   "Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST). Brasília; 2022.",
+   "American Academy of Pediatrics. Managing Infectious Diseases in Child Care and Schools: A Quick Reference Guide. 7th ed. Shope TR, Hashikawa AN, eds. 2026."
   ]
  },
  {
@@ -7188,7 +6885,7 @@ const GUIA_ITENS = [
   "cond": "hordeolo",
   "nm": "Hordéolo / Blefarite",
   "sub": "terçol · calázio · blefarite · compressas mornas · celulite pré-septal",
-  "kw": "hordeolo tercol tersol calazio blefarite palpebra inchada caroco na palpebra olho inchado borda da palpebra vermelha crostas nos cilios compressa morna higiene palpebral xampu infantil tobramicina pomada celulite periorbitaria pre septal orbitaria",
+  "kw": "hordeolo tercol tersol calazio blefarite palpebra inchada caroco na palpebra olho inchado borda da palpebra vermelha crostas nos cilios compressa morna higiene palpebral xampu infantil tobramicina pomada celulite periorbitaria pre septal orbitaria amoxicilina clavulanato cefalexina clindamicina",
   "draft": true,
   "revisado": null,
   "resumo": "Hordéolo é a infecção aguda e dolorosa de uma glândula da pálpebra; calázio, um nódulo crônico indolor; blefarite, a inflamação crônica da borda palpebral. A base do tratamento é compressa morna e higiene palpebral; a decisão crítica é separar celulite pré-septal de orbitária.",
@@ -7226,8 +6923,10 @@ const GUIA_ITENS = [
      "Não espremer; suspender maquiagem e lente de contato até resolver.",
      "Antibiótico tópico não tem benefício comprovado no hordéolo (Cochrane 2017); reservar para blefarite com crostas ou lesão drenando.",
      "Blefarite: higiene diária da borda com xampu infantil diluído, mantida mesmo após melhorar; antibiótico tópico se não responder.",
-     "Celulite pré-septal leve: antibiótico oral antiestafilocócico e reavaliação em 24–48 h.",
-     "Calázio que persiste por mais de 4 semanas ou hordéolo grande que não drena: oftalmologista para drenagem."
+     "Celulite pré-septal leve (bem, sem sinais orbitários): amoxicilina-clavulanato 875/125 mg 12/12 h por 7 dias (NICE NG141) ou cefalexina 500 mg 6/6 h se a origem é a pele da pálpebra; alergia: clindamicina; reavaliar em 24–48 h.",
+     "Criança > 1 ano, bem e com vacina Hib em dia: amoxicilina-clavulanato 22,5 mg/kg 12/12 h (máx 875 mg) ou cefalexina 20 mg/kg 8/8 h (máx 750 mg) por 7 dias; < 1 ano, Hib incompleta ou toxemia: internar.",
+     "Calázio que persiste por mais de 4 semanas ou hordéolo grande que não drena: oftalmologista para drenagem.",
+     "Pomada com corticoide (ciprofloxacino + dexametasona) por semanas, sem exame oftalmológico, não se usa: risco de pressão ocular alta, catarata e piora de herpes."
     ]
    },
    {
@@ -7251,16 +6950,14 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Padrão inclui tobramicina pomada no hordéolo; a Cochrane 2017 não achou evidência a favor de antibiótico tópico — deixar como opcional?",
-   "Outras opções: ciprofloxacino + dexametasona pomada 3 vezes ao dia por 15 dias — corticoide prolongado sem oftalmologista (pressão intraocular, catarata, herpes); revisar ou retirar.",
-   "Não há esquema para celulite pré-septal no DATA (o guia pediátrico do Drive trata a celulite periorbitária com internação) — criar bloco oral, por exemplo amoxicilina-clavulanato?",
-   "Condutas e Tigers: compressa 15 min de 3/3h; Padrão: 10–15 min 3–4 vezes ao dia — equivalentes; nenhum fármaco novo no Drive."
-  ],
+  "pendencias": [],
   "fontes": [
    "Lindsley K, Nichols JJ, Dickersin K. Non-surgical interventions for acute internal hordeolum. Cochrane Database Syst Rev. 2017;(1):CD007742.",
    "Lin A et al. Blepharitis Preferred Practice Pattern. American Academy of Ophthalmology. Ophthalmology. 2024;131(4).",
-   "Carlisle RT, Digiovanni J. Differential Diagnosis of the Swollen Red Eyelid. Am Fam Physician. 2015;92(2):106-112."
+   "Carlisle RT, Digiovanni J. Differential Diagnosis of the Swollen Red Eyelid. Am Fam Physician. 2015;92(2):106-112.",
+   "National Institute for Health and Care Excellence (NICE). Cellulitis and erysipelas: antimicrobial prescribing (NG141). 2019.",
+   "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines: Periorbital and orbital cellulitis.",
+   "Stevens DL et al. Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update by the Infectious Diseases Society of America. Clin Infect Dis. 2014;59(2):e10-e52."
   ]
  },
  {
@@ -7304,12 +7001,13 @@ const GUIA_ITENS = [
     "itens": [
      "Irrigar com SF; se não sair, remover com cotonete úmido sob anestesia tópica; agulha 25G só com magnificação e experiência.",
      "Anel de ferrugem ou corpo estranho que não sai: oftalmologista em 24–48 h.",
-     "Antibiótico tópico após a remoção (prevenção, evidência fraca); usuário de lente: fluoroquinolona e nenhuma oclusão.",
+     "Antibiótico tópico após a remoção (prevenção, evidência fraca): tobramicina colírio; fluoroquinolona (ofloxacino) só para usuário de lente de contato ou corpo estranho vegetal, sem oclusão (AAFP 2013).",
      "Não ocluir o olho: não alivia a dor e atrasa a cicatrização.",
-     "Não prescrever colírio anestésico nem colírio com corticoide para casa.",
+     "Não prescrever colírio anestésico nem colírio com corticoide para casa: o anestésico é de uso no exame (bula) e o corticoide atrasa a cicatrização e favorece infecção, inclusive fúngica — a associação tobramicina + dexametasona saiu do site.",
      "Analgesia oral com dipirona, paracetamol ou AINE; opioide por pouco tempo se a dor for intensa.",
      "Antitetânica não é rotina; atualizar se ferimento penetrante, material contaminado ou queimadura química (AAFP 2013).",
-     "Abrasão pequena, visão normal e melhorando: retorno só se piorar; demais casos, reavaliar em 24 h."
+     "Abrasão pequena, visão normal e melhorando: retorno só se piorar; demais casos, reavaliar em 24 h.",
+     "O consenso do ACEP 2024 aceita anestésico tópico por até 24 h só na abrasão simples do adulto; a oftalmologia não endossa e o site mantém a proibição."
     ]
    },
    {
@@ -7341,16 +7039,12 @@ const GUIA_ITENS = [
     "offlabel": true
    }
   ],
-  "pendencias": [
-   "Outras opções: tobramicina + dexametasona colírio por 7 dias — corticoide após abrasão atrasa a cicatrização e favorece infecção (fúngica se material vegetal); a nota 'só sem glaucoma' não basta — retirar?",
-   "Tigers e Condutas mandam colírio anestésico de 4/4h por 3 dias e tampão — contraindicados; não aproveitados.",
-   "ACEP 2024 aceita anestésico tópico por até 24 h na abrasão simples (não em criança); o DATA proíbe — manter?",
-   "Padrão adulto usa ofloxacino para todos; AAFP 2013 reserva a fluoroquinolona para usuário de lente — usar tobramicina como padrão e ofloxacino para lente?"
-  ],
+  "pendencias": [],
   "fontes": [
    "Wipperman JL, Dorsch JN. Evaluation and Management of Corneal Abrasions. Am Fam Physician. 2013;87(2):114-120.",
    "American College of Emergency Physicians (Green et al.). Use of Topical Anesthetics in the Management of Patients With Simple Corneal Abrasions: consensus guideline. Ann Emerg Med. 2024;83(5):477-489.",
-   "Wakai A et al. Topical non-steroidal anti-inflammatory drugs for analgesia in traumatic corneal abrasions. Cochrane Database Syst Rev. 2017;(5):CD009781."
+   "Wakai A et al. Topical non-steroidal anti-inflammatory drugs for analgesia in traumatic corneal abrasions. Cochrane Database Syst Rev. 2017;(5):CD009781.",
+   "Novartis. Anestalcon (cloridrato de proximetacaína 0,5%) — bula para o profissional de saúde (ANVISA)."
   ]
  },
  {
@@ -7390,12 +7084,13 @@ const GUIA_ITENS = [
     "t": "Conduta",
     "itens": [
      "Sintoma leve e recente: higiene do sono, menos cafeína e álcool, atividade física; o fitoterápico é opcional.",
-     "Valeriana tem efeito gradual: a monografia da EMA recomenda 2–4 semanas de uso, com a dose 30–60 min antes de deitar.",
-     "Passiflora: uso tradicional para estresse leve e sono; procurar o médico se não melhorar em 2 semanas (EMA).",
-     "Insônia crônica: terapia cognitivo-comportamental é a primeira linha; a AASM 2017 sugere não usar valeriana.",
+     "Valeriana: efeito gradual, uso por 2–4 semanas antes de deitar (EMA); a dose depende do extrato — seguir a bula do produto (o de 100 mg: 2 comprimidos 30 min a 2 h antes de dormir).",
+     "Passiflora: estudos usaram 80–1.200 mg/dia de extrato seco (monografia MS/ANVISA 2015) — 500 mg 12/12 h na ansiedade ou à noite na insônia; não usar por tempo prolongado.",
+     "Valeriana só na insônia leve e passageira; na insônia crônica a terapia cognitivo-comportamental é a primeira linha e a AASM 2017 sugere não usar valeriana.",
      "Não usar abaixo de 12 anos, na gestação nem na amamentação (sem dados de segurança).",
      "Somam efeito com sedativos e álcool: evitar junto de benzodiazepínico, hipnótico ou antidepressivo sedativo.",
-     "Transtorno de ansiedade ou depressão: tratamento próprio (psicoterapia, antidepressivo) na UBS ou CAPS; benzodiazepínico só por pouco tempo."
+     "Transtorno de ansiedade ou depressão: tratamento próprio (psicoterapia, antidepressivo) na UBS ou CAPS; benzodiazepínico só por pouco tempo.",
+     "Crise de ansiedade intensa ou insônia que pede hipnótico não é caso de fitoterápico: avaliar e tratar à parte (benzodiazepínico ou hipnótico só por poucos dias, com reavaliação)."
     ]
    },
    {
@@ -7419,19 +7114,13 @@ const GUIA_ITENS = [
     ]
    }
   ],
-  "pendencias": [
-   "Valeriana do Padrão: 200 mg à noite; a monografia da EMA (uso bem estabelecido) usa 450–600 mg de extrato seco por dose — conferir a concentração e o extrato do produto dispensado.",
-   "Passiflora: as doses do DATA (260–500 mg, 1–2 vezes ao dia, 10–30 dias) variam por produto — confirmar na bula e no Memento Fitoterápico da ANVISA.",
-   "Condutas traz diazepam 10 mg VO na crise de ansiedade e zolpidem, flunitrazepam, ciclobenzaprina e amitriptilina na insônia — não cabem em fitoterápicos; criar condição 'Crise de ansiedade / insônia'?",
-   "A tabela de psiquiatria do material de terceiros usa linguagem pejorativa e afirma 'zolpidem pouca adicção' — não reproduzir.",
-   "AASM 2017 é contra valeriana na insônia crônica; manter o bloco só para insônia leve e passageira?",
-   "Outras opções 1 a 4 são variações de passiflora com doses e durações diferentes — consolidar em uma."
-  ],
+  "pendencias": [],
   "fontes": [
    "European Medicines Agency (HMPC). European Union herbal monograph on Valeriana officinalis L., radix (EMA/HMPC/150848/2015). 2016.",
    "European Medicines Agency (HMPC). European Union herbal monograph on Passiflora incarnata L., herba (EMA/HMPC/669740/2013). 2014.",
    "Sateia MJ et al. Clinical Practice Guideline for the Pharmacologic Treatment of Chronic Insomnia in Adults: An American Academy of Sleep Medicine Clinical Practice Guideline. J Clin Sleep Med. 2017;13(2):307-349.",
-   "Brasil. ANVISA. Memento Fitoterápico da Farmacopeia Brasileira. 1ª ed. Brasília; 2016."
+   "Brasil. ANVISA. Memento Fitoterápico da Farmacopeia Brasileira. 1ª ed. Brasília; 2016.",
+   "Brasil. Ministério da Saúde; ANVISA. Monografia da espécie Passiflora incarnata L. (maracujá-vermelho). Brasília; 2015."
   ]
  }
 ];
