@@ -53,7 +53,7 @@ def run(browser, url):
     # busca única: groups in tab order, lands on a score and on a drug row
     groups = pg.evaluate("""() => { const i = document.querySelector('#busca-input'); i.value = 'dor'; i.dispatchEvent(new Event('input'));
         return [...document.querySelectorAll('#busca-list [role=group]')].map(g => document.getElementById(g.getAttribute('aria-labelledby')).textContent.replace(/\\s*\\d+$/, '').trim()); }""")
-    order = ["⭐ Meu rascunho", "💊 Prescrições", "📖 Guias", "📊 Escores", "🧮 Calculadoras", "🩺 Procedimentos"]
+    order = ["⭐ Meu rascunho", "💊 Prescrições", "📊 Escores", "🧮 Calculadoras", "🩺 Procedimentos", "📖 Guias"]
     rep.check(len(groups) >= 3 and groups == [g for g in order if g in groups], f"search groups in tab order: {groups}")
     pg.keyboard.press("Escape"); pg.keyboard.press("Escape")
     pg.keyboard.press("Control+k"); pg.keyboard.type("heart"); pg.keyboard.press("Enter"); pg.wait_for_timeout(80)

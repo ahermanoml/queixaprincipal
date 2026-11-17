@@ -482,6 +482,33 @@ const DATA = [
     "orient": [
      "MESMA MONITORIZAÇÃO DOS OPIOIDES EV (OXIMETRIA, FR E SEDAÇÃO) E NALOXONA DISPONÍVEL; A VIA INTRANASAL É OFF LABEL NO BRASIL"
     ]
+   },
+   {
+    "label": "Do material do Drive — Dor intensa sem resposta à codeína: tramadol 50 mg VO por até 03 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TRAMADOL 50 MG",
+      "20 CÁPSULAS",
+      "TOMAR 01 A 02 CÁPSULAS SE DOR INTENSA, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS (MÁXIMO 08 CÁPSULAS POR DIA). NÃO TOMAR JUNTO COM PARACETAMOL + CODEÍNA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — AINE parenteral de dose única diária: tenoxicam 20 mg EV ou IM",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TENOXICAM 20 MG PÓ LIÓFILO PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "SE SEM CONTRAINDICAÇÃO A AINE: RECONSTITUIR COM O DILUENTE QUE ACOMPANHA E ADMINISTRAR 20 MG EV LENTO (OU IM), 01 VEZ AO DIA, POR NO MÁXIMO 03 DIAS. NÃO ASSOCIAR OUTRO AINE",
+      "USO ENDOVENOSO"
+     ]
+    ]
    }
   ]
  },
@@ -620,6 +647,19 @@ const DATA = [
        "un": "ML",
        "max": 160
       }
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Cefadroxila 12/12h (alternativa à cefalexina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFADROXILA 500 MG",
+      "14 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 12/12H POR 07 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00",
+      "USO ORAL"
      ]
     ]
    }
@@ -895,6 +935,19 @@ const DATA = [
      "CRITÉRIOS DE CAINE (2 DE 4): DEFICIÊNCIA NUTRICIONAL, ALTERAÇÃO OCULOMOTORA (NISTAGMO, OFTALMOPARESIA), ATAXIA E CONFUSÃO OU ALTERAÇÃO DE MEMÓRIA — TRATAR NA SUSPEITA, SEM AGUARDAR EXAMES",
      "CORRIGIR HIPOMAGNESEMIA (COFATOR DA TIAMINA); SUBSTITUI A DOSE PROFILÁTICA DO PADRÃO"
     ]
+   },
+   {
+    "label": "Do material do Drive — Etilista desnutrido: ácido fólico",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ÁCIDO FÓLICO 5 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO AO DIA POR 30 DIAS",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -921,12 +974,14 @@ const DATA = [
      [
       "PENICILINA BENZATINA 1.200.000 UI",
       "02 AMPOLAS",
-      "APLICAR UMA AMPOLA EM CADA GLÚTEO MÉDIO"
+      "APLICAR UMA AMPOLA EM CADA GLÚTEO MÉDIO",
+      "USO INTRAMUSCULAR"
      ],
      [
       "CEFTRIAXONA 500 MG",
       "01 AMPOLA",
-      "APLICAR EM GLÚTEO MÉDIO"
+      "APLICAR EM GLÚTEO MÉDIO",
+      "USO INTRAMUSCULAR"
      ],
      [
       "AZITROMICINA 500 MG",
@@ -1407,6 +1462,19 @@ const DATA = [
       "USO TÓPICO"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Alívio da dor: suspensão bucal com anestésico (bismuto + procaína + neomicina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TARTARATO DE BISMUTO E SÓDIO 25 MG/ML + CLORIDRATO DE PROCAÍNA 15 MG/ML + SULFATO DE NEOMICINA SUSPENSÃO BUCAL (GOTAS)",
+      "01 FRASCO",
+      "PINGAR 01 A 02 GOTAS SOBRE A LESÃO, DE 3 A 6 VEZES AO DIA, DE PREFERÊNCIA ANTES DAS REFEIÇÕES",
+      "USO TÓPICO"
+     ]
+    ]
    }
   ]
  },
@@ -1882,6 +1950,32 @@ const DATA = [
      "OBSERVAR NO MÍNIMO 06 A 12 HORAS APÓS A RESOLUÇÃO; NA ALTA, PLANO DE AÇÃO ESCRITO, ENCAMINHAR AO ALERGISTA E AVALIAR ADRENALINA AUTOINJETÁVEL",
      "NÃO USAR PROMETAZINA EM MENORES DE 02 ANOS"
     ]
+   },
+   {
+    "label": "Do material do Drive — Urticária sem controle: loratadina em dose dobrada",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "02 CAIXAS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H, EM HORÁRIO FIXO, ENQUANTO HOUVER LESÕES E POR MAIS 03 A 05 DIAS APÓS SUMIREM (DOSE DOBRADA, USO FORA DA BULA)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Coceira que atrapalha o sono: dexclorfeniramina",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DEXCLORFENIRAMINA 2 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE, PODENDO REPETIR ATÉ DE 8/8H SE COCEIRA INTENSA (CAUSA SONOLÊNCIA; EVITAR EM IDOSOS E AO DIRIGIR)",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -2262,6 +2356,19 @@ const DATA = [
       "TOMAR 01 COMPRIMIDO SE VERTIGEM, NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 6/6H"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Método de Yuzpe (só na falta de levonorgestrel)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "LEVONORGESTREL 0,15 MG + ETINILESTRADIOL 0,03 MG",
+      "01 CARTELA",
+      "TOMAR 04 COMPRIMIDOS JUNTOS O MAIS CEDO POSSÍVEL E MAIS 04 COMPRIMIDOS 12 HORAS DEPOIS (ATÉ 5 DIAS APÓS A RELAÇÃO). USAR SOMENTE SE NÃO HOUVER LEVONORGESTREL ISOLADO",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -2639,6 +2746,34 @@ const DATA = [
     "orient": [
      "CONSIDERAR EM CRIANÇA ≥ 2 ANOS COM CRISE GRAVE SEM RESPOSTA A SALBUTAMOL + IPRATRÓPIO E CORTICOIDE NA 1ª HORA (NÃO É ROTINA; EVIDÊNCIA LIMITADA EM < 2 ANOS)",
      "MONITORAR PA, FC, FR E REFLEXOS DURANTE A INFUSÃO; INTERROMPER SE HIPOTENSÃO, BRADICARDIA OU ARREFLEXIA"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Crise moderada sem resposta ou grave: ipratrópio spray com espaçador",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "BROMETO DE IPRATRÓPIO 20 MCG/JATO AEROSSOL",
+      "01 FRASCO",
+      "INALAR 04 JATOS COM ESPAÇADOR JUNTO COM CADA DOSE DE SALBUTAMOL, DE 20/20 MIN, ATÉ 03 VEZES NA PRIMEIRA HORA; DEPOIS SUSPENDER",
+      "USO INALATÓRIO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Sem salbutamol em solução: nebulização com fenoterol + ipratrópio",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "BROMIDRATO DE FENOTEROL 5 MG/ML SOLUÇÃO PARA INALAÇÃO (GOTAS)",
+      "01 FRASCO",
+      "NEBULIZAR 10 GOTAS (2,5 MG) JUNTO COM BROMETO DE IPRATRÓPIO 40 GOTAS (0,5 MG) EM 3 A 5 ML DE SF 0,9%, COM O2 A 6-8 L/MIN, DE 20/20 MIN NA PRIMEIRA HORA (ATÉ 03 VEZES); DEPOIS CONFORME A RESPOSTA. VIGIAR TAQUICARDIA, TREMOR E HIPOCALEMIA",
+      "USO INALATÓRIO"
+     ]
     ]
    }
   ]
@@ -3347,6 +3482,20 @@ const DATA = [
      "USO FORA DA BULA BRASILEIRA (INDICAÇÃO PEDIÁTRICA APROVADA PELO FDA DE 6 A 17 ANOS)",
      "CONTRAINDICADO EM ENXAQUECA HEMIPLÉGICA OU DE TRONCO, CARDIOPATIA OU HIPERTENSÃO NÃO CONTROLADA"
     ]
+   },
+   {
+    "label": "Do material do Drive — AINE parenteral alternativo ao cetoprofeno: tenoxicam",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TENOXICAM 20 MG PÓ LIÓFILO PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "RECONSTITUIR E ADMINISTRAR 20 MG EV LENTO OU IM, DOSE ÚNICA (NO MÁXIMO 01 VEZ AO DIA). NÃO ASSOCIAR A OUTRO AINE. EVITAR SE DOENÇA RENAL, ÚLCERA PÉPTICA, SANGRAMENTO, GESTAÇÃO OU SUSPEITA DE DENGUE",
+      "USO ENDOVENOSO"
+     ]
+    ]
    }
   ]
  },
@@ -3399,6 +3548,19 @@ const DATA = [
       "OPTOCARE",
       "01 FRASCO",
       "APLICAR UMA OU DUAS GOTAS NO OLHO AFETADO 06 VEZES AO DIA",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor importante: cetorolaco colírio por 02 a 03 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CETOROLACO DE TROMETAMOL 0,5% COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 01 GOTA NO(S) OLHO(S) AFETADO(S) DE 6/6H POR 02 A 03 DIAS. NÃO USAR POR MAIS TEMPO SEM AVALIAÇÃO DO OFTALMOLOGISTA",
       "USO TÓPICO"
      ]
     ]
@@ -3859,6 +4021,87 @@ const DATA = [
       "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — AINE parenteral no PS — escolha 1",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CETOPROFENO 100 MG PÓ LIÓFILO PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "SE SEM CONTRAINDICAÇÃO A AINE: ADMINISTRAR 100 MG EV DILUÍDO EM 100 ML DE SF 0,9% EM 20 MINUTOS; PODE REPETIR APÓS 12H, POR NO MÁXIMO 03 DIAS",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "DICLOFENACO SÓDICO 25 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "SE SEM CONTRAINDICAÇÃO A AINE: APLICAR 75 MG (01 AMPOLA) IM PROFUNDO NO GLÚTEO, DOSE ÚNICA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "TENOXICAM 20 MG PÓ LIÓFILO PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "SE SEM CONTRAINDICAÇÃO A AINE: RECONSTITUIR E ADMINISTRAR 20 MG EV LENTO OU IM, NO MÁXIMO 01 VEZ AO DIA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dipirona EV + antiemético (com o AINE ou se AINE contraindicado)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 01 G (02 ML) EV DILUÍDO EM 100 ML DE SF 0,9% EM 15 MINUTOS; PODE REPETIR ATÉ DE 6/6H SE DOR",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "METOCLOPRAMIDA 5 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "SE NÁUSEAS OU VÔMITOS: ADMINISTRAR 10 MG (02 ML) EV DILUÍDO EM 100 ML DE SF 0,9% EM 15 MINUTOS; PODE REPETIR ATÉ DE 8/8H (MÁXIMO 30 MG/DIA)",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor refratária: opioide EV — escolha 1",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "TRAMADOL 50 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 50 A 100 MG EV DILUÍDO EM 100 ML DE SF 0,9% EM 30 MINUTOS, ATÉ DE 6/6H SE DOR (MÁXIMO 400 MG/DIA; ACIMA DE 75 ANOS MÁXIMO 300 MG/DIA; CLCR < 30: DE 12/12H, MÁXIMO 200 MG/DIA)",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "MORFINA 10 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 1 ML",
+      "DILUIR 01 AMPOLA EM 9 ML DE SF 0,9% (1 MG/ML). ADMINISTRAR 2 A 3 MG EV LENTO A CADA 05-10 MIN ATÉ DOR ≤ 4 OU SONOLÊNCIA (MÁXIMO 15 MG NA TITULAÇÃO); DEPOIS 2 A 4 MG EV ATÉ DE 4/4H SE DOR. IDOSO OU DOENÇA RENAL: 1 A 2 MG POR DOSE",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor intensa em casa: tramadol oral por curto prazo",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TRAMADOL 50 MG",
+      "10 CÁPSULAS",
+      "TOMAR 01 CÁPSULA ATÉ DE 6/6H SE DOR INTENSA QUE NÃO MELHORA COM O ANTI-INFLAMATÓRIO E A DIPIRONA, POR NO MÁXIMO 03 DIAS (MÁXIMO 400 MG/DIA). PODE CAUSAR NÁUSEA, TONTURA E SONOLÊNCIA: NÃO DIRIGIR",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -4098,6 +4341,39 @@ const DATA = [
      "MACROLÍDEO EM MENORES DE 06 SEMANAS: ORIENTAR SOBRE VÔMITOS EM JATO (RISCO DE ESTENOSE HIPERTRÓFICA DE PILORO)",
      "TRACOMA: EXAMINAR E TRATAR OS CONTATOS DOMICILIARES E NOTIFICAR CONFORME O PROGRAMA DE VIGILÂNCIA DO TRACOMA"
     ]
+   },
+   {
+    "label": "Do material do Drive — Usuário de lente de contato: colírio de fluoroquinolona — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "OFLOXACINO COLÍRIO 0,3%",
+      "01 FRASCO",
+      "PINGAR 01 GOTA NO(S) OLHO(S) AFETADO(S) DE 6/6H POR 07 DIAS. SUSPENDER A LENTE DE CONTATO ATÉ A CURA",
+      "USO TÓPICO"
+     ],
+     [
+      "CIPROFLOXACINO 3,5 MG/ML COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 01 GOTA NO(S) OLHO(S) AFETADO(S) DE 6/6H POR 07 DIAS. SUSPENDER A LENTE DE CONTATO ATÉ A CURA",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Alérgica: epinastina colírio (alternativa à olopatadina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "EPINASTINA 0,5 MG/ML COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 01 GOTA EM CADA OLHO DE 12/12H ENQUANTO HOUVER COCEIRA (A PARTIR DE 03 ANOS)",
+      "USO TÓPICO"
+     ]
+    ]
    }
   ]
  },
@@ -4306,6 +4582,32 @@ const DATA = [
        "un": "GOTAS",
        "max": 200
       }
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor intensa após a remoção: paracetamol + codeína por até 03 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "12 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS. NÃO TOMAR JUNTO COM O PARACETAMOL (USAR NO LUGAR DELE)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor na abrasão sem complicação: cetorolaco colírio por 02 a 03 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CETOROLACO DE TROMETAMOL 0,5% COLÍRIO",
+      "01 FRASCO",
+      "PINGAR 01 GOTA NO(S) OLHO(S) AFETADO(S) DE 6/6H POR 02 A 03 DIAS. NÃO USAR POR MAIS TEMPO SEM AVALIAÇÃO DO OFTALMOLOGISTA",
+      "USO TÓPICO"
      ]
     ]
    }
@@ -4543,6 +4845,39 @@ const DATA = [
       "USO ORAL"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Lubrificante e resgate retal (modelo do médico)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ÓLEO MINERAL",
+      "01 FRASCO",
+      "TOMAR 01 COLHER DE SOPA (15 ML) 01 A 02 VEZES AO DIA, LONGE DAS REFEIÇÕES E NUNCA LOGO ANTES DE DEITAR, POR ATÉ 02 SEMANAS. NÃO USAR EM ACAMADOS, IDOSOS FRÁGEIS, GESTANTES OU SE HOUVER DIFICULDADE PARA ENGOLIR",
+      "USO ORAL"
+     ],
+     [
+      "SUPOSITÓRIO DE GLICERINA (ADULTO)",
+      "01 CAIXA",
+      "INTRODUZIR 01 SUPOSITÓRIO VIA RETAL 01 VEZ AO DIA SE NÃO EVACUAR POR 03 DIAS SEGUIDOS (RESGATE)",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Fecaloma no PS: enema glicerinado após toque retal",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "GLICERINA 12% SOLUÇÃO PARA ENEMA (CLISTER GLICERINADO)",
+      "01 FRASCO 500 ML",
+      "APLICAR 500 ML VIA RETAL, LENTAMENTE, COM O PACIENTE DEITADO DO LADO ESQUERDO; REAVALIAR E REPETIR APÓS 06 A 08H SE NECESSÁRIO. NÃO USAR SE SUSPEITA DE OBSTRUÇÃO, PERFURAÇÃO OU COLITE GRAVE",
+      "USO TÓPICO"
+     ]
+    ]
    }
   ]
  },
@@ -4680,6 +5015,48 @@ const DATA = [
       }
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Fenitoína 1 g em dose prática (prescrição do médico; vale para 50 a 65 kg)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "FENITOÍNA 50 MG/ML SOLUÇÃO INJETÁVEL",
+      "04 AMPOLAS 5 ML",
+      "DILUIR 04 AMPOLAS (1.000 MG = 20 ML) EM 80 ML DE SF 0,9% E CORRER EM BOMBA A 300 ML/H (20 MINUTOS = 50 MG/MIN); IDOSO OU CARDIOPATA: 150 ML/H (40 MINUTOS). EQUIVALE A 15-20 MG/KG SÓ ENTRE 50 E 65 KG — ACIMA DISSO, USAR OS 20 MG/KG DO PADRÃO. NUNCA EM SORO GLICOSADO; MONITORIZAR ECG E PA; NÃO USAR SE BRADICARDIA OU BAV",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Crise refratária à 2ª droga (ou sem levetiracetam/fenitoína): fenobarbital EV",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "FENOBARBITAL 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "AMPOLAS DE 2 ML CONFORME DOSE",
+      "ADMINISTRAR 15 A 20 MG/KG EV, DILUÍDO EM 100 ML DE SF 0,9%, EM VELOCIDADE MENOR QUE 60 MG/MIN (DOSE PELO PESO EM CALCULADORAS › EMERGÊNCIA › CONVULSÃO). ALTO RISCO DE DEPRESSÃO RESPIRATÓRIA E HIPOTENSÃO: MONITORIZAÇÃO CONTÍNUA E MATERIAL DE VIA AÉREA À BEIRA DO LEITO",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Crise refratária à 2ª droga: fenobarbital EV pelo peso",
+    "mode": "ped_internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "FENOBARBITAL 100 MG/ML SOLUÇÃO INJETÁVEL",
+      "AMPOLAS DE 2 ML CONFORME DOSE",
+      "ADMINISTRAR 20 MG/KG EV (MÁXIMO 1.000 MG), DILUÍDO EM SF 0,9%, A NO MÁXIMO 1 MG/KG/MIN (MÍNIMO 20 MINUTOS; MÁXIMO 60 MG/MIN). ALTO RISCO DE DEPRESSÃO RESPIRATÓRIA E HIPOTENSÃO: MONITORIZAÇÃO CONTÍNUA E MATERIAL DE VIA AÉREA PEDIÁTRICO À BEIRA DO LEITO",
+      "USO ENDOVENOSO"
+     ]
+    ]
    }
   ]
  },
@@ -4765,6 +5142,20 @@ const DATA = [
      "NÃO PARAR OS REMÉDIOS DE PRESSÃO POR CONTA PRÓPRIA; DIMINUIR O SAL, EVITAR BEBIDA ALCOÓLICA E CIGARRO",
      "SE TIVER APARELHO, MEDIR A PRESSÃO SENTADO, EM REPOUSO, E ANOTAR PARA MOSTRAR NA CONSULTA",
      "RETORNAR IMEDIATAMENTE OU LIGAR 192 (SAMU) SE DOR NO PEITO, FALTA DE AR, DOR DE CABEÇA MUITO FORTE, CONFUSÃO, FRAQUEZA OU FORMIGAMENTO EM UM LADO DO CORPO, DIFICULDADE PARA FALAR OU ENXERGAR"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dissecção de aorta ou SCA com hipertensão: metoprolol EV",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "METOPROLOL (TARTARATO) 1 MG/ML SOLUÇÃO INJETÁVEL",
+      "03 AMPOLAS 5 ML",
+      "ADMINISTRAR 5 MG (5 ML) EV EM 1 A 2 MINUTOS; REPETIR A CADA 5 MINUTOS ATÉ 15 MG, CONFORME FC E PA. NA DISSECÇÃO, DAR ANTES DO VASODILATADOR (ALVO FC < 60 BPM E PAS ≤ 120 MMHG). NÃO USAR SE IC DESCOMPENSADA, BAV, BRADICARDIA, BRONCOESPASMO OU INTOXICAÇÃO POR COCAÍNA",
+      "USO ENDOVENOSO"
+     ]
     ]
    }
   ]
@@ -5304,6 +5695,47 @@ const DATA = [
     ],
     "orient": [
      "INDICADA APÓS 3 EXPANSÕES ADEQUADAS SEM SAÍDA DO CHOQUE E COM HEMATÓCRITO SUBINDO; NA FALTA DE ALBUMINA, COLOIDE SINTÉTICO 10 ML/KG/H"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Prurido: loratadina",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "LORATADINA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO 01 VEZ AO DIA SE COCEIRA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Antiemético (≥ 2 anos): dimenidrinato + piridoxina gotas",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIMENIDRINATO 25 MG/ML + PIRIDOXINA 5 MG/ML SOLUÇÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "DAR 01 GOTA POR KG DE PESO (1,25 MG/KG/DOSE) VIA ORAL DE 6/6H A 8/8H SE NÁUSEAS OU VÔMITOS. 2 A 6 ANOS: NO MÁXIMO 60 GOTAS POR DIA; 6 A 12 ANOS: NO MÁXIMO 120 GOTAS POR DIA. NÃO USAR EM MENORES DE 2 ANOS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dipirona solução oral 50 mg/mL",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 50 MG/ML SOLUÇÃO ORAL",
+      "01 FRASCO",
+      "DAR 0,2 ML POR KG (10 MG/KG/DOSE) VIA ORAL ATÉ DE 6/6H SE DOR OU FEBRE. NÃO USAR EM MENORES DE 3 MESES OU COM MENOS DE 5 KG",
+      "USO ORAL"
+     ]
     ]
    }
   ]
@@ -6282,6 +6714,41 @@ const DATA = [
      "DOSAR GLICEMIA, NA, K, UREIA, CREATININA E GASOMETRIA; DESNUTRIDO GRAVE: NÃO USAR ESTE ESQUEMA — SF 0,9% 10 ML/KG COM REAVALIAÇÃO A CADA HORA",
      "UTI SE CHOQUE REFRATÁRIO À EXPANSÃO, ACIDOSE GRAVE, DISTÚRBIO ELETROLÍTICO GRAVE OU REBAIXAMENTO PERSISTENTE"
     ]
+   },
+   {
+    "label": "Do material do Drive — Cólica intensa na observação: escopolamina + dipirona EV",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "BUTILBROMETO DE ESCOPOLAMINA 4 MG/ML + DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 5 ML",
+      "SE CÓLICA INTENSA: ADMINISTRAR 01 AMPOLA (20 MG + 2,5 G) EV LENTO, DILUÍDA EM 100 A 250 ML DE SF 0,9%; PODE REPETIR UMA VEZ APÓS 08H (MÁXIMO 02 AMPOLAS EM 24H). NÃO SOMAR OUTRA DIPIRONA. EVITAR SE HIPOTENSÃO OU ALERGIA À DIPIRONA",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Racecadotrila junto com a SRO (a partir de 3 meses) — escolha 1",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "RACECADOTRILA 10 MG GRANULADO (SACHÊ)",
+      "01 CAIXA",
+      "DAR 1,5 MG/KG/DOSE DE 8/8H, DISSOLVIDO EM ÁGUA OU NA ALIMENTAÇÃO, JUNTO COM A SRO, ATÉ 02 EVACUAÇÕES NORMAIS (MÁXIMO 07 DIAS): ATÉ 9 KG 01 SACHÊ POR DOSE; DE 9 A 13 KG 02 SACHÊS POR DOSE. A PARTIR DE 3 MESES",
+      "USO ORAL"
+     ],
+     [
+      "RACECADOTRILA 30 MG GRANULADO (SACHÊ)",
+      "01 CAIXA",
+      "DAR 1,5 MG/KG/DOSE DE 8/8H, JUNTO COM A SRO, ATÉ 02 EVACUAÇÕES NORMAIS (MÁXIMO 07 DIAS): DE 14 A 27 KG 01 SACHÊ POR DOSE; ACIMA DE 27 KG 02 SACHÊS POR DOSE. A PARTIR DE 3 ANOS",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -6845,6 +7312,34 @@ const DATA = [
      "PROCURAR A UNIDADE DE SAÚDE PARA CONSULTA DE RETORNO E CONTROLE DOS FATORES DE RISCO (PRESSÃO, DIABETES, COLESTEROL, CIGARRO)",
      "LIGAR 192 (SAMU) OU RETORNAR IMEDIATAMENTE SE A DOR VOLTAR EM APERTO OU PESO NO PEITO, IRRADIAR PARA BRAÇO, PESCOÇO OU MANDÍBULA, VIER COM SUOR FRIO, FALTA DE AR, DESMAIO OU PALPITAÇÃO"
     ]
+   },
+   {
+    "label": "Do material do Drive — Ticagrelor no lugar do clopidogrel (angioplastia primária ou estratégia invasiva)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TICAGRELOR 90 MG",
+      "02 COMPRIMIDOS",
+      "ATAQUE: 180 MG (02 COMPRIMIDOS) VIA ORAL; DEPOIS 90 MG DE 12/12H. USAR NO LUGAR DO CLOPIDOGREL (NUNCA OS DOIS). NÃO USAR APÓS TROMBÓLISE (PREFERIR CLOPIDOGREL), COM AVC HEMORRÁGICO PRÉVIO, SANGRAMENTO ATIVO OU ANTICOAGULANTE ORAL. PODE CAUSAR DISPNEIA E BRADICARDIA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Betabloqueador oral nas primeiras 24 h (sem IC, choque ou BAV)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "METOPROLOL (SUCCINATO) 25 MG COMPRIMIDO DE LIBERAÇÃO PROLONGADA",
+      "01 COMPRIMIDO",
+      "TOMAR 01 COMPRIMIDO VIA ORAL 01 VEZ AO DIA, INICIANDO NAS PRIMEIRAS 24 H SE ESTÁVEL; AJUSTAR PELA FC E PA. NÃO USAR SE SINAIS DE IC, BAIXO DÉBITO, RISCO DE CHOQUE, FC < 60, BAV, BRONCOESPASMO OU USO DE COCAÍNA",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -7138,6 +7633,32 @@ const DATA = [
       "01 FRASCO-AMPOLA",
       "ADMINISTRAR 40 MG EV 01 VEZ AO DIA ATÉ TOLERAR VIA ORAL, COMPLETANDO 05 DIAS DE CORTICOIDE COM PREDNISONA 40 MG (SUBSTITUI A PREDNISONA; NÃO ASSOCIAR)",
       "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Escarro purulento: amoxicilina-clavulanato 875/125 mg de 12/12h",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 875 MG + CLAVULANATO 125 MG",
+      "10 COMPRIMIDOS",
+      "SE ESCARRO PURULENTO: TOMAR 01 COMPRIMIDO DE 12/12H, NO INÍCIO DAS REFEIÇÕES, POR 05 DIAS. HORÁRIO SUGERIDO: 08:00 / 20:00",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Risco de Pseudomonas ou alergia grave a betalactâmico: levofloxacino 750 mg",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "LEVOFLOXACINO 750 MG",
+      "05 COMPRIMIDOS",
+      "SE RISCO DE PSEUDOMONAS OU ALERGIA GRAVE A BETALACTÂMICO: TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS. AJUSTAR SE CLCR < 50 ML/MIN. RISCO DE TENDINITE, ARRITMIA E CONFUSÃO EM IDOSOS",
+      "USO ORAL"
      ]
     ]
    }
@@ -7517,6 +8038,20 @@ const DATA = [
      "DIMINUIR O SAL E SEGUIR A QUANTIDADE DE LÍQUIDOS ORIENTADA PELO MÉDICO; NÃO PARAR OS REMÉDIOS DO CORAÇÃO POR CONTA PRÓPRIA",
      "MARCAR CONSULTA NA UNIDADE DE SAÚDE OU COM O CARDIOLOGISTA EM ATÉ 7 A 14 DIAS",
      "RETORNAR IMEDIATAMENTE OU LIGAR 192 (SAMU) SE A FALTA DE AR PIORAR, NÃO CONSEGUIR DEITAR, TOSSE COM ESPUMA ROSADA, DOR NO PEITO OU DESMAIO"
+    ]
+   },
+   {
+    "label": "Do material do Drive — EAP hipertensivo grave ou sem resposta ao nitrato: nitroprussiato em bomba",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "NITROPRUSSIATO DE SÓDIO 50 MG PÓ PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "SE EAP HIPERTENSIVO GRAVE OU SEM RESPOSTA À NITROGLICERINA: INFUNDIR EM BOMBA, PROTEGIDO DA LUZ, COM PA MONITORIZADA — DILUIÇÃO, DOSE E VAZÃO PELA ABA CALCULADORAS › NITROPRUSSIATO. NÃO USAR SE PAS < 90 MMHG",
+      "USO ENDOVENOSO"
+     ]
     ]
    }
   ]
@@ -8021,6 +8556,19 @@ const DATA = [
     "orient": [
      "SÓ PARA ≥ 12 ANOS E ≥ 40 KG (NO BRASIL SÓ HÁ COMPRIMIDO DE 10 MG); APROVADO PELO FDA DE 6 A 17 ANOS, MAS PODE SER OFF LABEL NA BULA BRASILEIRA",
      "CONTRAINDICADO EM ENXAQUECA HEMIPLÉGICA OU COM AURA DE TRONCO, CARDIOPATIA E HAS NÃO CONTROLADA; NÃO ASSOCIAR A ERGOTAMINA; EVITAR SE USA PROPRANOLOL (EXIGE DOSE DE 5 MG)"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Ibuprofeno 600 mg só na crise (receita do médico)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "IBUPROFENO 600 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO NO INÍCIO DA CRISE, PODENDO REPETIR DE 8/8H SE A DOR CONTINUAR, POR NO MÁXIMO 07 DIAS. TOMAR APÓS ALIMENTAÇÃO. NÃO USAR SE ÚLCERA, DOENÇA RENAL, GESTAÇÃO OU SUSPEITA DE DENGUE",
+      "USO ORAL"
+     ]
     ]
    }
   ]
@@ -8539,6 +9087,74 @@ const DATA = [
     "orient": [
      "DESBRIDAMENTO CIRÚRGICO DE URGÊNCIA SE SUSPEITA DE FASCEÍTE NECROSANTE; HEMOCULTURAS, LACTATO E AVALIAÇÃO DE UTI PEDIÁTRICA"
     ]
+   },
+   {
+    "label": "Do material do Drive — Amoxicilina-clavulanato 8/8h (guia HC-FMUSP)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA + CLAVULANATO DE POTÁSSIO 500 MG + 125 MG",
+      "21 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, NO INÍCIO DA REFEIÇÃO, POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Amoxicilina-clavulanato pelo peso (guia HC-FMUSP)",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA + CLAVULANATO DE POTÁSSIO 250 MG + 62,5 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR 50 MG/KG/DIA DE AMOXICILINA, DIVIDIDO DE 8/8H, NO INÍCIO DA REFEIÇÃO, POR 07 DIAS (MÁXIMO 500 MG DE AMOXICILINA POR DOSE)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Penicilina V oral (erisipela estreptocócica leve)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "FENOXIMETILPENICILINA POTÁSSICA 500.000 UI",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Ceftriaxona 1 vez ao dia (alternativa à cefazolina)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFTRIAXONA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
+      "01 FRASCO-AMPOLA",
+      "ADMINISTRAR 1 G EV 01 VEZ AO DIA, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS; APÓS 24–48H AFEBRIL E COM MELHORA, TROCAR POR CEFALEXINA ORAL (TOTAL 07 DIAS)",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Oxacilina (celulite grave por S. aureus sensível)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "OXACILINA 500 MG PÓ PARA SOLUÇÃO INJETÁVEL",
+      "04 FRASCOS-AMPOLA POR DOSE",
+      "ADMINISTRAR 2 G EV DE 4/4H, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 A 60 MINUTOS",
+      "USO ENDOVENOSO"
+     ]
+    ]
    }
   ]
  },
@@ -8726,6 +9342,58 @@ const DATA = [
     ],
     "orient": [
      "TEM CHEIRO FORTE E PODE MANCHAR ROUPAS; EM MENORES DE 2 MESES CONFIRMAR O DIAGNÓSTICO E ACOMPANHAR DE PERTO (DISCUTIR COM DERMATOLOGIA PEDIÁTRICA)"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Benzoato de benzila 25% (alternativa à permetrina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "BENZOATO DE BENZILA 250 MG/ML (25%) EMULSÃO",
+      "01 FRASCO",
+      "APÓS O BANHO, COM A PELE SECA, APLICAR DO PESCOÇO AOS PÉS À NOITE E DEIXAR ATÉ O BANHO SEGUINTE; FAZER POR 02 A 03 NOITES SEGUIDAS E REPETIR APÓS 07 DIAS. NÃO APLICAR NO ROSTO, MUCOSAS OU FERIDAS",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Ivermectina pelo peso (adulto a partir de 65 kg)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "IVERMECTINA 6 MG",
+      "06 COMPRIMIDOS",
+      "65 A 79 KG: TOMAR 2 E 1/2 COMPRIMIDOS; 80 KG OU MAIS: TOMAR 03 COMPRIMIDOS — EM DOSE ÚNICA, E REPETIR A MESMA DOSE APÓS 07 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Enxofre 10% em vaselina (gestante ou intolerância à permetrina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ENXOFRE PRECIPITADO 10% EM VASELINA SÓLIDA (MANIPULADO)",
+      "01 POTE",
+      "APLICAR DO PESCOÇO AOS PÉS À NOITE POR 03 NOITES SEGUIDAS, RETIRANDO NO BANHO 24 H APÓS CADA APLICAÇÃO; REPETIR O CICLO APÓS 07 DIAS SE NECESSÁRIO",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Antipruriginoso alternativo (dexclorfeniramina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DEXCLORFENIRAMINA 2 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO À NOITE, PODENDO REPETIR ATÉ DE 8/8H SE COCEIRA INTENSA (CAUSA SONOLÊNCIA)",
+      "USO ORAL"
+     ]
     ]
    }
   ]
@@ -9487,6 +10155,46 @@ const DATA = [
       }
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — AINE: ibuprofeno 600 mg por 5 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "IBUPROFENO 300 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 8/8H, APÓS AS REFEIÇÕES, POR 05 DIAS. NÃO USAR SE SUSPEITA DE DENGUE, DOENÇA RENAL, ÚLCERA OU GESTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Alergia não grave à penicilina: cefuroxima por 10 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFUROXIMA 250 MG",
+      "20 COMPRIMIDOS",
+      "SE ALERGIA NÃO GRAVE (SEM ANAFILAXIA) À PENICILINA: TOMAR 01 COMPRIMIDO DE 12/12H, APÓS AS REFEIÇÕES, POR 10 DIAS. HORÁRIO SUGERIDO: 08:00 / 20:00",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Alergia não anafilática: cefadroxila 1x/dia por 10 dias",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFADROXILA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "SE ALERGIA NÃO ANAFILÁTICA À PENICILINA: DAR 30 MG/KG (0,6 ML/KG) VIA ORAL 01 VEZ AO DIA POR 10 DIAS (MÁXIMO 1 G POR DIA = 20 ML)",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -9572,6 +10280,26 @@ const DATA = [
      "ELEVAR A CABECEIRA DA CAMA (15 CM): USAR UM APOIO SOB OS PÉS DA CAMA OU TRAVESSEIROS",
      "EVITAR DEITAR-SE NAS DUAS HORAS APÓS AS REFEIÇÕES",
      "DIVIDIR AS REFEIÇÕES EM: CAFÉ DA MANHÃ – LANCHE DA MANHÃ – ALMOÇO – LANCHE DA TARDE – JANTAR"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Outro IBP para as 08 semanas — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "LANSOPRAZOL 30 MG",
+      "56 CÁPSULAS",
+      "TOMAR 01 CÁPSULA PELA MANHÃ, EM JEJUM, 30 MINUTOS ANTES DO CAFÉ DA MANHÃ, POR 08 SEMANAS",
+      "USO ORAL"
+     ],
+     [
+      "ESOMEPRAZOL 40 MG",
+      "28 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO PELA MANHÃ, EM JEJUM, 30 MINUTOS ANTES DO CAFÉ DA MANHÃ, POR 04 SEMANAS; SE ESOFAGITE AINDA NÃO CICATRIZADA, MAIS 04 SEMANAS",
+      "USO ORAL"
+     ]
     ]
    }
   ]
@@ -9679,6 +10407,33 @@ const DATA = [
       "PARACETAMOL 750 MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — AINE alternativo na crise: indometacina 50 mg",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "INDOMETACINA 50 MG",
+      "15 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H, APÓS AS REFEIÇÕES, POR 05 DIAS. EVITAR EM IDOSOS E SE DOENÇA RENAL, ÚLCERA OU INSUFICIÊNCIA CARDÍACA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Crise no PS: diclofenaco 75 mg IM em dose única",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DICLOFENACO SÓDICO 25 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "SE SEM CONTRAINDICAÇÃO A AINE: ADMINISTRAR 75 MG (03 ML) IM PROFUNDO NO GLÚTEO, EM DOSE ÚNICA. NÃO INICIAR OUTRO AINE NAS 12 HORAS SEGUINTES",
+      "USO INTRAMUSCULAR"
      ]
     ]
    }
@@ -10422,6 +11177,66 @@ const DATA = [
       }
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Ácido fusídico creme (alternativa à mupirocina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ÁCIDO FUSÍDICO 20 MG/G (2%) CREME",
+      "01 BISNAGA",
+      "APLICAR NAS LESÕES 03 VEZES AO DIA POR 05 DIAS, APÓS LAVAR E REMOVER AS CROSTAS",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Ácido fusídico creme (alternativa à mupirocina)",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ÁCIDO FUSÍDICO 20 MG/G (2%) CREME",
+      "01 BISNAGA",
+      "APLICAR NAS LESÕES 03 VEZES AO DIA POR 05 DIAS, APÓS LAVAR E REMOVER AS CROSTAS",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Alergia a betalactâmico ou suspeita de MRSA — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CLINDAMICINA 300 MG",
+      "21 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00",
+      "USO ORAL"
+     ],
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 800/160 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Amoxicilina-clavulanato (falha da cefalexina)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA + CLAVULANATO DE POTÁSSIO 875 MG + 125 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H, NO INÍCIO DA REFEIÇÃO, POR 07 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -10689,6 +11504,52 @@ const DATA = [
        "un": "ML",
        "max": 160
       }
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Cistite na gestante (sempre com urocultura) — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CEFALEXINA 500 MG",
+      "28 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 6/6H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 12:00 / 18:00 / 00:00",
+      "USO ORAL"
+     ],
+     [
+      "AMOXICILINA 500 MG",
+      "21 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 07 DIAS HORÁRIO SUGERIDO: 06:00 / 14:00 / 22:00. PREFERIR QUANDO A UROCULTURA MOSTRAR SENSIBILIDADE",
+      "USO ORAL"
+     ],
+     [
+      "FOSFOMICINA GRANULADO 3 G",
+      "01 ENVELOPE",
+      "DILUIR O ENVELOPE EM UM COPO D'ÁGUA E INGERIR EM DOSE ÚNICA, À NOITE, COM A BEXIGA VAZIA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Cistite no homem: 07 dias (colher urocultura) — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 800/160 MG",
+      "14 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 07 DIAS HORÁRIO SUGERIDO: 08:00 / 20:00",
+      "USO ORAL"
+     ],
+     [
+      "NITROFURANTOÍNA 100 MG",
+      "28 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 6/6H POR 07 DIAS, JUNTO COM ALIMENTO. NÃO USAR SE FEBRE OU SUSPEITA DE PROSTATITE",
+      "USO ORAL"
      ]
     ]
    }
@@ -11100,6 +11961,66 @@ const DATA = [
       "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — AINE contraindicado, não tolerado ou ineficaz: paracetamol + codeína por até 03 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "PARACETAMOL 500 MG + CODEÍNA 30 MG",
+      "12 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO SE DOR INTENSA, PODENDO REPETIR DE 6/6H, POR NO MÁXIMO 03 DIAS. NÃO TOMAR JUNTO COM O PARACETAMOL (USAR NO LUGAR DELE)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — AINE de tomada única diária: meloxicam 15 mg",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "MELOXICAM 15 MG",
+      "05 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO 01 VEZ AO DIA, APÓS O ALMOÇO, POR 05 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor intensa no PS: dipirona + diclofenaco IM em dose única (sem corticoide)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 01 G (02 ML) IM PROFUNDO NO GLÚTEO, EM DOSE ÚNICA (NÃO MISTURAR NA MESMA SERINGA DO DICLOFENACO)",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "DICLOFENACO SÓDICO 25 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "SE SEM CONTRAINDICAÇÃO A AINE: ADMINISTRAR 75 MG (03 ML) IM PROFUNDO NO GLÚTEO, EM DOSE ÚNICA. NÃO INICIAR OUTRO AINE NAS 12 HORAS SEGUINTES",
+      "USO INTRAMUSCULAR"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor intensa refratária ou AINE contraindicado no PS: tramadol SC",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "TRAMADOL 50 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 50 A 100 MG (01 A 02 ML) SC EM DOSE ÚNICA NO PS, SE DOR INTENSA SEM RESPOSTA OU COM CONTRAINDICAÇÃO A AINE (MÁXIMO 400 MG/DIA; ACIMA DE 75 ANOS, 300 MG/DIA)",
+      "USO SUBCUTÂNEO"
+     ]
+    ]
    }
   ]
  },
@@ -11150,6 +12071,19 @@ const DATA = [
       "DIPIRONA 500 MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Simeticona em gotas",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "SIMETICONA 75 MG/ML EMULSÃO ORAL (GOTAS)",
+      "01 FRASCO",
+      "TOMAR 16 GOTAS (CERCA DE 80 MG) APÓS AS REFEIÇÕES E AO DEITAR SE GASES, ATÉ 04 VEZES AO DIA",
+      "USO ORAL"
      ]
     ]
    }
@@ -11204,6 +12138,59 @@ const DATA = [
       "NITRATO DE OXICONAZOL 10MG/ML",
       "01 FRASCO",
       "APLICAR 01 CAMADA SOB A UNHA PELA MANHÃ, COM O AUXÍLIO DE COTONETE OU UM CHUMAÇO DE ALGODÃO, PELA MANHÃ, APÓS LAVAR COM ÁGUA E SABÃO DURANTE O BANHO, POR 01 A 02 SEMANAS",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Itraconazol oral (contínuo ou pulsos) — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "ITRACONAZOL 100 MG",
+      "168 CÁPSULAS",
+      "TOMAR 02 CÁPSULAS 01 VEZ AO DIA, APÓS A REFEIÇÃO, POR 12 SEMANAS (UNHAS DOS PÉS); SE APENAS UNHAS DAS MÃOS, 06 SEMANAS",
+      "USO ORAL"
+     ],
+     [
+      "ITRACONAZOL 100 MG",
+      "84 CÁPSULAS",
+      "PULSOTERAPIA: TOMAR 02 CÁPSULAS DE 12/12H, APÓS A REFEIÇÃO, DURANTE 07 DIAS POR MÊS — 02 PULSOS (UNHAS DAS MÃOS) OU 03 PULSOS (UNHAS DOS PÉS)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Fluconazol semanal (intolerância a terbinafina e itraconazol)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "FLUCONAZOL 150 MG",
+      "26 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO 01 VEZ POR SEMANA, SEMPRE NO MESMO DIA, POR 06 MESES (SE APENAS UNHAS DAS MÃOS, 03 MESES)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Tópico alternativo à amorolfina — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "CICLOPIROX 8% ESMALTE",
+      "01 FRASCO",
+      "APLICAR NAS UNHAS AFETADAS EM DIAS ALTERNADOS NO 1º MÊS, 02 VEZES POR SEMANA NO 2º MÊS E 01 VEZ POR SEMANA A PARTIR DO 3º MÊS, POR 06 MESES (MÃOS) A 12 MESES (PÉS)",
+      "USO TÓPICO"
+     ],
+     [
+      "TIOCONAZOL 28% SOLUÇÃO",
+      "01 FRASCO",
+      "APLICAR NAS UNHAS AFETADAS E AO REDOR 02 VEZES AO DIA POR 06 A 12 MESES",
       "USO TÓPICO"
      ]
     ]
@@ -11436,6 +12423,70 @@ const DATA = [
        "un": "GOTAS",
        "max": 750
       }
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Profilaxia curta: amoxicilina-clavulanato 500/125 mg por 3 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG + CLAVULANATO 125 MG",
+      "09 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, NO INÍCIO DAS REFEIÇÕES, POR 03 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Mordedura já infectada: amoxicilina-clavulanato por 7 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG + CLAVULANATO 125 MG",
+      "21 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, NO INÍCIO DAS REFEIÇÕES, POR 07 DIAS. REAVALIAR EM 48H; PROLONGAR SE A INFECÇÃO NÃO RESOLVER",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Alergia à penicilina: clindamicina + ciprofloxacino",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CLINDAMICINA 300 MG",
+      "15 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 05 DIAS (PROFILAXIA: 03 A 05 DIAS; INFECÇÃO: 07 DIAS)",
+      "USO ORAL"
+     ],
+     [
+      "CIPROFLOXACINO 500 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS, JUNTO COM A CLINDAMICINA. NÃO USAR NA GESTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Alergia à penicilina: clindamicina + sulfametoxazol-trimetoprima",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CLINDAMICINA 300 MG",
+      "15 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 8/8H POR 05 DIAS (PROFILAXIA: 03 A 05 DIAS; INFECÇÃO: 07 DIAS)",
+      "USO ORAL"
+     ],
+     [
+      "SULFAMETOXAZOL + TRIMETOPRIMA 800 MG + 160 MG",
+      "10 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 05 DIAS, JUNTO COM A CLINDAMICINA. EVITAR NO 1º E NO 3º TRIMESTRE DA GESTAÇÃO",
+      "USO ORAL"
      ]
     ]
    }
@@ -11883,6 +12934,40 @@ const DATA = [
       }
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Antiemético alternativo por poucos dias — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "DOMPERIDONA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO 15 A 30 MINUTOS ANTES DAS REFEIÇÕES SE NÁUSEAS OU VÔMITOS, ATÉ 03 VEZES AO DIA (MÁXIMO 30 MG/DIA), POR NO MÁXIMO 07 DIAS. NÃO USAR SE DOENÇA DO CORAÇÃO OU USO DE REMÉDIOS QUE ALTERAM O RITMO CARDÍACO",
+      "USO ORAL"
+     ],
+     [
+      "BROMOPRIDA 10 MG",
+      "01 CAIXA",
+      "TOMAR 01 CÁPSULA SE NÁUSEAS OU VÔMITOS, ATÉ 03 VEZES AO DIA, POR NO MÁXIMO 05 DIAS. PODE CAUSAR INQUIETAÇÃO OU MOVIMENTOS INVOLUNTÁRIOS, COMO A METOCLOPRAMIDA: SE ACONTECER, PARAR E PROCURAR ATENDIMENTO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dimenidrinato + piridoxina EV",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIMENIDRINATO 3 MG/ML + PIRIDOXINA 5 MG/ML + GLICOSE + FRUTOSE SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 10 ML",
+      "ADMINISTRAR 01 AMPOLA (30 MG DE DIMENIDRINATO) EV, DILUÍDA EM 10 ML DE SF 0,9%, LENTAMENTE (NO MÍNIMO 02 MINUTOS); PODE REPETIR DE 4/4H A 6/6H SE NECESSÁRIO. CONTRAINDICADO NA INTOLERÂNCIA HEREDITÁRIA À FRUTOSE, NA PORFIRIA E EM MENORES DE 2 ANOS. CAUSA SONOLÊNCIA",
+      "USO ENDOVENOSO"
+     ]
+    ]
    }
   ]
  },
@@ -12017,6 +13102,40 @@ const DATA = [
        "un": "ML",
        "max": 1000
       }
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Profilaxia de endocardite antes de procedimento odontológico (cardiopatia de alto risco) — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "AMOXICILINA 500 MG",
+      "04 CÁPSULAS",
+      "TOMAR 04 CÁPSULAS (2 G) EM DOSE ÚNICA, 30 A 60 MINUTOS ANTES DO PROCEDIMENTO ODONTOLÓGICO",
+      "USO ORAL"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "01 COMPRIMIDO",
+      "ALERGIA À PENICILINA: TOMAR 01 COMPRIMIDO EM DOSE ÚNICA, 30 A 60 MINUTOS ANTES DO PROCEDIMENTO ODONTOLÓGICO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Profilaxia de endocardite antes de procedimento odontológico (criança com cardiopatia de alto risco)",
+    "mode": "ped",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AMOXICILINA 250 MG/5 ML SUSPENSÃO ORAL",
+      "01 FRASCO",
+      "DAR 50 MG/KG (MÁXIMO 2 G) VIA ORAL EM DOSE ÚNICA, 30 A 60 MINUTOS ANTES DO PROCEDIMENTO ODONTOLÓGICO",
+      "USO ORAL"
      ]
     ]
    }
@@ -12836,6 +13955,19 @@ const DATA = [
     "orient": [
      "NÃO USAR EM RECÉM-NASCIDOS (HIPERBILIRRUBINEMIA E PRECIPITAÇÃO COM CÁLCIO); A FORMULAÇÃO COM LIDOCAÍNA É EXCLUSIVAMENTE INTRAMUSCULAR"
     ]
+   },
+   {
+    "label": "Do material do Drive — Anafilaxia à penicilina: azitromicina por 5 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "AZITROMICINA 500 MG",
+      "05 COMPRIMIDOS",
+      "SE ALERGIA GRAVE (ANAFILAXIA) À PENICILINA: TOMAR 01 COMPRIMIDO AO DIA, NO MESMO HORÁRIO, POR 05 DIAS",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -13430,6 +14562,39 @@ const DATA = [
       "USO ORAL"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Giardíase: alternativas ao secnidazol — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "TINIDAZOL 500 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR OS 04 COMPRIMIDOS (2 G) EM DOSE ÚNICA, DURANTE OU APÓS UMA REFEIÇÃO. NÃO INGERIR BEBIDA ALCOÓLICA DURANTE O TRATAMENTO E ATÉ 03 DIAS DEPOIS",
+      "USO ORAL"
+     ],
+     [
+      "METRONIDAZOL 250 MG",
+      "21 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H POR 07 DIAS (GIARDÍASE). NÃO INGERIR BEBIDA ALCOÓLICA DURANTE O TRATAMENTO E ATÉ 02 DIAS DEPOIS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Mebendazol comprimido (alternativa ao albendazol)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "MEBENDAZOL 100 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS SEGUIDOS. OXIURÍASE: 01 COMPRIMIDO EM DOSE ÚNICA E REPETIR APÓS 02 SEMANAS",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -13767,6 +14932,19 @@ const DATA = [
      "AVALIAR PUNÇÃO LOMBAR (RISCO DE MENINGITE); SE MENINGITE, USAR DOSES MENINGÍTICAS E CONDUZIR COM A NEONATOLOGIA",
      "AJUSTAR CONFORME CULTURAS E FUNÇÃO RENAL; DOSAR NÍVEL SÉRICO DA GENTAMICINA SE USO > 48H OU DISFUNÇÃO RENAL"
     ]
+   },
+   {
+    "label": "Do material do Drive — Dose inicial parenteral se alergia grave a betalactâmico: gentamicina",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "SULFATO DE GENTAMICINA 40 MG/ML SOLUÇÃO INJETÁVEL (AMPOLA 2 ML)",
+      "CONFORME PESO (AMPOLAS DE 80 MG)",
+      "ADMINISTRAR 5 MG/KG EV, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS, EM DOSE ÚNICA ANTES DA ALTA, SEGUIDA DA QUINOLONA ORAL (USAR PESO AJUSTADO SE OBESO). EVITAR SE DOENÇA RENAL, IDOSO OU GESTANTE",
+      "USO ENDOVENOSO"
+     ]
+    ]
    }
   ]
  },
@@ -13824,6 +15002,26 @@ const DATA = [
       "FENTICONAZOL SPRAY 20MG/ML",
       "01 FRASCO",
       "APLICAR NAS MANCHAS À NOITE, ANTES DE DORMIR, POR 03 SEMANAS SEGUIDAS",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Tópico alternativo (isoconazol ou ciclopirox) — escolha 1",
+    "sec": "offlabel",
+    "draft": true,
+    "menu": true,
+    "items": [
+     [
+      "NITRATO DE ISOCONAZOL 10 MG/G (1%) CREME",
+      "01 BISNAGA",
+      "APLICAR NAS MANCHAS 01 VEZ AO DIA POR 02 A 03 SEMANAS",
+      "USO TÓPICO"
+     ],
+     [
+      "CICLOPIROX OLAMINA 10 MG/G (1%) CREME",
+      "01 BISNAGA",
+      "APLICAR NAS MANCHAS 02 VEZES AO DIA POR 02 SEMANAS",
       "USO TÓPICO"
      ]
     ]
@@ -14483,6 +15681,20 @@ const DATA = [
     "orient": [
      "DERRAME PLEURAL: ULTRASSOM E AVALIAÇÃO DA CIRURGIA PEDIÁTRICA PARA DRENAGEM SE EMPIEMA OU DERRAME MODERADO/GRANDE",
      "SEM RESPOSTA EM 48 A 72H OU SUSPEITA DE MRSA COMUNITÁRIO: TROCAR OXACILINA POR VANCOMICINA OU CLINDAMICINA CONFORME PROTOCOLO"
+    ]
+   },
+   {
+    "label": "Do material do Drive — Risco de Pseudomonas: cefepima EV (manter azitromicina)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFEPIMA 1 G PÓ PARA SOLUÇÃO INJETÁVEL",
+      "02 FRASCOS-AMPOLA",
+      "ADMINISTRAR 2 G EV DE 8/8H, DILUÍDO EM 100 ML DE SF 0,9%, EM 30 MINUTOS (AJUSTAR À FUNÇÃO RENAL); MANTER AZITROMICINA. COLHER HEMOCULTURAS E ESCARRO ANTES E DESCALONAR CONFORME CULTURAS EM 48-72H",
+      "USO ENDOVENOSO"
+     ]
     ]
    }
   ]
@@ -15148,6 +16360,32 @@ const DATA = [
      "TRATAR O DESCONFORTO, NÃO O NÚMERO DO TERMÔMETRO; NÃO ALTERNAR ANTITÉRMICOS DE ROTINA",
      "NÃO USAR IBUPROFENO SE SUSPEITA DE DENGUE, DESIDRATAÇÃO OU VÔMITOS. CONFERIR A CONCENTRAÇÃO DO FRASCO ANTES DE PINGAR"
     ]
+   },
+   {
+    "label": "Do material do Drive — AINE se dor ou mal-estar: ibuprofeno 600 mg por até 3 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "IBUPROFENO 600 MG",
+      "01 CAIXA",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, SE DOR OU MAL-ESTAR, POR ATÉ 03 DIAS. NÃO USAR SE SUSPEITA DE DENGUE, DOENÇA RENAL, ÚLCERA OU GESTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Nariz muito entupido (adulto): oximetazolina por no máximo 3 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "OXIMETAZOLINA 0,05% SOLUÇÃO NASAL",
+      "01 FRASCO",
+      "APLICAR 02 A 03 GOTAS (OU JATOS) EM CADA NARINA DE 12/12H SE NARIZ MUITO ENTUPIDO, POR NO MÁXIMO 03 DIAS. NÃO USAR SE HIPERTENSÃO NÃO CONTROLADA, GLAUCOMA DE ÂNGULO FECHADO OU USO DE ANTIDEPRESSIVO IMAO; NÃO USAR EM CRIANÇAS",
+      "USO INTRANASAL"
+     ]
+    ]
    }
   ]
  },
@@ -15363,6 +16601,19 @@ const DATA = [
       "PROPIONATO DE FLUTICASONA 50 MCG/JATO SUSPENSÃO NASAL (SPRAY)",
       "01 FRASCO",
       "4 A 11 ANOS: APLICAR 01 JATO EM CADA NARINA 01 VEZ AO DIA. 12 ANOS OU MAIS: 02 JATOS EM CADA NARINA 01 VEZ AO DIA. USO DIÁRIO POR 90 DIAS, DEPOIS REAVALIAR",
+      "USO INTRANASAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Corticoide nasal alternativo: budesonida",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "BUDESONIDA 50 MCG/DOSE SUSPENSÃO NASAL (SPRAY)",
+      "01 FRASCO",
+      "APLICAR 02 JATOS EM CADA NARINA 01 VEZ AO DIA, PELA MANHÃ, TODOS OS DIAS, MESMO SEM SINTOMAS; APÓS O CONTROLE, PODE REDUZIR PARA 01 JATO EM CADA NARINA AO DIA. REAVALIAR EM 90 DIAS",
       "USO INTRANASAL"
      ]
     ]
@@ -15829,6 +17080,19 @@ const DATA = [
      "COMPLICAÇÃO INTRACRANIANA, SEPSE OU SUSPEITA DE S. AUREUS RESISTENTE: ASSOCIAR VANCOMICINA 15 MG/KG/DOSE EV DE 6/6H (MÁXIMO 1 G/DOSE)",
      "CELULITE PRÉ-SEPTAL LEVE EM CRIANÇA EM BOM ESTADO PODE SER TRATADA COM AMOXICILINA + CLAVULANATO VO E REAVALIAÇÃO EM 24-48H"
     ]
+   },
+   {
+    "label": "Do material do Drive — Alergia não grave à penicilina: cefuroxima por 7 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFUROXIMA 500 MG",
+      "14 COMPRIMIDOS",
+      "SE ALERGIA NÃO GRAVE (SEM ANAFILAXIA) À PENICILINA: TOMAR 01 COMPRIMIDO DE 12/12H, APÓS AS REFEIÇÕES, POR 07 DIAS. HORÁRIO SUGERIDO: 08:00 / 20:00",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -15931,6 +17195,33 @@ const DATA = [
       "IBUPROFENO 300 MG",
       "01 CAIXA",
       "TOMAR 02 COMPRIMIDOS DE 6/6H POR 05 DIAS"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — AINE alternativo: ácido mefenâmico",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ÁCIDO MEFENÂMICO 500 MG",
+      "15 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 8/8H, APÓS AS REFEIÇÕES, DURANTE O SANGRAMENTO, POR ATÉ 05 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Sangramento agudo intenso no PS: ácido tranexâmico EV",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ÁCIDO TRANEXÂMICO 50 MG/ML SOLUÇÃO INJETÁVEL (AMPOLA 5 ML = 250 MG)",
+      "03 AMPOLAS POR DOSE",
+      "ADMINISTRAR 10 MG/KG (MÁXIMO 600 MG = 12 ML) EV LENTO, NO MÁXIMO 1 ML/MIN, OU DILUÍDO EM 100 ML DE SF 0,9% EM 15 A 20 MINUTOS, DE 8/8H ENQUANTO O SANGRAMENTO FOR INTENSO; PASSAR PARA A VIA ORAL ASSIM QUE POSSÍVEL (ATÉ 5 DIAS NO TOTAL). NÃO USAR SE TROMBOSE ATIVA OU PRÉVIA",
+      "USO ENDOVENOSO"
      ]
     ]
    }
@@ -16565,6 +17856,19 @@ const DATA = [
      "TGO/TGP E HEMOGRAMA ANTES SE HEPATOPATIA, USO DE OUTROS MEDICAMENTOS HEPATOTÓXICOS OU TRATAMENTO > 4 SEMANAS",
      "SUSPENDER E RETORNAR SE ICTERÍCIA (PELE OU OLHOS AMARELADOS), URINA ESCURA, DOR ABDOMINAL, VÔMITOS PERSISTENTES, MANCHAS OU BOLHAS NA PELE OU PERDA DO PALADAR"
     ]
+   },
+   {
+    "label": "Do material do Drive — Fluconazol semanal (quando a terbinafina oral não pode ser usada)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "FLUCONAZOL 150 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO 01 VEZ POR SEMANA POR 02 A 04 SEMANAS, ATÉ A CURA DAS LESÕES",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -16769,6 +18073,26 @@ const DATA = [
       "NAPROXENO SÓDICO 500 MG",
       "10 COMPRIMIDOS",
       "TOMAR UM COMPRIMIDO SE DOR, PODENDO REPETIR DE 12/12H POR ATÉ 05 DIAS SEGUIDOS"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Dor intensa no PS: dipirona + diclofenaco IM em dose única (sem corticoide)",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIPIRONA 500 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "ADMINISTRAR 01 G (02 ML) IM PROFUNDO NO GLÚTEO, EM DOSE ÚNICA (NÃO MISTURAR NA MESMA SERINGA DO DICLOFENACO)",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "DICLOFENACO SÓDICO 25 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 3 ML",
+      "SE SEM CONTRAINDICAÇÃO A AINE: ADMINISTRAR 75 MG (03 ML) IM PROFUNDO NO GLÚTEO, EM DOSE ÚNICA. NÃO INICIAR OUTRO AINE NAS 12 HORAS SEGUINTES",
+      "USO INTRAMUSCULAR"
      ]
     ]
    }
@@ -17555,7 +18879,8 @@ const DATA = [
      [
       "NISTATINA CREME VAGINAL 25.000 UI/G",
       "01 BISNAGA",
-      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 14 DIAS"
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 14 DIAS",
+      "USO TÓPICO"
      ],
      [
       "FLUCONAZOL 150 MG",
@@ -17609,7 +18934,8 @@ const DATA = [
      [
       "METRONIDAZOL GELEIA VAGINAL 100MG/G",
       "01 BISNAGA",
-      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 14 DIAS"
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 14 DIAS",
+      "USO TÓPICO"
      ]
     ],
     "orient": [
@@ -17661,7 +18987,8 @@ const DATA = [
      [
       "METRONIDAZOL GELEIA VAGINAL 100MG/G",
       "01 BISNAGA",
-      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 07 NOITES"
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 07 NOITES",
+      "USO TÓPICO"
      ]
     ],
     "orient": [
@@ -17876,6 +19203,154 @@ const DATA = [
       "TOMAR 01 COMPRIMIDO SE NÁUSEAS OU VÔMITOS, PODENDO REPETIR DE 8/8H"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Cervicite (gonorreia/clamídia): ceftriaxona + azitromicina",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFTRIAXONA 500 MG",
+      "01 AMPOLA",
+      "APLICAR EM GLÚTEO MÉDIO, DOSE ÚNICA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "02 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS EM DOSE ÚNICA",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Vaginose bacteriana, alternativa: clindamicina",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CLINDAMICINA 300 MG",
+      "14 CÁPSULAS",
+      "TOMAR 01 CÁPSULA DE 12/12H POR 07 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Vaginose bacteriana: metronidazol geleia por 5 noites",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "METRONIDAZOL GELEIA VAGINAL 100 MG/G",
+      "01 BISNAGA",
+      "APLICAR O CONTEÚDO DE UM APLICADOR CHEIO DENTRO DA VAGINA, À NOITE AO DEITAR, POR 05 NOITES",
+      "USO TÓPICO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Candidíase, alternativa oral: itraconazol",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ITRACONAZOL 100 MG",
+      "04 CÁPSULAS",
+      "TOMAR 02 CÁPSULAS DE 12/12H POR 01 DIA (TOTAL DE 400 MG). NÃO USAR NA GESTAÇÃO OU AMAMENTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Herpes genital, 1º episódio: aciclovir 400 mg 8/8h",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ACICLOVIR 200 MG",
+      "60 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS (400 MG) DE 8/8H POR 10 DIAS (PRIMEIRO EPISÓDIO; MÍNIMO DE 07 DIAS)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Herpes genital, recorrência: aciclovir por 5 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ACICLOVIR 200 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS (400 MG) DE 8/8H POR 05 DIAS, COMEÇANDO AOS PRIMEIROS SINTOMAS (FORMIGAMENTO OU ARDOR NO LOCAL)",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Herpes genital, supressão (6 ou mais recorrências/ano)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "ACICLOVIR 200 MG",
+      "120 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS (400 MG) DE 12/12H, TODOS OS DIAS (RECEITA PARA 30 DIAS); MANTER POR ATÉ 06 MESES COM REAVALIAÇÃO NA UBS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Sífilis recente em não gestante alérgica à penicilina: doxiciclina 15 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DOXICICLINA 100 MG",
+      "30 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 15 DIAS, COM UM COPO DE ÁGUA, SEM DEITAR NOS 30 MINUTOS SEGUINTES. NÃO USAR NA GESTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — DIP, alternativa à doxiciclina: ceftriaxona + azitromicina semanal + metronidazol",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CEFTRIAXONA 500 MG",
+      "01 AMPOLA",
+      "APLICAR EM GLÚTEO MÉDIO, DOSE ÚNICA",
+      "USO INTRAMUSCULAR"
+     ],
+     [
+      "AZITROMICINA 500 MG",
+      "04 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS (1 G) 01 VEZ POR SEMANA, POR 02 SEMANAS",
+      "USO ORAL"
+     ],
+     [
+      "METRONIDAZOL 250 MG",
+      "56 COMPRIMIDOS",
+      "TOMAR 02 COMPRIMIDOS DE 12/12H POR 14 DIAS",
+      "USO ORAL"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Cancroide, alternativa: ciprofloxacino 3 dias",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "CIPROFLOXACINO 500 MG",
+      "06 COMPRIMIDOS",
+      "TOMAR 01 COMPRIMIDO DE 12/12H POR 03 DIAS. NÃO USAR NA GESTAÇÃO",
+      "USO ORAL"
+     ]
+    ]
    }
   ]
  },
@@ -18017,6 +19492,40 @@ const DATA = [
       "PARACETAMOL 750 MG",
       "01 CAIXA",
       "TOMAR 01 COMPRIMIDO SE DOR OU FEBRE, PODENDO REPETIR DE 6/6H. INTERCALAR COM DIPIRONA, SE NECESSÁRIO."
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Crise de vertigem com vômitos no PS: dimenidrinato EV ± ondansetrona EV",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "DIMENIDRINATO 3 MG/ML + PIRIDOXINA 5 MG/ML SOLUÇÃO INJETÁVEL (AMPOLA 10 ML, USO EXCLUSIVO EV)",
+      "01 AMPOLA",
+      "ADMINISTRAR 01 AMPOLA (30 MG DE DIMENIDRINATO) EV LENTO, EM NO MÍNIMO 2 MINUTOS, DILUÍDA EM 10 ML DE SF 0,9% (OU EM 100 ML DE SF 0,9% EM 15 MINUTOS); PODE REPETIR A CADA 4 A 6 H SE NECESSÁRIO. CAUSA SONOLÊNCIA. CONTRAINDICADO EM INTOLERÂNCIA HEREDITÁRIA À FRUTOSE E PORFIRIA",
+      "USO ENDOVENOSO"
+     ],
+     [
+      "ONDANSETRONA 2 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 4 ML",
+      "SE VÔMITOS PERSISTENTES: ADMINISTRAR 4 A 8 MG (2 A 4 ML) EV, DILUÍDO EM 100 ML DE SF 0,9%, EM 15 MINUTOS; PODE REPETIR ATÉ DE 8/8H. CAUTELA SE QT LONGO",
+      "USO ENDOVENOSO"
+     ]
+    ]
+   },
+   {
+    "label": "Do material do Drive — Vertigem intensa refratária: prometazina IM",
+    "mode": "internacao",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "PROMETAZINA 25 MG/ML SOLUÇÃO INJETÁVEL",
+      "01 AMPOLA 2 ML",
+      "SE VERTIGEM INTENSA SEM MELHORA COM O DIMENIDRINATO: APLICAR 25 A 50 MG (1 A 2 ML) IM PROFUNDO, DOSE ÚNICA. CAUSA SONOLÊNCIA E HIPOTENSÃO — EVITAR EM IDOSOS E NÃO ASSOCIAR A OUTRO SEDATIVO. NÃO APLICAR EV NEM SC",
+      "USO INTRAMUSCULAR"
      ]
     ]
    }
@@ -18267,86 +19776,99 @@ const DATA = [
       "USO ORAL"
      ]
     ]
+   },
+   {
+    "label": "Do material do Drive — Repelente (liberado na gestação)",
+    "sec": "offlabel",
+    "draft": true,
+    "items": [
+     [
+      "REPELENTE TÓPICO À BASE DE ICARIDINA, DEET OU IR3535",
+      "01 FRASCO",
+      "APLICAR NA PELE EXPOSTA E REAPLICAR NO INTERVALO INDICADO NO RÓTULO (MAIS LONGO NA ICARIDINA, MAIS CURTO NO IR3535) E APÓS BANHO OU SUOR INTENSO; APLICAR DEPOIS DO PROTETOR SOLAR. PODE SER USADO NA GESTAÇÃO",
+      "USO TÓPICO"
+     ]
+    ]
    }
   ]
  }
 ];
 
 const KW = {
- "analgesia": "analgesia / dor ibuprofeno · diclofenaco · nimesulida dor febre trauma butilbrometo cetoprofeno codeína diclofenaco dipirona escopolamina ibuprofeno metoclopramida nimesulida paracetamol tramadol morfina naloxona ondansetrona analgesia endovenosa dor intensa opioide antidoto opioide antiemetico liófilo fentanil",
- "abstinencia": "abstinência alcoólica tiamina amitriptilina carbamazepina citalopram diazepam fluoxetina tiamina abstinencia abstinência alcoólica alcool etilismo wernicke benzodiazepinico ciwa haloperidol agitacao delirium tremens magnesio glicose hidratacao lorazepam sulfato magnésio fenobarbital sindrome de abstinencia alcoolica",
+ "analgesia": "analgesia / dor ibuprofeno · diclofenaco · nimesulida dor febre trauma butilbrometo cetoprofeno codeína diclofenaco dipirona escopolamina ibuprofeno metoclopramida nimesulida paracetamol tramadol morfina naloxona ondansetrona analgesia endovenosa dor intensa opioide antidoto opioide antiemetico liófilo fentanil tenoxicam",
+ "abstinencia": "abstinência alcoólica tiamina amitriptilina carbamazepina citalopram diazepam fluoxetina tiamina abstinencia abstinência alcoólica alcool etilismo wernicke benzodiazepinico ciwa haloperidol agitacao delirium tremens magnesio glicose hidratacao lorazepam sulfato magnésio fenobarbital sindrome de abstinencia alcoolica ácido fólico",
  "abuso_sexual": "abuso sexual — profilaxia penicilina azitromicina benzatina ceftriaxona levonorgestrel metronidazol penicilina lamivudina zidovudina dolutegravir lopinavir ritonavir pep hiv tenofovir imunoglobulina hepatite menarca gonorreia clamidia tricomoniase sifilis ist pediatrico crianca violencia tenofovir/lamivudina dispersível vacina humana anti violencia sexual estupro",
- "aftas": "aftas orais (estomatite) triancinolona · gingilone acetonida gingilone triancinolona tópica orobase digluconato clorexidina bucal benzidamina colutório afta estomatite aftosa",
+ "aftas": "aftas orais (estomatite) triancinolona · gingilone acetonida gingilone triancinolona tópica orobase digluconato clorexidina bucal benzidamina colutório afta estomatite aftosa tartarato bismuto",
  "alergia": "alergia / prurido hidroxizina · loratadina · cetirizina urticaria coceira prurido cetirizina fexofenadina hidroxizina levocetirizina loratadina prednisona pseudoefedrina adrenalina epinefrina anafilaxia anafilatico hidrocortisona prometazina famotidina difenidramina dexclorfeniramina prednisolona angioedema choque cloreto sódio oxigênio máscara reinalante salbutamol spray aerossol glucagon liófilo desloratadina dicloridrato",
  "anafilaxia": "anafilaxia prednisona hidroxizina prednisona ranitidina anafilatico anafilática reação alérgica grave adrenalina epinefrina salbutamol hidrocortisona metilprednisolona prometazina famotidina choque broncoespasmo urticaria angioedema ringer cristaloide soro fisiologico oxigenio autoinjetor loratadina oxigênio suplementar cloreto sódio spray aerossol glucagon liófilo difenidramina prednisolona choque anafilatico",
  "anticoncepcao": "anticoncepção de emergência levonorgestrel butilbrometo dimenidrinato escopolamina levonorgestrel piridoxina pilula do dia seguinte contracepcao de emergencia",
- "asma": "asma prednisona · salbutamol · beclometasona broncoespasmo falta de ar chiado sibilo respiratoria aerossol beclometasona budesonida formoterol prednisona salbutamol spray nebulizacao ipratropio brometo hidrocortisona metilprednisolona prednisolona sulfato magnesio oxigenio crise exacerbacao internacao oxigenoterapia budesonida/formoterol oxigênio suplementar nebulização ipratrópio magnésio cloreto sódio crise asmatica asmatico bronquite asmatica",
+ "asma": "asma prednisona · salbutamol · beclometasona broncoespasmo falta de ar chiado sibilo respiratoria aerossol beclometasona budesonida formoterol prednisona salbutamol spray nebulizacao ipratropio brometo hidrocortisona metilprednisolona prednisolona sulfato magnesio oxigenio crise exacerbacao internacao oxigenoterapia budesonida/formoterol oxigênio suplementar nebulização ipratrópio magnésio cloreto sódio crise asmatica asmatico bronquite asmatica bromidrato fenoterol",
  "bursites": "bursites cafeína · paracetamol · carisoprodol alginac betaciclodextrina cafeína carisoprodol cetorolaco ciclobenzaprina diclofenaco dipirona nimesulida orfenadrina paracetamol retard trometamina ibuprofeno dietilamônio",
  "calmantes": "calmantes fitoterápicos passíflora incarnata passíflora valeriana officinalis",
- "cefaleia": "cefaleia dipirona dor de cabeca cabeça dipirona metoclopramida naproxeno sódico cetoprofeno dexametasona clorpromazina sumatriptano ondansetrona ibuprofeno triptano enxaqueca cocktail parenteral internacao pediatrico sumatriptana oxigênio paracetamol cloreto sódio rizatriptana",
- "ceratite": "ceratite fotoelétrica regencel oftálmica optocare pomada regencel acetato retinol aminoácidos metionina cloranfenicol carmelose sódica colírio dipirona ceratoconjuntivite actinica queimadura ocular por solda",
+ "cefaleia": "cefaleia dipirona dor de cabeca cabeça dipirona metoclopramida naproxeno sódico cetoprofeno dexametasona clorpromazina sumatriptano ondansetrona ibuprofeno triptano enxaqueca cocktail parenteral internacao pediatrico sumatriptana oxigênio paracetamol cloreto sódio rizatriptana tenoxicam",
+ "ceratite": "ceratite fotoelétrica regencel oftálmica optocare pomada regencel acetato retinol aminoácidos metionina cloranfenicol carmelose sódica colírio dipirona ceratoconjuntivite actinica queimadura ocular por solda cetorolaco trometamol",
  "chikungunya": "chikungunya paracetamol arbovirose artralgia codeína dipirona paracetamol metoclopramida tramadol morfina soro fisiologico dipirona injetavel paracetamol gotas dipirona gotas opioide analgesia endovenosa internacao pediatrico cloreto sódio chicungunha",
- "colica_nefretica": "cólica nefrética cetoprofeno · cetorolaco · algicod rim renal calculo pedra litiase algicod cetoprofeno cetorolaco diclofenaco metoclopramida tansulosina ibuprofeno dipirona colica renal nefrolitiase urolitiase",
- "conjuntivite": "conjuntivite tobramicina colírio fisiológica solução tobramicina ceftriaxona azitromicina dipirona gonococica gonococo clamidia tracoma hiperaguda perfuracao oftalmologica ist secrecao purulenta irrigacao carmelose sódica olopatadina doxiciclina olho vermelho",
- "corpo_estranho": "corpo estranho ocular tobramicina colírio dexametasona fisiológica ofloxacino solução tobramicina olho colirio fisiologica solucao soro dipirona paracetamol ibuprofeno analgesia pediatrico oftálmica cisco no olho",
- "constipacao": "constipação benefiber · muvinlax intestino preso fezes benefiber muvinlax simeticona polietilenoglicol peg macrogol lactulose desimpactacao pediatrico constipacao intestino preso laxante laxativo prisao de ventre eletrólitos bisacodil manipulado fibra",
- "dengue": "dengue dipirona arbovirose dipirona metoclopramida oral reidratação soro fisiologico expansao volemica internacao endovenoso choque paracetamol ondansetrona gotas peso pediatrico hematocrito cloreto sódio albumina humana",
- "diarreia": "diarreia aguda loperamida · saccharomyces · ciprofloxacino gastroenterite disenteria fezes albendazol azitromicina boulardii buscoduo buscopan butilbrometo ciprofloxacino composto dipirona escopolamina loperamida metoclopramida metronidazol nitazoxanida oral reidratação saccharomyces secnidazol soro sulfametoxazol trimetoprima diarreia aguda desidratacao reidratacao plano c internacao pediatrico ringer lactato ringer com lactato soro fisiologico sro soro de reidratacao oral ceftriaxona ondansetrona butilbrometo de escopolamina cloreto de potassio potassio kcl sulfato de zinco zinco paracetamol sódio glicosado manutenção reposição vancomicina potássio",
+ "colica_nefretica": "cólica nefrética cetoprofeno · cetorolaco · algicod rim renal calculo pedra litiase algicod cetoprofeno cetorolaco diclofenaco metoclopramida tansulosina ibuprofeno dipirona colica renal nefrolitiase urolitiase tenoxicam tramadol morfina",
+ "conjuntivite": "conjuntivite tobramicina colírio fisiológica solução tobramicina ceftriaxona azitromicina dipirona gonococica gonococo clamidia tracoma hiperaguda perfuracao oftalmologica ist secrecao purulenta irrigacao carmelose sódica olopatadina doxiciclina olho vermelho ofloxacino ciprofloxacino epinastina",
+ "corpo_estranho": "corpo estranho ocular tobramicina colírio dexametasona fisiológica ofloxacino solução tobramicina olho colirio fisiologica solucao soro dipirona paracetamol ibuprofeno analgesia pediatrico oftálmica cisco no olho cetorolaco trometamol",
+ "constipacao": "constipação benefiber · muvinlax intestino preso fezes benefiber muvinlax simeticona polietilenoglicol peg macrogol lactulose desimpactacao pediatrico constipacao intestino preso laxante laxativo prisao de ventre eletrólitos bisacodil manipulado fibra óleo mineral supositório glicerina adulto",
+ "dengue": "dengue dipirona arbovirose dipirona metoclopramida oral reidratação soro fisiologico expansao volemica internacao endovenoso choque paracetamol ondansetrona gotas peso pediatrico hematocrito cloreto sódio albumina humana loratadina dimenidrinato",
+ "diarreia": "diarreia aguda loperamida · saccharomyces · ciprofloxacino gastroenterite disenteria fezes albendazol azitromicina boulardii buscoduo buscopan butilbrometo ciprofloxacino composto dipirona escopolamina loperamida metoclopramida metronidazol nitazoxanida oral reidratação saccharomyces secnidazol soro sulfametoxazol trimetoprima diarreia aguda desidratacao reidratacao plano c internacao pediatrico ringer lactato ringer com lactato soro fisiologico sro soro de reidratacao oral ceftriaxona ondansetrona butilbrometo de escopolamina cloreto de potassio potassio kcl sulfato de zinco zinco paracetamol sódio glicosado manutenção reposição vancomicina potássio racecadotrila",
  "hemorroida": "doença hemorroidária trombosada diclofenaco hemorroidas anal benefiber diclofenaco diosmina hesperidina proctyl psyllium envelope lidocaína dipirona ibuprofeno naproxeno sódico trombose hemorroidaria",
  "dismenorreia": "dismenorreia butilbrometo · piroxicam · meloxicam colica menstrual menstruacao tpm butilbrometo escopolamina meloxicam metoclopramida piroxicam ibuprofeno paracetamol naproxeno",
  "dpoc": "dpoc descompensada amoxicilina pulmao respiratoria bronquite aerossol amoxicilina azitromicina dipirona omeprazol prednisona salbutamol spray exacerbacao hidrocortisona fenoterol ipratropio brometo nebulizacao oxigenio clavulanato ceftriaxona ventilacao vni gasometria endovenoso internacao broncodilatador corticoide pseudomonas escarro doxiciclina amoxicilina-clavulanato oxigênio suplementar bromidrato inalação ipratrópio enoxaparina sódica potássio cefepima piperacilina tazobactam levofloxacino metilprednisolona doenca pulmonar obstrutiva cronica enfisema bronquite cronica",
  "eczema": "eczema de contato betametasona · clobetazol betametasona clobetazol creme loratadina hidrocortisona dexclorfeniramina cefazolina prednisolona dipirona valerato acetato prednisona hidroxizina clindamicina dermatite de contato",
  "enxaqueca": "enxaqueca naproxeno · naratripano · sumatriptano migranea migrânea aura triptano cefalium cefaliv codeína dipirona metoclopramida naproxeno naratripano paracetamol sumatriptano sódico cetoprofeno dexametasona cloreto clatonal status cocktail sumax imigran liófilo sódio clorpromazina sulfato magnésio ibuprofeno rizatriptano naratriptano naramig",
  "epididimite": "epididimite / orquite ciprofloxacino ciprofloxacino ceftriaxona doxiciclina ibuprofeno dipirona levofloxacino orquiepididimite",
- "erisipela": "erisipela e celulite cefalexina · clindamicina cefalexina clindamicina ssti infeccao de pele cefazolina vancomicina ceftriaxona dipirona mrsa forma purulenta abscesso estreptococo internacao pediatrico enoxaparina sódica benzilpenicilina potássica piperacilina tazobactam",
- "escabiose": "escabiose ivermectina sarna hidroxizina ivermectina permetrina dexclorfeniramina prurido coceira lesoes escabicida loção enxofre precipitado vaselina sólida",
+ "erisipela": "erisipela e celulite cefalexina · clindamicina cefalexina clindamicina ssti infeccao de pele cefazolina vancomicina ceftriaxona dipirona mrsa forma purulenta abscesso estreptococo internacao pediatrico enoxaparina sódica benzilpenicilina potássica piperacilina tazobactam amoxicilina clavulanato potássio fenoximetilpenicilina oxacilina",
+ "escabiose": "escabiose ivermectina sarna hidroxizina ivermectina permetrina dexclorfeniramina prurido coceira lesoes escabicida loção enxofre precipitado vaselina sólida benzoato benzila",
  "faringo_inesp": "faringoamigdalite inespecífica dipirona garganta amigdalite faringite respiratoria benalet dipirona penicilina cristalina benzatina ampicilina sulbactam dexametasona amoxicilina cefalexina ibuprofeno paracetamol estreptococica odinofagia internacao pediatrico flurbiprofeno pastilha cetoprofeno liófilo cloreto sódio clindamicina azitromicina dor de garganta faringite viral",
- "faringo_estrep": "faringoamigdalite estreptocócica amoxicilina · azitromicina garganta amigdalite estreptococo respiratoria amoxicilina azitromicina dipirona omeprazol penicilina cristalina benzatina ampicilina ceftriaxona clindamicina dexametasona ibuprofeno paracetamol estreptococica internacao pediatrico benzilpenicilina cefalexina cloreto sódio sulbactam dor de garganta amigdalite bacteriana",
- "gastrite": "gastrite / drge omeprazol refluxo azia drge epigastralgia domperidona omeprazol simeticona hidróxido alumínio refluxo gastroesofagico dispepsia pantoprazol",
- "gota": "gota — crise naproxeno · colchicina · prednisona colchicina dipirona naproxeno omeprazol prednisona sódico artrite gotosa podagra",
+ "faringo_estrep": "faringoamigdalite estreptocócica amoxicilina · azitromicina garganta amigdalite estreptococo respiratoria amoxicilina azitromicina dipirona omeprazol penicilina cristalina benzatina ampicilina ceftriaxona clindamicina dexametasona ibuprofeno paracetamol estreptococica internacao pediatrico benzilpenicilina cefalexina cloreto sódio sulbactam dor de garganta amigdalite bacteriana cefuroxima cefadroxila",
+ "gastrite": "gastrite / drge omeprazol refluxo azia drge epigastralgia domperidona omeprazol simeticona hidróxido alumínio refluxo gastroesofagico dispepsia pantoprazol lansoprazol esomeprazol",
+ "gota": "gota — crise naproxeno · colchicina · prednisona colchicina dipirona naproxeno omeprazol prednisona sódico artrite gotosa podagra indometacina diclofenaco",
  "h1n1": "h1n1 — profilaxia oseltamivir oseltamivir tamiflu influenza gripe gripe a srag sindrome respiratoria aguda grave virose ceftriaxona azitromicina dipirona paracetamol antiviral oxigenio pneumonia coinfeccao bacteriana febre internacao pediatrico cápsula oxigênio cateter nasal máscara cloreto sódio",
  "hordeolo": "hordéolo / blefarite ciprofloxacino ciprofloxacino dexametasona estéril oftálmica pomada tobramicina compressas mornas tercol",
  "herpes_zoster": "herpes zóster aciclovir cobreiro aciclovir diclofenaco dipirona diprogenta prednisona valaciclovir",
- "impetigo": "impetigo crostoso mupirocina · cefalexina cefalexina mupirocina pomada bolhoso ectima celulite piodermite cefazolina amoxicilina clavulanato clavulin dipirona clindamicina vancomicina mrsa estafilococo estreptococo glomerulonefrite crostas suspensao gotas pediatrico crianca internacao endovenoso potássio sulfametoxazol trimetoprima",
+ "impetigo": "impetigo crostoso mupirocina · cefalexina cefalexina mupirocina pomada bolhoso ectima celulite piodermite cefazolina amoxicilina clavulanato clavulin dipirona clindamicina vancomicina mrsa estafilococo estreptococo glomerulonefrite crostas suspensao gotas pediatrico crianca internacao endovenoso potássio sulfametoxazol trimetoprima ácido fusídico",
  "itu": "itu / cistite sulfametoxazol · fosfomicina · nitrofurantoína cistite urina urinaria bexiga disuria ciprofloxacino fosfomicina granulado nitrofurantoína norfloxacino sulfametoxazol trimetoprima cefalexina suspensão pediátrico criança infantil dipirona cefuroxima ceftriaxona amoxicilina clavulanato potássio infeccao urinaria infeccao do trato urinario fenazopiridina",
  "intertrigo": "intertrigo / candidíase fluconazol · itraconazol fluconazol itraconazol trok miconazol nistatina hidrocortisona candidiase candida dobras fralda assadura micose nitrato dermatológico óxido zinco clotrimazol acetato",
- "lombalgia": "lombalgia mecânica dorilax® · diclofenaco · alginac lombar coluna costas alginac cafeína carisoprodol celecoxibe ciclobenzaprina diclofenaco dipirona dorilax paracetamol ibuprofeno dor lombar dor nas costas lumbago",
+ "lombalgia": "lombalgia mecânica dorilax® · diclofenaco · alginac lombar coluna costas alginac cafeína carisoprodol celecoxibe ciclobenzaprina diclofenaco dipirona dorilax paracetamol ibuprofeno dor lombar dor nas costas lumbago meloxicam tramadol",
  "meteorismo": "meteorismo (gases) simeticona gases flatulencia dipirona metoclopramida simeticona butilbrometo escopolamina",
- "micose_ungueal": "micose subungueal ureia creme manipulada nitrato oxiconazol ureia terbinafina amorolfina esmalte onicomicose micose de unha",
+ "micose_ungueal": "micose subungueal ureia creme manipulada nitrato oxiconazol ureia terbinafina amorolfina esmalte onicomicose micose de unha itraconazol fluconazol ciclopirox tioconazol",
  "nasofaringite": "nasofaringite / resfriado dipirona resfriado gripe coriza nariz respiratoria sindrome ambroxol cloridrato dipirona fisiológica seringa solução xarope paracetamol gotas pediátrico infantil criança febre antitérmico dipirona gotas paracetamol gotas soro fisiológico nasal ibuprofeno",
  "otite_externa": "otite externa aguda ciprofloxacino-dexametasona · sulfato · otosporin ouvido nadador ciprofloxacino dexametasona diclofenaco dipirona hidrocortisona neomicina otosporin polimixina solução sulfato tópica ceftazidima cefepime piperacilina tazobactam cetoprofeno otologica necrotizante maligna pseudomonas skull base osteomielite diabetico imunossuprimido pediatrico crianca peso suspensao gotas xarope paracetamol ibuprofeno internacao endovenoso otológica ciprofloxacino-hidrocortisona cefepima cloridrato tramadol ondansetrona",
- "otite_media": "otite média aguda amoxicilina ouvido otalgia amoxicilina clavulanato dipirona otite media oma dor de ouvido mastoidite ampicilina sulbactam ceftriaxona ondansetrona paracetamol ibuprofeno pediatrico internacao cefuroxima claritromicina cloridrato levofloxacino cefepima piperacilina tazobactam potássio",
+ "otite_media": "otite média aguda amoxicilina ouvido otalgia amoxicilina clavulanato dipirona otite media oma dor de ouvido mastoidite ampicilina sulbactam ceftriaxona ondansetrona paracetamol ibuprofeno pediatrico internacao cefuroxima claritromicina cloridrato levofloxacino cefepima piperacilina tazobactam potássio azitromicina",
  "paralisia_facial": "paralisia facial (bell) valaciclovir · aciclovir aciclovir lácrima plus prednisona regenom valaciclovir carmelose sódica colírio dexpantenol oftálmico paralisia facial periferica",
- "parasitoses": "parasitoses intestinais ivermectina · albendazol · secnidazol albendazol dipirona ivermectina metoclopramida nitazoxanida praziquantel prednisona secnidazol dexametasona fenitoina escopolamina butilbrometo omeprazol mebendazol metronidazol cloreto sodio paracetamol neurocisticercose helmintos ascaris giardiase amebiase obstrucao pediatrico internacao suspensao gotas sódio ondansetrona teclozana verminose vermes",
+ "parasitoses": "parasitoses intestinais ivermectina · albendazol · secnidazol albendazol dipirona ivermectina metoclopramida nitazoxanida praziquantel prednisona secnidazol dexametasona fenitoina escopolamina butilbrometo omeprazol mebendazol metronidazol cloreto sodio paracetamol neurocisticercose helmintos ascaris giardiase amebiase obstrucao pediatrico internacao suspensao gotas sódio ondansetrona teclozana verminose vermes tinidazol",
  "pielonefrite": "pielonefrite ciprofloxacino · levofloxacino ciprofloxacino levofloxacino internacao internado hospitalar pediatrico crianca infeccao urinaria alta urosepse sepse urinaria ceftriaxona aztreonam gentamicina cefotaxima cefepima piperacilina tazobactam meropenem cefuroxima sulfametoxazol trimetoprima dipirona ondansetrona paracetamol soro fisiologico agua destilada endovenoso urocultura hemocultura antibiograma febre dor lombar punho percussao metoclopramida cloreto sódio amicacina cefalexina ampicilina sódica sulfato",
- "pitiriase": "pitiríase versicolor fluconazol · itraconazol fenticonazol fluconazol itraconazol spray cetoconazol xampu pano branco",
- "pneumonia": "pneumonia (comunidade) amoxicilina · azitromicina · claritromicina pulmao respiratoria tosse pac amoxicilina azitromicina cefuroxima claritromicina clavulanato dipirona levofloxacino moxifloxacino omeprazol ceftriaxona ampicilina sulbactam penicilina cristalina paracetamol oxigenio cloreto sodio soro cefalosporina macrolideo beta-lactamico internacao enfermaria uti sepse switch curb psi pediatrico pediatrica atipica micoplasma holliday segar doxiciclina amoxicilina-clavulanato oxigênio enoxaparina liófilo hidrocortisona ringer lactato potássio piperacilina tazobactam vancomicina cateter nasal benzilpenicilina potássica oxacilina pneumonia adquirida na comunidade broncopneumonia",
+ "pitiriase": "pitiríase versicolor fluconazol · itraconazol fenticonazol fluconazol itraconazol spray cetoconazol xampu pano branco nitrato isoconazol ciclopirox olamina",
+ "pneumonia": "pneumonia (comunidade) amoxicilina · azitromicina · claritromicina pulmao respiratoria tosse pac amoxicilina azitromicina cefuroxima claritromicina clavulanato dipirona levofloxacino moxifloxacino omeprazol ceftriaxona ampicilina sulbactam penicilina cristalina paracetamol oxigenio cloreto sodio soro cefalosporina macrolideo beta-lactamico internacao enfermaria uti sepse switch curb psi pediatrico pediatrica atipica micoplasma holliday segar doxiciclina amoxicilina-clavulanato oxigênio enoxaparina liófilo hidrocortisona ringer lactato potássio piperacilina tazobactam vancomicina cateter nasal benzilpenicilina potássica oxacilina pneumonia adquirida na comunidade broncopneumonia cefepima",
  "prostatite": "prostatite ciprofloxacino ciprofloxacino dipirona",
  "queimaduras": "queimaduras sulfadiazina queimadura dipirona prata sulfadiazina queimado grande queimado scq superficie corporal queimada parkland ressuscitacao volemica ringer ringer lactato lactato soro glicosado cloreto de sodio cristaloide morfina paracetamol omeprazol ulcera de estresse cefazolina oxacilina clindamicina antibiotico celulite tetanico toxoide dt dtpa vacina antitetanica sulfadiazina de prata analgesia holliday-segar lund-browder lesao inalatoria oxigênio dupla adulto toxoides diftérico tetânico imunoglobulina humana antitetânica enoxaparina glicose componente conforme idade",
- "resfriado": "resfriado comum dipirona · maresis® · rinosoro gripe coriza nariz respiratoria sindrome tosse dipirona fisiológica maresis rinosoro salsep seringa solução spray ibuprofeno paracetamol gotas pediatrico crianca febre cloreto sódio nasal soro fisiológico",
- "rinite": "rinite alérgica fluticasona · fexofenadina nariz espirro respiratoria dexclorfeniramina fexofenadina fluticasona jato pseudoefedrina rinosoro spray alergica alergia espirros coriza prurido mometasona desloratadina cetirizina loratadina pediatrico crianca lactente xarope gotas solucao oral soro fisiologico sorofisiologico lavagem nasal lavagemnasal corticoide nasal spray nasal intranasal cloreto sódio dicloridrato furoato propionato",
+ "resfriado": "resfriado comum dipirona · maresis® · rinosoro gripe coriza nariz respiratoria sindrome tosse dipirona fisiológica maresis rinosoro salsep seringa solução spray ibuprofeno paracetamol gotas pediatrico crianca febre cloreto sódio nasal soro fisiológico oximetazolina",
+ "rinite": "rinite alérgica fluticasona · fexofenadina nariz espirro respiratoria dexclorfeniramina fexofenadina fluticasona jato pseudoefedrina rinosoro spray alergica alergia espirros coriza prurido mometasona desloratadina cetirizina loratadina pediatrico crianca lactente xarope gotas solucao oral soro fisiologico sorofisiologico lavagem nasal lavagemnasal corticoide nasal spray nasal intranasal cloreto sódio dicloridrato furoato propionato budesonida",
  "rinossinusite": "rinossinusite dipirona · amoxicilina · azitromicina sinusite seios da face respiratoria sindrome amoxicilina azitromicina codeína dipirona fisiológica fluticasona jato levodropropizina maresis omeprazol seringa solução spray xarope ceftriaxona metronidazol clavulanato internacao internação pediatrico pediátrico complicada celulite orbitaria abscesso intracraniana suspensao gotas potássio doxiciclina soro fisiológico vancomicina levofloxacino paracetamol cefuroxima",
- "sua": "sangramento uterino anormal ácido sangramento menstrual etinilestradiol ferroso levonorgestrel piroxicam sulfato tranexâmico ácido ibuprofeno acetato medroxiprogesterona sangramento vaginal metrorragia menorragia",
+ "sua": "sangramento uterino anormal ácido sangramento menstrual etinilestradiol ferroso levonorgestrel piroxicam sulfato tranexâmico ácido ibuprofeno acetato medroxiprogesterona sangramento vaginal metrorragia menorragia mefenâmico",
  "sutura": "sutura — profilaxia sulfato · cefalexina · tetanogamma® ferida corte laceracao antitetanica cefalexina contractubex diclofenaco dipirona neomicina sulfato tetanogamma sulfato de neomicina paracetamol ibuprofeno suspensão gotas pediátrico crianca criança ferimento mordedura vaselina sólida vacina dupla adulto imunoglobulina humana antitetânica adsorvida difteria tétano pertussis amoxicilina clavulanato potássio",
  "tinha_capitis": "tinha capitis griseofulvina cetoconazol griseofulvina shampoo terbinafina tinea kerion couro cabeludo micose fungo dermatofito microsporum trichophyton",
- "tinha_corporis": "tinha corporis terbinafina cetirizina creme terbinafina dexclorfeniramina loratadina pediatrico crianca micose impingem tinea corporis antifungico coceira prurido miconazol tinha do corpo",
+ "tinha_corporis": "tinha corporis terbinafina cetirizina creme terbinafina dexclorfeniramina loratadina pediatrico crianca micose impingem tinea corporis antifungico coceira prurido miconazol tinha do corpo fluconazol",
  "torcicolo": "torcicolo espasmódico ciclobenzaprina · cafeína · paracetamol betaciclodextrina cafeína carisoprodol cetoprofeno ciclobenzaprina diclofenaco dipirona dorilax nimesulida orfenadrina paracetamol naproxeno sódico dor no pescoco cervicalgia",
  "tce": "tce — analgesia e orientações dipirona cabeca craniano clorexidina dipirona spray traumatismo cranioencefalico trauma craniano glasgow observacao neurologica fenitoina levetiracetam manitol salina hipertonica hipertonica hipertensao intracraniana intracraniana heriacao convulsao crise convulsiva ondansetrona metoclopramida pecarn fontanela tetano cloreto sódio fenitoína paracetamol trauma de cranio pancada na cabeca",
  "trauma_toracico": "trauma torácico naproxeno · levodropropizina cafeína carisoprodol ciclobenzaprina codeína levodropropizina naproxeno paracetamol xarope internação endovenoso tramadol ondansetrona omeprazol ringer lactato enoxaparina oxigênio cefazolina toracostomia dreno morfina profilaxia pediátrico dipirona analgesia fratura costela arco costal pneumotórax hemotórax contusão pulmonar trombose tvp antibiótico intercostal sf cetoprofeno liófilo clindamicina ibuprofeno cateter nasal trauma de torax contusao toracica",
  "ulceras": "úlceras de causas variadas clorafenicol · iruxol cefalexina clorafenicol colagenase diosmina hesperidina iruxol pomada fisiológica dipirona soro fisiológico ferida cronica ulcera venosa ulcera de pressao escara",
- "vaginites": "vaginites / vaginoses / ists metronidazol · nistatina · fluconazol corrimento candidiase ist dst aciclovir azitromicina benzatina ceftriaxona ciprofloxacino creme dipirona doxiciclina doxicilina fluconazol geleia metoclopramida metronidazol nistatina penicilina vaginal miconazol vaginose bacteriana candidiase vaginal tricomoniase",
- "vertigem": "vertigem e tontura dimenidrinato · flunarizina tontura labirintite betaistina cinarizina dimenidrinato dipirona flunarizina meclizina piridoxina prednisona metoclopramida",
- "zika": "zika vírus dipirona arbovirose dipirona hidroxizina paracetamol ondansetrona imunoglobulina imunoglobulina humana enoxaparina dexclorfeniramina guillain barre guillain-barre soro fisiologico hidratacao internacao exantema prurido loratadina cloreto sódio metoclopramida intravenosa desloratadina",
- "nauseas_vomitos": "nauseas e vomitos nauseas e vomitos enjoo enjoado ansia de vomito vomito vomitando gastroenterite mal estar estomago embrulhado desidratacao hiperemese metoclopramida ondansetrona dimenidrinato piridoxina soro reidratacao bromoprida cloreto fisiologico",
+ "vaginites": "vaginites / vaginoses / ists metronidazol · nistatina · fluconazol corrimento candidiase ist dst aciclovir azitromicina benzatina ceftriaxona ciprofloxacino creme dipirona doxiciclina doxicilina fluconazol geleia metoclopramida metronidazol nistatina penicilina vaginal miconazol vaginose bacteriana candidiase vaginal tricomoniase clindamicina itraconazol",
+ "vertigem": "vertigem e tontura dimenidrinato · flunarizina tontura labirintite betaistina cinarizina dimenidrinato dipirona flunarizina meclizina piridoxina prednisona metoclopramida ondansetrona prometazina",
+ "zika": "zika vírus dipirona arbovirose dipirona hidroxizina paracetamol ondansetrona imunoglobulina imunoglobulina humana enoxaparina dexclorfeniramina guillain barre guillain-barre soro fisiologico hidratacao internacao exantema prurido loratadina cloreto sódio metoclopramida intravenosa desloratadina repelente tópico base icaridina deet",
+ "nauseas_vomitos": "nauseas e vomitos nauseas e vomitos enjoo enjoado ansia de vomito vomito vomitando gastroenterite mal estar estomago embrulhado desidratacao hiperemese metoclopramida ondansetrona dimenidrinato piridoxina soro reidratacao bromoprida cloreto fisiologico domperidona",
  "dor_abdominal": "dor abdominal, colica biliar e dispepsia dor abdominal dor de barriga dor na barriga colica biliar colica de vesicula calculo na vesicula colelitiase dispepsia epigastralgia queimacao no estomago empachamento indigestao gastrite azia butilbrometo escopolamina buscopan composto dipirona paracetamol diclofenaco omeprazol hidroxido aluminio cetoprofeno tramadol morfina metoclopramida ondansetrona",
- "crise_hipertensiva": "crise hipertensiva (urgencia e emergencia) crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva hipertensao has pa elevada pressao 20 por 12 nitroprussiato nipride tridil captopril clonidina nitroglicerina losartana anlodipino hidroclorotiazida",
+ "crise_hipertensiva": "crise hipertensiva (urgencia e emergencia) crise hipertensiva pressao alta pico hipertensivo urgencia hipertensiva emergencia hipertensiva hipertensao has pa elevada pressao 20 por 12 nitroprussiato nipride tridil captopril clonidina nitroglicerina losartana anlodipino hidroclorotiazida metoprolol tartarato",
  "hiperglicemia": "hiperglicemia e hipoglicemia hiperglicemia hipoglicemia glicose alta glicose baixa acucar alto acucar baixo diabetes descompensado cetoacidose cad estado hiperosmolar ehh hipo glicemia baixa insulina metformina dm2 glucagon cloreto soro fisiologico potassio regular",
- "crise_convulsiva": "crise convulsiva crise convulsiva convulsao ataque epileptico epilepsia estado de mal epileptico crise epileptica ataque crise tonico clonica desmaio com tremores diazepam midazolam fenitoina hidantal levetiracetam keppra glicose tiamina",
- "dor_toracica": "dor toracica / sindrome coronariana aguda dor toracica dor no peito aperto no peito angina infarto iam sca sindrome coronariana aguda iamcsst iamssst coracao precordialgia aas aspirina clopidogrel isordil isossorbida tridil nitroglicerina enoxaparina atorvastatina acido acetilsalicilico angioplastia primaria trombolise dinitrato morfina dipirona paracetamol ibuprofeno",
- "edema_agudo_pulmao": "edema agudo de pulmao / ic descompensada edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao pulmonar falta de ar cansaco inchaco nas pernas dispneia ortopneia furosemida lasix isordil isossorbida tridil nitroglicerina dobutamina noradrenalina vni cpap dinitrato oxigenio ventilacao invasiva bipap",
+ "crise_convulsiva": "crise convulsiva crise convulsiva convulsao ataque epileptico epilepsia estado de mal epileptico crise epileptica ataque crise tonico clonica desmaio com tremores diazepam midazolam fenitoina hidantal levetiracetam keppra glicose tiamina fenitoína fenobarbital",
+ "dor_toracica": "dor toracica / sindrome coronariana aguda dor toracica dor no peito aperto no peito angina infarto iam sca sindrome coronariana aguda iamcsst iamssst coracao precordialgia aas aspirina clopidogrel isordil isossorbida tridil nitroglicerina enoxaparina atorvastatina acido acetilsalicilico angioplastia primaria trombolise dinitrato morfina dipirona paracetamol ibuprofeno ticagrelor metoprolol succinato",
+ "edema_agudo_pulmao": "edema agudo de pulmao / ic descompensada edema agudo de pulmao eap insuficiencia cardiaca descompensada icc ic descompensada congestao pulmonar falta de ar cansaco inchaco nas pernas dispneia ortopneia furosemida lasix isordil isossorbida tridil nitroglicerina dobutamina noradrenalina vni cpap dinitrato oxigenio ventilacao invasiva bipap nitroprussiato",
  "peconhentos": "acidentes por animais peconhentos (escorpiao, serpente, aranha) acidente por animal peconhento picada de escorpiao escorpiao escorpionismo cobra picada de cobra serpente ofidismo jararaca cascavel coral aranha armadeira aranha marrom loxosceles phoneutria picada veneno soro antiescorpionico soro antiofidico soro antiaracnidico lidocaina vasoconstritor dipirona saesc antibotropico anticrotalico antielapidico paracetamol (escorpiao e serpente)",
- "mordedura": "mordedura de cao ou gato mordedura mordida de cachorro mordida de cao mordida de gato arranhadura acidente com animal raiva antirrabica profilaxia da raiva vacina antirrabica soro antirrabico imunoglobulina antirrabica tetano antitetanica amoxicilina clavulanato doxiciclina cultivo celular ighar dupla adulto difteria dipirona paracetamol potassio adsorvida pertussis",
- "abscesso_cutaneo": "abscesso cutaneo / furunculo abscesso cutaneo abscesso de pele furunculo carbunculo antraz tumor com pus caroco inflamado pus na pele foliculite drenagem cefalexina sulfametoxazol trimetoprima bactrim dipirona paracetamol ibuprofeno",
- "odontalgia": "odontalgia / abscesso dentario odontalgia dor de dente dente doendo abscesso dentario abscesso dental carie inflamada pulpite rosto inchado por dente gengiva inchada dentista ibuprofeno amoxicilina clindamicina naproxeno sodico dipirona paracetamol",
+ "mordedura": "mordedura de cao ou gato mordedura mordida de cachorro mordida de cao mordida de gato arranhadura acidente com animal raiva antirrabica profilaxia da raiva vacina antirrabica soro antirrabico imunoglobulina antirrabica tetano antitetanica amoxicilina clavulanato doxiciclina cultivo celular ighar dupla adulto difteria dipirona paracetamol potassio adsorvida pertussis clindamicina ciprofloxacino sulfametoxazol trimetoprima",
+ "abscesso_cutaneo": "abscesso cutaneo / furunculo abscesso cutaneo abscesso de pele furunculo carbunculo antraz tumor com pus caroco inflamado pus na pele foliculite drenagem cefalexina sulfametoxazol trimetoprima bactrim dipirona paracetamol ibuprofeno cefadroxila",
+ "odontalgia": "odontalgia / abscesso dentario odontalgia dor de dente dente doendo abscesso dentario abscesso dental carie inflamada pulpite rosto inchado por dente gengiva inchada dentista ibuprofeno amoxicilina clindamicina naproxeno sodico dipirona paracetamol azitromicina",
  "agitacao_psicomotora": "agitacao psicomotora / intoxicacao alcoolica aguda agitacao psicomotora paciente agitado agressivo surto psicotico surto contencao quimica intoxicacao alcoolica embriaguez bebado alcoolizado coma alcoolico haloperidol haldol prometazina fenergan midazolam dormonid risperidona tiamina glicose"
 };
