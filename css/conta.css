@@ -77,21 +77,22 @@ body.voando .grid{animation:grade-entra .45s ease both}
 /* ---- conta no cabeçalho ---- */
 .conta{display:flex;align-items:center;gap:4px;flex:none}
 .conta:empty{display:none}
-.conta-nome{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px 0 10px;border-radius:999px;background:var(--hdr-field);
-  font-weight:650;font-size:13.5px;max-width:200px}
-.conta-nome .i{--isz:16px}
+/* layout minimalista: nome e "Criar meu link" são botões discretos (texto + ícone, borda só no hover) */
+.conta-nome{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:8px;background:var(--hdr-field);
+  border:1px solid var(--hdr-line);font-weight:500;font-size:12.5px;max-width:200px}
+.conta-nome .i{--isz:14px}
 .conta-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.conta-sair{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:0;border-radius:50%;background:none;color:var(--hdr-ink);cursor:pointer}
-.conta-sair:hover{background:var(--hdr-field-h)}
-.conta-sair .i{--isz:18px}
-.conta-criar{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 14px;border-radius:999px;background:var(--brasa-bg);color:var(--on-brasa);
-  font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap}
-.conta-criar:hover{filter:brightness(1.08)}
-.conta-criar .i{--isz:16px}
+.conta-sair{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;border-radius:8px;background:none;color:var(--ink-2);cursor:pointer}
+.conta-sair:hover{background:var(--hdr-field-h);color:var(--hdr-ink)}
+.conta-sair .i{--isz:16px}
+.conta-criar{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:8px;border:1px solid transparent;background:none;color:var(--ink-2);
+  font-weight:500;font-size:12.5px;text-decoration:none;white-space:nowrap;transition:background .12s,border-color .12s,color .12s}
+.conta-criar:hover{background:var(--hdr-field-h);border-color:var(--hdr-line);color:var(--hdr-ink)}
+.conta-criar .i{--isz:14px}
 @media(max-width:820px){
   .conta-nome{padding:0 10px;max-width:120px}
   .conta-criar .conta-n{display:none}
-  .conta-criar{width:38px;padding:0;justify-content:center}
+  .conta-criar{width:34px;padding:0;justify-content:center}
 }
 @media(max-width:420px){ .conta-nome .conta-n{display:none} .conta-nome{padding:0;width:36px;justify-content:center} }
 

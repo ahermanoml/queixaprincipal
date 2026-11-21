@@ -65,7 +65,9 @@
 }
 
 /* atalho no painel de Prescrições: "Resumo da condição" (abre o guia da condição) */
-.guia-link{display:inline-flex;align-items:center;gap:6px;margin:2px 0 8px;font-size:13px;font-weight:650;color:var(--accent-d);text-decoration:none;
-  border-radius:999px;padding:3px 12px 3px 9px;background:var(--accent-soft)}
-.guia-link:hover{text-decoration:underline}
-.guia-link .i{--isz:15px}
+/* "Resumo da condição": botão discreto no canto direito, na altura do título (layout minimalista); coluna estreita = embaixo da descrição */
+.guia-link{position:absolute;top:12px;right:0;display:inline-flex;align-items:center;gap:6px;height:30px;font-size:12.5px;font-weight:500;color:var(--ink-2);
+  text-decoration:none;border-radius:8px;padding:0 12px 0 10px;border:1px solid transparent;transition:background .12s,border-color .12s,color .12s}
+.guia-link:hover{color:var(--ink);background:var(--panel);border-color:var(--line)}
+.guia-link .i{--isz:14px}
+@container mid (max-width:559px){ .guia-link{position:static;margin:8px 0 0 -10px} }
