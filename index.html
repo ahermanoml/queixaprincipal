@@ -19,20 +19,20 @@ if(q&&/(^|\.)qprincipal\.com\.br$/.test(l.hostname)){try{history.replaceState(nu
 var s=null;try{s=JSON.parse(sessionStorage.getItem("qp-sessao")||localStorage.getItem("qp-sessao")||"null")}catch(e){}
 window.QP_NOME=u;window.QP_SESSAO=s&&u&&s.nome===u?s:null;
 d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!=="#"?"app":"oferta"))})();</script>
-<link rel="stylesheet" href="css/icones.css?v=20261117c">
-<link rel="stylesheet" href="css/app.css?v=20261117c">
-<link rel="stylesheet" href="css/escores.css?v=20261117c">
-<link rel="stylesheet" href="css/calculadoras.css?v=20261117c">
-<link rel="stylesheet" href="css/procedimentos.css?v=20261117c">
-<link rel="stylesheet" href="css/guias.css?v=20261117c">
-<link rel="stylesheet" href="css/conta.css?v=20261117c">
+<link rel="stylesheet" href="css/icones.css?v=20261122a">
+<link rel="stylesheet" href="css/app.css?v=20261122a">
+<link rel="stylesheet" href="css/escores.css?v=20261122a">
+<link rel="stylesheet" href="css/calculadoras.css?v=20261122a">
+<link rel="stylesheet" href="css/procedimentos.css?v=20261122a">
+<link rel="stylesheet" href="css/guias.css?v=20261122a">
+<link rel="stylesheet" href="css/conta.css?v=20261122a">
 </head>
 <body data-view="rascunho" data-layout="texto" data-inicio="">
 <!-- página de oferta (js/conta.js): qprincipal.com.br sem hash e sem link pessoal -->
 <main class="oferta" id="oferta">
   <section class="of-hero">
     <div class="of-in">
-      <div class="of-marca"><span class="logo" aria-hidden="true">℞</span> Queixa Principal</div>
+      <div class="of-marca"><span class="logo" aria-hidden="true">QP</span> Queixa Principal</div>
       <h1>O plantão inteiro, pronto para <em>copiar e colar.</em></h1>
       <p class="of-lead">Prescrições, escores, calculadoras de infusão, procedimentos e o <b>seu próprio rascunho</b> — tudo num lugar só, em texto puro, do jeito que o sistema do hospital aceita.</p>
       <form class="of-link" id="of-form" novalidate>
@@ -82,7 +82,7 @@ d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!==
 <!-- tela de senha do link pessoal (js/conta.js): qprincipal.com.br/<nome> sem sessão neste navegador -->
 <main class="senha" id="senha">
   <div class="sn-cartao">
-    <div class="of-marca"><span class="logo" aria-hidden="true">℞</span> Queixa Principal</div>
+    <div class="of-marca"><span class="logo" aria-hidden="true">QP</span> Queixa Principal</div>
     <div class="sn-link"><span class="i i-link" aria-hidden="true"></span><span>qprincipal.com.br/<b id="sn-nome"></b></span></div>
     <form id="sn-form" novalidate>
       <h1 id="sn-titulo">Entrar</h1>
@@ -108,7 +108,7 @@ d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!==
 <header class="top">
   <div class="top-row">
     <a class="marca" href="#/inicio" id="marca" title="Início">
-      <div class="logo" aria-hidden="true">℞</div>
+      <div class="logo" aria-hidden="true">QP</div>
       <div class="titulo">
         <h1>Queixa Principal</h1>
         <p>Tudo pronto para copiar e colar no seu sistema</p>
@@ -120,7 +120,7 @@ d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!==
       <button type="button" class="busca-abrir" id="busca-abrir" aria-label="Buscar" aria-expanded="false" aria-controls="busca-box" title="Buscar (atalho: / ou Ctrl+K)"><span class="i i-search" aria-hidden="true" style="--isz:21px"></span></button>
       <div class="busca-box" id="busca-box">
         <span class="busca-ic"><span class="i i-search" aria-hidden="true" style="--isz:19px"></span></span>
-        <input id="busca-input" type="text" role="combobox" aria-label="Buscar em todo o site" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-list" aria-describedby="busca-dica" placeholder="Buscar condição, escore, remédio…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <input id="busca-input" type="text" role="combobox" aria-label="Buscar em todo o site" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-list" aria-describedby="busca-dica" placeholder="Buscar..." autocomplete="off" spellcheck="false" enterkeyhint="search">
         <kbd class="busca-kbd" aria-hidden="true" title="Atalho: / ou Ctrl+K">/</kbd>
         <button type="button" class="busca-fechar" id="busca-fechar" aria-label="Fechar busca"><span class="i i-x" aria-hidden="true"></span></button>
         <div class="busca-pop" id="busca-pop" hidden>
@@ -139,6 +139,12 @@ d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!==
   </div>
   <!-- abas do topo: geradas a partir do registro VIEWS (js/core.js + cada js/views/*.js) -->
   <nav class="top-tabs" id="top-tabs" role="tablist" aria-label="Seção do prescritor"></nav>
+  <!-- celular (≤820px), aba Prescrições: um painel por vez — Condições | Prescrição | Receita (js/views/prescricoes.js) -->
+  <nav class="paineis" id="paineis" aria-label="Painel da prescrição">
+    <button type="button" data-painel="cond" aria-pressed="false">Condições</button>
+    <button type="button" data-painel="mid" aria-pressed="false">Prescrição</button>
+    <button type="button" data-painel="rx" aria-pressed="false">Receita <span class="paineis-n" id="paineis-n" hidden>0</span></button>
+  </nav>
   <!-- só na tela inicial: o cabeçalho cresce com a saudação, e os quadrados sobem por cima dele -->
   <div class="inicio-ola" id="inicio-ola"></div>
 </header>
@@ -248,11 +254,11 @@ d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!==
     <div class="rx-tools">
       <button class="btn primary" id="btn-copy"><span class="i i-copy" aria-hidden="true"></span> Copiar</button>
       <button class="btn ghost" id="btn-clear"><span class="i i-trash" aria-hidden="true"></span> Limpar</button>
-      <label class="toggle"><input type="checkbox" id="free-edit"> edição livre</label>
+      <label class="toggle"><input type="checkbox" id="free-edit"> Edição livre</label>
     </div>
     <div class="chips" id="rx-chips"><div class="rx-empty">Nenhum item adicionado ainda.</div></div>
     <div class="ta-wrap">
-      <label for="rx"><span class="dot" aria-hidden="true">●</span> Texto pronto para colar</label>
+      <label for="rx">Pré-visualização</label>
       <textarea id="rx" spellcheck="false" placeholder="A receita formatada aparece aqui..."></textarea>
     </div>
     <div class="disclaimer"><b><span class="i i-alert" aria-hidden="true"></span> Apoio à decisão, não prescrição automática.</b> Confira medicamento, dose, posologia, alergias e contraindicações de cada paciente antes de prescrever.</div>
@@ -318,31 +324,41 @@ d.setAttribute("data-tela",u?(window.QP_SESSAO?"app":"senha"):(l.hash&&l.hash!==
   <button type="button" class="btn primary" id="pr-barra-copiar"><span class="i i-copy" aria-hidden="true"></span> Copiar registro</button>
 </div>
 
+<!-- Prescrições: "Resumo clínico" da condição aberta (js/views/prescricoes.js) — painel que desliza da direita -->
+<div class="resumo-fundo" id="resumo-fundo" hidden></div>
+<aside class="resumo" id="resumo" role="dialog" aria-modal="true" aria-labelledby="resumo-titulo" hidden>
+  <div class="resumo-top">
+    <div class="resumo-tt"><span class="resumo-kicker">Resumo clínico</span><h3 id="resumo-titulo"></h3></div>
+    <button type="button" class="resumo-fechar" id="resumo-fechar" aria-label="Fechar resumo"><span class="i i-x" aria-hidden="true"></span></button>
+  </div>
+  <div class="resumo-corpo" id="resumo-corpo"></div>
+</aside>
+
 <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<script src="data/prescricoes.js?v=20261117c"></script>
-<script src="data/escores.js?v=20261117c"></script>
-<script src="data/nihss.js?v=20261117c"></script>
-<script src="data/calculadoras.js?v=20261117c"></script>
-<script src="data/calc-revisao.js?v=20261117c"></script>
-<script src="data/procedimentos.js?v=20261117c"></script>
-<script src="data/guias.js?v=20261117c"></script>
-<script src="data/rascunho.js?v=20261117c"></script>
-<script src="js/core.js?v=20261117c"></script>
-<script src="js/peso.js?v=20261117c"></script>
-<script src="js/receita.js?v=20261117c"></script>
-<script src="js/escores-motor.js?v=20261117c"></script>
-<script src="js/escores-nihss.js?v=20261117c"></script>
-<script src="js/calc-motor.js?v=20261117c"></script>
-<script src="js/views/rascunho.js?v=20261117c"></script>
-<script src="js/views/prescricoes.js?v=20261117c"></script>
-<script src="js/views/escores.js?v=20261117c"></script>
-<script src="js/views/calculadoras.js?v=20261117c"></script>
-<script src="js/views/procedimentos.js?v=20261117c"></script>
-<script src="js/views/guias.js?v=20261117c"></script>
-<script src="js/router.js?v=20261117c"></script>
-<script src="js/busca.js?v=20261117c"></script>
-<script src="js/conta.js?v=20261117c"></script>
-<script src="js/app.js?v=20261117c"></script>
+<script src="data/prescricoes.js?v=20261122a"></script>
+<script src="data/escores.js?v=20261122a"></script>
+<script src="data/nihss.js?v=20261122a"></script>
+<script src="data/calculadoras.js?v=20261122a"></script>
+<script src="data/calc-revisao.js?v=20261122a"></script>
+<script src="data/procedimentos.js?v=20261122a"></script>
+<script src="data/guias.js?v=20261122a"></script>
+<script src="data/rascunho.js?v=20261122a"></script>
+<script src="js/core.js?v=20261122a"></script>
+<script src="js/peso.js?v=20261122a"></script>
+<script src="js/receita.js?v=20261122a"></script>
+<script src="js/escores-motor.js?v=20261122a"></script>
+<script src="js/escores-nihss.js?v=20261122a"></script>
+<script src="js/calc-motor.js?v=20261122a"></script>
+<script src="js/views/rascunho.js?v=20261122a"></script>
+<script src="js/views/prescricoes.js?v=20261122a"></script>
+<script src="js/views/escores.js?v=20261122a"></script>
+<script src="js/views/calculadoras.js?v=20261122a"></script>
+<script src="js/views/procedimentos.js?v=20261122a"></script>
+<script src="js/views/guias.js?v=20261122a"></script>
+<script src="js/router.js?v=20261122a"></script>
+<script src="js/busca.js?v=20261122a"></script>
+<script src="js/conta.js?v=20261122a"></script>
+<script src="js/app.js?v=20261122a"></script>
 </body>
 </html>

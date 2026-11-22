@@ -99,9 +99,20 @@ def comportamento(browser, base, itens, rep):
     cg = next((g for g in itens if g.get("tipo") == "condicao" and g.get("cond")), None)
     if cg:
         pg.evaluate(f"location.hash = '#/prescricoes/{cg['cond']}'"); pg.wait_for_timeout(100)
-        rep.check(pg.locator("#mid-body .guia-link").count() == 1, f"{cg['cond']}: atalho 'Resumo da condição' no painel")
-        pg.click("#mid-body .guia-link"); pg.wait_for_timeout(100)
-        rep.check(pg.evaluate("location.hash") == f"#/guias/{cg['id']}", "o atalho abre o resumo da condição")
+        rep.check(pg.locator("#mid-body .guia-link").count() == 1, f"{cg['cond']}: botão 'Resumo clínico' no painel")
+        # layout minimalista (2026-11-21): o botão abre o painel lateral com o resumo; o link dele leva ao guia completo
+        pg.click("#mid-body .guia-link"); pg.wait_for_timeout(300)
+        painel = pg.evaluate("""() => ({aberto: !document.querySelector('#resumo').hidden, titulo: document.querySelector('#resumo-titulo').textContent,
+            alarme: !!document.querySelector('#resumo .resumo-alerta li'), foco: document.activeElement.id})""")
+        rep.check(painel["aberto"] and painel["alarme"] and painel["foco"] == "resumo-fechar" and painel["titulo"],
+                  f"o botão abre o painel do resumo clínico, com sinais de alarme e o foco no ✕: {painel}")
+        pg.keyboard.press("Escape"); pg.wait_for_timeout(300)
+        rep.check(pg.evaluate("document.querySelector('#resumo').hidden") and pg.evaluate("document.activeElement.classList.contains('guia-link')"),
+                  "Esc fecha o painel e o foco volta ao botão")
+        pg.click("#mid-body .guia-link"); pg.wait_for_timeout(300)
+        pg.click("#resumo .resumo-guia"); pg.wait_for_timeout(300)
+        rep.check(pg.evaluate("location.hash") == f"#/guias/{cg['id']}" and pg.evaluate("document.querySelector('#resumo').hidden"),
+                  "'Abrir o guia completo' abre o resumo da condição na aba Guias e fecha o painel")
         pg.click("#gu-body .gu-rx"); pg.wait_for_timeout(100)
         rep.check(pg.evaluate("location.hash") == f"#/prescricoes/{cg['cond']}" and pg.evaluate("curCond && curCond.id") == cg["cond"],
                   "'Abrir prescrição' volta para a condição")

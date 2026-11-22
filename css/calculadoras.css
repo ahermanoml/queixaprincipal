@@ -9,7 +9,7 @@
 .cx-gh{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:7px;padding:12px 18px 6px;background:var(--panel);
   font-size:13px;font-weight:650;color:var(--ink)}
 .cx-gsh{padding:8px 18px 3px;font-size:12px;font-weight:600;color:var(--muted-aa)}
-/* os itens (.cx-item) são quadradinhos: regras comuns às três listas no fim de css/app.css */
+/* os itens (.cx-item) são linhas: regras comuns às três listas no fim de css/app.css */
 
 /* ---- cabeçalho da calculadora ---- */
 .cx-head{padding:12px 18px 2px}

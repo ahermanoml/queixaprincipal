@@ -16,7 +16,10 @@ async ({ci, pacs, sets, weights}) => {
   const vis = el => !el.closest('[hidden]');
   const mid = $('#mid-body');
   const out = [];
-  const snap = (tag) => out.push(tag + '\n' + $('#rx').value + '\n--chips--\n' + $('#rx-chips').textContent.replace(/\s+/g, ' '));
+  // chips: o texto dos itens da receita; .rx-extra (posologia e orientação inteira na pré-visualização do layout
+  // minimalista, 2026-11-21) é só visual — o texto copiado é o #rx, comparado à parte
+  const chipsTxt = () => { const c = $('#rx-chips').cloneNode(true); c.querySelectorAll('.rx-extra').forEach(e => e.remove()); return c.textContent.replace(/\s+/g, ' '); };
+  const snap = (tag) => out.push(tag + '\n' + $('#rx').value + '\n--chips--\n' + chipsTxt());
   const setW = (w) => { const pin = $('#peso'); if (!pin) return false; pin.value = w; pin.dispatchEvent(new Event('input', {bubbles: true})); return true; };
   for (const pac of pacs) for (const st of sets) for (const w of weights) {
     const clear = $('#btn-clear'); if (!clear.disabled) clear.click();
@@ -30,10 +33,12 @@ async ({ci, pacs, sets, weights}) => {
     // (sem espaços), e cada elemento clicável/ocultável com seus data-* e o estado hidden/aria-*.
     const sig = (() => {
       const c = mid.cloneNode(true);
-      // .guia-link: atalho "Resumo da condição" (aba Guias, 2026-11) — navegação nova, fora da comparação com a versão antiga
-      c.querySelectorAll('[aria-hidden="true"], svg, .guia-link').forEach(e => e.remove());
+      // .guia-link: atalho "Resumo da condição" (aba Guias, 2026-11) — navegação nova, fora da comparação com a versão antiga.
+      // .desc: o subtítulo da condição virou a frase fixa do layout minimalista (2026-11-21) — texto explicativo, não controle.
+      c.querySelectorAll('[aria-hidden="true"], svg, .guia-link, .mid-head .desc').forEach(e => e.remove());
       const txt = c.textContent.replace(/＋/g, '').replace(/\s+/g, '');
-      const ctl = [...mid.querySelectorAll('button, input, [data-b], [data-pb], [data-pf], [data-o], [hidden]')].map(e =>
+      // (.guia-link virou um botão que abre o painel do resumo clínico em 2026-11-22: fica fora da lista de controles também)
+      const ctl = [...mid.querySelectorAll('button, input, [data-b], [data-pb], [data-pf], [data-o], [hidden]')].filter(e => !e.closest('.guia-link')).map(e =>
         e.tagName + [...e.attributes].filter(a => /^(data-|aria-(selected|expanded|pressed|label|controls)$|hidden$|role$|id$)/.test(a.name))
           .map(a => a.name + '=' + a.value).sort().join(',')).join('|');
       return txt + '##' + ctl;
