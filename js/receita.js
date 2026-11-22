@@ -70,19 +70,23 @@ function syncRx(){
     rxChips.innerHTML = `<div class="rx-empty">Nenhum item adicionado ainda.<br>Clique nas medicações ao centro.</div>`;
   } else {
     let h="";
+    // pré-visualização (layout minimalista): cada item numerado (contador do CSS), nome — quantidade e a posologia já com
+    // a dose do peso, em caixa normal na tela (cxHTML). A posologia vai em .rx-extra: é só visual (o texto copiado é o do
+    // #rx), e tests/parity.py a ignora ao comparar os chips com a versão anterior.
     groupByRoute((it,idx)=>({it,idx})).forEach(g=>{
       h += `<div class="grp-h">${esc(g.route)}</div>`;
       g.items.forEach(({it,idx})=>{
         // opção de uma faixa de peso que não bate mais com o peso digitado (o peso mudou depois de adicionar)
         const fora = it.spec && it.spec.peso && !fits(it.spec.peso);
-        h += `<div class="chip${fora?' fora':''}"><div class="cn">${esc(it.med)}<small>${esc(it.qty)}</small>${fora?'<small class="fora-txt">⚠ fora da faixa do peso digitado</small>':''}</div>
+        const pos = it.pos ? `<div class="rx-extra rx-pos cx">${cxHTML(fillDose(it.pos, it.spec))}</div>` : "";
+        h += `<div class="chip${fora?' fora':''}"><div class="cn"><span class="cx">${cxHTML(it.med)}<small>${cxHTML(it.qty)}</small></span>${fora?'<small class="fora-txt">⚠ fora da faixa do peso digitado</small>':''}${pos}</div>
           <button type="button" class="x" data-i="${idx}" aria-label="Remover ${esc(it.med)}"><span aria-hidden="true">✕</span></button></div>`;
       });
     });
     if(orientSet.length){
       h += `<div class="grp-h">Orientações</div>`;
       orientSet.forEach((o,i)=>{
-        h += `<div class="chip"><div class="cn" style="font-weight:500">${esc(o.length>70?o.slice(0,70)+"…":o)}</div>
+        h += `<div class="chip or"><div class="cn"><span class="cx">${cxHTML(o.length>70?o.slice(0,70)+"…":o)}</span>${o.length>70?`<span class="rx-extra rx-resto cx">${cxHTML(o)}</span>`:""}</div>
           <button type="button" class="x" data-o="${i}" aria-label="Remover orientação"><span aria-hidden="true">✕</span></button></div>`;
       });
     }
@@ -95,6 +99,7 @@ function syncRx(){
   // habilita/desabilita as ações conforme o estado
   const empty = selected.length===0 && orientSet.length===0 && !rxArea.value.trim();
   $("#btn-copy").disabled = empty; $("#btn-clear").disabled = empty;
+  if(typeof marcaSel==="function") marcaSel();   // painel do meio: marca o que está na receita (js/views/prescricoes.js)
 }
 
 /* ---- ações ---- */

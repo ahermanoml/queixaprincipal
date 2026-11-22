@@ -7,9 +7,8 @@
 /* ---- lista ---- */
 /* são só 10 procedimentos em 6 áreas: os quadradinhos seguem a ordem das áreas, mas o título de cada área não aparece
    (deixaria uma linha quase vazia por área). Continua na marcação. */
-.pr-gh{display:none}
 #pr-lista{padding-top:4px}
-/* os itens (.pr-item) são quadradinhos: regras comuns às três listas no fim de css/app.css */
+/* os itens (.pr-item) e os títulos de área (.pr-gh) são linhas: regras comuns às três listas no fim de css/app.css */
 
 /* ---- página: uma coluna, largura de leitura ---- */
 .pr-pag{max-width:880px;padding:12px 22px 28px}

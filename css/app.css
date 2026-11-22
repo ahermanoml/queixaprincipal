@@ -103,7 +103,7 @@ header.top .top-row{display:flex;align-items:center;gap:16px;height:56px;positio
 }
 header.top .marca{display:flex;align-items:center;gap:10px;flex:none;min-width:0;color:inherit;text-decoration:none;border-radius:8px}
 header.top .logo{width:28px;height:28px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:8px;
-  background:var(--accent);color:var(--on-accent);font-size:16px;font-weight:700;line-height:1;box-shadow:var(--shadow-card)}
+  background:var(--accent);color:var(--on-accent);font-size:11.5px;font-weight:600;letter-spacing:-.02em;line-height:1;box-shadow:var(--shadow-card)}
 header.top .titulo{flex:none;min-width:0}
 header.top h1{font-size:14px;margin:0;font-weight:600;letter-spacing:-.01em;line-height:1.2;white-space:nowrap}
 header.top p{display:none}   /* o subtítulo saiu do cabeçalho (layout minimalista) */
@@ -217,6 +217,9 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 360px}
 .search input::placeholder{color:var(--muted-aa);opacity:1}
 .search input:focus{border-color:var(--line-2);background:var(--panel)}
 #cond-list{padding:8px}
+#col-cond > h2{display:none}   /* #cond-count continua na marcação (o filtro e os testes leem o total) */
+#col-cond .search{padding:12px}
+#col-cond .search::before{top:50%}
 
 /* lista de condições: só o nome (o emoji e o subtítulo continuam na marcação — busca e testes —, só não aparecem).
    A aberta fica com fundo carmim bem claro, texto carmim e um traço à esquerda. (.cond também é a classe dos
@@ -245,7 +248,9 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 360px}
 /* ---- painel do meio (Prescrições): fundo da página, conteúdo numa coluna de leitura centralizada (768px) ---- */
 #mid-body{padding:0 32px 48px}
 #mid-body > *{max-width:768px;margin-left:auto;margin-right:auto}
-#col-mid:has(.mid-head) > h2{box-sizing:border-box;width:100%;max-width:832px;margin:0 auto;padding:16px 32px 0}
+/* sem trilha "Prescrições › …" (como no layout): o h2 vira só um respiro de 24px, sem texto visível — continua na página
+   porque os testes clicam nele como lugar neutro, e o leitor de tela ainda o lê */
+#col-mid:has(.mid-head) > h2{box-sizing:border-box;width:100%;max-width:832px;height:24px;margin:0 auto;padding:0 32px;font-size:0;line-height:0;color:transparent}
 .mid-head{position:relative;padding:14px 0 20px;border-bottom:1px solid var(--line)}
 .mid-head h3{margin:0;font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.25;display:flex;align-items:center;gap:12px}
 .mid-head h3 .ic{display:none}   /* o emoji continua na marcação e na busca; no título, só o nome */
@@ -279,7 +284,7 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 360px}
 :root[data-tema-efetivo="dark"] :is(.pac-tab,.set-btn).active{background:var(--chip);box-shadow:none}
 .pac-tab[data-pac="ped"].active,.mid-head.pac-ped .set-btn.active{color:var(--ped-d)}
 .pac-tab.empty:not(.active),.set-btn.empty:not(.active){opacity:.6}
-.pac-tab .n,.set-btn .n{font-size:11px;font-weight:500;color:var(--muted-aa);font-variant-numeric:tabular-nums}
+.pac-tab .n,.set-btn .n{display:none}   /* sem contagem, como no layout; a combinação vazia continua esmaecida (.empty) */
 @container mid (max-width:559px){ .pac-tabs,.set-box{flex:1 1 100%;display:grid;grid-auto-columns:1fr} .pac-tab,.set-btn{height:32px} }
 @container mid (max-width:399px){ .pac-tab,.set-btn{gap:5px;padding:0 8px} }
 @container mid (max-width:339px){ .pac-tab,.set-btn{padding:0 5px} }
@@ -337,6 +342,22 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 360px}
 .item .pos{font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.5}
 .item .qty{font-size:12px;color:var(--muted-aa);font-weight:500;white-space:nowrap}
 
+/* caixa da tela: os dados vêm em MAIÚSCULAS (e são copiados assim); aqui aparecem em minúsculas com a 1ª letra maiúscula.
+   As siglas/unidades vêm embrulhadas em .sg por cxHTML() (js/core.js) e não mudam. */
+.cx{text-transform:lowercase}
+.cx::first-letter{text-transform:uppercase}
+.cx .sg{text-transform:none}
+/* opção já na receita: círculo cheio com ✓ e fundo rosado; o bloco inteiro na receita mostra "Bloco adicionado" */
+.item.sel,.oitem.sel{background:color-mix(in srgb,var(--accent-soft) 70%,transparent)}
+.item.sel:hover,.oitem.sel:hover{background:var(--accent-soft)}
+.item.sel .plus,.oitem.sel .plus{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.item.sel .plus .i,.oitem.sel .plus .i{--i:var(--i-check)}
+.addall .al-ok{display:none}
+.addall.tudo{background:var(--accent-soft);color:var(--accent-d)}
+.addall.tudo .al{display:none}
+.addall.tudo .al-ok{display:inline}
+.addall.tudo .i{--i:var(--i-check)}
+
 /* recomendações e instruções: o mesmo cartão das opções, com a dica e "Adicionar todas" no topo */
 .orient-box{margin-top:14px;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);
   overflow:hidden;box-shadow:var(--shadow-card)}
@@ -372,13 +393,12 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 360px}
 /* faixa de peso na posologia: com peso digitado mostra só a faixa certa, destacada como as doses */
 .item .faixa.on{color:var(--accent-d);background:var(--accent-soft);border-radius:4px;padding:0 4px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .faixa-nota{margin:10px 0 0;padding:8px 12px;border-radius:var(--r-sm);background:var(--accent-soft);color:var(--accent-d);font-size:12.5px}
-.chip.fora{background:var(--danger-soft)}
 .chip .cn small.fora-txt{color:var(--danger);font-weight:650}
 /* coluna do meio estreita (celular, telas médias): menos margem, e o título do bloco ocupa a linha inteira; os
    marcadores e o botão "Adicionar receita" descem para a linha de baixo */
 @container mid (max-width:559px){
   #mid-body{padding:0 14px 28px}
-  #col-mid:has(.mid-head) > h2{padding:14px 14px 0}
+  #col-mid:has(.mid-head) > h2{height:14px;padding:0 14px}
   .mid-head h3{font-size:21px}
   .mid-head:has(.guia-link) h3{padding-right:0}
   .block-head{flex-wrap:wrap;row-gap:4px}
@@ -388,21 +408,20 @@ body[data-layout="texto"] .grid{grid-template-columns:1fr 360px}
   .oitem{padding:10px 12px}
 }
 
-/* meu rascunho: um texto só, grande (#rasc-ta). Faixa grafite que termina num brilho vermelho, com título, estado do salvamento e botões. */
-#col-rascunho > .rasc-top{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:16px 20px;
-  background:radial-gradient(60% 320% at 100% 50%,rgba(226,38,60,.5) 0%,rgba(226,38,60,.14) 45%,rgba(226,38,60,0) 72%),var(--preto);color:#fff}
-#col-rascunho > .rasc-top h2{padding:0;color:#fff;font-size:20px;font-weight:750;letter-spacing:-.01em}
-#col-rascunho > .rasc-top h2::before{content:"";width:22px;height:22px;flex:none;background:var(--brasa);
-  -webkit-mask:var(--i-notebook) center/contain no-repeat;mask:var(--i-notebook) center/contain no-repeat}
-.rasc-status{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.14);border-radius:999px;padding:3px 11px;white-space:nowrap}
+/* meu rascunho: um texto só, grande (#rasc-ta). Cabeçalho claro como o da receita (layout minimalista): título, estado do
+   salvamento e os botões (Copiar tudo em carmim, ＋ Receita discreto). */
+#col-rascunho > .rasc-top{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;padding:12px 16px 12px 20px;
+  background:var(--panel);border-bottom:1px solid var(--line);color:var(--ink)}
+#col-rascunho > .rasc-top h2{padding:0;color:var(--ink);font-size:14px;font-weight:600;letter-spacing:-.005em}
+.rasc-status{font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--chip);border-radius:999px;padding:2px 9px;white-space:nowrap}
 .rasc-status:empty{display:none}
-.rasc-status[data-tipo="erro"]{background:#fff;color:#9f1420}
-.rasc-tools{display:flex;align-items:center;gap:8px;margin-left:auto}
-.rasc-top .btn{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff}
-.rasc-top .btn:hover{background:rgba(255,255,255,.22)}
-.rasc-top .btn.rasc-btn-copy{background:var(--brasa-bg);color:var(--on-brasa);border-color:transparent}
-.rasc-top .btn.rasc-btn-copy:hover{filter:brightness(1.08)}
-.rasc-top .btn:focus-visible{outline-color:#fff}
+.rasc-status[data-tipo="erro"]{background:var(--danger-soft);color:var(--danger)}
+.rasc-tools{display:flex;align-items:center;gap:6px;margin-left:auto}
+.rasc-top .btn{height:32px;padding:0 12px;font-size:12.5px;font-weight:500;border-color:var(--line);background:var(--panel);color:var(--ink-2)}
+.rasc-top .btn:hover{background:var(--hover);color:var(--ink)}
+.rasc-top .btn.rasc-btn-copy{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600}
+.rasc-top .btn.rasc-btn-copy:hover{background:var(--accent-h);border-color:var(--accent-h)}
+.rasc-top .btn .i{--isz:15px}
 .rasc-aviso{display:flex;align-items:center;gap:10px;margin:12px 20px 0;padding:10px 14px;border-radius:var(--r-md);
   background:var(--hover);color:var(--ink);font-size:13px;line-height:1.45}   /* neutro: com a primária vermelha, um fundo rosado leria como erro */
 .rasc-aviso > .i{--isz:18px;color:var(--accent-d)}
@@ -435,62 +454,80 @@ body[data-rasc="exemplo"] .rasc-ta,body[data-rasc="carregando"] .rasc-ta{cursor:
 .btn.ghost:disabled:hover{background:none}
 .btn .spacer{flex:1}
 
-/* ---- receita (layout minimalista): cabeçalho "Receita · N" com Limpar à direita → itens adicionados → pré-visualização
-   (o texto pronto, com a chave "edição livre") → rodapé com Copiar na largura toda e o aviso. A ordem visual vem de
-   uma grade com áreas nomeadas: .rx-tools e .ta-wrap viram display:contents, então os botões, a chave, o rótulo e o
-   texto entram direto na grade — a marcação (e o que os testes leem) não muda. ---- */
+/* ---- receita (layout minimalista): cabeçalho "Receita · N" com Limpar à direita → linha "PRÉ-VISUALIZAÇÃO" com a chave
+   "edição livre" → a pré-visualização (lista numerada: nome — quantidade e posologia, ✕ para tirar) ou, com a edição livre
+   ligada, o texto para editar à mão → rodapé com Copiar na largura toda e o aviso. A ordem vem de uma grade com áreas
+   nomeadas: .rx-tools e .ta-wrap viram display:contents, então os botões, a chave, o rótulo e o texto entram direto na
+   grade — os ids e o que os testes leem não mudam. O que se copia é sempre o texto do #rx (formato das receitas em PDF). ---- */
 #col-rx{display:grid;grid-template-columns:minmax(0,1fr) auto;
-  grid-template-rows:auto minmax(0,auto) auto minmax(0,1fr) 0 auto auto;
-  grid-template-areas:"head clear" "chips chips" "lab tog" "ta ta" "sep sep" "copy copy" "disc disc"}
+  grid-template-rows:auto auto minmax(0,1fr) 0 auto auto;
+  grid-template-areas:"head clear" "lab tog" "body body" "sep sep" "copy copy" "disc disc"}
 #col-rx::before{content:"";grid-area:1 / 1 / 2 / 3;border-bottom:1px solid var(--line);pointer-events:none}   /* linha do cabeçalho */
 #col-rx::after{content:"";grid-area:sep;border-top:1px solid var(--line);pointer-events:none}                 /* linha do rodapé */
 #col-rx .rx-tools,#col-rx .ta-wrap{display:contents}
 #col-rx > h2{grid-area:head;justify-content:flex-start;padding:16px 16px 14px 20px;font-size:14px}
 #col-rx > h2 .count{margin-left:2px;padding:1px 8px;border-radius:999px;background:var(--chip);color:var(--ink-2);font-size:11px;font-weight:500}
-#btn-clear{grid-area:clear;align-self:center;margin-right:12px;height:28px;padding:0 8px;border:0;border-radius:6px;background:none;
+#btn-clear{grid-area:clear;align-self:center;justify-self:end;margin-right:12px;height:28px;padding:0 8px;border:0;border-radius:6px;background:none;
   color:var(--muted-aa);font-size:12.5px;font-weight:500}
 #btn-clear .i{display:none}
 #btn-clear:hover{background:var(--danger-soft);color:var(--danger)}
 #btn-clear:disabled{opacity:.4}
 #btn-clear:disabled:hover{background:none;color:var(--muted-aa)}
-.chips{grid-area:chips;padding:10px 12px;max-height:32vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--scroll) transparent;
-  border-bottom:1px solid var(--line)}
-.grp-h{font-size:11px;color:var(--muted-aa);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:6px 8px 4px}
-.grp-h:first-child{margin-top:2px}
-.chip{display:flex;align-items:center;gap:8px;border-radius:var(--r-md);padding:5px 4px 5px 8px;margin-bottom:1px}
-.chip:hover{background:var(--hover)}
-.chip .cn{flex:1;min-width:0;font-size:12.5px;font-weight:600;color:var(--ink)}
-.chip .cn small{display:block;font-weight:400;color:var(--muted-aa);font-size:11.5px}
-.chip .x{flex:none;border:0;background:none;color:var(--muted-aa);cursor:pointer;width:26px;height:26px;padding:0;border-radius:6px;
-  display:flex;align-items:center;justify-content:center;font-size:12px}
-.chip .x:hover{background:var(--danger-soft);color:var(--danger)}
-.rx-empty{padding:28px 18px;text-align:center;color:var(--muted-aa);font-size:12.5px;line-height:1.6}
-/* rótulo da pré-visualização e a chave "edição livre" na mesma linha */
-#col-rx .ta-wrap label{grid-area:lab;margin:0;padding:14px 8px 8px 20px;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--muted-aa);display:flex;align-items:center;gap:7px}
-#col-rx .ta-wrap label .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);font-size:0;flex:none}
-.toggle{grid-area:tog;align-self:end;display:flex;flex-direction:row-reverse;align-items:center;gap:8px;margin:0 18px 8px 0;padding-top:12px;
+/* "PRÉ-VISUALIZAÇÃO" e a chave "Edição livre" na mesma linha */
+#col-rx .ta-wrap label{grid-area:lab;margin:0;padding:16px 8px 10px 20px;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted-aa);display:flex;align-items:center}
+.toggle{grid-area:tog;align-self:center;display:flex;flex-direction:row-reverse;align-items:center;gap:8px;margin:6px 18px 0 0;
   font-size:12px;white-space:nowrap;color:var(--ink-2);cursor:pointer;user-select:none}
 /* a caixinha vira uma chave (trilho + bolinha), sem pseudo-elemento: a bolinha é um gradiente que muda de lado */
 .toggle input{-webkit-appearance:none;appearance:none;flex:none;width:30px;height:18px;margin:0;border-radius:999px;cursor:pointer;
   background:radial-gradient(circle 7px at 9px 50%,#fff 6.5px,transparent 7.5px),var(--line-2);transition:background .15s}
 .toggle input:checked{background:radial-gradient(circle 7px at 21px 50%,#fff 6.5px,transparent 7.5px),var(--accent)}
 .toggle input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-textarea#rx{grid-area:ta;width:auto;min-height:140px;margin:0 16px 16px;resize:none;border:1px solid var(--line);border-radius:var(--r-lg);
+/* pré-visualização: caixa cinza em fonte monoespaçada; um item por linha, numerado por via (USO ORAL, USO TÓPICO…) */
+.chips{grid-area:body;min-height:0;margin:0 16px 16px;padding:12px 14px;overflow-y:auto;border:1px solid var(--line);border-radius:var(--r-lg);
+  background:var(--sunken);font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--ink);
+  scrollbar-width:thin;scrollbar-color:var(--scroll) transparent}
+.grp-h{counter-reset:rx;font-family:var(--font);font-size:10.5px;color:var(--muted-aa);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:12px 0 6px}
+.grp-h:first-child{margin-top:0}
+.chip{position:relative;display:block;padding:0 26px 10px 1.7em;margin:0 0 10px;border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+.chip:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.chip:not(.or){counter-increment:rx}
+.chip:not(.or)::before{content:counter(rx) ".";position:absolute;left:0;top:0;font-weight:600;color:var(--ink)}
+.chip.or{padding-left:0}
+.chip .cn{min-width:0;font-weight:500}
+.chip .cn > span.cx{display:block;font-weight:600;color:var(--ink)}
+.chip .cn small{display:inline;font-size:inherit;font-weight:500;color:var(--muted-aa)}
+.chip .cn small::before{content:" — "}
+.chip .cn small.fora-txt{display:block;font-family:var(--font);font-size:11.5px}
+.chip .cn small.fora-txt::before{content:none}
+.chip .rx-pos{display:block;margin-top:2px;color:var(--ink-2)}
+.chip.or .cn > span.cx{font-weight:500}
+.chip.or:has(.rx-resto) .cn > span.cx:not(.rx-resto){display:none}
+.chip .rx-resto{display:block;color:var(--ink)}
+.chip .x{position:absolute;top:-2px;right:-4px;border:0;background:none;color:var(--muted-aa);cursor:pointer;width:26px;height:26px;padding:0;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-size:12px;opacity:.7;transition:opacity .12s,background .12s,color .12s}
+.chip:hover .x,.chip .x:focus-visible{opacity:1}
+.chip .x:hover{background:var(--danger-soft);color:var(--danger)}
+.chip.fora{background:none}
+.chip.fora .cn > span.cx{color:var(--danger)}
+/* edição livre ligada: o texto do #rx no lugar da lista, para editar à mão */
+textarea#rx{grid-area:body;display:none;width:auto;min-height:0;margin:0 16px 16px;resize:none;border:1px solid var(--line);border-radius:var(--r-lg);
   padding:12px 14px;font-family:var(--mono);font-size:12px;line-height:1.65;color:var(--ink);background:var(--sunken);outline:none;white-space:pre;overflow:auto}
 textarea#rx::placeholder{color:var(--muted-aa);opacity:1}
 textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
+#col-rx:has(#free-edit:checked) textarea#rx{display:block}
+#col-rx:has(#free-edit:checked) .chips{display:none}
 #btn-copy{grid-area:copy;justify-content:center;width:auto;height:40px;margin:14px 16px 0;border-radius:var(--r-md);font-size:13px;font-weight:600;
   box-shadow:var(--shadow-card)}
 #btn-copy:disabled,#btn-copy:disabled:hover{opacity:1;background:var(--chip);border-color:var(--chip);color:var(--muted);box-shadow:none}
 .disclaimer{grid-area:disc;font-size:11px;color:var(--muted-aa);padding:10px 18px 14px;text-align:center;line-height:1.5}
 .disclaimer b{color:var(--warn);font-weight:600}
 .disclaimer .i{--isz:12px;vertical-align:-2px}
-/* receita vazia (nada adicionado, nada digitado, edição livre desligada): só o convite no meio, como no layout;
-   ligar a edição livre mostra o texto de novo para digitar à mão */
-#col-rx:has(.rx-empty):has(#free-edit:not(:checked)):has(#rx:placeholder-shown){grid-template-rows:auto minmax(0,1fr) auto 0 0 auto auto}
-#col-rx:has(.rx-empty):has(#free-edit:not(:checked)):has(#rx:placeholder-shown) :is(textarea#rx,.ta-wrap label){display:none}
-#col-rx:has(.rx-empty) .chips{display:flex;flex-direction:column;justify-content:center;max-height:none;border-bottom:0}
+/* receita vazia (nada adicionado, edição livre desligada): só o convite no meio, como no layout */
+.rx-empty{padding:28px 18px;text-align:center;color:var(--muted-aa);font-size:12.5px;line-height:1.6}
+#col-rx:has(.rx-empty):has(#free-edit:not(:checked)) :is(.ta-wrap label,.toggle){display:none}
+#col-rx:has(.rx-empty):has(#free-edit:not(:checked)) .chips{display:flex;flex-direction:column;justify-content:center;margin:0;border:0;background:none;
+  font-family:var(--font)}
 #col-rx:has(.rx-empty) .rx-empty{position:relative}
 #col-rx:has(.rx-empty) .rx-empty::before{content:"";display:block;width:40px;height:40px;margin:0 auto 12px;border-radius:50%;
   border:1px solid var(--line);background:var(--sunken)}
@@ -505,6 +542,50 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 #toast::before{content:"";width:7px;height:7px;border-radius:50%;background:#4fd190;flex:none}
 #toast.warn::before{background:#ffb454}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* "Resumo clínico" (Prescrições): fundo escurecido + painel de 448px que desliza da direita */
+.resumo-fundo{position:fixed;inset:0;z-index:40;background:rgba(15,23,42,.2);backdrop-filter:blur(1px);opacity:0;transition:opacity .2s}
+.resumo-fundo.aberto{opacity:1}
+:root[data-tema-efetivo="dark"] .resumo-fundo{background:rgba(0,0,0,.5)}
+.resumo{position:fixed;top:0;right:0;bottom:0;z-index:50;width:100%;max-width:448px;display:flex;flex-direction:column;background:var(--panel);
+  border-left:1px solid var(--line);box-shadow:var(--shadow-pop);transform:translateX(100%);transition:transform .2s ease}
+.resumo.aberto{transform:none}
+.resumo-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px 16px 24px;border-bottom:1px solid var(--line)}
+.resumo-kicker{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-d)}
+.resumo h3{margin:3px 0 0;font-size:16px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.resumo-fechar{flex:none;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;border-radius:8px;background:none;
+  color:var(--muted-aa);cursor:pointer}
+.resumo-fechar:hover{background:var(--hover);color:var(--ink)}
+.resumo-fechar .i{--isz:16px}
+.resumo-corpo{flex:1;min-height:0;overflow-y:auto;padding:20px 24px 28px;font-size:13px;line-height:1.6;color:var(--ink-2)}
+.resumo-p{margin:0 0 18px;color:var(--ink)}
+.resumo-corpo section{padding-top:16px;margin-top:16px;border-top:1px solid var(--line)}
+.resumo-corpo section:first-of-type{margin-top:0}
+.resumo-corpo h4{margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.resumo-alerta h4{color:var(--accent-d)}
+.resumo-corpo ul{margin:0;padding-left:18px}
+.resumo-corpo li + li{margin-top:7px}
+.resumo-guia{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-weight:600;color:var(--accent-d);text-decoration:none}
+.resumo-guia:hover{text-decoration:underline}
+.resumo-guia .i{--isz:14px}
+.resumo-rasc{display:flex;align-items:baseline;gap:8px;margin:18px 0 0;font-size:11.5px;color:var(--muted-aa)}
+.resumo-rasc .tag{flex:none;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--warn)}
+.resumo-rasc .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* celular, aba Prescrições: barra Condições | Prescrição | Receita (só um painel por vez) */
+.paineis{display:none}
+@media(max-width:820px){
+  body[data-view="prescricoes"]:not([data-inicio="1"]) .paineis{display:flex;gap:6px;margin:0 -12px;padding:8px 12px;border-top:1px solid var(--hdr-line)}
+  .paineis button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 8px;border:0;border-radius:6px;
+    background:none;font:inherit;font-size:12.5px;font-weight:500;color:var(--ink-2);cursor:pointer}
+  .paineis button[aria-pressed="true"]{background:var(--hdr-field-h);color:var(--hdr-ink)}
+  .paineis-n{min-width:18px;padding:0 5px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:10.5px;font-weight:600;line-height:17px;text-align:center}
+  body[data-view="prescricoes"][data-painel="cond"] :is(#col-mid,#col-rx),
+  body[data-view="prescricoes"][data-painel="mid"] :is(#col-cond,#col-rx),
+  body[data-view="prescricoes"][data-painel="rx"] :is(#col-cond,#col-mid){display:none}
+  /* a receita sozinha ocupa a tela: a pré-visualização cresce */
+  body[data-view="prescricoes"][data-painel="rx"] #col-rx{min-height:calc(100dvh - 180px)}
+}
 
 @media(max-width:1100px){
   .grid{grid-template-columns:216px 1fr 320px}
@@ -581,50 +662,24 @@ textarea#rx:focus{border-color:var(--accent);background:var(--panel)}
 }
 @media(max-width:820px){ .empty .big::before{transform:rotate(90deg)} }   /* no celular a lista fica em cima */
 
-/* ---- listas em quadradinhos (Escores, Calculadoras, Procedimentos) ----
-   Cada item da lista é um quadradinho com a cara dos quadrados do início: cartão grafite com um brilho vermelho num canto
-   (o canto muda de um quadradinho para o outro) e um anel fino; só o nome, em branco, embaixo. O aberto fica cheio de
-   vermelho, com texto branco. Sem desenho e sem rótulo (o dono achou exagerado). O subtítulo (.sub) continua na
-   marcação — busca e testes —, só não aparece.
-   A lista é: título de grupo + botões irmãos dentro da área que rola; a grade é só CSS, e o que não é botão (títulos de
-   grupo, "Nada encontrado") ocupa a linha inteira. Colunas pela largura da COLUNA da lista (container): 2 na coluna
-   estreita do computador e em celular de 320px; 3 no celular (quadrados); mais na coluna larga do tablet.
-   Cores: iguais nos dois temas (superfície grafite). A brasa é fraca de propósito (máx. 34%): o nome
-   branco passa de 4,5:1 em qualquer ponto do cartão. */
-#col-esc-lista,#col-calc-lista,#col-proc-lista{container-type:inline-size}
-/* grid-auto-rows:max-content: as linhas nunca encolhem para caber numa área de altura limitada (ela rola) */
-:is(#esc-list,#cx-lista,#pr-lista){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:max-content;gap:8px;align-content:start;padding:0 10px 12px}
-:is(#esc-list,#cx-lista,#pr-lista) > :not(button){grid-column:1 / -1;margin:0 -10px}
-:is(.esc-row,.cx-item,.pr-item){--gx:100%;--gy:0%;
-  position:relative;overflow:hidden;overflow:clip;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;margin:0;width:auto;min-width:0;
-  min-height:72px;padding:10px 10px 11px;border:0;border-radius:14px;color:#fff;
-  background:radial-gradient(120% 95% at var(--gx) var(--gy),rgba(226,38,60,.34) 0%,rgba(226,38,60,.11) 45%,rgba(226,38,60,0) 72%),linear-gradient(165deg,#2b2c33 0%,var(--preto) 100%);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);
-  font:inherit;text-align:left;cursor:pointer;transition:transform .12s,box-shadow .12s}
-/* a brasa muda de canto de um quadradinho para o outro: a grade não fica toda igual */
-:is(.esc-row,.cx-item,.pr-item):nth-of-type(3n+2){--gx:100%;--gy:100%}
-:is(.esc-row,.cx-item,.pr-item):nth-of-type(3n){--gx:0%;--gy:100%}
-:is(.esc-row,.cx-item,.pr-item)::before{content:"";position:absolute;right:-34px;top:-34px;width:86px;height:86px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.1);pointer-events:none}
-:is(.esc-row,.cx-item,.pr-item):hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--brasa),0 10px 18px -12px rgba(226,38,60,.7)}
-:is(.esc-row,.cx-item,.pr-item):active{transform:none}
-:is(.esc-row,.cx-item,.pr-item):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:14px}
-.esc-row > span:last-child{flex:0 1 auto;max-width:100%;min-width:0}   /* .esc-row também é .cond, que estica esse span (flex:1): o nome iria para o alto */
-/* nome: quebra entre palavras; só palavra comprida (12+ letras: "Cricotireoidostomia") ganha hífen, e só se não couber */
-:is(.esc-row,.cx-item,.pr-item) .nm{position:relative;display:block;max-width:100%;font-size:12.5px;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:#fff;
-  overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:12 4 4}
-:is(.esc-row,.cx-item,.pr-item) .sub,.esc-row br{display:none}
-/* aberto: cheio de vermelho, texto branco */
-:is(.esc-row,.cx-item,.pr-item).active{background:var(--brasa-bg);box-shadow:none;color:var(--on-brasa)}
-:is(.esc-row,.cx-item,.pr-item).active .nm{color:var(--on-brasa)}
-:is(.esc-row,.cx-item,.pr-item).active::before{border-color:rgba(255,255,255,.25)}
-/* celular: 3 por linha, quadrados. A altura mínima do quadradinho é a largura dele (100cqw = largura da coluna, menos
-   as margens e os dois vãos); nome comprido demais faz os quadradinhos daquela linha crescerem por igual, sem cortar o texto. */
-@container (min-width:320px){
-  :is(#esc-list,#cx-lista,#pr-lista){grid-template-columns:repeat(3,minmax(0,1fr))}
-  :is(.esc-row,.cx-item,.pr-item){min-height:calc((100cqw - 36px) / 3);padding:9px 9px 10px}
-}
-@container (min-width:520px){
-  :is(#esc-list,#cx-lista,#pr-lista){grid-template-columns:repeat(auto-fill,minmax(118px,1fr))}
-  :is(.esc-row,.cx-item,.pr-item){aspect-ratio:1 / 1;min-height:auto}
-}
+/* ---- listas de Escores, Calculadoras e Procedimentos (layout minimalista, 2026-11-21) ----
+   Linhas só com o nome, como a lista de condições das Prescrições: o aberto fica com fundo carmim bem claro, texto
+   carmim e um traço à esquerda; os títulos de grupo (categoria, área, tipo de bomba) em versalete cinza. Até 2026-11-21
+   eram quadradinhos grafite com brilho vermelho. O subtítulo (.sub) continua na marcação — busca e testes —, só não
+   aparece. (.esc-row também é .cond: estas regras vêm depois e valem por cima das de .cond.) */
+:is(#esc-list,#cx-lista,#pr-lista){padding:6px 8px 12px}
+:is(.esc-row,.cx-item,.pr-item){position:relative;display:flex;align-items:center;gap:10px;width:100%;min-width:0;margin:0 0 1px;padding:7px 12px;
+  border:0;border-radius:6px;background:none;color:var(--ink-2);font:inherit;font-size:13px;line-height:1.35;text-align:left;cursor:pointer;
+  transition:background .12s,color .12s}
+:is(.esc-row,.cx-item,.pr-item):hover{background:var(--hover);color:var(--ink)}
+:is(.esc-row,.cx-item,.pr-item).active{background:var(--accent-soft);color:var(--accent-d)}
+:is(.esc-row,.cx-item,.pr-item).active::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:0 3px 3px 0;background:var(--accent)}
+:is(.esc-row,.cx-item,.pr-item) > span:last-child{flex:1;min-width:0}
+:is(.esc-row,.cx-item,.pr-item) .nm{display:block;font-size:13px;font-weight:400;line-height:1.35;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:is(.esc-row,.cx-item,.pr-item).active .nm{color:var(--accent-d);font-weight:500}
+:is(.esc-row,.cx-item,.pr-item) :is(.sub,.ic),.esc-row br{display:none}
+:is(#esc-list,#cx-lista,#pr-lista) > :is(.esc-lgrp,.cx-gh,.cx-gsh,.pr-gh){position:static;display:block;margin:0;padding:14px 12px 5px;background:none;font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted-aa)}
+:is(#esc-list,#cx-lista,#pr-lista) > :first-child{padding-top:6px}
+#cx-lista > .cx-gsh{padding-top:8px;letter-spacing:.03em;text-transform:none;font-weight:500}
+@media(max-width:820px){ :is(.esc-row,.cx-item,.pr-item){padding:10px 12px} }

@@ -62,3 +62,59 @@ function registerView(v){
 const viewOf = key => VIEWS.find(v=> v.key===key) || null;
 // ícone de linha da aba (css/icones.css, por key); o emoji do registro fica dentro, invisível, como reserva
 const viewIcon = v => `<span class="i" data-v="${esc(v.key)}" aria-hidden="true">${esc(v.icon||"")}</span>`;
+
+/* ---- caixa da tela (layout minimalista, 2026-11-21) ----
+   Os remédios, posologias e orientações estão em MAIÚSCULAS nos dados, e o texto copiado para o sistema do hospital
+   continua assim. Só na TELA eles aparecem em caixa normal ("Nitrofurantoína 100 mg"): o CSS da classe .cx põe tudo em
+   minúsculas e a primeira letra em maiúscula; cxHTML() embrulha em <span class="sg"> as letras que devem continuar
+   maiúsculas (siglas, unidades como mL/mEq/mmHg, nomes próprios). O texto do HTML não muda — só ganha <span> —, então
+   o que se seleciona, copia ou lê no leitor de tela é o original. Palavra fora das listas aparece em minúsculas. */
+const CX_FORMAS = (()=>{
+  const f = {};
+  // siglas que ficam inteiras em maiúsculas
+  ("EV IM SC SF SG VO PA FR FC TC MS RX PS RM IC US RN UV ES UTI UBS AAS USG ECG PAS PAD PAC HIV PCR ITU SCQ BAV PEP AVC SRO OMA "+
+   "IST PFE TGO TGP TEV VNI IAM SCA TFG HAS TCE DIU PEG IOT DTP ORL ITB HPV SAE AIT FDA EVA BRA AUC FPS SGB CVF SBP CTA AZT LDH "+
+   "NS1 INR GDH SUS TEP SSJ EAP AHS IMC CAD EHH NPH VHS PAM OMS AAO HNS DIP AINE AINES MRSA ESBL CIWA SAMU IMAO PCDT IECA SRAG "+
+   "CCIH VPPB IGIV ISRS IRSN LABA VEF1 CPAP CPRE HTLV AMIU COVID FLACC SINAN SAESC SALOX SALON SAAR SAA SAR IGHAR IGHAT IGHAHB "+
+   "CRIE DPOC QT RT AD CAPS GINA HINTS DRESS SIADH EAACI O2 CO2 B6 B12 C3 III VII IX XII IR3535 L K U UI")
+    .split(" ").forEach(s=> f[s] = s);
+  // formas mistas (unidades e siglas com minúsculas)
+  Object.assign(f, {ML:"mL", DL:"dL", MEQ:"mEq", MMHG:"mmHg", CMH2O:"cmH2O", PH:"pH", QTC:"QTc", HCG:"hCG", HIB:"Hib", KCL:"KCl",
+    NACL:"NaCl", SPO2:"SpO2", SATO2:"SatO2", SAT:"Sat", FIO2:"FiO2", PAO2:"PaO2", PACO2:"PaCO2", CLCR:"ClCr", HBSAG:"HBsAg",
+    BIPAP:"BiPAP", HBA1C:"HbA1c", "PIMÁX":"PImáx", "PEMÁX":"PEmáx", ISGLT2:"iSGLT2", MCISAAC:"McIsaac", DT:"dT"});
+  // nomes próprios: só a inicial
+  ("GUILLAIN BARRÉ WILLEBRAND LUND BROWDER PRITCHARD HOLLIDAY SEGAR GLASGOW CENTOR DIX HALLPIKE RAMSAY BRASIL GRAM RINGER "+
+   "HARTMANN EPLEY REYE HUNT POTT UNNA PADUA CAINE TRIDIL CEFALIV CEFALIUM LÁCRIMA PLUS")
+    .split(" ").forEach(s=> f[s] = s[0] + s.slice(1).toLowerCase());
+  return f;
+})();
+// letras soltas que são sigla pelo contexto: "HEPATITE(S) B E C", "VITAMINA K", "GRUPO D", "URINA TIPO I", "NA, K, MG".
+// Cada regra devolve [posição dentro do trecho achado, forma na tela].
+const CX_CONTEXTO = [
+  [/\b(?:HEPATITES?|VITAMINA|GRUPO|TIPO|INFLUENZA|NÍVEL|FATOR|PLANO|PLANOS) (?:[A-E]|I{1,3})\b/g, t=> [[t.lastIndexOf(" ")+1, t.slice(t.lastIndexOf(" ")+1)]]],
+  [/\bHEPATITES B E C\b/g, t=> [[t.length-1, "C"]]],
+  [/\bNA, K, MG\b/g, t=> [[0, "Na"], [t.length-2, "Mg"]]],
+  [/\bK E MG\b/g, t=> [[t.length-2, "Mg"]]]
+];
+function cxHTML(s){
+  s = String(s);
+  const up = new Array(s.length).fill(false);   // true = a letra fica maiúscula na tela
+  const marca = (ini, forma) => { for(let i=0;i<forma.length;i++) if(forma[i]!==forma[i].toLowerCase()) up[ini+i] = true; };
+  const re = /[A-Za-zÀ-ÖØ-Ýà-öø-ý0-9]+/g;
+  let m;
+  while((m = re.exec(s))){ const forma = CX_FORMAS[m[0]]; if(forma) marca(m.index, forma); }
+  // começo de frase depois de ". " / "! " / "? ": letra maiúscula, como na primeira palavra
+  const frase = /[.!?]\s+(?=[A-ZÀ-Ý])/g;
+  while((m = frase.exec(s))) up[m.index + m[0].length] = true;
+  CX_CONTEXTO.forEach(([rx, pos])=>{
+    rx.lastIndex = 0;
+    while((m = rx.exec(s))) pos(m[0]).forEach(([d, forma])=> marca(m.index + d, forma));
+  });
+  let h = "", aberto = false;
+  for(let i=0;i<s.length;i++){
+    if(up[i] && !aberto){ h += '<span class="sg">'; aberto = true; }
+    if(!up[i] && aberto){ h += "</span>"; aberto = false; }
+    h += esc(s[i]);
+  }
+  return aberto ? h + "</span>" : h;
+}
