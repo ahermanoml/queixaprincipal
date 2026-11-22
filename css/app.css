@@ -13,23 +13,23 @@
   --font:Inter,"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:"JetBrains Mono","Cascadia Mono","Cascadia Code",Consolas,"SF Mono",ui-monospace,"Roboto Mono",Menlo,monospace;
   /* superfícies: fundo → painel (uma hierarquia só); "sunken" = campo/área de texto dentro do painel. */
-  --bg:#f8fafc; --panel:#ffffff; --sunken:#f8fafc; --hover:#f1f5f9; --chip:#f1f5f9;
-  --ink:#0f172a; --ink-2:#475569; --muted:#64748b; --muted-aa:#5b6475;
-  --line:#e2e8f0; --line-2:#cbd5e1; --scroll:#cbd5e1;
+  --bg:#dfe3e8; --panel:#eef0f3; --sunken:#e4e7ec; --hover:#dde1e7; --chip:#d9dee5;
+  --ink:#0b1220; --ink-2:#354152; --muted:#566072; --muted-aa:#475163;
+  --line:#c9d0d9; --line-2:#aeb8c5; --scroll:#aeb8c5;
   /* primária (carmim) — também a cor do Adulto. --accent é PREENCHIMENTO/contorno (texto por cima: --on-accent);
      --accent-h = o preenchimento no hover; texto vermelho sobre a página = --accent-d. */
-  --accent:#be123c; --accent-h:#9f1239; --accent-d:#be123c; --accent-soft:#fff1f2; --on-accent:#ffffff; --accent-track:#ffe4e6;
+  --accent:#be123c; --accent-h:#9f1239; --accent-d:#b0103a; --accent-soft:#fbe2e7; --on-accent:#ffffff; --accent-track:#f6cfd7;
   /* pediátrico (azul): distingue o paciente do adulto (vermelho) — função, não enfeite */
-  --ped:#2158d6; --ped-d:#1d4ed8; --ped-soft:#e8efff; --on-ped:#ffffff; --ped-track:#dbe6ff;
+  --ped:#2158d6; --ped-d:#1b46c4; --ped-soft:#dfe7fb; --on-ped:#ffffff; --ped-track:#cfdcf8;
   /* estados: verde, âmbar e vermelho-tijolo (o perigo sempre vem com fundo tonal e texto, não só pela cor) */
-  --ok:#17794c; --ok-soft:#e4f2ea; --warn:#775600; --warn-soft:#faf1d0; --danger:#b3261e; --danger-soft:#fbeceb;
-  --mark:#fbe39b; --mark-ink:#3a2c00; --hl:#fdf1c7;
+  --ok:#146a42; --ok-soft:#d8eadf; --warn:#5f4500; --warn-soft:#f2e5bb; --danger:#a3211a; --danger-soft:#f5dcda;
+  --mark:#f5d779; --mark-ink:#3a2c00; --hl:#f4e5ad;
   --toast-bg:#0f172a; --toast-fg:#ffffff;
   --shadow-pop:0 1px 3px rgba(15,23,42,.08),0 12px 32px rgba(15,23,42,.14);
-  --shadow-card:0 1px 2px rgba(15,23,42,.04);
+  --shadow-card:0 1px 2px rgba(15,23,42,.07);
   /* cabeçalho: branco no claro (zinco no escuro), texto escuro; --hdr-acc = ícone/palavra de destaque no cabeçalho */
-  --hdr-bg:#ffffff; --hdr-ink:#0f172a; --hdr-ink-2:#5b6475; --hdr-acc:#be123c;
-  --hdr-field:#f8fafc; --hdr-field-h:#f1f5f9; --hdr-line:#e2e8f0;
+  --hdr-bg:#eef0f3; --hdr-ink:#0b1220; --hdr-ink-2:#475163; --hdr-acc:#be123c;
+  --hdr-field:#e4e7ec; --hdr-field-h:#dce0e6; --hdr-line:#c9d0d9;
   /* superfícies grafite (iguais nos dois temas): quadrados do início, quadradinhos das listas, faixa do Meu rascunho.
      Sobre o grafite: --brasa = texto/ícone vermelho claro; --brasa-bg = preenchimento vermelho com texto branco (--on-brasa)
      — também o logo e o botão "Criar ou entrar". */
